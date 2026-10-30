@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le Noble Coran & Tafsīr — Traduction Muhammad Hamidullah (1977)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #020406;
+      --bg-card: rgba(8, 14, 20, 0.22);
+      --bg-card-hover: rgba(14, 24, 32, 0.36);
+      --green-accent: #10b981;
+      --green-bright: #34d399;
+      --green-soft: rgba(16, 185, 129, 0.18);
+      --sky-accent: #38bdf8;
+      --sky-bright: #7dd3fc;
+      --text-main: #f8fafc;
+      --text-muted: #cbd5e1;
+      --border-color: rgba(255, 255, 255, 0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding: 32px 4vw 60px 4vw;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    
+  .cosmos-exterior-wrapper {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 40%, #070d14 0%, #030609 65%, #010203 100%);
+  }
+
+  #dynamicSkyLighting {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: background 0.6s ease;
+  }
+
+  #fullPageSkyCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+
+  .flat-earth-sun {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 116px;
+    height: 116px;
+    border-radius: 50%;
+    z-index: 3;
+    pointer-events: none;
+    will-change: transform;
+  }
+  .sun-core {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffffff 0%, #fef08a 38%, #f59e0b 72%, rgba(234, 88, 12, 0) 100%);
+    box-shadow:
+      0 0 35px 10px rgba(253, 224, 71, 0.85),
+      0 0 90px 35px rgba(245, 158, 11, 0.45),
+      0 0 160px 70px rgba(234, 88, 12, 0.22);
+    animation: sunCoronaPulse 4s ease-in-out infinite alternate;
+  }
+  @keyframes sunCoronaPulse {
+    0% { transform: scale(0.96); opacity: 0.92; }
+    100% { transform: scale(1.05); opacity: 1; }
+  }
+
+  .flat-earth-moon {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    z-index: 3;
+    pointer-events: none;
+    will-change: transform;
+  }
+  .moon-white-core {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 38% 38%, #ffffff 0%, #ffffff 48%, #f1f5f9 78%, #e2e8f0 94%, rgba(255, 255, 255, 0) 100%);
+    box-shadow:
+      0 0 35px 12px rgba(255, 255, 255, 0.95),
+      0 0 85px 32px rgba(226, 232, 240, 0.55),
+      0 0 160px 65px rgba(186, 230, 253, 0.28),
+      inset -8px -8px 18px rgba(203, 213, 225, 0.45);
+    animation: whiteMoonPulse 4.5s ease-in-out infinite alternate;
+  }
+  @keyframes whiteMoonPulse {
+    0% { transform: scale(0.96); opacity: 0.92; }
+    100% { transform: scale(1.05); opacity: 1; }
+  }
+
+  .verse-stage.ash-shams-daylight {
+    border-color: rgba(56, 189, 248, 0.55);
+    box-shadow:
+      0 0 60px rgba(56, 189, 248, 0.22),
+      0 20px 50px rgba(0, 0, 0, 0.55),
+      inset 0 0 50px rgba(125, 211, 252, 0.12);
+    animation: daylightSweepPulse 3.5s ease-in-out infinite alternate;
+  }
+  @keyframes daylightSweepPulse {
+    0% { box-shadow: 0 0 45px rgba(56, 189, 248, 0.16), inset 0 0 35px rgba(125, 211, 252, 0.08); }
+    100% { box-shadow: 0 0 80px rgba(56, 189, 248, 0.32), inset 0 0 65px rgba(125, 211, 252, 0.18); }
+  }
+
+  .verse-stage.earth-leveled-glow::after {
+    content: "";
+    position: absolute;
+    bottom: 6px;
+    left: 8%;
+    width: 84%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.85), #ffffff, rgba(56, 189, 248, 0.85), transparent);
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.9);
+    animation: horizonExpand 3s ease-in-out infinite alternate;
+  }
+  @keyframes horizonExpand {
+    0% { transform: scaleX(0.85); opacity: 0.65; }
+    100% { transform: scaleX(1.05); opacity: 1; }
+  }
+
+  .revelation-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 4px 10px;
+    border-radius: 99px;
+    text-decoration: none;
+  }
+  .revelation-pill.mecquoise {
+    background: rgba(56, 189, 248, 0.14);
+    color: #7dd3fc;
+    border: 1px solid rgba(56, 189, 248, 0.42);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.12);
+  }
+  .revelation-pill.medinoise {
+    background: rgba(16, 185, 129, 0.16);
+    color: #6ee7b7;
+    border: 1px solid rgba(52, 211, 153, 0.38);
+  }
+  .revelation-pill.miracle-pill {
+    background: rgba(14, 165, 233, 0.22);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.6);
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.28);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .revelation-pill.miracle-pill:hover {
+    background: #38bdf8;
+    color: #031521;
+    box-shadow: 0 0 22px rgba(56, 189, 248, 0.55);
+  }
+
+  .sky-star-icon {
+    color: #38bdf8;
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.9), 0 0 20px rgba(14, 165, 233, 0.6);
+  }
+
+  .miracle-banner {
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.16) 0%, rgba(8, 47, 73, 0.52) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.5);
+    border-radius: 18px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 12px 35px rgba(2, 132, 199, 0.18), inset 0 0 25px rgba(56, 189, 248, 0.08);
+  }
+  .miracle-header {
+    color: #38bdf8;
+    text-shadow: 0 0 14px rgba(56, 189, 248, 0.4);
+    font-weight: 800;
+    font-size: 1.02rem;
+    margin-bottom: 8px;
+  }
+  .miracle-summary {
+    color: #e0f2fe;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+  .miracle-expand-btn {
+    background: rgba(56, 189, 248, 0.16);
+    color: #7dd3fc;
+    border: 1px solid rgba(56, 189, 248, 0.55);
+    padding: 9px 16px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.84rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+  }
+  .miracle-expand-btn:hover {
+    background: #38bdf8;
+    color: #031521;
+    box-shadow: 0 0 24px rgba(56, 189, 248, 0.5);
+  }
+  .miracle-deep-details {
+    display: none;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(56, 189, 248, 0.3);
+    color: #f0f9ff;
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+  .miracle-deep-details.open {
+    display: block;
+  }
+  .miracle-deep-details p {
+    margin-bottom: 12px;
+  }
+
+  .interface-layer {
+    position: relative;
+    z-index: 10;
+  }
+
+
+    .wrapper { width: 100%; max-width: 1220px; margin: 0 auto; }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 26px;
+      padding: 38px 24px 32px 24px;
+      background: rgba(6, 11, 16, 0.18);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 26px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.4), inset 0 0 30px rgba(255,255,255,0.03);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-ornament-top {
+      font-family: 'Amiri', serif;
+      font-size: 1.35rem;
+      color: rgba(255, 255, 255, 0.85);
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+      text-shadow: 0 0 14px rgba(255, 255, 255, 0.6);
+      animation: gentleFloatTitle 4s ease-in-out infinite alternate;
+    }
+    .hero h1 {
+      font-family: 'Cinzel Decorative', 'Amiri', serif;
+      font-size: 3.1rem;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      background: linear-gradient(
+        110deg,
+        #ffffff 0%,
+        #e0f2fe 22%,
+        #7dd3fc 45%,
+        #ffffff 55%,
+        #a7f3d0 78%,
+        #ffffff 100%
+      );
+      background-size: 240% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.35)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.85));
+      animation: continuousTitleShimmer 6.5s linear infinite, gentleFloatTitle 4s ease-in-out infinite alternate;
+    }
+    @keyframes continuousTitleShimmer {
+      0% { background-position: 0% center; }
+      100% { background-position: 240% center; }
+    }
+    @keyframes gentleFloatTitle {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-4px); }
+    }
+    .hero-glow-line {
+      width: 240px;
+      height: 2px;
+      margin: 16px auto 0 auto;
+      border-radius: 99px;
+      background: linear-gradient(90deg, transparent, #ffffff, #38bdf8, #ffffff, transparent);
+      background-size: 200% 100%;
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.85);
+      animation: lineGlowSweep 3.5s ease-in-out infinite alternate;
+    }
+    @keyframes lineGlowSweep {
+      0% { width: 170px; opacity: 0.65; background-position: 0% 50%; }
+      100% { width: 310px; opacity: 1; background-position: 100% 50%; }
+    }
+
+    .revelation-guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+    .guide-box {
+      background: rgba(8, 14, 20, 0.24);
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 20px 24px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+    }
+    .guide-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .guide-header h3 {
+      font-size: 1rem;
+      color: #ffffff;
+      font-weight: 800;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+    }
+    .guide-box p {
+      font-size: 0.86rem;
+      color: #e2e8f0;
+      line-height: 1.65;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.85);
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+    .sort-btn {
+      background: var(--bg-card);
+      backdrop-filter: blur(8px);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 12px 22px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: all 0.2s ease;
+    }
+    .sort-btn:hover { border-color: var(--sky-bright); color: #fff; }
+    .sort-btn.active {
+      background: var(--green-accent);
+      color: #032218;
+      border-color: var(--green-bright);
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
+    }
+    .sort-btn.miracle-btn-filter.active {
+      background: var(--sky-accent);
+      color: #031521;
+      border-color: var(--sky-bright);
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
+    }
+
+    .search-box {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto 30px auto;
+      display: block;
+      padding: 14px 20px;
+      border-radius: 14px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .search-box::placeholder { color: #cbd5e1; }
+    .search-box:focus { border-color: var(--sky-bright); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--bg-card);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 18px 20px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.22s ease;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.3);
+    }
+    .card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(56, 189, 248, 0.45);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 35px rgba(0,0,0,0.5);
+    }
+    .card-left { display: flex; align-items: center; gap: 14px; }
+    .num-badge {
+      background: var(--green-soft);
+      color: var(--green-bright);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      font-weight: 800;
+      padding: 9px 13px;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      min-width: 48px;
+      text-align: center;
+    }
+    .card-info h2 {
+      font-size: 1.02rem;
+      color: #ffffff;
+      margin-bottom: 5px;
+      font-weight: 700;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
+    }
+    .surah-subnum {
+      color: #7dd3fc;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+    .card-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .card-meta-text {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+    }
+    .ar-name {
+      font-family: 'Amiri', serif;
+      font-size: 1.6rem;
+      color: #ffffff;
+      text-shadow: 0 0 12px rgba(255,255,255,0.55);
+      margin-left: 8px;
+    }
+
+    @media (max-width: 820px) {
+      .hero h1 { font-size: 2.1rem; }
+      .revelation-guide-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  
+  <div class="cosmos-exterior-wrapper">
+    <div id="dynamicSkyLighting"></div>
+    <canvas id="fullPageSkyCanvas"></canvas>
+
+    <div class="flat-earth-sun" id="flatEarthSun">
+      <div class="sun-core"></div>
+    </div>
+
+    <div class="flat-earth-moon" id="flatEarthMoon">
+      <div class="moon-white-core"></div>
+    </div>
+  </div>
+
+
+  <div class="wrapper interface-layer">
+    <header class="hero">
+      <div class="hero-ornament-top">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+      <h1>Le Noble Coran & Tafsīr</h1>
+      <div class="hero-glow-line"></div>
+    </header>
+
+    <section class="revelation-guide-grid">
+      <div class="guide-box">
+        <div class="guide-header">
+          <h3>Qu'est-ce qu'une Sourate Mecquoise ?</h3>
+          <span class="revelation-pill mecquoise">Mecquoise • 86 Sourates</span>
+        </div>
+        <p>
+          Révélée <strong>avant l'Hégire</strong> (l'émigration du Prophète ﷺ vers Médine). Ces sourates fondent la foi du croyant : elles appellent à l'Unicité pure d'Allāh (<em>Tawhīd</em>), rappellent la Résurrection, le Jour du Jugement, le Paradis et l'Enfer, et relatent l'histoire des Prophètes anciens.
+        </p>
+      </div>
+      <div class="guide-box">
+        <div class="guide-header">
+          <h3>Qu'est-ce qu'une Sourate Médinoise ?</h3>
+          <span class="revelation-pill medinoise">Médinoise • 28 Sourates</span>
+        </div>
+        <p>
+          Révélée <strong>après l'Hégire</strong>, lorsque les croyants formaient une société établie à Médine. Ces sourates détaillent les adorations pratiques, les lois familiales et sociales, la justice, l'éthique communautaire et les règles encadrant la vie des croyants.
+        </p>
+      </div>
+    </section>
+
+    <div class="controls">
+      <button class="sort-btn active" onclick="trier('classique', this)">1. Ordre classique (1 à 114)</button>
+      <button class="sort-btn" onclick="trier('chrono', this)">2. Ordre de Révélation (Chronologique : 1 à 114)</button>
+      <button class="sort-btn miracle-btn-filter" onclick="trier('miracles', this)">3. <span class="sky-star-icon">★</span> Les Miracles & Prophéties du Coran</button>
+    </div>
+
+    <input type="text" id="searchInput" class="search-box" placeholder="Rechercher une sourate (ex: 10, Yunus, 30, Ar-Rum, Miracle...)" oninput="afficher()">
+
+    <div id="grid" class="grid"></div>
+  </div>
+
+  <script>
+    const sourates = [{"id":1,"nom":"Al-Fatihah","nomFr":"L'ouverture","nomAr":"الفاتحة","versets":7,"ordreRev":5,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":2,"nom":"Al-Baqarah","nomFr":"La vache","nomAr":"البقرة","versets":286,"ordreRev":87,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":3,"nom":"Ali 'Imran","nomFr":"La famille de 'imran","nomAr":"آل عمران","versets":200,"ordreRev":89,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":4,"nom":"An-Nisa","nomFr":"Les femmes","nomAr":"النساء","versets":176,"ordreRev":92,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":5,"nom":"Al-Ma'idah","nomFr":"La table servie","nomAr":"المائدة","versets":120,"ordreRev":112,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":6,"nom":"Al-An'am","nomFr":"Les bestiaux","nomAr":"الأنعام","versets":165,"ordreRev":55,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":7,"nom":"Al-A'raf","nomFr":"Al-A'raf","nomAr":"الأعراف","versets":206,"ordreRev":39,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":8,"nom":"Al-Anfal","nomFr":"Le butin","nomAr":"الأنفال","versets":75,"ordreRev":88,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":9,"nom":"At-Tawbah","nomFr":"Le repentir","nomAr":"التوبة","versets":129,"ordreRev":113,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":10,"nom":"Yunus","nomFr":"Jonas","nomAr":"يونس","versets":109,"ordreRev":51,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":92,"miracleTitre":"Signe Historique — La sauvegarde du corps de Pharaon comme signe pour les générations futures"},{"id":11,"nom":"Hud","nomFr":"Houd","nomAr":"هود","versets":123,"ordreRev":52,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":12,"nom":"Yusuf","nomFr":"Joseph","nomAr":"يوسف","versets":111,"ordreRev":53,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":13,"nom":"Ar-Ra'd","nomFr":"Le tonnerre","nomAr":"الرعد","versets":43,"ordreRev":96,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":14,"nom":"Ibrahim","nomFr":"Abraham","nomAr":"ابراهيم","versets":52,"ordreRev":72,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":15,"nom":"Al-Hijr","nomFr":"Al-Hijr","nomAr":"الحجر","versets":99,"ordreRev":54,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":16,"nom":"An-Nahl","nomFr":"Les abeilles","nomAr":"النحل","versets":128,"ordreRev":70,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":17,"nom":"Al-Isra","nomFr":"Le voyage nocturne","nomAr":"الإسراء","versets":111,"ordreRev":50,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":18,"nom":"Al-Kahf","nomFr":"La caverne","nomAr":"الكهف","versets":110,"ordreRev":69,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":19,"nom":"Maryam","nomFr":"Marie","nomAr":"مريم","versets":98,"ordreRev":44,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":20,"nom":"Taha","nomFr":"Ta-Ha","nomAr":"طه","versets":135,"ordreRev":45,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":21,"nom":"Al-Anbya","nomFr":"Les prophètes","nomAr":"الأنبياء","versets":112,"ordreRev":73,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":22,"nom":"Al-Hajj","nomFr":"Le pèlerinage","nomAr":"الحج","versets":78,"ordreRev":103,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":23,"nom":"Al-Mu'minun","nomFr":"Les croyants","nomAr":"المؤمنون","versets":118,"ordreRev":74,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":14,"miracleTitre":"Signe Embryologique — Les étapes successives de la formation du fœtus"},{"id":24,"nom":"An-Nur","nomFr":"La lumière","nomAr":"النور","versets":64,"ordreRev":102,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":25,"nom":"Al-Furqan","nomFr":"Le discernement","nomAr":"الفرقان","versets":77,"ordreRev":42,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":26,"nom":"Ash-Shu'ara","nomFr":"Les poètes","nomAr":"الشعراء","versets":227,"ordreRev":47,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":27,"nom":"An-Naml","nomFr":"Les fourmis","nomAr":"النمل","versets":93,"ordreRev":48,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":28,"nom":"Al-Qasas","nomFr":"Le récit","nomAr":"القصص","versets":88,"ordreRev":49,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":29,"nom":"Al-'Ankabut","nomFr":"L'araignée","nomAr":"العنكبوت","versets":69,"ordreRev":85,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":30,"nom":"Ar-Rum","nomFr":"Les romains","nomAr":"الروم","versets":60,"ordreRev":84,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":1,"miracleTitre":"Prophétie Historique & Miracle Linguistique — La victoire des Romains et le pari d'Abū Bakr As-Siddīq"},{"id":31,"nom":"Luqman","nomFr":"Louqman","nomAr":"لقمان","versets":34,"ordreRev":57,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":32,"nom":"As-Sajdah","nomFr":"La prosternation","nomAr":"السجدة","versets":30,"ordreRev":75,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":33,"nom":"Al-Ahzab","nomFr":"Les coalisés","nomAr":"الأحزاب","versets":73,"ordreRev":90,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":34,"nom":"Saba","nomFr":"Saba'","nomAr":"سبإ","versets":54,"ordreRev":58,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":35,"nom":"Fatir","nomFr":"Le Créateur","nomAr":"فاطر","versets":45,"ordreRev":43,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":36,"nom":"Ya-Sin","nomFr":"Ya-Sin","nomAr":"يس","versets":83,"ordreRev":41,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":37,"nom":"As-Saffat","nomFr":"Les rangés","nomAr":"الصافات","versets":182,"ordreRev":56,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":38,"nom":"Sad","nomFr":"Sad","nomAr":"ص","versets":88,"ordreRev":38,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":39,"nom":"Az-Zumar","nomFr":"Les groupes","nomAr":"الزمر","versets":75,"ordreRev":59,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":40,"nom":"Ghafir","nomFr":"Le Pardonneur","nomAr":"غافر","versets":85,"ordreRev":60,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":41,"nom":"Fussilat","nomFr":"Les versets explicites","nomAr":"فصلت","versets":54,"ordreRev":61,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":42,"nom":"Ash-Shuraa","nomFr":"La concertation","nomAr":"الشورى","versets":53,"ordreRev":62,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":43,"nom":"Az-Zukhruf","nomFr":"L'ornement","nomAr":"الزخرف","versets":89,"ordreRev":63,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":44,"nom":"Ad-Dukhan","nomFr":"La fumée","nomAr":"الدخان","versets":59,"ordreRev":64,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":45,"nom":"Al-Jathiyah","nomFr":"L'agenouillée","nomAr":"الجاثية","versets":37,"ordreRev":65,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":46,"nom":"Al-Ahqaf","nomFr":"Al-Ahqaf","nomAr":"الأحقاف","versets":35,"ordreRev":66,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":47,"nom":"Muhammad","nomFr":"Mouhammad","nomAr":"محمد","versets":38,"ordreRev":95,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":48,"nom":"Al-Fath","nomFr":"La victoire éclatante","nomAr":"الفتح","versets":29,"ordreRev":111,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":49,"nom":"Al-Hujurat","nomFr":"Les appartements","nomAr":"الحجرات","versets":18,"ordreRev":106,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":50,"nom":"Qaf","nomFr":"Qaf","nomAr":"ق","versets":45,"ordreRev":34,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":51,"nom":"Adh-Dhariyat","nomFr":"Qui éparpillent","nomAr":"الذاريات","versets":60,"ordreRev":67,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":52,"nom":"At-Tur","nomFr":"Le mont At-Tour","nomAr":"الطور","versets":49,"ordreRev":76,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":53,"nom":"An-Najm","nomFr":"L'étoile","nomAr":"النجم","versets":62,"ordreRev":23,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":54,"nom":"Al-Qamar","nomFr":"La lune","nomAr":"القمر","versets":55,"ordreRev":37,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":1,"miracleTitre":"Miracle Prophétique — La fente de la Lune (Inshiqāq Al-Qamar)"},{"id":55,"nom":"Ar-Rahman","nomFr":"Le Tout Miséricordieux","nomAr":"الرحمن","versets":78,"ordreRev":97,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":true,"miracleVerset":19,"miracleTitre":"Signe Maritime — La barrière invisible (Barzakh) entre les deux mers"},{"id":56,"nom":"Al-Waqi'ah","nomFr":"L'inévitable","nomAr":"الواقعة","versets":96,"ordreRev":46,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":57,"nom":"Al-Hadid","nomFr":"Le fer","nomAr":"الحديد","versets":29,"ordreRev":94,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":58,"nom":"Al-Mujadila","nomFr":"La discussion","nomAr":"المجادلة","versets":22,"ordreRev":105,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":59,"nom":"Al-Hashr","nomFr":"L'exode","nomAr":"الحشر","versets":24,"ordreRev":101,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":60,"nom":"Al-Mumtahanah","nomFr":"L'éprouvée","nomAr":"الممتحنة","versets":13,"ordreRev":91,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":61,"nom":"As-Saf","nomFr":"Le rang","nomAr":"الصف","versets":14,"ordreRev":109,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":62,"nom":"Al-Jumu'ah","nomFr":"Le vendredi","nomAr":"الجمعة","versets":11,"ordreRev":110,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":63,"nom":"Al-Munafiqun","nomFr":"Les hypocrites","nomAr":"المنافقون","versets":11,"ordreRev":104,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":64,"nom":"At-Taghabun","nomFr":"La grande perte","nomAr":"التغابن","versets":18,"ordreRev":108,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":65,"nom":"At-Talaq","nomFr":"Le divorce","nomAr":"الطلاق","versets":12,"ordreRev":99,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":66,"nom":"At-Tahrim","nomFr":"L'interdiction","nomAr":"التحريم","versets":12,"ordreRev":107,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":67,"nom":"Al-Mulk","nomFr":"La royauté","nomAr":"الملك","versets":30,"ordreRev":77,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":68,"nom":"Al-Qalam","nomFr":"La plume","nomAr":"القلم","versets":52,"ordreRev":2,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":69,"nom":"Al-Haqqah","nomFr":"L'inéluctable","nomAr":"الحاقة","versets":52,"ordreRev":78,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":70,"nom":"Al-Ma'arij","nomFr":"Les voies d'ascension","nomAr":"المعارج","versets":44,"ordreRev":79,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":71,"nom":"Nuh","nomFr":"Noé","nomAr":"نوح","versets":28,"ordreRev":71,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":72,"nom":"Al-Jinn","nomFr":"Les djinns","nomAr":"الجن","versets":28,"ordreRev":40,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":73,"nom":"Al-Muzzammil","nomFr":"L'enveloppé","nomAr":"المزمل","versets":20,"ordreRev":3,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":74,"nom":"Al-Muddaththir","nomFr":"Celui qui se couvre","nomAr":"المدثر","versets":56,"ordreRev":4,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":75,"nom":"Al-Qiyamah","nomFr":"La résurrection","nomAr":"القيامة","versets":40,"ordreRev":31,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":76,"nom":"Al-Insan","nomFr":"L'homme","nomAr":"الانسان","versets":31,"ordreRev":98,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":77,"nom":"Al-Mursalat","nomFr":"Les envoyés","nomAr":"المرسلات","versets":50,"ordreRev":33,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":78,"nom":"An-Naba","nomFr":"La nouvelle","nomAr":"النبإ","versets":40,"ordreRev":80,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":79,"nom":"An-Nazi'at","nomFr":"Ceux qui arrachent","nomAr":"النازعات","versets":46,"ordreRev":81,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":80,"nom":"'Abasa","nomFr":"Il s'est renfrogné","nomAr":"عبس","versets":42,"ordreRev":24,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":81,"nom":"At-Takwir","nomFr":"L'obscurcissement","nomAr":"التكوير","versets":29,"ordreRev":7,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":82,"nom":"Al-Infitar","nomFr":"La rupture","nomAr":"الإنفطار","versets":19,"ordreRev":82,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":83,"nom":"Al-Mutaffifin","nomFr":"Les fraudeurs","nomAr":"المطففين","versets":36,"ordreRev":86,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":84,"nom":"Al-Inshiqaq","nomFr":"La déchirure","nomAr":"الإنشقاق","versets":25,"ordreRev":83,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":85,"nom":"Al-Buruj","nomFr":"Les constellations","nomAr":"البروج","versets":22,"ordreRev":27,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":86,"nom":"At-Tariq","nomFr":"L'astre nocturne","nomAr":"الطارق","versets":17,"ordreRev":36,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":87,"nom":"Al-A'la","nomFr":"Le Très-Haut","nomAr":"الأعلى","versets":19,"ordreRev":8,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":88,"nom":"Al-Ghashiyah","nomFr":"L'enveloppante","nomAr":"الغاشية","versets":26,"ordreRev":68,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":89,"nom":"Al-Fajr","nomFr":"L'aube","nomAr":"الفجر","versets":30,"ordreRev":10,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":90,"nom":"Al-Balad","nomFr":"La cité","nomAr":"البلد","versets":20,"ordreRev":35,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":91,"nom":"Ash-Shams","nomFr":"Le soleil","nomAr":"الشمس","versets":15,"ordreRev":26,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":92,"nom":"Al-Layl","nomFr":"La nuit","nomAr":"الليل","versets":21,"ordreRev":9,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":93,"nom":"Ad-Duhaa","nomFr":"Le jour montant","nomAr":"الضحى","versets":11,"ordreRev":11,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":94,"nom":"Ash-Sharh","nomFr":"L'ouverture","nomAr":"الشرح","versets":8,"ordreRev":12,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":95,"nom":"At-Tin","nomFr":"Les figues","nomAr":"التين","versets":8,"ordreRev":28,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":96,"nom":"Al-'Alaq","nomFr":"L'adhérence","nomAr":"العلق","versets":19,"ordreRev":1,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":2,"miracleTitre":"Signe Embryologique — La création de l'homme à partir d'une adhérence ('Alaq)"},{"id":97,"nom":"Al-Qadr","nomFr":"La destinée","nomAr":"القدر","versets":5,"ordreRev":25,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":98,"nom":"Al-Bayyinah","nomFr":"La preuve","nomAr":"البينة","versets":8,"ordreRev":100,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":99,"nom":"Az-Zalzalah","nomFr":"Le séisme","nomAr":"الزلزلة","versets":8,"ordreRev":93,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":100,"nom":"Al-'Adiyat","nomFr":"Les coursiers","nomAr":"العاديات","versets":11,"ordreRev":14,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":101,"nom":"Al-Qari'ah","nomFr":"Le fracas","nomAr":"القارعة","versets":11,"ordreRev":30,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":102,"nom":"At-Takathur","nomFr":"La course aux richesses","nomAr":"التكاثر","versets":8,"ordreRev":16,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":103,"nom":"Al-'Asr","nomFr":"Le temps","nomAr":"العصر","versets":3,"ordreRev":13,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":104,"nom":"Al-Humazah","nomFr":"Les calomniateurs","nomAr":"الهمزة","versets":9,"ordreRev":32,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":105,"nom":"Al-Fil","nomFr":"L'éléphant","nomAr":"الفيل","versets":5,"ordreRev":19,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":106,"nom":"Quraysh","nomFr":"Les Quraysh","nomAr":"قريش","versets":4,"ordreRev":29,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":107,"nom":"Al-Ma'un","nomFr":"L'entraide","nomAr":"الماعون","versets":7,"ordreRev":17,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":108,"nom":"Al-Kawthar","nomFr":"L'abondance","nomAr":"الكوثر","versets":3,"ordreRev":15,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":109,"nom":"Al-Kafirun","nomFr":"Les mécréants","nomAr":"الكافرون","versets":6,"ordreRev":18,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":110,"nom":"An-Nasr","nomFr":"Le secours","nomAr":"النصر","versets":3,"ordreRev":114,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":111,"nom":"Al-Masad","nomFr":"Les fibres","nomAr":"المسد","versets":5,"ordreRev":6,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":1,"miracleTitre":"Prophétie Éclatante — La fin d'Abū Lahab annoncée dix ans à l'avance"},{"id":112,"nom":"Al-Ikhlas","nomFr":"La sincérité","nomAr":"الإخلاص","versets":4,"ordreRev":22,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":113,"nom":"Al-Falaq","nomFr":"L'aube naissante","nomAr":"الفلق","versets":5,"ordreRev":20,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":114,"nom":"An-Nas","nomFr":"Les humains","nomAr":"الناس","versets":6,"ordreRev":21,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""}];
+    let modeTri = 'classique';
+
+    function trier(mode, btn) {
+      modeTri = mode;
+      document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      afficher();
+    }
+
+    function afficher() {
+      const q = document.getElementById('searchInput').value.toLowerCase().trim();
+      const container = document.getElementById('grid');
+
+      let liste = sourates.filter(s => {
+        if (modeTri === 'miracles' && !s.hasMiracle) return false;
+        return (
+          s.nom.toLowerCase().includes(q) ||
+          s.nomFr.toLowerCase().includes(q) ||
+          s.typeLabel.toLowerCase().includes(q) ||
+          s.miracleTitre.toLowerCase().includes(q) ||
+          String(s.id) === q ||
+          String(s.ordreRev) === q
+        );
+      });
+
+      if (modeTri === 'chrono') {
+        liste.sort((a, b) => a.ordreRev - b.ordreRev);
+      } else {
+        liste.sort((a, b) => a.id - b.id);
+      }
+
+      container.innerHTML = liste.map(s => {
+        const badgeNumero = modeTri === 'chrono' ? s.ordreRev : s.id;
+        const titreSourate = modeTri === 'chrono'
+          ? `${s.nom} (${s.nomFr}) <span class="surah-subnum">(Sourate ${s.id})</span>`
+          : `${s.nom} (${s.nomFr})`;
+        const texteMeta = modeTri === 'chrono'
+          ? `${s.ordreRev === 1 ? '1re sourate révélée' : s.ordreRev + 'e sourate révélée'} • ${s.versets} versets`
+          : `${s.versets} versets • Révélation n°${s.ordreRev}`;
+        const versetCible = (modeTri === 'miracles' && s.hasMiracle) ? s.miracleVerset : 1;
+
+        return `
+        <a href="sourate-${s.id}-verset-${versetCible}.html" class="card" onclick="sauvegarderConfigCiel()">
+          <div class="card-left">
+            <div class="num-badge">${badgeNumero}</div>
+            <div class="card-info">
+              <h2>${titreSourate}</h2>
+              <div class="card-meta-row">
+                <span class="revelation-pill ${s.typeClasse}">${s.typeLabel}</span>
+                ${s.hasMiracle ? `<span class="revelation-pill miracle-pill">★ Miracle (v.${s.miracleVerset})</span>` : ''}
+                <span class="card-meta-text">${texteMeta}</span>
+              </div>
+            </div>
+          </div>
+          <div class="ar-name">${s.nomAr}</div>
+        </a>
+        `;
+      }).join('');
+    }
+    afficher();
+
+    
+  const bgCanvas = document.getElementById('fullPageSkyCanvas');
+  const bgCtx = bgCanvas.getContext('2d');
+  const sunEl = document.getElementById('flatEarthSun');
+  const moonEl = document.getElementById('flatEarthMoon');
+  const skyLightingEl = document.getElementById('dynamicSkyLighting');
+
+  let wScreen = window.innerWidth;
+  let hScreen = window.innerHeight;
+  let stars = [];
+  let angleOrbite = 0.35;
+  let vitesseOrbite = 0.0015;
+
+  function chargerEtatOrbite() {
+    try {
+      const savedAngle = sessionStorage.getItem('orbit_angle_v21');
+      if (savedAngle !== null && !isNaN(Number(savedAngle))) {
+        angleOrbite = Number(savedAngle);
+      }
+    } catch (e) {}
+  }
+
+  function sauvegarderConfigCiel() {
+    try {
+      sessionStorage.setItem('orbit_angle_v21', String(angleOrbite));
+      sessionStorage.setItem('sky_stars_v21', JSON.stringify(stars));
+    } catch (e) {}
+  }
+
+  window.addEventListener('beforeunload', sauvegarderConfigCiel);
+
+  function resizeFullSky() {
+    wScreen = window.innerWidth;
+    hScreen = window.innerHeight;
+    bgCanvas.width = wScreen;
+    bgCanvas.height = hScreen;
+  }
+
+  function initFullSky() {
+    resizeFullSky();
+    chargerEtatOrbite();
+
+    try {
+      const savedStars = sessionStorage.getItem('sky_stars_v21');
+      if (savedStars) {
+        const parsed = JSON.parse(savedStars);
+        if (Array.isArray(parsed) && parsed.length === 145) {
+          stars = parsed.map(function(s) {
+            return {
+              x: s.xRatio * wScreen,
+              y: s.yRatio * hScreen,
+              xRatio: s.xRatio,
+              yRatio: s.yRatio,
+              r: s.r,
+              alphaBase: s.alphaBase,
+              phase: s.phase,
+              speed: s.speed,
+              bright: s.bright
+            };
+          });
+          return;
+        }
+      }
+    } catch (e) {}
+
+    stars = [];
+    for (let i = 0; i < 145; i++) {
+      const xRatio = Math.random();
+      const yRatio = Math.random();
+      const bright = Math.random() < 0.22;
+      stars.push({
+        x: xRatio * wScreen,
+        y: yRatio * hScreen,
+        xRatio: xRatio,
+        yRatio: yRatio,
+        r: bright ? (Math.random() * 1.5 + 1.0) : (Math.random() * 0.9 + 0.3),
+        alphaBase: Math.random() * 0.6 + 0.25,
+        phase: Math.random() * Math.PI * 2,
+        speed: Math.random() * 0.02 + 0.006,
+        bright: bright
+      });
+    }
+  }
+
+  function mettreAJourAstres() {
+    const estSourateAshShams = (typeof numSourateActuelle !== 'undefined' && numSourateActuelle === 91);
+    const vCourant = (typeof numVersetActuel !== 'undefined') ? numVersetActuel : 1;
+
+    if (estSourateAshShams) {
+      angleOrbite += 0.0032;
+    } else {
+      angleOrbite += vitesseOrbite;
+    }
+
+    const angleSoleil = angleOrbite;
+    const ecartLune = (estSourateAshShams && vCourant <= 4) ? 0.85 : Math.PI;
+    const angleLune = angleOrbite - ecartLune;
+
+    const centreX = wScreen * 0.5;
+    const centreY = hScreen * 0.48;
+
+    const rayonX = Math.min(wScreen * 0.40, Math.max(330, wScreen * 0.35));
+    const rayonY = Math.min(hScreen * 0.38, Math.max(220, hScreen * 0.33));
+
+    const sunX = centreX + Math.cos(angleSoleil) * rayonX;
+    const sunY = centreY + Math.sin(angleSoleil) * rayonY;
+
+    const moonX = centreX + Math.cos(angleLune) * rayonX;
+    const moonY = centreY + Math.sin(angleLune) * rayonY;
+
+    if (sunEl) {
+      sunEl.style.transform = "translate3d(" + (sunX - 58) + "px, " + (sunY - 58) + "px, 0)";
+    }
+    if (moonEl) {
+      moonEl.style.transform = "translate3d(" + (moonX - 64) + "px, " + (moonY - 64) + "px, 0)";
+    }
+
+    if (estSourateAshShams) {
+      bgCtx.save();
+      const intensiteRayon = (vCourant === 1 || vCourant === 3) ? 0.26 : 0.14;
+      const gradSun = bgCtx.createRadialGradient(sunX, sunY, 10, sunX, sunY, wScreen * 0.65);
+      gradSun.addColorStop(0, "rgba(254, 240, 138, " + intensiteRayon + ")");
+      gradSun.addColorStop(0.35, "rgba(245, 158, 11, " + (intensiteRayon * 0.45) + ")");
+      gradSun.addColorStop(1, "transparent");
+      bgCtx.fillStyle = gradSun;
+      bgCtx.fillRect(0, 0, wScreen, hScreen);
+
+      if (vCourant === 2 || vCourant === 3) {
+        const gradFollow = bgCtx.createLinearGradient(sunX, sunY, moonX, moonY);
+        gradFollow.addColorStop(0, "rgba(253, 224, 71, 0.22)");
+        gradFollow.addColorStop(0.5, "rgba(255, 255, 255, 0.15)");
+        gradFollow.addColorStop(1, "rgba(255, 255, 255, 0.28)");
+        bgCtx.strokeStyle = gradFollow;
+        bgCtx.lineWidth = 3;
+        bgCtx.filter = "blur(3px)";
+        bgCtx.beginPath();
+        bgCtx.moveTo(sunX, sunY);
+        bgCtx.lineTo(moonX, moonY);
+        bgCtx.stroke();
+        bgCtx.filter = "none";
+      }
+      bgCtx.restore();
+    }
+
+    if (skyLightingEl) {
+      const sunPctX = Math.round((sunX / wScreen) * 100);
+      const sunPctY = Math.round((sunY / hScreen) * 100);
+      const moonPctX = Math.round((moonX / wScreen) * 100);
+      const moonPctY = Math.round((moonY / hScreen) * 100);
+
+      if (estSourateAshShams && vCourant === 3) {
+        skyLightingEl.style.background =
+          "radial-gradient(circle at " + sunPctX + "% " + sunPctY + "%, rgba(254, 240, 138, 0.34) 0%, rgba(251, 191, 36, 0.16) 32%, rgba(56, 189, 248, 0.09) 58%, transparent 80%), " +
+          "radial-gradient(circle at " + moonPctX + "% " + moonPctY + "%, rgba(255, 255, 255, 0.25) 0%, transparent 50%)";
+      } else {
+        skyLightingEl.style.background =
+          "radial-gradient(circle at " + sunPctX + "% " + sunPctY + "%, rgba(251, 191, 36, 0.17) 0%, rgba(245, 158, 11, 0.05) 24%, transparent 50%), " +
+          "radial-gradient(circle at " + moonPctX + "% " + moonPctY + "%, rgba(255, 255, 255, 0.20) 0%, rgba(226, 232, 240, 0.07) 26%, transparent 52%)";
+      }
+    }
+  }
+
+  function renderFullSky() {
+    bgCtx.clearRect(0, 0, wScreen, hScreen);
+
+    for (let i = 0; i < stars.length; i++) {
+      const s = stars[i];
+      s.phase += s.speed;
+      const alpha = Math.max(0.08, Math.min(1, s.alphaBase + Math.sin(s.phase) * 0.35));
+
+      bgCtx.save();
+      bgCtx.beginPath();
+      if (s.bright) {
+        bgCtx.shadowBlur = 10;
+        bgCtx.shadowColor = "rgba(255, 255, 255, 0.85)";
+      }
+      bgCtx.fillStyle = "rgba(255, 255, 255, " + alpha + ")";
+      bgCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      bgCtx.fill();
+      bgCtx.restore();
+    }
+
+    mettreAJourAstres();
+    requestAnimationFrame(renderFullSky);
+  }
+
+  window.addEventListener('resize', function() {
+    resizeFullSky();
+    for (let i = 0; i < stars.length; i++) {
+      stars[i].x = stars[i].xRatio * wScreen;
+      stars[i].y = stars[i].yRatio * hScreen;
+    }
+  });
+
+  initFullSky();
+  renderFullSky();
+
+  </script>
+</body>
+</html>
