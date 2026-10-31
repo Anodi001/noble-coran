@@ -128,6 +128,36 @@ const VERSIONS_ORIGINALES_HAMIDULLAH_1977 = {
   "91:6": "Et par la terre et Celui qui l'a nivelée!"
 };
 
+// ============================================================================
+// LOGO OFFICIEL SVG (AUX COULEURS DU TITRE : BLEU CÉLESTE, ÉMERAUDE & BLANC)
+// ============================================================================
+const LOGO_FAVICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#07111a"/>
+      <stop offset="100%" stop-color="#020406"/>
+    </linearGradient>
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="45%" stop-color="#7dd3fc"/>
+      <stop offset="75%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <rect width="120" height="120" rx="28" fill="url(#bgGrad)" stroke="url(#titleGrad)" stroke-width="3"/>
+  <path d="M60 20 L63.5 29.5 L73.5 30 L65.5 36 L68.5 45.5 L60 40 L51.5 45.5 L54.5 36 L46.5 30 L56.5 29.5 Z" fill="url(#titleGrad)" filter="url(#glow)"/>
+  <path d="M24 54 C38 48, 52 52, 60 59 C68 52, 82 48, 96 54 L96 88 C82 82, 68 86, 60 93 C52 86, 38 82, 24 88 Z" fill="none" stroke="url(#titleGrad)" stroke-width="5" stroke-linejoin="round" filter="url(#glow)"/>
+  <line x1="60" y1="59" x2="60" y2="93" stroke="url(#titleGrad)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M32 64 C42 61, 50 63, 55 67" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+  <path d="M32 74 C42 71, 50 73, 55 77" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+  <path d="M88 64 C78 61, 70 63, 65 67" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+  <path d="M88 74 C78 71, 70 73, 65 77" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+</svg>`;
+
 function restaurerHamidullah1977(cleVerset, texte) {
   if (VERSIONS_ORIGINALES_HAMIDULLAH_1977[cleVerset]) {
     return VERSIONS_ORIGINALES_HAMIDULLAH_1977[cleVerset];
@@ -335,18 +365,11 @@ const MOTEUR_SOLEIL_LUNE_V21_JS = `
   }
 
   function mettreAJourAstres() {
-    const estSourateAshShams = (typeof numSourateActuelle !== 'undefined' && numSourateActuelle === 91);
-    const vCourant = (typeof numVersetActuel !== 'undefined') ? numVersetActuel : 1;
+    if (!sunEl && !moonEl) return;
 
-    if (estSourateAshShams) {
-      angleOrbite += 0.0032;
-    } else {
-      angleOrbite += vitesseOrbite;
-    }
-
+    angleOrbite += vitesseOrbite;
     const angleSoleil = angleOrbite;
-    const ecartLune = (estSourateAshShams && vCourant <= 4) ? 0.85 : Math.PI;
-    const angleLune = angleOrbite - ecartLune;
+    const angleLune = angleOrbite - Math.PI;
 
     const centreX = wScreen * 0.5;
     const centreY = hScreen * 0.48;
@@ -367,48 +390,15 @@ const MOTEUR_SOLEIL_LUNE_V21_JS = `
       moonEl.style.transform = "translate3d(" + (moonX - 64) + "px, " + (moonY - 64) + "px, 0)";
     }
 
-    if (estSourateAshShams) {
-      bgCtx.save();
-      const intensiteRayon = (vCourant === 1 || vCourant === 3) ? 0.26 : 0.14;
-      const gradSun = bgCtx.createRadialGradient(sunX, sunY, 10, sunX, sunY, wScreen * 0.65);
-      gradSun.addColorStop(0, "rgba(254, 240, 138, " + intensiteRayon + ")");
-      gradSun.addColorStop(0.35, "rgba(245, 158, 11, " + (intensiteRayon * 0.45) + ")");
-      gradSun.addColorStop(1, "transparent");
-      bgCtx.fillStyle = gradSun;
-      bgCtx.fillRect(0, 0, wScreen, hScreen);
-
-      if (vCourant === 2 || vCourant === 3) {
-        const gradFollow = bgCtx.createLinearGradient(sunX, sunY, moonX, moonY);
-        gradFollow.addColorStop(0, "rgba(253, 224, 71, 0.22)");
-        gradFollow.addColorStop(0.5, "rgba(255, 255, 255, 0.15)");
-        gradFollow.addColorStop(1, "rgba(255, 255, 255, 0.28)");
-        bgCtx.strokeStyle = gradFollow;
-        bgCtx.lineWidth = 3;
-        bgCtx.filter = "blur(3px)";
-        bgCtx.beginPath();
-        bgCtx.moveTo(sunX, sunY);
-        bgCtx.lineTo(moonX, moonY);
-        bgCtx.stroke();
-        bgCtx.filter = "none";
-      }
-      bgCtx.restore();
-    }
-
     if (skyLightingEl) {
       const sunPctX = Math.round((sunX / wScreen) * 100);
       const sunPctY = Math.round((sunY / hScreen) * 100);
       const moonPctX = Math.round((moonX / wScreen) * 100);
       const moonPctY = Math.round((moonY / hScreen) * 100);
 
-      if (estSourateAshShams && vCourant === 3) {
-        skyLightingEl.style.background =
-          "radial-gradient(circle at " + sunPctX + "% " + sunPctY + "%, rgba(254, 240, 138, 0.34) 0%, rgba(251, 191, 36, 0.16) 32%, rgba(56, 189, 248, 0.09) 58%, transparent 80%), " +
-          "radial-gradient(circle at " + moonPctX + "% " + moonPctY + "%, rgba(255, 255, 255, 0.25) 0%, transparent 50%)";
-      } else {
-        skyLightingEl.style.background =
-          "radial-gradient(circle at " + sunPctX + "% " + sunPctY + "%, rgba(251, 191, 36, 0.17) 0%, rgba(245, 158, 11, 0.05) 24%, transparent 50%), " +
-          "radial-gradient(circle at " + moonPctX + "% " + moonPctY + "%, rgba(255, 255, 255, 0.20) 0%, rgba(226, 232, 240, 0.07) 26%, transparent 52%)";
-      }
+      skyLightingEl.style.background =
+        "radial-gradient(circle at " + sunPctX + "% " + sunPctY + "%, rgba(251, 191, 36, 0.17) 0%, rgba(245, 158, 11, 0.05) 24%, transparent 50%), " +
+        "radial-gradient(circle at " + moonPctX + "% " + moonPctY + "%, rgba(255, 255, 255, 0.20) 0%, rgba(226, 232, 240, 0.07) 26%, transparent 52%)";
     }
   }
 
@@ -448,32 +438,80 @@ const MOTEUR_SOLEIL_LUNE_V21_JS = `
   renderFullSky();
 `;
 
+// ============================================================================
+// NAVIGATION + PRÉCHARGEMENT AUDIO ANTI-COUPURE + LECTURE AUTO DÉCOCHÉE
+// ============================================================================
 const SCRIPT_NAVIGATION_CLASSIQUE_V21 = `
   const audio = document.getElementById('ayahAudio');
+  const preloadAudio = document.getElementById('preloadNextAudio');
   const playBtn = document.getElementById('playSyncBtn');
   const select = document.getElementById('reciterSelect');
   const autoCheck = document.getElementById('autoNextCheck');
   const stage = document.getElementById('verseStage');
   const progressBar = document.getElementById('syncProgressBar');
   let animId = null;
+  let timerTransitionAudio = null;
+
+  const RECITATEURS_VALIDES = [
+    'Yasser_Ad-Dussary_128kbps',
+    'Alafasy_128kbps',
+    'Abdurrahmaan_As-Sudais_192kbps',
+    'Saood_ash-Shuraym_128kbps',
+    'Nasser_Alqatami_128kbps',
+    'Abdullah_Basfar_192kbps',
+    'Minshawy_Murattal_128kbps',
+    'Husary_128kbps',
+    'Hudhaify_128kbps'
+  ];
 
   try {
     const savedReciter = localStorage.getItem('reciter');
-    if (savedReciter && savedReciter !== 'Rachid_Gennevilliers') {
+    if (savedReciter && RECITATEURS_VALIDES.indexOf(savedReciter) !== -1) {
       select.value = savedReciter;
     } else {
       select.value = 'Yasser_Ad-Dussary_128kbps';
     }
-    if (localStorage.getItem('autoNext') !== null) autoCheck.checked = localStorage.getItem('autoNext') === 'true';
-  } catch (e) {}
+    // Par défaut DÉCOCHÉ (false) pour laisser le visiteur lire avant d'écouter
+    const savedAuto = localStorage.getItem('autoNext_v2');
+    autoCheck.checked = (savedAuto === 'true');
+  } catch (e) {
+    autoCheck.checked = false;
+  }
+
+  function prechargerVersetSuivant() {
+    if (!preloadAudio) return;
+    let prochainCode = null;
+    if (window.SOURATE_DATA && window.SOURATE_DATA.versets) {
+      const vSuiv = window.SOURATE_DATA.versets[numVersetActuel];
+      if (vSuiv && vSuiv.codeAudio) {
+        prochainCode = vSuiv.codeAudio;
+      }
+    }
+    if (prochainCode) {
+      const nextUrl = "https://everyayah.com/data/" + select.value + "/" + prochainCode + ".mp3";
+      if (preloadAudio.src !== nextUrl) {
+        preloadAudio.src = nextUrl;
+        preloadAudio.load();
+      }
+    }
+  }
 
   function majSourceAudio() {
-    audio.src = "https://everyayah.com/data/" + select.value + "/" + codeAudio + ".mp3";
+    if (timerTransitionAudio) {
+      clearTimeout(timerTransitionAudio);
+      timerTransitionAudio = null;
+    }
+    const nouvelleUrl = "https://everyayah.com/data/" + select.value + "/" + codeAudio + ".mp3";
+    if (audio.src !== nouvelleUrl) {
+      audio.src = nouvelleUrl;
+      audio.load();
+    }
+    prechargerVersetSuivant();
   }
   majSourceAudio();
 
   function sauverAutoNext() {
-    try { localStorage.setItem('autoNext', autoCheck.checked); } catch (e) {}
+    try { localStorage.setItem('autoNext_v2', autoCheck.checked ? 'true' : 'false'); } catch (e) {}
   }
 
   function animerBarre() {
@@ -494,10 +532,15 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V21 = `
   }
 
   function toggleAudioSync() {
+    if (timerTransitionAudio) {
+      clearTimeout(timerTransitionAudio);
+      timerTransitionAudio = null;
+    }
     if (audio.paused) {
       stage.classList.add('playing');
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
+      prechargerVersetSuivant();
       audio.play().then(function() {
         animId = requestAnimationFrame(animerBarre);
       }).catch(function() {
@@ -514,8 +557,29 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V21 = `
     const enCours = !audio.paused;
     majSourceAudio();
     if (enCours) {
-      audio.play();
-      animId = requestAnimationFrame(animerBarre);
+      audio.play().then(function() {
+        animId = requestAnimationFrame(animerBarre);
+      }).catch(function() {
+        arreterVisuel();
+      });
+    }
+  }
+
+  function copierVersetActuel() {
+    const ar = document.getElementById('arabicVerseEl').textContent.trim();
+    const fr = document.getElementById('frenchVerseEl').textContent.trim();
+    const titre = document.getElementById('mainTitleEl').textContent.trim();
+    const url = "https://corantafsir.com/sourate-" + numSourateActuelle + "-verset-" + numVersetActuel + ".html";
+    const texteComplet = titre + "\\n\\n" + ar + "\\n\\n" + fr + "\\n\\n📖 Lire le Tafsīr : " + url;
+    const btnCopy = document.getElementById('copyVerseBtn');
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(texteComplet).then(function() {
+        if (btnCopy) {
+          const old = btnCopy.textContent;
+          btnCopy.textContent = "✓ Copié !";
+          setTimeout(function() { btnCopy.textContent = old; }, 2000);
+        }
+      });
     }
   }
 
@@ -565,7 +629,9 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V21 = `
       return;
     }
 
-    audio.pause();
+    if (!audio.paused) {
+      audio.pause();
+    }
     arreterVisuel();
 
     numVersetActuel = numVersetCible;
@@ -637,11 +703,17 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V21 = `
     }
   });
 
+  // Pause naturelle de 400ms en fin de verset pour éviter toute micro-coupure de la dernière syllabe
   audio.onended = function() {
-    arreterVisuel();
+    progressBar.style.width = "100%";
     if (autoCheck.checked) {
-      const hrefSuiv = document.getElementById('nextVerseLink').getAttribute('href');
-      naviguerVerset(null, hrefSuiv, true);
+      timerTransitionAudio = setTimeout(function() {
+        arreterVisuel();
+        const hrefSuiv = document.getElementById('nextVerseLink').getAttribute('href');
+        naviguerVerset(null, hrefSuiv, true);
+      }, 400);
+    } else {
+      arreterVisuel();
     }
   };
 
@@ -874,7 +946,8 @@ const CSS_BLEU_CIEL_V21 = `
   }
 `;
 
-const HTML_SOLEIL_LUNE_V21 = `
+// AVEC SOLEIL & LUNE (Uniquement pour index.html)
+const HTML_SOLEIL_LUNE_ACCUEIL = `
   <div class="cosmos-exterior-wrapper">
     <div id="dynamicSkyLighting"></div>
     <canvas id="fullPageSkyCanvas"></canvas>
@@ -889,9 +962,16 @@ const HTML_SOLEIL_LUNE_V21 = `
   </div>
 `;
 
+// SANS SOLEIL NI LUNE (Pour l'intérieur des sourates)
+const HTML_CIEL_ETOILE_SOURATE = `
+  <div class="cosmos-exterior-wrapper">
+    <canvas id="fullPageSkyCanvas"></canvas>
+  </div>
+`;
+
 async function lancerGeneration() {
   console.log('================================================================================');
-  console.log('🚀 GÉNÉRATEUR V21 : MENTION AL-MUKHTASAR + RETRAIT DES 2 BLOCS DU BAS');
+  console.log('🚀 GÉNÉRATEUR V22 : LOGO FAVICON + AUDIO HD SANS COUPURE + SOURATES SANS SOLEIL/LUNE');
   console.log('================================================================================\n');
 
   let extraitsLaurierPerso = {};
@@ -924,6 +1004,9 @@ async function lancerGeneration() {
     fs.mkdirSync(dossierSite);
   }
 
+  // Enregistrement du Logo Favicon SVG officiel
+  fs.writeFileSync(path.join(dossierSite, 'favicon.svg'), LOGO_FAVICON_SVG, 'utf8');
+
   const souratesAvecMiracleMap = {};
   for (const cle of Object.keys(MIRACLES)) {
     const [sId, vId] = cle.split(':').map(Number);
@@ -932,6 +1015,8 @@ async function lancerGeneration() {
     }
     souratesAvecMiracleMap[sId].versetsMiracles.push(vId);
   }
+
+  const urlsSitemap = ['https://corantafsir.com/'];
 
   for (let s = 0; s < sourates.length; s++) {
     const sourate = sourates[s];
@@ -947,7 +1032,7 @@ async function lancerGeneration() {
     const nbVersets = sourate.verses_count;
     const infoMiracleSourate = souratesAvecMiracleMap[numSourate] || null;
 
-    console.log(`[${numSourate}/114] Génération V21 de Sourate ${numSourate} - ${nomSourate}...`);
+    console.log(`[${numSourate}/114] Génération de Sourate ${numSourate} - ${nomSourate}...`);
 
     const [tradData, tafsirData] = await Promise.all([
       telechargerJSON(`https://quranenc.com/api/v1/translation/sura/french_rashid/${numSourate}`),
@@ -1053,12 +1138,15 @@ async function lancerGeneration() {
       }
 
       const nomFichier = `sourate-${numSourate}-verset-${numVerset}.html`;
+      urlsSitemap.push(`https://corantafsir.com/${nomFichier}`);
 
       const htmlVerset = `<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="canonical" href="https://corantafsir.com/${nomFichier}">
   <title>Sourate ${numSourate} verset ${numVerset} (${nomSourate}) - Traduction Hamidullah 1977 & Tafsir</title>
   <meta name="description" content="Sourate ${numSourate} verset ${numVerset} (${nomSourate} - ${typeSourateLabel}) : Texte arabe, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1111,8 +1199,12 @@ async function lancerGeneration() {
       text-decoration: none;
       font-weight: 700;
       font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       transition: 0.2s;
     }
+    .home-btn img { width: 22px; height: 22px; border-radius: 6px; }
     .home-btn:hover { opacity: 0.85; transform: translateX(-2px); }
     .meta-badges { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .tag {
@@ -1292,6 +1384,22 @@ async function lancerGeneration() {
       color: #032218;
       box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
     }
+    .btn-copy-verse {
+      background: rgba(56, 189, 248, 0.14);
+      color: #7dd3fc;
+      border: 1px solid rgba(56, 189, 248, 0.38);
+      padding: 7px 12px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-copy-verse:hover {
+      background: #38bdf8;
+      color: #031521;
+    }
     .reciter-mini {
       background: rgba(8, 13, 18, 0.75);
       color: var(--text-main);
@@ -1403,11 +1511,14 @@ async function lancerGeneration() {
 </head>
 <body>
 
-  ${HTML_SOLEIL_LUNE_V21}
+  ${HTML_CIEL_ETOILE_SOURATE}
 
   <div class="interface-layer">
     <header class="top-nav">
-      <a href="index.html" class="home-btn" onclick="sauvegarderConfigCiel()">‹ Retour aux 114 Sourates</a>
+      <a href="index.html" class="home-btn" onclick="sauvegarderConfigCiel()">
+        <img src="favicon.svg" alt="Logo">
+        ‹ Retour aux 114 Sourates
+      </a>
       <div class="meta-badges">
         <span class="revelation-pill ${typeSourateClasse}">${typeSourateLabel}</span>
         ${htmlAccesRapideMiracle}
@@ -1460,16 +1571,23 @@ async function lancerGeneration() {
               <button type="button" class="btn-listen-sync" id="playSyncBtn" onclick="toggleAudioSync()">▶ Écouter le verset</button>
               <select id="reciterSelect" class="reciter-mini" onchange="changerRecitateur()">
                 <option value="Yasser_Ad-Dussary_128kbps">Yasser Al-Dosari</option>
-                <option value="Alafasy_128kbps">Mishary Alafasy</option>
-                <option value="MaherAlMuaiqly128kbps">Maher Al-Muaiqly</option>
-                <option value="Husary_128kbps">Mahmoud Al-Husary</option>
+                <option value="Alafasy_128kbps">Mishary Rashid Alafasy</option>
+                <option value="Abdurrahmaan_As-Sudais_192kbps">Abderrahman Al-Soudais (HD)</option>
+                <option value="Saood_ash-Shuraym_128kbps">Saoud Al-Shuraim</option>
+                <option value="Nasser_Alqatami_128kbps">Nasser Al-Qatami</option>
+                <option value="Abdullah_Basfar_192kbps">Abdullah Basfar (HD)</option>
+                <option value="Minshawy_Murattal_128kbps">Mohamed Siddiq Al-Minshawi</option>
+                <option value="Husary_128kbps">Mahmoud Khalil Al-Hussary</option>
+                <option value="Hudhaify_128kbps">Ali Al-Hudhaify</option>
               </select>
+              <button type="button" class="btn-copy-verse" id="copyVerseBtn" onclick="copierVersetActuel()">📋 Copier</button>
             </div>
             <label class="auto-scroll-toggle">
-              <input type="checkbox" id="autoNextCheck" checked onchange="sauverAutoNext()">
+              <input type="checkbox" id="autoNextCheck" onchange="sauverAutoNext()">
               Enchaîner au verset suivant automatiquement
             </label>
             <audio id="ayahAudio" preload="auto"></audio>
+            <audio id="preloadNextAudio" preload="auto" style="display:none;"></audio>
           </div>
 
           <article class="tafsir-box">
@@ -1510,7 +1628,7 @@ async function lancerGeneration() {
     }
   }
 
-  console.log('\nMise à jour de la page d\'accueil (index.html)...');
+  console.log('\nMise à jour de la page d\'accueil (index.html) avec le Soleil, la Lune et le Logo...');
 
   const cartesSouratesJSON = JSON.stringify(sourates.map(s => {
     const estMecquoise = s.revelation_place === 'makkah';
@@ -1535,7 +1653,10 @@ async function lancerGeneration() {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Le Noble Coran & Tafsīr — Traduction Muhammad Hamidullah (1977)</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="canonical" href="https://corantafsir.com/">
+  <title>Le Noble Coran & Tafsīr — Traduction Muhammad Hamidullah (1977) & Exégèse Al-Mukhtasar</title>
+  <meta name="description" content="Lisez et écoutez les 114 sourates du Noble Coran avec le texte arabe, la traduction originale de Muhammad Hamidullah (1977) et l'exégèse (Tafsīr) Al-Mukhtasar.">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -1578,6 +1699,14 @@ async function lancerGeneration() {
       box-shadow: 0 18px 45px rgba(0,0,0,0.4), inset 0 0 30px rgba(255,255,255,0.03);
       position: relative;
       overflow: hidden;
+    }
+    .hero-logo {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 10px auto;
+      display: block;
+      filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.45));
+      animation: gentleFloatTitle 4s ease-in-out infinite alternate;
     }
     .hero-ornament-top {
       font-family: 'Amiri', serif;
@@ -1794,10 +1923,11 @@ async function lancerGeneration() {
 </head>
 <body>
 
-  ${HTML_SOLEIL_LUNE_V21}
+  ${HTML_SOLEIL_LUNE_ACCUEIL}
 
   <div class="wrapper interface-layer">
     <header class="hero">
+      <img src="favicon.svg" alt="Logo Le Noble Coran & Tafsir" class="hero-logo">
       <div class="hero-ornament-top">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
       <h1>Le Noble Coran & Tafsīr</h1>
       <div class="hero-glow-line"></div>
@@ -1905,8 +2035,17 @@ async function lancerGeneration() {
 
   fs.writeFileSync(path.join(dossierSite, 'index.html'), htmlAccueil, 'utf8');
 
-  console.log('\n✅ MISE À JOUR FINALE TERMINÉE !');
-  console.log('👉 Mention Al-Mukhtasar mise à jour + les 2 blocs du bas sont retirés !');
+  // Génération automatique du sitemap.xml et robots.txt pour le référencement Google
+  const sitemapXML = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+    urlsSitemap.map(u => `  <url><loc>${u}</loc></url>`).join('\n') +
+    `\n</urlset>`;
+  fs.writeFileSync(path.join(dossierSite, 'sitemap.xml'), sitemapXML, 'utf8');
+
+  const robotsTXT = `User-agent: *\nAllow: /\nSitemap: https://corantafsir.com/sitemap.xml\n`;
+  fs.writeFileSync(path.join(dossierSite, 'robots.txt'), robotsTXT, 'utf8');
+
+  console.log('\n✅ MISE À JOUR V22 TERMINÉE !');
+  console.log('👉 Soleil/Lune retirés des sourates + Logo Favicon créé + 9 Récitateurs HD + Audio sans coupure !');
 }
 
 lancerGeneration();

@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="canonical" href="https://corantafsir.com/sourate-56-verset-18.html">
   <title>Sourate 56 verset 18 (Al-Waqi'ah) - Traduction Hamidullah 1977 & Tafsir</title>
   <meta name="description" content="Sourate 56 verset 18 (Al-Waqi'ah - Sourate Mecquoise) : Texte arabe, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -270,8 +272,12 @@
       text-decoration: none;
       font-weight: 700;
       font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       transition: 0.2s;
     }
+    .home-btn img { width: 22px; height: 22px; border-radius: 6px; }
     .home-btn:hover { opacity: 0.85; transform: translateX(-2px); }
     .meta-badges { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .tag {
@@ -451,6 +457,22 @@
       color: #032218;
       box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
     }
+    .btn-copy-verse {
+      background: rgba(56, 189, 248, 0.14);
+      color: #7dd3fc;
+      border: 1px solid rgba(56, 189, 248, 0.38);
+      padding: 7px 12px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-copy-verse:hover {
+      background: #38bdf8;
+      color: #031521;
+    }
     .reciter-mini {
       background: rgba(8, 13, 18, 0.75);
       color: var(--text-main);
@@ -564,22 +586,16 @@
 
   
   <div class="cosmos-exterior-wrapper">
-    <div id="dynamicSkyLighting"></div>
     <canvas id="fullPageSkyCanvas"></canvas>
-
-    <div class="flat-earth-sun" id="flatEarthSun">
-      <div class="sun-core"></div>
-    </div>
-
-    <div class="flat-earth-moon" id="flatEarthMoon">
-      <div class="moon-white-core"></div>
-    </div>
   </div>
 
 
   <div class="interface-layer">
     <header class="top-nav">
-      <a href="index.html" class="home-btn" onclick="sauvegarderConfigCiel()">‹ Retour aux 114 Sourates</a>
+      <a href="index.html" class="home-btn" onclick="sauvegarderConfigCiel()">
+        <img src="favicon.svg" alt="Logo">
+        ‹ Retour aux 114 Sourates
+      </a>
       <div class="meta-badges">
         <span class="revelation-pill mecquoise">Sourate Mecquoise</span>
         
@@ -621,16 +637,23 @@
               <button type="button" class="btn-listen-sync" id="playSyncBtn" onclick="toggleAudioSync()">▶ Écouter le verset</button>
               <select id="reciterSelect" class="reciter-mini" onchange="changerRecitateur()">
                 <option value="Yasser_Ad-Dussary_128kbps">Yasser Al-Dosari</option>
-                <option value="Alafasy_128kbps">Mishary Alafasy</option>
-                <option value="MaherAlMuaiqly128kbps">Maher Al-Muaiqly</option>
-                <option value="Husary_128kbps">Mahmoud Al-Husary</option>
+                <option value="Alafasy_128kbps">Mishary Rashid Alafasy</option>
+                <option value="Abdurrahmaan_As-Sudais_192kbps">Abderrahman Al-Soudais (HD)</option>
+                <option value="Saood_ash-Shuraym_128kbps">Saoud Al-Shuraim</option>
+                <option value="Nasser_Alqatami_128kbps">Nasser Al-Qatami</option>
+                <option value="Abdullah_Basfar_192kbps">Abdullah Basfar (HD)</option>
+                <option value="Minshawy_Murattal_128kbps">Mohamed Siddiq Al-Minshawi</option>
+                <option value="Husary_128kbps">Mahmoud Khalil Al-Hussary</option>
+                <option value="Hudhaify_128kbps">Ali Al-Hudhaify</option>
               </select>
+              <button type="button" class="btn-copy-verse" id="copyVerseBtn" onclick="copierVersetActuel()">📋 Copier</button>
             </div>
             <label class="auto-scroll-toggle">
-              <input type="checkbox" id="autoNextCheck" checked onchange="sauverAutoNext()">
+              <input type="checkbox" id="autoNextCheck" onchange="sauverAutoNext()">
               Enchaîner au verset suivant automatiquement
             </label>
             <audio id="ayahAudio" preload="auto"></audio>
+            <audio id="preloadNextAudio" preload="auto" style="display:none;"></audio>
           </div>
 
           <article class="tafsir-box">
@@ -746,18 +769,11 @@
   }
 
   function mettreAJourAstres() {
-    const estSourateAshShams = (typeof numSourateActuelle !== 'undefined' && numSourateActuelle === 91);
-    const vCourant = (typeof numVersetActuel !== 'undefined') ? numVersetActuel : 1;
+    if (!sunEl && !moonEl) return;
 
-    if (estSourateAshShams) {
-      angleOrbite += 0.0032;
-    } else {
-      angleOrbite += vitesseOrbite;
-    }
-
+    angleOrbite += vitesseOrbite;
     const angleSoleil = angleOrbite;
-    const ecartLune = (estSourateAshShams && vCourant <= 4) ? 0.85 : Math.PI;
-    const angleLune = angleOrbite - ecartLune;
+    const angleLune = angleOrbite - Math.PI;
 
     const centreX = wScreen * 0.5;
     const centreY = hScreen * 0.48;
@@ -778,48 +794,15 @@
       moonEl.style.transform = "translate3d(" + (moonX - 64) + "px, " + (moonY - 64) + "px, 0)";
     }
 
-    if (estSourateAshShams) {
-      bgCtx.save();
-      const intensiteRayon = (vCourant === 1 || vCourant === 3) ? 0.26 : 0.14;
-      const gradSun = bgCtx.createRadialGradient(sunX, sunY, 10, sunX, sunY, wScreen * 0.65);
-      gradSun.addColorStop(0, "rgba(254, 240, 138, " + intensiteRayon + ")");
-      gradSun.addColorStop(0.35, "rgba(245, 158, 11, " + (intensiteRayon * 0.45) + ")");
-      gradSun.addColorStop(1, "transparent");
-      bgCtx.fillStyle = gradSun;
-      bgCtx.fillRect(0, 0, wScreen, hScreen);
-
-      if (vCourant === 2 || vCourant === 3) {
-        const gradFollow = bgCtx.createLinearGradient(sunX, sunY, moonX, moonY);
-        gradFollow.addColorStop(0, "rgba(253, 224, 71, 0.22)");
-        gradFollow.addColorStop(0.5, "rgba(255, 255, 255, 0.15)");
-        gradFollow.addColorStop(1, "rgba(255, 255, 255, 0.28)");
-        bgCtx.strokeStyle = gradFollow;
-        bgCtx.lineWidth = 3;
-        bgCtx.filter = "blur(3px)";
-        bgCtx.beginPath();
-        bgCtx.moveTo(sunX, sunY);
-        bgCtx.lineTo(moonX, moonY);
-        bgCtx.stroke();
-        bgCtx.filter = "none";
-      }
-      bgCtx.restore();
-    }
-
     if (skyLightingEl) {
       const sunPctX = Math.round((sunX / wScreen) * 100);
       const sunPctY = Math.round((sunY / hScreen) * 100);
       const moonPctX = Math.round((moonX / wScreen) * 100);
       const moonPctY = Math.round((moonY / hScreen) * 100);
 
-      if (estSourateAshShams && vCourant === 3) {
-        skyLightingEl.style.background =
-          "radial-gradient(circle at " + sunPctX + "% " + sunPctY + "%, rgba(254, 240, 138, 0.34) 0%, rgba(251, 191, 36, 0.16) 32%, rgba(56, 189, 248, 0.09) 58%, transparent 80%), " +
-          "radial-gradient(circle at " + moonPctX + "% " + moonPctY + "%, rgba(255, 255, 255, 0.25) 0%, transparent 50%)";
-      } else {
-        skyLightingEl.style.background =
-          "radial-gradient(circle at " + sunPctX + "% " + sunPctY + "%, rgba(251, 191, 36, 0.17) 0%, rgba(245, 158, 11, 0.05) 24%, transparent 50%), " +
-          "radial-gradient(circle at " + moonPctX + "% " + moonPctY + "%, rgba(255, 255, 255, 0.20) 0%, rgba(226, 232, 240, 0.07) 26%, transparent 52%)";
-      }
+      skyLightingEl.style.background =
+        "radial-gradient(circle at " + sunPctX + "% " + sunPctY + "%, rgba(251, 191, 36, 0.17) 0%, rgba(245, 158, 11, 0.05) 24%, transparent 50%), " +
+        "radial-gradient(circle at " + moonPctX + "% " + moonPctY + "%, rgba(255, 255, 255, 0.20) 0%, rgba(226, 232, 240, 0.07) 26%, transparent 52%)";
     }
   }
 
@@ -860,30 +843,75 @@
 
     
   const audio = document.getElementById('ayahAudio');
+  const preloadAudio = document.getElementById('preloadNextAudio');
   const playBtn = document.getElementById('playSyncBtn');
   const select = document.getElementById('reciterSelect');
   const autoCheck = document.getElementById('autoNextCheck');
   const stage = document.getElementById('verseStage');
   const progressBar = document.getElementById('syncProgressBar');
   let animId = null;
+  let timerTransitionAudio = null;
+
+  const RECITATEURS_VALIDES = [
+    'Yasser_Ad-Dussary_128kbps',
+    'Alafasy_128kbps',
+    'Abdurrahmaan_As-Sudais_192kbps',
+    'Saood_ash-Shuraym_128kbps',
+    'Nasser_Alqatami_128kbps',
+    'Abdullah_Basfar_192kbps',
+    'Minshawy_Murattal_128kbps',
+    'Husary_128kbps',
+    'Hudhaify_128kbps'
+  ];
 
   try {
     const savedReciter = localStorage.getItem('reciter');
-    if (savedReciter && savedReciter !== 'Rachid_Gennevilliers') {
+    if (savedReciter && RECITATEURS_VALIDES.indexOf(savedReciter) !== -1) {
       select.value = savedReciter;
     } else {
       select.value = 'Yasser_Ad-Dussary_128kbps';
     }
-    if (localStorage.getItem('autoNext') !== null) autoCheck.checked = localStorage.getItem('autoNext') === 'true';
-  } catch (e) {}
+    // Par défaut DÉCOCHÉ (false) pour laisser le visiteur lire avant d'écouter
+    const savedAuto = localStorage.getItem('autoNext_v2');
+    autoCheck.checked = (savedAuto === 'true');
+  } catch (e) {
+    autoCheck.checked = false;
+  }
+
+  function prechargerVersetSuivant() {
+    if (!preloadAudio) return;
+    let prochainCode = null;
+    if (window.SOURATE_DATA && window.SOURATE_DATA.versets) {
+      const vSuiv = window.SOURATE_DATA.versets[numVersetActuel];
+      if (vSuiv && vSuiv.codeAudio) {
+        prochainCode = vSuiv.codeAudio;
+      }
+    }
+    if (prochainCode) {
+      const nextUrl = "https://everyayah.com/data/" + select.value + "/" + prochainCode + ".mp3";
+      if (preloadAudio.src !== nextUrl) {
+        preloadAudio.src = nextUrl;
+        preloadAudio.load();
+      }
+    }
+  }
 
   function majSourceAudio() {
-    audio.src = "https://everyayah.com/data/" + select.value + "/" + codeAudio + ".mp3";
+    if (timerTransitionAudio) {
+      clearTimeout(timerTransitionAudio);
+      timerTransitionAudio = null;
+    }
+    const nouvelleUrl = "https://everyayah.com/data/" + select.value + "/" + codeAudio + ".mp3";
+    if (audio.src !== nouvelleUrl) {
+      audio.src = nouvelleUrl;
+      audio.load();
+    }
+    prechargerVersetSuivant();
   }
   majSourceAudio();
 
   function sauverAutoNext() {
-    try { localStorage.setItem('autoNext', autoCheck.checked); } catch (e) {}
+    try { localStorage.setItem('autoNext_v2', autoCheck.checked ? 'true' : 'false'); } catch (e) {}
   }
 
   function animerBarre() {
@@ -904,10 +932,15 @@
   }
 
   function toggleAudioSync() {
+    if (timerTransitionAudio) {
+      clearTimeout(timerTransitionAudio);
+      timerTransitionAudio = null;
+    }
     if (audio.paused) {
       stage.classList.add('playing');
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
+      prechargerVersetSuivant();
       audio.play().then(function() {
         animId = requestAnimationFrame(animerBarre);
       }).catch(function() {
@@ -924,8 +957,29 @@
     const enCours = !audio.paused;
     majSourceAudio();
     if (enCours) {
-      audio.play();
-      animId = requestAnimationFrame(animerBarre);
+      audio.play().then(function() {
+        animId = requestAnimationFrame(animerBarre);
+      }).catch(function() {
+        arreterVisuel();
+      });
+    }
+  }
+
+  function copierVersetActuel() {
+    const ar = document.getElementById('arabicVerseEl').textContent.trim();
+    const fr = document.getElementById('frenchVerseEl').textContent.trim();
+    const titre = document.getElementById('mainTitleEl').textContent.trim();
+    const url = "https://corantafsir.com/sourate-" + numSourateActuelle + "-verset-" + numVersetActuel + ".html";
+    const texteComplet = titre + "\n\n" + ar + "\n\n" + fr + "\n\n📖 Lire le Tafsīr : " + url;
+    const btnCopy = document.getElementById('copyVerseBtn');
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(texteComplet).then(function() {
+        if (btnCopy) {
+          const old = btnCopy.textContent;
+          btnCopy.textContent = "✓ Copié !";
+          setTimeout(function() { btnCopy.textContent = old; }, 2000);
+        }
+      });
     }
   }
 
@@ -975,7 +1029,9 @@
       return;
     }
 
-    audio.pause();
+    if (!audio.paused) {
+      audio.pause();
+    }
     arreterVisuel();
 
     numVersetActuel = numVersetCible;
@@ -1047,11 +1103,17 @@
     }
   });
 
+  // Pause naturelle de 400ms en fin de verset pour éviter toute micro-coupure de la dernière syllabe
   audio.onended = function() {
-    arreterVisuel();
+    progressBar.style.width = "100%";
     if (autoCheck.checked) {
-      const hrefSuiv = document.getElementById('nextVerseLink').getAttribute('href');
-      naviguerVerset(null, hrefSuiv, true);
+      timerTransitionAudio = setTimeout(function() {
+        arreterVisuel();
+        const hrefSuiv = document.getElementById('nextVerseLink').getAttribute('href');
+        naviguerVerset(null, hrefSuiv, true);
+      }, 400);
+    } else {
+      arreterVisuel();
     }
   };
 
