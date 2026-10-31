@@ -1,59 +1,132 @@
 const fs = require('fs');
 const path = require('path');
 
-// CHANGE ICI TON FUTUR NOM DE DOMAINE QUAND TU L'AURAS (ex: https://lenoblecoran.fr)
-const URL_SITE = 'https://lenoblecoran.pages.dev';
+// Ton nom de domaine officiel
+const URL_SITE = 'https://corantafsir.com';
 
 const dossierSite = path.join(__dirname, 'site');
 const fichiers = fs.readdirSync(dossierSite);
 
-// Fonction JS injectée dans chaque page pour charger Maher Al-Muaiqly (Haramain HD 128kbps pur)
+// Fonction audio allégée : uniquement Yasser Al-Dosari
 const NOUVEAU_CODE_AUDIO = `
-  const VERSETS_PAR_SOURATE = [7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,135,112,78,118,64,77,227,93,88,69,60,34,30,73,54,45,83,182,88,75,85,54,53,89,59,37,35,38,29,18,45,60,49,62,55,78,96,29,22,24,13,14,11,11,18,12,12,30,52,52,44,28,28,20,56,40,31,50,40,46,42,29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,11,8,3,9,5,4,7,3,6,3,5,4,5,6];
-
-  function calculerNumeroGlobalVerset(code6Chiffres) {
-    const s = parseInt(code6Chiffres.slice(0, 3), 10);
-    const v = parseInt(code6Chiffres.slice(3, 6), 10);
-    let total = 0;
-    for (let i = 0; i < s - 1; i++) total += VERSETS_PAR_SOURATE[i];
-    return total + v;
-  }
-
   function majSourceAudio() {
-    if (select.value === 'Maher_Haramain_HD') {
-      const numGlobal = calculerNumeroGlobalVerset(codeAudio);
-      audio.src = "https://cdn.islamic.network/quran/audio/128/ar.mahermuaiqly/" + numGlobal + ".mp3";
-    } else {
-      audio.src = "https://everyayah.com/data/" + select.value + "/" + codeAudio + ".mp3";
-    }
+    audio.src = "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/" + codeAudio + ".mp3";
   }
 `;
+
+// Fonction utilitaire pour trouver la fin d'une balise HTML (<div>...</div>, <p>...</p>, <a>...</a>)
+function trouverFinBalise(html, indexDebut) {
+  const matchOuverture = html.slice(indexDebut).match(/^<([a-zA-Z0-9]+)/);
+  if (!matchOuverture) return -1;
+  const nomBalise = matchOuverture[1].toLowerCase();
+  const regexBalises = new RegExp(`<(\\/?)${nomBalise}\\b[^>]*>`, 'gi');
+  regexBalises.lastIndex = indexDebut;
+
+  let profondeur = 0;
+  let match;
+  while ((match = regexBalises.exec(html)) !== null) {
+    if (match[1] === '/') {
+      profondeur--;
+    } else if (!match[0].endsWith('/>')) {
+      profondeur++;
+    }
+    if (profondeur === 0) {
+      return regexBalises.lastIndex;
+    }
+  }
+  return -1;
+}
+
+function nettoyerPageHtml(contenu) {
+  // 1. Supprimer les 2 encadrés verts secondaires (entre le Tafsîr principal et la signature Hamidullah)
+  const matchHeaderTafsir = contenu.match(/TAFS[ĪI]R\s*(?:&|&amp;)\s*EXPLICATION DU VERSET[\s\S]*?<\/(?:div|h[1-6]|p|span)>/i);
+  if (matchHeaderTafsir) {
+    const finHeader = matchHeaderTafsir.index + matchHeaderTafsir[0].length;
+    const apresHeader = contenu.slice(finHeader);
+    const matchPremierBloc = apresHeader.match(/^\s*<(?:div|p)\b/i);
+    if (matchPremierBloc) {
+      const debutPremierBloc = finHeader + matchPremierBloc.index + matchPremierBloc[0].indexOf('<');
+      const finPremierBloc = trouverFinBalise(contenu, debutPremierBloc);
+      const idxSignature = contenu.indexOf('Traduction originale de Muhammad Hamidullah', finPremierBloc);
+      if (finPremierBloc !== -1 && idxSignature !== -1 && idxSignature > finPremierBloc) {
+        const debutBaliseSignature = contenu.lastIndexOf('<', idxSignature);
+        if (debutBaliseSignature >= finPremierBloc && (debutBaliseSignature - finPremierBloc) < 4500) {
+          contenu = contenu.slice(0, finPremierBloc) + '\n' + contenu.slice(debutBaliseSignature);
+        }
+      }
+    }
+  }
+
+  // 2. Supprimer le bloc entouré en rouge (Ouverture de Sourate / Verset précédent / Verset suivant)
+  const idxSig = contenu.indexOf('Traduction originale de Muhammad Hamidullah');
+  if (idxSig !== -1) {
+    let curseur = contenu.indexOf('>', idxSig);
+    // Avancer jusqu'à la sortie de la carte du Tafsîr
+    const reste = contenu.slice(curseur);
+    const matchSortieCarte = reste.match(/^(?:[^<]*<\/(?:p|div|span|section|article)>\s*)+/i);
+    if (matchSortieCarte) {
+      curseur += matchSortieCarte[0].length;
+      // Vérifier et supprimer les blocs de prévisualisation de versets qui suivent immédiatement
+      for (let i = 0; i < 2; i++) {
+        const suite = contenu.slice(curseur);
+        const matchProchaineBalise = suite.match(/^\s*<(?:div|a|section|nav)\b/i);
+        if (!matchProchaineBalise) break;
+        const debutBloc = curseur + matchProchaineBalise.index + matchProchaineBalise[0].indexOf('<');
+        const finBloc = trouverFinBalise(contenu, debutBloc);
+        if (finBloc !== -1 && (finBloc - debutBloc) < 2500) {
+          const blocTexte = contenu.slice(debutBloc, finBloc);
+          if (/Ouverture de Sourate|Verset suivant\s*\(|Verset pr[ée]c[ée]dent\s*\(|inaugure la sourate|cl[ôo]ture la sourate|Fin de Sourate/i.test(blocTexte)) {
+            contenu = contenu.slice(0, debutBloc) + contenu.slice(finBloc);
+            curseur = debutBloc;
+            continue;
+          }
+        }
+        break;
+      }
+    }
+  }
+
+  // 3. Mettre à jour la signature avec uniquement Hamidullah + Al-Mukhtasar
+  contenu = contenu.replace(
+    /Traduction originale de Muhammad Hamidullah \(1977\)\s*(?:•|&bull;)\s*Synthèse conforme à l'unanimité des exégètes[^<]*/g,
+    'Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar.'
+  );
+
+  // 4. Garder uniquement Yasser Al-Dosari dans la liste déroulante
+  contenu = contenu.replace(
+    /(<select[^>]*>)([\s\S]*?(?:kbps|Maher_Haramain_HD|Yasser)[\s\S]*?)(<\/select>)/,
+    '$1<option value="Yasser_Ad-Dussary_128kbps" selected>Yasser Al-Dosari</option>$3'
+  );
+
+  // 5. Alléger le script audio
+  contenu = contenu.replace(
+    /(?:const VERSETS_PAR_SOURATE[\s\S]*?)?function majSourceAudio\(\)\s*\{[\s\S]*?everyayah\.com\/data\/"\s*\+\s*select\.value\s*\+\s*"\/"\s*\+\s*codeAudio\s*\+\s*"\.mp3";\s*\}\s*\}?/,
+    NOUVEAU_CODE_AUDIO.trim()
+  );
+
+  // 6. Optimiser la vitesse (ne télécharge pas l'audio avant le clic)
+  contenu = contenu.replace(/<audio(?![^>]*preload)/g, '<audio preload="none"');
+
+  // 7. Remplacer l'ancien domaine par https://corantafsir.com
+  contenu = contenu.replace(/https:\/\/lenoblecoran\.pages\.dev/g, URL_SITE);
+
+  return contenu;
+}
 
 let compteurPages = 0;
 let urlsSitemap = [
   `  <url><loc>${URL_SITE}/index.html</loc><priority>1.0</priority></url>`
 ];
 
-console.log('⚡ Correction audio Maher Al-Muaiqly (Haramain HD) + Préparation SEO & App...');
+console.log('⚡ Nettoyage des 6 236 pages (Suppression des blocs + Al-Mukhtasar + Yasser Al-Dosari)...');
 
 for (const fichier of fichiers) {
   if (fichier.startsWith('sourate-') && fichier.endsWith('.html')) {
     const chemin = path.join(dossierSite, fichier);
     let contenu = fs.readFileSync(chemin, 'utf8');
 
-    // 1. Remplacer MaherAlMuaiqly128kbps par Maher_Haramain_HD (et ajouter As-Sudais Haramain)
-    contenu = contenu.replace(
-      /<option value="MaherAlMuaiqly128kbps">Maher Al-Muaiqly[^<]*<\/option>/g,
-      '<option value="Maher_Haramain_HD">Maher Al-Muaiqly (Haramain HD)</option>\n                <option value="Abdurrahmaan_As-Sudais_192kbps">Abdurrahman As-Sudais (Haramain)</option>'
-    );
+    contenu = nettoyerPageHtml(contenu);
 
-    // 2. Remplacer l'ancienne fonction majSourceAudio() par le flux Haramain HD pur
-    contenu = contenu.replace(
-      /function majSourceAudio\(\)\s*\{[\s\S]*?everyayah\.com\/data\/"\s*\+\s*select\.value\s*\+\s*"\/"\s*\+\s*codeAudio\s*\+\s*"\.mp3";\s*\}/,
-      NOUVEAU_CODE_AUDIO.trim()
-    );
-
-    // 3. Ajouter la balise Canonical SEO et le lien manifest.json (Application Mobile)
     if (!contenu.includes('rel="manifest"')) {
       contenu = contenu.replace(
         '</head>',
@@ -67,19 +140,31 @@ for (const fichier of fichiers) {
   }
 }
 
-// 4. Générer le fichier sitemap.xml (avec les 6 236 URLs pour Google Search Console !)
+// Nettoyer aussi index.html
+const cheminIndex = path.join(dossierSite, 'index.html');
+if (fs.existsSync(cheminIndex)) {
+  let indexContenu = fs.readFileSync(cheminIndex, 'utf8');
+  indexContenu = indexContenu.replace(/https:\/\/lenoblecoran\.pages\.dev/g, URL_SITE);
+  indexContenu = indexContenu.replace(
+    /Traduction originale de Muhammad Hamidullah \(1977\)\s*(?:•|&bull;)\s*Synthèse conforme à l'unanimité des exégètes[^<]*/g,
+    'Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar.'
+  );
+  fs.writeFileSync(cheminIndex, indexContenu, 'utf8');
+}
+
+// Générer sitemap.xml propre sur https://corantafsir.com
 const sitemapXML = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urlsSitemap.join('\n')}\n</urlset>`;
 fs.writeFileSync(path.join(dossierSite, 'sitemap.xml'), sitemapXML, 'utf8');
 
-// 5. Générer robots.txt pour inviter Google à indexer les 6 236 versets
+// Générer robots.txt
 const robotsTxt = `User-agent: *\nAllow: /\nSitemap: ${URL_SITE}/sitemap.xml\n`;
 fs.writeFileSync(path.join(dossierSite, 'robots.txt'), robotsTxt, 'utf8');
 
-// 6. Générer manifest.json pour transformer le site en Application iOS & Android
+// Générer manifest.json
 const manifestJSON = {
-  name: "Le Noble Coran & Tafsīr",
-  short_name: "Noble Coran",
-  description: "Le Noble Coran, traduction originale de Muhammad Hamidullah (1977) et Tafsīr des savants.",
+  name: "Le Noble Coran & Tafsīr Al-Mukhtasar",
+  short_name: "Coran Tafsīr",
+  description: "Le Noble Coran, traduction originale de Muhammad Hamidullah (1977) et Tafsīr Al-Mukhtasar.",
   start_url: "/index.html",
   display: "standalone",
   background_color: "#020406",
@@ -88,4 +173,4 @@ const manifestJSON = {
 };
 fs.writeFileSync(path.join(dossierSite, 'manifest.json'), JSON.stringify(manifestJSON, null, 2), 'utf8');
 
-console.log(`✅ TERMINÉ ! ${compteurPages} pages mises à jour avec Maher Al-Muaiqly (Haramain HD) + sitemap.xml généré !`);
+console.log(`✅ TERMINÉ ! ${compteurPages} pages nettoyées et optimisées + sitemap.xml prêt pour ${URL_SITE} !`);

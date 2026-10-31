@@ -1,7 +1,7 @@
 {
-  "name": "Le Noble Coran & Tafsīr",
-  "short_name": "Noble Coran",
-  "description": "Le Noble Coran, traduction originale de Muhammad Hamidullah (1977) et Tafsīr des savants.",
+  "name": "Le Noble Coran & Tafsīr Al-Mukhtasar",
+  "short_name": "Coran Tafsīr",
+  "description": "Le Noble Coran, traduction originale de Muhammad Hamidullah (1977) et Tafsīr Al-Mukhtasar.",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#020406",
