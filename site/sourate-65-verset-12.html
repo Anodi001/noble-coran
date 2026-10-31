@@ -582,9 +582,6 @@
       .bottom-nav { width: calc(100% - 20px); }
     }
   </style>
-  <link rel="canonical" href="https://corantafsir.com/sourate-65-verset-12.html">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#020406">
 </head>
 <body>
 
@@ -610,7 +607,47 @@
         <span class="revelation-pill medinoise">Sourate Médinoise</span>
         
         <span class="tag">99e Sourate révélée (Sourate n°65)</span>
-        <select id="verseJumperSelect" class="verse-jumper " onchange="naviguerVerset(event, this.value, false)"><option value="Yasser_Ad-Dussary_128kbps" selected>Yasser Al-Dosari</option></select>
+        <select id="verseJumperSelect" class="verse-jumper " onchange="naviguerVerset(event, this.value, false)">
+          <option value="sourate-65-verset-1.html" >Verset 1 / 12</option><option value="sourate-65-verset-2.html" >Verset 2 / 12</option><option value="sourate-65-verset-3.html" >Verset 3 / 12</option><option value="sourate-65-verset-4.html" >Verset 4 / 12</option><option value="sourate-65-verset-5.html" >Verset 5 / 12</option><option value="sourate-65-verset-6.html" >Verset 6 / 12</option><option value="sourate-65-verset-7.html" >Verset 7 / 12</option><option value="sourate-65-verset-8.html" >Verset 8 / 12</option><option value="sourate-65-verset-9.html" >Verset 9 / 12</option><option value="sourate-65-verset-10.html" >Verset 10 / 12</option><option value="sourate-65-verset-11.html" >Verset 11 / 12</option><option value="sourate-65-verset-12.html" selected>Verset 12 / 12</option>
+        </select>
+      </div>
+    </header>
+
+    <div class="centered-container">
+      <main class="panel">
+        <div>
+          <div class="main-header">
+            <div class="title-group">
+              <div class="badge-num" id="badgeNumEl">65 : 12</div>
+              <div>
+                <h1 id="mainTitleEl">Sourate At-Talaq (Le divorce) — Verset 12</h1>
+                <p>Sourate Médinoise (Médine) • Traduction Muhammad Hamidullah (1977) & Exégèse</p>
+              </div>
+            </div>
+            <div class="arabic-surah">الطلاق</div>
+          </div>
+
+          <section class="verse-stage" id="verseStage">
+            <div class="arabic-glow-verse" id="arabicVerseEl">ٱللَّهُ ٱلَّذِي خَلَقَ سَبۡعَ سَمَٰوَٰتٖ وَمِنَ ٱلۡأَرۡضِ مِثۡلَهُنَّۖ يَتَنَزَّلُ ٱلۡأَمۡرُ بَيۡنَهُنَّ لِتَعۡلَمُوٓاْ أَنَّ ٱللَّهَ عَلَىٰ كُلِّ شَيۡءٖ قَدِيرٞ وَأَنَّ ٱللَّهَ قَدۡ أَحَاطَ بِكُلِّ شَيۡءٍ عِلۡمَۢا</div>
+            <div class="french-glow-verse" id="frenchVerseEl">« 12. Allah qui a créé sept cieux et autant de terres. Entre eux [Son] commandement descend, afin que vous sachiez qu'Allah est en vérité Omnipotent et qu'Allah a embrassé toute chose de [Son] savoir. »</div>
+            <div class="sync-progress-track">
+              <div class="sync-progress-bar" id="syncProgressBar"></div>
+            </div>
+          </section>
+
+          <div id="miracleContainer">
+            
+          </div>
+
+          <div class="audio-control-strip">
+            <div class="audio-left">
+              <button type="button" class="btn-listen-sync" id="playSyncBtn" onclick="toggleAudioSync()">▶ Écouter le verset</button>
+              <select id="reciterSelect" class="reciter-mini" onchange="changerRecitateur()">
+                <option value="Yasser_Ad-Dussary_128kbps">Yasser Al-Dosari</option>
+                <option value="Alafasy_128kbps">Mishary Alafasy</option>
+                <option value="MaherAlMuaiqly128kbps">Maher Al-Muaiqly</option>
+                <option value="Husary_128kbps">Mahmoud Al-Husary</option>
+              </select>
             </div>
             <label class="auto-scroll-toggle">
               <input type="checkbox" id="autoNextCheck" checked onchange="sauverAutoNext()">
@@ -622,12 +659,30 @@
           <article class="tafsir-box">
             <span class="section-tag">Tafsīr & Explication du verset</span>
             <p class="main-explanation" id="mainExplanationEl">Allah est Celui qui créa sept Cieux et sept Terres égales en nombre aux sept cieux. Entre les deux descendent les commandements d’Allah ayant trait à la vie matérielle et spirituelle, afin que vous sachiez qu’Allah a pouvoir sur toute chose, que rien ne Lui est impossible et qu’Il entoure tout de Sa connaissance. Rien ne Lui est donc inconnu dans les Cieux et sur la Terre.</p>
-<div class="sources-line">
-              Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar.</div>
+            <div id="extraNotesContainer">
+              <div class="consensus-note"><strong>Précision exégétique :</strong> Les couches terrestres, selon certains commentateurs.<br><br><strong>Précision exégétique :</strong> Entre le Ciel et la Terre, selon nombre d’exégètes.</div>
+              
+              
+            </div>
+            <div class="sources-line">
+              Traduction originale de Muhammad Hamidullah (1977) • Synthèse conforme à l'unanimité des exégètes (At-Tabarī, Al-Qurtubī, Ibn Kathīr, Al-Baydāwī, Ar-Rāzī, As-Sa‘dī — Le Laurier de l'Exégèse Coranique & Al-Mukhtasar).
+            </div>
           </article>
         </div>
 
-        
+        <div class="context-grid" id="contextContainer">
+          
+          <div class="context-card">
+            <span>‹ Verset précédent (65:11)</span>
+            <p>« un Messager qui vous récite les versets d'Allah comme preuves claires, afin de faire sortir ceux qui croient et accomplissent les bonnes œuvres des ténèbres à la lumière. Et quiconque croit en Allah et fait le bien, Il le fait entrer aux Jardins sous lesquels coulent les ruisseaux, pour y demeurer éternellement. Allah lui a fait une belle attribution. »</p>
+          </div>
+
+          
+          <div class="context-card">
+            <span>Clôture de Sourate</span>
+            <p>Ce verset conclut la sourate <strong>At-Talaq</strong>.</p>
+          </div>
+        </div>
       </main>
     </div>
   </div>
@@ -860,7 +915,7 @@
   } catch (e) {}
 
   function majSourceAudio() {
-    audio.src = "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/" + codeAudio + ".mp3";
+    audio.src = "https://everyayah.com/data/" + select.value + "/" + codeAudio + ".mp3";
   }
   majSourceAudio();
 

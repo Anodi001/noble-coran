@@ -582,9 +582,6 @@
       .bottom-nav { width: calc(100% - 20px); }
     }
   </style>
-  <link rel="canonical" href="https://corantafsir.com/sourate-111-verset-1.html">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#020406">
 </head>
 <body>
 
@@ -610,7 +607,60 @@
         <span class="revelation-pill mecquoise">Sourate Mecquoise</span>
         <a href="sourate-111-verset-1.html" class="revelation-pill miracle-pill" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">★ Verset Miracle : v.1</a>
         <span class="tag">6e Sourate révélée (Sourate n°111)</span>
-        <select id="verseJumperSelect" class="verse-jumper is-miracle-verse" onchange="naviguerVerset(event, this.value, false)"><option value="Yasser_Ad-Dussary_128kbps" selected>Yasser Al-Dosari</option></select>
+        <select id="verseJumperSelect" class="verse-jumper is-miracle-verse" onchange="naviguerVerset(event, this.value, false)">
+          <option value="sourate-111-verset-1.html" class="opt-miracle-blue" selected>★ Verset 1 / 5 — Miracle</option><option value="sourate-111-verset-2.html" >Verset 2 / 5</option><option value="sourate-111-verset-3.html" >Verset 3 / 5</option><option value="sourate-111-verset-4.html" >Verset 4 / 5</option><option value="sourate-111-verset-5.html" >Verset 5 / 5</option>
+        </select>
+      </div>
+    </header>
+
+    <div class="centered-container">
+      <main class="panel">
+        <div>
+          <div class="main-header">
+            <div class="title-group">
+              <div class="badge-num" id="badgeNumEl">111 : 1</div>
+              <div>
+                <h1 id="mainTitleEl">Sourate Al-Masad (Les fibres) — Verset 1</h1>
+                <p>Sourate Mecquoise (La Mecque) • Traduction Muhammad Hamidullah (1977) & Exégèse</p>
+              </div>
+            </div>
+            <div class="arabic-surah">المسد</div>
+          </div>
+
+          <section class="verse-stage" id="verseStage">
+            <div class="arabic-glow-verse" id="arabicVerseEl">تَبَّتۡ يَدَآ أَبِي لَهَبٖ وَتَبَّ</div>
+            <div class="french-glow-verse" id="frenchVerseEl">« 1. Que périssent les deux mains d'Abû-Lahab et que lui-même périsse. »</div>
+            <div class="sync-progress-track">
+              <div class="sync-progress-bar" id="syncProgressBar"></div>
+            </div>
+          </section>
+
+          <div id="miracleContainer">
+            
+            <div class="miracle-banner">
+              <div class="miracle-header"><span class="sky-star-icon">★</span> Prophétie Éclatante — La fin d'Abū Lahab annoncée dix ans à l'avance</div>
+              <p class="miracle-summary">La Sourate Al-Masad annonce qu'Abū Lahab mourra dans la mécréance, alors qu'il aurait suffi à ce dernier de prononcer une fausse conversion en dix ans pour tenter de contredire le Coran.</p>
+              <button type="button" class="miracle-expand-btn" id="miracleToggleBtn" onclick="basculerDeveloppementMiracle()">
+                ★ Développer l'explication complète & le Hadīth historique
+              </button>
+              <div class="miracle-deep-details" id="miracleDeepDetails">
+                
+      <p><strong>La preuve soulignée par les savants :</strong> Les exégètes (dont Al-Qurtubī et Ibn Kathīr) font remarquer que cette sourate fut révélée à La Mecque plus de dix ans avant la mort d'Abū Lahab (survenue peu après la bataille de Badr). Durant toute cette décennie, Abū Lahab cherchait par tous les moyens à démentir le Prophète ﷺ. Il lui aurait suffi de déclarer publiquement (même par hypocrisie) : <em>« Je suis devenu musulman ! »</em> pour prétendre que le Coran s'était trompé. Pourtant, il ne put jamais le faire et mourut exactement comme le Coran l'avait décrété.</p>
+    
+              </div>
+            </div>
+            
+          </div>
+
+          <div class="audio-control-strip">
+            <div class="audio-left">
+              <button type="button" class="btn-listen-sync" id="playSyncBtn" onclick="toggleAudioSync()">▶ Écouter le verset</button>
+              <select id="reciterSelect" class="reciter-mini" onchange="changerRecitateur()">
+                <option value="Yasser_Ad-Dussary_128kbps">Yasser Al-Dosari</option>
+                <option value="Alafasy_128kbps">Mishary Alafasy</option>
+                <option value="MaherAlMuaiqly128kbps">Maher Al-Muaiqly</option>
+                <option value="Husary_128kbps">Mahmoud Al-Husary</option>
+              </select>
             </div>
             <label class="auto-scroll-toggle">
               <input type="checkbox" id="autoNextCheck" checked onchange="sauverAutoNext()">
@@ -622,12 +672,30 @@
           <article class="tafsir-box">
             <span class="section-tag">Tafsīr & Explication du verset</span>
             <p class="main-explanation" id="mainExplanationEl">Que les mains de Abû Lahab, l’oncle paternel du Prophète, soient perdues pour ses agissements, puisqu’il persécutait le Prophète, et qu’il soit déçu.</p>
-<div class="sources-line">
-              Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar.</div>
+            <div id="extraNotesContainer">
+              
+              
+              
+            </div>
+            <div class="sources-line">
+              Traduction originale de Muhammad Hamidullah (1977) • Synthèse conforme à l'unanimité des exégètes (At-Tabarī, Al-Qurtubī, Ibn Kathīr, Al-Baydāwī, Ar-Rāzī, As-Sa‘dī — Le Laurier de l'Exégèse Coranique & Al-Mukhtasar).
+            </div>
           </article>
         </div>
 
-        
+        <div class="context-grid" id="contextContainer">
+          
+          <div class="context-card">
+            <span>Ouverture de Sourate</span>
+            <p>Ce verset inaugure la sourate <strong>Al-Masad</strong> (Les fibres).</p>
+          </div>
+
+          
+          <div class="context-card">
+            <span>Verset suivant (111:2) ›</span>
+            <p>« Sa fortune ne lui sert à rien, ni ce qu'il a acquis. »</p>
+          </div>
+        </div>
       </main>
     </div>
   </div>
@@ -860,7 +928,7 @@
   } catch (e) {}
 
   function majSourceAudio() {
-    audio.src = "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/" + codeAudio + ".mp3";
+    audio.src = "https://everyayah.com/data/" + select.value + "/" + codeAudio + ".mp3";
   }
   majSourceAudio();
 

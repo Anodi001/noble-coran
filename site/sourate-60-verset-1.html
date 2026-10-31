@@ -582,9 +582,6 @@
       .bottom-nav { width: calc(100% - 20px); }
     }
   </style>
-  <link rel="canonical" href="https://corantafsir.com/sourate-60-verset-1.html">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#020406">
 </head>
 <body>
 
@@ -610,7 +607,47 @@
         <span class="revelation-pill medinoise">Sourate Médinoise</span>
         
         <span class="tag">91e Sourate révélée (Sourate n°60)</span>
-        <select id="verseJumperSelect" class="verse-jumper " onchange="naviguerVerset(event, this.value, false)"><option value="Yasser_Ad-Dussary_128kbps" selected>Yasser Al-Dosari</option></select>
+        <select id="verseJumperSelect" class="verse-jumper " onchange="naviguerVerset(event, this.value, false)">
+          <option value="sourate-60-verset-1.html" selected>Verset 1 / 13</option><option value="sourate-60-verset-2.html" >Verset 2 / 13</option><option value="sourate-60-verset-3.html" >Verset 3 / 13</option><option value="sourate-60-verset-4.html" >Verset 4 / 13</option><option value="sourate-60-verset-5.html" >Verset 5 / 13</option><option value="sourate-60-verset-6.html" >Verset 6 / 13</option><option value="sourate-60-verset-7.html" >Verset 7 / 13</option><option value="sourate-60-verset-8.html" >Verset 8 / 13</option><option value="sourate-60-verset-9.html" >Verset 9 / 13</option><option value="sourate-60-verset-10.html" >Verset 10 / 13</option><option value="sourate-60-verset-11.html" >Verset 11 / 13</option><option value="sourate-60-verset-12.html" >Verset 12 / 13</option><option value="sourate-60-verset-13.html" >Verset 13 / 13</option>
+        </select>
+      </div>
+    </header>
+
+    <div class="centered-container">
+      <main class="panel">
+        <div>
+          <div class="main-header">
+            <div class="title-group">
+              <div class="badge-num" id="badgeNumEl">60 : 1</div>
+              <div>
+                <h1 id="mainTitleEl">Sourate Al-Mumtahanah (L'éprouvée) — Verset 1</h1>
+                <p>Sourate Médinoise (Médine) • Traduction Muhammad Hamidullah (1977) & Exégèse</p>
+              </div>
+            </div>
+            <div class="arabic-surah">الممتحنة</div>
+          </div>
+
+          <section class="verse-stage" id="verseStage">
+            <div class="arabic-glow-verse" id="arabicVerseEl">يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ لَا تَتَّخِذُواْ عَدُوِّي وَعَدُوَّكُمۡ أَوۡلِيَآءَ تُلۡقُونَ إِلَيۡهِم بِٱلۡمَوَدَّةِ وَقَدۡ كَفَرُواْ بِمَا جَآءَكُم مِّنَ ٱلۡحَقِّ يُخۡرِجُونَ ٱلرَّسُولَ وَإِيَّاكُمۡ أَن تُؤۡمِنُواْ بِٱللَّهِ رَبِّكُمۡ إِن كُنتُمۡ خَرَجۡتُمۡ جِهَٰدٗا فِي سَبِيلِي وَٱبۡتِغَآءَ مَرۡضَاتِيۚ تُسِرُّونَ إِلَيۡهِم بِٱلۡمَوَدَّةِ وَأَنَا۠ أَعۡلَمُ بِمَآ أَخۡفَيۡتُمۡ وَمَآ أَعۡلَنتُمۡۚ وَمَن يَفۡعَلۡهُ مِنكُمۡ فَقَدۡ ضَلَّ سَوَآءَ ٱلسَّبِيلِ</div>
+            <div class="french-glow-verse" id="frenchVerseEl">« 1. O vous qui avez cru! Ne prenez pas pour alliés Mon ennemi et le vôtre, leur offrant l'amitié, alors qu'ils ont nié ce qui vous est parvenu de la vérité. Ils expulsent le Messager et vous-mêmes parce que vous croyez en Allah, votre Seigneur. Si vous êtes sortis pour lutter dans Mon chemin et pour rechercher Mon agrément, leur témoignerez-vous secrètement de l'amitié, alors que Je connais parfaitement ce que vous cachez et ce que vous divulguez? Et quiconque d'entre vous le fait s'égare de la droiture du sentier. »</div>
+            <div class="sync-progress-track">
+              <div class="sync-progress-bar" id="syncProgressBar"></div>
+            </div>
+          </section>
+
+          <div id="miracleContainer">
+            
+          </div>
+
+          <div class="audio-control-strip">
+            <div class="audio-left">
+              <button type="button" class="btn-listen-sync" id="playSyncBtn" onclick="toggleAudioSync()">▶ Écouter le verset</button>
+              <select id="reciterSelect" class="reciter-mini" onchange="changerRecitateur()">
+                <option value="Yasser_Ad-Dussary_128kbps">Yasser Al-Dosari</option>
+                <option value="Alafasy_128kbps">Mishary Alafasy</option>
+                <option value="MaherAlMuaiqly128kbps">Maher Al-Muaiqly</option>
+                <option value="Husary_128kbps">Mahmoud Al-Husary</option>
+              </select>
             </div>
             <label class="auto-scroll-toggle">
               <input type="checkbox" id="autoNextCheck" checked onchange="sauverAutoNext()">
@@ -622,12 +659,30 @@
           <article class="tafsir-box">
             <span class="section-tag">Tafsīr & Explication du verset</span>
             <p class="main-explanation" id="mainExplanationEl">Ô vous qui croyez en Allah et œuvrez selon ce qu’Il vous a prescrit, ne prenez pas mes ennemis et les vôtres pour alliés et ne leur vouez pas de l’affection alors qu’ils mécroient en la religion que votre Messager vous a apportée, expulsent le Messager de sa demeure et vous expulsent également de vos demeures de la Mecque, n’accordant aucune considération aux liens de parenté, pour la seule raison que vous croyez en Allah votre Seigneur. N’agissez pas ainsi, si vous êtes sortis afin de lutter pour ma cause et de remporter Mon agrément. Ne leur divulguez pas les renseignements relatifs aux musulmans par amour pour eux, alors que Je sais ce que vous manifestez de votre attitude et ce que vous dissimulez. Rien de tout cela ou de toute autre chose ne M’échappe. Quiconque s’allie aux mécréants et leur voue de l’affection dévie de la voie modérée, s’égare de la vérité et passe à côté de ce qui est juste.</p>
-<div class="sources-line">
-              Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar.</div>
+            <div id="extraNotesContainer">
+              <div class="consensus-note"><strong>Précision exégétique :</strong> Notamment en leur livrant par amitié des secrets qu’ils pourraient utiliser contre les musulmans. Le début de cette sourate aurait en effet été révélé au sujet d’un compagnon, parmi les émigrés de Médine, qui aurait fait parvenir aux païens de la Mecque un message les mettant en garde contre une attaque imminente des musulmans.</div>
+              
+              
+            </div>
+            <div class="sources-line">
+              Traduction originale de Muhammad Hamidullah (1977) • Synthèse conforme à l'unanimité des exégètes (At-Tabarī, Al-Qurtubī, Ibn Kathīr, Al-Baydāwī, Ar-Rāzī, As-Sa‘dī — Le Laurier de l'Exégèse Coranique & Al-Mukhtasar).
+            </div>
           </article>
         </div>
 
-        
+        <div class="context-grid" id="contextContainer">
+          
+          <div class="context-card">
+            <span>Ouverture de Sourate</span>
+            <p>Ce verset inaugure la sourate <strong>Al-Mumtahanah</strong> (L'éprouvée).</p>
+          </div>
+
+          
+          <div class="context-card">
+            <span>Verset suivant (60:2) ›</span>
+            <p>« S'ils vous dominent, ils seront des ennemis pour vous et étendront en mal leurs mains et leurs langues vers vous; et ils aimeraient que vous deveniez mécréants. »</p>
+          </div>
+        </div>
       </main>
     </div>
   </div>
@@ -860,7 +915,7 @@
   } catch (e) {}
 
   function majSourceAudio() {
-    audio.src = "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/" + codeAudio + ".mp3";
+    audio.src = "https://everyayah.com/data/" + select.value + "/" + codeAudio + ".mp3";
   }
   majSourceAudio();
 
