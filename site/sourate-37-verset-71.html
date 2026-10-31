@@ -6,8 +6,8 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="canonical" href="https://corantafsir.com/sourate-37-verset-71.html">
   <title>Sourate 37 verset 71 (As-Saffat) - Traduction Hamidullah 1977 & Tafsir</title>
-  <meta name="description" content="Sourate 37 verset 71 (As-Saffat - Sourate Mecquoise) : Texte arabe, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Sourate 37 verset 71 (As-Saffat - Sourate Mecquoise) : Texte arabe clair, traduction de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar (FR / EN).">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Scheherazade+New:wght@400;700&family=Cinzel+Decorative:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-main: #020406;
@@ -185,6 +185,31 @@
     box-shadow: 0 0 22px rgba(56, 189, 248, 0.55);
   }
 
+  .lang-switch-btn {
+    background: rgba(14, 23, 32, 0.78);
+    color: #cbd5e1;
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    padding: 6px 13px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .lang-switch-btn:hover {
+    border-color: #38bdf8;
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.3);
+  }
+  .lang-active {
+    color: #38bdf8;
+    font-weight: 800;
+  }
+  .lang-sep {
+    opacity: 0.45;
+    margin: 0 3px;
+  }
+
   .sky-star-icon {
     color: #38bdf8;
     text-shadow: 0 0 10px rgba(56, 189, 248, 0.9), 0 0 20px rgba(14, 165, 233, 0.6);
@@ -258,12 +283,12 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
       background: var(--bg-card);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       border: 1px solid var(--border-color);
-      padding: 12px 22px;
+      padding: 12px 20px;
       border-radius: 16px;
       box-shadow: 0 12px 35px rgba(0,0,0,0.35);
     }
@@ -277,13 +302,17 @@
       gap: 8px;
       transition: 0.2s;
     }
-    .home-btn img { width: 22px; height: 22px; border-radius: 6px; }
+    .home-btn img {
+      width: 26px;
+      height: 26px;
+      filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.55));
+    }
     .home-btn:hover { opacity: 0.85; transform: translateX(-2px); }
-    .meta-badges { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .meta-badges { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     .tag {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 600;
-      padding: 5px 12px;
+      padding: 5px 11px;
       border-radius: 99px;
       background: var(--bg-elevated);
       color: var(--text-main);
@@ -293,10 +322,10 @@
       background: rgba(10, 16, 22, 0.75);
       color: var(--text-main);
       border: 1px solid var(--border-color);
-      padding: 6px 14px;
+      padding: 6px 12px;
       border-radius: 10px;
       font-family: inherit;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 700;
       cursor: pointer;
       outline: none;
@@ -352,8 +381,8 @@
     .title-group h1 { font-size: 1.28rem; color: #fff; font-weight: 800; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
     .title-group p { color: var(--text-muted); font-size: 0.84rem; }
     .arabic-surah {
-      font-family: 'Amiri', serif;
-      font-size: 2.1rem;
+      font-family: 'Scheherazade New', 'Amiri', serif;
+      font-size: 2.2rem;
       color: #fff;
       text-shadow: 0 0 16px rgba(255,255,255,0.6);
     }
@@ -377,13 +406,17 @@
       box-shadow: 0 0 50px rgba(255, 255, 255, 0.16), 0 25px 60px rgba(0, 0, 0, 0.65);
     }
 
+    /* POLICE ARABE CLAIRE ET LINÉAIRE SANS EMPILAGE DE LETTRES */
     .arabic-glow-verse {
-      font-family: 'Amiri', serif;
-      font-size: 2.85rem;
-      line-height: 2.1;
+      font-family: 'Scheherazade New', 'Amiri', serif;
+      font-size: 2.95rem;
+      line-height: 2.15;
       direction: rtl;
       margin-bottom: 24px;
       color: #ffffff;
+      font-variant-ligatures: no-contextual;
+      font-feature-settings: "calt" 0, "liga" 1;
+      word-spacing: 4px;
       text-shadow:
         0 2px 6px rgba(0, 0, 0, 0.95),
         0 0 10px rgba(255, 255, 255, 0.85),
@@ -456,22 +489,6 @@
       background: var(--green-accent);
       color: #032218;
       box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
-    }
-    .btn-copy-verse {
-      background: rgba(56, 189, 248, 0.14);
-      color: #7dd3fc;
-      border: 1px solid rgba(56, 189, 248, 0.38);
-      padding: 7px 12px;
-      border-radius: 10px;
-      font-family: inherit;
-      font-weight: 700;
-      font-size: 0.8rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .btn-copy-verse:hover {
-      background: #38bdf8;
-      color: #031521;
     }
     .reciter-mini {
       background: rgba(8, 13, 18, 0.75);
@@ -575,7 +592,7 @@
       body { padding: 12px 10px 85px 10px; }
       .panel { padding: 20px 15px; min-height: calc(100vh - 145px); }
       .verse-stage { padding: 36px 18px 32px 18px; }
-      .arabic-glow-verse { font-size: 2.2rem; }
+      .arabic-glow-verse { font-size: 2.3rem; }
       .french-glow-verse { font-size: 1.3rem; }
       .arabic-surah { display: none; }
       .bottom-nav { width: calc(100% - 20px); }
@@ -594,15 +611,18 @@
     <header class="top-nav">
       <a href="index.html" class="home-btn" onclick="sauvegarderConfigCiel()">
         <img src="favicon.svg" alt="Logo">
-        ‹ Retour aux 114 Sourates
+        <span id="homeBtnTextEl">‹ Retour aux 114 Sourates</span>
       </a>
       <div class="meta-badges">
-        <span class="revelation-pill mecquoise">Sourate Mecquoise</span>
+        <span class="revelation-pill mecquoise" id="typeSouratePillEl">Sourate Mecquoise</span>
         
-        <span class="tag">56e Sourate révélée (Sourate n°37)</span>
-        <select id="verseJumperSelect" class="verse-jumper " onchange="naviguerVerset(event, this.value, false)">
+        <span class="tag" id="revOrderTagEl">56e Sourate révélée (Sourate n°37)</span>
+        <select id="verseJumperSelect" class="verse-jumper " onchange="naviguerVerset(event, this.value, false, false)">
           <option value="sourate-37-verset-1.html" >Verset 1 / 182</option><option value="sourate-37-verset-2.html" >Verset 2 / 182</option><option value="sourate-37-verset-3.html" >Verset 3 / 182</option><option value="sourate-37-verset-4.html" >Verset 4 / 182</option><option value="sourate-37-verset-5.html" >Verset 5 / 182</option><option value="sourate-37-verset-6.html" >Verset 6 / 182</option><option value="sourate-37-verset-7.html" >Verset 7 / 182</option><option value="sourate-37-verset-8.html" >Verset 8 / 182</option><option value="sourate-37-verset-9.html" >Verset 9 / 182</option><option value="sourate-37-verset-10.html" >Verset 10 / 182</option><option value="sourate-37-verset-11.html" >Verset 11 / 182</option><option value="sourate-37-verset-12.html" >Verset 12 / 182</option><option value="sourate-37-verset-13.html" >Verset 13 / 182</option><option value="sourate-37-verset-14.html" >Verset 14 / 182</option><option value="sourate-37-verset-15.html" >Verset 15 / 182</option><option value="sourate-37-verset-16.html" >Verset 16 / 182</option><option value="sourate-37-verset-17.html" >Verset 17 / 182</option><option value="sourate-37-verset-18.html" >Verset 18 / 182</option><option value="sourate-37-verset-19.html" >Verset 19 / 182</option><option value="sourate-37-verset-20.html" >Verset 20 / 182</option><option value="sourate-37-verset-21.html" >Verset 21 / 182</option><option value="sourate-37-verset-22.html" >Verset 22 / 182</option><option value="sourate-37-verset-23.html" >Verset 23 / 182</option><option value="sourate-37-verset-24.html" >Verset 24 / 182</option><option value="sourate-37-verset-25.html" >Verset 25 / 182</option><option value="sourate-37-verset-26.html" >Verset 26 / 182</option><option value="sourate-37-verset-27.html" >Verset 27 / 182</option><option value="sourate-37-verset-28.html" >Verset 28 / 182</option><option value="sourate-37-verset-29.html" >Verset 29 / 182</option><option value="sourate-37-verset-30.html" >Verset 30 / 182</option><option value="sourate-37-verset-31.html" >Verset 31 / 182</option><option value="sourate-37-verset-32.html" >Verset 32 / 182</option><option value="sourate-37-verset-33.html" >Verset 33 / 182</option><option value="sourate-37-verset-34.html" >Verset 34 / 182</option><option value="sourate-37-verset-35.html" >Verset 35 / 182</option><option value="sourate-37-verset-36.html" >Verset 36 / 182</option><option value="sourate-37-verset-37.html" >Verset 37 / 182</option><option value="sourate-37-verset-38.html" >Verset 38 / 182</option><option value="sourate-37-verset-39.html" >Verset 39 / 182</option><option value="sourate-37-verset-40.html" >Verset 40 / 182</option><option value="sourate-37-verset-41.html" >Verset 41 / 182</option><option value="sourate-37-verset-42.html" >Verset 42 / 182</option><option value="sourate-37-verset-43.html" >Verset 43 / 182</option><option value="sourate-37-verset-44.html" >Verset 44 / 182</option><option value="sourate-37-verset-45.html" >Verset 45 / 182</option><option value="sourate-37-verset-46.html" >Verset 46 / 182</option><option value="sourate-37-verset-47.html" >Verset 47 / 182</option><option value="sourate-37-verset-48.html" >Verset 48 / 182</option><option value="sourate-37-verset-49.html" >Verset 49 / 182</option><option value="sourate-37-verset-50.html" >Verset 50 / 182</option><option value="sourate-37-verset-51.html" >Verset 51 / 182</option><option value="sourate-37-verset-52.html" >Verset 52 / 182</option><option value="sourate-37-verset-53.html" >Verset 53 / 182</option><option value="sourate-37-verset-54.html" >Verset 54 / 182</option><option value="sourate-37-verset-55.html" >Verset 55 / 182</option><option value="sourate-37-verset-56.html" >Verset 56 / 182</option><option value="sourate-37-verset-57.html" >Verset 57 / 182</option><option value="sourate-37-verset-58.html" >Verset 58 / 182</option><option value="sourate-37-verset-59.html" >Verset 59 / 182</option><option value="sourate-37-verset-60.html" >Verset 60 / 182</option><option value="sourate-37-verset-61.html" >Verset 61 / 182</option><option value="sourate-37-verset-62.html" >Verset 62 / 182</option><option value="sourate-37-verset-63.html" >Verset 63 / 182</option><option value="sourate-37-verset-64.html" >Verset 64 / 182</option><option value="sourate-37-verset-65.html" >Verset 65 / 182</option><option value="sourate-37-verset-66.html" >Verset 66 / 182</option><option value="sourate-37-verset-67.html" >Verset 67 / 182</option><option value="sourate-37-verset-68.html" >Verset 68 / 182</option><option value="sourate-37-verset-69.html" >Verset 69 / 182</option><option value="sourate-37-verset-70.html" >Verset 70 / 182</option><option value="sourate-37-verset-71.html" selected>Verset 71 / 182</option><option value="sourate-37-verset-72.html" >Verset 72 / 182</option><option value="sourate-37-verset-73.html" >Verset 73 / 182</option><option value="sourate-37-verset-74.html" >Verset 74 / 182</option><option value="sourate-37-verset-75.html" >Verset 75 / 182</option><option value="sourate-37-verset-76.html" >Verset 76 / 182</option><option value="sourate-37-verset-77.html" >Verset 77 / 182</option><option value="sourate-37-verset-78.html" >Verset 78 / 182</option><option value="sourate-37-verset-79.html" >Verset 79 / 182</option><option value="sourate-37-verset-80.html" >Verset 80 / 182</option><option value="sourate-37-verset-81.html" >Verset 81 / 182</option><option value="sourate-37-verset-82.html" >Verset 82 / 182</option><option value="sourate-37-verset-83.html" >Verset 83 / 182</option><option value="sourate-37-verset-84.html" >Verset 84 / 182</option><option value="sourate-37-verset-85.html" >Verset 85 / 182</option><option value="sourate-37-verset-86.html" >Verset 86 / 182</option><option value="sourate-37-verset-87.html" >Verset 87 / 182</option><option value="sourate-37-verset-88.html" >Verset 88 / 182</option><option value="sourate-37-verset-89.html" >Verset 89 / 182</option><option value="sourate-37-verset-90.html" >Verset 90 / 182</option><option value="sourate-37-verset-91.html" >Verset 91 / 182</option><option value="sourate-37-verset-92.html" >Verset 92 / 182</option><option value="sourate-37-verset-93.html" >Verset 93 / 182</option><option value="sourate-37-verset-94.html" >Verset 94 / 182</option><option value="sourate-37-verset-95.html" >Verset 95 / 182</option><option value="sourate-37-verset-96.html" >Verset 96 / 182</option><option value="sourate-37-verset-97.html" >Verset 97 / 182</option><option value="sourate-37-verset-98.html" >Verset 98 / 182</option><option value="sourate-37-verset-99.html" >Verset 99 / 182</option><option value="sourate-37-verset-100.html" >Verset 100 / 182</option><option value="sourate-37-verset-101.html" >Verset 101 / 182</option><option value="sourate-37-verset-102.html" >Verset 102 / 182</option><option value="sourate-37-verset-103.html" >Verset 103 / 182</option><option value="sourate-37-verset-104.html" >Verset 104 / 182</option><option value="sourate-37-verset-105.html" >Verset 105 / 182</option><option value="sourate-37-verset-106.html" >Verset 106 / 182</option><option value="sourate-37-verset-107.html" >Verset 107 / 182</option><option value="sourate-37-verset-108.html" >Verset 108 / 182</option><option value="sourate-37-verset-109.html" >Verset 109 / 182</option><option value="sourate-37-verset-110.html" >Verset 110 / 182</option><option value="sourate-37-verset-111.html" >Verset 111 / 182</option><option value="sourate-37-verset-112.html" >Verset 112 / 182</option><option value="sourate-37-verset-113.html" >Verset 113 / 182</option><option value="sourate-37-verset-114.html" >Verset 114 / 182</option><option value="sourate-37-verset-115.html" >Verset 115 / 182</option><option value="sourate-37-verset-116.html" >Verset 116 / 182</option><option value="sourate-37-verset-117.html" >Verset 117 / 182</option><option value="sourate-37-verset-118.html" >Verset 118 / 182</option><option value="sourate-37-verset-119.html" >Verset 119 / 182</option><option value="sourate-37-verset-120.html" >Verset 120 / 182</option><option value="sourate-37-verset-121.html" >Verset 121 / 182</option><option value="sourate-37-verset-122.html" >Verset 122 / 182</option><option value="sourate-37-verset-123.html" >Verset 123 / 182</option><option value="sourate-37-verset-124.html" >Verset 124 / 182</option><option value="sourate-37-verset-125.html" >Verset 125 / 182</option><option value="sourate-37-verset-126.html" >Verset 126 / 182</option><option value="sourate-37-verset-127.html" >Verset 127 / 182</option><option value="sourate-37-verset-128.html" >Verset 128 / 182</option><option value="sourate-37-verset-129.html" >Verset 129 / 182</option><option value="sourate-37-verset-130.html" >Verset 130 / 182</option><option value="sourate-37-verset-131.html" >Verset 131 / 182</option><option value="sourate-37-verset-132.html" >Verset 132 / 182</option><option value="sourate-37-verset-133.html" >Verset 133 / 182</option><option value="sourate-37-verset-134.html" >Verset 134 / 182</option><option value="sourate-37-verset-135.html" >Verset 135 / 182</option><option value="sourate-37-verset-136.html" >Verset 136 / 182</option><option value="sourate-37-verset-137.html" >Verset 137 / 182</option><option value="sourate-37-verset-138.html" >Verset 138 / 182</option><option value="sourate-37-verset-139.html" >Verset 139 / 182</option><option value="sourate-37-verset-140.html" >Verset 140 / 182</option><option value="sourate-37-verset-141.html" >Verset 141 / 182</option><option value="sourate-37-verset-142.html" >Verset 142 / 182</option><option value="sourate-37-verset-143.html" >Verset 143 / 182</option><option value="sourate-37-verset-144.html" >Verset 144 / 182</option><option value="sourate-37-verset-145.html" >Verset 145 / 182</option><option value="sourate-37-verset-146.html" >Verset 146 / 182</option><option value="sourate-37-verset-147.html" >Verset 147 / 182</option><option value="sourate-37-verset-148.html" >Verset 148 / 182</option><option value="sourate-37-verset-149.html" >Verset 149 / 182</option><option value="sourate-37-verset-150.html" >Verset 150 / 182</option><option value="sourate-37-verset-151.html" >Verset 151 / 182</option><option value="sourate-37-verset-152.html" >Verset 152 / 182</option><option value="sourate-37-verset-153.html" >Verset 153 / 182</option><option value="sourate-37-verset-154.html" >Verset 154 / 182</option><option value="sourate-37-verset-155.html" >Verset 155 / 182</option><option value="sourate-37-verset-156.html" >Verset 156 / 182</option><option value="sourate-37-verset-157.html" >Verset 157 / 182</option><option value="sourate-37-verset-158.html" >Verset 158 / 182</option><option value="sourate-37-verset-159.html" >Verset 159 / 182</option><option value="sourate-37-verset-160.html" >Verset 160 / 182</option><option value="sourate-37-verset-161.html" >Verset 161 / 182</option><option value="sourate-37-verset-162.html" >Verset 162 / 182</option><option value="sourate-37-verset-163.html" >Verset 163 / 182</option><option value="sourate-37-verset-164.html" >Verset 164 / 182</option><option value="sourate-37-verset-165.html" >Verset 165 / 182</option><option value="sourate-37-verset-166.html" >Verset 166 / 182</option><option value="sourate-37-verset-167.html" >Verset 167 / 182</option><option value="sourate-37-verset-168.html" >Verset 168 / 182</option><option value="sourate-37-verset-169.html" >Verset 169 / 182</option><option value="sourate-37-verset-170.html" >Verset 170 / 182</option><option value="sourate-37-verset-171.html" >Verset 171 / 182</option><option value="sourate-37-verset-172.html" >Verset 172 / 182</option><option value="sourate-37-verset-173.html" >Verset 173 / 182</option><option value="sourate-37-verset-174.html" >Verset 174 / 182</option><option value="sourate-37-verset-175.html" >Verset 175 / 182</option><option value="sourate-37-verset-176.html" >Verset 176 / 182</option><option value="sourate-37-verset-177.html" >Verset 177 / 182</option><option value="sourate-37-verset-178.html" >Verset 178 / 182</option><option value="sourate-37-verset-179.html" >Verset 179 / 182</option><option value="sourate-37-verset-180.html" >Verset 180 / 182</option><option value="sourate-37-verset-181.html" >Verset 181 / 182</option><option value="sourate-37-verset-182.html" >Verset 182 / 182</option>
         </select>
+        <button type="button" id="langSwitchBtn" class="lang-switch-btn" onclick="basculerLangue()">
+          <strong class="lang-active">🇫🇷 FR</strong> <span class="lang-sep">|</span> 🇬🇧 EN
+        </button>
       </div>
     </header>
 
@@ -614,14 +634,14 @@
               <div class="badge-num" id="badgeNumEl">37 : 71</div>
               <div>
                 <h1 id="mainTitleEl">Sourate As-Saffat (Les rangés) — Verset 71</h1>
-                <p>Sourate Mecquoise (La Mecque) • Traduction Muhammad Hamidullah (1977) & Exégèse</p>
+                <p id="subHeaderInfoEl">Sourate Mecquoise (La Mecque) • Traduction Muhammad Hamidullah (1977) & Exégèse</p>
               </div>
             </div>
             <div class="arabic-surah">الصافات</div>
           </div>
 
           <section class="verse-stage" id="verseStage">
-            <div class="arabic-glow-verse" id="arabicVerseEl">وَلَقَدۡ ضَلَّ قَبۡلَهُمۡ أَكۡثَرُ ٱلۡأَوَّلِينَ</div>
+            <div class="arabic-glow-verse" id="arabicVerseEl">وَلَقَدْ ضَلَّ قَبْلَهُمْ أَكْثَرُ الْأَوَّلِينَ</div>
             <div class="french-glow-verse" id="frenchVerseEl">« 71. En effet, avant eux, la plupart des anciens se sont égarés. »</div>
             <div class="sync-progress-track">
               <div class="sync-progress-bar" id="syncProgressBar"></div>
@@ -646,25 +666,24 @@
                 <option value="Husary_128kbps">Mahmoud Khalil Al-Hussary</option>
                 <option value="Hudhaify_128kbps">Ali Al-Hudhaify</option>
               </select>
-              <button type="button" class="btn-copy-verse" id="copyVerseBtn" onclick="copierVersetActuel()">📋 Copier</button>
             </div>
             <label class="auto-scroll-toggle">
               <input type="checkbox" id="autoNextCheck" onchange="sauverAutoNext()">
-              Enchaîner au verset suivant automatiquement
+              <span id="autoNextLabelEl">Enchaîner au verset suivant automatiquement</span>
             </label>
-            <audio id="ayahAudio" preload="auto"></audio>
-            <audio id="preloadNextAudio" preload="auto" style="display:none;"></audio>
+            <audio id="ayahAudioA" preload="auto"></audio>
+            <audio id="ayahAudioB" preload="auto" style="display:none;"></audio>
           </div>
 
           <article class="tafsir-box">
-            <span class="section-tag">Tafsīr & Explication du verset</span>
+            <span class="section-tag" id="tafsirSectionTagEl">Tafsīr & Explication du verset</span>
             <p class="main-explanation" id="mainExplanationEl">Bien avant eux, de nombreux anciens se sont égarés. Ton peuple n'est donc pas le premier à s'être égaré, ô Messager.</p>
             <div id="extraNotesContainer">
               
               
               
             </div>
-            <div class="sources-line">
+            <div class="sources-line" id="sourcesLineEl">
               Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar
             </div>
           </article>
@@ -674,9 +693,9 @@
   </div>
 
   <nav class="bottom-nav">
-    <a href="sourate-37-verset-70.html" id="prevVerseLink" class="btn btn-prev" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">‹ Précédent</a>
+    <a href="sourate-37-verset-70.html" id="prevVerseLink" class="btn btn-prev" onclick="return naviguerVerset(event, this.getAttribute('href'), false, false)">‹ Précédent</a>
     <span class="page-indicator" id="pageIndicatorEl">Verset 71 / 182</span>
-    <a href="sourate-37-verset-72.html" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
+    <a href="sourate-37-verset-72.html" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false, false)">Suivant ›</a>
   </nav>
 
   <script src="data-sourate-37.js"></script>
@@ -842,8 +861,11 @@
   renderFullSky();
 
     
-  const audio = document.getElementById('ayahAudio');
-  const preloadAudio = document.getElementById('preloadNextAudio');
+  const playerA = document.getElementById('ayahAudioA');
+  const playerB = document.getElementById('ayahAudioB');
+  let activeAudio = playerA;
+  let standbyAudio = playerB;
+
   const playBtn = document.getElementById('playSyncBtn');
   const select = document.getElementById('reciterSelect');
   const autoCheck = document.getElementById('autoNextCheck');
@@ -851,6 +873,8 @@
   const progressBar = document.getElementById('syncProgressBar');
   let animId = null;
   let timerTransitionAudio = null;
+  let currentLang = 'fr';
+  const cacheBlobsAudio = {};
 
   const RECITATEURS_VALIDES = [
     'Yasser_Ad-Dussary_128kbps',
@@ -871,29 +895,56 @@
     } else {
       select.value = 'Yasser_Ad-Dussary_128kbps';
     }
-    // Par défaut DÉCOCHÉ (false) pour laisser le visiteur lire avant d'écouter
     const savedAuto = localStorage.getItem('autoNext_v2');
     autoCheck.checked = (savedAuto === 'true');
+    const savedLang = localStorage.getItem('site_lang');
+    if (savedLang === 'en' || savedLang === 'fr') {
+      currentLang = savedLang;
+    }
   } catch (e) {
     autoCheck.checked = false;
   }
 
-  function prechargerVersetSuivant() {
-    if (!preloadAudio) return;
-    let prochainCode = null;
+  function obtenirUrlDistante(code) {
+    return "https://everyayah.com/data/" + select.value + "/" + code + ".mp3";
+  }
+
+  function chargerBlobEnRAM(code, elementAudioCible) {
+    if (!code) return;
+    const url = obtenirUrlDistante(code);
+    if (cacheBlobsAudio[url]) {
+      if (elementAudioCible && elementAudioCible.src !== cacheBlobsAudio[url]) {
+        elementAudioCible.src = cacheBlobsAudio[url];
+        elementAudioCible.load();
+      }
+      return;
+    }
+    fetch(url)
+      .then(function(r) {
+        if (!r.ok) throw new Error('err');
+        return r.blob();
+      })
+      .then(function(blob) {
+        const blobUrl = URL.createObjectURL(blob);
+        cacheBlobsAudio[url] = blobUrl;
+        if (elementAudioCible && elementAudioCible.paused) {
+          elementAudioCible.src = blobUrl;
+          elementAudioCible.load();
+        }
+      })
+      .catch(function() {
+        if (elementAudioCible && !elementAudioCible.src) {
+          elementAudioCible.src = url;
+        }
+      });
+  }
+
+  function obtenirCodeSuivant() {
     if (window.SOURATE_DATA && window.SOURATE_DATA.versets) {
       const vSuiv = window.SOURATE_DATA.versets[numVersetActuel];
-      if (vSuiv && vSuiv.codeAudio) {
-        prochainCode = vSuiv.codeAudio;
-      }
+      if (vSuiv && vSuiv.codeAudio) return vSuiv.codeAudio;
     }
-    if (prochainCode) {
-      const nextUrl = "https://everyayah.com/data/" + select.value + "/" + prochainCode + ".mp3";
-      if (preloadAudio.src !== nextUrl) {
-        preloadAudio.src = nextUrl;
-        preloadAudio.load();
-      }
-    }
+    return null;
   }
 
   function majSourceAudio() {
@@ -901,12 +952,20 @@
       clearTimeout(timerTransitionAudio);
       timerTransitionAudio = null;
     }
-    const nouvelleUrl = "https://everyayah.com/data/" + select.value + "/" + codeAudio + ".mp3";
-    if (audio.src !== nouvelleUrl) {
-      audio.src = nouvelleUrl;
-      audio.load();
+    const urlDirecte = obtenirUrlDistante(codeAudio);
+    const sourceOptimale = cacheBlobsAudio[urlDirecte] || urlDirecte;
+    if (activeAudio.src !== sourceOptimale) {
+      activeAudio.src = sourceOptimale;
+      activeAudio.load();
     }
-    prechargerVersetSuivant();
+    chargerBlobEnRAM(codeAudio, null);
+    const prochainCode = obtenirCodeSuivant();
+    if (prochainCode) {
+      const urlSuiv = obtenirUrlDistante(prochainCode);
+      standbyAudio.src = cacheBlobsAudio[urlSuiv] || urlSuiv;
+      standbyAudio.load();
+      chargerBlobEnRAM(prochainCode, standbyAudio);
+    }
   }
   majSourceAudio();
 
@@ -914,10 +973,24 @@
     try { localStorage.setItem('autoNext_v2', autoCheck.checked ? 'true' : 'false'); } catch (e) {}
   }
 
+  function texteBoutonPlay() {
+    if (!activeAudio.paused) {
+      return currentLang === 'en' ? "⏸ Pause" : "⏸ Pause";
+    }
+    return currentLang === 'en' ? "▶ Listen to verse" : "▶ Écouter le verset";
+  }
+
   function animerBarre() {
-    if (audio.paused) return;
-    if (audio.duration && isFinite(audio.duration)) {
-      const pct = Math.min(100, (audio.currentTime / audio.duration) * 100);
+    if (activeAudio.paused) return;
+    if (activeAudio.duration && isFinite(activeAudio.duration)) {
+      const restant = activeAudio.duration - activeAudio.currentTime;
+      // Adoucissement des 60 dernières millisecondes pour éviter tout clic/coupure sèche
+      if (restant <= 0.06 && restant > 0) {
+        activeAudio.volume = Math.max(0.25, restant / 0.06);
+      } else {
+        activeAudio.volume = 1.0;
+      }
+      const pct = Math.min(100, (activeAudio.currentTime / activeAudio.duration) * 100);
       progressBar.style.width = pct + "%";
     }
     animId = requestAnimationFrame(animerBarre);
@@ -925,9 +998,10 @@
 
   function arreterVisuel() {
     if (animId) cancelAnimationFrame(animId);
+    activeAudio.volume = 1.0;
     stage.classList.remove('playing');
     progressBar.style.width = "0%";
-    playBtn.textContent = "▶ Écouter le verset";
+    playBtn.textContent = currentLang === 'en' ? "▶ Listen to verse" : "▶ Écouter le verset";
     playBtn.classList.remove('active');
   }
 
@@ -936,49 +1010,35 @@
       clearTimeout(timerTransitionAudio);
       timerTransitionAudio = null;
     }
-    if (audio.paused) {
+    if (activeAudio.paused) {
+      activeAudio.volume = 1.0;
       stage.classList.add('playing');
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
-      prechargerVersetSuivant();
-      audio.play().then(function() {
+      const prochainCode = obtenirCodeSuivant();
+      if (prochainCode) chargerBlobEnRAM(prochainCode, standbyAudio);
+      activeAudio.play().then(function() {
         animId = requestAnimationFrame(animerBarre);
       }).catch(function() {
         arreterVisuel();
       });
     } else {
-      audio.pause();
+      activeAudio.pause();
       arreterVisuel();
     }
   }
 
   function changerRecitateur() {
     try { localStorage.setItem('reciter', select.value); } catch (e) {}
-    const enCours = !audio.paused;
+    const enCours = !activeAudio.paused;
+    activeAudio.pause();
     majSourceAudio();
     if (enCours) {
-      audio.play().then(function() {
+      activeAudio.volume = 1.0;
+      activeAudio.play().then(function() {
         animId = requestAnimationFrame(animerBarre);
       }).catch(function() {
         arreterVisuel();
-      });
-    }
-  }
-
-  function copierVersetActuel() {
-    const ar = document.getElementById('arabicVerseEl').textContent.trim();
-    const fr = document.getElementById('frenchVerseEl').textContent.trim();
-    const titre = document.getElementById('mainTitleEl').textContent.trim();
-    const url = "https://corantafsir.com/sourate-" + numSourateActuelle + "-verset-" + numVersetActuel + ".html";
-    const texteComplet = titre + "\n\n" + ar + "\n\n" + fr + "\n\n📖 Lire le Tafsīr : " + url;
-    const btnCopy = document.getElementById('copyVerseBtn');
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(texteComplet).then(function() {
-        if (btnCopy) {
-          const old = btnCopy.textContent;
-          btnCopy.textContent = "✓ Copié !";
-          setTimeout(function() { btnCopy.textContent = old; }, 2000);
-        }
       });
     }
   }
@@ -988,21 +1048,35 @@
     const btnEl = document.getElementById('miracleToggleBtn');
     if (!detailsEl || !btnEl) return;
     const estOuvert = detailsEl.classList.toggle('open');
-    btnEl.textContent = estOuvert
-      ? "▲ Masquer l'explication détaillée du miracle"
-      : "★ Développer l'explication complète & le Hadīth historique";
+    if (currentLang === 'en') {
+      btnEl.textContent = estOuvert
+        ? "▲ Hide detailed explanation"
+        : "★ Read full explanation & historical Hadīth";
+    } else {
+      btnEl.textContent = estOuvert
+        ? "▲ Masquer l'explication détaillée du miracle"
+        : "★ Développer l'explication complète & le Hadīth historique";
+    }
   }
 
   function construireHTMLMiracle(mObj) {
     if (!mObj) return '';
+    const isEn = (currentLang === 'en');
+    const titre = isEn ? (mObj.titreEn || mObj.titre) : mObj.titre;
+    const resume = isEn ? (mObj.resumeEn || mObj.resume) : mObj.resume;
+    const dev = isEn ? (mObj.developpementEn || mObj.developpement) : mObj.developpement;
+    const btnTxt = isEn
+      ? "★ Read full explanation & historical Hadīth"
+      : "★ Développer l'explication complète & le Hadīth historique";
+
     return '<div class="miracle-banner">' +
-      '<div class="miracle-header"><span class="sky-star-icon">★</span> ' + mObj.titre + '</div>' +
-      '<p class="miracle-summary">' + mObj.resume + '</p>' +
+      '<div class="miracle-header"><span class="sky-star-icon">★</span> ' + titre + '</div>' +
+      '<p class="miracle-summary">' + resume + '</p>' +
       '<button type="button" class="miracle-expand-btn" id="miracleToggleBtn" onclick="basculerDeveloppementMiracle()">' +
-        '★ Développer l\'explication complète & le Hadīth historique' +
+        btnTxt +
       '</button>' +
       '<div class="miracle-deep-details" id="miracleDeepDetails">' +
-        mObj.developpement +
+        dev +
       '</div>' +
     '</div>';
   }
@@ -1013,9 +1087,98 @@
     stage.classList.toggle('earth-leveled-glow', (numS === 91 && numV === 6) || (numS === 88 && numV === 20) || (numS === 15 && numV === 19) || (numS === 50 && numV === 7) || (numS === 71 && numV === 19));
   }
 
-  majEffetSpecifiqueVerset(numSourateActuelle, numVersetActuel);
+  function appliquerLangueVerset() {
+    if (!window.SOURATE_DATA || !window.SOURATE_DATA.versets) return;
+    const S = window.SOURATE_DATA;
+    const vData = S.versets[numVersetActuel - 1];
+    if (!vData) return;
 
-  function allerAuVersetSansRecharger(numVersetCible, lancerAudioAuto) {
+    const isEn = (currentLang === 'en');
+    const btnLang = document.getElementById('langSwitchBtn');
+    if (btnLang) {
+      btnLang.innerHTML = isEn ? "🇫🇷 FR <span class='lang-sep'>|</span> <strong class='lang-active'>🇬🇧 EN</strong>" : "<strong class='lang-active'>🇫🇷 FR</strong> <span class='lang-sep'>|</span> 🇬🇧 EN";
+    }
+
+    const homeLabelEl = document.getElementById('homeBtnTextEl');
+    if (homeLabelEl) homeLabelEl.textContent = isEn ? "‹ Back to 114 Surahs" : "‹ Retour aux 114 Sourates";
+
+    const pillTypeEl = document.getElementById('typeSouratePillEl');
+    if (pillTypeEl) pillTypeEl.textContent = isEn ? S.typeSourateLabelEn : S.typeSourateLabel;
+
+    const revOrderEl = document.getElementById('revOrderTagEl');
+    if (revOrderEl) {
+      revOrderEl.textContent = isEn
+        ? (S.ordreRev + "th Revealed Surah (Surah #" + S.numSourate + ")")
+        : ((S.ordreRev === 1 ? "1re Sourate révélée" : S.ordreRev + "e Sourate révélée") + " (Sourate n°" + S.numSourate + ")");
+    }
+
+    const nomTrad = isEn ? (S.nomEn || S.nomFr) : S.nomFr;
+    const labelVerset = isEn ? "Verse" : "Verset";
+    const labelSourate = isEn ? "Surah" : "Sourate";
+
+    document.getElementById('mainTitleEl').textContent = labelSourate + " " + S.nomSourate + " (" + nomTrad + ") — " + labelVerset + " " + numVersetActuel;
+
+    const subHeaderEl = document.getElementById('subHeaderInfoEl');
+    if (subHeaderEl) {
+      subHeaderEl.textContent = isEn
+        ? (S.typeSourateLabelEn + " (" + S.lieuEn + ") • English Translation & Exegesis (Tafsīr Al-Mukhtasar)")
+        : (S.typeSourateLabel + " (" + S.lieu + ") • Traduction Muhammad Hamidullah (1977) & Exégèse");
+    }
+
+    document.getElementById('arabicVerseEl').innerHTML = vData.texteArabe;
+    document.getElementById('frenchVerseEl').innerHTML = isEn
+      ? ("“ " + numVersetActuel + ". " + (vData.tradEn || vData.tradPropre) + " ”")
+      : ("« " + numVersetActuel + ". " + vData.tradPropre + " »");
+
+    const autoLabelEl = document.getElementById('autoNextLabelEl');
+    if (autoLabelEl) {
+      autoLabelEl.textContent = isEn ? "Auto-advance to next verse" : "Enchaîner au verset suivant automatiquement";
+    }
+    playBtn.textContent = texteBoutonPlay();
+
+    const sectionTagEl = document.getElementById('tafsirSectionTagEl');
+    if (sectionTagEl) {
+      sectionTagEl.textContent = isEn ? "Tafsīr & Verse Explanation" : "Tafsīr & Explication du verset";
+    }
+
+    document.getElementById('mainExplanationEl').innerHTML = isEn
+      ? (vData.explicationEn || vData.explicationUnanime)
+      : vData.explicationUnanime;
+
+    const extraContainer = document.getElementById('extraNotesContainer');
+    let extraHTML = '';
+    if (!isEn) {
+      if (vData.noteUnique) extraHTML += '<div class="consensus-note">' + vData.noteUnique + '</div>';
+      if (vData.precisionConsensus) extraHTML += '<div class="consensus-note">' + vData.precisionConsensus + '</div>';
+      if (vData.texteLaurierPerso) extraHTML += '<div class="consensus-note"><strong>Le Laurier de l\'Exégèse :</strong> ' + vData.texteLaurierPerso + '</div>';
+    }
+    extraContainer.innerHTML = extraHTML;
+
+    const sourcesLineEl = document.getElementById('sourcesLineEl');
+    if (sourcesLineEl) {
+      sourcesLineEl.textContent = isEn
+        ? "Saheeh International Translation • Exegesis (Tafsīr) Al-Mukhtasar"
+        : "Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar";
+    }
+
+    const miracleContainer = document.getElementById('miracleContainer');
+    miracleContainer.innerHTML = construireHTMLMiracle(vData.miracle);
+
+    document.getElementById('pageIndicatorEl').textContent = labelVerset + " " + numVersetActuel + " / " + S.nbVersets;
+    document.getElementById('prevVerseLink').textContent = isEn ? "‹ Previous" : "‹ Précédent";
+    document.getElementById('nextVerseLink').textContent = isEn ? "Next ›" : "Suivant ›";
+  }
+
+  function basculerLangue() {
+    currentLang = (currentLang === 'fr') ? 'en' : 'fr';
+    try { localStorage.setItem('site_lang', currentLang); } catch (e) {}
+    appliquerLangueVerset();
+  }
+
+  majEffetSpecifiqueVerset(numSourateActuelle, numVersetActuel);
+  appliquerLangueVerset();
+
+  function allerAuVersetSansRecharger(numVersetCible, lancerAudioAuto, utiliserSwapInstantane) {
     if (!window.SOURATE_DATA || !window.SOURATE_DATA.versets) {
       sauvegarderConfigCiel();
       window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html";
@@ -1029,32 +1192,34 @@
       return;
     }
 
-    if (!audio.paused) {
-      audio.pause();
+    if (!activeAudio.paused) {
+      activeAudio.pause();
     }
     arreterVisuel();
 
     numVersetActuel = numVersetCible;
     codeAudio = vData.codeAudio;
-    majSourceAudio();
+
+    // Si on enchaîne automatiquement et que standbyAudio a déjà le verset préchargé en mémoire, on inverse les lecteurs sans aucun rechargement !
+    if (utiliserSwapInstantane && standbyAudio.src) {
+      const temp = activeAudio;
+      activeAudio = standbyAudio;
+      standbyAudio = temp;
+      activeAudio.volume = 1.0;
+      const prochainCode = obtenirCodeSuivant();
+      if (prochainCode) {
+        const urlSuiv = obtenirUrlDistante(prochainCode);
+        standbyAudio.src = cacheBlobsAudio[urlSuiv] || urlSuiv;
+        standbyAudio.load();
+        chargerBlobEnRAM(prochainCode, standbyAudio);
+      }
+    } else {
+      majSourceAudio();
+    }
+
     majEffetSpecifiqueVerset(numSourateActuelle, numVersetCible);
 
-    document.title = "Sourate " + numSourateActuelle + " verset " + numVersetCible + " (" + window.SOURATE_DATA.nomSourate + ") - Traduction Hamidullah 1977 & Tafsir";
     document.getElementById('badgeNumEl').textContent = numSourateActuelle + " : " + numVersetCible;
-    document.getElementById('mainTitleEl').textContent = "Sourate " + window.SOURATE_DATA.nomSourate + " (" + window.SOURATE_DATA.nomFr + ") — Verset " + numVersetCible;
-    document.getElementById('arabicVerseEl').innerHTML = vData.texteArabe;
-    document.getElementById('frenchVerseEl').innerHTML = "« " + numVersetCible + ". " + vData.tradPropre + " »";
-    document.getElementById('mainExplanationEl').innerHTML = vData.explicationUnanime;
-
-    const extraContainer = document.getElementById('extraNotesContainer');
-    let extraHTML = '';
-    if (vData.noteUnique) extraHTML += '<div class="consensus-note">' + vData.noteUnique + '</div>';
-    if (vData.precisionConsensus) extraHTML += '<div class="consensus-note">' + vData.precisionConsensus + '</div>';
-    if (vData.texteLaurierPerso) extraHTML += '<div class="consensus-note"><strong>Le Laurier de l\'Exégèse :</strong> ' + vData.texteLaurierPerso + '</div>';
-    extraContainer.innerHTML = extraHTML;
-
-    const miracleContainer = document.getElementById('miracleContainer');
-    miracleContainer.innerHTML = construireHTMLMiracle(vData.miracle);
 
     const jumperEl = document.getElementById('verseJumperSelect');
     if (jumperEl) {
@@ -1062,9 +1227,10 @@
       jumperEl.classList.toggle('is-miracle-verse', Boolean(vData.miracle));
     }
 
-    document.getElementById('pageIndicatorEl').textContent = "Verset " + numVersetCible + " / " + window.SOURATE_DATA.nbVersets;
     document.getElementById('prevVerseLink').setAttribute('href', vData.lienPrecedent);
     document.getElementById('nextVerseLink').setAttribute('href', vData.lienSuivant);
+
+    appliquerLangueVerset();
 
     try {
       history.pushState({ verset: numVersetCible }, '', "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html");
@@ -1074,7 +1240,8 @@
       stage.classList.add('playing');
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
-      audio.play().then(function() {
+      activeAudio.volume = 1.0;
+      activeAudio.play().then(function() {
         animId = requestAnimationFrame(animerBarre);
       }).catch(function() {
         arreterVisuel();
@@ -1082,11 +1249,11 @@
     }
   }
 
-  function naviguerVerset(event, lienCible, autoAudio) {
+  function naviguerVerset(event, lienCible, autoAudio, swapInstantane) {
     const match = String(lienCible).match(/^sourate-(\d+)-verset-(\d+)\.html$/);
     if (match && Number(match[1]) === numSourateActuelle) {
       if (event) event.preventDefault();
-      allerAuVersetSansRecharger(Number(match[2]), autoAudio);
+      allerAuVersetSansRecharger(Number(match[2]), autoAudio, Boolean(swapInstantane));
       return false;
     }
     sauvegarderConfigCiel();
@@ -1099,27 +1266,30 @@
 
   window.addEventListener('popstate', function(e) {
     if (e.state && e.state.verset) {
-      allerAuVersetSansRecharger(e.state.verset, false);
+      allerAuVersetSansRecharger(e.state.verset, false, false);
     }
   });
 
-  // Pause naturelle de 400ms en fin de verset pour éviter toute micro-coupure de la dernière syllabe
-  audio.onended = function() {
+  function gererFinAudio() {
     progressBar.style.width = "100%";
+    activeAudio.volume = 1.0;
     if (autoCheck.checked) {
       timerTransitionAudio = setTimeout(function() {
         arreterVisuel();
         const hrefSuiv = document.getElementById('nextVerseLink').getAttribute('href');
-        naviguerVerset(null, hrefSuiv, true);
-      }, 400);
+        naviguerVerset(null, hrefSuiv, true, true);
+      }, 300);
     } else {
       arreterVisuel();
     }
-  };
+  }
+
+  playerA.onended = gererFinAudio;
+  playerB.onended = gererFinAudio;
 
   if (window.location.search.indexOf('autoplay=1') !== -1) {
     stage.classList.add('playing');
-    audio.play().then(function() {
+    activeAudio.play().then(function() {
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
       animId = requestAnimationFrame(animerBarre);
