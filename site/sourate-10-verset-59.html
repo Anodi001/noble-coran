@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sourate 10 verset 59 (Yunus) - Traduction Hamidullah 1977 & Tafsir</title>
-  <meta name="description" content="Sourate 10 verset 59 (Yunus - Sourate Mecquoise) : Texte arabe, traduction originale de Muhammad Hamidullah (1977) et exégèse classique.">
+  <meta name="description" content="Sourate 10 verset 59 (Yunus - Sourate Mecquoise) : Texte arabe, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -308,7 +308,6 @@
       font-weight: 800;
     }
 
-    /* CADRE PRINCIPAL AGRANDI JUSQU'À LA BARRE DU BAS (SELON TES FLÈCHES ROUGES) */
     .centered-container {
       max-width: 820px;
       margin: 0 auto;
@@ -323,7 +322,7 @@
       min-height: calc(100vh - 165px);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-start;
       box-shadow: 0 20px 50px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.12);
     }
     .main-header {
@@ -480,8 +479,10 @@
       border: 1px solid var(--border-color);
       border-radius: 18px;
       padding: 26px;
-      margin-bottom: 18px;
+      margin-bottom: 0;
       flex: 1;
+      display: flex;
+      flex-direction: column;
     }
     .section-tag {
       display: inline-block;
@@ -509,36 +510,13 @@
       margin-top: 12px;
     }
     .sources-line {
-      margin-top: 18px;
-      padding-top: 14px;
+      margin-top: auto;
+      padding-top: 16px;
       border-top: 1px solid var(--border-color);
       font-size: 0.8rem;
       color: var(--text-muted);
     }
 
-    .context-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: auto;
-    }
-    .context-card {
-      background: var(--bg-elevated);
-      border: 1px solid var(--border-color);
-      border-radius: 14px;
-      padding: 16px;
-    }
-    .context-card span {
-      display: block;
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--green-bright);
-      text-transform: uppercase;
-      margin-bottom: 5px;
-    }
-    .context-card p { font-size: 0.88rem; color: #f1f5f9; line-height: 1.6; }
-
-    /* BARRE DU BAS ALIGNÉE SUR LA LARGEUR DU PANNEAU (820px) */
     .bottom-nav {
       position: fixed;
       bottom: 14px;
@@ -578,13 +556,9 @@
       .arabic-glow-verse { font-size: 2.2rem; }
       .french-glow-verse { font-size: 1.3rem; }
       .arabic-surah { display: none; }
-      .context-grid { grid-template-columns: 1fr; }
       .bottom-nav { width: calc(100% - 20px); }
     }
   </style>
-  <link rel="canonical" href="https://corantafsir.com/sourate-10-verset-59.html">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#020406">
 </head>
 <body>
 
@@ -610,7 +584,47 @@
         <span class="revelation-pill mecquoise">Sourate Mecquoise</span>
         <a href="sourate-10-verset-92.html" class="revelation-pill miracle-pill" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">★ Verset Miracle : v.92</a>
         <span class="tag">51e Sourate révélée (Sourate n°10)</span>
-        <select id="verseJumperSelect" class="verse-jumper " onchange="naviguerVerset(event, this.value, false)"><option value="Yasser_Ad-Dussary_128kbps" selected>Yasser Al-Dosari</option></select>
+        <select id="verseJumperSelect" class="verse-jumper " onchange="naviguerVerset(event, this.value, false)">
+          <option value="sourate-10-verset-1.html" >Verset 1 / 109</option><option value="sourate-10-verset-2.html" >Verset 2 / 109</option><option value="sourate-10-verset-3.html" >Verset 3 / 109</option><option value="sourate-10-verset-4.html" >Verset 4 / 109</option><option value="sourate-10-verset-5.html" >Verset 5 / 109</option><option value="sourate-10-verset-6.html" >Verset 6 / 109</option><option value="sourate-10-verset-7.html" >Verset 7 / 109</option><option value="sourate-10-verset-8.html" >Verset 8 / 109</option><option value="sourate-10-verset-9.html" >Verset 9 / 109</option><option value="sourate-10-verset-10.html" >Verset 10 / 109</option><option value="sourate-10-verset-11.html" >Verset 11 / 109</option><option value="sourate-10-verset-12.html" >Verset 12 / 109</option><option value="sourate-10-verset-13.html" >Verset 13 / 109</option><option value="sourate-10-verset-14.html" >Verset 14 / 109</option><option value="sourate-10-verset-15.html" >Verset 15 / 109</option><option value="sourate-10-verset-16.html" >Verset 16 / 109</option><option value="sourate-10-verset-17.html" >Verset 17 / 109</option><option value="sourate-10-verset-18.html" >Verset 18 / 109</option><option value="sourate-10-verset-19.html" >Verset 19 / 109</option><option value="sourate-10-verset-20.html" >Verset 20 / 109</option><option value="sourate-10-verset-21.html" >Verset 21 / 109</option><option value="sourate-10-verset-22.html" >Verset 22 / 109</option><option value="sourate-10-verset-23.html" >Verset 23 / 109</option><option value="sourate-10-verset-24.html" >Verset 24 / 109</option><option value="sourate-10-verset-25.html" >Verset 25 / 109</option><option value="sourate-10-verset-26.html" >Verset 26 / 109</option><option value="sourate-10-verset-27.html" >Verset 27 / 109</option><option value="sourate-10-verset-28.html" >Verset 28 / 109</option><option value="sourate-10-verset-29.html" >Verset 29 / 109</option><option value="sourate-10-verset-30.html" >Verset 30 / 109</option><option value="sourate-10-verset-31.html" >Verset 31 / 109</option><option value="sourate-10-verset-32.html" >Verset 32 / 109</option><option value="sourate-10-verset-33.html" >Verset 33 / 109</option><option value="sourate-10-verset-34.html" >Verset 34 / 109</option><option value="sourate-10-verset-35.html" >Verset 35 / 109</option><option value="sourate-10-verset-36.html" >Verset 36 / 109</option><option value="sourate-10-verset-37.html" >Verset 37 / 109</option><option value="sourate-10-verset-38.html" >Verset 38 / 109</option><option value="sourate-10-verset-39.html" >Verset 39 / 109</option><option value="sourate-10-verset-40.html" >Verset 40 / 109</option><option value="sourate-10-verset-41.html" >Verset 41 / 109</option><option value="sourate-10-verset-42.html" >Verset 42 / 109</option><option value="sourate-10-verset-43.html" >Verset 43 / 109</option><option value="sourate-10-verset-44.html" >Verset 44 / 109</option><option value="sourate-10-verset-45.html" >Verset 45 / 109</option><option value="sourate-10-verset-46.html" >Verset 46 / 109</option><option value="sourate-10-verset-47.html" >Verset 47 / 109</option><option value="sourate-10-verset-48.html" >Verset 48 / 109</option><option value="sourate-10-verset-49.html" >Verset 49 / 109</option><option value="sourate-10-verset-50.html" >Verset 50 / 109</option><option value="sourate-10-verset-51.html" >Verset 51 / 109</option><option value="sourate-10-verset-52.html" >Verset 52 / 109</option><option value="sourate-10-verset-53.html" >Verset 53 / 109</option><option value="sourate-10-verset-54.html" >Verset 54 / 109</option><option value="sourate-10-verset-55.html" >Verset 55 / 109</option><option value="sourate-10-verset-56.html" >Verset 56 / 109</option><option value="sourate-10-verset-57.html" >Verset 57 / 109</option><option value="sourate-10-verset-58.html" >Verset 58 / 109</option><option value="sourate-10-verset-59.html" selected>Verset 59 / 109</option><option value="sourate-10-verset-60.html" >Verset 60 / 109</option><option value="sourate-10-verset-61.html" >Verset 61 / 109</option><option value="sourate-10-verset-62.html" >Verset 62 / 109</option><option value="sourate-10-verset-63.html" >Verset 63 / 109</option><option value="sourate-10-verset-64.html" >Verset 64 / 109</option><option value="sourate-10-verset-65.html" >Verset 65 / 109</option><option value="sourate-10-verset-66.html" >Verset 66 / 109</option><option value="sourate-10-verset-67.html" >Verset 67 / 109</option><option value="sourate-10-verset-68.html" >Verset 68 / 109</option><option value="sourate-10-verset-69.html" >Verset 69 / 109</option><option value="sourate-10-verset-70.html" >Verset 70 / 109</option><option value="sourate-10-verset-71.html" >Verset 71 / 109</option><option value="sourate-10-verset-72.html" >Verset 72 / 109</option><option value="sourate-10-verset-73.html" >Verset 73 / 109</option><option value="sourate-10-verset-74.html" >Verset 74 / 109</option><option value="sourate-10-verset-75.html" >Verset 75 / 109</option><option value="sourate-10-verset-76.html" >Verset 76 / 109</option><option value="sourate-10-verset-77.html" >Verset 77 / 109</option><option value="sourate-10-verset-78.html" >Verset 78 / 109</option><option value="sourate-10-verset-79.html" >Verset 79 / 109</option><option value="sourate-10-verset-80.html" >Verset 80 / 109</option><option value="sourate-10-verset-81.html" >Verset 81 / 109</option><option value="sourate-10-verset-82.html" >Verset 82 / 109</option><option value="sourate-10-verset-83.html" >Verset 83 / 109</option><option value="sourate-10-verset-84.html" >Verset 84 / 109</option><option value="sourate-10-verset-85.html" >Verset 85 / 109</option><option value="sourate-10-verset-86.html" >Verset 86 / 109</option><option value="sourate-10-verset-87.html" >Verset 87 / 109</option><option value="sourate-10-verset-88.html" >Verset 88 / 109</option><option value="sourate-10-verset-89.html" >Verset 89 / 109</option><option value="sourate-10-verset-90.html" >Verset 90 / 109</option><option value="sourate-10-verset-91.html" >Verset 91 / 109</option><option value="sourate-10-verset-92.html" class="opt-miracle-blue" >★ Verset 92 / 109 — Miracle</option><option value="sourate-10-verset-93.html" >Verset 93 / 109</option><option value="sourate-10-verset-94.html" >Verset 94 / 109</option><option value="sourate-10-verset-95.html" >Verset 95 / 109</option><option value="sourate-10-verset-96.html" >Verset 96 / 109</option><option value="sourate-10-verset-97.html" >Verset 97 / 109</option><option value="sourate-10-verset-98.html" >Verset 98 / 109</option><option value="sourate-10-verset-99.html" >Verset 99 / 109</option><option value="sourate-10-verset-100.html" >Verset 100 / 109</option><option value="sourate-10-verset-101.html" >Verset 101 / 109</option><option value="sourate-10-verset-102.html" >Verset 102 / 109</option><option value="sourate-10-verset-103.html" >Verset 103 / 109</option><option value="sourate-10-verset-104.html" >Verset 104 / 109</option><option value="sourate-10-verset-105.html" >Verset 105 / 109</option><option value="sourate-10-verset-106.html" >Verset 106 / 109</option><option value="sourate-10-verset-107.html" >Verset 107 / 109</option><option value="sourate-10-verset-108.html" >Verset 108 / 109</option><option value="sourate-10-verset-109.html" >Verset 109 / 109</option>
+        </select>
+      </div>
+    </header>
+
+    <div class="centered-container">
+      <main class="panel">
+        <div style="display: flex; flex-direction: column; flex: 1;">
+          <div class="main-header">
+            <div class="title-group">
+              <div class="badge-num" id="badgeNumEl">10 : 59</div>
+              <div>
+                <h1 id="mainTitleEl">Sourate Yunus (Jonas) — Verset 59</h1>
+                <p>Sourate Mecquoise (La Mecque) • Traduction Muhammad Hamidullah (1977) & Exégèse</p>
+              </div>
+            </div>
+            <div class="arabic-surah">يونس</div>
+          </div>
+
+          <section class="verse-stage" id="verseStage">
+            <div class="arabic-glow-verse" id="arabicVerseEl">قُلۡ أَرَءَيۡتُم مَّآ أَنزَلَ ٱللَّهُ لَكُم مِّن رِّزۡقٖ فَجَعَلۡتُم مِّنۡهُ حَرَامٗا وَحَلَٰلٗا قُلۡ ءَآللَّهُ أَذِنَ لَكُمۡۖ أَمۡ عَلَى ٱللَّهِ تَفۡتَرُونَ</div>
+            <div class="french-glow-verse" id="frenchVerseEl">« 59. Que dites-vous de ce qu'Allah a fait descendre pour vous comme subsistance et dont vous avez alors fait des choses licites et des choses interdites? - Dis: «Est-ce Allah qui vous l'a permis? Ou bien forgez vous (des mensonges) contre Allah?» »</div>
+            <div class="sync-progress-track">
+              <div class="sync-progress-bar" id="syncProgressBar"></div>
+            </div>
+          </section>
+
+          <div id="miracleContainer">
+            
+          </div>
+
+          <div class="audio-control-strip">
+            <div class="audio-left">
+              <button type="button" class="btn-listen-sync" id="playSyncBtn" onclick="toggleAudioSync()">▶ Écouter le verset</button>
+              <select id="reciterSelect" class="reciter-mini" onchange="changerRecitateur()">
+                <option value="Yasser_Ad-Dussary_128kbps">Yasser Al-Dosari</option>
+                <option value="Alafasy_128kbps">Mishary Alafasy</option>
+                <option value="MaherAlMuaiqly128kbps">Maher Al-Muaiqly</option>
+                <option value="Husary_128kbps">Mahmoud Al-Husary</option>
+              </select>
             </div>
             <label class="auto-scroll-toggle">
               <input type="checkbox" id="autoNextCheck" checked onchange="sauverAutoNext()">
@@ -622,12 +636,16 @@
           <article class="tafsir-box">
             <span class="section-tag">Tafsīr & Explication du verset</span>
             <p class="main-explanation" id="mainExplanationEl">Ô Messager, dis à ces polythéistes: Informez-moi au sujet de la subsistance qu’Allah vous octroie, dont vous avez usée selon ce que vous dictaient vos passions en en rendant une part illicite et une autre licite. Dis-leur: Allah vous a-t-il permis de rendre licite ce que vous avez rendu licite et illicite ce que vous avez rendu illicite ou inventez-vous des mensonges à Son sujet?</p>
-<div class="sources-line">
-              Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar.</div>
+            <div id="extraNotesContainer">
+              
+              
+              
+            </div>
+            <div class="sources-line">
+              Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar
+            </div>
           </article>
         </div>
-
-        
       </main>
     </div>
   </div>
@@ -860,7 +878,7 @@
   } catch (e) {}
 
   function majSourceAudio() {
-    audio.src = "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/" + codeAudio + ".mp3";
+    audio.src = "https://everyayah.com/data/" + select.value + "/" + codeAudio + ".mp3";
   }
   majSourceAudio();
 
@@ -987,20 +1005,6 @@
       jumperEl.value = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html";
       jumperEl.classList.toggle('is-miracle-verse', Boolean(vData.miracle));
     }
-
-    const ctxBox = document.getElementById('contextContainer');
-    let ctxHTML = '';
-    if (vData.tradPrec) {
-      ctxHTML += '<div class="context-card"><span>‹ Verset précédent (' + numSourateActuelle + ':' + (numVersetCible - 1) + ')</span><p>« ' + vData.tradPrec + ' »</p></div>';
-    } else {
-      ctxHTML += '<div class="context-card"><span>Ouverture de Sourate</span><p>Ce verset inaugure la sourate <strong>' + window.SOURATE_DATA.nomSourate + '</strong> (' + window.SOURATE_DATA.nomFr + ').</p></div>';
-    }
-    if (vData.tradSuiv) {
-      ctxHTML += '<div class="context-card"><span>Verset suivant (' + numSourateActuelle + ':' + (numVersetCible + 1) + ') ›</span><p>« ' + vData.tradSuiv + ' »</p></div>';
-    } else {
-      ctxHTML += '<div class="context-card"><span>Clôture de Sourate</span><p>Ce verset conclut la sourate <strong>' + window.SOURATE_DATA.nomSourate + '</strong>.</p></div>';
-    }
-    ctxBox.innerHTML = ctxHTML;
 
     document.getElementById('pageIndicatorEl').textContent = "Verset " + numVersetCible + " / " + window.SOURATE_DATA.nbVersets;
     document.getElementById('prevVerseLink').setAttribute('href', vData.lienPrecedent);
