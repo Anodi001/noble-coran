@@ -129,9 +129,9 @@ const VERSIONS_ORIGINALES_HAMIDULLAH_1977 = {
 };
 
 // ============================================================================
-// LOGO 4K (512x512) : BORDURE UNIQUEMENT NOIRE (#000000) + OMBRE LUMINEUSE INTERNE
+// LOGO 4K TRANSPARENT : AUCUN CARRÉ NI BORDURE BLANCHE, UNIQUEMENT L'ICÔNE & SON OMBRE
 // ============================================================================
-const LOGO_FAVICON_4K_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" shape-rendering="geometricPrecision">
+const LOGO_TRANSPARENT_4K_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" shape-rendering="geometricPrecision">
   <defs>
     <linearGradient id="titleGrad4k" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#ffffff"/>
@@ -139,32 +139,22 @@ const LOGO_FAVICON_4K_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 
       <stop offset="72%" stop-color="#38bdf8"/>
       <stop offset="100%" stop-color="#34d399"/>
     </linearGradient>
-    <filter id="glow4k" x="-35%" y="-35%" width="170%" height="170%">
-      <feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#38bdf8" flood-opacity="0.75"/>
-      <feDropShadow dx="0" dy="0" stdDeviation="32" flood-color="#10b981" flood-opacity="0.45"/>
+    <filter id="glow4k" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="4" stdDeviation="14" flood-color="#000000" flood-opacity="0.95"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="18" flood-color="#38bdf8" flood-opacity="0.8"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="34" flood-color="#10b981" flood-opacity="0.45"/>
     </filter>
   </defs>
-  <rect x="8" y="8" width="496" height="496" rx="112" fill="#030609" stroke="#000000" stroke-width="12"/>
   <g filter="url(#glow4k)">
-    <path d="M256 76 L273 121 L321 124 L283 153 L296 199 L256 172 L216 199 L229 153 L191 124 L239 121 Z" fill="url(#titleGrad4k)"/>
-    <path d="M88 228 C154 198, 218 214, 256 248 C294 214, 358 198, 424 228 L424 384 C358 354, 294 370, 256 404 C218 370, 154 354, 88 384 Z" fill="#03070b" stroke="url(#titleGrad4k)" stroke-width="22" stroke-linejoin="round"/>
-    <line x1="256" y1="248" x2="256" y2="404" stroke="url(#titleGrad4k)" stroke-width="18" stroke-linecap="round"/>
-    <path d="M126 274 C172 258, 210 266, 232 286" fill="none" stroke="#7dd3fc" stroke-width="12" stroke-linecap="round"/>
-    <path d="M126 320 C172 304, 210 312, 232 332" fill="none" stroke="#7dd3fc" stroke-width="12" stroke-linecap="round"/>
-    <path d="M386 274 C340 258, 302 266, 280 286" fill="none" stroke="#34d399" stroke-width="12" stroke-linecap="round"/>
-    <path d="M386 320 C340 304, 302 312, 280 332" fill="none" stroke="#34d399" stroke-width="12" stroke-linecap="round"/>
+    <path d="M256 64 L275 114 L328 117 L286 149 L301 200 L256 170 L211 200 L226 149 L184 117 L237 114 Z" fill="url(#titleGrad4k)"/>
+    <path d="M72 224 C146 190, 214 208, 256 246 C298 208, 366 190, 440 224 L440 396 C366 362, 298 380, 256 418 C214 380, 146 362, 72 396 Z" fill="#03070b" stroke="url(#titleGrad4k)" stroke-width="24" stroke-linejoin="round"/>
+    <line x1="256" y1="246" x2="256" y2="418" stroke="url(#titleGrad4k)" stroke-width="20" stroke-linecap="round"/>
+    <path d="M114 274 C164 256, 206 266, 230 288" fill="none" stroke="#7dd3fc" stroke-width="14" stroke-linecap="round"/>
+    <path d="M114 326 C164 308, 206 318, 230 340" fill="none" stroke="#7dd3fc" stroke-width="14" stroke-linecap="round"/>
+    <path d="M398 274 C348 256, 306 266, 282 288" fill="none" stroke="#34d399" stroke-width="14" stroke-linecap="round"/>
+    <path d="M398 326 C348 308, 306 318, 282 340" fill="none" stroke="#34d399" stroke-width="14" stroke-linecap="round"/>
   </g>
 </svg>`;
-
-function simplifierArabeLectureFacile(texteArabe) {
-  if (!texteArabe) return '';
-  let t = String(texteArabe);
-  t = t.replace(/\u0671/g, '\u0627');
-  t = t.replace(/\u06E1/g, '\u0652');
-  t = t.replace(/[\u06DF\u06E0\u06E2\u06E3\u06E5\u06E6\u06E7\u06E8\u06EA\u06EB\u06EC\u06ED\u06D6-\u06DC\u0653\u0654\u0655]/g, '');
-  t = t.replace(/\u064E\u0670/g, '\u064E\u0627');
-  return t.trim();
-}
 
 function restaurerHamidullah1977(cleVerset, texte) {
   if (VERSIONS_ORIGINALES_HAMIDULLAH_1977[cleVerset]) {
@@ -447,9 +437,9 @@ const MOTEUR_SOLEIL_LUNE_V21_JS = `
 `;
 
 // ============================================================================
-// NAVIGATION 100% FRANÇAIS + SANS GUILLEMETS + LECTURE AUDIO PROPRE
+// NAVIGATION + BOUTONS VOLUME (- / +) + PRÉCHARGEMENT AUDIO
 // ============================================================================
-const SCRIPT_NAVIGATION_CLASSIQUE_V24 = `
+const SCRIPT_NAVIGATION_CLASSIQUE_V25 = `
   const audio = document.getElementById('ayahAudio');
   const preloadAudio = document.getElementById('preloadNextAudio');
   const playBtn = document.getElementById('playSyncBtn');
@@ -457,7 +447,9 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V24 = `
   const autoCheck = document.getElementById('autoNextCheck');
   const stage = document.getElementById('verseStage');
   const progressBar = document.getElementById('syncProgressBar');
+  const volLabel = document.getElementById('volPctLabel');
   let animId = null;
+  let currentVolume = 1.0;
 
   const RECITATEURS_VALIDES = [
     'Yasser_Ad-Dussary_128kbps',
@@ -472,7 +464,6 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V24 = `
   ];
 
   try {
-    localStorage.removeItem('site_lang');
     const savedReciter = localStorage.getItem('reciter');
     if (savedReciter && RECITATEURS_VALIDES.indexOf(savedReciter) !== -1) {
       select.value = savedReciter;
@@ -481,8 +472,30 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V24 = `
     }
     const savedAuto = localStorage.getItem('autoNext_v2');
     autoCheck.checked = (savedAuto === 'true');
+    const savedVol = localStorage.getItem('audio_volume_v25');
+    if (savedVol !== null && !isNaN(Number(savedVol))) {
+      currentVolume = Math.max(0.1, Math.min(1.0, Number(savedVol)));
+    }
   } catch (e) {
     autoCheck.checked = false;
+  }
+
+  function appliquerVolume() {
+    audio.volume = currentVolume;
+    if (volLabel) {
+      volLabel.textContent = Math.round(currentVolume * 100) + "%";
+    }
+    try {
+      localStorage.setItem('audio_volume_v25', String(currentVolume));
+    } catch (e) {}
+  }
+  appliquerVolume();
+
+  function modifierVolume(delta) {
+    currentVolume = Math.round((currentVolume + delta) * 10) / 10;
+    if (currentVolume < 0.1) currentVolume = 0.1;
+    if (currentVolume > 1.0) currentVolume = 1.0;
+    appliquerVolume();
   }
 
   function prechargerVersetSuivant() {
@@ -503,6 +516,7 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V24 = `
     if (audio.src !== nouvelleUrl) {
       audio.src = nouvelleUrl;
     }
+    appliquerVolume();
     prechargerVersetSuivant();
   }
   majSourceAudio();
@@ -530,6 +544,7 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V24 = `
 
   function toggleAudioSync() {
     if (audio.paused) {
+      appliquerVolume();
       stage.classList.add('playing');
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
@@ -618,7 +633,6 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V24 = `
     document.getElementById('badgeNumEl').textContent = numSourateActuelle + " : " + numVersetCible;
     document.getElementById('mainTitleEl').textContent = "Sourate " + window.SOURATE_DATA.nomSourate + " (" + window.SOURATE_DATA.nomFr + ") — Verset " + numVersetCible;
     document.getElementById('arabicVerseEl').innerHTML = vData.texteArabe;
-    // Sans guillemets autour de la traduction française
     document.getElementById('frenchVerseEl').innerHTML = numVersetCible + ". " + vData.tradPropre;
     document.getElementById('mainExplanationEl').innerHTML = vData.explicationUnanime;
 
@@ -650,6 +664,7 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V24 = `
       stage.classList.add('playing');
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
+      appliquerVolume();
       audio.play().then(function() {
         animId = requestAnimationFrame(animerBarre);
       }).catch(function() {
@@ -689,6 +704,7 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V24 = `
 
   if (window.location.search.indexOf('autoplay=1') !== -1) {
     stage.classList.add('playing');
+    appliquerVolume();
     audio.play().then(function() {
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
@@ -941,7 +957,7 @@ const HTML_CIEL_ETOILE_SOURATE = `
 
 async function lancerGeneration() {
   console.log('================================================================================');
-  console.log('🚀 GÉNÉRATEUR V24 : 100% FRANÇAIS + SANS GUILLEMETS + LOGO 4K BORD NOIR');
+  console.log('🚀 GÉNÉRATEUR V25 : ALIF LAM MIM ORIGINAL + LOGO SANS BORD + BOUTONS VOLUME + TUTO SAFARI');
   console.log('================================================================================\n');
 
   let extraitsLaurierPerso = {};
@@ -966,20 +982,6 @@ async function lancerGeneration() {
     console.log('⚠️ Connexion secondaire utilisée pour la traduction.\n');
   }
 
-  let arabeSimpleParSourate = {};
-  try {
-    console.log('✨ Téléchargement de la graphie arabe simple et claire (lecture facile)...');
-    const arabeSimpleData = await telechargerJSON('https://api.alquran.cloud/v1/quran/quran-simple');
-    if (arabeSimpleData && arabeSimpleData.data && Array.isArray(arabeSimpleData.data.surahs)) {
-      for (const sObj of arabeSimpleData.data.surahs) {
-        arabeSimpleParSourate[sObj.number] = sObj.ayahs;
-      }
-      console.log('✅ Graphie arabe claire chargée !\n');
-    }
-  } catch (e) {
-    console.log('⚠️ Simplification automatique appliquée sur le texte arabe.\n');
-  }
-
   const chapitresDataFr = await telechargerJSON('https://api.quran.com/api/v4/chapters?language=fr');
   const sourates = chapitresDataFr.chapters;
 
@@ -988,9 +990,10 @@ async function lancerGeneration() {
     fs.mkdirSync(dossierSite);
   }
 
-  // Enregistrement du Logo 4K sous deux noms (favicon.svg et logo-4k.svg) pour écraser tout ancien cache
-  fs.writeFileSync(path.join(dossierSite, 'favicon.svg'), LOGO_FAVICON_4K_SVG, 'utf8');
-  fs.writeFileSync(path.join(dossierSite, 'logo-4k.svg'), LOGO_FAVICON_4K_SVG, 'utf8');
+  // Enregistrement du Logo 4K 100% transparent sans aucun cadre ni bordure
+  fs.writeFileSync(path.join(dossierSite, 'favicon.svg'), LOGO_TRANSPARENT_4K_SVG, 'utf8');
+  fs.writeFileSync(path.join(dossierSite, 'logo-4k.svg'), LOGO_TRANSPARENT_4K_SVG, 'utf8');
+  fs.writeFileSync(path.join(dossierSite, 'logo-pur.svg'), LOGO_TRANSPARENT_4K_SVG, 'utf8');
 
   const souratesAvecMiracleMap = {};
   for (const cle of Object.keys(MIRACLES)) {
@@ -1017,7 +1020,7 @@ async function lancerGeneration() {
     const nbVersets = sourate.verses_count;
     const infoMiracleSourate = souratesAvecMiracleMap[numSourate] || null;
 
-    console.log(`[${numSourate}/114] Génération V24 de Sourate ${numSourate} - ${nomSourate}...`);
+    console.log(`[${numSourate}/114] Génération V25 de Sourate ${numSourate} - ${nomSourate}...`);
 
     const [tradData, tafsirData] = await Promise.all([
       telechargerJSON(`https://quranenc.com/api/v1/translation/sura/french_rashid/${numSourate}`),
@@ -1027,7 +1030,6 @@ async function lancerGeneration() {
     const versetsTrad = tradData.result || [];
     const versetsTafsir = tafsirData.result || [];
     const versetsHamidullah = hamidullahParSourate[numSourate] || [];
-    const versetsArabeSimple = arabeSimpleParSourate[numSourate] || [];
 
     const donneesSourate = {
       numSourate,
@@ -1046,16 +1048,13 @@ async function lancerGeneration() {
       const itemTrad = versetsTrad[v];
       const itemTafsir = versetsTafsir[v] || {};
       const itemHamidullah = versetsHamidullah[v] || null;
-      const itemArabeSimple = versetsArabeSimple[v] || null;
       const numVerset = Number(itemTrad.aya);
       const cleVerset = `${numSourate}:${numVerset}`;
       const miracle = MIRACLES[cleVerset] || null;
 
-      let arabeSource = (itemArabeSimple && itemArabeSimple.text) ? itemArabeSimple.text : (itemTrad.arabic_text || '');
-      if (numSourate !== 1 && numSourate !== 9 && numVerset === 1 && itemArabeSimple && itemArabeSimple.text) {
-        arabeSource = arabeSource.replace(/^بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\s*/, '').replace(/^بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ\s*/, '');
-      }
-      const texteArabe = echapperHTML(simplifierArabeLectureFacile(arabeSource));
+      // CONSERVATION EXACTE DU TEXTE ARABE ORIGINAL (avec آلٓمٓ et toutes les lettres mystérieuses intactes !)
+      const texteArabeBrut = itemTrad.arabic_text || '';
+      const texteArabe = echapperHTML(texteArabeBrut);
 
       const texteFrSource = (itemHamidullah && itemHamidullah.text) ? itemHamidullah.text : itemTrad.translation;
 
@@ -1135,10 +1134,14 @@ async function lancerGeneration() {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/svg+xml" href="logo-4k.svg?v=24">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
+  <link rel="icon" type="image/svg+xml" href="logo-pur.svg?v=25">
+  <link rel="apple-touch-icon" href="logo-pur.svg?v=25">
   <link rel="canonical" href="https://corantafsir.com/${nomFichier}">
   <title>Sourate ${numSourate} verset ${numVerset} (${nomSourate}) - Traduction Hamidullah 1977 & Tafsir</title>
-  <meta name="description" content="Sourate ${numSourate} verset ${numVerset} (${nomSourate} - ${typeSourateLabel}) : Texte arabe clair, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
+  <meta name="description" content="Sourate ${numSourate} verset ${numVerset} (${nomSourate} - ${typeSourateLabel}) : Texte arabe, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Scheherazade+New:wght@400;700&family=Cinzel+Decorative:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -1195,11 +1198,12 @@ async function lancerGeneration() {
       transition: 0.2s;
     }
     .home-btn img {
-      width: 30px;
-      height: 30px;
-      border-radius: 7px;
-      border: 1px solid #000000;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.9);
+      width: 34px;
+      height: 34px;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      display: block;
     }
     .home-btn:hover { opacity: 0.85; transform: translateX(-2px); }
     .meta-badges { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -1396,6 +1400,39 @@ async function lancerGeneration() {
       outline: none;
     }
     .reciter-mini option { background: #0b1116; color: #fff; }
+    .volume-control-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(8, 13, 18, 0.75);
+      border: 1px solid var(--border-color);
+      padding: 4px 8px;
+      border-radius: 10px;
+    }
+    .vol-btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 3px 9px;
+      border-radius: 7px;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+    .vol-btn:hover {
+      background: var(--sky-accent);
+      color: #031521;
+      border-color: var(--sky-bright);
+    }
+    .vol-pct {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--sky-bright);
+      min-width: 38px;
+      text-align: center;
+    }
     .auto-scroll-toggle {
       display: flex;
       align-items: center;
@@ -1499,7 +1536,7 @@ async function lancerGeneration() {
   <div class="interface-layer">
     <header class="top-nav">
       <a href="index.html" class="home-btn" onclick="sauvegarderConfigCiel()">
-        <img src="logo-4k.svg?v=24" alt="Logo">
+        <img src="logo-pur.svg?v=25" alt="Logo">
         ‹ Retour aux 114 Sourates
       </a>
       <div class="meta-badges">
@@ -1563,6 +1600,11 @@ async function lancerGeneration() {
                 <option value="Husary_128kbps">Mahmoud Khalil Al-Hussary</option>
                 <option value="Hudhaify_128kbps">Ali Al-Hudhaify</option>
               </select>
+              <div class="volume-control-group" title="Régler le volume audio">
+                <button type="button" class="vol-btn" onclick="modifierVolume(-0.1)">🔉 -</button>
+                <span class="vol-pct" id="volPctLabel">100%</span>
+                <button type="button" class="vol-btn" onclick="modifierVolume(0.1)">🔊 +</button>
+              </div>
             </div>
             <label class="auto-scroll-toggle">
               <input type="checkbox" id="autoNextCheck" onchange="sauverAutoNext()">
@@ -1595,13 +1637,13 @@ async function lancerGeneration() {
     <a href="${vObj.lienSuivant}" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
   </nav>
 
-  <script src="${fichierDataJS}?v=24"></script>
+  <script src="${fichierDataJS}?v=25"></script>
   <script>
     const numSourateActuelle = ${numSourate};
     let numVersetActuel = ${numVerset};
     let codeAudio = "${vObj.codeAudio}";
     ${MOTEUR_SOLEIL_LUNE_V21_JS}
-    ${SCRIPT_NAVIGATION_CLASSIQUE_V24}
+    ${SCRIPT_NAVIGATION_CLASSIQUE_V25}
   </script>
 </body>
 </html>`;
@@ -1610,7 +1652,7 @@ async function lancerGeneration() {
     }
   }
 
-  console.log('\nMise à jour de la page d\'accueil (index.html) avec le Logo 4K bord noir...');
+  console.log('\nMise à jour de la page d\'accueil (index.html) avec le Logo sans bord et le Tuto Safari/Android...');
 
   const cartesSouratesJSON = JSON.stringify(sourates.map(s => {
     const estMecquoise = s.revelation_place === 'makkah';
@@ -1635,10 +1677,14 @@ async function lancerGeneration() {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/svg+xml" href="logo-4k.svg?v=24">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
+  <link rel="icon" type="image/svg+xml" href="logo-pur.svg?v=25">
+  <link rel="apple-touch-icon" href="logo-pur.svg?v=25">
   <link rel="canonical" href="https://corantafsir.com/">
   <title>Le Noble Coran & Tafsīr — Traduction Muhammad Hamidullah (1977) & Exégèse Al-Mukhtasar</title>
-  <meta name="description" content="Lisez et écoutez les 114 sourates du Noble Coran avec le texte arabe clair, la traduction originale de Muhammad Hamidullah (1977) et l'exégèse (Tafsīr) Al-Mukhtasar.">
+  <meta name="description" content="Lisez et écoutez les 114 sourates du Noble Coran avec le texte arabe, la traduction originale de Muhammad Hamidullah (1977) et l'exégèse (Tafsīr) Al-Mukhtasar.">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Scheherazade+New:wght@400;700&family=Cinzel+Decorative:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -1682,14 +1728,15 @@ async function lancerGeneration() {
       position: relative;
       overflow: hidden;
     }
+    /* LOGO SANS AUCUN BORD NI CARRÉ AUTOUR */
     .hero-logo {
-      width: 68px;
-      height: 68px;
-      margin: 0 auto 12px auto;
+      width: 78px;
+      height: 78px;
+      margin: 0 auto 10px auto;
       display: block;
-      border-radius: 16px;
-      border: 1px solid #000000;
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.95);
+      background: transparent;
+      border: none;
+      box-shadow: none;
       animation: gentleFloatTitle 4s ease-in-out infinite alternate;
     }
     .hero-ornament-top {
@@ -1732,7 +1779,7 @@ async function lancerGeneration() {
     .hero-glow-line {
       width: 240px;
       height: 2px;
-      margin: 16px auto 0 auto;
+      margin: 16px auto 16px auto;
       border-radius: 99px;
       background: linear-gradient(90deg, transparent, #ffffff, #38bdf8, #ffffff, transparent);
       background-size: 200% 100%;
@@ -1742,6 +1789,91 @@ async function lancerGeneration() {
     @keyframes lineGlowSweep {
       0% { width: 170px; opacity: 0.65; background-position: 0% 50%; }
       100% { width: 310px; opacity: 1; background-position: 100% 50%; }
+    }
+
+    .app-install-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(56, 189, 248, 0.14);
+      color: #7dd3fc;
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      padding: 8px 18px;
+      border-radius: 99px;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.18);
+    }
+    .app-install-trigger:hover {
+      background: #38bdf8;
+      color: #031521;
+      box-shadow: 0 0 24px rgba(56, 189, 248, 0.5);
+    }
+
+    .modal-tuto-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 4, 6, 0.82);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-tuto-overlay.open {
+      display: flex;
+    }
+    .modal-tuto-card {
+      background: #071018;
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      border-radius: 22px;
+      max-width: 540px;
+      width: 100%;
+      padding: 26px 28px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.85), 0 0 35px rgba(56, 189, 248, 0.2);
+      color: #f8fafc;
+      position: relative;
+    }
+    .modal-tuto-close {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .modal-tuto-card h3 {
+      font-size: 1.18rem;
+      color: #7dd3fc;
+      margin-bottom: 14px;
+    }
+    .tuto-box {
+      background: rgba(12, 21, 30, 0.85);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+    .tuto-box h4 {
+      color: #34d399;
+      font-size: 0.92rem;
+      margin-bottom: 6px;
+    }
+    .tuto-box ol {
+      padding-left: 18px;
+      font-size: 0.86rem;
+      color: #e2e8f0;
+      line-height: 1.7;
     }
 
     .revelation-guide-grid {
@@ -1911,11 +2043,37 @@ async function lancerGeneration() {
 
   <div class="wrapper interface-layer">
     <header class="hero">
-      <img src="logo-4k.svg?v=24" alt="Logo Le Noble Coran & Tafsir" class="hero-logo">
-      <div class="hero-ornament-top">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+      <img src="logo-pur.svg?v=25" alt="Logo Le Noble Coran & Tafsir" class="hero-logo">
+      <div class="hero-ornament-top">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
       <h1>Le Noble Coran & Tafsīr</h1>
       <div class="hero-glow-line"></div>
+      <button type="button" class="app-install-trigger" onclick="document.getElementById('tutoModal').classList.add('open')">
+        📲 Mettre le site en application sur téléphone (Safari / Android)
+      </button>
     </header>
+
+    <div class="modal-tuto-overlay" id="tutoModal" onclick="if(event.target===this)this.classList.remove('open')">
+      <div class="modal-tuto-card">
+        <button type="button" class="modal-tuto-close" onclick="document.getElementById('tutoModal').classList.remove('open')">✕</button>
+        <h3>📲 Ajouter Coran Tafsīr sur votre écran d'accueil</h3>
+        <div class="tuto-box">
+          <h4>🍎 Sur iPhone / iPad (avec Safari) :</h4>
+          <ol>
+            <li>Ouvrez <strong>corantafsir.com</strong> dans l'application <strong>Safari</strong>.</li>
+            <li>Appuyez sur l'icône <strong>Partager</strong> (le carré avec une flèche vers le haut <strong>⬆️</strong> tout en bas de l'écran).</li>
+            <li>Faites défiler vers le bas et appuyez sur <strong>« Sur l'écran d'accueil »</strong> puis sur <strong>Ajouter</strong> en haut à droite.</li>
+          </ol>
+        </div>
+        <div class="tuto-box">
+          <h4>🤖 Sur Android (avec Chrome) :</h4>
+          <ol>
+            <li>Ouvrez <strong>corantafsir.com</strong> dans <strong>Google Chrome</strong>.</li>
+            <li>Appuyez sur les <strong>trois petits points (⋮)</strong> tout en haut à droite.</li>
+            <li>Appuyez sur <strong>« Ajouter à l'écran d'accueil »</strong> ou <strong>« Installer l'application »</strong>.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
 
     <section class="revelation-guide-grid">
       <div class="guide-box">
@@ -1952,7 +2110,6 @@ async function lancerGeneration() {
   <script>
     const sourates = ${cartesSouratesJSON};
     let modeTri = 'classique';
-    try { localStorage.removeItem('site_lang'); } catch (e) {}
 
     function trier(mode, btn) {
       modeTri = mode;
@@ -2028,8 +2185,8 @@ async function lancerGeneration() {
   const robotsTXT = `User-agent: *\nAllow: /\nSitemap: https://corantafsir.com/sitemap.xml\n`;
   fs.writeFileSync(path.join(dossierSite, 'robots.txt'), robotsTXT, 'utf8');
 
-  console.log('\n✅ MISE À JOUR V24 TERMINÉE !');
-  console.log('👉 Guillemets retirés + 100% Français + Logo 4K bord noir avec ombre + Cache forcé (?v=24) !');
+  console.log('\n✅ MISE À JOUR V25 TERMINÉE !');
+  console.log('👉 Alif Lam Mim & Lettres mystérieuses rétablis + Logo sans aucun bord blanc + Boutons Volume + Tuto Safari !');
 }
 
 lancerGeneration();

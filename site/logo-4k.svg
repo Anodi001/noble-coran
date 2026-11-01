@@ -6,19 +6,19 @@
       <stop offset="72%" stop-color="#38bdf8"/>
       <stop offset="100%" stop-color="#34d399"/>
     </linearGradient>
-    <filter id="glow4k" x="-35%" y="-35%" width="170%" height="170%">
-      <feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#38bdf8" flood-opacity="0.75"/>
-      <feDropShadow dx="0" dy="0" stdDeviation="32" flood-color="#10b981" flood-opacity="0.45"/>
+    <filter id="glow4k" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="4" stdDeviation="14" flood-color="#000000" flood-opacity="0.95"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="18" flood-color="#38bdf8" flood-opacity="0.8"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="34" flood-color="#10b981" flood-opacity="0.45"/>
     </filter>
   </defs>
-  <rect x="8" y="8" width="496" height="496" rx="112" fill="#030609" stroke="#000000" stroke-width="12"/>
   <g filter="url(#glow4k)">
-    <path d="M256 76 L273 121 L321 124 L283 153 L296 199 L256 172 L216 199 L229 153 L191 124 L239 121 Z" fill="url(#titleGrad4k)"/>
-    <path d="M88 228 C154 198, 218 214, 256 248 C294 214, 358 198, 424 228 L424 384 C358 354, 294 370, 256 404 C218 370, 154 354, 88 384 Z" fill="#03070b" stroke="url(#titleGrad4k)" stroke-width="22" stroke-linejoin="round"/>
-    <line x1="256" y1="248" x2="256" y2="404" stroke="url(#titleGrad4k)" stroke-width="18" stroke-linecap="round"/>
-    <path d="M126 274 C172 258, 210 266, 232 286" fill="none" stroke="#7dd3fc" stroke-width="12" stroke-linecap="round"/>
-    <path d="M126 320 C172 304, 210 312, 232 332" fill="none" stroke="#7dd3fc" stroke-width="12" stroke-linecap="round"/>
-    <path d="M386 274 C340 258, 302 266, 280 286" fill="none" stroke="#34d399" stroke-width="12" stroke-linecap="round"/>
-    <path d="M386 320 C340 304, 302 312, 280 332" fill="none" stroke="#34d399" stroke-width="12" stroke-linecap="round"/>
+    <path d="M256 64 L275 114 L328 117 L286 149 L301 200 L256 170 L211 200 L226 149 L184 117 L237 114 Z" fill="url(#titleGrad4k)"/>
+    <path d="M72 224 C146 190, 214 208, 256 246 C298 208, 366 190, 440 224 L440 396 C366 362, 298 380, 256 418 C214 380, 146 362, 72 396 Z" fill="#03070b" stroke="url(#titleGrad4k)" stroke-width="24" stroke-linejoin="round"/>
+    <line x1="256" y1="246" x2="256" y2="418" stroke="url(#titleGrad4k)" stroke-width="20" stroke-linecap="round"/>
+    <path d="M114 274 C164 256, 206 266, 230 288" fill="none" stroke="#7dd3fc" stroke-width="14" stroke-linecap="round"/>
+    <path d="M114 326 C164 308, 206 318, 230 340" fill="none" stroke="#7dd3fc" stroke-width="14" stroke-linecap="round"/>
+    <path d="M398 274 C348 256, 306 266, 282 288" fill="none" stroke="#34d399" stroke-width="14" stroke-linecap="round"/>
+    <path d="M398 326 C348 308, 306 318, 282 340" fill="none" stroke="#34d399" stroke-width="14" stroke-linecap="round"/>
   </g>
 </svg>

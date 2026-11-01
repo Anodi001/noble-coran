@@ -3,10 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/svg+xml" href="logo-4k.svg?v=24">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
+  <link rel="icon" type="image/svg+xml" href="logo-pur.svg?v=25">
+  <link rel="apple-touch-icon" href="logo-pur.svg?v=25">
   <link rel="canonical" href="https://corantafsir.com/sourate-74-verset-12.html">
   <title>Sourate 74 verset 12 (Al-Muddaththir) - Traduction Hamidullah 1977 & Tafsir</title>
-  <meta name="description" content="Sourate 74 verset 12 (Al-Muddaththir - Sourate Mecquoise) : Texte arabe clair, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
+  <meta name="description" content="Sourate 74 verset 12 (Al-Muddaththir - Sourate Mecquoise) : Texte arabe, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Scheherazade+New:wght@400;700&family=Cinzel+Decorative:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -278,11 +282,12 @@
       transition: 0.2s;
     }
     .home-btn img {
-      width: 30px;
-      height: 30px;
-      border-radius: 7px;
-      border: 1px solid #000000;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.9);
+      width: 34px;
+      height: 34px;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      display: block;
     }
     .home-btn:hover { opacity: 0.85; transform: translateX(-2px); }
     .meta-badges { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -479,6 +484,39 @@
       outline: none;
     }
     .reciter-mini option { background: #0b1116; color: #fff; }
+    .volume-control-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(8, 13, 18, 0.75);
+      border: 1px solid var(--border-color);
+      padding: 4px 8px;
+      border-radius: 10px;
+    }
+    .vol-btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 3px 9px;
+      border-radius: 7px;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+    .vol-btn:hover {
+      background: var(--sky-accent);
+      color: #031521;
+      border-color: var(--sky-bright);
+    }
+    .vol-pct {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--sky-bright);
+      min-width: 38px;
+      text-align: center;
+    }
     .auto-scroll-toggle {
       display: flex;
       align-items: center;
@@ -586,7 +624,7 @@
   <div class="interface-layer">
     <header class="top-nav">
       <a href="index.html" class="home-btn" onclick="sauvegarderConfigCiel()">
-        <img src="logo-4k.svg?v=24" alt="Logo">
+        <img src="logo-pur.svg?v=25" alt="Logo">
         ‹ Retour aux 114 Sourates
       </a>
       <div class="meta-badges">
@@ -614,7 +652,7 @@
           </div>
 
           <section class="verse-stage" id="verseStage">
-            <div class="arabic-glow-verse" id="arabicVerseEl">وَجَعَلْتُ لَهُ مَالًا مَمْدُودًا</div>
+            <div class="arabic-glow-verse" id="arabicVerseEl">وَجَعَلۡتُ لَهُۥ مَالٗا مَّمۡدُودٗا</div>
             <div class="french-glow-verse" id="frenchVerseEl">12. et à qui J'ai donné des biens étendus,</div>
             <div class="sync-progress-track">
               <div class="sync-progress-bar" id="syncProgressBar"></div>
@@ -639,6 +677,11 @@
                 <option value="Husary_128kbps">Mahmoud Khalil Al-Hussary</option>
                 <option value="Hudhaify_128kbps">Ali Al-Hudhaify</option>
               </select>
+              <div class="volume-control-group" title="Régler le volume audio">
+                <button type="button" class="vol-btn" onclick="modifierVolume(-0.1)">🔉 -</button>
+                <span class="vol-pct" id="volPctLabel">100%</span>
+                <button type="button" class="vol-btn" onclick="modifierVolume(0.1)">🔊 +</button>
+              </div>
             </div>
             <label class="auto-scroll-toggle">
               <input type="checkbox" id="autoNextCheck" onchange="sauverAutoNext()">
@@ -671,7 +714,7 @@
     <a href="sourate-74-verset-13.html" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
   </nav>
 
-  <script src="data-sourate-74.js?v=24"></script>
+  <script src="data-sourate-74.js?v=25"></script>
   <script>
     const numSourateActuelle = 74;
     let numVersetActuel = 12;
@@ -841,7 +884,9 @@
   const autoCheck = document.getElementById('autoNextCheck');
   const stage = document.getElementById('verseStage');
   const progressBar = document.getElementById('syncProgressBar');
+  const volLabel = document.getElementById('volPctLabel');
   let animId = null;
+  let currentVolume = 1.0;
 
   const RECITATEURS_VALIDES = [
     'Yasser_Ad-Dussary_128kbps',
@@ -856,7 +901,6 @@
   ];
 
   try {
-    localStorage.removeItem('site_lang');
     const savedReciter = localStorage.getItem('reciter');
     if (savedReciter && RECITATEURS_VALIDES.indexOf(savedReciter) !== -1) {
       select.value = savedReciter;
@@ -865,8 +909,30 @@
     }
     const savedAuto = localStorage.getItem('autoNext_v2');
     autoCheck.checked = (savedAuto === 'true');
+    const savedVol = localStorage.getItem('audio_volume_v25');
+    if (savedVol !== null && !isNaN(Number(savedVol))) {
+      currentVolume = Math.max(0.1, Math.min(1.0, Number(savedVol)));
+    }
   } catch (e) {
     autoCheck.checked = false;
+  }
+
+  function appliquerVolume() {
+    audio.volume = currentVolume;
+    if (volLabel) {
+      volLabel.textContent = Math.round(currentVolume * 100) + "%";
+    }
+    try {
+      localStorage.setItem('audio_volume_v25', String(currentVolume));
+    } catch (e) {}
+  }
+  appliquerVolume();
+
+  function modifierVolume(delta) {
+    currentVolume = Math.round((currentVolume + delta) * 10) / 10;
+    if (currentVolume < 0.1) currentVolume = 0.1;
+    if (currentVolume > 1.0) currentVolume = 1.0;
+    appliquerVolume();
   }
 
   function prechargerVersetSuivant() {
@@ -887,6 +953,7 @@
     if (audio.src !== nouvelleUrl) {
       audio.src = nouvelleUrl;
     }
+    appliquerVolume();
     prechargerVersetSuivant();
   }
   majSourceAudio();
@@ -914,6 +981,7 @@
 
   function toggleAudioSync() {
     if (audio.paused) {
+      appliquerVolume();
       stage.classList.add('playing');
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
@@ -1002,7 +1070,6 @@
     document.getElementById('badgeNumEl').textContent = numSourateActuelle + " : " + numVersetCible;
     document.getElementById('mainTitleEl').textContent = "Sourate " + window.SOURATE_DATA.nomSourate + " (" + window.SOURATE_DATA.nomFr + ") — Verset " + numVersetCible;
     document.getElementById('arabicVerseEl').innerHTML = vData.texteArabe;
-    // Sans guillemets autour de la traduction française
     document.getElementById('frenchVerseEl').innerHTML = numVersetCible + ". " + vData.tradPropre;
     document.getElementById('mainExplanationEl').innerHTML = vData.explicationUnanime;
 
@@ -1034,6 +1101,7 @@
       stage.classList.add('playing');
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
+      appliquerVolume();
       audio.play().then(function() {
         animId = requestAnimationFrame(animerBarre);
       }).catch(function() {
@@ -1073,6 +1141,7 @@
 
   if (window.location.search.indexOf('autoplay=1') !== -1) {
     stage.classList.add('playing');
+    appliquerVolume();
     audio.play().then(function() {
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');

@@ -3,10 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/svg+xml" href="logo-4k.svg?v=24">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
+  <link rel="icon" type="image/svg+xml" href="logo-pur.svg?v=25">
+  <link rel="apple-touch-icon" href="logo-pur.svg?v=25">
   <link rel="canonical" href="https://corantafsir.com/">
   <title>Le Noble Coran & Tafsīr — Traduction Muhammad Hamidullah (1977) & Exégèse Al-Mukhtasar</title>
-  <meta name="description" content="Lisez et écoutez les 114 sourates du Noble Coran avec le texte arabe clair, la traduction originale de Muhammad Hamidullah (1977) et l'exégèse (Tafsīr) Al-Mukhtasar.">
+  <meta name="description" content="Lisez et écoutez les 114 sourates du Noble Coran avec le texte arabe, la traduction originale de Muhammad Hamidullah (1977) et l'exégèse (Tafsīr) Al-Mukhtasar.">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Scheherazade+New:wght@400;700&family=Cinzel+Decorative:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -265,14 +269,15 @@
       position: relative;
       overflow: hidden;
     }
+    /* LOGO SANS AUCUN BORD NI CARRÉ AUTOUR */
     .hero-logo {
-      width: 68px;
-      height: 68px;
-      margin: 0 auto 12px auto;
+      width: 78px;
+      height: 78px;
+      margin: 0 auto 10px auto;
       display: block;
-      border-radius: 16px;
-      border: 1px solid #000000;
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.95);
+      background: transparent;
+      border: none;
+      box-shadow: none;
       animation: gentleFloatTitle 4s ease-in-out infinite alternate;
     }
     .hero-ornament-top {
@@ -315,7 +320,7 @@
     .hero-glow-line {
       width: 240px;
       height: 2px;
-      margin: 16px auto 0 auto;
+      margin: 16px auto 16px auto;
       border-radius: 99px;
       background: linear-gradient(90deg, transparent, #ffffff, #38bdf8, #ffffff, transparent);
       background-size: 200% 100%;
@@ -325,6 +330,91 @@
     @keyframes lineGlowSweep {
       0% { width: 170px; opacity: 0.65; background-position: 0% 50%; }
       100% { width: 310px; opacity: 1; background-position: 100% 50%; }
+    }
+
+    .app-install-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(56, 189, 248, 0.14);
+      color: #7dd3fc;
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      padding: 8px 18px;
+      border-radius: 99px;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.18);
+    }
+    .app-install-trigger:hover {
+      background: #38bdf8;
+      color: #031521;
+      box-shadow: 0 0 24px rgba(56, 189, 248, 0.5);
+    }
+
+    .modal-tuto-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 4, 6, 0.82);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-tuto-overlay.open {
+      display: flex;
+    }
+    .modal-tuto-card {
+      background: #071018;
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      border-radius: 22px;
+      max-width: 540px;
+      width: 100%;
+      padding: 26px 28px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.85), 0 0 35px rgba(56, 189, 248, 0.2);
+      color: #f8fafc;
+      position: relative;
+    }
+    .modal-tuto-close {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .modal-tuto-card h3 {
+      font-size: 1.18rem;
+      color: #7dd3fc;
+      margin-bottom: 14px;
+    }
+    .tuto-box {
+      background: rgba(12, 21, 30, 0.85);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+    .tuto-box h4 {
+      color: #34d399;
+      font-size: 0.92rem;
+      margin-bottom: 6px;
+    }
+    .tuto-box ol {
+      padding-left: 18px;
+      font-size: 0.86rem;
+      color: #e2e8f0;
+      line-height: 1.7;
     }
 
     .revelation-guide-grid {
@@ -507,11 +597,37 @@
 
   <div class="wrapper interface-layer">
     <header class="hero">
-      <img src="logo-4k.svg?v=24" alt="Logo Le Noble Coran & Tafsir" class="hero-logo">
-      <div class="hero-ornament-top">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+      <img src="logo-pur.svg?v=25" alt="Logo Le Noble Coran & Tafsir" class="hero-logo">
+      <div class="hero-ornament-top">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
       <h1>Le Noble Coran & Tafsīr</h1>
       <div class="hero-glow-line"></div>
+      <button type="button" class="app-install-trigger" onclick="document.getElementById('tutoModal').classList.add('open')">
+        📲 Mettre le site en application sur téléphone (Safari / Android)
+      </button>
     </header>
+
+    <div class="modal-tuto-overlay" id="tutoModal" onclick="if(event.target===this)this.classList.remove('open')">
+      <div class="modal-tuto-card">
+        <button type="button" class="modal-tuto-close" onclick="document.getElementById('tutoModal').classList.remove('open')">✕</button>
+        <h3>📲 Ajouter Coran Tafsīr sur votre écran d'accueil</h3>
+        <div class="tuto-box">
+          <h4>🍎 Sur iPhone / iPad (avec Safari) :</h4>
+          <ol>
+            <li>Ouvrez <strong>corantafsir.com</strong> dans l'application <strong>Safari</strong>.</li>
+            <li>Appuyez sur l'icône <strong>Partager</strong> (le carré avec une flèche vers le haut <strong>⬆️</strong> tout en bas de l'écran).</li>
+            <li>Faites défiler vers le bas et appuyez sur <strong>« Sur l'écran d'accueil »</strong> puis sur <strong>Ajouter</strong> en haut à droite.</li>
+          </ol>
+        </div>
+        <div class="tuto-box">
+          <h4>🤖 Sur Android (avec Chrome) :</h4>
+          <ol>
+            <li>Ouvrez <strong>corantafsir.com</strong> dans <strong>Google Chrome</strong>.</li>
+            <li>Appuyez sur les <strong>trois petits points (⋮)</strong> tout en haut à droite.</li>
+            <li>Appuyez sur <strong>« Ajouter à l'écran d'accueil »</strong> ou <strong>« Installer l'application »</strong>.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
 
     <section class="revelation-guide-grid">
       <div class="guide-box">
@@ -548,7 +664,6 @@
   <script>
     const sourates = [{"id":1,"nom":"Al-Fatihah","nomFr":"L'ouverture","nomAr":"الفاتحة","versets":7,"ordreRev":5,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":2,"nom":"Al-Baqarah","nomFr":"La vache","nomAr":"البقرة","versets":286,"ordreRev":87,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":3,"nom":"Ali 'Imran","nomFr":"La famille de 'imran","nomAr":"آل عمران","versets":200,"ordreRev":89,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":4,"nom":"An-Nisa","nomFr":"Les femmes","nomAr":"النساء","versets":176,"ordreRev":92,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":5,"nom":"Al-Ma'idah","nomFr":"La table servie","nomAr":"المائدة","versets":120,"ordreRev":112,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":6,"nom":"Al-An'am","nomFr":"Les bestiaux","nomAr":"الأنعام","versets":165,"ordreRev":55,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":7,"nom":"Al-A'raf","nomFr":"Al-A'raf","nomAr":"الأعراف","versets":206,"ordreRev":39,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":8,"nom":"Al-Anfal","nomFr":"Le butin","nomAr":"الأنفال","versets":75,"ordreRev":88,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":9,"nom":"At-Tawbah","nomFr":"Le repentir","nomAr":"التوبة","versets":129,"ordreRev":113,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":10,"nom":"Yunus","nomFr":"Jonas","nomAr":"يونس","versets":109,"ordreRev":51,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":92,"miracleTitre":"Signe Historique — La sauvegarde du corps de Pharaon comme signe pour les générations futures"},{"id":11,"nom":"Hud","nomFr":"Houd","nomAr":"هود","versets":123,"ordreRev":52,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":12,"nom":"Yusuf","nomFr":"Joseph","nomAr":"يوسف","versets":111,"ordreRev":53,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":13,"nom":"Ar-Ra'd","nomFr":"Le tonnerre","nomAr":"الرعد","versets":43,"ordreRev":96,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":14,"nom":"Ibrahim","nomFr":"Abraham","nomAr":"ابراهيم","versets":52,"ordreRev":72,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":15,"nom":"Al-Hijr","nomFr":"Al-Hijr","nomAr":"الحجر","versets":99,"ordreRev":54,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":16,"nom":"An-Nahl","nomFr":"Les abeilles","nomAr":"النحل","versets":128,"ordreRev":70,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":17,"nom":"Al-Isra","nomFr":"Le voyage nocturne","nomAr":"الإسراء","versets":111,"ordreRev":50,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":18,"nom":"Al-Kahf","nomFr":"La caverne","nomAr":"الكهف","versets":110,"ordreRev":69,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":19,"nom":"Maryam","nomFr":"Marie","nomAr":"مريم","versets":98,"ordreRev":44,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":20,"nom":"Taha","nomFr":"Ta-Ha","nomAr":"طه","versets":135,"ordreRev":45,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":21,"nom":"Al-Anbya","nomFr":"Les prophètes","nomAr":"الأنبياء","versets":112,"ordreRev":73,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":22,"nom":"Al-Hajj","nomFr":"Le pèlerinage","nomAr":"الحج","versets":78,"ordreRev":103,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":23,"nom":"Al-Mu'minun","nomFr":"Les croyants","nomAr":"المؤمنون","versets":118,"ordreRev":74,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":14,"miracleTitre":"Signe Embryologique — Les étapes successives de la formation du fœtus"},{"id":24,"nom":"An-Nur","nomFr":"La lumière","nomAr":"النور","versets":64,"ordreRev":102,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":25,"nom":"Al-Furqan","nomFr":"Le discernement","nomAr":"الفرقان","versets":77,"ordreRev":42,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":26,"nom":"Ash-Shu'ara","nomFr":"Les poètes","nomAr":"الشعراء","versets":227,"ordreRev":47,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":27,"nom":"An-Naml","nomFr":"Les fourmis","nomAr":"النمل","versets":93,"ordreRev":48,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":28,"nom":"Al-Qasas","nomFr":"Le récit","nomAr":"القصص","versets":88,"ordreRev":49,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":29,"nom":"Al-'Ankabut","nomFr":"L'araignée","nomAr":"العنكبوت","versets":69,"ordreRev":85,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":30,"nom":"Ar-Rum","nomFr":"Les romains","nomAr":"الروم","versets":60,"ordreRev":84,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":1,"miracleTitre":"Prophétie Historique & Miracle Linguistique — La victoire des Romains et le pari d'Abū Bakr As-Siddīq"},{"id":31,"nom":"Luqman","nomFr":"Louqman","nomAr":"لقمان","versets":34,"ordreRev":57,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":32,"nom":"As-Sajdah","nomFr":"La prosternation","nomAr":"السجدة","versets":30,"ordreRev":75,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":33,"nom":"Al-Ahzab","nomFr":"Les coalisés","nomAr":"الأحزاب","versets":73,"ordreRev":90,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":34,"nom":"Saba","nomFr":"Saba'","nomAr":"سبإ","versets":54,"ordreRev":58,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":35,"nom":"Fatir","nomFr":"Le Créateur","nomAr":"فاطر","versets":45,"ordreRev":43,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":36,"nom":"Ya-Sin","nomFr":"Ya-Sin","nomAr":"يس","versets":83,"ordreRev":41,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":37,"nom":"As-Saffat","nomFr":"Les rangés","nomAr":"الصافات","versets":182,"ordreRev":56,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":38,"nom":"Sad","nomFr":"Sad","nomAr":"ص","versets":88,"ordreRev":38,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":39,"nom":"Az-Zumar","nomFr":"Les groupes","nomAr":"الزمر","versets":75,"ordreRev":59,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":40,"nom":"Ghafir","nomFr":"Le Pardonneur","nomAr":"غافر","versets":85,"ordreRev":60,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":41,"nom":"Fussilat","nomFr":"Les versets explicites","nomAr":"فصلت","versets":54,"ordreRev":61,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":42,"nom":"Ash-Shuraa","nomFr":"La concertation","nomAr":"الشورى","versets":53,"ordreRev":62,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":43,"nom":"Az-Zukhruf","nomFr":"L'ornement","nomAr":"الزخرف","versets":89,"ordreRev":63,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":44,"nom":"Ad-Dukhan","nomFr":"La fumée","nomAr":"الدخان","versets":59,"ordreRev":64,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":45,"nom":"Al-Jathiyah","nomFr":"L'agenouillée","nomAr":"الجاثية","versets":37,"ordreRev":65,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":46,"nom":"Al-Ahqaf","nomFr":"Al-Ahqaf","nomAr":"الأحقاف","versets":35,"ordreRev":66,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":47,"nom":"Muhammad","nomFr":"Mouhammad","nomAr":"محمد","versets":38,"ordreRev":95,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":48,"nom":"Al-Fath","nomFr":"La victoire éclatante","nomAr":"الفتح","versets":29,"ordreRev":111,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":49,"nom":"Al-Hujurat","nomFr":"Les appartements","nomAr":"الحجرات","versets":18,"ordreRev":106,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":50,"nom":"Qaf","nomFr":"Qaf","nomAr":"ق","versets":45,"ordreRev":34,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":51,"nom":"Adh-Dhariyat","nomFr":"Qui éparpillent","nomAr":"الذاريات","versets":60,"ordreRev":67,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":52,"nom":"At-Tur","nomFr":"Le mont At-Tour","nomAr":"الطور","versets":49,"ordreRev":76,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":53,"nom":"An-Najm","nomFr":"L'étoile","nomAr":"النجم","versets":62,"ordreRev":23,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":54,"nom":"Al-Qamar","nomFr":"La lune","nomAr":"القمر","versets":55,"ordreRev":37,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":1,"miracleTitre":"Miracle Prophétique — La fente de la Lune (Inshiqāq Al-Qamar)"},{"id":55,"nom":"Ar-Rahman","nomFr":"Le Tout Miséricordieux","nomAr":"الرحمن","versets":78,"ordreRev":97,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":true,"miracleVerset":19,"miracleTitre":"Signe Maritime — La barrière invisible (Barzakh) entre les deux mers"},{"id":56,"nom":"Al-Waqi'ah","nomFr":"L'inévitable","nomAr":"الواقعة","versets":96,"ordreRev":46,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":57,"nom":"Al-Hadid","nomFr":"Le fer","nomAr":"الحديد","versets":29,"ordreRev":94,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":58,"nom":"Al-Mujadila","nomFr":"La discussion","nomAr":"المجادلة","versets":22,"ordreRev":105,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":59,"nom":"Al-Hashr","nomFr":"L'exode","nomAr":"الحشر","versets":24,"ordreRev":101,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":60,"nom":"Al-Mumtahanah","nomFr":"L'éprouvée","nomAr":"الممتحنة","versets":13,"ordreRev":91,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":61,"nom":"As-Saf","nomFr":"Le rang","nomAr":"الصف","versets":14,"ordreRev":109,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":62,"nom":"Al-Jumu'ah","nomFr":"Le vendredi","nomAr":"الجمعة","versets":11,"ordreRev":110,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":63,"nom":"Al-Munafiqun","nomFr":"Les hypocrites","nomAr":"المنافقون","versets":11,"ordreRev":104,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":64,"nom":"At-Taghabun","nomFr":"La grande perte","nomAr":"التغابن","versets":18,"ordreRev":108,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":65,"nom":"At-Talaq","nomFr":"Le divorce","nomAr":"الطلاق","versets":12,"ordreRev":99,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":66,"nom":"At-Tahrim","nomFr":"L'interdiction","nomAr":"التحريم","versets":12,"ordreRev":107,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":67,"nom":"Al-Mulk","nomFr":"La royauté","nomAr":"الملك","versets":30,"ordreRev":77,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":68,"nom":"Al-Qalam","nomFr":"La plume","nomAr":"القلم","versets":52,"ordreRev":2,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":69,"nom":"Al-Haqqah","nomFr":"L'inéluctable","nomAr":"الحاقة","versets":52,"ordreRev":78,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":70,"nom":"Al-Ma'arij","nomFr":"Les voies d'ascension","nomAr":"المعارج","versets":44,"ordreRev":79,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":71,"nom":"Nuh","nomFr":"Noé","nomAr":"نوح","versets":28,"ordreRev":71,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":72,"nom":"Al-Jinn","nomFr":"Les djinns","nomAr":"الجن","versets":28,"ordreRev":40,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":73,"nom":"Al-Muzzammil","nomFr":"L'enveloppé","nomAr":"المزمل","versets":20,"ordreRev":3,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":74,"nom":"Al-Muddaththir","nomFr":"Celui qui se couvre","nomAr":"المدثر","versets":56,"ordreRev":4,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":75,"nom":"Al-Qiyamah","nomFr":"La résurrection","nomAr":"القيامة","versets":40,"ordreRev":31,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":76,"nom":"Al-Insan","nomFr":"L'homme","nomAr":"الانسان","versets":31,"ordreRev":98,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":77,"nom":"Al-Mursalat","nomFr":"Les envoyés","nomAr":"المرسلات","versets":50,"ordreRev":33,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":78,"nom":"An-Naba","nomFr":"La nouvelle","nomAr":"النبإ","versets":40,"ordreRev":80,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":79,"nom":"An-Nazi'at","nomFr":"Ceux qui arrachent","nomAr":"النازعات","versets":46,"ordreRev":81,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":80,"nom":"'Abasa","nomFr":"Il s'est renfrogné","nomAr":"عبس","versets":42,"ordreRev":24,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":81,"nom":"At-Takwir","nomFr":"L'obscurcissement","nomAr":"التكوير","versets":29,"ordreRev":7,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":82,"nom":"Al-Infitar","nomFr":"La rupture","nomAr":"الإنفطار","versets":19,"ordreRev":82,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":83,"nom":"Al-Mutaffifin","nomFr":"Les fraudeurs","nomAr":"المطففين","versets":36,"ordreRev":86,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":84,"nom":"Al-Inshiqaq","nomFr":"La déchirure","nomAr":"الإنشقاق","versets":25,"ordreRev":83,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":85,"nom":"Al-Buruj","nomFr":"Les constellations","nomAr":"البروج","versets":22,"ordreRev":27,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":86,"nom":"At-Tariq","nomFr":"L'astre nocturne","nomAr":"الطارق","versets":17,"ordreRev":36,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":87,"nom":"Al-A'la","nomFr":"Le Très-Haut","nomAr":"الأعلى","versets":19,"ordreRev":8,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":88,"nom":"Al-Ghashiyah","nomFr":"L'enveloppante","nomAr":"الغاشية","versets":26,"ordreRev":68,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":89,"nom":"Al-Fajr","nomFr":"L'aube","nomAr":"الفجر","versets":30,"ordreRev":10,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":90,"nom":"Al-Balad","nomFr":"La cité","nomAr":"البلد","versets":20,"ordreRev":35,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":91,"nom":"Ash-Shams","nomFr":"Le soleil","nomAr":"الشمس","versets":15,"ordreRev":26,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":92,"nom":"Al-Layl","nomFr":"La nuit","nomAr":"الليل","versets":21,"ordreRev":9,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":93,"nom":"Ad-Duhaa","nomFr":"Le jour montant","nomAr":"الضحى","versets":11,"ordreRev":11,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":94,"nom":"Ash-Sharh","nomFr":"L'ouverture","nomAr":"الشرح","versets":8,"ordreRev":12,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":95,"nom":"At-Tin","nomFr":"Les figues","nomAr":"التين","versets":8,"ordreRev":28,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":96,"nom":"Al-'Alaq","nomFr":"L'adhérence","nomAr":"العلق","versets":19,"ordreRev":1,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":2,"miracleTitre":"Signe Embryologique — La création de l'homme à partir d'une adhérence ('Alaq)"},{"id":97,"nom":"Al-Qadr","nomFr":"La destinée","nomAr":"القدر","versets":5,"ordreRev":25,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":98,"nom":"Al-Bayyinah","nomFr":"La preuve","nomAr":"البينة","versets":8,"ordreRev":100,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":99,"nom":"Az-Zalzalah","nomFr":"Le séisme","nomAr":"الزلزلة","versets":8,"ordreRev":93,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":100,"nom":"Al-'Adiyat","nomFr":"Les coursiers","nomAr":"العاديات","versets":11,"ordreRev":14,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":101,"nom":"Al-Qari'ah","nomFr":"Le fracas","nomAr":"القارعة","versets":11,"ordreRev":30,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":102,"nom":"At-Takathur","nomFr":"La course aux richesses","nomAr":"التكاثر","versets":8,"ordreRev":16,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":103,"nom":"Al-'Asr","nomFr":"Le temps","nomAr":"العصر","versets":3,"ordreRev":13,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":104,"nom":"Al-Humazah","nomFr":"Les calomniateurs","nomAr":"الهمزة","versets":9,"ordreRev":32,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":105,"nom":"Al-Fil","nomFr":"L'éléphant","nomAr":"الفيل","versets":5,"ordreRev":19,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":106,"nom":"Quraysh","nomFr":"Les Quraysh","nomAr":"قريش","versets":4,"ordreRev":29,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":107,"nom":"Al-Ma'un","nomFr":"L'entraide","nomAr":"الماعون","versets":7,"ordreRev":17,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":108,"nom":"Al-Kawthar","nomFr":"L'abondance","nomAr":"الكوثر","versets":3,"ordreRev":15,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":109,"nom":"Al-Kafirun","nomFr":"Les mécréants","nomAr":"الكافرون","versets":6,"ordreRev":18,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":110,"nom":"An-Nasr","nomFr":"Le secours","nomAr":"النصر","versets":3,"ordreRev":114,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":111,"nom":"Al-Masad","nomFr":"Les fibres","nomAr":"المسد","versets":5,"ordreRev":6,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":1,"miracleTitre":"Prophétie Éclatante — La fin d'Abū Lahab annoncée dix ans à l'avance"},{"id":112,"nom":"Al-Ikhlas","nomFr":"La sincérité","nomAr":"الإخلاص","versets":4,"ordreRev":22,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":113,"nom":"Al-Falaq","nomFr":"L'aube naissante","nomAr":"الفلق","versets":5,"ordreRev":20,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":114,"nom":"An-Nas","nomFr":"Les humains","nomAr":"الناس","versets":6,"ordreRev":21,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""}];
     let modeTri = 'classique';
-    try { localStorage.removeItem('site_lang'); } catch (e) {}
 
     function trier(mode, btn) {
       modeTri = mode;
