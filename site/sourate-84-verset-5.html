@@ -6,10 +6,11 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
-  <link rel="icon" type="image/svg+xml" href="/logo-v29.svg">
-  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=30">
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/apple-touch-icon-precomposed.png?v=30">
+  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png?v=30">
+  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=30">
+  <link rel="manifest" href="/manifest.json?v=30">
   <link rel="canonical" href="https://corantafsir.com/sourate-84-verset-5.html">
   <title>Sourate 84 verset 5 (Al-Inshiqaq) - Traduction Hamidullah 1977 & Tafsir</title>
   <meta name="description" content="Sourate 84 verset 5 (Al-Inshiqaq - Sourate Mecquoise) : Texte arabe, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
@@ -472,6 +473,30 @@
       color: #032218;
       box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
     }
+
+    /* BOUTON REJOUER LE SON (↺) */
+    .btn-replay-sync {
+      background: rgba(56, 189, 248, 0.14);
+      color: var(--sky-bright);
+      border: 1px solid rgba(56, 189, 248, 0.38);
+      padding: 8px 13px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.83rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .btn-replay-sync:hover {
+      background: var(--sky-accent);
+      color: #031521;
+      border-color: var(--sky-bright);
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.4);
+    }
+
     .reciter-mini {
       background: rgba(8, 13, 18, 0.75);
       color: var(--text-main);
@@ -485,14 +510,65 @@
       outline: none;
     }
     .reciter-mini option { background: #0b1116; color: #fff; }
+
+    /* INTERRUPTEUR AUTOMATIQUE STYLÉ (PILL SWITCH LUMINEUX) */
     .auto-scroll-toggle {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 7px;
-      color: var(--text-main);
-      font-size: 0.82rem;
+      gap: 10px;
+      background: rgba(8, 13, 18, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 6px 14px 6px 10px;
+      border-radius: 99px;
+      color: var(--text-muted);
+      font-size: 0.81rem;
+      font-weight: 700;
       cursor: pointer;
       user-select: none;
+      transition: all 0.25s ease;
+    }
+    .auto-scroll-toggle:hover {
+      border-color: rgba(56, 189, 248, 0.45);
+      color: #ffffff;
+    }
+    .auto-scroll-toggle input {
+      display: none;
+    }
+    .switch-slider {
+      position: relative;
+      width: 36px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.14);
+      border-radius: 99px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.25s ease;
+      flex-shrink: 0;
+    }
+    .switch-slider::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 14px;
+      height: 14px;
+      background: #cbd5e1;
+      border-radius: 50%;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+    .auto-scroll-toggle input:checked + .switch-slider {
+      background: rgba(16, 185, 129, 0.28);
+      border-color: var(--green-bright);
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.45);
+    }
+    .auto-scroll-toggle input:checked + .switch-slider::after {
+      transform: translateX(16px);
+      background: var(--green-bright);
+      box-shadow: 0 0 10px var(--green-bright);
+    }
+    .auto-scroll-toggle input:checked ~ .switch-text {
+      color: var(--green-bright);
+      text-shadow: 0 0 10px rgba(52, 211, 153, 0.35);
     }
 
     .tafsir-box {
@@ -659,6 +735,7 @@
           <div class="audio-control-strip">
             <div class="audio-left">
               <button type="button" class="btn-listen-sync" id="playSyncBtn" onclick="toggleAudioSync()">▶ Écouter le verset</button>
+              <button type="button" class="btn-replay-sync" id="replaySyncBtn" onclick="rejouerAudioVerset()" title="Remettre le son du verset au début">↺ Rejouer</button>
               <select id="reciterSelect" class="reciter-mini" onchange="changerRecitateur()">
                 <option value="Yasser_Ad-Dussary_128kbps">Yasser Al-Dosari</option>
                 <option value="Alafasy_128kbps">Mishary Rashid Alafasy</option>
@@ -673,7 +750,8 @@
             </div>
             <label class="auto-scroll-toggle">
               <input type="checkbox" id="autoNextCheck" onchange="sauverAutoNext()">
-              Enchaîner au verset suivant automatiquement
+              <span class="switch-slider"></span>
+              <span class="switch-text">Enchaîner automatiquement</span>
             </label>
             <audio id="ayahAudio" preload="auto"></audio>
             <audio id="preloadNextAudio" preload="auto" style="display:none;"></audio>
@@ -702,7 +780,7 @@
     <a href="sourate-84-verset-6.html" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
   </nav>
 
-  <script src="data-sourate-84.js"></script>
+  <script src="data-sourate-84.js?v=30"></script>
   <script>
     const numSourateActuelle = 84;
     let numVersetActuel = 5;
@@ -886,12 +964,14 @@
     'Hudhaify_128kbps'
   ];
 
-  // Toujours décoché à l'ouverture pour laisser lire le verset avant d'écouter
+  // Toujours décoché à l'ouverture et son remis à 100%
   autoCheck.checked = false;
+  audio.volume = 1.0;
 
   try {
     localStorage.removeItem('autoNext');
     localStorage.removeItem('autoNext_v2');
+    localStorage.removeItem('audio_volume_v25');
     localStorage.removeItem('text_zoom_v28');
     const savedReciter = localStorage.getItem('reciter');
     if (savedReciter && RECITATEURS_VALIDES.indexOf(savedReciter) !== -1) {
@@ -931,6 +1011,7 @@
     if (audio.src !== nouvelleUrl) {
       audio.src = nouvelleUrl;
     }
+    audio.volume = 1.0;
     prechargerVersetSuivant();
   }
   majSourceAudio();
@@ -956,6 +1037,7 @@
 
   function toggleAudioSync() {
     if (audio.paused) {
+      audio.volume = 1.0;
       stage.classList.add('playing');
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
@@ -969,6 +1051,24 @@
       audio.pause();
       arreterVisuel();
     }
+  }
+
+  // Remettre le son du verset depuis le début (0:00) et relancer immédiatement
+  function rejouerAudioVerset() {
+    if (animId) cancelAnimationFrame(animId);
+    audio.pause();
+    audio.currentTime = 0;
+    audio.volume = 1.0;
+    progressBar.style.width = "0%";
+    stage.classList.add('playing');
+    playBtn.textContent = "⏸ Pause";
+    playBtn.classList.add('active');
+    prechargerVersetSuivant();
+    audio.play().then(function() {
+      animId = requestAnimationFrame(animerBarre);
+    }).catch(function() {
+      arreterVisuel();
+    });
   }
 
   function changerRecitateur() {
@@ -1076,6 +1176,7 @@
       stage.classList.add('playing');
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
+      audio.volume = 1.0;
       audio.play().then(function() {
         animId = requestAnimationFrame(animerBarre);
       }).catch(function() {
@@ -1117,6 +1218,7 @@
   if (window.location.search.indexOf('autoplay=1') !== -1) {
     autoCheck.checked = true;
     stage.classList.add('playing');
+    audio.volume = 1.0;
     audio.play().then(function() {
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');

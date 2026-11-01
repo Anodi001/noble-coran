@@ -130,10 +130,11 @@ const VERSIONS_ORIGINALES_HAMIDULLAH_1977 = {
 };
 
 // ============================================================================
-// GÉNÉRATION NATIVE DU FICHIER PNG (apple-touch-icon.png) POUR SAFARI IPHONE
+// GÉNÉRATION NATIVE DU PNG OPAQUE 24-BITS (NORME APPLE SAFARI IPHONE)
 // ============================================================================
 function creerAppleTouchIconPNG(taille = 180) {
-  const buf = Buffer.alloc(taille * (taille * 4 + 1));
+  // Format RGB 24-bits opaque (3 octets par pixel) exigé par iOS SpringBoard
+  const buf = Buffer.alloc(taille * (taille * 3 + 1));
 
   function distSegment(px, py, ax, ay, bx, by) {
     const dx = bx - ax, dy = by - ay;
@@ -144,7 +145,6 @@ function creerAppleTouchIconPNG(taille = 180) {
     return Math.hypot(px - cx, py - cy);
   }
 
-  // Coordonnées de l'étoile à 5 branches (échelle 0..120)
   const starPts = [
     [60, 20], [63.5, 29.5], [73.5, 30], [65.5, 36], [68.5, 45.5],
     [60, 40], [51.5, 45.5], [54.5, 36], [46.5, 30], [56.5, 29.5]
@@ -162,7 +162,7 @@ function creerAppleTouchIconPNG(taille = 180) {
   }
 
   for (let py = 0; py < taille; py++) {
-    const rowStart = py * (taille * 4 + 1);
+    const rowStart = py * (taille * 3 + 1);
     buf[rowStart] = 0; // Filtre PNG None
     const y = (py / taille) * 120;
 
@@ -178,13 +178,13 @@ function creerAppleTouchIconPNG(taille = 180) {
       // Halo lumineux central bleu/émeraude derrière le Coran et l'étoile
       const dCenter = Math.hypot(x - 60, y - 62);
       if (dCenter < 52) {
-        const glow = Math.pow(1 - dCenter / 52, 2.2) * 0.38;
+        const glow = Math.pow(1 - dCenter / 52, 2.2) * 0.42;
         r = Math.min(255, Math.round(r + 45 * glow));
         g = Math.min(255, Math.round(g + 189 * glow));
         b = Math.min(255, Math.round(b + 248 * glow));
       }
 
-      // Couleur du dégradé principal (Blanc -> Bleu céleste -> Émeraude)
+      // Dégradé principal (Blanc -> Bleu céleste -> Émeraude)
       let gradR = 56, gradG = 189, gradB = 248;
       if (tGrad < 0.45) {
         const k = tGrad / 0.45;
@@ -206,14 +206,12 @@ function creerAppleTouchIconPNG(taille = 180) {
         const yTop = 54 + (36 - dx) * (5 / 36) + arch;
         const yBot = 88 + (36 - dx) * (5 / 36) + arch;
 
-        // Intérieur sombre du livre
         if (y >= yTop && y <= yBot) {
           r = 3; g = 8; b = 13;
         }
         dBook = Math.min(Math.abs(y - yTop), Math.abs(y - yBot));
         if (y < yTop - 3 || y > yBot + 3) dBook = 999;
       }
-      // Bords verticaux gauche (x=24), droite (x=96) et reliure centrale (x=60)
       dBook = Math.min(
         dBook,
         distSegment(x, y, 24, 54, 24, 88),
@@ -221,7 +219,7 @@ function creerAppleTouchIconPNG(taille = 180) {
         distSegment(x, y, 60, 59, 60, 93)
       );
 
-      // Lignes de texte sur les pages gauche et droite
+      // Lignes des pages gauche et droite
       let dLinesLeft = 999, dLinesRight = 999;
       if (x >= 32 && x <= 55) {
         const k = (x - 32) / 23;
@@ -247,30 +245,28 @@ function creerAppleTouchIconPNG(taille = 180) {
       // Halo externe autour des traits du livre et de l'étoile
       const dMinGlow = Math.min(dBook, inStar ? 0 : dStarEdge);
       if (dMinGlow < 6.5) {
-        const gFactor = Math.pow(1 - dMinGlow / 6.5, 2) * 0.55;
+        const gFactor = Math.pow(1 - dMinGlow / 6.5, 2) * 0.6;
         r = Math.min(255, Math.round(r + gradR * gFactor));
         g = Math.min(255, Math.round(g + gradG * gFactor));
         b = Math.min(255, Math.round(b + gradB * gFactor));
       }
 
       // Dessin net du livre et de l'étoile
-      if (inStar || dStarEdge < 1.1 || dBook < 2.2) {
+      if (inStar || dStarEdge < 1.1 || dBook < 2.3) {
         r = gradR; g = gradG; b = gradB;
-      } else if (dLinesLeft < 1.3) {
+      } else if (dLinesLeft < 1.35) {
         r = 125; g = 211; b = 252;
-      } else if (dLinesRight < 1.3) {
+      } else if (dLinesRight < 1.35) {
         r = 52; g = 211; b = 153;
       }
 
-      const idx = rowStart + 1 + px * 4;
+      const idx = rowStart + 1 + px * 3;
       buf[idx] = r;
       buf[idx + 1] = g;
       buf[idx + 2] = b;
-      buf[idx + 3] = 255;
     }
   }
 
-  // Encodage binaire PNG standard (IHDR + IDAT + IEND)
   const tableCRC = new Uint32Array(256);
   for (let n = 0; n < 256; n++) {
     let c = n;
@@ -296,7 +292,7 @@ function creerAppleTouchIconPNG(taille = 180) {
   ihdr.writeUInt32BE(taille, 0);
   ihdr.writeUInt32BE(taille, 4);
   ihdr[8] = 8; // 8 bits
-  ihdr[9] = 6; // RGBA
+  ihdr[9] = 2; // RGB opaque (Color Type 2)
   const idat = zlib.deflateSync(buf, { level: 9 });
   return Buffer.concat([
     sig,
@@ -694,9 +690,9 @@ const MOTEUR_SOLEIL_LUNE_V21_JS = `
 `;
 
 // ============================================================================
-// NAVIGATION ÉPURÉE (SANS BOUTONS BAISSER/AUGMENTER) + SAUVEGARDE LECTURE
+// NAVIGATION V30 : BOUTON REJOUER (↺) + BOUTON AUTO STYLÉ + AUDIO 100%
 // ============================================================================
-const SCRIPT_NAVIGATION_CLASSIQUE_V29 = `
+const SCRIPT_NAVIGATION_CLASSIQUE_V30 = `
   const audio = document.getElementById('ayahAudio');
   const preloadAudio = document.getElementById('preloadNextAudio');
   const playBtn = document.getElementById('playSyncBtn');
@@ -718,12 +714,14 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V29 = `
     'Hudhaify_128kbps'
   ];
 
-  // Toujours décoché à l'ouverture pour laisser lire le verset avant d'écouter
+  // Toujours décoché à l'ouverture et son remis à 100%
   autoCheck.checked = false;
+  audio.volume = 1.0;
 
   try {
     localStorage.removeItem('autoNext');
     localStorage.removeItem('autoNext_v2');
+    localStorage.removeItem('audio_volume_v25');
     localStorage.removeItem('text_zoom_v28');
     const savedReciter = localStorage.getItem('reciter');
     if (savedReciter && RECITATEURS_VALIDES.indexOf(savedReciter) !== -1) {
@@ -763,6 +761,7 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V29 = `
     if (audio.src !== nouvelleUrl) {
       audio.src = nouvelleUrl;
     }
+    audio.volume = 1.0;
     prechargerVersetSuivant();
   }
   majSourceAudio();
@@ -788,6 +787,7 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V29 = `
 
   function toggleAudioSync() {
     if (audio.paused) {
+      audio.volume = 1.0;
       stage.classList.add('playing');
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
@@ -801,6 +801,24 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V29 = `
       audio.pause();
       arreterVisuel();
     }
+  }
+
+  // Remettre le son du verset depuis le début (0:00) et relancer immédiatement
+  function rejouerAudioVerset() {
+    if (animId) cancelAnimationFrame(animId);
+    audio.pause();
+    audio.currentTime = 0;
+    audio.volume = 1.0;
+    progressBar.style.width = "0%";
+    stage.classList.add('playing');
+    playBtn.textContent = "⏸ Pause";
+    playBtn.classList.add('active');
+    prechargerVersetSuivant();
+    audio.play().then(function() {
+      animId = requestAnimationFrame(animerBarre);
+    }).catch(function() {
+      arreterVisuel();
+    });
   }
 
   function changerRecitateur() {
@@ -908,6 +926,7 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V29 = `
       stage.classList.add('playing');
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
+      audio.volume = 1.0;
       audio.play().then(function() {
         animId = requestAnimationFrame(animerBarre);
       }).catch(function() {
@@ -949,6 +968,7 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V29 = `
   if (window.location.search.indexOf('autoplay=1') !== -1) {
     autoCheck.checked = true;
     stage.classList.add('playing');
+    audio.volume = 1.0;
     audio.play().then(function() {
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
@@ -1201,7 +1221,7 @@ const HTML_CIEL_ETOILE_SOURATE = `
 
 async function lancerGeneration() {
   console.log('================================================================================');
-  console.log('🚀 GÉNÉRATEUR V29 : ICÔNE PNG SAFARI IPHONE + SANS BOUTONS +/- + CACHE OPTIMISÉ');
+  console.log('🚀 GÉNÉRATEUR V30 : BOUTON REJOUER (↺) + SWITCH AUTO STYLÉ + ICÔNE SAFARI BASE64');
   console.log('================================================================================\n');
 
   let extraitsLaurierPerso = {};
@@ -1234,18 +1254,20 @@ async function lancerGeneration() {
     fs.mkdirSync(dossierSite);
   }
 
-  // Enregistrement des logos SVG + génération du vrai fichier PNG pour Safari iPhone / Android
+  // Enregistrement des logos SVG + génération du vrai fichier PNG RGB 24-bits pour Safari iPhone
   fs.writeFileSync(path.join(dossierSite, 'favicon.svg'), LOGO_FAVICON_SVG, 'utf8');
-  fs.writeFileSync(path.join(dossierSite, 'logo-v29.svg'), LOGO_FAVICON_SVG, 'utf8');
+  fs.writeFileSync(path.join(dossierSite, 'logo-v30.svg'), LOGO_FAVICON_SVG, 'utf8');
 
-  console.log('📱 Création de l\'icône PNG (apple-touch-icon.png) pour Safari iPhone et Android...');
+  console.log('📱 Création de l\'icône PNG RGB 24-bits (apple-touch-icon.png + Base64) pour Safari iPhone...');
   const pngBuffer180 = creerAppleTouchIconPNG(180);
   const pngBuffer512 = creerAppleTouchIconPNG(512);
   fs.writeFileSync(path.join(dossierSite, 'apple-touch-icon.png'), pngBuffer180);
   fs.writeFileSync(path.join(dossierSite, 'apple-touch-icon-precomposed.png'), pngBuffer180);
+  fs.writeFileSync(path.join(dossierSite, 'apple-touch-icon-180x180.png'), pngBuffer180);
   fs.writeFileSync(path.join(dossierSite, 'icon-512.png'), pngBuffer512);
 
-  // Création du fichier manifest.json officiel pour l'installation sur téléphone
+  const appleIconDataUri = 'data:image/png;base64,' + pngBuffer180.toString('base64');
+
   const manifestJSON = {
     name: "Le Noble Coran & Tafsīr",
     short_name: "Coran Tafsīr",
@@ -1255,13 +1277,12 @@ async function lancerGeneration() {
     background_color: "#020406",
     theme_color: "#020406",
     icons: [
-      { src: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-      { src: "/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" }
+      { src: "/apple-touch-icon.png?v=30", sizes: "180x180", type: "image/png" },
+      { src: "/icon-512.png?v=30", sizes: "512x512", type: "image/png", purpose: "any maskable" }
     ]
   };
   fs.writeFileSync(path.join(dossierSite, 'manifest.json'), JSON.stringify(manifestJSON, null, 2), 'utf8');
 
-  // Réactivation du cache Cloudflare normal (suppression de l'ancien _headers anti-cache)
   const cheminHeaders = path.join(dossierSite, '_headers');
   if (fs.existsSync(cheminHeaders)) {
     try { fs.unlinkSync(cheminHeaders); } catch (e) {}
@@ -1292,7 +1313,7 @@ async function lancerGeneration() {
     const nbVersets = sourate.verses_count;
     const infoMiracleSourate = souratesAvecMiracleMap[numSourate] || null;
 
-    console.log(`[${numSourate}/114] Génération V29 de Sourate ${numSourate} - ${nomSourate}...`);
+    console.log(`[${numSourate}/114] Génération V30 de Sourate ${numSourate} - ${nomSourate}...`);
 
     const [tradData, tafsirData] = await Promise.all([
       telechargerJSON(`https://quranenc.com/api/v1/translation/sura/french_rashid/${numSourate}`),
@@ -1408,10 +1429,11 @@ async function lancerGeneration() {
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
-  <link rel="icon" type="image/svg+xml" href="/logo-v29.svg">
-  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=30">
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/apple-touch-icon-precomposed.png?v=30">
+  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png?v=30">
+  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=30">
+  <link rel="manifest" href="/manifest.json?v=30">
   <link rel="canonical" href="https://corantafsir.com/${nomFichier}">
   <title>Sourate ${numSourate} verset ${numVerset} (${nomSourate}) - Traduction Hamidullah 1977 & Tafsir</title>
   <meta name="description" content="Sourate ${numSourate} verset ${numVerset} (${nomSourate} - ${typeSourateLabel}) : Texte arabe, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
@@ -1659,6 +1681,30 @@ async function lancerGeneration() {
       color: #032218;
       box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
     }
+
+    /* BOUTON REJOUER LE SON (↺) */
+    .btn-replay-sync {
+      background: rgba(56, 189, 248, 0.14);
+      color: var(--sky-bright);
+      border: 1px solid rgba(56, 189, 248, 0.38);
+      padding: 8px 13px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.83rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .btn-replay-sync:hover {
+      background: var(--sky-accent);
+      color: #031521;
+      border-color: var(--sky-bright);
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.4);
+    }
+
     .reciter-mini {
       background: rgba(8, 13, 18, 0.75);
       color: var(--text-main);
@@ -1672,14 +1718,65 @@ async function lancerGeneration() {
       outline: none;
     }
     .reciter-mini option { background: #0b1116; color: #fff; }
+
+    /* INTERRUPTEUR AUTOMATIQUE STYLÉ (PILL SWITCH LUMINEUX) */
     .auto-scroll-toggle {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 7px;
-      color: var(--text-main);
-      font-size: 0.82rem;
+      gap: 10px;
+      background: rgba(8, 13, 18, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 6px 14px 6px 10px;
+      border-radius: 99px;
+      color: var(--text-muted);
+      font-size: 0.81rem;
+      font-weight: 700;
       cursor: pointer;
       user-select: none;
+      transition: all 0.25s ease;
+    }
+    .auto-scroll-toggle:hover {
+      border-color: rgba(56, 189, 248, 0.45);
+      color: #ffffff;
+    }
+    .auto-scroll-toggle input {
+      display: none;
+    }
+    .switch-slider {
+      position: relative;
+      width: 36px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.14);
+      border-radius: 99px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.25s ease;
+      flex-shrink: 0;
+    }
+    .switch-slider::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 14px;
+      height: 14px;
+      background: #cbd5e1;
+      border-radius: 50%;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+    .auto-scroll-toggle input:checked + .switch-slider {
+      background: rgba(16, 185, 129, 0.28);
+      border-color: var(--green-bright);
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.45);
+    }
+    .auto-scroll-toggle input:checked + .switch-slider::after {
+      transform: translateX(16px);
+      background: var(--green-bright);
+      box-shadow: 0 0 10px var(--green-bright);
+    }
+    .auto-scroll-toggle input:checked ~ .switch-text {
+      color: var(--green-bright);
+      text-shadow: 0 0 10px rgba(52, 211, 153, 0.35);
     }
 
     .tafsir-box {
@@ -1828,6 +1925,7 @@ async function lancerGeneration() {
           <div class="audio-control-strip">
             <div class="audio-left">
               <button type="button" class="btn-listen-sync" id="playSyncBtn" onclick="toggleAudioSync()">▶ Écouter le verset</button>
+              <button type="button" class="btn-replay-sync" id="replaySyncBtn" onclick="rejouerAudioVerset()" title="Remettre le son du verset au début">↺ Rejouer</button>
               <select id="reciterSelect" class="reciter-mini" onchange="changerRecitateur()">
                 <option value="Yasser_Ad-Dussary_128kbps">Yasser Al-Dosari</option>
                 <option value="Alafasy_128kbps">Mishary Rashid Alafasy</option>
@@ -1842,7 +1940,8 @@ async function lancerGeneration() {
             </div>
             <label class="auto-scroll-toggle">
               <input type="checkbox" id="autoNextCheck" onchange="sauverAutoNext()">
-              Enchaîner au verset suivant automatiquement
+              <span class="switch-slider"></span>
+              <span class="switch-text">Enchaîner automatiquement</span>
             </label>
             <audio id="ayahAudio" preload="auto"></audio>
             <audio id="preloadNextAudio" preload="auto" style="display:none;"></audio>
@@ -1871,13 +1970,13 @@ async function lancerGeneration() {
     <a href="${vObj.lienSuivant}" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
   </nav>
 
-  <script src="${fichierDataJS}"></script>
+  <script src="${fichierDataJS}?v=30"></script>
   <script>
     const numSourateActuelle = ${numSourate};
     let numVersetActuel = ${numVerset};
     let codeAudio = "${vObj.codeAudio}";
     ${MOTEUR_SOLEIL_LUNE_V21_JS}
-    ${SCRIPT_NAVIGATION_CLASSIQUE_V29}
+    ${SCRIPT_NAVIGATION_CLASSIQUE_V30}
   </script>
 </body>
 </html>`;
@@ -1886,7 +1985,7 @@ async function lancerGeneration() {
     }
   }
 
-  console.log('\nMise à jour de la page d\'accueil (index.html) avec l\'icône PNG Safari iPhone...');
+  console.log('\nMise à jour de la page d\'accueil (index.html) avec l\'icône PNG intégrée en Base64...');
 
   const cartesSouratesJSON = JSON.stringify(sourates.map(s => {
     const estMecquoise = s.revelation_place === 'makkah';
@@ -1914,10 +2013,11 @@ async function lancerGeneration() {
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
-  <link rel="icon" type="image/svg+xml" href="/logo-v29.svg">
-  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="${appleIconDataUri}">
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="${appleIconDataUri}">
+  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png?v=30">
+  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=30">
+  <link rel="manifest" href="/manifest.json?v=30">
   <link rel="canonical" href="https://corantafsir.com/">
   <title>Le Noble Coran & Tafsīr — Traduction Muhammad Hamidullah (1977) & Exégèse Al-Mukhtasar</title>
   <meta name="description" content="Lisez et écoutez les 114 sourates du Noble Coran avec le texte arabe, la traduction originale de Muhammad Hamidullah (1977) et l'exégèse (Tafsīr) Al-Mukhtasar.">
@@ -2499,8 +2599,8 @@ async function lancerGeneration() {
   const robotsTXT = `User-agent: *\nAllow: /\nSitemap: https://corantafsir.com/sitemap.xml\n`;
   fs.writeFileSync(path.join(dossierSite, 'robots.txt'), robotsTXT, 'utf8');
 
-  console.log('\n✅ MISE À JOUR V29 TERMINÉE !');
-  console.log('👉 Icône PNG Safari iPhone créée + Boutons baisser/augmenter retirés + Cache Cloudflare réactivé !');
+  console.log('\n✅ MISE À JOUR V30 TERMINÉE !');
+  console.log('👉 Bouton Rejouer (↺) ajouté + Switch Automatique stylé + Icône Safari intégrée en Base64 !');
 }
 
 lancerGeneration();
