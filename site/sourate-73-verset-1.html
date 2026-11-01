@@ -6,8 +6,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=26">
-  <link rel="apple-touch-icon" href="favicon.svg?v=26">
+  <link rel="icon" type="image/svg+xml" href="logo-v27.svg?v=27">
+  <link rel="apple-touch-icon" href="logo-v27.svg?v=27">
   <link rel="canonical" href="https://corantafsir.com/sourate-73-verset-1.html">
   <title>Sourate 73 verset 1 (Al-Muzzammil) - Traduction Hamidullah 1977 & Tafsir</title>
   <meta name="description" content="Sourate 73 verset 1 (Al-Muzzammil - Sourate Mecquoise) : Texte arabe, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
@@ -281,13 +281,12 @@
       gap: 10px;
       transition: 0.2s;
     }
-    .home-btn img {
-      width: 34px;
-      height: 34px;
-      background: transparent;
-      border: none;
-      box-shadow: none;
+    .nav-logo-svg {
+      width: 32px;
+      height: 32px;
       display: block;
+      flex-shrink: 0;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 10px rgba(56, 189, 248, 0.35));
     }
     .home-btn:hover { opacity: 0.85; transform: translateX(-2px); }
     .meta-badges { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -623,8 +622,33 @@
 
   <div class="interface-layer">
     <header class="top-nav">
-      <a href="index.html" class="home-btn" onclick="sauvegarderConfigCiel()">
-        <img src="favicon.svg?v=26" alt="Logo">
+      <a href="index.html?v=27" class="home-btn" onclick="sauvegarderConfigCiel()">
+        <svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Logo Le Noble Coran & Tafsir">
+    <defs>
+      <linearGradient id="bgGrad_nav-logo-svg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#07111a"/>
+        <stop offset="100%" stop-color="#020406"/>
+      </linearGradient>
+      <linearGradient id="titleGrad_nav-logo-svg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="45%" stop-color="#7dd3fc"/>
+        <stop offset="75%" stop-color="#38bdf8"/>
+        <stop offset="100%" stop-color="#34d399"/>
+      </linearGradient>
+      <filter id="glow_nav-logo-svg" x="-25%" y="-25%" width="150%" height="150%">
+        <feGaussianBlur stdDeviation="3.2" result="blur"/>
+        <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+      </filter>
+    </defs>
+    <rect width="120" height="120" rx="28" fill="url(#bgGrad_nav-logo-svg)"/>
+    <path d="M60 20 L63.5 29.5 L73.5 30 L65.5 36 L68.5 45.5 L60 40 L51.5 45.5 L54.5 36 L46.5 30 L56.5 29.5 Z" fill="url(#titleGrad_nav-logo-svg)" filter="url(#glow_nav-logo-svg)"/>
+    <path d="M24 54 C38 48, 52 52, 60 59 C68 52, 82 48, 96 54 L96 88 C82 82, 68 86, 60 93 C52 86, 38 82, 24 88 Z" fill="none" stroke="url(#titleGrad_nav-logo-svg)" stroke-width="5" stroke-linejoin="round" filter="url(#glow_nav-logo-svg)"/>
+    <line x1="60" y1="59" x2="60" y2="93" stroke="url(#titleGrad_nav-logo-svg)" stroke-width="4" stroke-linecap="round"/>
+    <path d="M32 64 C42 61, 50 63, 55 67" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+    <path d="M32 74 C42 71, 50 73, 55 77" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+    <path d="M88 64 C78 61, 70 63, 65 67" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+    <path d="M88 74 C78 71, 70 73, 65 77" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+  </svg>
         ‹ Retour aux 114 Sourates
       </a>
       <div class="meta-badges">
@@ -652,7 +676,7 @@
           </div>
 
           <section class="verse-stage" id="verseStage">
-            <div class="arabic-glow-verse" id="arabicVerseEl">يَٰٓأَيُّهَا ٱلۡمُزَّمِّلُ</div>
+            <div class="arabic-glow-verse" id="arabicVerseEl">يَٰٓأَيُّهَا الْمُزَّمِّلُ</div>
             <div class="french-glow-verse" id="frenchVerseEl">1. O toi, l'enveloppé [dans tes vêtements]!</div>
             <div class="sync-progress-track">
               <div class="sync-progress-bar" id="syncProgressBar"></div>
@@ -709,12 +733,12 @@
   </div>
 
   <nav class="bottom-nav">
-    <a href="sourate-72-verset-28.html" id="prevVerseLink" class="btn btn-prev" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">‹ Précédent</a>
+    <a href="sourate-72-verset-28.html?v=27" id="prevVerseLink" class="btn btn-prev" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">‹ Précédent</a>
     <span class="page-indicator" id="pageIndicatorEl">Verset 1 / 20</span>
-    <a href="sourate-73-verset-2.html" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
+    <a href="sourate-73-verset-2.html?v=27" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
   </nav>
 
-  <script src="data-sourate-73.js?v=26"></script>
+  <script src="data-sourate-73.js?v=27"></script>
   <script>
     const numSourateActuelle = 73;
     let numVersetActuel = 1;
@@ -900,22 +924,23 @@
     'Hudhaify_128kbps'
   ];
 
+  // Toujours décoché à l'arrivée sur une sourate pour que le lecteur lise avant d'écouter
+  autoCheck.checked = false;
+
   try {
+    localStorage.removeItem('autoNext');
+    localStorage.removeItem('autoNext_v2');
     const savedReciter = localStorage.getItem('reciter');
     if (savedReciter && RECITATEURS_VALIDES.indexOf(savedReciter) !== -1) {
       select.value = savedReciter;
     } else {
       select.value = 'Yasser_Ad-Dussary_128kbps';
     }
-    const savedAuto = localStorage.getItem('autoNext_v2');
-    autoCheck.checked = (savedAuto === 'true');
     const savedVol = localStorage.getItem('audio_volume_v25');
     if (savedVol !== null && !isNaN(Number(savedVol))) {
       currentVolume = Math.max(0.1, Math.min(1.0, Number(savedVol)));
     }
-  } catch (e) {
-    autoCheck.checked = false;
-  }
+  } catch (e) {}
 
   function appliquerVolume() {
     audio.volume = currentVolume;
@@ -958,9 +983,7 @@
   }
   majSourceAudio();
 
-  function sauverAutoNext() {
-    try { localStorage.setItem('autoNext_v2', autoCheck.checked ? 'true' : 'false'); } catch (e) {}
-  }
+  function sauverAutoNext() {}
 
   function animerBarre() {
     if (audio.paused) return;
@@ -1045,14 +1068,14 @@
   function allerAuVersetSansRecharger(numVersetCible, lancerAudioAuto) {
     if (!window.SOURATE_DATA || !window.SOURATE_DATA.versets) {
       sauvegarderConfigCiel();
-      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html";
+      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html?v=27";
       return;
     }
 
     const vData = window.SOURATE_DATA.versets[numVersetCible - 1];
     if (!vData) {
       sauvegarderConfigCiel();
-      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html";
+      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html?v=27";
       return;
     }
 
@@ -1111,7 +1134,8 @@
   }
 
   function naviguerVerset(event, lienCible, autoAudio) {
-    const match = String(lienCible).match(/^sourate-(\d+)-verset-(\d+)\.html$/);
+    const cleanLien = String(lienCible).split('?')[0];
+    const match = cleanLien.match(/^sourate-(\d+)-verset-(\d+)\.html$/);
     if (match && Number(match[1]) === numSourateActuelle) {
       if (event) event.preventDefault();
       allerAuVersetSansRecharger(Number(match[2]), autoAudio);
@@ -1119,7 +1143,7 @@
     }
     sauvegarderConfigCiel();
     if (autoAudio) {
-      window.location.href = lienCible + "?autoplay=1";
+      window.location.href = cleanLien + "?v=27&autoplay=1";
       return false;
     }
     return true;
@@ -1140,6 +1164,7 @@
   };
 
   if (window.location.search.indexOf('autoplay=1') !== -1) {
+    autoCheck.checked = true;
     stage.classList.add('playing');
     appliquerVolume();
     audio.play().then(function() {

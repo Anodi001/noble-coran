@@ -6,8 +6,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=26">
-  <link rel="apple-touch-icon" href="favicon.svg?v=26">
+  <link rel="icon" type="image/svg+xml" href="logo-v27.svg?v=27">
+  <link rel="apple-touch-icon" href="logo-v27.svg?v=27">
   <link rel="canonical" href="https://corantafsir.com/sourate-10-verset-28.html">
   <title>Sourate 10 verset 28 (Yunus) - Traduction Hamidullah 1977 & Tafsir</title>
   <meta name="description" content="Sourate 10 verset 28 (Yunus - Sourate Mecquoise) : Texte arabe, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
@@ -281,13 +281,12 @@
       gap: 10px;
       transition: 0.2s;
     }
-    .home-btn img {
-      width: 34px;
-      height: 34px;
-      background: transparent;
-      border: none;
-      box-shadow: none;
+    .nav-logo-svg {
+      width: 32px;
+      height: 32px;
       display: block;
+      flex-shrink: 0;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 10px rgba(56, 189, 248, 0.35));
     }
     .home-btn:hover { opacity: 0.85; transform: translateX(-2px); }
     .meta-badges { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -623,13 +622,38 @@
 
   <div class="interface-layer">
     <header class="top-nav">
-      <a href="index.html" class="home-btn" onclick="sauvegarderConfigCiel()">
-        <img src="favicon.svg?v=26" alt="Logo">
+      <a href="index.html?v=27" class="home-btn" onclick="sauvegarderConfigCiel()">
+        <svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Logo Le Noble Coran & Tafsir">
+    <defs>
+      <linearGradient id="bgGrad_nav-logo-svg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#07111a"/>
+        <stop offset="100%" stop-color="#020406"/>
+      </linearGradient>
+      <linearGradient id="titleGrad_nav-logo-svg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="45%" stop-color="#7dd3fc"/>
+        <stop offset="75%" stop-color="#38bdf8"/>
+        <stop offset="100%" stop-color="#34d399"/>
+      </linearGradient>
+      <filter id="glow_nav-logo-svg" x="-25%" y="-25%" width="150%" height="150%">
+        <feGaussianBlur stdDeviation="3.2" result="blur"/>
+        <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+      </filter>
+    </defs>
+    <rect width="120" height="120" rx="28" fill="url(#bgGrad_nav-logo-svg)"/>
+    <path d="M60 20 L63.5 29.5 L73.5 30 L65.5 36 L68.5 45.5 L60 40 L51.5 45.5 L54.5 36 L46.5 30 L56.5 29.5 Z" fill="url(#titleGrad_nav-logo-svg)" filter="url(#glow_nav-logo-svg)"/>
+    <path d="M24 54 C38 48, 52 52, 60 59 C68 52, 82 48, 96 54 L96 88 C82 82, 68 86, 60 93 C52 86, 38 82, 24 88 Z" fill="none" stroke="url(#titleGrad_nav-logo-svg)" stroke-width="5" stroke-linejoin="round" filter="url(#glow_nav-logo-svg)"/>
+    <line x1="60" y1="59" x2="60" y2="93" stroke="url(#titleGrad_nav-logo-svg)" stroke-width="4" stroke-linecap="round"/>
+    <path d="M32 64 C42 61, 50 63, 55 67" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+    <path d="M32 74 C42 71, 50 73, 55 77" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+    <path d="M88 64 C78 61, 70 63, 65 67" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+    <path d="M88 74 C78 71, 70 73, 65 77" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+  </svg>
         ‹ Retour aux 114 Sourates
       </a>
       <div class="meta-badges">
         <span class="revelation-pill mecquoise">Sourate Mecquoise</span>
-        <a href="sourate-10-verset-92.html" class="revelation-pill miracle-pill" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">★ Verset Miracle : v.92</a>
+        <a href="sourate-10-verset-92.html?v=27" class="revelation-pill miracle-pill" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">★ Verset Miracle : v.92</a>
         <span class="tag">51e Sourate révélée (Sourate n°10)</span>
         <select id="verseJumperSelect" class="verse-jumper " onchange="naviguerVerset(event, this.value, false)">
           <option value="sourate-10-verset-1.html" >Verset 1 / 109</option><option value="sourate-10-verset-2.html" >Verset 2 / 109</option><option value="sourate-10-verset-3.html" >Verset 3 / 109</option><option value="sourate-10-verset-4.html" >Verset 4 / 109</option><option value="sourate-10-verset-5.html" >Verset 5 / 109</option><option value="sourate-10-verset-6.html" >Verset 6 / 109</option><option value="sourate-10-verset-7.html" >Verset 7 / 109</option><option value="sourate-10-verset-8.html" >Verset 8 / 109</option><option value="sourate-10-verset-9.html" >Verset 9 / 109</option><option value="sourate-10-verset-10.html" >Verset 10 / 109</option><option value="sourate-10-verset-11.html" >Verset 11 / 109</option><option value="sourate-10-verset-12.html" >Verset 12 / 109</option><option value="sourate-10-verset-13.html" >Verset 13 / 109</option><option value="sourate-10-verset-14.html" >Verset 14 / 109</option><option value="sourate-10-verset-15.html" >Verset 15 / 109</option><option value="sourate-10-verset-16.html" >Verset 16 / 109</option><option value="sourate-10-verset-17.html" >Verset 17 / 109</option><option value="sourate-10-verset-18.html" >Verset 18 / 109</option><option value="sourate-10-verset-19.html" >Verset 19 / 109</option><option value="sourate-10-verset-20.html" >Verset 20 / 109</option><option value="sourate-10-verset-21.html" >Verset 21 / 109</option><option value="sourate-10-verset-22.html" >Verset 22 / 109</option><option value="sourate-10-verset-23.html" >Verset 23 / 109</option><option value="sourate-10-verset-24.html" >Verset 24 / 109</option><option value="sourate-10-verset-25.html" >Verset 25 / 109</option><option value="sourate-10-verset-26.html" >Verset 26 / 109</option><option value="sourate-10-verset-27.html" >Verset 27 / 109</option><option value="sourate-10-verset-28.html" selected>Verset 28 / 109</option><option value="sourate-10-verset-29.html" >Verset 29 / 109</option><option value="sourate-10-verset-30.html" >Verset 30 / 109</option><option value="sourate-10-verset-31.html" >Verset 31 / 109</option><option value="sourate-10-verset-32.html" >Verset 32 / 109</option><option value="sourate-10-verset-33.html" >Verset 33 / 109</option><option value="sourate-10-verset-34.html" >Verset 34 / 109</option><option value="sourate-10-verset-35.html" >Verset 35 / 109</option><option value="sourate-10-verset-36.html" >Verset 36 / 109</option><option value="sourate-10-verset-37.html" >Verset 37 / 109</option><option value="sourate-10-verset-38.html" >Verset 38 / 109</option><option value="sourate-10-verset-39.html" >Verset 39 / 109</option><option value="sourate-10-verset-40.html" >Verset 40 / 109</option><option value="sourate-10-verset-41.html" >Verset 41 / 109</option><option value="sourate-10-verset-42.html" >Verset 42 / 109</option><option value="sourate-10-verset-43.html" >Verset 43 / 109</option><option value="sourate-10-verset-44.html" >Verset 44 / 109</option><option value="sourate-10-verset-45.html" >Verset 45 / 109</option><option value="sourate-10-verset-46.html" >Verset 46 / 109</option><option value="sourate-10-verset-47.html" >Verset 47 / 109</option><option value="sourate-10-verset-48.html" >Verset 48 / 109</option><option value="sourate-10-verset-49.html" >Verset 49 / 109</option><option value="sourate-10-verset-50.html" >Verset 50 / 109</option><option value="sourate-10-verset-51.html" >Verset 51 / 109</option><option value="sourate-10-verset-52.html" >Verset 52 / 109</option><option value="sourate-10-verset-53.html" >Verset 53 / 109</option><option value="sourate-10-verset-54.html" >Verset 54 / 109</option><option value="sourate-10-verset-55.html" >Verset 55 / 109</option><option value="sourate-10-verset-56.html" >Verset 56 / 109</option><option value="sourate-10-verset-57.html" >Verset 57 / 109</option><option value="sourate-10-verset-58.html" >Verset 58 / 109</option><option value="sourate-10-verset-59.html" >Verset 59 / 109</option><option value="sourate-10-verset-60.html" >Verset 60 / 109</option><option value="sourate-10-verset-61.html" >Verset 61 / 109</option><option value="sourate-10-verset-62.html" >Verset 62 / 109</option><option value="sourate-10-verset-63.html" >Verset 63 / 109</option><option value="sourate-10-verset-64.html" >Verset 64 / 109</option><option value="sourate-10-verset-65.html" >Verset 65 / 109</option><option value="sourate-10-verset-66.html" >Verset 66 / 109</option><option value="sourate-10-verset-67.html" >Verset 67 / 109</option><option value="sourate-10-verset-68.html" >Verset 68 / 109</option><option value="sourate-10-verset-69.html" >Verset 69 / 109</option><option value="sourate-10-verset-70.html" >Verset 70 / 109</option><option value="sourate-10-verset-71.html" >Verset 71 / 109</option><option value="sourate-10-verset-72.html" >Verset 72 / 109</option><option value="sourate-10-verset-73.html" >Verset 73 / 109</option><option value="sourate-10-verset-74.html" >Verset 74 / 109</option><option value="sourate-10-verset-75.html" >Verset 75 / 109</option><option value="sourate-10-verset-76.html" >Verset 76 / 109</option><option value="sourate-10-verset-77.html" >Verset 77 / 109</option><option value="sourate-10-verset-78.html" >Verset 78 / 109</option><option value="sourate-10-verset-79.html" >Verset 79 / 109</option><option value="sourate-10-verset-80.html" >Verset 80 / 109</option><option value="sourate-10-verset-81.html" >Verset 81 / 109</option><option value="sourate-10-verset-82.html" >Verset 82 / 109</option><option value="sourate-10-verset-83.html" >Verset 83 / 109</option><option value="sourate-10-verset-84.html" >Verset 84 / 109</option><option value="sourate-10-verset-85.html" >Verset 85 / 109</option><option value="sourate-10-verset-86.html" >Verset 86 / 109</option><option value="sourate-10-verset-87.html" >Verset 87 / 109</option><option value="sourate-10-verset-88.html" >Verset 88 / 109</option><option value="sourate-10-verset-89.html" >Verset 89 / 109</option><option value="sourate-10-verset-90.html" >Verset 90 / 109</option><option value="sourate-10-verset-91.html" >Verset 91 / 109</option><option value="sourate-10-verset-92.html" class="opt-miracle-blue" >★ Verset 92 / 109 — Miracle</option><option value="sourate-10-verset-93.html" >Verset 93 / 109</option><option value="sourate-10-verset-94.html" >Verset 94 / 109</option><option value="sourate-10-verset-95.html" >Verset 95 / 109</option><option value="sourate-10-verset-96.html" >Verset 96 / 109</option><option value="sourate-10-verset-97.html" >Verset 97 / 109</option><option value="sourate-10-verset-98.html" >Verset 98 / 109</option><option value="sourate-10-verset-99.html" >Verset 99 / 109</option><option value="sourate-10-verset-100.html" >Verset 100 / 109</option><option value="sourate-10-verset-101.html" >Verset 101 / 109</option><option value="sourate-10-verset-102.html" >Verset 102 / 109</option><option value="sourate-10-verset-103.html" >Verset 103 / 109</option><option value="sourate-10-verset-104.html" >Verset 104 / 109</option><option value="sourate-10-verset-105.html" >Verset 105 / 109</option><option value="sourate-10-verset-106.html" >Verset 106 / 109</option><option value="sourate-10-verset-107.html" >Verset 107 / 109</option><option value="sourate-10-verset-108.html" >Verset 108 / 109</option><option value="sourate-10-verset-109.html" >Verset 109 / 109</option>
@@ -652,7 +676,7 @@
           </div>
 
           <section class="verse-stage" id="verseStage">
-            <div class="arabic-glow-verse" id="arabicVerseEl">وَيَوۡمَ نَحۡشُرُهُمۡ جَمِيعٗا ثُمَّ نَقُولُ لِلَّذِينَ أَشۡرَكُواْ مَكَانَكُمۡ أَنتُمۡ وَشُرَكَآؤُكُمۡۚ فَزَيَّلۡنَا بَيۡنَهُمۡۖ وَقَالَ شُرَكَآؤُهُم مَّا كُنتُمۡ إِيَّانَا تَعۡبُدُونَ</div>
+            <div class="arabic-glow-verse" id="arabicVerseEl">وَيَوْمَ نَحْشُرُهُمْ جَمِيعٗا ثُمَّ نَقُولُ لِلَّذِينَ أَشْرَكُواْ مَكَانَكُمْ أَنتُمْ وَشُرَكَآؤُكُمْ فَزَيَّلْنَا بَيْنَهُمْ وَقَالَ شُرَكَآؤُهُم مَّا كُنتُمْ إِيَّانَا تَعْبُدُونَ</div>
             <div class="french-glow-verse" id="frenchVerseEl">28. (Et rappelle-toi) le jour où Nous les rassemblerons tous. Puis, Nous dirons à ceux qui ont donné [à Allah] des associés: «A votre place, vous et vos associés.» Nous les séparerons les uns des autres et leurs associés diront: «Ce n'est pas nous que vous adoriez».</div>
             <div class="sync-progress-track">
               <div class="sync-progress-bar" id="syncProgressBar"></div>
@@ -709,12 +733,12 @@
   </div>
 
   <nav class="bottom-nav">
-    <a href="sourate-10-verset-27.html" id="prevVerseLink" class="btn btn-prev" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">‹ Précédent</a>
+    <a href="sourate-10-verset-27.html?v=27" id="prevVerseLink" class="btn btn-prev" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">‹ Précédent</a>
     <span class="page-indicator" id="pageIndicatorEl">Verset 28 / 109</span>
-    <a href="sourate-10-verset-29.html" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
+    <a href="sourate-10-verset-29.html?v=27" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
   </nav>
 
-  <script src="data-sourate-10.js?v=26"></script>
+  <script src="data-sourate-10.js?v=27"></script>
   <script>
     const numSourateActuelle = 10;
     let numVersetActuel = 28;
@@ -900,22 +924,23 @@
     'Hudhaify_128kbps'
   ];
 
+  // Toujours décoché à l'arrivée sur une sourate pour que le lecteur lise avant d'écouter
+  autoCheck.checked = false;
+
   try {
+    localStorage.removeItem('autoNext');
+    localStorage.removeItem('autoNext_v2');
     const savedReciter = localStorage.getItem('reciter');
     if (savedReciter && RECITATEURS_VALIDES.indexOf(savedReciter) !== -1) {
       select.value = savedReciter;
     } else {
       select.value = 'Yasser_Ad-Dussary_128kbps';
     }
-    const savedAuto = localStorage.getItem('autoNext_v2');
-    autoCheck.checked = (savedAuto === 'true');
     const savedVol = localStorage.getItem('audio_volume_v25');
     if (savedVol !== null && !isNaN(Number(savedVol))) {
       currentVolume = Math.max(0.1, Math.min(1.0, Number(savedVol)));
     }
-  } catch (e) {
-    autoCheck.checked = false;
-  }
+  } catch (e) {}
 
   function appliquerVolume() {
     audio.volume = currentVolume;
@@ -958,9 +983,7 @@
   }
   majSourceAudio();
 
-  function sauverAutoNext() {
-    try { localStorage.setItem('autoNext_v2', autoCheck.checked ? 'true' : 'false'); } catch (e) {}
-  }
+  function sauverAutoNext() {}
 
   function animerBarre() {
     if (audio.paused) return;
@@ -1045,14 +1068,14 @@
   function allerAuVersetSansRecharger(numVersetCible, lancerAudioAuto) {
     if (!window.SOURATE_DATA || !window.SOURATE_DATA.versets) {
       sauvegarderConfigCiel();
-      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html";
+      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html?v=27";
       return;
     }
 
     const vData = window.SOURATE_DATA.versets[numVersetCible - 1];
     if (!vData) {
       sauvegarderConfigCiel();
-      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html";
+      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html?v=27";
       return;
     }
 
@@ -1111,7 +1134,8 @@
   }
 
   function naviguerVerset(event, lienCible, autoAudio) {
-    const match = String(lienCible).match(/^sourate-(\d+)-verset-(\d+)\.html$/);
+    const cleanLien = String(lienCible).split('?')[0];
+    const match = cleanLien.match(/^sourate-(\d+)-verset-(\d+)\.html$/);
     if (match && Number(match[1]) === numSourateActuelle) {
       if (event) event.preventDefault();
       allerAuVersetSansRecharger(Number(match[2]), autoAudio);
@@ -1119,7 +1143,7 @@
     }
     sauvegarderConfigCiel();
     if (autoAudio) {
-      window.location.href = lienCible + "?autoplay=1";
+      window.location.href = cleanLien + "?v=27&autoplay=1";
       return false;
     }
     return true;
@@ -1140,6 +1164,7 @@
   };
 
   if (window.location.search.indexOf('autoplay=1') !== -1) {
+    autoCheck.checked = true;
     stage.classList.add('playing');
     appliquerVolume();
     audio.play().then(function() {

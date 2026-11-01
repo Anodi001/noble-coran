@@ -129,9 +129,9 @@ const VERSIONS_ORIGINALES_HAMIDULLAH_1977 = {
 };
 
 // ============================================================================
-// LE TOUT PREMIER LOGO ORIGINAL (AVEC LE FOND SOMBRE ET LA BORDURE LUMINEUSE)
+// LE TOUT PREMIER LOGO EN 4K — SANS AUCUN BORD BLEU NI BLANC SUR LE CARRÉ
 // ============================================================================
-const LOGO_FAVICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+const LOGO_FAVICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="512" height="512">
   <defs>
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#07111a"/>
@@ -143,12 +143,12 @@ const LOGO_FAVICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1
       <stop offset="75%" stop-color="#38bdf8"/>
       <stop offset="100%" stop-color="#34d399"/>
     </linearGradient>
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
+    <filter id="glow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="3.2" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
   </defs>
-  <rect width="120" height="120" rx="28" fill="url(#bgGrad)" stroke="url(#titleGrad)" stroke-width="3"/>
+  <rect width="120" height="120" rx="28" fill="url(#bgGrad)"/>
   <path d="M60 20 L63.5 29.5 L73.5 30 L65.5 36 L68.5 45.5 L60 40 L51.5 45.5 L54.5 36 L46.5 30 L56.5 29.5 Z" fill="url(#titleGrad)" filter="url(#glow)"/>
   <path d="M24 54 C38 48, 52 52, 60 59 C68 52, 82 48, 96 54 L96 88 C82 82, 68 86, 60 93 C52 86, 38 82, 24 88 Z" fill="none" stroke="url(#titleGrad)" stroke-width="5" stroke-linejoin="round" filter="url(#glow)"/>
   <line x1="60" y1="59" x2="60" y2="93" stroke="url(#titleGrad)" stroke-width="4" stroke-linecap="round"/>
@@ -158,14 +158,86 @@ const LOGO_FAVICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1
   <path d="M88 74 C78 71, 70 73, 65 77" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
 </svg>`;
 
-function simplifierArabeLectureFacile(texteArabe) {
-  if (!texteArabe) return '';
-  let t = String(texteArabe);
+// Version inline (directement intégrée au HTML pour bloquer tout cache d'image)
+function genererLogoInlineSVG(classeCSS) {
+  return `<svg class="${classeCSS}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Logo Le Noble Coran & Tafsir">
+    <defs>
+      <linearGradient id="bgGrad_${classeCSS}" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#07111a"/>
+        <stop offset="100%" stop-color="#020406"/>
+      </linearGradient>
+      <linearGradient id="titleGrad_${classeCSS}" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="45%" stop-color="#7dd3fc"/>
+        <stop offset="75%" stop-color="#38bdf8"/>
+        <stop offset="100%" stop-color="#34d399"/>
+      </linearGradient>
+      <filter id="glow_${classeCSS}" x="-25%" y="-25%" width="150%" height="150%">
+        <feGaussianBlur stdDeviation="3.2" result="blur"/>
+        <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+      </filter>
+    </defs>
+    <rect width="120" height="120" rx="28" fill="url(#bgGrad_${classeCSS})"/>
+    <path d="M60 20 L63.5 29.5 L73.5 30 L65.5 36 L68.5 45.5 L60 40 L51.5 45.5 L54.5 36 L46.5 30 L56.5 29.5 Z" fill="url(#titleGrad_${classeCSS})" filter="url(#glow_${classeCSS})"/>
+    <path d="M24 54 C38 48, 52 52, 60 59 C68 52, 82 48, 96 54 L96 88 C82 82, 68 86, 60 93 C52 86, 38 82, 24 88 Z" fill="none" stroke="url(#titleGrad_${classeCSS})" stroke-width="5" stroke-linejoin="round" filter="url(#glow_${classeCSS})"/>
+    <line x1="60" y1="59" x2="60" y2="93" stroke="url(#titleGrad_${classeCSS})" stroke-width="4" stroke-linecap="round"/>
+    <path d="M32 64 C42 61, 50 63, 55 67" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+    <path d="M32 74 C42 71, 50 73, 55 77" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+    <path d="M88 64 C78 61, 70 63, 65 67" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+    <path d="M88 74 C78 71, 70 73, 65 77" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+  </svg>`;
+}
+
+// ============================================================================
+// GRAPHIE AUTHENTIQUE DES LETTRES MYSTÉRIEUSES + SIMPLIFICATION PROPRE DU RESTE
+// ============================================================================
+const LETTRES_MYSTERIEUSES_EXACTES = {
+  "2:1": "آلٓمٓ",
+  "3:1": "آلٓمٓ",
+  "7:1": "آلٓمٓصٓ",
+  "10:1": "آلٓر",
+  "11:1": "آلٓر",
+  "12:1": "آلٓر",
+  "13:1": "آلٓمٓر",
+  "14:1": "آلٓر",
+  "15:1": "آلٓر",
+  "19:1": "كٓهيعٓصٓ",
+  "20:1": "طه",
+  "26:1": "طسٓمٓ",
+  "27:1": "طسٓ",
+  "28:1": "طسٓمٓ",
+  "29:1": "آلٓمٓ",
+  "30:1": "آلٓمٓ",
+  "31:1": "آلٓمٓ",
+  "32:1": "آلٓمٓ",
+  "36:1": "يسٓ",
+  "38:1": "صٓ ۚ وَالْقُرْآنِ ذِي الذِّكْرِ",
+  "40:1": "حمٓ",
+  "41:1": "حمٓ",
+  "42:1": "حمٓ",
+  "42:2": "عٓسٓقٓ",
+  "43:1": "حمٓ",
+  "44:1": "حمٓ",
+  "45:1": "حمٓ",
+  "46:1": "حمٓ",
+  "50:1": "قٓ ۚ وَالْقُرْآنِ الْمَجِيدِ",
+  "68:1": "نٓ وَالْقَلَمِ وَمَا يَسْطُرُونَ"
+};
+
+function nettoyerArabeToutEnGardantLettresMysterieuses(cleVerset, texteArabeBrut) {
+  if (LETTRES_MYSTERIEUSES_EXACTES[cleVerset]) {
+    return LETTRES_MYSTERIEUSES_EXACTES[cleVerset];
+  }
+  if (!texteArabeBrut) return '';
+  let t = String(texteArabeBrut);
+  // Remplace l'Alif Wasla Uthmani (ٱ) par un Alif simple (ا)
   t = t.replace(/\u0671/g, '\u0627');
+  // Remplace le Sukun ouvert (ۡ) par un Sukun classique (ْ)
   t = t.replace(/\u06E1/g, '\u0652');
-  t = t.replace(/[\u06DF\u06E0\u06E2\u06E3\u06E5\u06E6\u06E7\u06E8\u06EA\u06EB\u06EC\u06ED\u06D6-\u06DC\u0653\u0654\u0655]/g, '');
-  t = t.replace(/\u064E\u0670/g, '\u064E\u0627');
-  return t.trim();
+  // Retire les petits signes d'arrêt (ج / ۚ / ۖ / ۗ) et petits ronds qui se superposent aux lettres,
+  // MAIS CONSERVE LE MADDAH (\u0653 ٓ) !
+  t = t.replace(/[\u06D6-\u06DC\u06DF\u06E0\u06E2\u06E3\u06E5\u06E6\u06E7\u06E8\u06EA\u06EB\u06EC\u06ED]/g, '');
+  return t.replace(/\s+/g, ' ').trim();
 }
 
 function restaurerHamidullah1977(cleVerset, texte) {
@@ -449,9 +521,9 @@ const MOTEUR_SOLEIL_LUNE_V21_JS = `
 `;
 
 // ============================================================================
-// NAVIGATION + BOUTONS VOLUME (- / +) + PRÉCHARGEMENT AUDIO
+// NAVIGATION + BOUTONS VOLUME (- / +) + CASE AUTO TOUJOURS DÉCOCHÉE AU DÉBUT
 // ============================================================================
-const SCRIPT_NAVIGATION_CLASSIQUE_V26 = `
+const SCRIPT_NAVIGATION_CLASSIQUE_V27 = `
   const audio = document.getElementById('ayahAudio');
   const preloadAudio = document.getElementById('preloadNextAudio');
   const playBtn = document.getElementById('playSyncBtn');
@@ -475,22 +547,23 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V26 = `
     'Hudhaify_128kbps'
   ];
 
+  // Toujours décoché à l'arrivée sur une sourate pour que le lecteur lise avant d'écouter
+  autoCheck.checked = false;
+
   try {
+    localStorage.removeItem('autoNext');
+    localStorage.removeItem('autoNext_v2');
     const savedReciter = localStorage.getItem('reciter');
     if (savedReciter && RECITATEURS_VALIDES.indexOf(savedReciter) !== -1) {
       select.value = savedReciter;
     } else {
       select.value = 'Yasser_Ad-Dussary_128kbps';
     }
-    const savedAuto = localStorage.getItem('autoNext_v2');
-    autoCheck.checked = (savedAuto === 'true');
     const savedVol = localStorage.getItem('audio_volume_v25');
     if (savedVol !== null && !isNaN(Number(savedVol))) {
       currentVolume = Math.max(0.1, Math.min(1.0, Number(savedVol)));
     }
-  } catch (e) {
-    autoCheck.checked = false;
-  }
+  } catch (e) {}
 
   function appliquerVolume() {
     audio.volume = currentVolume;
@@ -533,9 +606,7 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V26 = `
   }
   majSourceAudio();
 
-  function sauverAutoNext() {
-    try { localStorage.setItem('autoNext_v2', autoCheck.checked ? 'true' : 'false'); } catch (e) {}
-  }
+  function sauverAutoNext() {}
 
   function animerBarre() {
     if (audio.paused) return;
@@ -620,14 +691,14 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V26 = `
   function allerAuVersetSansRecharger(numVersetCible, lancerAudioAuto) {
     if (!window.SOURATE_DATA || !window.SOURATE_DATA.versets) {
       sauvegarderConfigCiel();
-      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html";
+      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html?v=27";
       return;
     }
 
     const vData = window.SOURATE_DATA.versets[numVersetCible - 1];
     if (!vData) {
       sauvegarderConfigCiel();
-      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html";
+      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html?v=27";
       return;
     }
 
@@ -686,7 +757,8 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V26 = `
   }
 
   function naviguerVerset(event, lienCible, autoAudio) {
-    const match = String(lienCible).match(/^sourate-(\\d+)-verset-(\\d+)\\.html$/);
+    const cleanLien = String(lienCible).split('?')[0];
+    const match = cleanLien.match(/^sourate-(\\d+)-verset-(\\d+)\\.html$/);
     if (match && Number(match[1]) === numSourateActuelle) {
       if (event) event.preventDefault();
       allerAuVersetSansRecharger(Number(match[2]), autoAudio);
@@ -694,7 +766,7 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V26 = `
     }
     sauvegarderConfigCiel();
     if (autoAudio) {
-      window.location.href = lienCible + "?autoplay=1";
+      window.location.href = cleanLien + "?v=27&autoplay=1";
       return false;
     }
     return true;
@@ -715,6 +787,7 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V26 = `
   };
 
   if (window.location.search.indexOf('autoplay=1') !== -1) {
+    autoCheck.checked = true;
     stage.classList.add('playing');
     appliquerVolume();
     audio.play().then(function() {
@@ -969,7 +1042,7 @@ const HTML_CIEL_ETOILE_SOURATE = `
 
 async function lancerGeneration() {
   console.log('================================================================================');
-  console.log('🚀 GÉNÉRATEUR V26 : TOUT PREMIER LOGO ORIGINAL + ALIF LAM MIM FIXÉ + BOUTONS VOLUME');
+  console.log('🚀 GÉNÉRATEUR V27 : LOGO SANS BORD BLEU + ALIF LAM MIM & LETTRES SIMPLES + ANTI-CACHE');
   console.log('================================================================================\n');
 
   let extraitsLaurierPerso = {};
@@ -994,20 +1067,6 @@ async function lancerGeneration() {
     console.log('⚠️ Connexion secondaire utilisée pour la traduction.\n');
   }
 
-  let arabeSimpleParSourate = {};
-  try {
-    console.log('✨ Téléchargement de la graphie arabe simple et claire (lecture facile)...');
-    const arabeSimpleData = await telechargerJSON('https://api.alquran.cloud/v1/quran/quran-simple');
-    if (arabeSimpleData && arabeSimpleData.data && Array.isArray(arabeSimpleData.data.surahs)) {
-      for (const sObj of arabeSimpleData.data.surahs) {
-        arabeSimpleParSourate[sObj.number] = sObj.ayahs;
-      }
-      console.log('✅ Graphie arabe claire chargée !\n');
-    }
-  } catch (e) {
-    console.log('⚠️ Simplification automatique appliquée sur le texte arabe.\n');
-  }
-
   const chapitresDataFr = await telechargerJSON('https://api.quran.com/api/v4/chapters?language=fr');
   const sourates = chapitresDataFr.chapters;
 
@@ -1016,8 +1075,13 @@ async function lancerGeneration() {
     fs.mkdirSync(dossierSite);
   }
 
-  // RESTAURATION EXACTE DU TOUT PREMIER LOGO
+  // Enregistrement du Logo sans bord bleu pour l'onglet navigateur
   fs.writeFileSync(path.join(dossierSite, 'favicon.svg'), LOGO_FAVICON_SVG, 'utf8');
+  fs.writeFileSync(path.join(dossierSite, 'logo-v27.svg'), LOGO_FAVICON_SVG, 'utf8');
+
+  // Fichier _headers Cloudflare Pages pour empêcher Opera/Chrome de garder les anciennes pages en cache
+  const headersCloudflare = `/*.html\n  Cache-Control: no-cache, no-store, must-revalidate\n/\n  Cache-Control: no-cache, no-store, must-revalidate\n/*.svg\n  Cache-Control: public, max-age=0, must-revalidate\n/*.js\n  Cache-Control: public, max-age=0, must-revalidate\n`;
+  fs.writeFileSync(path.join(dossierSite, '_headers'), headersCloudflare, 'utf8');
 
   const souratesAvecMiracleMap = {};
   for (const cle of Object.keys(MIRACLES)) {
@@ -1044,7 +1108,7 @@ async function lancerGeneration() {
     const nbVersets = sourate.verses_count;
     const infoMiracleSourate = souratesAvecMiracleMap[numSourate] || null;
 
-    console.log(`[${numSourate}/114] Génération V26 de Sourate ${numSourate} - ${nomSourate}...`);
+    console.log(`[${numSourate}/114] Génération V27 de Sourate ${numSourate} - ${nomSourate}...`);
 
     const [tradData, tafsirData] = await Promise.all([
       telechargerJSON(`https://quranenc.com/api/v1/translation/sura/french_rashid/${numSourate}`),
@@ -1054,7 +1118,6 @@ async function lancerGeneration() {
     const versetsTrad = tradData.result || [];
     const versetsTafsir = tafsirData.result || [];
     const versetsHamidullah = hamidullahParSourate[numSourate] || [];
-    const versetsArabeSimple = arabeSimpleParSourate[numSourate] || [];
 
     const donneesSourate = {
       numSourate,
@@ -1073,14 +1136,13 @@ async function lancerGeneration() {
       const itemTrad = versetsTrad[v];
       const itemTafsir = versetsTafsir[v] || {};
       const itemHamidullah = versetsHamidullah[v] || null;
-      const itemArabeSimple = versetsArabeSimple[v] || null;
       const numVerset = Number(itemTrad.aya);
       const cleVerset = `${numSourate}:${numVerset}`;
       const miracle = MIRACLES[cleVerset] || null;
 
-      // CONSERVATION EXACTE DU TEXTE ARABE ORIGINAL (avec آلٓمٓ et toutes les lettres mystérieuses intactes !)
-      const texteArabeBrut = itemTrad.arabic_text || '';
-      const texteArabe = echapperHTML(texteArabeBrut);
+      // Arabe propre : garde آلٓمٓ, نٓ, قٓ intacts sans Basmalah collée, et nettoie les petits signes ج / ٱ / ۡ
+      const texteArabePropre = nettoyerArabeToutEnGardantLettresMysterieuses(cleVerset, itemTrad.arabic_text || '');
+      const texteArabe = echapperHTML(texteArabePropre);
 
       const texteFrSource = (itemHamidullah && itemHamidullah.text) ? itemHamidullah.text : itemTrad.translation;
 
@@ -1096,19 +1158,19 @@ async function lancerGeneration() {
 
       const codeAudio = String(numSourate).padStart(3, '0') + String(numVerset).padStart(3, '0');
 
-      let lienPrecedent = 'index.html';
+      let lienPrecedent = 'index.html?v=27';
       if (numVerset > 1) {
-        lienPrecedent = `sourate-${numSourate}-verset-${numVerset - 1}.html`;
+        lienPrecedent = `sourate-${numSourate}-verset-${numVerset - 1}.html?v=27`;
       } else if (numSourate > 1) {
         const souratePrec = sourates[s - 1];
-        lienPrecedent = `sourate-${souratePrec.id}-verset-${souratePrec.verses_count}.html`;
+        lienPrecedent = `sourate-${souratePrec.id}-verset-${souratePrec.verses_count}.html?v=27`;
       }
 
-      let lienSuivant = 'index.html';
+      let lienSuivant = 'index.html?v=27';
       if (numVerset < nbVersets) {
-        lienSuivant = `sourate-${numSourate}-verset-${numVerset + 1}.html`;
+        lienSuivant = `sourate-${numSourate}-verset-${numVerset + 1}.html?v=27`;
       } else if (numSourate < 114) {
-        lienSuivant = `sourate-${numSourate + 1}-verset-1.html`;
+        lienSuivant = `sourate-${numSourate + 1}-verset-1.html?v=27`;
       }
 
       donneesSourate.versets.push({
@@ -1134,7 +1196,7 @@ async function lancerGeneration() {
     );
 
     const htmlAccesRapideMiracle = infoMiracleSourate
-      ? `<a href="sourate-${numSourate}-verset-${infoMiracleSourate.premierVersetMiracle}.html" class="revelation-pill miracle-pill" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">★ Verset Miracle : v.${infoMiracleSourate.premierVersetMiracle}</a>`
+      ? `<a href="sourate-${numSourate}-verset-${infoMiracleSourate.premierVersetMiracle}.html?v=27" class="revelation-pill miracle-pill" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">★ Verset Miracle : v.${infoMiracleSourate.premierVersetMiracle}</a>`
       : '';
 
     for (let v = 0; v < donneesSourate.versets.length; v++) {
@@ -1163,8 +1225,8 @@ async function lancerGeneration() {
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=26">
-  <link rel="apple-touch-icon" href="favicon.svg?v=26">
+  <link rel="icon" type="image/svg+xml" href="logo-v27.svg?v=27">
+  <link rel="apple-touch-icon" href="logo-v27.svg?v=27">
   <link rel="canonical" href="https://corantafsir.com/${nomFichier}">
   <title>Sourate ${numSourate} verset ${numVerset} (${nomSourate}) - Traduction Hamidullah 1977 & Tafsir</title>
   <meta name="description" content="Sourate ${numSourate} verset ${numVerset} (${nomSourate} - ${typeSourateLabel}) : Texte arabe, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
@@ -1223,13 +1285,12 @@ async function lancerGeneration() {
       gap: 10px;
       transition: 0.2s;
     }
-    .home-btn img {
-      width: 34px;
-      height: 34px;
-      background: transparent;
-      border: none;
-      box-shadow: none;
+    .nav-logo-svg {
+      width: 32px;
+      height: 32px;
       display: block;
+      flex-shrink: 0;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 10px rgba(56, 189, 248, 0.35));
     }
     .home-btn:hover { opacity: 0.85; transform: translateX(-2px); }
     .meta-badges { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -1561,8 +1622,8 @@ async function lancerGeneration() {
 
   <div class="interface-layer">
     <header class="top-nav">
-      <a href="index.html" class="home-btn" onclick="sauvegarderConfigCiel()">
-        <img src="favicon.svg?v=26" alt="Logo">
+      <a href="index.html?v=27" class="home-btn" onclick="sauvegarderConfigCiel()">
+        ${genererLogoInlineSVG('nav-logo-svg')}
         ‹ Retour aux 114 Sourates
       </a>
       <div class="meta-badges">
@@ -1663,13 +1724,13 @@ async function lancerGeneration() {
     <a href="${vObj.lienSuivant}" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
   </nav>
 
-  <script src="${fichierDataJS}?v=26"></script>
+  <script src="${fichierDataJS}?v=27"></script>
   <script>
     const numSourateActuelle = ${numSourate};
     let numVersetActuel = ${numVerset};
     let codeAudio = "${vObj.codeAudio}";
     ${MOTEUR_SOLEIL_LUNE_V21_JS}
-    ${SCRIPT_NAVIGATION_CLASSIQUE_V26}
+    ${SCRIPT_NAVIGATION_CLASSIQUE_V27}
   </script>
 </body>
 </html>`;
@@ -1678,7 +1739,7 @@ async function lancerGeneration() {
     }
   }
 
-  console.log('\nMise à jour de la page d\'accueil (index.html) avec le premier logo...');
+  console.log('\nMise à jour de la page d\'accueil (index.html) avec le Logo sans bord bleu...');
 
   const cartesSouratesJSON = JSON.stringify(sourates.map(s => {
     const estMecquoise = s.revelation_place === 'makkah';
@@ -1706,8 +1767,8 @@ async function lancerGeneration() {
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=26">
-  <link rel="apple-touch-icon" href="favicon.svg?v=26">
+  <link rel="icon" type="image/svg+xml" href="logo-v27.svg?v=27">
+  <link rel="apple-touch-icon" href="logo-v27.svg?v=27">
   <link rel="canonical" href="https://corantafsir.com/">
   <title>Le Noble Coran & Tafsīr — Traduction Muhammad Hamidullah (1977) & Exégèse Al-Mukhtasar</title>
   <meta name="description" content="Lisez et écoutez les 114 sourates du Noble Coran avec le texte arabe, la traduction originale de Muhammad Hamidullah (1977) et l'exégèse (Tafsīr) Al-Mukhtasar.">
@@ -1754,12 +1815,12 @@ async function lancerGeneration() {
       position: relative;
       overflow: hidden;
     }
-    .hero-logo {
-      width: 58px;
-      height: 58px;
-      margin: 0 auto 10px auto;
+    .hero-logo-svg {
+      width: 62px;
+      height: 62px;
+      margin: 0 auto 12px auto;
       display: block;
-      filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.45));
+      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 16px rgba(56, 189, 248, 0.45));
       animation: gentleFloatTitle 4s ease-in-out infinite alternate;
     }
     .hero-ornament-top {
@@ -2066,7 +2127,7 @@ async function lancerGeneration() {
 
   <div class="wrapper interface-layer">
     <header class="hero">
-      <img src="favicon.svg?v=26" alt="Logo Le Noble Coran & Tafsir" class="hero-logo">
+      ${genererLogoInlineSVG('hero-logo-svg')}
       <div class="hero-ornament-top">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
       <h1>Le Noble Coran & Tafsīr</h1>
       <div class="hero-glow-line"></div>
@@ -2174,7 +2235,7 @@ async function lancerGeneration() {
         const versetCible = (modeTri === 'miracles' && s.hasMiracle) ? s.miracleVerset : 1;
 
         return \`
-        <a href="sourate-\${s.id}-verset-\${versetCible}.html" class="card" onclick="sauvegarderConfigCiel()">
+        <a href="sourate-\${s.id}-verset-\${versetCible}.html?v=27" class="card" onclick="sauvegarderConfigCiel()">
           <div class="card-left">
             <div class="num-badge">\${badgeNumero}</div>
             <div class="card-info">
@@ -2208,8 +2269,8 @@ async function lancerGeneration() {
   const robotsTXT = `User-agent: *\nAllow: /\nSitemap: https://corantafsir.com/sitemap.xml\n`;
   fs.writeFileSync(path.join(dossierSite, 'robots.txt'), robotsTXT, 'utf8');
 
-  console.log('\n✅ MISE À JOUR V26 TERMINÉE !');
-  console.log('👉 Logo original de retour + Alif Lam Mim rétabli + Boutons Volume + Tuto Safari Android !');
+  console.log('\n✅ MISE À JOUR V27 TERMINÉE !');
+  console.log('👉 Premier logo sans bordure bleue + Alif Lam Mim & Nûn corrigés + Cache Opera bloqué !');
 }
 
 lancerGeneration();
