@@ -6,8 +6,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
-  <link rel="icon" type="image/svg+xml" href="logo-v27.svg?v=27">
-  <link rel="apple-touch-icon" href="logo-v27.svg?v=27">
+  <link rel="icon" type="image/svg+xml" href="logo-v28.svg?v=28">
+  <link rel="apple-touch-icon" href="logo-v28.svg?v=28">
   <link rel="canonical" href="https://corantafsir.com/sourate-7-verset-100.html">
   <title>Sourate 7 verset 100 (Al-A'raf) - Traduction Hamidullah 1977 & Tafsir</title>
   <meta name="description" content="Sourate 7 verset 100 (Al-A'raf - Sourate Mecquoise) : Texte arabe, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
@@ -404,6 +404,7 @@
         0 0 55px rgba(255, 255, 255, 0.22);
       position: relative;
       z-index: 2;
+      transition: font-size 0.2s ease;
     }
 
     .french-glow-verse {
@@ -421,6 +422,7 @@
       z-index: 2;
       max-width: 92%;
       margin: 0 auto;
+      transition: font-size 0.2s ease;
     }
 
     .sync-progress-track {
@@ -444,7 +446,7 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
       background: var(--bg-elevated);
       border: 1px solid var(--border-color);
       padding: 12px 18px;
@@ -452,7 +454,7 @@
       margin-bottom: 20px;
       font-size: 0.85rem;
     }
-    .audio-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .audio-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     .btn-listen-sync {
       background: var(--green-dim);
       color: var(--green-bright);
@@ -551,6 +553,7 @@
       text-shadow: 0 1px 4px rgba(0,0,0,0.8);
       line-height: 1.85;
       margin-bottom: 14px;
+      transition: font-size 0.2s ease;
     }
     .consensus-note {
       background: rgba(16, 185, 129, 0.10);
@@ -622,7 +625,7 @@
 
   <div class="interface-layer">
     <header class="top-nav">
-      <a href="index.html?v=27" class="home-btn" onclick="sauvegarderConfigCiel()">
+      <a href="index.html?v=28" class="home-btn" onclick="sauvegarderConfigCiel()">
         <svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Logo Le Noble Coran & Tafsir">
     <defs>
       <linearGradient id="bgGrad_nav-logo-svg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -706,6 +709,10 @@
                 <span class="vol-pct" id="volPctLabel">100%</span>
                 <button type="button" class="vol-btn" onclick="modifierVolume(0.1)">🔊 +</button>
               </div>
+              <div class="volume-control-group" title="Agrandir ou réduire la taille du texte">
+                <button type="button" class="vol-btn" onclick="modifierTailleTexte(-0.08)">A-</button>
+                <button type="button" class="vol-btn" onclick="modifierTailleTexte(0.08)">A+</button>
+              </div>
             </div>
             <label class="auto-scroll-toggle">
               <input type="checkbox" id="autoNextCheck" onchange="sauverAutoNext()">
@@ -733,12 +740,12 @@
   </div>
 
   <nav class="bottom-nav">
-    <a href="sourate-7-verset-99.html?v=27" id="prevVerseLink" class="btn btn-prev" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">‹ Précédent</a>
+    <a href="sourate-7-verset-99.html?v=28" id="prevVerseLink" class="btn btn-prev" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">‹ Précédent</a>
     <span class="page-indicator" id="pageIndicatorEl">Verset 100 / 206</span>
-    <a href="sourate-7-verset-101.html?v=27" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
+    <a href="sourate-7-verset-101.html?v=28" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
   </nav>
 
-  <script src="data-sourate-7.js?v=27"></script>
+  <script src="data-sourate-7.js?v=28"></script>
   <script>
     const numSourateActuelle = 7;
     let numVersetActuel = 100;
@@ -911,6 +918,7 @@
   const volLabel = document.getElementById('volPctLabel');
   let animId = null;
   let currentVolume = 1.0;
+  let textZoomScale = 1.0;
 
   const RECITATEURS_VALIDES = [
     'Yasser_Ad-Dussary_128kbps',
@@ -924,7 +932,7 @@
     'Hudhaify_128kbps'
   ];
 
-  // Toujours décoché à l'arrivée sur une sourate pour que le lecteur lise avant d'écouter
+  // Toujours décoché à l'ouverture pour laisser lire le verset avant d'écouter
   autoCheck.checked = false;
 
   try {
@@ -940,7 +948,43 @@
     if (savedVol !== null && !isNaN(Number(savedVol))) {
       currentVolume = Math.max(0.1, Math.min(1.0, Number(savedVol)));
     }
+    const savedZoom = localStorage.getItem('text_zoom_v28');
+    if (savedZoom !== null && !isNaN(Number(savedZoom))) {
+      textZoomScale = Math.max(0.85, Math.min(1.35, Number(savedZoom)));
+    }
   } catch (e) {}
+
+  function memoriserDernierVersetLu(numS, numV) {
+    try {
+      const nomS = (window.SOURATE_DATA && window.SOURATE_DATA.nomSourate) ? window.SOURATE_DATA.nomSourate : ("Sourate " + numS);
+      localStorage.setItem('last_read_v28', JSON.stringify({
+        s: numS,
+        v: numV,
+        nom: nomS
+      }));
+    } catch (e) {}
+  }
+  memoriserDernierVersetLu(numSourateActuelle, numVersetActuel);
+
+  function appliquerZoomTexte() {
+    const arEl = document.getElementById('arabicVerseEl');
+    const frEl = document.getElementById('frenchVerseEl');
+    const tafEl = document.getElementById('mainExplanationEl');
+    if (arEl) arEl.style.fontSize = (2.95 * textZoomScale).toFixed(2) + "rem";
+    if (frEl) frEl.style.fontSize = (1.55 * textZoomScale).toFixed(2) + "rem";
+    if (tafEl) tafEl.style.fontSize = (1.06 * textZoomScale).toFixed(2) + "rem";
+    try {
+      localStorage.setItem('text_zoom_v28', String(textZoomScale));
+    } catch (e) {}
+  }
+  appliquerZoomTexte();
+
+  function modifierTailleTexte(delta) {
+    textZoomScale = Math.round((textZoomScale + delta) * 100) / 100;
+    if (textZoomScale < 0.85) textZoomScale = 0.85;
+    if (textZoomScale > 1.35) textZoomScale = 1.35;
+    appliquerZoomTexte();
+  }
 
   function appliquerVolume() {
     audio.volume = currentVolume;
@@ -1068,14 +1112,14 @@
   function allerAuVersetSansRecharger(numVersetCible, lancerAudioAuto) {
     if (!window.SOURATE_DATA || !window.SOURATE_DATA.versets) {
       sauvegarderConfigCiel();
-      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html?v=27";
+      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html?v=28";
       return;
     }
 
     const vData = window.SOURATE_DATA.versets[numVersetCible - 1];
     if (!vData) {
       sauvegarderConfigCiel();
-      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html?v=27";
+      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html?v=28";
       return;
     }
 
@@ -1088,6 +1132,7 @@
     codeAudio = vData.codeAudio;
     majSourceAudio();
     majEffetSpecifiqueVerset(numSourateActuelle, numVersetCible);
+    memoriserDernierVersetLu(numSourateActuelle, numVersetCible);
 
     document.title = "Sourate " + numSourateActuelle + " verset " + numVersetCible + " (" + window.SOURATE_DATA.nomSourate + ") - Traduction Hamidullah 1977 & Tafsir";
     document.getElementById('badgeNumEl').textContent = numSourateActuelle + " : " + numVersetCible;
@@ -1143,7 +1188,7 @@
     }
     sauvegarderConfigCiel();
     if (autoAudio) {
-      window.location.href = cleanLien + "?v=27&autoplay=1";
+      window.location.href = cleanLien + "?v=28&autoplay=1";
       return false;
     }
     return true;

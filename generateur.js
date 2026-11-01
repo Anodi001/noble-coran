@@ -129,7 +129,7 @@ const VERSIONS_ORIGINALES_HAMIDULLAH_1977 = {
 };
 
 // ============================================================================
-// LE TOUT PREMIER LOGO EN 4K — SANS AUCUN BORD BLEU NI BLANC SUR LE CARRÉ
+// LE PREMIER LOGO EN 4K — SANS BORDURE BLEUE AUTOUR DU CARRÉ + OMBRE LUMINEUSE
 // ============================================================================
 const LOGO_FAVICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="512" height="512">
   <defs>
@@ -158,7 +158,6 @@ const LOGO_FAVICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1
   <path d="M88 74 C78 71, 70 73, 65 77" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
 </svg>`;
 
-// Version inline (directement intégrée au HTML pour bloquer tout cache d'image)
 function genererLogoInlineSVG(classeCSS) {
   return `<svg class="${classeCSS}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Logo Le Noble Coran & Tafsir">
     <defs>
@@ -211,7 +210,7 @@ const LETTRES_MYSTERIEUSES_EXACTES = {
   "31:1": "آلٓمٓ",
   "32:1": "آلٓمٓ",
   "36:1": "يسٓ",
-  "38:1": "صٓ ۚ وَالْقُرْآنِ ذِي الذِّكْرِ",
+  "38:1": "صٓ وَالْقُرْآنِ ذِي الذِّكْرِ",
   "40:1": "حمٓ",
   "41:1": "حمٓ",
   "42:1": "حمٓ",
@@ -220,7 +219,7 @@ const LETTRES_MYSTERIEUSES_EXACTES = {
   "44:1": "حمٓ",
   "45:1": "حمٓ",
   "46:1": "حمٓ",
-  "50:1": "قٓ ۚ وَالْقُرْآنِ الْمَجِيدِ",
+  "50:1": "قٓ وَالْقُرْآنِ الْمَجِيدِ",
   "68:1": "نٓ وَالْقَلَمِ وَمَا يَسْطُرُونَ"
 };
 
@@ -230,12 +229,8 @@ function nettoyerArabeToutEnGardantLettresMysterieuses(cleVerset, texteArabeBrut
   }
   if (!texteArabeBrut) return '';
   let t = String(texteArabeBrut);
-  // Remplace l'Alif Wasla Uthmani (ٱ) par un Alif simple (ا)
   t = t.replace(/\u0671/g, '\u0627');
-  // Remplace le Sukun ouvert (ۡ) par un Sukun classique (ْ)
   t = t.replace(/\u06E1/g, '\u0652');
-  // Retire les petits signes d'arrêt (ج / ۚ / ۖ / ۗ) et petits ronds qui se superposent aux lettres,
-  // MAIS CONSERVE LE MADDAH (\u0653 ٓ) !
   t = t.replace(/[\u06D6-\u06DC\u06DF\u06E0\u06E2\u06E3\u06E5\u06E6\u06E7\u06E8\u06EA\u06EB\u06EC\u06ED]/g, '');
   return t.replace(/\s+/g, ' ').trim();
 }
@@ -521,9 +516,9 @@ const MOTEUR_SOLEIL_LUNE_V21_JS = `
 `;
 
 // ============================================================================
-// NAVIGATION + BOUTONS VOLUME (- / +) + CASE AUTO TOUJOURS DÉCOCHÉE AU DÉBUT
+// NAVIGATION + VOLUME (-/+) + TAILLE TEXTE (A-/A+) + SAUVEGARDE LECTURE
 // ============================================================================
-const SCRIPT_NAVIGATION_CLASSIQUE_V27 = `
+const SCRIPT_NAVIGATION_CLASSIQUE_V28 = `
   const audio = document.getElementById('ayahAudio');
   const preloadAudio = document.getElementById('preloadNextAudio');
   const playBtn = document.getElementById('playSyncBtn');
@@ -534,6 +529,7 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V27 = `
   const volLabel = document.getElementById('volPctLabel');
   let animId = null;
   let currentVolume = 1.0;
+  let textZoomScale = 1.0;
 
   const RECITATEURS_VALIDES = [
     'Yasser_Ad-Dussary_128kbps',
@@ -547,7 +543,7 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V27 = `
     'Hudhaify_128kbps'
   ];
 
-  // Toujours décoché à l'arrivée sur une sourate pour que le lecteur lise avant d'écouter
+  // Toujours décoché à l'ouverture pour laisser lire le verset avant d'écouter
   autoCheck.checked = false;
 
   try {
@@ -563,7 +559,43 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V27 = `
     if (savedVol !== null && !isNaN(Number(savedVol))) {
       currentVolume = Math.max(0.1, Math.min(1.0, Number(savedVol)));
     }
+    const savedZoom = localStorage.getItem('text_zoom_v28');
+    if (savedZoom !== null && !isNaN(Number(savedZoom))) {
+      textZoomScale = Math.max(0.85, Math.min(1.35, Number(savedZoom)));
+    }
   } catch (e) {}
+
+  function memoriserDernierVersetLu(numS, numV) {
+    try {
+      const nomS = (window.SOURATE_DATA && window.SOURATE_DATA.nomSourate) ? window.SOURATE_DATA.nomSourate : ("Sourate " + numS);
+      localStorage.setItem('last_read_v28', JSON.stringify({
+        s: numS,
+        v: numV,
+        nom: nomS
+      }));
+    } catch (e) {}
+  }
+  memoriserDernierVersetLu(numSourateActuelle, numVersetActuel);
+
+  function appliquerZoomTexte() {
+    const arEl = document.getElementById('arabicVerseEl');
+    const frEl = document.getElementById('frenchVerseEl');
+    const tafEl = document.getElementById('mainExplanationEl');
+    if (arEl) arEl.style.fontSize = (2.95 * textZoomScale).toFixed(2) + "rem";
+    if (frEl) frEl.style.fontSize = (1.55 * textZoomScale).toFixed(2) + "rem";
+    if (tafEl) tafEl.style.fontSize = (1.06 * textZoomScale).toFixed(2) + "rem";
+    try {
+      localStorage.setItem('text_zoom_v28', String(textZoomScale));
+    } catch (e) {}
+  }
+  appliquerZoomTexte();
+
+  function modifierTailleTexte(delta) {
+    textZoomScale = Math.round((textZoomScale + delta) * 100) / 100;
+    if (textZoomScale < 0.85) textZoomScale = 0.85;
+    if (textZoomScale > 1.35) textZoomScale = 1.35;
+    appliquerZoomTexte();
+  }
 
   function appliquerVolume() {
     audio.volume = currentVolume;
@@ -691,14 +723,14 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V27 = `
   function allerAuVersetSansRecharger(numVersetCible, lancerAudioAuto) {
     if (!window.SOURATE_DATA || !window.SOURATE_DATA.versets) {
       sauvegarderConfigCiel();
-      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html?v=27";
+      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html?v=28";
       return;
     }
 
     const vData = window.SOURATE_DATA.versets[numVersetCible - 1];
     if (!vData) {
       sauvegarderConfigCiel();
-      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html?v=27";
+      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html?v=28";
       return;
     }
 
@@ -711,6 +743,7 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V27 = `
     codeAudio = vData.codeAudio;
     majSourceAudio();
     majEffetSpecifiqueVerset(numSourateActuelle, numVersetCible);
+    memoriserDernierVersetLu(numSourateActuelle, numVersetCible);
 
     document.title = "Sourate " + numSourateActuelle + " verset " + numVersetCible + " (" + window.SOURATE_DATA.nomSourate + ") - Traduction Hamidullah 1977 & Tafsir";
     document.getElementById('badgeNumEl').textContent = numSourateActuelle + " : " + numVersetCible;
@@ -766,7 +799,7 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V27 = `
     }
     sauvegarderConfigCiel();
     if (autoAudio) {
-      window.location.href = cleanLien + "?v=27&autoplay=1";
+      window.location.href = cleanLien + "?v=28&autoplay=1";
       return false;
     }
     return true;
@@ -1042,7 +1075,7 @@ const HTML_CIEL_ETOILE_SOURATE = `
 
 async function lancerGeneration() {
   console.log('================================================================================');
-  console.log('🚀 GÉNÉRATEUR V27 : LOGO SANS BORD BLEU + ALIF LAM MIM & LETTRES SIMPLES + ANTI-CACHE');
+  console.log('🚀 GÉNÉRATEUR V28 : LOGO À GAUCHE DU BOUTON + REPRENDRE LECTURE + TAILLE A-/A+');
   console.log('================================================================================\n');
 
   let extraitsLaurierPerso = {};
@@ -1075,11 +1108,9 @@ async function lancerGeneration() {
     fs.mkdirSync(dossierSite);
   }
 
-  // Enregistrement du Logo sans bord bleu pour l'onglet navigateur
   fs.writeFileSync(path.join(dossierSite, 'favicon.svg'), LOGO_FAVICON_SVG, 'utf8');
-  fs.writeFileSync(path.join(dossierSite, 'logo-v27.svg'), LOGO_FAVICON_SVG, 'utf8');
+  fs.writeFileSync(path.join(dossierSite, 'logo-v28.svg'), LOGO_FAVICON_SVG, 'utf8');
 
-  // Fichier _headers Cloudflare Pages pour empêcher Opera/Chrome de garder les anciennes pages en cache
   const headersCloudflare = `/*.html\n  Cache-Control: no-cache, no-store, must-revalidate\n/\n  Cache-Control: no-cache, no-store, must-revalidate\n/*.svg\n  Cache-Control: public, max-age=0, must-revalidate\n/*.js\n  Cache-Control: public, max-age=0, must-revalidate\n`;
   fs.writeFileSync(path.join(dossierSite, '_headers'), headersCloudflare, 'utf8');
 
@@ -1108,7 +1139,7 @@ async function lancerGeneration() {
     const nbVersets = sourate.verses_count;
     const infoMiracleSourate = souratesAvecMiracleMap[numSourate] || null;
 
-    console.log(`[${numSourate}/114] Génération V27 de Sourate ${numSourate} - ${nomSourate}...`);
+    console.log(`[${numSourate}/114] Génération V28 de Sourate ${numSourate} - ${nomSourate}...`);
 
     const [tradData, tafsirData] = await Promise.all([
       telechargerJSON(`https://quranenc.com/api/v1/translation/sura/french_rashid/${numSourate}`),
@@ -1140,7 +1171,6 @@ async function lancerGeneration() {
       const cleVerset = `${numSourate}:${numVerset}`;
       const miracle = MIRACLES[cleVerset] || null;
 
-      // Arabe propre : garde آلٓمٓ, نٓ, قٓ intacts sans Basmalah collée, et nettoie les petits signes ج / ٱ / ۡ
       const texteArabePropre = nettoyerArabeToutEnGardantLettresMysterieuses(cleVerset, itemTrad.arabic_text || '');
       const texteArabe = echapperHTML(texteArabePropre);
 
@@ -1158,19 +1188,19 @@ async function lancerGeneration() {
 
       const codeAudio = String(numSourate).padStart(3, '0') + String(numVerset).padStart(3, '0');
 
-      let lienPrecedent = 'index.html?v=27';
+      let lienPrecedent = 'index.html?v=28';
       if (numVerset > 1) {
-        lienPrecedent = `sourate-${numSourate}-verset-${numVerset - 1}.html?v=27`;
+        lienPrecedent = `sourate-${numSourate}-verset-${numVerset - 1}.html?v=28`;
       } else if (numSourate > 1) {
         const souratePrec = sourates[s - 1];
-        lienPrecedent = `sourate-${souratePrec.id}-verset-${souratePrec.verses_count}.html?v=27`;
+        lienPrecedent = `sourate-${souratePrec.id}-verset-${souratePrec.verses_count}.html?v=28`;
       }
 
-      let lienSuivant = 'index.html?v=27';
+      let lienSuivant = 'index.html?v=28';
       if (numVerset < nbVersets) {
-        lienSuivant = `sourate-${numSourate}-verset-${numVerset + 1}.html?v=27`;
+        lienSuivant = `sourate-${numSourate}-verset-${numVerset + 1}.html?v=28`;
       } else if (numSourate < 114) {
-        lienSuivant = `sourate-${numSourate + 1}-verset-1.html?v=27`;
+        lienSuivant = `sourate-${numSourate + 1}-verset-1.html?v=28`;
       }
 
       donneesSourate.versets.push({
@@ -1196,7 +1226,7 @@ async function lancerGeneration() {
     );
 
     const htmlAccesRapideMiracle = infoMiracleSourate
-      ? `<a href="sourate-${numSourate}-verset-${infoMiracleSourate.premierVersetMiracle}.html?v=27" class="revelation-pill miracle-pill" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">★ Verset Miracle : v.${infoMiracleSourate.premierVersetMiracle}</a>`
+      ? `<a href="sourate-${numSourate}-verset-${infoMiracleSourate.premierVersetMiracle}.html?v=28" class="revelation-pill miracle-pill" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">★ Verset Miracle : v.${infoMiracleSourate.premierVersetMiracle}</a>`
       : '';
 
     for (let v = 0; v < donneesSourate.versets.length; v++) {
@@ -1225,8 +1255,8 @@ async function lancerGeneration() {
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
-  <link rel="icon" type="image/svg+xml" href="logo-v27.svg?v=27">
-  <link rel="apple-touch-icon" href="logo-v27.svg?v=27">
+  <link rel="icon" type="image/svg+xml" href="logo-v28.svg?v=28">
+  <link rel="apple-touch-icon" href="logo-v28.svg?v=28">
   <link rel="canonical" href="https://corantafsir.com/${nomFichier}">
   <title>Sourate ${numSourate} verset ${numVerset} (${nomSourate}) - Traduction Hamidullah 1977 & Tafsir</title>
   <meta name="description" content="Sourate ${numSourate} verset ${numVerset} (${nomSourate} - ${typeSourateLabel}) : Texte arabe, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
@@ -1408,6 +1438,7 @@ async function lancerGeneration() {
         0 0 55px rgba(255, 255, 255, 0.22);
       position: relative;
       z-index: 2;
+      transition: font-size 0.2s ease;
     }
 
     .french-glow-verse {
@@ -1425,6 +1456,7 @@ async function lancerGeneration() {
       z-index: 2;
       max-width: 92%;
       margin: 0 auto;
+      transition: font-size 0.2s ease;
     }
 
     .sync-progress-track {
@@ -1448,7 +1480,7 @@ async function lancerGeneration() {
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
       background: var(--bg-elevated);
       border: 1px solid var(--border-color);
       padding: 12px 18px;
@@ -1456,7 +1488,7 @@ async function lancerGeneration() {
       margin-bottom: 20px;
       font-size: 0.85rem;
     }
-    .audio-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .audio-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     .btn-listen-sync {
       background: var(--green-dim);
       color: var(--green-bright);
@@ -1555,6 +1587,7 @@ async function lancerGeneration() {
       text-shadow: 0 1px 4px rgba(0,0,0,0.8);
       line-height: 1.85;
       margin-bottom: 14px;
+      transition: font-size 0.2s ease;
     }
     .consensus-note {
       background: rgba(16, 185, 129, 0.10);
@@ -1622,7 +1655,7 @@ async function lancerGeneration() {
 
   <div class="interface-layer">
     <header class="top-nav">
-      <a href="index.html?v=27" class="home-btn" onclick="sauvegarderConfigCiel()">
+      <a href="index.html?v=28" class="home-btn" onclick="sauvegarderConfigCiel()">
         ${genererLogoInlineSVG('nav-logo-svg')}
         ‹ Retour aux 114 Sourates
       </a>
@@ -1692,6 +1725,10 @@ async function lancerGeneration() {
                 <span class="vol-pct" id="volPctLabel">100%</span>
                 <button type="button" class="vol-btn" onclick="modifierVolume(0.1)">🔊 +</button>
               </div>
+              <div class="volume-control-group" title="Agrandir ou réduire la taille du texte">
+                <button type="button" class="vol-btn" onclick="modifierTailleTexte(-0.08)">A-</button>
+                <button type="button" class="vol-btn" onclick="modifierTailleTexte(0.08)">A+</button>
+              </div>
             </div>
             <label class="auto-scroll-toggle">
               <input type="checkbox" id="autoNextCheck" onchange="sauverAutoNext()">
@@ -1724,13 +1761,13 @@ async function lancerGeneration() {
     <a href="${vObj.lienSuivant}" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
   </nav>
 
-  <script src="${fichierDataJS}?v=27"></script>
+  <script src="${fichierDataJS}?v=28"></script>
   <script>
     const numSourateActuelle = ${numSourate};
     let numVersetActuel = ${numVerset};
     let codeAudio = "${vObj.codeAudio}";
     ${MOTEUR_SOLEIL_LUNE_V21_JS}
-    ${SCRIPT_NAVIGATION_CLASSIQUE_V27}
+    ${SCRIPT_NAVIGATION_CLASSIQUE_V28}
   </script>
 </body>
 </html>`;
@@ -1739,7 +1776,7 @@ async function lancerGeneration() {
     }
   }
 
-  console.log('\nMise à jour de la page d\'accueil (index.html) avec le Logo sans bord bleu...');
+  console.log('\nMise à jour de la page d\'accueil (index.html) avec le Logo placé à gauche du bouton...');
 
   const cartesSouratesJSON = JSON.stringify(sourates.map(s => {
     const estMecquoise = s.revelation_place === 'makkah';
@@ -1767,8 +1804,8 @@ async function lancerGeneration() {
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
-  <link rel="icon" type="image/svg+xml" href="logo-v27.svg?v=27">
-  <link rel="apple-touch-icon" href="logo-v27.svg?v=27">
+  <link rel="icon" type="image/svg+xml" href="logo-v28.svg?v=28">
+  <link rel="apple-touch-icon" href="logo-v28.svg?v=28">
   <link rel="canonical" href="https://corantafsir.com/">
   <title>Le Noble Coran & Tafsīr — Traduction Muhammad Hamidullah (1977) & Exégèse Al-Mukhtasar</title>
   <meta name="description" content="Lisez et écoutez les 114 sourates du Noble Coran avec le texte arabe, la traduction originale de Muhammad Hamidullah (1977) et l'exégèse (Tafsīr) Al-Mukhtasar.">
@@ -1792,7 +1829,7 @@ async function lancerGeneration() {
       background-color: var(--bg-main);
       color: var(--text-main);
       font-family: 'Plus Jakarta Sans', sans-serif;
-      padding: 32px 4vw 60px 4vw;
+      padding: 24px 4vw 60px 4vw;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
@@ -1802,10 +1839,11 @@ async function lancerGeneration() {
 
     .wrapper { width: 100%; max-width: 1220px; margin: 0 auto; }
 
+    /* HERO COMPACT POUR GAGNER DE LA PLACE EN HAUTEUR */
     .hero {
       text-align: center;
-      margin-bottom: 26px;
-      padding: 38px 24px 32px 24px;
+      margin-bottom: 22px;
+      padding: 24px 24px 22px 24px;
       background: rgba(6, 11, 16, 0.18);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
@@ -1815,26 +1853,18 @@ async function lancerGeneration() {
       position: relative;
       overflow: hidden;
     }
-    .hero-logo-svg {
-      width: 62px;
-      height: 62px;
-      margin: 0 auto 12px auto;
-      display: block;
-      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 16px rgba(56, 189, 248, 0.45));
-      animation: gentleFloatTitle 4s ease-in-out infinite alternate;
-    }
     .hero-ornament-top {
       font-family: 'Scheherazade New', 'Amiri', serif;
-      font-size: 1.45rem;
+      font-size: 1.4rem;
       color: rgba(255, 255, 255, 0.85);
       letter-spacing: 0.04em;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
       text-shadow: 0 0 14px rgba(255, 255, 255, 0.6);
       animation: gentleFloatTitle 4s ease-in-out infinite alternate;
     }
     .hero h1 {
       font-family: 'Cinzel Decorative', 'Amiri', serif;
-      font-size: 3.1rem;
+      font-size: 2.95rem;
       font-weight: 900;
       letter-spacing: 0.03em;
       background: linear-gradient(
@@ -1863,7 +1893,7 @@ async function lancerGeneration() {
     .hero-glow-line {
       width: 240px;
       height: 2px;
-      margin: 16px auto 16px auto;
+      margin: 12px auto 14px auto;
       border-radius: 99px;
       background: linear-gradient(90deg, transparent, #ffffff, #38bdf8, #ffffff, transparent);
       background-size: 200% 100%;
@@ -1875,6 +1905,27 @@ async function lancerGeneration() {
       100% { width: 310px; opacity: 1; background-position: 100% 50%; }
     }
 
+    /* BARRE DU BAS DU HERO : LOGO PLACÉ À GAUCHE DU BOUTON */
+    .hero-bottom-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 2px;
+    }
+    .hero-inline-logo {
+      width: 44px;
+      height: 44px;
+      display: block;
+      flex-shrink: 0;
+      filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 14px rgba(56, 189, 248, 0.48));
+      transition: transform 0.25s ease;
+    }
+    .hero-inline-logo:hover {
+      transform: scale(1.06);
+    }
+
     .app-install-trigger {
       display: inline-flex;
       align-items: center;
@@ -1882,7 +1933,7 @@ async function lancerGeneration() {
       background: rgba(56, 189, 248, 0.14);
       color: #7dd3fc;
       border: 1px solid rgba(56, 189, 248, 0.45);
-      padding: 8px 18px;
+      padding: 9px 18px;
       border-radius: 99px;
       font-family: inherit;
       font-size: 0.82rem;
@@ -1895,6 +1946,27 @@ async function lancerGeneration() {
       background: #38bdf8;
       color: #031521;
       box-shadow: 0 0 24px rgba(56, 189, 248, 0.5);
+    }
+
+    .resume-reading-pill {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.18);
+      color: #6ee7b7;
+      border: 1px solid rgba(52, 211, 153, 0.48);
+      padding: 9px 18px;
+      border-radius: 99px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.22);
+    }
+    .resume-reading-pill:hover {
+      background: var(--green-accent);
+      color: #032218;
+      box-shadow: 0 0 24px rgba(16, 185, 129, 0.5);
     }
 
     .modal-tuto-overlay {
@@ -1964,7 +2036,7 @@ async function lancerGeneration() {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
-      margin-bottom: 26px;
+      margin-bottom: 22px;
     }
     .guide-box {
       background: rgba(8, 14, 20, 0.24);
@@ -1972,7 +2044,7 @@ async function lancerGeneration() {
       -webkit-backdrop-filter: blur(7px);
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 20px;
-      padding: 20px 24px;
+      padding: 18px 22px;
       box-shadow: 0 12px 32px rgba(0,0,0,0.35);
     }
     .guide-header {
@@ -1999,7 +2071,7 @@ async function lancerGeneration() {
       flex-wrap: wrap;
       gap: 12px;
       justify-content: center;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
     .sort-btn {
       background: var(--bg-card);
@@ -2030,8 +2102,8 @@ async function lancerGeneration() {
 
     .search-box {
       width: 100%;
-      max-width: 520px;
-      margin: 0 auto 30px auto;
+      max-width: 540px;
+      margin: 0 auto 26px auto;
       display: block;
       padding: 14px 20px;
       border-radius: 14px;
@@ -2071,6 +2143,10 @@ async function lancerGeneration() {
       border-color: rgba(56, 189, 248, 0.45);
       transform: translateY(-3px);
       box-shadow: 0 16px 35px rgba(0,0,0,0.5);
+    }
+    .card.direct-verse-card {
+      border-color: rgba(52, 211, 153, 0.65);
+      background: rgba(16, 185, 129, 0.14);
     }
     .card-left { display: flex; align-items: center; gap: 14px; }
     .num-badge {
@@ -2116,7 +2192,7 @@ async function lancerGeneration() {
     }
 
     @media (max-width: 820px) {
-      .hero h1 { font-size: 2.1rem; }
+      .hero h1 { font-size: 2.05rem; }
       .revelation-guide-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -2127,13 +2203,18 @@ async function lancerGeneration() {
 
   <div class="wrapper interface-layer">
     <header class="hero">
-      ${genererLogoInlineSVG('hero-logo-svg')}
       <div class="hero-ornament-top">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
       <h1>Le Noble Coran & Tafsīr</h1>
       <div class="hero-glow-line"></div>
-      <button type="button" class="app-install-trigger" onclick="document.getElementById('tutoModal').classList.add('open')">
-        📲 Mettre le site en application sur téléphone (Safari / Android)
-      </button>
+      <div class="hero-bottom-bar">
+        ${genererLogoInlineSVG('hero-inline-logo')}
+        <button type="button" class="app-install-trigger" onclick="document.getElementById('tutoModal').classList.add('open')">
+          📲 Mettre le site en application sur téléphone (Safari / Android)
+        </button>
+        <a href="#" id="resumeReadingBtn" class="resume-reading-pill" onclick="sauvegarderConfigCiel()">
+          📖 Reprendre ma lecture
+        </a>
+      </div>
     </header>
 
     <div class="modal-tuto-overlay" id="tutoModal" onclick="if(event.target===this)this.classList.remove('open')">
@@ -2186,7 +2267,7 @@ async function lancerGeneration() {
       <button class="sort-btn miracle-btn-filter" onclick="trier('miracles', this)">3. <span class="sky-star-icon">★</span> Les Miracles & Prophéties du Coran</button>
     </div>
 
-    <input type="text" id="searchInput" class="search-box" placeholder="Rechercher une sourate (ex: 10, Yunus, 30, Ar-Rum, Miracle...)" oninput="afficher()">
+    <input type="text" id="searchInput" class="search-box" placeholder="Rechercher une sourate ou un verset direct (ex: 2:255, 18, Al-Kahf, Miracle...)" oninput="afficher()">
 
     <div id="grid" class="grid"></div>
   </div>
@@ -2194,6 +2275,21 @@ async function lancerGeneration() {
   <script>
     const sourates = ${cartesSouratesJSON};
     let modeTri = 'classique';
+
+    try {
+      const savedRead = localStorage.getItem('last_read_v28');
+      if (savedRead) {
+        const parsed = JSON.parse(savedRead);
+        if (parsed && parsed.s && parsed.v) {
+          const btnResume = document.getElementById('resumeReadingBtn');
+          if (btnResume) {
+            btnResume.href = "sourate-" + parsed.s + "-verset-" + parsed.v + ".html?v=28";
+            btnResume.textContent = "📖 Reprendre : " + (parsed.nom || ("Sourate " + parsed.s)) + " (v." + parsed.v + ")";
+            btnResume.style.display = "inline-flex";
+          }
+        }
+      }
+    } catch (e) {}
 
     function trier(mode, btn) {
       modeTri = mode;
@@ -2206,8 +2302,32 @@ async function lancerGeneration() {
       const q = document.getElementById('searchInput').value.toLowerCase().trim();
       const container = document.getElementById('grid');
 
+      let htmlCarteVersetDirect = '';
+      const matchVerset = q.match(/^(\\d{1,3})\\s*[:\\/-]\\s*(\\d{1,3})$/);
+      if (matchVerset) {
+        const numS = Number(matchVerset[1]);
+        const numV = Number(matchVerset[2]);
+        const sTrouvee = sourates.find(item => item.id === numS);
+        if (sTrouvee && numV >= 1 && numV <= sTrouvee.versets) {
+          htmlCarteVersetDirect = \`
+          <a href="sourate-\${numS}-verset-\${numV}.html?v=28" class="card direct-verse-card" onclick="sauvegarderConfigCiel()">
+            <div class="card-left">
+              <div class="num-badge">\${numS}:\${numV}</div>
+              <div class="card-info">
+                <h2>Ouvrir directement : Sourate \${sTrouvee.nom} — Verset \${numV}</h2>
+                <div class="card-meta-row">
+                  <span class="revelation-pill medinoise">Accès direct au verset \${numV} / \${sTrouvee.versets}</span>
+                </div>
+              </div>
+            </div>
+            <div class="ar-name">\${sTrouvee.nomAr}</div>
+          </a>\`;
+        }
+      }
+
       let liste = sourates.filter(s => {
         if (modeTri === 'miracles' && !s.hasMiracle) return false;
+        if (matchVerset) return s.id === Number(matchVerset[1]);
         return (
           s.nom.toLowerCase().includes(q) ||
           s.nomFr.toLowerCase().includes(q) ||
@@ -2224,7 +2344,7 @@ async function lancerGeneration() {
         liste.sort((a, b) => a.id - b.id);
       }
 
-      container.innerHTML = liste.map(s => {
+      container.innerHTML = htmlCarteVersetDirect + liste.map(s => {
         const badgeNumero = modeTri === 'chrono' ? s.ordreRev : s.id;
         const titreSourate = modeTri === 'chrono'
           ? \`\${s.nom} (\${s.nomFr}) <span class="surah-subnum">(Sourate \${s.id})</span>\`
@@ -2235,7 +2355,7 @@ async function lancerGeneration() {
         const versetCible = (modeTri === 'miracles' && s.hasMiracle) ? s.miracleVerset : 1;
 
         return \`
-        <a href="sourate-\${s.id}-verset-\${versetCible}.html?v=27" class="card" onclick="sauvegarderConfigCiel()">
+        <a href="sourate-\${s.id}-verset-\${versetCible}.html?v=28" class="card" onclick="sauvegarderConfigCiel()">
           <div class="card-left">
             <div class="num-badge">\${badgeNumero}</div>
             <div class="card-info">
@@ -2269,8 +2389,8 @@ async function lancerGeneration() {
   const robotsTXT = `User-agent: *\nAllow: /\nSitemap: https://corantafsir.com/sitemap.xml\n`;
   fs.writeFileSync(path.join(dossierSite, 'robots.txt'), robotsTXT, 'utf8');
 
-  console.log('\n✅ MISE À JOUR V27 TERMINÉE !');
-  console.log('👉 Premier logo sans bordure bleue + Alif Lam Mim & Nûn corrigés + Cache Opera bloqué !');
+  console.log('\n✅ MISE À JOUR V28 TERMINÉE !');
+  console.log('👉 Logo placé à gauche du bouton + Reprendre ma lecture + Boutons A-/A+ + Recherche directe 2:255 !');
 }
 
 lancerGeneration();
