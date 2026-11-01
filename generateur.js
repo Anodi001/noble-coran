@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const zlib = require('zlib');
 
 // ============================================================================
 // DOSSIERS DÉTAILLÉS DES MIRACLES & PROPHÉTIES AUTHENTIQUES DU CORAN
@@ -127,6 +128,183 @@ const VERSIONS_ORIGINALES_HAMIDULLAH_1977 = {
   "88:20": "et la terre, comment elle est nivelée?",
   "91:6": "Et par la terre et Celui qui l'a nivelée!"
 };
+
+// ============================================================================
+// GÉNÉRATION NATIVE DU FICHIER PNG (apple-touch-icon.png) POUR SAFARI IPHONE
+// ============================================================================
+function creerAppleTouchIconPNG(taille = 180) {
+  const buf = Buffer.alloc(taille * (taille * 4 + 1));
+
+  function distSegment(px, py, ax, ay, bx, by) {
+    const dx = bx - ax, dy = by - ay;
+    const len2 = dx * dx + dy * dy;
+    let t = len2 === 0 ? 0 : ((px - ax) * dx + (py - ay) * dy) / len2;
+    t = Math.max(0, Math.min(1, t));
+    const cx = ax + t * dx, cy = ay + t * dy;
+    return Math.hypot(px - cx, py - cy);
+  }
+
+  // Coordonnées de l'étoile à 5 branches (échelle 0..120)
+  const starPts = [
+    [60, 20], [63.5, 29.5], [73.5, 30], [65.5, 36], [68.5, 45.5],
+    [60, 40], [51.5, 45.5], [54.5, 36], [46.5, 30], [56.5, 29.5]
+  ];
+
+  function dansPolygone(x, y, poly) {
+    let inside = false;
+    for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+      const xi = poly[i][0], yi = poly[i][1];
+      const xj = poly[j][0], yj = poly[j][1];
+      const intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi + 1e-9) + xi);
+      if (intersect) inside = !inside;
+    }
+    return inside;
+  }
+
+  for (let py = 0; py < taille; py++) {
+    const rowStart = py * (taille * 4 + 1);
+    buf[rowStart] = 0; // Filtre PNG None
+    const y = (py / taille) * 120;
+
+    for (let px = 0; px < taille; px++) {
+      const x = (px / taille) * 120;
+      const tGrad = (x + y) / 240;
+
+      // Fond sombre profond (#07111a -> #020406)
+      let r = Math.round(7 * (1 - tGrad) + 2 * tGrad);
+      let g = Math.round(17 * (1 - tGrad) + 4 * tGrad);
+      let b = Math.round(26 * (1 - tGrad) + 6 * tGrad);
+
+      // Halo lumineux central bleu/émeraude derrière le Coran et l'étoile
+      const dCenter = Math.hypot(x - 60, y - 62);
+      if (dCenter < 52) {
+        const glow = Math.pow(1 - dCenter / 52, 2.2) * 0.38;
+        r = Math.min(255, Math.round(r + 45 * glow));
+        g = Math.min(255, Math.round(g + 189 * glow));
+        b = Math.min(255, Math.round(b + 248 * glow));
+      }
+
+      // Couleur du dégradé principal (Blanc -> Bleu céleste -> Émeraude)
+      let gradR = 56, gradG = 189, gradB = 248;
+      if (tGrad < 0.45) {
+        const k = tGrad / 0.45;
+        gradR = Math.round(255 * (1 - k) + 125 * k);
+        gradG = Math.round(255 * (1 - k) + 211 * k);
+        gradB = Math.round(255 * (1 - k) + 252 * k);
+      } else {
+        const k = (tGrad - 0.45) / 0.55;
+        gradR = Math.round(125 * (1 - k) + 52 * k);
+        gradG = Math.round(211 * (1 - k) + 211 * k);
+        gradB = Math.round(252 * (1 - k) + 153 * k);
+      }
+
+      // Distance au contour du livre ouvert
+      let dBook = 999;
+      if (x >= 24 && x <= 96) {
+        const dx = Math.abs(x - 60);
+        const arch = -6 * Math.sin((dx / 36) * Math.PI);
+        const yTop = 54 + (36 - dx) * (5 / 36) + arch;
+        const yBot = 88 + (36 - dx) * (5 / 36) + arch;
+
+        // Intérieur sombre du livre
+        if (y >= yTop && y <= yBot) {
+          r = 3; g = 8; b = 13;
+        }
+        dBook = Math.min(Math.abs(y - yTop), Math.abs(y - yBot));
+        if (y < yTop - 3 || y > yBot + 3) dBook = 999;
+      }
+      // Bords verticaux gauche (x=24), droite (x=96) et reliure centrale (x=60)
+      dBook = Math.min(
+        dBook,
+        distSegment(x, y, 24, 54, 24, 88),
+        distSegment(x, y, 96, 54, 96, 88),
+        distSegment(x, y, 60, 59, 60, 93)
+      );
+
+      // Lignes de texte sur les pages gauche et droite
+      let dLinesLeft = 999, dLinesRight = 999;
+      if (x >= 32 && x <= 55) {
+        const k = (x - 32) / 23;
+        const yL1 = 64 + 3 * k - 2.2 * Math.sin(k * Math.PI);
+        const yL2 = 74 + 3 * k - 2.2 * Math.sin(k * Math.PI);
+        dLinesLeft = Math.min(Math.abs(y - yL1), Math.abs(y - yL2));
+      }
+      if (x >= 65 && x <= 88) {
+        const k = (88 - x) / 23;
+        const yR1 = 64 + 3 * k - 2.2 * Math.sin(k * Math.PI);
+        const yR2 = 74 + 3 * k - 2.2 * Math.sin(k * Math.PI);
+        dLinesRight = Math.min(Math.abs(y - yR1), Math.abs(y - yR2));
+      }
+
+      // Étoile supérieure
+      const inStar = dansPolygone(x, y, starPts);
+      let dStarEdge = 999;
+      for (let i = 0; i < starPts.length; i++) {
+        const p1 = starPts[i], p2 = starPts[(i + 1) % starPts.length];
+        dStarEdge = Math.min(dStarEdge, distSegment(x, y, p1[0], p1[1], p2[0], p2[1]));
+      }
+
+      // Halo externe autour des traits du livre et de l'étoile
+      const dMinGlow = Math.min(dBook, inStar ? 0 : dStarEdge);
+      if (dMinGlow < 6.5) {
+        const gFactor = Math.pow(1 - dMinGlow / 6.5, 2) * 0.55;
+        r = Math.min(255, Math.round(r + gradR * gFactor));
+        g = Math.min(255, Math.round(g + gradG * gFactor));
+        b = Math.min(255, Math.round(b + gradB * gFactor));
+      }
+
+      // Dessin net du livre et de l'étoile
+      if (inStar || dStarEdge < 1.1 || dBook < 2.2) {
+        r = gradR; g = gradG; b = gradB;
+      } else if (dLinesLeft < 1.3) {
+        r = 125; g = 211; b = 252;
+      } else if (dLinesRight < 1.3) {
+        r = 52; g = 211; b = 153;
+      }
+
+      const idx = rowStart + 1 + px * 4;
+      buf[idx] = r;
+      buf[idx + 1] = g;
+      buf[idx + 2] = b;
+      buf[idx + 3] = 255;
+    }
+  }
+
+  // Encodage binaire PNG standard (IHDR + IDAT + IEND)
+  const tableCRC = new Uint32Array(256);
+  for (let n = 0; n < 256; n++) {
+    let c = n;
+    for (let k = 0; k < 8; k++) c = (c & 1) ? (0xedb88320 ^ (c >>> 1)) : (c >>> 1);
+    tableCRC[n] = c >>> 0;
+  }
+  function crc32(b) {
+    let c = 0xffffffff;
+    for (let i = 0; i < b.length; i++) c = tableCRC[(c ^ b[i]) & 0xff] ^ (c >>> 8);
+    return (c ^ 0xffffffff) >>> 0;
+  }
+  function creerChunk(type, data) {
+    const out = Buffer.alloc(data.length + 12);
+    out.writeUInt32BE(data.length, 0);
+    out.write(type, 4, 4, 'ascii');
+    data.copy(out, 8);
+    out.writeUInt32BE(crc32(out.slice(4, data.length + 8)), data.length + 8);
+    return out;
+  }
+
+  const sig = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
+  const ihdr = Buffer.alloc(13);
+  ihdr.writeUInt32BE(taille, 0);
+  ihdr.writeUInt32BE(taille, 4);
+  ihdr[8] = 8; // 8 bits
+  ihdr[9] = 6; // RGBA
+  const idat = zlib.deflateSync(buf, { level: 9 });
+  return Buffer.concat([
+    sig,
+    creerChunk('IHDR', ihdr),
+    creerChunk('IDAT', idat),
+    creerChunk('IEND', Buffer.alloc(0))
+  ]);
+}
 
 // ============================================================================
 // LE PREMIER LOGO EN 4K — SANS BORDURE BLEUE AUTOUR DU CARRÉ + OMBRE LUMINEUSE
@@ -516,9 +694,9 @@ const MOTEUR_SOLEIL_LUNE_V21_JS = `
 `;
 
 // ============================================================================
-// NAVIGATION + VOLUME (-/+) + TAILLE TEXTE (A-/A+) + SAUVEGARDE LECTURE
+// NAVIGATION ÉPURÉE (SANS BOUTONS BAISSER/AUGMENTER) + SAUVEGARDE LECTURE
 // ============================================================================
-const SCRIPT_NAVIGATION_CLASSIQUE_V28 = `
+const SCRIPT_NAVIGATION_CLASSIQUE_V29 = `
   const audio = document.getElementById('ayahAudio');
   const preloadAudio = document.getElementById('preloadNextAudio');
   const playBtn = document.getElementById('playSyncBtn');
@@ -526,10 +704,7 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V28 = `
   const autoCheck = document.getElementById('autoNextCheck');
   const stage = document.getElementById('verseStage');
   const progressBar = document.getElementById('syncProgressBar');
-  const volLabel = document.getElementById('volPctLabel');
   let animId = null;
-  let currentVolume = 1.0;
-  let textZoomScale = 1.0;
 
   const RECITATEURS_VALIDES = [
     'Yasser_Ad-Dussary_128kbps',
@@ -549,19 +724,12 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V28 = `
   try {
     localStorage.removeItem('autoNext');
     localStorage.removeItem('autoNext_v2');
+    localStorage.removeItem('text_zoom_v28');
     const savedReciter = localStorage.getItem('reciter');
     if (savedReciter && RECITATEURS_VALIDES.indexOf(savedReciter) !== -1) {
       select.value = savedReciter;
     } else {
       select.value = 'Yasser_Ad-Dussary_128kbps';
-    }
-    const savedVol = localStorage.getItem('audio_volume_v25');
-    if (savedVol !== null && !isNaN(Number(savedVol))) {
-      currentVolume = Math.max(0.1, Math.min(1.0, Number(savedVol)));
-    }
-    const savedZoom = localStorage.getItem('text_zoom_v28');
-    if (savedZoom !== null && !isNaN(Number(savedZoom))) {
-      textZoomScale = Math.max(0.85, Math.min(1.35, Number(savedZoom)));
     }
   } catch (e) {}
 
@@ -576,44 +744,6 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V28 = `
     } catch (e) {}
   }
   memoriserDernierVersetLu(numSourateActuelle, numVersetActuel);
-
-  function appliquerZoomTexte() {
-    const arEl = document.getElementById('arabicVerseEl');
-    const frEl = document.getElementById('frenchVerseEl');
-    const tafEl = document.getElementById('mainExplanationEl');
-    if (arEl) arEl.style.fontSize = (2.95 * textZoomScale).toFixed(2) + "rem";
-    if (frEl) frEl.style.fontSize = (1.55 * textZoomScale).toFixed(2) + "rem";
-    if (tafEl) tafEl.style.fontSize = (1.06 * textZoomScale).toFixed(2) + "rem";
-    try {
-      localStorage.setItem('text_zoom_v28', String(textZoomScale));
-    } catch (e) {}
-  }
-  appliquerZoomTexte();
-
-  function modifierTailleTexte(delta) {
-    textZoomScale = Math.round((textZoomScale + delta) * 100) / 100;
-    if (textZoomScale < 0.85) textZoomScale = 0.85;
-    if (textZoomScale > 1.35) textZoomScale = 1.35;
-    appliquerZoomTexte();
-  }
-
-  function appliquerVolume() {
-    audio.volume = currentVolume;
-    if (volLabel) {
-      volLabel.textContent = Math.round(currentVolume * 100) + "%";
-    }
-    try {
-      localStorage.setItem('audio_volume_v25', String(currentVolume));
-    } catch (e) {}
-  }
-  appliquerVolume();
-
-  function modifierVolume(delta) {
-    currentVolume = Math.round((currentVolume + delta) * 10) / 10;
-    if (currentVolume < 0.1) currentVolume = 0.1;
-    if (currentVolume > 1.0) currentVolume = 1.0;
-    appliquerVolume();
-  }
 
   function prechargerVersetSuivant() {
     if (!preloadAudio) return;
@@ -633,7 +763,6 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V28 = `
     if (audio.src !== nouvelleUrl) {
       audio.src = nouvelleUrl;
     }
-    appliquerVolume();
     prechargerVersetSuivant();
   }
   majSourceAudio();
@@ -659,7 +788,6 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V28 = `
 
   function toggleAudioSync() {
     if (audio.paused) {
-      appliquerVolume();
       stage.classList.add('playing');
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
@@ -723,14 +851,14 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V28 = `
   function allerAuVersetSansRecharger(numVersetCible, lancerAudioAuto) {
     if (!window.SOURATE_DATA || !window.SOURATE_DATA.versets) {
       sauvegarderConfigCiel();
-      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html?v=28";
+      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html";
       return;
     }
 
     const vData = window.SOURATE_DATA.versets[numVersetCible - 1];
     if (!vData) {
       sauvegarderConfigCiel();
-      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html?v=28";
+      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html";
       return;
     }
 
@@ -780,7 +908,6 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V28 = `
       stage.classList.add('playing');
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
-      appliquerVolume();
       audio.play().then(function() {
         animId = requestAnimationFrame(animerBarre);
       }).catch(function() {
@@ -799,7 +926,7 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V28 = `
     }
     sauvegarderConfigCiel();
     if (autoAudio) {
-      window.location.href = cleanLien + "?v=28&autoplay=1";
+      window.location.href = cleanLien + "?autoplay=1";
       return false;
     }
     return true;
@@ -822,7 +949,6 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V28 = `
   if (window.location.search.indexOf('autoplay=1') !== -1) {
     autoCheck.checked = true;
     stage.classList.add('playing');
-    appliquerVolume();
     audio.play().then(function() {
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
@@ -1075,7 +1201,7 @@ const HTML_CIEL_ETOILE_SOURATE = `
 
 async function lancerGeneration() {
   console.log('================================================================================');
-  console.log('🚀 GÉNÉRATEUR V28 : LOGO À GAUCHE DU BOUTON + REPRENDRE LECTURE + TAILLE A-/A+');
+  console.log('🚀 GÉNÉRATEUR V29 : ICÔNE PNG SAFARI IPHONE + SANS BOUTONS +/- + CACHE OPTIMISÉ');
   console.log('================================================================================\n');
 
   let extraitsLaurierPerso = {};
@@ -1108,11 +1234,38 @@ async function lancerGeneration() {
     fs.mkdirSync(dossierSite);
   }
 
+  // Enregistrement des logos SVG + génération du vrai fichier PNG pour Safari iPhone / Android
   fs.writeFileSync(path.join(dossierSite, 'favicon.svg'), LOGO_FAVICON_SVG, 'utf8');
-  fs.writeFileSync(path.join(dossierSite, 'logo-v28.svg'), LOGO_FAVICON_SVG, 'utf8');
+  fs.writeFileSync(path.join(dossierSite, 'logo-v29.svg'), LOGO_FAVICON_SVG, 'utf8');
 
-  const headersCloudflare = `/*.html\n  Cache-Control: no-cache, no-store, must-revalidate\n/\n  Cache-Control: no-cache, no-store, must-revalidate\n/*.svg\n  Cache-Control: public, max-age=0, must-revalidate\n/*.js\n  Cache-Control: public, max-age=0, must-revalidate\n`;
-  fs.writeFileSync(path.join(dossierSite, '_headers'), headersCloudflare, 'utf8');
+  console.log('📱 Création de l\'icône PNG (apple-touch-icon.png) pour Safari iPhone et Android...');
+  const pngBuffer180 = creerAppleTouchIconPNG(180);
+  const pngBuffer512 = creerAppleTouchIconPNG(512);
+  fs.writeFileSync(path.join(dossierSite, 'apple-touch-icon.png'), pngBuffer180);
+  fs.writeFileSync(path.join(dossierSite, 'apple-touch-icon-precomposed.png'), pngBuffer180);
+  fs.writeFileSync(path.join(dossierSite, 'icon-512.png'), pngBuffer512);
+
+  // Création du fichier manifest.json officiel pour l'installation sur téléphone
+  const manifestJSON = {
+    name: "Le Noble Coran & Tafsīr",
+    short_name: "Coran Tafsīr",
+    description: "Traduction originale de Muhammad Hamidullah (1977) & Exégèse (Tafsīr) Al-Mukhtasar",
+    start_url: "/",
+    display: "standalone",
+    background_color: "#020406",
+    theme_color: "#020406",
+    icons: [
+      { src: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      { src: "/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" }
+    ]
+  };
+  fs.writeFileSync(path.join(dossierSite, 'manifest.json'), JSON.stringify(manifestJSON, null, 2), 'utf8');
+
+  // Réactivation du cache Cloudflare normal (suppression de l'ancien _headers anti-cache)
+  const cheminHeaders = path.join(dossierSite, '_headers');
+  if (fs.existsSync(cheminHeaders)) {
+    try { fs.unlinkSync(cheminHeaders); } catch (e) {}
+  }
 
   const souratesAvecMiracleMap = {};
   for (const cle of Object.keys(MIRACLES)) {
@@ -1139,7 +1292,7 @@ async function lancerGeneration() {
     const nbVersets = sourate.verses_count;
     const infoMiracleSourate = souratesAvecMiracleMap[numSourate] || null;
 
-    console.log(`[${numSourate}/114] Génération V28 de Sourate ${numSourate} - ${nomSourate}...`);
+    console.log(`[${numSourate}/114] Génération V29 de Sourate ${numSourate} - ${nomSourate}...`);
 
     const [tradData, tafsirData] = await Promise.all([
       telechargerJSON(`https://quranenc.com/api/v1/translation/sura/french_rashid/${numSourate}`),
@@ -1188,19 +1341,19 @@ async function lancerGeneration() {
 
       const codeAudio = String(numSourate).padStart(3, '0') + String(numVerset).padStart(3, '0');
 
-      let lienPrecedent = 'index.html?v=28';
+      let lienPrecedent = 'index.html';
       if (numVerset > 1) {
-        lienPrecedent = `sourate-${numSourate}-verset-${numVerset - 1}.html?v=28`;
+        lienPrecedent = `sourate-${numSourate}-verset-${numVerset - 1}.html`;
       } else if (numSourate > 1) {
         const souratePrec = sourates[s - 1];
-        lienPrecedent = `sourate-${souratePrec.id}-verset-${souratePrec.verses_count}.html?v=28`;
+        lienPrecedent = `sourate-${souratePrec.id}-verset-${souratePrec.verses_count}.html`;
       }
 
-      let lienSuivant = 'index.html?v=28';
+      let lienSuivant = 'index.html';
       if (numVerset < nbVersets) {
-        lienSuivant = `sourate-${numSourate}-verset-${numVerset + 1}.html?v=28`;
+        lienSuivant = `sourate-${numSourate}-verset-${numVerset + 1}.html`;
       } else if (numSourate < 114) {
-        lienSuivant = `sourate-${numSourate + 1}-verset-1.html?v=28`;
+        lienSuivant = `sourate-${numSourate + 1}-verset-1.html`;
       }
 
       donneesSourate.versets.push({
@@ -1226,7 +1379,7 @@ async function lancerGeneration() {
     );
 
     const htmlAccesRapideMiracle = infoMiracleSourate
-      ? `<a href="sourate-${numSourate}-verset-${infoMiracleSourate.premierVersetMiracle}.html?v=28" class="revelation-pill miracle-pill" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">★ Verset Miracle : v.${infoMiracleSourate.premierVersetMiracle}</a>`
+      ? `<a href="sourate-${numSourate}-verset-${infoMiracleSourate.premierVersetMiracle}.html" class="revelation-pill miracle-pill" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">★ Verset Miracle : v.${infoMiracleSourate.premierVersetMiracle}</a>`
       : '';
 
     for (let v = 0; v < donneesSourate.versets.length; v++) {
@@ -1255,8 +1408,10 @@ async function lancerGeneration() {
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
-  <link rel="icon" type="image/svg+xml" href="logo-v28.svg?v=28">
-  <link rel="apple-touch-icon" href="logo-v28.svg?v=28">
+  <link rel="icon" type="image/svg+xml" href="/logo-v29.svg">
+  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
   <link rel="canonical" href="https://corantafsir.com/${nomFichier}">
   <title>Sourate ${numSourate} verset ${numVerset} (${nomSourate}) - Traduction Hamidullah 1977 & Tafsir</title>
   <meta name="description" content="Sourate ${numSourate} verset ${numVerset} (${nomSourate} - ${typeSourateLabel}) : Texte arabe, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
@@ -1438,7 +1593,6 @@ async function lancerGeneration() {
         0 0 55px rgba(255, 255, 255, 0.22);
       position: relative;
       z-index: 2;
-      transition: font-size 0.2s ease;
     }
 
     .french-glow-verse {
@@ -1456,7 +1610,6 @@ async function lancerGeneration() {
       z-index: 2;
       max-width: 92%;
       margin: 0 auto;
-      transition: font-size 0.2s ease;
     }
 
     .sync-progress-track {
@@ -1480,7 +1633,7 @@ async function lancerGeneration() {
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
       background: var(--bg-elevated);
       border: 1px solid var(--border-color);
       padding: 12px 18px;
@@ -1488,7 +1641,7 @@ async function lancerGeneration() {
       margin-bottom: 20px;
       font-size: 0.85rem;
     }
-    .audio-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .audio-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .btn-listen-sync {
       background: var(--green-dim);
       color: var(--green-bright);
@@ -1519,39 +1672,6 @@ async function lancerGeneration() {
       outline: none;
     }
     .reciter-mini option { background: #0b1116; color: #fff; }
-    .volume-control-group {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: rgba(8, 13, 18, 0.75);
-      border: 1px solid var(--border-color);
-      padding: 4px 8px;
-      border-radius: 10px;
-    }
-    .vol-btn {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-main);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 3px 9px;
-      border-radius: 7px;
-      font-family: inherit;
-      font-size: 0.78rem;
-      font-weight: 800;
-      cursor: pointer;
-      transition: all 0.18s ease;
-    }
-    .vol-btn:hover {
-      background: var(--sky-accent);
-      color: #031521;
-      border-color: var(--sky-bright);
-    }
-    .vol-pct {
-      font-size: 0.76rem;
-      font-weight: 700;
-      color: var(--sky-bright);
-      min-width: 38px;
-      text-align: center;
-    }
     .auto-scroll-toggle {
       display: flex;
       align-items: center;
@@ -1587,7 +1707,6 @@ async function lancerGeneration() {
       text-shadow: 0 1px 4px rgba(0,0,0,0.8);
       line-height: 1.85;
       margin-bottom: 14px;
-      transition: font-size 0.2s ease;
     }
     .consensus-note {
       background: rgba(16, 185, 129, 0.10);
@@ -1655,7 +1774,7 @@ async function lancerGeneration() {
 
   <div class="interface-layer">
     <header class="top-nav">
-      <a href="index.html?v=28" class="home-btn" onclick="sauvegarderConfigCiel()">
+      <a href="index.html" class="home-btn" onclick="sauvegarderConfigCiel()">
         ${genererLogoInlineSVG('nav-logo-svg')}
         ‹ Retour aux 114 Sourates
       </a>
@@ -1720,15 +1839,6 @@ async function lancerGeneration() {
                 <option value="Husary_128kbps">Mahmoud Khalil Al-Hussary</option>
                 <option value="Hudhaify_128kbps">Ali Al-Hudhaify</option>
               </select>
-              <div class="volume-control-group" title="Régler le volume audio">
-                <button type="button" class="vol-btn" onclick="modifierVolume(-0.1)">🔉 -</button>
-                <span class="vol-pct" id="volPctLabel">100%</span>
-                <button type="button" class="vol-btn" onclick="modifierVolume(0.1)">🔊 +</button>
-              </div>
-              <div class="volume-control-group" title="Agrandir ou réduire la taille du texte">
-                <button type="button" class="vol-btn" onclick="modifierTailleTexte(-0.08)">A-</button>
-                <button type="button" class="vol-btn" onclick="modifierTailleTexte(0.08)">A+</button>
-              </div>
             </div>
             <label class="auto-scroll-toggle">
               <input type="checkbox" id="autoNextCheck" onchange="sauverAutoNext()">
@@ -1761,13 +1871,13 @@ async function lancerGeneration() {
     <a href="${vObj.lienSuivant}" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
   </nav>
 
-  <script src="${fichierDataJS}?v=28"></script>
+  <script src="${fichierDataJS}"></script>
   <script>
     const numSourateActuelle = ${numSourate};
     let numVersetActuel = ${numVerset};
     let codeAudio = "${vObj.codeAudio}";
     ${MOTEUR_SOLEIL_LUNE_V21_JS}
-    ${SCRIPT_NAVIGATION_CLASSIQUE_V28}
+    ${SCRIPT_NAVIGATION_CLASSIQUE_V29}
   </script>
 </body>
 </html>`;
@@ -1776,7 +1886,7 @@ async function lancerGeneration() {
     }
   }
 
-  console.log('\nMise à jour de la page d\'accueil (index.html) avec le Logo placé à gauche du bouton...');
+  console.log('\nMise à jour de la page d\'accueil (index.html) avec l\'icône PNG Safari iPhone...');
 
   const cartesSouratesJSON = JSON.stringify(sourates.map(s => {
     const estMecquoise = s.revelation_place === 'makkah';
@@ -1804,8 +1914,10 @@ async function lancerGeneration() {
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
-  <link rel="icon" type="image/svg+xml" href="logo-v28.svg?v=28">
-  <link rel="apple-touch-icon" href="logo-v28.svg?v=28">
+  <link rel="icon" type="image/svg+xml" href="/logo-v29.svg">
+  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
   <link rel="canonical" href="https://corantafsir.com/">
   <title>Le Noble Coran & Tafsīr — Traduction Muhammad Hamidullah (1977) & Exégèse Al-Mukhtasar</title>
   <meta name="description" content="Lisez et écoutez les 114 sourates du Noble Coran avec le texte arabe, la traduction originale de Muhammad Hamidullah (1977) et l'exégèse (Tafsīr) Al-Mukhtasar.">
@@ -1839,7 +1951,6 @@ async function lancerGeneration() {
 
     .wrapper { width: 100%; max-width: 1220px; margin: 0 auto; }
 
-    /* HERO COMPACT POUR GAGNER DE LA PLACE EN HAUTEUR */
     .hero {
       text-align: center;
       margin-bottom: 22px;
@@ -1905,7 +2016,6 @@ async function lancerGeneration() {
       100% { width: 310px; opacity: 1; background-position: 100% 50%; }
     }
 
-    /* BARRE DU BAS DU HERO : LOGO PLACÉ À GAUCHE DU BOUTON */
     .hero-bottom-bar {
       display: flex;
       align-items: center;
@@ -2283,7 +2393,7 @@ async function lancerGeneration() {
         if (parsed && parsed.s && parsed.v) {
           const btnResume = document.getElementById('resumeReadingBtn');
           if (btnResume) {
-            btnResume.href = "sourate-" + parsed.s + "-verset-" + parsed.v + ".html?v=28";
+            btnResume.href = "sourate-" + parsed.s + "-verset-" + parsed.v + ".html";
             btnResume.textContent = "📖 Reprendre : " + (parsed.nom || ("Sourate " + parsed.s)) + " (v." + parsed.v + ")";
             btnResume.style.display = "inline-flex";
           }
@@ -2310,7 +2420,7 @@ async function lancerGeneration() {
         const sTrouvee = sourates.find(item => item.id === numS);
         if (sTrouvee && numV >= 1 && numV <= sTrouvee.versets) {
           htmlCarteVersetDirect = \`
-          <a href="sourate-\${numS}-verset-\${numV}.html?v=28" class="card direct-verse-card" onclick="sauvegarderConfigCiel()">
+          <a href="sourate-\${numS}-verset-\${numV}.html" class="card direct-verse-card" onclick="sauvegarderConfigCiel()">
             <div class="card-left">
               <div class="num-badge">\${numS}:\${numV}</div>
               <div class="card-info">
@@ -2355,7 +2465,7 @@ async function lancerGeneration() {
         const versetCible = (modeTri === 'miracles' && s.hasMiracle) ? s.miracleVerset : 1;
 
         return \`
-        <a href="sourate-\${s.id}-verset-\${versetCible}.html?v=28" class="card" onclick="sauvegarderConfigCiel()">
+        <a href="sourate-\${s.id}-verset-\${versetCible}.html" class="card" onclick="sauvegarderConfigCiel()">
           <div class="card-left">
             <div class="num-badge">\${badgeNumero}</div>
             <div class="card-info">
@@ -2389,8 +2499,8 @@ async function lancerGeneration() {
   const robotsTXT = `User-agent: *\nAllow: /\nSitemap: https://corantafsir.com/sitemap.xml\n`;
   fs.writeFileSync(path.join(dossierSite, 'robots.txt'), robotsTXT, 'utf8');
 
-  console.log('\n✅ MISE À JOUR V28 TERMINÉE !');
-  console.log('👉 Logo placé à gauche du bouton + Reprendre ma lecture + Boutons A-/A+ + Recherche directe 2:255 !');
+  console.log('\n✅ MISE À JOUR V29 TERMINÉE !');
+  console.log('👉 Icône PNG Safari iPhone créée + Boutons baisser/augmenter retirés + Cache Cloudflare réactivé !');
 }
 
 lancerGeneration();

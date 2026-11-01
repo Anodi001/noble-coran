@@ -6,8 +6,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
-  <link rel="icon" type="image/svg+xml" href="logo-v28.svg?v=28">
-  <link rel="apple-touch-icon" href="logo-v28.svg?v=28">
+  <link rel="icon" type="image/svg+xml" href="/logo-v29.svg">
+  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
   <link rel="canonical" href="https://corantafsir.com/sourate-50-verset-42.html">
   <title>Sourate 50 verset 42 (Qaf) - Traduction Hamidullah 1977 & Tafsir</title>
   <meta name="description" content="Sourate 50 verset 42 (Qaf - Sourate Mecquoise) : Texte arabe, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
@@ -404,7 +406,6 @@
         0 0 55px rgba(255, 255, 255, 0.22);
       position: relative;
       z-index: 2;
-      transition: font-size 0.2s ease;
     }
 
     .french-glow-verse {
@@ -422,7 +423,6 @@
       z-index: 2;
       max-width: 92%;
       margin: 0 auto;
-      transition: font-size 0.2s ease;
     }
 
     .sync-progress-track {
@@ -446,7 +446,7 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
       background: var(--bg-elevated);
       border: 1px solid var(--border-color);
       padding: 12px 18px;
@@ -454,7 +454,7 @@
       margin-bottom: 20px;
       font-size: 0.85rem;
     }
-    .audio-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .audio-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .btn-listen-sync {
       background: var(--green-dim);
       color: var(--green-bright);
@@ -485,39 +485,6 @@
       outline: none;
     }
     .reciter-mini option { background: #0b1116; color: #fff; }
-    .volume-control-group {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: rgba(8, 13, 18, 0.75);
-      border: 1px solid var(--border-color);
-      padding: 4px 8px;
-      border-radius: 10px;
-    }
-    .vol-btn {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-main);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 3px 9px;
-      border-radius: 7px;
-      font-family: inherit;
-      font-size: 0.78rem;
-      font-weight: 800;
-      cursor: pointer;
-      transition: all 0.18s ease;
-    }
-    .vol-btn:hover {
-      background: var(--sky-accent);
-      color: #031521;
-      border-color: var(--sky-bright);
-    }
-    .vol-pct {
-      font-size: 0.76rem;
-      font-weight: 700;
-      color: var(--sky-bright);
-      min-width: 38px;
-      text-align: center;
-    }
     .auto-scroll-toggle {
       display: flex;
       align-items: center;
@@ -553,7 +520,6 @@
       text-shadow: 0 1px 4px rgba(0,0,0,0.8);
       line-height: 1.85;
       margin-bottom: 14px;
-      transition: font-size 0.2s ease;
     }
     .consensus-note {
       background: rgba(16, 185, 129, 0.10);
@@ -625,7 +591,7 @@
 
   <div class="interface-layer">
     <header class="top-nav">
-      <a href="index.html?v=28" class="home-btn" onclick="sauvegarderConfigCiel()">
+      <a href="index.html" class="home-btn" onclick="sauvegarderConfigCiel()">
         <svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Logo Le Noble Coran & Tafsir">
     <defs>
       <linearGradient id="bgGrad_nav-logo-svg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -704,15 +670,6 @@
                 <option value="Husary_128kbps">Mahmoud Khalil Al-Hussary</option>
                 <option value="Hudhaify_128kbps">Ali Al-Hudhaify</option>
               </select>
-              <div class="volume-control-group" title="Régler le volume audio">
-                <button type="button" class="vol-btn" onclick="modifierVolume(-0.1)">🔉 -</button>
-                <span class="vol-pct" id="volPctLabel">100%</span>
-                <button type="button" class="vol-btn" onclick="modifierVolume(0.1)">🔊 +</button>
-              </div>
-              <div class="volume-control-group" title="Agrandir ou réduire la taille du texte">
-                <button type="button" class="vol-btn" onclick="modifierTailleTexte(-0.08)">A-</button>
-                <button type="button" class="vol-btn" onclick="modifierTailleTexte(0.08)">A+</button>
-              </div>
             </div>
             <label class="auto-scroll-toggle">
               <input type="checkbox" id="autoNextCheck" onchange="sauverAutoNext()">
@@ -740,12 +697,12 @@
   </div>
 
   <nav class="bottom-nav">
-    <a href="sourate-50-verset-41.html?v=28" id="prevVerseLink" class="btn btn-prev" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">‹ Précédent</a>
+    <a href="sourate-50-verset-41.html" id="prevVerseLink" class="btn btn-prev" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">‹ Précédent</a>
     <span class="page-indicator" id="pageIndicatorEl">Verset 42 / 45</span>
-    <a href="sourate-50-verset-43.html?v=28" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
+    <a href="sourate-50-verset-43.html" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
   </nav>
 
-  <script src="data-sourate-50.js?v=28"></script>
+  <script src="data-sourate-50.js"></script>
   <script>
     const numSourateActuelle = 50;
     let numVersetActuel = 42;
@@ -915,10 +872,7 @@
   const autoCheck = document.getElementById('autoNextCheck');
   const stage = document.getElementById('verseStage');
   const progressBar = document.getElementById('syncProgressBar');
-  const volLabel = document.getElementById('volPctLabel');
   let animId = null;
-  let currentVolume = 1.0;
-  let textZoomScale = 1.0;
 
   const RECITATEURS_VALIDES = [
     'Yasser_Ad-Dussary_128kbps',
@@ -938,19 +892,12 @@
   try {
     localStorage.removeItem('autoNext');
     localStorage.removeItem('autoNext_v2');
+    localStorage.removeItem('text_zoom_v28');
     const savedReciter = localStorage.getItem('reciter');
     if (savedReciter && RECITATEURS_VALIDES.indexOf(savedReciter) !== -1) {
       select.value = savedReciter;
     } else {
       select.value = 'Yasser_Ad-Dussary_128kbps';
-    }
-    const savedVol = localStorage.getItem('audio_volume_v25');
-    if (savedVol !== null && !isNaN(Number(savedVol))) {
-      currentVolume = Math.max(0.1, Math.min(1.0, Number(savedVol)));
-    }
-    const savedZoom = localStorage.getItem('text_zoom_v28');
-    if (savedZoom !== null && !isNaN(Number(savedZoom))) {
-      textZoomScale = Math.max(0.85, Math.min(1.35, Number(savedZoom)));
     }
   } catch (e) {}
 
@@ -965,44 +912,6 @@
     } catch (e) {}
   }
   memoriserDernierVersetLu(numSourateActuelle, numVersetActuel);
-
-  function appliquerZoomTexte() {
-    const arEl = document.getElementById('arabicVerseEl');
-    const frEl = document.getElementById('frenchVerseEl');
-    const tafEl = document.getElementById('mainExplanationEl');
-    if (arEl) arEl.style.fontSize = (2.95 * textZoomScale).toFixed(2) + "rem";
-    if (frEl) frEl.style.fontSize = (1.55 * textZoomScale).toFixed(2) + "rem";
-    if (tafEl) tafEl.style.fontSize = (1.06 * textZoomScale).toFixed(2) + "rem";
-    try {
-      localStorage.setItem('text_zoom_v28', String(textZoomScale));
-    } catch (e) {}
-  }
-  appliquerZoomTexte();
-
-  function modifierTailleTexte(delta) {
-    textZoomScale = Math.round((textZoomScale + delta) * 100) / 100;
-    if (textZoomScale < 0.85) textZoomScale = 0.85;
-    if (textZoomScale > 1.35) textZoomScale = 1.35;
-    appliquerZoomTexte();
-  }
-
-  function appliquerVolume() {
-    audio.volume = currentVolume;
-    if (volLabel) {
-      volLabel.textContent = Math.round(currentVolume * 100) + "%";
-    }
-    try {
-      localStorage.setItem('audio_volume_v25', String(currentVolume));
-    } catch (e) {}
-  }
-  appliquerVolume();
-
-  function modifierVolume(delta) {
-    currentVolume = Math.round((currentVolume + delta) * 10) / 10;
-    if (currentVolume < 0.1) currentVolume = 0.1;
-    if (currentVolume > 1.0) currentVolume = 1.0;
-    appliquerVolume();
-  }
 
   function prechargerVersetSuivant() {
     if (!preloadAudio) return;
@@ -1022,7 +931,6 @@
     if (audio.src !== nouvelleUrl) {
       audio.src = nouvelleUrl;
     }
-    appliquerVolume();
     prechargerVersetSuivant();
   }
   majSourceAudio();
@@ -1048,7 +956,6 @@
 
   function toggleAudioSync() {
     if (audio.paused) {
-      appliquerVolume();
       stage.classList.add('playing');
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
@@ -1112,14 +1019,14 @@
   function allerAuVersetSansRecharger(numVersetCible, lancerAudioAuto) {
     if (!window.SOURATE_DATA || !window.SOURATE_DATA.versets) {
       sauvegarderConfigCiel();
-      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html?v=28";
+      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html";
       return;
     }
 
     const vData = window.SOURATE_DATA.versets[numVersetCible - 1];
     if (!vData) {
       sauvegarderConfigCiel();
-      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html?v=28";
+      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html";
       return;
     }
 
@@ -1169,7 +1076,6 @@
       stage.classList.add('playing');
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
-      appliquerVolume();
       audio.play().then(function() {
         animId = requestAnimationFrame(animerBarre);
       }).catch(function() {
@@ -1188,7 +1094,7 @@
     }
     sauvegarderConfigCiel();
     if (autoAudio) {
-      window.location.href = cleanLien + "?v=28&autoplay=1";
+      window.location.href = cleanLien + "?autoplay=1";
       return false;
     }
     return true;
@@ -1211,7 +1117,6 @@
   if (window.location.search.indexOf('autoplay=1') !== -1) {
     autoCheck.checked = true;
     stage.classList.add('playing');
-    appliquerVolume();
     audio.play().then(function() {
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');

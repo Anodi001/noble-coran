@@ -6,8 +6,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
-  <link rel="icon" type="image/svg+xml" href="logo-v28.svg?v=28">
-  <link rel="apple-touch-icon" href="logo-v28.svg?v=28">
+  <link rel="icon" type="image/svg+xml" href="/logo-v29.svg">
+  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
   <link rel="canonical" href="https://corantafsir.com/">
   <title>Le Noble Coran & Tafsīr — Traduction Muhammad Hamidullah (1977) & Exégèse Al-Mukhtasar</title>
   <meta name="description" content="Lisez et écoutez les 114 sourates du Noble Coran avec le texte arabe, la traduction originale de Muhammad Hamidullah (1977) et l'exégèse (Tafsīr) Al-Mukhtasar.">
@@ -256,7 +258,6 @@
 
     .wrapper { width: 100%; max-width: 1220px; margin: 0 auto; }
 
-    /* HERO COMPACT POUR GAGNER DE LA PLACE EN HAUTEUR */
     .hero {
       text-align: center;
       margin-bottom: 22px;
@@ -322,7 +323,6 @@
       100% { width: 310px; opacity: 1; background-position: 100% 50%; }
     }
 
-    /* BARRE DU BAS DU HERO : LOGO PLACÉ À GAUCHE DU BOUTON */
     .hero-bottom-bar {
       display: flex;
       align-items: center;
@@ -738,7 +738,7 @@
         if (parsed && parsed.s && parsed.v) {
           const btnResume = document.getElementById('resumeReadingBtn');
           if (btnResume) {
-            btnResume.href = "sourate-" + parsed.s + "-verset-" + parsed.v + ".html?v=28";
+            btnResume.href = "sourate-" + parsed.s + "-verset-" + parsed.v + ".html";
             btnResume.textContent = "📖 Reprendre : " + (parsed.nom || ("Sourate " + parsed.s)) + " (v." + parsed.v + ")";
             btnResume.style.display = "inline-flex";
           }
@@ -765,7 +765,7 @@
         const sTrouvee = sourates.find(item => item.id === numS);
         if (sTrouvee && numV >= 1 && numV <= sTrouvee.versets) {
           htmlCarteVersetDirect = `
-          <a href="sourate-${numS}-verset-${numV}.html?v=28" class="card direct-verse-card" onclick="sauvegarderConfigCiel()">
+          <a href="sourate-${numS}-verset-${numV}.html" class="card direct-verse-card" onclick="sauvegarderConfigCiel()">
             <div class="card-left">
               <div class="num-badge">${numS}:${numV}</div>
               <div class="card-info">
@@ -810,7 +810,7 @@
         const versetCible = (modeTri === 'miracles' && s.hasMiracle) ? s.miracleVerset : 1;
 
         return `
-        <a href="sourate-${s.id}-verset-${versetCible}.html?v=28" class="card" onclick="sauvegarderConfigCiel()">
+        <a href="sourate-${s.id}-verset-${versetCible}.html" class="card" onclick="sauvegarderConfigCiel()">
           <div class="card-left">
             <div class="num-badge">${badgeNumero}</div>
             <div class="card-info">
