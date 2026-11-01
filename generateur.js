@@ -90,12 +90,13 @@ const MIRACLES = {
 };
 
 // ============================================================================
-// SYNTHÈSES CLASSIQUES (AT-TABARĪ, AL-QURTUBĪ, IBN KATHĪR, LE LAURIER)
+// SYNTHÈSES CLASSIQUES COURTES (AT-TABARĪ, AL-QURTUBĪ, IBN KATHĪR, AL-JALĀLAYN)
 // ============================================================================
 const SYNTHESE_LAURIER_EXEGESE = {
   "1:1": "Étymologie & Exégèse : Le nom « Allāh » est le nom propre de l'Essence divine réunissant tous les attributs de perfection. « Ar-Rahmān » (le Tout-Miséricordieux) désigne Celui dont la miséricorde englobe toutes les créatures dans ce monde, tandis que « Ar-Rahīm » (le Très-Miséricordieux) désigne Celui qui réserve Sa miséricorde particulière aux croyants dans l'Au-delà.",
   "1:2": "Exégèse classique (« Rabb al-‘Ālamīn » — Seigneur des mondes) : Les exégètes (At-Tabarī, Al-Qurtubī, Ibn Kathīr) expliquent qu'« Al-‘Ālamīn » est le pluriel de « ‘Ālam » (monde) et désigne l'ensemble des créatures d'ici-bas et de l'Au-delà (le monde des hommes, le monde des djinns, le monde des anges). C'est pourquoi la traduction fidèle de Muhammad Hamidullah (édition originale 1977) traduit ce terme par « Seigneur des mondes » et non « de l'univers ».",
   "2:1": "Ces lettres isolées (Alif, Lām, Mīm) placées en ouverture de vingt-neuf sourates appartiennent au secret d'Allāh et démontrent le miracle inimitable du Coran : bien qu'il soit composé des mêmes lettres arabes que celles utilisées par les hommes dans leur langage quotidien, nul ne peut produire un livre semblable.",
+  "2:19": "Synthèse d'Ibn ‘Abbās & d'Al-Jalālayn (Sens de la parabole en bref) : La « pluie abondante » représente le Coran ; les « ténèbres » représentent les doutes des hypocrites ; le « tonnerre » correspond aux menaces et avertissements divins qui les effraient ; et les « éclairs » désignent la clarté de la Vérité coranique qui dévoile leur hypocrisie.",
   "2:22": "Tafsīr d'At-Tabarī & d'Al-Qurtubī : Dans son Jāmi‘ Al-Bayān, l'imam At-Tabarī rapporte d'après Ibn ‘Abbās, Ibn Mas‘ūd et Mujāhid que « Firāshan » signifie qu'Allāh a fait de la Terre un lit étendu, un tapis plat et stable sur lequel les hommes marchent, s'installent et dorment. L'imam Al-Qurtubī ajoute que le ciel a été érigé au-dessus d'elle comme un « Binā' » (un dôme et un toit élevé dressé au-dessus de la Terre).",
   "2:255": "Verset du Trône (Āyat Al-Kursī) : Il s'agit du plus grand verset du Coran. Le terme « Al-Hayy » désigne le Vivant par essence dont la vie est éternelle, et « Al-Qayyūm » désigne Celui qui subsiste par Lui-même et par qui subsistent toutes les créatures des cieux et de la terre.",
   "6:1": "Étymologie & Exégèse : Allāh emploie le verbe « Khalaqa » (créer à partir du néant et déterminer avec mesure) pour les cieux et la terre, et le verbe « Ja‘ala » (établir, disposer) pour les ténèbres et la lumière. Les ténèbres sont mentionnées au pluriel (Zulumāt) car les voies de l'égarement sont multiples, tandis que la lumière (Nūr) est mentionnée au singulier car la voie de la Vérité est unique.",
@@ -133,7 +134,6 @@ const VERSIONS_ORIGINALES_HAMIDULLAH_1977 = {
 // GÉNÉRATION NATIVE DU PNG OPAQUE 24-BITS (NORME APPLE SAFARI IPHONE)
 // ============================================================================
 function creerAppleTouchIconPNG(taille = 180) {
-  // Format RGB 24-bits opaque (3 octets par pixel) exigé par iOS SpringBoard
   const buf = Buffer.alloc(taille * (taille * 3 + 1));
 
   function distSegment(px, py, ax, ay, bx, by) {
@@ -163,19 +163,17 @@ function creerAppleTouchIconPNG(taille = 180) {
 
   for (let py = 0; py < taille; py++) {
     const rowStart = py * (taille * 3 + 1);
-    buf[rowStart] = 0; // Filtre PNG None
+    buf[rowStart] = 0;
     const y = (py / taille) * 120;
 
     for (let px = 0; px < taille; px++) {
       const x = (px / taille) * 120;
       const tGrad = (x + y) / 240;
 
-      // Fond sombre profond (#07111a -> #020406)
       let r = Math.round(7 * (1 - tGrad) + 2 * tGrad);
       let g = Math.round(17 * (1 - tGrad) + 4 * tGrad);
       let b = Math.round(26 * (1 - tGrad) + 6 * tGrad);
 
-      // Halo lumineux central bleu/émeraude derrière le Coran et l'étoile
       const dCenter = Math.hypot(x - 60, y - 62);
       if (dCenter < 52) {
         const glow = Math.pow(1 - dCenter / 52, 2.2) * 0.42;
@@ -184,7 +182,6 @@ function creerAppleTouchIconPNG(taille = 180) {
         b = Math.min(255, Math.round(b + 248 * glow));
       }
 
-      // Dégradé principal (Blanc -> Bleu céleste -> Émeraude)
       let gradR = 56, gradG = 189, gradB = 248;
       if (tGrad < 0.45) {
         const k = tGrad / 0.45;
@@ -198,7 +195,6 @@ function creerAppleTouchIconPNG(taille = 180) {
         gradB = Math.round(252 * (1 - k) + 153 * k);
       }
 
-      // Distance au contour du livre ouvert
       let dBook = 999;
       if (x >= 24 && x <= 96) {
         const dx = Math.abs(x - 60);
@@ -219,7 +215,6 @@ function creerAppleTouchIconPNG(taille = 180) {
         distSegment(x, y, 60, 59, 60, 93)
       );
 
-      // Lignes des pages gauche et droite
       let dLinesLeft = 999, dLinesRight = 999;
       if (x >= 32 && x <= 55) {
         const k = (x - 32) / 23;
@@ -234,7 +229,6 @@ function creerAppleTouchIconPNG(taille = 180) {
         dLinesRight = Math.min(Math.abs(y - yR1), Math.abs(y - yR2));
       }
 
-      // Étoile supérieure
       const inStar = dansPolygone(x, y, starPts);
       let dStarEdge = 999;
       for (let i = 0; i < starPts.length; i++) {
@@ -242,7 +236,6 @@ function creerAppleTouchIconPNG(taille = 180) {
         dStarEdge = Math.min(dStarEdge, distSegment(x, y, p1[0], p1[1], p2[0], p2[1]));
       }
 
-      // Halo externe autour des traits du livre et de l'étoile
       const dMinGlow = Math.min(dBook, inStar ? 0 : dStarEdge);
       if (dMinGlow < 6.5) {
         const gFactor = Math.pow(1 - dMinGlow / 6.5, 2) * 0.6;
@@ -251,7 +244,6 @@ function creerAppleTouchIconPNG(taille = 180) {
         b = Math.min(255, Math.round(b + gradB * gFactor));
       }
 
-      // Dessin net du livre et de l'étoile
       if (inStar || dStarEdge < 1.1 || dBook < 2.3) {
         r = gradR; g = gradG; b = gradB;
       } else if (dLinesLeft < 1.35) {
@@ -291,8 +283,8 @@ function creerAppleTouchIconPNG(taille = 180) {
   const ihdr = Buffer.alloc(13);
   ihdr.writeUInt32BE(taille, 0);
   ihdr.writeUInt32BE(taille, 4);
-  ihdr[8] = 8; // 8 bits
-  ihdr[9] = 2; // RGB opaque (Color Type 2)
+  ihdr[8] = 8;
+  ihdr[9] = 2;
   const idat = zlib.deflateSync(buf, { level: 9 });
   return Buffer.concat([
     sig,
@@ -481,6 +473,16 @@ function nettoyerTexteIntegralSansFaute(texteBrut) {
 
   t = t.replace(/\s*\(\s*\)/g, '');
   t = t.replace(/\s+/g, ' ').replace(/\s+([,.;:!?])/g, '$1').trim();
+
+  // Mise en valeur claire de la première phrase directrice lorsque le Tafsīr comporte plusieurs phrases
+  const idxPoint = t.search(/[.!?]\s+[A-ZÉÈÊÀÂÎÔÛÇ]/);
+  if (idxPoint > 25 && idxPoint < 260 && !t.includes('<br>')) {
+    const phraseCle = t.slice(0, idxPoint + 1);
+    const suite = t.slice(idxPoint + 1).trim();
+    if (suite.length > 20) {
+      t = `<strong style="color:#ffffff;">${phraseCle}</strong> ${suite}`;
+    }
+  }
 
   return t;
 }
@@ -690,9 +692,9 @@ const MOTEUR_SOLEIL_LUNE_V21_JS = `
 `;
 
 // ============================================================================
-// NAVIGATION V30 : BOUTON REJOUER (↺) + BOUTON AUTO STYLÉ + AUDIO 100%
+// NAVIGATION V31 : BADGE À DROITE + BOUTON REJOUER (↺) + SWIPE TACTILE MOBILE
 // ============================================================================
-const SCRIPT_NAVIGATION_CLASSIQUE_V30 = `
+const SCRIPT_NAVIGATION_CLASSIQUE_V31 = `
   const audio = document.getElementById('ayahAudio');
   const preloadAudio = document.getElementById('preloadNextAudio');
   const playBtn = document.getElementById('playSyncBtn');
@@ -714,7 +716,6 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V30 = `
     'Hudhaify_128kbps'
   ];
 
-  // Toujours décoché à l'ouverture et son remis à 100%
   autoCheck.checked = false;
   audio.volume = 1.0;
 
@@ -803,7 +804,6 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V30 = `
     }
   }
 
-  // Remettre le son du verset depuis le début (0:00) et relancer immédiatement
   function rejouerAudioVerset() {
     if (animId) cancelAnimationFrame(animId);
     audio.pause();
@@ -956,6 +956,34 @@ const SCRIPT_NAVIGATION_CLASSIQUE_V30 = `
       allerAuVersetSansRecharger(e.state.verset, false);
     }
   });
+
+  // Navigation tactile (Swipe gauche / droite sur téléphone) sur la carte du verset
+  let touchStartX = 0;
+  let touchStartY = 0;
+  if (stage) {
+    stage.addEventListener('touchstart', function(e) {
+      if (e.changedTouches && e.changedTouches[0]) {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+      }
+    }, { passive: true });
+
+    stage.addEventListener('touchend', function(e) {
+      if (e.changedTouches && e.changedTouches[0]) {
+        const dx = e.changedTouches[0].screenX - touchStartX;
+        const dy = e.changedTouches[0].screenY - touchStartY;
+        if (Math.abs(dx) > 65 && Math.abs(dx) > Math.abs(dy) * 1.8) {
+          if (dx < 0) {
+            const hrefSuiv = document.getElementById('nextVerseLink').getAttribute('href');
+            naviguerVerset(null, hrefSuiv, false);
+          } else {
+            const hrefPrec = document.getElementById('prevVerseLink').getAttribute('href');
+            naviguerVerset(null, hrefPrec, false);
+          }
+        }
+      }
+    }, { passive: true });
+  }
 
   audio.onended = function() {
     arreterVisuel();
@@ -1221,7 +1249,7 @@ const HTML_CIEL_ETOILE_SOURATE = `
 
 async function lancerGeneration() {
   console.log('================================================================================');
-  console.log('🚀 GÉNÉRATEUR V30 : BOUTON REJOUER (↺) + SWITCH AUTO STYLÉ + ICÔNE SAFARI BASE64');
+  console.log('🚀 GÉNÉRATEUR V31 : NUMÉRO SOURATE:VERSET À DROITE + TAFSĪR LISIBLE + SWIPE IPHONE');
   console.log('================================================================================\n');
 
   let extraitsLaurierPerso = {};
@@ -1254,7 +1282,6 @@ async function lancerGeneration() {
     fs.mkdirSync(dossierSite);
   }
 
-  // Enregistrement des logos SVG + génération du vrai fichier PNG RGB 24-bits pour Safari iPhone
   fs.writeFileSync(path.join(dossierSite, 'favicon.svg'), LOGO_FAVICON_SVG, 'utf8');
   fs.writeFileSync(path.join(dossierSite, 'logo-v30.svg'), LOGO_FAVICON_SVG, 'utf8');
 
@@ -1277,8 +1304,8 @@ async function lancerGeneration() {
     background_color: "#020406",
     theme_color: "#020406",
     icons: [
-      { src: "/apple-touch-icon.png?v=30", sizes: "180x180", type: "image/png" },
-      { src: "/icon-512.png?v=30", sizes: "512x512", type: "image/png", purpose: "any maskable" }
+      { src: "/apple-touch-icon.png?v=31", sizes: "180x180", type: "image/png" },
+      { src: "/icon-512.png?v=31", sizes: "512x512", type: "image/png", purpose: "any maskable" }
     ]
   };
   fs.writeFileSync(path.join(dossierSite, 'manifest.json'), JSON.stringify(manifestJSON, null, 2), 'utf8');
@@ -1313,7 +1340,7 @@ async function lancerGeneration() {
     const nbVersets = sourate.verses_count;
     const infoMiracleSourate = souratesAvecMiracleMap[numSourate] || null;
 
-    console.log(`[${numSourate}/114] Génération V30 de Sourate ${numSourate} - ${nomSourate}...`);
+    console.log(`[${numSourate}/114] Génération V31 de Sourate ${numSourate} - ${nomSourate}...`);
 
     const [tradData, tafsirData] = await Promise.all([
       telechargerJSON(`https://quranenc.com/api/v1/translation/sura/french_rashid/${numSourate}`),
@@ -1429,11 +1456,11 @@ async function lancerGeneration() {
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=30">
-  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/apple-touch-icon-precomposed.png?v=30">
-  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png?v=30">
-  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=30">
-  <link rel="manifest" href="/manifest.json?v=30">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=31">
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/apple-touch-icon-precomposed.png?v=31">
+  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png?v=31">
+  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=31">
+  <link rel="manifest" href="/manifest.json?v=31">
   <link rel="canonical" href="https://corantafsir.com/${nomFichier}">
   <title>Sourate ${numSourate} verset ${numVerset} (${nomSourate}) - Traduction Hamidullah 1977 & Tafsir</title>
   <meta name="description" content="Sourate ${numSourate} verset ${numVerset} (${nomSourate} - ${typeSourateLabel}) : Texte arabe, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
@@ -1552,31 +1579,59 @@ async function lancerGeneration() {
       justify-content: flex-start;
       box-shadow: 0 20px 50px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.12);
     }
+
+    /* EN-TÊTE OPTIMISÉ : TITRE ALIGNÉ À GAUCHE + BADGE NUMÉRO (2 : 19) PLACÉ À DROITE */
     .main-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
       padding-bottom: 16px;
       border-bottom: 1px solid var(--border-color);
       margin-bottom: 20px;
     }
-    .title-group { display: flex; align-items: center; gap: 15px; }
+    .title-group {
+      flex: 1;
+      min-width: 0;
+    }
+    .title-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+    .title-top-row h1 {
+      font-size: 1.28rem;
+      color: #fff;
+      font-weight: 800;
+      line-height: 1.35;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
     .badge-num {
       background: var(--green-dim);
       color: var(--green-bright);
-      border: 1px solid rgba(52, 211, 153, 0.35);
+      border: 1px solid rgba(52, 211, 153, 0.38);
       font-weight: 800;
-      font-size: 1rem;
-      padding: 9px 15px;
-      border-radius: 12px;
+      font-size: 0.92rem;
+      padding: 5px 13px;
+      border-radius: 10px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.15);
     }
-    .title-group h1 { font-size: 1.28rem; color: #fff; font-weight: 800; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
-    .title-group p { color: var(--text-muted); font-size: 0.84rem; }
+    .title-group p {
+      color: var(--text-muted);
+      font-size: 0.84rem;
+      line-height: 1.5;
+    }
     .arabic-surah {
       font-family: 'Scheherazade New', 'Amiri', serif;
       font-size: 2.2rem;
       color: #fff;
       text-shadow: 0 0 16px rgba(255,255,255,0.6);
+      flex-shrink: 0;
     }
 
     .verse-stage {
@@ -1682,7 +1737,6 @@ async function lancerGeneration() {
       box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
     }
 
-    /* BOUTON REJOUER LE SON (↺) */
     .btn-replay-sync {
       background: rgba(56, 189, 248, 0.14);
       color: var(--sky-bright);
@@ -1719,7 +1773,6 @@ async function lancerGeneration() {
     }
     .reciter-mini option { background: #0b1116; color: #fff; }
 
-    /* INTERRUPTEUR AUTOMATIQUE STYLÉ (PILL SWITCH LUMINEUX) */
     .auto-scroll-toggle {
       display: inline-flex;
       align-items: center;
@@ -1800,7 +1853,7 @@ async function lancerGeneration() {
     }
     .main-explanation {
       font-size: 1.06rem;
-      color: #ffffff;
+      color: #e2e8f0;
       text-shadow: 0 1px 4px rgba(0,0,0,0.8);
       line-height: 1.85;
       margin-bottom: 14px;
@@ -1857,6 +1910,13 @@ async function lancerGeneration() {
     @media (max-width: 768px) {
       body { padding: 12px 10px 85px 10px; }
       .panel { padding: 20px 15px; min-height: calc(100vh - 145px); }
+      .title-top-row {
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 10px;
+      }
+      .title-top-row h1 { font-size: 1.08rem; }
+      .badge-num { font-size: 0.84rem; padding: 4px 10px; }
       .verse-stage { padding: 36px 18px 32px 18px; }
       .arabic-glow-verse { font-size: 2.3rem; }
       .french-glow-verse { font-size: 1.3rem; }
@@ -1890,11 +1950,11 @@ async function lancerGeneration() {
         <div style="display: flex; flex-direction: column; flex: 1;">
           <div class="main-header">
             <div class="title-group">
-              <div class="badge-num" id="badgeNumEl">${numSourate} : ${numVerset}</div>
-              <div>
+              <div class="title-top-row">
                 <h1 id="mainTitleEl">Sourate ${nomSourate} (${nomFr}) — Verset ${numVerset}</h1>
-                <p>${typeSourateLabel} (${lieu}) • Traduction Muhammad Hamidullah (1977) & Exégèse</p>
+                <div class="badge-num" id="badgeNumEl">${numSourate} : ${numVerset}</div>
               </div>
+              <p>${typeSourateLabel} (${lieu}) • Traduction Muhammad Hamidullah (1977) & Exégèse</p>
             </div>
             <div class="arabic-surah">${nomArabe}</div>
           </div>
@@ -1970,13 +2030,13 @@ async function lancerGeneration() {
     <a href="${vObj.lienSuivant}" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
   </nav>
 
-  <script src="${fichierDataJS}?v=30"></script>
+  <script src="${fichierDataJS}?v=31"></script>
   <script>
     const numSourateActuelle = ${numSourate};
     let numVersetActuel = ${numVerset};
     let codeAudio = "${vObj.codeAudio}";
     ${MOTEUR_SOLEIL_LUNE_V21_JS}
-    ${SCRIPT_NAVIGATION_CLASSIQUE_V30}
+    ${SCRIPT_NAVIGATION_CLASSIQUE_V31}
   </script>
 </body>
 </html>`;
@@ -1985,7 +2045,7 @@ async function lancerGeneration() {
     }
   }
 
-  console.log('\nMise à jour de la page d\'accueil (index.html) avec l\'icône PNG intégrée en Base64...');
+  console.log('\nMise à jour de la page d\'accueil (index.html)...');
 
   const cartesSouratesJSON = JSON.stringify(sourates.map(s => {
     const estMecquoise = s.revelation_place === 'makkah';
@@ -2015,9 +2075,9 @@ async function lancerGeneration() {
   <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
   <link rel="apple-touch-icon" sizes="180x180" href="${appleIconDataUri}">
   <link rel="apple-touch-icon-precomposed" sizes="180x180" href="${appleIconDataUri}">
-  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png?v=30">
-  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=30">
-  <link rel="manifest" href="/manifest.json?v=30">
+  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png?v=31">
+  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=31">
+  <link rel="manifest" href="/manifest.json?v=31">
   <link rel="canonical" href="https://corantafsir.com/">
   <title>Le Noble Coran & Tafsīr — Traduction Muhammad Hamidullah (1977) & Exégèse Al-Mukhtasar</title>
   <meta name="description" content="Lisez et écoutez les 114 sourates du Noble Coran avec le texte arabe, la traduction originale de Muhammad Hamidullah (1977) et l'exégèse (Tafsīr) Al-Mukhtasar.">
@@ -2599,8 +2659,8 @@ async function lancerGeneration() {
   const robotsTXT = `User-agent: *\nAllow: /\nSitemap: https://corantafsir.com/sitemap.xml\n`;
   fs.writeFileSync(path.join(dossierSite, 'robots.txt'), robotsTXT, 'utf8');
 
-  console.log('\n✅ MISE À JOUR V30 TERMINÉE !');
-  console.log('👉 Bouton Rejouer (↺) ajouté + Switch Automatique stylé + Icône Safari intégrée en Base64 !');
+  console.log('\n✅ MISE À JOUR V31 TERMINÉE !');
+  console.log('👉 Badge numéro (2 : 19) déplacé à droite + Tafsīr mis en valeur + Swipe tactile mobile activé !');
 }
 
 lancerGeneration();

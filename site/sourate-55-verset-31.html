@@ -6,11 +6,11 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=30">
-  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/apple-touch-icon-precomposed.png?v=30">
-  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png?v=30">
-  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=30">
-  <link rel="manifest" href="/manifest.json?v=30">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=31">
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/apple-touch-icon-precomposed.png?v=31">
+  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png?v=31">
+  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=31">
+  <link rel="manifest" href="/manifest.json?v=31">
   <link rel="canonical" href="https://corantafsir.com/sourate-55-verset-31.html">
   <title>Sourate 55 verset 31 (Ar-Rahman) - Traduction Hamidullah 1977 & Tafsir</title>
   <meta name="description" content="Sourate 55 verset 31 (Ar-Rahman - Sourate Médinoise) : Texte arabe, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
@@ -344,31 +344,59 @@
       justify-content: flex-start;
       box-shadow: 0 20px 50px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.12);
     }
+
+    /* EN-TÊTE OPTIMISÉ : TITRE ALIGNÉ À GAUCHE + BADGE NUMÉRO (2 : 19) PLACÉ À DROITE */
     .main-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
       padding-bottom: 16px;
       border-bottom: 1px solid var(--border-color);
       margin-bottom: 20px;
     }
-    .title-group { display: flex; align-items: center; gap: 15px; }
+    .title-group {
+      flex: 1;
+      min-width: 0;
+    }
+    .title-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+    .title-top-row h1 {
+      font-size: 1.28rem;
+      color: #fff;
+      font-weight: 800;
+      line-height: 1.35;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
     .badge-num {
       background: var(--green-dim);
       color: var(--green-bright);
-      border: 1px solid rgba(52, 211, 153, 0.35);
+      border: 1px solid rgba(52, 211, 153, 0.38);
       font-weight: 800;
-      font-size: 1rem;
-      padding: 9px 15px;
-      border-radius: 12px;
+      font-size: 0.92rem;
+      padding: 5px 13px;
+      border-radius: 10px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.15);
     }
-    .title-group h1 { font-size: 1.28rem; color: #fff; font-weight: 800; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
-    .title-group p { color: var(--text-muted); font-size: 0.84rem; }
+    .title-group p {
+      color: var(--text-muted);
+      font-size: 0.84rem;
+      line-height: 1.5;
+    }
     .arabic-surah {
       font-family: 'Scheherazade New', 'Amiri', serif;
       font-size: 2.2rem;
       color: #fff;
       text-shadow: 0 0 16px rgba(255,255,255,0.6);
+      flex-shrink: 0;
     }
 
     .verse-stage {
@@ -474,7 +502,6 @@
       box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
     }
 
-    /* BOUTON REJOUER LE SON (↺) */
     .btn-replay-sync {
       background: rgba(56, 189, 248, 0.14);
       color: var(--sky-bright);
@@ -511,7 +538,6 @@
     }
     .reciter-mini option { background: #0b1116; color: #fff; }
 
-    /* INTERRUPTEUR AUTOMATIQUE STYLÉ (PILL SWITCH LUMINEUX) */
     .auto-scroll-toggle {
       display: inline-flex;
       align-items: center;
@@ -592,7 +618,7 @@
     }
     .main-explanation {
       font-size: 1.06rem;
-      color: #ffffff;
+      color: #e2e8f0;
       text-shadow: 0 1px 4px rgba(0,0,0,0.8);
       line-height: 1.85;
       margin-bottom: 14px;
@@ -649,6 +675,13 @@
     @media (max-width: 768px) {
       body { padding: 12px 10px 85px 10px; }
       .panel { padding: 20px 15px; min-height: calc(100vh - 145px); }
+      .title-top-row {
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 10px;
+      }
+      .title-top-row h1 { font-size: 1.08rem; }
+      .badge-num { font-size: 0.84rem; padding: 4px 10px; }
       .verse-stage { padding: 36px 18px 32px 18px; }
       .arabic-glow-verse { font-size: 2.3rem; }
       .french-glow-verse { font-size: 1.3rem; }
@@ -711,11 +744,11 @@
         <div style="display: flex; flex-direction: column; flex: 1;">
           <div class="main-header">
             <div class="title-group">
-              <div class="badge-num" id="badgeNumEl">55 : 31</div>
-              <div>
+              <div class="title-top-row">
                 <h1 id="mainTitleEl">Sourate Ar-Rahman (Le Tout Miséricordieux) — Verset 31</h1>
-                <p>Sourate Médinoise (Médine) • Traduction Muhammad Hamidullah (1977) & Exégèse</p>
+                <div class="badge-num" id="badgeNumEl">55 : 31</div>
               </div>
+              <p>Sourate Médinoise (Médine) • Traduction Muhammad Hamidullah (1977) & Exégèse</p>
             </div>
             <div class="arabic-surah">الرحمن</div>
           </div>
@@ -780,7 +813,7 @@
     <a href="sourate-55-verset-32.html" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
   </nav>
 
-  <script src="data-sourate-55.js?v=30"></script>
+  <script src="data-sourate-55.js?v=31"></script>
   <script>
     const numSourateActuelle = 55;
     let numVersetActuel = 31;
@@ -964,7 +997,6 @@
     'Hudhaify_128kbps'
   ];
 
-  // Toujours décoché à l'ouverture et son remis à 100%
   autoCheck.checked = false;
   audio.volume = 1.0;
 
@@ -1053,7 +1085,6 @@
     }
   }
 
-  // Remettre le son du verset depuis le début (0:00) et relancer immédiatement
   function rejouerAudioVerset() {
     if (animId) cancelAnimationFrame(animId);
     audio.pause();
@@ -1206,6 +1237,34 @@
       allerAuVersetSansRecharger(e.state.verset, false);
     }
   });
+
+  // Navigation tactile (Swipe gauche / droite sur téléphone) sur la carte du verset
+  let touchStartX = 0;
+  let touchStartY = 0;
+  if (stage) {
+    stage.addEventListener('touchstart', function(e) {
+      if (e.changedTouches && e.changedTouches[0]) {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+      }
+    }, { passive: true });
+
+    stage.addEventListener('touchend', function(e) {
+      if (e.changedTouches && e.changedTouches[0]) {
+        const dx = e.changedTouches[0].screenX - touchStartX;
+        const dy = e.changedTouches[0].screenY - touchStartY;
+        if (Math.abs(dx) > 65 && Math.abs(dx) > Math.abs(dy) * 1.8) {
+          if (dx < 0) {
+            const hrefSuiv = document.getElementById('nextVerseLink').getAttribute('href');
+            naviguerVerset(null, hrefSuiv, false);
+          } else {
+            const hrefPrec = document.getElementById('prevVerseLink').getAttribute('href');
+            naviguerVerset(null, hrefPrec, false);
+          }
+        }
+      }
+    }, { passive: true });
+  }
 
   audio.onended = function() {
     arreterVisuel();
