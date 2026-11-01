@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" shape-rendering="geometricPrecision">
+  <defs>
+    <linearGradient id="titleGrad4k" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="42%" stop-color="#7dd3fc"/>
+      <stop offset="72%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <filter id="glow4k" x="-35%" y="-35%" width="170%" height="170%">
+      <feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#38bdf8" flood-opacity="0.75"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="32" flood-color="#10b981" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+  <rect x="8" y="8" width="496" height="496" rx="112" fill="#030609" stroke="#000000" stroke-width="12"/>
+  <g filter="url(#glow4k)">
+    <path d="M256 76 L273 121 L321 124 L283 153 L296 199 L256 172 L216 199 L229 153 L191 124 L239 121 Z" fill="url(#titleGrad4k)"/>
+    <path d="M88 228 C154 198, 218 214, 256 248 C294 214, 358 198, 424 228 L424 384 C358 354, 294 370, 256 404 C218 370, 154 354, 88 384 Z" fill="#03070b" stroke="url(#titleGrad4k)" stroke-width="22" stroke-linejoin="round"/>
+    <line x1="256" y1="248" x2="256" y2="404" stroke="url(#titleGrad4k)" stroke-width="18" stroke-linecap="round"/>
+    <path d="M126 274 C172 258, 210 266, 232 286" fill="none" stroke="#7dd3fc" stroke-width="12" stroke-linecap="round"/>
+    <path d="M126 320 C172 304, 210 312, 232 332" fill="none" stroke="#7dd3fc" stroke-width="12" stroke-linecap="round"/>
+    <path d="M386 274 C340 258, 302 266, 280 286" fill="none" stroke="#34d399" stroke-width="12" stroke-linecap="round"/>
+    <path d="M386 320 C340 304, 302 312, 280 332" fill="none" stroke="#34d399" stroke-width="12" stroke-linecap="round"/>
+  </g>
+</svg>

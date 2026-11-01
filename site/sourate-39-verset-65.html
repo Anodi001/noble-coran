@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="logo-4k.svg?v=24">
   <link rel="canonical" href="https://corantafsir.com/sourate-39-verset-65.html">
   <title>Sourate 39 verset 65 (Az-Zumar) - Traduction Hamidullah 1977 & Tafsir</title>
-  <meta name="description" content="Sourate 39 verset 65 (Az-Zumar - Sourate Mecquoise) : Texte arabe clair, traduction de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar (FR / EN).">
+  <meta name="description" content="Sourate 39 verset 65 (Az-Zumar - Sourate Mecquoise) : Texte arabe clair, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Scheherazade+New:wght@400;700&family=Cinzel+Decorative:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -185,31 +185,6 @@
     box-shadow: 0 0 22px rgba(56, 189, 248, 0.55);
   }
 
-  .lang-switch-btn {
-    background: rgba(14, 23, 32, 0.78);
-    color: #cbd5e1;
-    border: 1px solid rgba(56, 189, 248, 0.45);
-    padding: 6px 13px;
-    border-radius: 10px;
-    font-family: inherit;
-    font-size: 0.78rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .lang-switch-btn:hover {
-    border-color: #38bdf8;
-    box-shadow: 0 0 14px rgba(56, 189, 248, 0.3);
-  }
-  .lang-active {
-    color: #38bdf8;
-    font-weight: 800;
-  }
-  .lang-sep {
-    opacity: 0.45;
-    margin: 0 3px;
-  }
-
   .sky-star-icon {
     color: #38bdf8;
     text-shadow: 0 0 10px rgba(56, 189, 248, 0.9), 0 0 20px rgba(14, 165, 233, 0.6);
@@ -283,12 +258,12 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
       background: var(--bg-card);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       border: 1px solid var(--border-color);
-      padding: 12px 20px;
+      padding: 12px 22px;
       border-radius: 16px;
       box-shadow: 0 12px 35px rgba(0,0,0,0.35);
     }
@@ -299,20 +274,22 @@
       font-size: 0.9rem;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       transition: 0.2s;
     }
     .home-btn img {
-      width: 26px;
-      height: 26px;
-      filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.55));
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      border: 1px solid #000000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.9);
     }
     .home-btn:hover { opacity: 0.85; transform: translateX(-2px); }
-    .meta-badges { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .meta-badges { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .tag {
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       font-weight: 600;
-      padding: 5px 11px;
+      padding: 5px 12px;
       border-radius: 99px;
       background: var(--bg-elevated);
       color: var(--text-main);
@@ -322,10 +299,10 @@
       background: rgba(10, 16, 22, 0.75);
       color: var(--text-main);
       border: 1px solid var(--border-color);
-      padding: 6px 12px;
+      padding: 6px 14px;
       border-radius: 10px;
       font-family: inherit;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 700;
       cursor: pointer;
       outline: none;
@@ -406,7 +383,6 @@
       box-shadow: 0 0 50px rgba(255, 255, 255, 0.16), 0 25px 60px rgba(0, 0, 0, 0.65);
     }
 
-    /* POLICE ARABE CLAIRE ET LINÉAIRE SANS EMPILAGE DE LETTRES */
     .arabic-glow-verse {
       font-family: 'Scheherazade New', 'Amiri', serif;
       font-size: 2.95rem;
@@ -610,19 +586,16 @@
   <div class="interface-layer">
     <header class="top-nav">
       <a href="index.html" class="home-btn" onclick="sauvegarderConfigCiel()">
-        <img src="favicon.svg" alt="Logo">
-        <span id="homeBtnTextEl">‹ Retour aux 114 Sourates</span>
+        <img src="logo-4k.svg?v=24" alt="Logo">
+        ‹ Retour aux 114 Sourates
       </a>
       <div class="meta-badges">
-        <span class="revelation-pill mecquoise" id="typeSouratePillEl">Sourate Mecquoise</span>
+        <span class="revelation-pill mecquoise">Sourate Mecquoise</span>
         
-        <span class="tag" id="revOrderTagEl">59e Sourate révélée (Sourate n°39)</span>
-        <select id="verseJumperSelect" class="verse-jumper " onchange="naviguerVerset(event, this.value, false, false)">
+        <span class="tag">59e Sourate révélée (Sourate n°39)</span>
+        <select id="verseJumperSelect" class="verse-jumper " onchange="naviguerVerset(event, this.value, false)">
           <option value="sourate-39-verset-1.html" >Verset 1 / 75</option><option value="sourate-39-verset-2.html" >Verset 2 / 75</option><option value="sourate-39-verset-3.html" >Verset 3 / 75</option><option value="sourate-39-verset-4.html" >Verset 4 / 75</option><option value="sourate-39-verset-5.html" >Verset 5 / 75</option><option value="sourate-39-verset-6.html" >Verset 6 / 75</option><option value="sourate-39-verset-7.html" >Verset 7 / 75</option><option value="sourate-39-verset-8.html" >Verset 8 / 75</option><option value="sourate-39-verset-9.html" >Verset 9 / 75</option><option value="sourate-39-verset-10.html" >Verset 10 / 75</option><option value="sourate-39-verset-11.html" >Verset 11 / 75</option><option value="sourate-39-verset-12.html" >Verset 12 / 75</option><option value="sourate-39-verset-13.html" >Verset 13 / 75</option><option value="sourate-39-verset-14.html" >Verset 14 / 75</option><option value="sourate-39-verset-15.html" >Verset 15 / 75</option><option value="sourate-39-verset-16.html" >Verset 16 / 75</option><option value="sourate-39-verset-17.html" >Verset 17 / 75</option><option value="sourate-39-verset-18.html" >Verset 18 / 75</option><option value="sourate-39-verset-19.html" >Verset 19 / 75</option><option value="sourate-39-verset-20.html" >Verset 20 / 75</option><option value="sourate-39-verset-21.html" >Verset 21 / 75</option><option value="sourate-39-verset-22.html" >Verset 22 / 75</option><option value="sourate-39-verset-23.html" >Verset 23 / 75</option><option value="sourate-39-verset-24.html" >Verset 24 / 75</option><option value="sourate-39-verset-25.html" >Verset 25 / 75</option><option value="sourate-39-verset-26.html" >Verset 26 / 75</option><option value="sourate-39-verset-27.html" >Verset 27 / 75</option><option value="sourate-39-verset-28.html" >Verset 28 / 75</option><option value="sourate-39-verset-29.html" >Verset 29 / 75</option><option value="sourate-39-verset-30.html" >Verset 30 / 75</option><option value="sourate-39-verset-31.html" >Verset 31 / 75</option><option value="sourate-39-verset-32.html" >Verset 32 / 75</option><option value="sourate-39-verset-33.html" >Verset 33 / 75</option><option value="sourate-39-verset-34.html" >Verset 34 / 75</option><option value="sourate-39-verset-35.html" >Verset 35 / 75</option><option value="sourate-39-verset-36.html" >Verset 36 / 75</option><option value="sourate-39-verset-37.html" >Verset 37 / 75</option><option value="sourate-39-verset-38.html" >Verset 38 / 75</option><option value="sourate-39-verset-39.html" >Verset 39 / 75</option><option value="sourate-39-verset-40.html" >Verset 40 / 75</option><option value="sourate-39-verset-41.html" >Verset 41 / 75</option><option value="sourate-39-verset-42.html" >Verset 42 / 75</option><option value="sourate-39-verset-43.html" >Verset 43 / 75</option><option value="sourate-39-verset-44.html" >Verset 44 / 75</option><option value="sourate-39-verset-45.html" >Verset 45 / 75</option><option value="sourate-39-verset-46.html" >Verset 46 / 75</option><option value="sourate-39-verset-47.html" >Verset 47 / 75</option><option value="sourate-39-verset-48.html" >Verset 48 / 75</option><option value="sourate-39-verset-49.html" >Verset 49 / 75</option><option value="sourate-39-verset-50.html" >Verset 50 / 75</option><option value="sourate-39-verset-51.html" >Verset 51 / 75</option><option value="sourate-39-verset-52.html" >Verset 52 / 75</option><option value="sourate-39-verset-53.html" >Verset 53 / 75</option><option value="sourate-39-verset-54.html" >Verset 54 / 75</option><option value="sourate-39-verset-55.html" >Verset 55 / 75</option><option value="sourate-39-verset-56.html" >Verset 56 / 75</option><option value="sourate-39-verset-57.html" >Verset 57 / 75</option><option value="sourate-39-verset-58.html" >Verset 58 / 75</option><option value="sourate-39-verset-59.html" >Verset 59 / 75</option><option value="sourate-39-verset-60.html" >Verset 60 / 75</option><option value="sourate-39-verset-61.html" >Verset 61 / 75</option><option value="sourate-39-verset-62.html" >Verset 62 / 75</option><option value="sourate-39-verset-63.html" >Verset 63 / 75</option><option value="sourate-39-verset-64.html" >Verset 64 / 75</option><option value="sourate-39-verset-65.html" selected>Verset 65 / 75</option><option value="sourate-39-verset-66.html" >Verset 66 / 75</option><option value="sourate-39-verset-67.html" >Verset 67 / 75</option><option value="sourate-39-verset-68.html" >Verset 68 / 75</option><option value="sourate-39-verset-69.html" >Verset 69 / 75</option><option value="sourate-39-verset-70.html" >Verset 70 / 75</option><option value="sourate-39-verset-71.html" >Verset 71 / 75</option><option value="sourate-39-verset-72.html" >Verset 72 / 75</option><option value="sourate-39-verset-73.html" >Verset 73 / 75</option><option value="sourate-39-verset-74.html" >Verset 74 / 75</option><option value="sourate-39-verset-75.html" >Verset 75 / 75</option>
         </select>
-        <button type="button" id="langSwitchBtn" class="lang-switch-btn" onclick="basculerLangue()">
-          <strong class="lang-active">🇫🇷 FR</strong> <span class="lang-sep">|</span> 🇬🇧 EN
-        </button>
       </div>
     </header>
 
@@ -634,7 +607,7 @@
               <div class="badge-num" id="badgeNumEl">39 : 65</div>
               <div>
                 <h1 id="mainTitleEl">Sourate Az-Zumar (Les groupes) — Verset 65</h1>
-                <p id="subHeaderInfoEl">Sourate Mecquoise (La Mecque) • Traduction Muhammad Hamidullah (1977) & Exégèse</p>
+                <p>Sourate Mecquoise (La Mecque) • Traduction Muhammad Hamidullah (1977) & Exégèse</p>
               </div>
             </div>
             <div class="arabic-surah">الزمر</div>
@@ -642,7 +615,7 @@
 
           <section class="verse-stage" id="verseStage">
             <div class="arabic-glow-verse" id="arabicVerseEl">وَلَقَدْ أُوحِيَ إِلَيْكَ وَإِلَى الَّذِينَ مِنْ قَبْلِكَ لَئِنْ أَشْرَكْتَ لَيَحْبَطَنَّ عَمَلُكَ وَلَتَكُونَنَّ مِنَ الْخَاسِرِينَ</div>
-            <div class="french-glow-verse" id="frenchVerseEl">« 65. En effet, il t'a été révélé, ainsi qu'à ceux qui t'ont précédé: «Si tu donnes des associés à Allah, ton œuvre sera certes vaine; et tu seras très certainement du nombre des perdants. »</div>
+            <div class="french-glow-verse" id="frenchVerseEl">65. En effet, il t'a été révélé, ainsi qu'à ceux qui t'ont précédé: «Si tu donnes des associés à Allah, ton œuvre sera certes vaine; et tu seras très certainement du nombre des perdants.</div>
             <div class="sync-progress-track">
               <div class="sync-progress-bar" id="syncProgressBar"></div>
             </div>
@@ -669,21 +642,21 @@
             </div>
             <label class="auto-scroll-toggle">
               <input type="checkbox" id="autoNextCheck" onchange="sauverAutoNext()">
-              <span id="autoNextLabelEl">Enchaîner au verset suivant automatiquement</span>
+              Enchaîner au verset suivant automatiquement
             </label>
-            <audio id="ayahAudioA" preload="auto"></audio>
-            <audio id="ayahAudioB" preload="auto" style="display:none;"></audio>
+            <audio id="ayahAudio" preload="auto"></audio>
+            <audio id="preloadNextAudio" preload="auto" style="display:none;"></audio>
           </div>
 
           <article class="tafsir-box">
-            <span class="section-tag" id="tafsirSectionTagEl">Tafsīr & Explication du verset</span>
+            <span class="section-tag">Tafsīr & Explication du verset</span>
             <p class="main-explanation" id="mainExplanationEl">Ô Messagers, Allah t’a révélé et a révélé aux messagers qui t’ont précédé: Si tu adores d’autres êtres avec Allah, tu annulerais la rétribution pour tes bonnes œuvres et tu serais du nombre des perdants dans le bas monde, par la perte de ta religion, et dans l'au-delà, par le châtiment que tu subiras.</p>
             <div id="extraNotesContainer">
               
               
               
             </div>
-            <div class="sources-line" id="sourcesLineEl">
+            <div class="sources-line">
               Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar
             </div>
           </article>
@@ -693,12 +666,12 @@
   </div>
 
   <nav class="bottom-nav">
-    <a href="sourate-39-verset-64.html" id="prevVerseLink" class="btn btn-prev" onclick="return naviguerVerset(event, this.getAttribute('href'), false, false)">‹ Précédent</a>
+    <a href="sourate-39-verset-64.html" id="prevVerseLink" class="btn btn-prev" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">‹ Précédent</a>
     <span class="page-indicator" id="pageIndicatorEl">Verset 65 / 75</span>
-    <a href="sourate-39-verset-66.html" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false, false)">Suivant ›</a>
+    <a href="sourate-39-verset-66.html" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
   </nav>
 
-  <script src="data-sourate-39.js"></script>
+  <script src="data-sourate-39.js?v=24"></script>
   <script>
     const numSourateActuelle = 39;
     let numVersetActuel = 65;
@@ -861,20 +834,14 @@
   renderFullSky();
 
     
-  const playerA = document.getElementById('ayahAudioA');
-  const playerB = document.getElementById('ayahAudioB');
-  let activeAudio = playerA;
-  let standbyAudio = playerB;
-
+  const audio = document.getElementById('ayahAudio');
+  const preloadAudio = document.getElementById('preloadNextAudio');
   const playBtn = document.getElementById('playSyncBtn');
   const select = document.getElementById('reciterSelect');
   const autoCheck = document.getElementById('autoNextCheck');
   const stage = document.getElementById('verseStage');
   const progressBar = document.getElementById('syncProgressBar');
   let animId = null;
-  let timerTransitionAudio = null;
-  let currentLang = 'fr';
-  const cacheBlobsAudio = {};
 
   const RECITATEURS_VALIDES = [
     'Yasser_Ad-Dussary_128kbps',
@@ -889,6 +856,7 @@
   ];
 
   try {
+    localStorage.removeItem('site_lang');
     const savedReciter = localStorage.getItem('reciter');
     if (savedReciter && RECITATEURS_VALIDES.indexOf(savedReciter) !== -1) {
       select.value = savedReciter;
@@ -897,75 +865,29 @@
     }
     const savedAuto = localStorage.getItem('autoNext_v2');
     autoCheck.checked = (savedAuto === 'true');
-    const savedLang = localStorage.getItem('site_lang');
-    if (savedLang === 'en' || savedLang === 'fr') {
-      currentLang = savedLang;
-    }
   } catch (e) {
     autoCheck.checked = false;
   }
 
-  function obtenirUrlDistante(code) {
-    return "https://everyayah.com/data/" + select.value + "/" + code + ".mp3";
-  }
-
-  function chargerBlobEnRAM(code, elementAudioCible) {
-    if (!code) return;
-    const url = obtenirUrlDistante(code);
-    if (cacheBlobsAudio[url]) {
-      if (elementAudioCible && elementAudioCible.src !== cacheBlobsAudio[url]) {
-        elementAudioCible.src = cacheBlobsAudio[url];
-        elementAudioCible.load();
-      }
-      return;
-    }
-    fetch(url)
-      .then(function(r) {
-        if (!r.ok) throw new Error('err');
-        return r.blob();
-      })
-      .then(function(blob) {
-        const blobUrl = URL.createObjectURL(blob);
-        cacheBlobsAudio[url] = blobUrl;
-        if (elementAudioCible && elementAudioCible.paused) {
-          elementAudioCible.src = blobUrl;
-          elementAudioCible.load();
-        }
-      })
-      .catch(function() {
-        if (elementAudioCible && !elementAudioCible.src) {
-          elementAudioCible.src = url;
-        }
-      });
-  }
-
-  function obtenirCodeSuivant() {
+  function prechargerVersetSuivant() {
+    if (!preloadAudio) return;
     if (window.SOURATE_DATA && window.SOURATE_DATA.versets) {
       const vSuiv = window.SOURATE_DATA.versets[numVersetActuel];
-      if (vSuiv && vSuiv.codeAudio) return vSuiv.codeAudio;
+      if (vSuiv && vSuiv.codeAudio) {
+        const nextUrl = "https://everyayah.com/data/" + select.value + "/" + vSuiv.codeAudio + ".mp3";
+        if (preloadAudio.src !== nextUrl) {
+          preloadAudio.src = nextUrl;
+        }
+      }
     }
-    return null;
   }
 
   function majSourceAudio() {
-    if (timerTransitionAudio) {
-      clearTimeout(timerTransitionAudio);
-      timerTransitionAudio = null;
+    const nouvelleUrl = "https://everyayah.com/data/" + select.value + "/" + codeAudio + ".mp3";
+    if (audio.src !== nouvelleUrl) {
+      audio.src = nouvelleUrl;
     }
-    const urlDirecte = obtenirUrlDistante(codeAudio);
-    const sourceOptimale = cacheBlobsAudio[urlDirecte] || urlDirecte;
-    if (activeAudio.src !== sourceOptimale) {
-      activeAudio.src = sourceOptimale;
-      activeAudio.load();
-    }
-    chargerBlobEnRAM(codeAudio, null);
-    const prochainCode = obtenirCodeSuivant();
-    if (prochainCode) {
-      const urlSuiv = obtenirUrlDistante(prochainCode);
-      standbyAudio.src = cacheBlobsAudio[urlSuiv] || urlSuiv;
-      standbyAudio.load();
-      chargerBlobEnRAM(prochainCode, standbyAudio);
-    }
+    prechargerVersetSuivant();
   }
   majSourceAudio();
 
@@ -973,24 +895,10 @@
     try { localStorage.setItem('autoNext_v2', autoCheck.checked ? 'true' : 'false'); } catch (e) {}
   }
 
-  function texteBoutonPlay() {
-    if (!activeAudio.paused) {
-      return currentLang === 'en' ? "⏸ Pause" : "⏸ Pause";
-    }
-    return currentLang === 'en' ? "▶ Listen to verse" : "▶ Écouter le verset";
-  }
-
   function animerBarre() {
-    if (activeAudio.paused) return;
-    if (activeAudio.duration && isFinite(activeAudio.duration)) {
-      const restant = activeAudio.duration - activeAudio.currentTime;
-      // Adoucissement des 60 dernières millisecondes pour éviter tout clic/coupure sèche
-      if (restant <= 0.06 && restant > 0) {
-        activeAudio.volume = Math.max(0.25, restant / 0.06);
-      } else {
-        activeAudio.volume = 1.0;
-      }
-      const pct = Math.min(100, (activeAudio.currentTime / activeAudio.duration) * 100);
+    if (audio.paused) return;
+    if (audio.duration && isFinite(audio.duration)) {
+      const pct = Math.min(100, (audio.currentTime / audio.duration) * 100);
       progressBar.style.width = pct + "%";
     }
     animId = requestAnimationFrame(animerBarre);
@@ -998,44 +906,35 @@
 
   function arreterVisuel() {
     if (animId) cancelAnimationFrame(animId);
-    activeAudio.volume = 1.0;
     stage.classList.remove('playing');
     progressBar.style.width = "0%";
-    playBtn.textContent = currentLang === 'en' ? "▶ Listen to verse" : "▶ Écouter le verset";
+    playBtn.textContent = "▶ Écouter le verset";
     playBtn.classList.remove('active');
   }
 
   function toggleAudioSync() {
-    if (timerTransitionAudio) {
-      clearTimeout(timerTransitionAudio);
-      timerTransitionAudio = null;
-    }
-    if (activeAudio.paused) {
-      activeAudio.volume = 1.0;
+    if (audio.paused) {
       stage.classList.add('playing');
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
-      const prochainCode = obtenirCodeSuivant();
-      if (prochainCode) chargerBlobEnRAM(prochainCode, standbyAudio);
-      activeAudio.play().then(function() {
+      prechargerVersetSuivant();
+      audio.play().then(function() {
         animId = requestAnimationFrame(animerBarre);
       }).catch(function() {
         arreterVisuel();
       });
     } else {
-      activeAudio.pause();
+      audio.pause();
       arreterVisuel();
     }
   }
 
   function changerRecitateur() {
     try { localStorage.setItem('reciter', select.value); } catch (e) {}
-    const enCours = !activeAudio.paused;
-    activeAudio.pause();
+    const enCours = !audio.paused;
     majSourceAudio();
     if (enCours) {
-      activeAudio.volume = 1.0;
-      activeAudio.play().then(function() {
+      audio.play().then(function() {
         animId = requestAnimationFrame(animerBarre);
       }).catch(function() {
         arreterVisuel();
@@ -1048,35 +947,21 @@
     const btnEl = document.getElementById('miracleToggleBtn');
     if (!detailsEl || !btnEl) return;
     const estOuvert = detailsEl.classList.toggle('open');
-    if (currentLang === 'en') {
-      btnEl.textContent = estOuvert
-        ? "▲ Hide detailed explanation"
-        : "★ Read full explanation & historical Hadīth";
-    } else {
-      btnEl.textContent = estOuvert
-        ? "▲ Masquer l'explication détaillée du miracle"
-        : "★ Développer l'explication complète & le Hadīth historique";
-    }
+    btnEl.textContent = estOuvert
+      ? "▲ Masquer l'explication détaillée du miracle"
+      : "★ Développer l'explication complète & le Hadīth historique";
   }
 
   function construireHTMLMiracle(mObj) {
     if (!mObj) return '';
-    const isEn = (currentLang === 'en');
-    const titre = isEn ? (mObj.titreEn || mObj.titre) : mObj.titre;
-    const resume = isEn ? (mObj.resumeEn || mObj.resume) : mObj.resume;
-    const dev = isEn ? (mObj.developpementEn || mObj.developpement) : mObj.developpement;
-    const btnTxt = isEn
-      ? "★ Read full explanation & historical Hadīth"
-      : "★ Développer l'explication complète & le Hadīth historique";
-
     return '<div class="miracle-banner">' +
-      '<div class="miracle-header"><span class="sky-star-icon">★</span> ' + titre + '</div>' +
-      '<p class="miracle-summary">' + resume + '</p>' +
+      '<div class="miracle-header"><span class="sky-star-icon">★</span> ' + mObj.titre + '</div>' +
+      '<p class="miracle-summary">' + mObj.resume + '</p>' +
       '<button type="button" class="miracle-expand-btn" id="miracleToggleBtn" onclick="basculerDeveloppementMiracle()">' +
-        btnTxt +
+        '★ Développer l\'explication complète & le Hadīth historique' +
       '</button>' +
       '<div class="miracle-deep-details" id="miracleDeepDetails">' +
-        dev +
+        mObj.developpement +
       '</div>' +
     '</div>';
   }
@@ -1087,98 +972,9 @@
     stage.classList.toggle('earth-leveled-glow', (numS === 91 && numV === 6) || (numS === 88 && numV === 20) || (numS === 15 && numV === 19) || (numS === 50 && numV === 7) || (numS === 71 && numV === 19));
   }
 
-  function appliquerLangueVerset() {
-    if (!window.SOURATE_DATA || !window.SOURATE_DATA.versets) return;
-    const S = window.SOURATE_DATA;
-    const vData = S.versets[numVersetActuel - 1];
-    if (!vData) return;
-
-    const isEn = (currentLang === 'en');
-    const btnLang = document.getElementById('langSwitchBtn');
-    if (btnLang) {
-      btnLang.innerHTML = isEn ? "🇫🇷 FR <span class='lang-sep'>|</span> <strong class='lang-active'>🇬🇧 EN</strong>" : "<strong class='lang-active'>🇫🇷 FR</strong> <span class='lang-sep'>|</span> 🇬🇧 EN";
-    }
-
-    const homeLabelEl = document.getElementById('homeBtnTextEl');
-    if (homeLabelEl) homeLabelEl.textContent = isEn ? "‹ Back to 114 Surahs" : "‹ Retour aux 114 Sourates";
-
-    const pillTypeEl = document.getElementById('typeSouratePillEl');
-    if (pillTypeEl) pillTypeEl.textContent = isEn ? S.typeSourateLabelEn : S.typeSourateLabel;
-
-    const revOrderEl = document.getElementById('revOrderTagEl');
-    if (revOrderEl) {
-      revOrderEl.textContent = isEn
-        ? (S.ordreRev + "th Revealed Surah (Surah #" + S.numSourate + ")")
-        : ((S.ordreRev === 1 ? "1re Sourate révélée" : S.ordreRev + "e Sourate révélée") + " (Sourate n°" + S.numSourate + ")");
-    }
-
-    const nomTrad = isEn ? (S.nomEn || S.nomFr) : S.nomFr;
-    const labelVerset = isEn ? "Verse" : "Verset";
-    const labelSourate = isEn ? "Surah" : "Sourate";
-
-    document.getElementById('mainTitleEl').textContent = labelSourate + " " + S.nomSourate + " (" + nomTrad + ") — " + labelVerset + " " + numVersetActuel;
-
-    const subHeaderEl = document.getElementById('subHeaderInfoEl');
-    if (subHeaderEl) {
-      subHeaderEl.textContent = isEn
-        ? (S.typeSourateLabelEn + " (" + S.lieuEn + ") • English Translation & Exegesis (Tafsīr Al-Mukhtasar)")
-        : (S.typeSourateLabel + " (" + S.lieu + ") • Traduction Muhammad Hamidullah (1977) & Exégèse");
-    }
-
-    document.getElementById('arabicVerseEl').innerHTML = vData.texteArabe;
-    document.getElementById('frenchVerseEl').innerHTML = isEn
-      ? ("“ " + numVersetActuel + ". " + (vData.tradEn || vData.tradPropre) + " ”")
-      : ("« " + numVersetActuel + ". " + vData.tradPropre + " »");
-
-    const autoLabelEl = document.getElementById('autoNextLabelEl');
-    if (autoLabelEl) {
-      autoLabelEl.textContent = isEn ? "Auto-advance to next verse" : "Enchaîner au verset suivant automatiquement";
-    }
-    playBtn.textContent = texteBoutonPlay();
-
-    const sectionTagEl = document.getElementById('tafsirSectionTagEl');
-    if (sectionTagEl) {
-      sectionTagEl.textContent = isEn ? "Tafsīr & Verse Explanation" : "Tafsīr & Explication du verset";
-    }
-
-    document.getElementById('mainExplanationEl').innerHTML = isEn
-      ? (vData.explicationEn || vData.explicationUnanime)
-      : vData.explicationUnanime;
-
-    const extraContainer = document.getElementById('extraNotesContainer');
-    let extraHTML = '';
-    if (!isEn) {
-      if (vData.noteUnique) extraHTML += '<div class="consensus-note">' + vData.noteUnique + '</div>';
-      if (vData.precisionConsensus) extraHTML += '<div class="consensus-note">' + vData.precisionConsensus + '</div>';
-      if (vData.texteLaurierPerso) extraHTML += '<div class="consensus-note"><strong>Le Laurier de l\'Exégèse :</strong> ' + vData.texteLaurierPerso + '</div>';
-    }
-    extraContainer.innerHTML = extraHTML;
-
-    const sourcesLineEl = document.getElementById('sourcesLineEl');
-    if (sourcesLineEl) {
-      sourcesLineEl.textContent = isEn
-        ? "Saheeh International Translation • Exegesis (Tafsīr) Al-Mukhtasar"
-        : "Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar";
-    }
-
-    const miracleContainer = document.getElementById('miracleContainer');
-    miracleContainer.innerHTML = construireHTMLMiracle(vData.miracle);
-
-    document.getElementById('pageIndicatorEl').textContent = labelVerset + " " + numVersetActuel + " / " + S.nbVersets;
-    document.getElementById('prevVerseLink').textContent = isEn ? "‹ Previous" : "‹ Précédent";
-    document.getElementById('nextVerseLink').textContent = isEn ? "Next ›" : "Suivant ›";
-  }
-
-  function basculerLangue() {
-    currentLang = (currentLang === 'fr') ? 'en' : 'fr';
-    try { localStorage.setItem('site_lang', currentLang); } catch (e) {}
-    appliquerLangueVerset();
-  }
-
   majEffetSpecifiqueVerset(numSourateActuelle, numVersetActuel);
-  appliquerLangueVerset();
 
-  function allerAuVersetSansRecharger(numVersetCible, lancerAudioAuto, utiliserSwapInstantane) {
+  function allerAuVersetSansRecharger(numVersetCible, lancerAudioAuto) {
     if (!window.SOURATE_DATA || !window.SOURATE_DATA.versets) {
       sauvegarderConfigCiel();
       window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html";
@@ -1192,34 +988,33 @@
       return;
     }
 
-    if (!activeAudio.paused) {
-      activeAudio.pause();
+    if (!audio.paused) {
+      audio.pause();
     }
     arreterVisuel();
 
     numVersetActuel = numVersetCible;
     codeAudio = vData.codeAudio;
-
-    // Si on enchaîne automatiquement et que standbyAudio a déjà le verset préchargé en mémoire, on inverse les lecteurs sans aucun rechargement !
-    if (utiliserSwapInstantane && standbyAudio.src) {
-      const temp = activeAudio;
-      activeAudio = standbyAudio;
-      standbyAudio = temp;
-      activeAudio.volume = 1.0;
-      const prochainCode = obtenirCodeSuivant();
-      if (prochainCode) {
-        const urlSuiv = obtenirUrlDistante(prochainCode);
-        standbyAudio.src = cacheBlobsAudio[urlSuiv] || urlSuiv;
-        standbyAudio.load();
-        chargerBlobEnRAM(prochainCode, standbyAudio);
-      }
-    } else {
-      majSourceAudio();
-    }
-
+    majSourceAudio();
     majEffetSpecifiqueVerset(numSourateActuelle, numVersetCible);
 
+    document.title = "Sourate " + numSourateActuelle + " verset " + numVersetCible + " (" + window.SOURATE_DATA.nomSourate + ") - Traduction Hamidullah 1977 & Tafsir";
     document.getElementById('badgeNumEl').textContent = numSourateActuelle + " : " + numVersetCible;
+    document.getElementById('mainTitleEl').textContent = "Sourate " + window.SOURATE_DATA.nomSourate + " (" + window.SOURATE_DATA.nomFr + ") — Verset " + numVersetCible;
+    document.getElementById('arabicVerseEl').innerHTML = vData.texteArabe;
+    // Sans guillemets autour de la traduction française
+    document.getElementById('frenchVerseEl').innerHTML = numVersetCible + ". " + vData.tradPropre;
+    document.getElementById('mainExplanationEl').innerHTML = vData.explicationUnanime;
+
+    const extraContainer = document.getElementById('extraNotesContainer');
+    let extraHTML = '';
+    if (vData.noteUnique) extraHTML += '<div class="consensus-note">' + vData.noteUnique + '</div>';
+    if (vData.precisionConsensus) extraHTML += '<div class="consensus-note">' + vData.precisionConsensus + '</div>';
+    if (vData.texteLaurierPerso) extraHTML += '<div class="consensus-note"><strong>Le Laurier de l\'Exégèse :</strong> ' + vData.texteLaurierPerso + '</div>';
+    extraContainer.innerHTML = extraHTML;
+
+    const miracleContainer = document.getElementById('miracleContainer');
+    miracleContainer.innerHTML = construireHTMLMiracle(vData.miracle);
 
     const jumperEl = document.getElementById('verseJumperSelect');
     if (jumperEl) {
@@ -1227,10 +1022,9 @@
       jumperEl.classList.toggle('is-miracle-verse', Boolean(vData.miracle));
     }
 
+    document.getElementById('pageIndicatorEl').textContent = "Verset " + numVersetCible + " / " + window.SOURATE_DATA.nbVersets;
     document.getElementById('prevVerseLink').setAttribute('href', vData.lienPrecedent);
     document.getElementById('nextVerseLink').setAttribute('href', vData.lienSuivant);
-
-    appliquerLangueVerset();
 
     try {
       history.pushState({ verset: numVersetCible }, '', "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html");
@@ -1240,8 +1034,7 @@
       stage.classList.add('playing');
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
-      activeAudio.volume = 1.0;
-      activeAudio.play().then(function() {
+      audio.play().then(function() {
         animId = requestAnimationFrame(animerBarre);
       }).catch(function() {
         arreterVisuel();
@@ -1249,11 +1042,11 @@
     }
   }
 
-  function naviguerVerset(event, lienCible, autoAudio, swapInstantane) {
+  function naviguerVerset(event, lienCible, autoAudio) {
     const match = String(lienCible).match(/^sourate-(\d+)-verset-(\d+)\.html$/);
     if (match && Number(match[1]) === numSourateActuelle) {
       if (event) event.preventDefault();
-      allerAuVersetSansRecharger(Number(match[2]), autoAudio, Boolean(swapInstantane));
+      allerAuVersetSansRecharger(Number(match[2]), autoAudio);
       return false;
     }
     sauvegarderConfigCiel();
@@ -1266,30 +1059,21 @@
 
   window.addEventListener('popstate', function(e) {
     if (e.state && e.state.verset) {
-      allerAuVersetSansRecharger(e.state.verset, false, false);
+      allerAuVersetSansRecharger(e.state.verset, false);
     }
   });
 
-  function gererFinAudio() {
-    progressBar.style.width = "100%";
-    activeAudio.volume = 1.0;
+  audio.onended = function() {
+    arreterVisuel();
     if (autoCheck.checked) {
-      timerTransitionAudio = setTimeout(function() {
-        arreterVisuel();
-        const hrefSuiv = document.getElementById('nextVerseLink').getAttribute('href');
-        naviguerVerset(null, hrefSuiv, true, true);
-      }, 300);
-    } else {
-      arreterVisuel();
+      const hrefSuiv = document.getElementById('nextVerseLink').getAttribute('href');
+      naviguerVerset(null, hrefSuiv, true);
     }
-  }
-
-  playerA.onended = gererFinAudio;
-  playerB.onended = gererFinAudio;
+  };
 
   if (window.location.search.indexOf('autoplay=1') !== -1) {
     stage.classList.add('playing');
-    activeAudio.play().then(function() {
+    audio.play().then(function() {
       playBtn.textContent = "⏸ Pause";
       playBtn.classList.add('active');
       animId = requestAnimationFrame(animerBarre);

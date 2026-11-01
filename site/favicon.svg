@@ -1,21 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" shape-rendering="geometricPrecision">
   <defs>
-    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="titleGrad4k" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="45%" stop-color="#7dd3fc"/>
-      <stop offset="75%" stop-color="#38bdf8"/>
+      <stop offset="42%" stop-color="#7dd3fc"/>
+      <stop offset="72%" stop-color="#38bdf8"/>
       <stop offset="100%" stop-color="#34d399"/>
     </linearGradient>
-    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
-      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    <filter id="glow4k" x="-35%" y="-35%" width="170%" height="170%">
+      <feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#38bdf8" flood-opacity="0.75"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="32" flood-color="#10b981" flood-opacity="0.45"/>
     </filter>
   </defs>
-  <path d="M60 18 L64 28.5 L75 29 L66.2 35.8 L69.5 46.5 L60 40.2 L50.5 46.5 L53.8 35.8 L45 29 L56 28.5 Z" fill="url(#titleGrad)" filter="url(#glow)"/>
-  <path d="M20 53 C36 46, 51 50, 60 58 C69 50, 84 46, 100 53 L100 90 C84 83, 69 87, 60 95 C51 87, 36 83, 20 90 Z" fill="rgba(4, 9, 14, 0.65)" stroke="url(#titleGrad)" stroke-width="5.5" stroke-linejoin="round" filter="url(#glow)"/>
-  <line x1="60" y1="58" x2="60" y2="95" stroke="url(#titleGrad)" stroke-width="4.5" stroke-linecap="round"/>
-  <path d="M29 64 C40 60, 49 62, 54 67" fill="none" stroke="#7dd3fc" stroke-width="2.8" stroke-linecap="round" opacity="0.9"/>
-  <path d="M29 75 C40 71, 49 73, 54 78" fill="none" stroke="#7dd3fc" stroke-width="2.8" stroke-linecap="round" opacity="0.9"/>
-  <path d="M91 64 C80 60, 71 62, 66 67" fill="none" stroke="#34d399" stroke-width="2.8" stroke-linecap="round" opacity="0.9"/>
-  <path d="M91 75 C80 71, 71 73, 66 78" fill="none" stroke="#34d399" stroke-width="2.8" stroke-linecap="round" opacity="0.9"/>
+  <rect x="8" y="8" width="496" height="496" rx="112" fill="#030609" stroke="#000000" stroke-width="12"/>
+  <g filter="url(#glow4k)">
+    <path d="M256 76 L273 121 L321 124 L283 153 L296 199 L256 172 L216 199 L229 153 L191 124 L239 121 Z" fill="url(#titleGrad4k)"/>
+    <path d="M88 228 C154 198, 218 214, 256 248 C294 214, 358 198, 424 228 L424 384 C358 354, 294 370, 256 404 C218 370, 154 354, 88 384 Z" fill="#03070b" stroke="url(#titleGrad4k)" stroke-width="22" stroke-linejoin="round"/>
+    <line x1="256" y1="248" x2="256" y2="404" stroke="url(#titleGrad4k)" stroke-width="18" stroke-linecap="round"/>
+    <path d="M126 274 C172 258, 210 266, 232 286" fill="none" stroke="#7dd3fc" stroke-width="12" stroke-linecap="round"/>
+    <path d="M126 320 C172 304, 210 312, 232 332" fill="none" stroke="#7dd3fc" stroke-width="12" stroke-linecap="round"/>
+    <path d="M386 274 C340 258, 302 266, 280 286" fill="none" stroke="#34d399" stroke-width="12" stroke-linecap="round"/>
+    <path d="M386 320 C340 304, 302 312, 280 332" fill="none" stroke="#34d399" stroke-width="12" stroke-linecap="round"/>
+  </g>
 </svg>
