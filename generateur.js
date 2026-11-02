@@ -1003,6 +1003,10 @@ const SCRIPT_VERSET_V52 = `
     const sl = localStorage.getItem('site_lang_v32');
     if (['fr','en','es','ar'].includes(up)) { currentLang = up; localStorage.setItem('site_lang_v32', up); }
     else if (['fr','en','es','ar'].includes(sl)) currentLang = sl;
+    else {
+      const navL = (navigator.language || navigator.userLanguage || 'fr').toLowerCase().slice(0, 2);
+      if (['fr','en','es','ar'].includes(navL)) currentLang = navL;
+    }
   } catch(e){}
 
   function appliquerTailleTexte() {
@@ -1817,7 +1821,15 @@ async function lancerGeneration() {
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="apple-touch-icon" sizes="180x180" href="${appleIconDataUri}">
   <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=${ANTI_CACHE}">
-  <title>Le Noble Coran & Tafsīr — Français • English • Español • العربية</title>
+  <link rel="canonical" href="https://corantafsir.com/">
+  <link rel="alternate" hreflang="fr" href="https://corantafsir.com/?lang=fr">
+  <link rel="alternate" hreflang="en" href="https://corantafsir.com/?lang=en">
+  <link rel="alternate" hreflang="es" href="https://corantafsir.com/?lang=es">
+  <link rel="alternate" hreflang="ar" href="https://corantafsir.com/?lang=ar">
+  <link rel="alternate" hreflang="x-default" href="https://corantafsir.com/">
+  <title>Coran &amp; Tafsīr | Noble Quran Tafsir in English | Corán y Tafsir en Español | القرآن الكريم والتفسير</title>
+  <meta name="description" content="Read, listen and understand the 114 Surahs of the Noble Quran with authentic Tafsir and historical &amp; scientific miracles in 4 languages: Français, English, Español, العربية.">
+  <meta name="keywords" content="Quran Tafsir, Coran Tafsir, Tafsir en español, تفسير القرآن الكريم, Miracles of the Quran, Miracles du Coran, Milagros del Corán, Al-Mukhtasar, Saheeh International, Hamidullah">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Cinzel+Decorative:wght@700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     ${CSS_COMMUN}
@@ -2205,6 +2217,13 @@ async function lancerGeneration() {
 </body>
 </html>`;
   fs.writeFileSync(path.join(dossierSite, 'index.html'), htmlAccueil, 'utf8');
+
+  const xmlSitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+    urlsSitemap.map(u => '  <url><loc>' + u + '</loc><changefreq>monthly</changefreq><priority>' + (u.endsWith('.com/') ? '1.0' : '0.8') + '</priority></url>').join('\n') +
+    '\n</urlset>';
+  fs.writeFileSync(path.join(dossierSite, 'sitemap.xml'), xmlSitemap, 'utf8');
+  fs.writeFileSync(path.join(dossierSite, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: https://corantafsir.com/sitemap.xml\n', 'utf8');
+  console.log('✅ SEO INTERNATIONAL 4 LANGUES + SITEMAP.XML (6237 URLs) + ROBOTS.TXT GÉNÉRÉS !');
   console.log('\n================================================================================');
   console.log(`✅ MISE À JOUR V52 (ÉTAPE 1) TERMINÉE : MENTIONS LÉGALES UNIQUEMENT SUR ORDRE CLASSIQUE !`);
   console.log(`🔍 SCANNER QUALITÉ : ${totalVersetsVerifies} versets vérifiés | ${compteurDoublonsRepares} doublons séparés.`);
