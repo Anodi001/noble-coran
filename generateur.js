@@ -1093,14 +1093,6 @@ const SCRIPT_VERSET_V52 = `
       const navL = (navigator.language || navigator.userLanguage || 'fr').toLowerCase().slice(0, 2);
       if (['fr','en','es','ar'].includes(navL)) currentLang = navL;
     }
-    else {
-      const navL = (navigator.language || navigator.userLanguage || 'fr').toLowerCase().slice(0, 2);
-      if (['fr','en','es','ar'].includes(navL)) currentLang = navL;
-    }
-    else {
-      const navL = (navigator.language || navigator.userLanguage || 'fr').toLowerCase().slice(0, 2);
-      if (['fr','en','es','ar'].includes(navL)) currentLang = navL;
-    }
   } catch(e){}
 
   function appliquerTailleTexte() {
