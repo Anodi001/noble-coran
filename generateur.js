@@ -1606,7 +1606,7 @@ async function lancerGeneration() {
         </article>
       </main>
       <footer class="asso-legal-footer">
-        Portail numérique gratuit et sans publicité édité par l'Association Loi 1901 à but non lucratif <strong>« Institut Numérique Coran, Langues &amp; Tafsīr »</strong> (Siège : 180 rue Fabri de Peiresc, 34080 Montpellier).
+        Portail numérique gratuit et sans publicité édité par l'Association Loi 1901 à but non lucratif <strong>« Institut Numérique Coran, Langues &amp; Tafsīr »</strong> 
       </footer>
     </div>
   </div>
@@ -1876,8 +1876,6 @@ async function lancerGeneration() {
     <input type="text" id="searchInput" class="search-box" placeholder="Rechercher une sourate ou un verset direct (ex: 30:1, 2:255, 111:1...)" oninput="afficher()">
     <div id="grid" class="grid"></div>
     <footer class="asso-legal-footer" style="max-width:1220px;">
-      Portail éducatif, linguistique et culturel gratuit (sans publicité commerciale) édité par l'Association Loi 1901 à but non lucratif <strong>« Institut Numérique Coran, Langues &amp; Tafsīr »</strong> — Siège social : 180 rue Fabri de Peiresc, 34080 Montpellier.
-    </footer>
   </div>
 
   <div class="app-modal-overlay" id="appInstallModal" onclick="if(event.target===this)this.classList.remove('open')">
