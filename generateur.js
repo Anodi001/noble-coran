@@ -1875,7 +1875,6 @@ async function lancerGeneration() {
     </div>
     <input type="text" id="searchInput" class="search-box" placeholder="Rechercher une sourate ou un verset direct (ex: 30:1, 2:255, 111:1...)" oninput="afficher()">
     <div id="grid" class="grid"></div>
-    <footer class="asso-legal-footer" style="max-width:1220px;">
   </div>
 
   <div class="app-modal-overlay" id="appInstallModal" onclick="if(event.target===this)this.classList.remove('open')">
