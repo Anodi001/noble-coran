@@ -13,7 +13,7 @@ const zlib = require('zlib');
 const ANTI_CACHE = Date.now();
 
 // ============================================================================
-// DOSSIER COMPLET DE SOURATE AR-RŪM (30:1 À 30:5) EN 4 LANGUES AVEC PREUVES & LIENS
+// 1. DOSSIER COMPLET DE SOURATE AR-RŪM (30:1 À 30:5) EN 4 LANGUES
 // ============================================================================
 const DEV_RUM_FR = `
   <div class="miracle-pillars-grid">
@@ -235,6 +235,182 @@ const DEV_RUM_AR = `
   </div>
 `;
 
+// ============================================================================
+// 2. DOSSIER COMPLET DE SOURATE AL-QAMAR (54:1) — LA FENTE DE LA LUNE & LE ROI D'INDE
+// ============================================================================
+const DEV_QAMAR_FR = `
+  <div class="miracle-pillars-grid">
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">PREUVE N°1 • TÉMOIGNAGES OCULAIRES MULTIPLES (MUTAWĀTIR)</div>
+      <h4>🌙 La Lune fendue en deux au-dessus du mont Hirā' à La Mecque</h4>
+      <p>Cinq ans avant l'Hégire, les chefs polythéistes de La Mecque (Quraysh) défièrent le Prophète Muhammad ﷺ de leur montrer un miracle céleste impossible à simuler sur Terre. Par la permission d'Allāh, la Lune se fendit en deux moitiés distinctes : les témoins virent une moitié d'un côté de la montagne de Hirā' et l'autre moitié de l'autre côté, tandis que le Prophète ﷺ leur disait : <strong>« Soyez-en témoins ! (Ash-hadū !) »</strong>.</p>
+      <p>Ce fait historique est rapporté par des chaînes de transmission multiples et ininterrompues (<em>Mutawātir</em>) dans <em>Sahīh Al-Bukhārī</em> (n°3636, 3868) et <em>Sahīh Muslim</em> (n°2800) d'après de nombreux témoins oculaires directs, notamment <strong>‘Abdullāh ibn Mas‘ūd, Anas ibn Mālik, Jubayr ibn Mut‘im, ‘Abdullāh ibn ‘Abbās et ‘Abdullāh ibn ‘Umar</strong>.</p>
+    </div>
+
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">PREUVE N°2 • L'ARGUMENT IMPARABLE DES VOYAGEURS & L'AVEU DE QURAYSH</div>
+      <h4>🐪 La vérification auprès des caravanes venant de l'extérieur</h4>
+      <p>Comme le souligne le verset suivant (<em>« Et s'ils voient un signe, ils se détournent et disent : "C'est une magie persistante !" »</em> — 54:2), les ennemis mecquois n'ont jamais dit : <em>« Rien ne s'est passé dans le ciel »</em>, car toute la ville venait de le voir. Pour tenter de l'expliquer, Abū Jahl prétendit que Muhammad ﷺ avait « ensorcelé » leurs yeux.</p>
+      <p>Les notables mecquois dirent alors : <strong>« Interrogez les voyageurs et les caravanes qui arrivent des autres contrées ! Car même s'il avait pu tromper nos yeux à La Mecque, il ne peut pas ensorceler les gens qui se trouvent au loin sur toute la terre ! »</strong> Or, lorsque les voyageurs arrivèrent de toutes les directions les jours suivants, ils confirmèrent unanimement : <strong>« Oui, nous avons vu la Lune se fendre telle nuit à telle heure ! »</strong> (<em>Musnad Ahmad, Sunan At-Tirmidhī n°3289, Al-Bayhaqī dans Dalā'il An-Nubuwwah 2/266</em>).</p>
+    </div>
+
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">PREUVE N°3 • LE ROI D'INDE CHERAMAN PERUMAL & LE MANUSCRIT DE LONDRES</div>
+      <h4>📜 L'observation depuis l'Inde (Kerala) et l'archive de la British Library</h4>
+      <p>Ce phénomène céleste fut également observé hors d'Arabie, sur la côte sud-ouest de l'Inde (région de Malabar, actuel État du Kerala). Le roi indien de la dynastie Chera, connu sous le titre de <strong>Cheraman Perumal</strong> (appelé <em>Chakrawati Farmas</em> ou <em>Shakarwati Farmad</em> dans les chroniques arabes), vit la Lune se fendre depuis le toit de son palais par une nuit claire et fit consigner l'heure exacte du prodige par ses astronomes.</p>
+      <p>Lorsque des marchands arabes firent escale dans ses ports en route vers Ceylan et lui apprirent qu'un Prophète à La Mecque avait accompli ce miracle, le roi partagea son royaume, embarqua pour l'Arabie, rencontra le Prophète Muhammad ﷺ et embrassa l'Islam sous le nom de <strong>Tājuddīn</strong>. Le compagnon <strong>Abū Sa‘īd Al-Khudrī</strong> rapporte à ce sujet dans un Hadīth consigné par <em>Al-Hākim dans Al-Mustadrak (n°7373)</em> : <strong>« Le roi de l'Inde offrit au Messager d'Allāh ﷺ une jarre contenant du gingembre ; le Prophète ﷺ en fit goûter à ses compagnons morceau par morceau, et il m'en donna un morceau à manger. »</strong></p>
+      <p>Tombé malade sur le chemin du retour à Zafar (Salalah, Oman) où se trouve encore son tombeau, le roi confia à ses compagnons de voyage (dont Mālik ibn Dīnār) des lettres royales en langue malayalam ordonnant d'accueillir les musulmans, ce qui aboutit en <strong>629 ap. J.-C.</strong> à la fondation de la <strong>Cheraman Juma Masjid</strong> à Kodungallur (Kerala), la plus ancienne mosquée du sous-continent indien.</p>
+    </div>
+  </div>
+
+  <div class="historians-proof-section">
+    <div class="historians-header">🏛️ ARCHIVE DU MANUSCRIT DE LONDRES & RÉFÉRENCES HISTORIQUES</div>
+
+    <div class="historian-quote-box">
+      <div class="historian-name">1. Le Manuscrit de Londres (British Library / India Office Library, MS. Arabic 2807)</div>
+      <div class="historian-role">Cité par le Pr. Muhammad Hamidullah dans son ouvrage de référence <em>Muhammad Rasulullah</em> (paragraphes 199-200) :</div>
+      <blockquote>« Conservé à Londres dans les fonds de l'<em>India Office Library</em> (British Library) sous la cote <strong>MS. Arabic 2807 (fols. 152–173 / 81a–104a)</strong> et intitulé <em>Qissat Shakarwati Farmad</em>, ce manuscrit historique relate comment le souverain du Malabar observa la fente de la Lune depuis l'Inde, se rendit en Arabie auprès du Prophète ﷺ et ordonna la construction de la première mosquée du Kerala. »</blockquote>
+    </div>
+
+    <div class="historian-quote-box">
+      <div class="historian-name">2. Tuhfat al-Mujāhidīn de Zayn al-Dīn al-Malībārī (Historien du Kerala, XVIe siècle)</div>
+      <div class="historian-role">Ouvrage historique de référence sur l'histoire du Malabar :</div>
+      <blockquote>« Atteste la tradition historique ancienne du Kerala concernant le voyage du roi Cheraman Perumal vers l'Arabie après l'observation du signe lunaire et l'établissement des premières mosquées sur la côte de Malabar dès le VIIe siècle. »</blockquote>
+    </div>
+
+    <div class="proof-links-bar">
+      <span class="proof-links-label">🔗 Sources & archives historiques vérifiables :</span>
+      <a href="https://sunnah.com/bukhari:3636" target="_blank" rel="noopener" class="proof-link-pill">📘 Sahīh Al-Bukhārī (n°3636)</a>
+      <a href="https://sunnah.com/muslim:2800a" target="_blank" rel="noopener" class="proof-link-pill">📗 Sahīh Muslim (n°2800)</a>
+      <a href="https://en.wikipedia.org/wiki/Cheraman_Perumal_myths" target="_blank" rel="noopener" class="proof-link-pill">👑 Roi Cheraman Perumal (Kerala)</a>
+      <a href="https://en.wikipedia.org/wiki/Cheraman_Juma_Mosque" target="_blank" rel="noopener" class="proof-link-pill">🕌 Mosquée Cheraman Juma (629 ap. J.-C.)</a>
+      <a href="https://fr.wikipedia.org/wiki/Muhammad_Hamidullah" target="_blank" rel="noopener" class="proof-link-pill">📜 Pr. Muhammad Hamidullah (MS. Arabic 2807)</a>
+    </div>
+  </div>
+`;
+
+const DEV_QAMAR_EN = `
+  <div class="miracle-pillars-grid">
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">PROOF #1 • MASS-TRANSMITTED EYEWITNESS REPORTS (MUTAWĀTIR)</div>
+      <h4>🌙 The Moon Split in Two Above Mount Hirā' in Makkah</h4>
+      <p>Five years before the Hijrah, the Quraishi leaders of Makkah challenged Prophet Muhammad ﷺ to show them a celestial miracle that no mortal could fabricate on Earth. By the permission of Allāh, the Moon split into two distinct halves—one seen on one side of Mount Hirā' and the other on the opposite side—while the Prophet ﷺ proclaimed: <strong>"Bear witness! (Ash-hadū!)"</strong>.</p>
+      <p>This event is transmitted through multiple uninterrupted chains (<em>Mutawātir</em>) in <em>Sahīh Al-Bukhārī</em> (#3636, 3868) and <em>Sahīh Muslim</em> (#2800) from eyewitnesses including <strong>‘Abdullāh ibn Mas‘ūd, Anas ibn Mālik, Jubayr ibn Mut‘im, Ibn ‘Abbās, and Ibn ‘Umar</strong>.</p>
+    </div>
+
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">PROOF #2 • THE TRAVELERS' CONFIRMATION & QURAYSH'S ADMISSION</div>
+      <h4>🐪 Independent Verification from Incoming Caravans</h4>
+      <p>As the very next verse records (<em>"And if they see a sign, they turn away and say: 'Passing magic!'"</em> — 54:2), the Meccan opponents never denied seeing the event. When Abū Jahl claimed that Muhammad ﷺ had cast a spell over their eyes, the elders of Makkah said: <strong>"Ask the travelers arriving from outside! Even if he could bewitch our eyes in Makkah, he cannot bewitch people across the distant lands!"</strong> When caravans arrived from every direction over the following days, every single one of them confirmed having witnessed the Moon split that very night (<em>Musnad Ahmad, Sunan At-Tirmidhī #3289, Al-Bayhaqī 2/266</em>).</p>
+    </div>
+
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">PROOF #3 • KING CHERAMAN PERUMAL OF INDIA & THE LONDON MANUSCRIPT</div>
+      <h4>📜 Observed from Malabar (Kerala, India) & Archived at the British Library</h4>
+      <p>The phenomenon was also witnessed on the Malabar Coast of southwestern India (modern Kerala). The Chera monarch <strong>Cheraman Perumal</strong> (referred to as <em>Chakrawati Farmas</em> or <em>Shakarwati Farmad</em> in Arabic chronicles) saw the Moon split from his palace roof and had his royal astronomers record the exact date and hour.</p>
+      <p>Upon learning from Arab traders that a Prophet in Makkah had performed this miracle, the king divided his kingdom, sailed to Arabia, met Prophet Muhammad ﷺ, and accepted Islam under the name <strong>Tājuddīn</strong>. Companion <strong>Abū Sa‘īd Al-Khudrī</strong> narrates in <em>Al-Hākim's Mustadrak (#7373)</em>: <strong>"The King of India presented the Messenger of Allāh ﷺ with a jar of ginger; the Prophet ﷺ distributed it piece by piece to his companions, and gave me a piece to eat."</strong></p>
+      <p>Passing away at Zafar (Salalah, Oman) on his return voyage, the king left royal letters carried by Mālik ibn Dīnār that led to the founding in <strong>629 CE</strong> of the <strong>Cheraman Juma Masjid</strong> in Kerala—the oldest mosque in India.</p>
+    </div>
+  </div>
+
+  <div class="historians-proof-section">
+    <div class="historians-header">🏛️ THE LONDON MANUSCRIPT ARCHIVE & HISTORICAL SOURCES</div>
+
+    <div class="historian-quote-box">
+      <div class="historian-name">1. The London Manuscript (British Library / India Office Library, MS. Arabic 2807)</div>
+      <div class="historian-role">Cited by Prof. Muhammad Hamidullah in <em>Muhammad Rasulullah</em>:</div>
+      <blockquote>"Preserved in London in the <em>India Office Library</em> (British Library) under catalog reference <strong>MS. Arabic 2807 (fols. 152–173 / 81a–104a)</strong>, titled <em>Qissat Shakarwati Farmad</em>, this manuscript records how the ruler of Malabar witnessed the splitting of the Moon from India, traveled to Arabia to meet the Prophet ﷺ, and authorized the building of Kerala's first mosque."</blockquote>
+    </div>
+
+    <div class="proof-links-bar">
+      <span class="proof-links-label">🔗 Verifiable Historical Sources:</span>
+      <a href="https://sunnah.com/bukhari:3636" target="_blank" rel="noopener" class="proof-link-pill">📘 Sahīh Al-Bukhārī (#3636)</a>
+      <a href="https://sunnah.com/muslim:2800a" target="_blank" rel="noopener" class="proof-link-pill">📗 Sahīh Muslim (#2800)</a>
+      <a href="https://en.wikipedia.org/wiki/Cheraman_Perumal_myths" target="_blank" rel="noopener" class="proof-link-pill">👑 King Cheraman Perumal (India)</a>
+      <a href="https://en.wikipedia.org/wiki/Cheraman_Juma_Mosque" target="_blank" rel="noopener" class="proof-link-pill">🕌 Cheraman Juma Mosque (629 CE)</a>
+      <a href="https://en.wikipedia.org/wiki/Muhammad_Hamidullah" target="_blank" rel="noopener" class="proof-link-pill">📜 Prof. Muhammad Hamidullah (MS. Arabic 2807)</a>
+    </div>
+  </div>
+`;
+
+const DEV_QAMAR_ES = `
+  <div class="miracle-pillars-grid">
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">PRUEBA N°1 • TESTIMONIOS OCULARES MÚLTIPLES (MUTAWĀTIR)</div>
+      <h4>🌙 La Luna partida en dos sobre el monte Hirā' en La Meca</h4>
+      <p>Cinco años antes de la Hégira, los líderes politeístas de Quraysh desafiaron al Profeta Muhammad ﷺ a mostrarles un milagro celeste imposible de manipular. Con el permiso de Allah, la Luna se partió en dos mitades visibles a cada lado del monte Hirā', mientras el Profeta ﷺ decía: <strong>« ¡Sed testigos de ello! »</strong> (<em>Sahīh Al-Bukhārī n°3636 y Sahīh Muslim n°2800</em>).</p>
+    </div>
+
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">PRUEBA N°2 • EL ARGUMENTO DE LOS VIAJEROS Y CARAVANAS</div>
+      <h4>🐪 La confirmación de los viajeros procedentes del exterior</h4>
+      <p>Cuando Abū Yahl afirmó que Muhammad ﷺ había hechizado sus ojos, los sabios de La Meca dijeron: <strong>« ¡Preguntad a las caravanas que vienen de fuera! Si pudo hechizarnos aquí, no pudo hechizar a quienes están lejos. »</strong> Al llegar los viajeros de todas las direcciones, todos confirmaron haber visto la Luna partirse aquella misma noche (<em>Sunan At-Tirmidhī n°3289, Al-Bayhaqī 2/266</em>).</p>
+    </div>
+
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">PRUEBA N°3 • EL REY DE LA INDIA CHERAMAN PERUMAL Y EL MANUSCRITO DE LONDRES</div>
+      <h4>📜 Observado desde Kerala (India) y conservado en la British Library</h4>
+      <p>El rey de la dinastía Chera en la costa de Malabar (Kerala, India), <strong>Cheraman Perumal (Chakrawati Farmas)</strong>, contempló la partición de la Luna desde su palacio. Informado por mercaderes árabes sobre el Profeta ﷺ, viajó a Arabia, abrazó el Islam bajo el nombre de <strong>Tājuddīn</strong> y ofreció al Profeta ﷺ una jarra de jengibre (narrado por Abū Sa‘īd Al-Khudrī en <em>Al-Mustadrak de Al-Hākim n°7373</em>). Sus cartas reales dieron origen en el año <strong>629 d. C.</strong> a la <strong>Cheraman Juma Masjid</strong>, la mezquita más antigua de la India.</p>
+    </div>
+  </div>
+
+  <div class="historians-proof-section">
+    <div class="historians-header">🏛️ ARCHIVO DEL MANUSCRITO DE LONDRES Y FUENTES HISTÓRICAS</div>
+
+    <div class="historian-quote-box">
+      <div class="historian-name">1. El Manuscrito de Londres (British Library / India Office Library, MS. Arabic 2807)</div>
+      <div class="historian-role">Citado por el Prof. Muhammad Hamidullah en su obra <em>Muhammad Rasulullah</em>:</div>
+      <blockquote>« Conservado en Londres bajo la signatura <strong>MS. Arabic 2807 (fols. 152–173)</strong> con el título <em>Qissat Shakarwati Farmad</em>, documenta cómo el monarca de Malabar observó la partición de la Luna desde la India, viajó para encontrarse con el Profeta ﷺ y ordenó edificar la primera mezquita de Kerala. »</blockquote>
+    </div>
+
+    <div class="proof-links-bar">
+      <span class="proof-links-label">🔗 Fuentes históricas verificables:</span>
+      <a href="https://sunnah.com/bukhari:3636" target="_blank" rel="noopener" class="proof-link-pill">📘 Sahīh Al-Bukhārī (n°3636)</a>
+      <a href="https://en.wikipedia.org/wiki/Cheraman_Perumal_myths" target="_blank" rel="noopener" class="proof-link-pill">👑 Rey Cheraman Perumal (India)</a>
+      <a href="https://en.wikipedia.org/wiki/Cheraman_Juma_Mosque" target="_blank" rel="noopener" class="proof-link-pill">🕌 Mezquita Cheraman Juma (629 d.C.)</a>
+    </div>
+  </div>
+`;
+
+const DEV_QAMAR_AR = `
+  <div class="miracle-pillars-grid">
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">الدليل الأول • التواتر القطعي في الصحيحين</div>
+      <h4>🌙 انشقاق القمر فرقتين فوق جبل حراء بمكة المكرمة</h4>
+      <p>سأل أهل مكة النبيَّ ﷺ أن يريهم آيةً سماوية لا يقدر عليها البشر، فأراهم انشقاق القمر فرقتين، فرقة من وراء جبل حراء وفرقة دونه، وقال لهم النبي ﷺ: <strong>«اشهدوا!»</strong>. وقد ثبتت هذه المعجزة بالأحاديث الصحيحة المتواترة في <em>صحيح البخاري (3636) وصحيح مسلم (2800)</em> عن جمع من الصحابة الذين شاهدوها بأعينهم كعبد الله بن مسعود وأنس بن مالك وجبير بن مطعم وابن عباس وابن عمر رضي الله عنهم.</p>
+    </div>
+
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">الدليل الثاني • شهادة المسافرين والقوافل القادمة من الآفاق</div>
+      <h4>🐪 حجة قريش على نفسها وتصديق السَّفْر من خارج مكة</h4>
+      <p>لما رأى المشركون انشقاق القمر عيانًا لم ينكروا وقوعه، بل قالوا كما ذكر القرآن: ﴿سِحْرٌ مُّسْتَمِرٌّ﴾ (القمر: 2)، ثم قال عقلاؤهم: <strong>«انتظروا ما يأتيكم من السَّفْر (المسافرين)، فإن محمدًا لا يستطيع أن يسحر الناس كلهم!»</strong> فلما قدمت القوافل من كل وجه وسألوهم، شهدوا جميعًا أنهم رأوا القمر قد انشق في تلك الليلة بعينها (<em>رواه أحمد والترمذي 3289 والبيهقي في دلائل النبوة 2/266</em>).</p>
+    </div>
+
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">الدليل الثالث • ملك الهند «شيرمان بيرومال» ومخطوطة لندن التاريخية</div>
+      <h4>📜 رصد المعجزة في الهند (كيرلا) وحديث هدية الزنجبيل للنبي ﷺ</h4>
+      <p>شاهد هذه المعجزة أيضًا ملك مالابار في جنوب غرب الهند (ولاية كيرلا حاليًا) المعروف بلقب <strong>شيرمان بيرومال (شكرورتي فرماض)</strong> من شرفة قصره، وسجّل تاريخها. ولما أخبره التجار العرب أن نبيًّا بمكة قد ظهرت على يديه هذه الآية، ترك ملكه ورحل إلى جزيرة العرب ولقي النبي ﷺ وأسلم وتسمّى <strong>تاج الدين</strong>. وقد روى أبو سعيد الخدري رضي الله عنه في <em>مستدرك الحاكم (7373)</em>: <strong>«أهدى ملك الهند إلى رسول الله ﷺ جرّة فيها زنجبيل، فأطعم أصحابه قطعةً قطعةً، وأطعمني منها قطعة»</strong>. وبأمره تأسس عام <strong>629م</strong> <strong>مسجد شيرمان جمعة</strong> في كيرلا، وهو أقدم مسجد في الهند.</p>
+    </div>
+  </div>
+
+  <div class="historians-proof-section">
+    <div class="historians-header">🏛️ وثيقة مخطوطة لندن بالمكتبة البريطانية والمصادر التاريخية</div>
+
+    <div class="historian-quote-box">
+      <div class="historian-name">1. مخطوطة لندن (British Library / India Office Library, MS. Arabic 2807)</div>
+      <div class="historian-role">ذكرها العلامة محمد حميد الله في كتابه <em>محمد رسول الله ﷺ</em>:</div>
+      <blockquote>« تُحفظ في المكتبة البريطانية بلندن (مكتبة المكتب الهندي) تحت رقم <strong>MS. Arabic 2807 (الأوراق 152-173)</strong> مخطوطة تاريخية بعنوان <em>"قصة شكرورتي فرماض"</em> توثّق رؤية ملك الهند لانشقاق القمر، ورحلته إلى النبي ﷺ وإسلامه، وتأسيس أول مسجد في الهند. »</blockquote>
+    </div>
+
+    <div class="proof-links-bar">
+      <span class="proof-links-label">🔗 روابط المصادر التاريخية الموثقة:</span>
+      <a href="https://sunnah.com/bukhari:3636" target="_blank" rel="noopener" class="proof-link-pill">📘 صحيح البخاري (3636)</a>
+      <a href="https://en.wikipedia.org/wiki/Cheraman_Perumal_myths" target="_blank" rel="noopener" class="proof-link-pill">👑 ملك الهند شيرمان بيرومال</a>
+      <a href="https://en.wikipedia.org/wiki/Cheraman_Juma_Mosque" target="_blank" rel="noopener" class="proof-link-pill">🕌 مسجد شيرمان جمعة (629م)</a>
+    </div>
+  </div>
+`;
+
 const MIRACLES_DE_BASE = {
   "30:1": {
     titre: "Les 3 Miracles de Sourate Ar-Rūm — La Mer Morte (-434m), la Victoire impossible en 3 à 9 ans & Badr",
@@ -305,6 +481,20 @@ const MIRACLES_DE_BASE = {
     developpementEn: DEV_RUM_EN,
     developpementEs: DEV_RUM_ES,
     developpementAr: DEV_RUM_AR
+  },
+  "54:1": {
+    titre: "Miracle Prophétique & Historique — La fente de la Lune, les voyageurs de Quraysh & le Roi d'Inde Cheraman Perumal",
+    titreEn: "Prophetic & Historical Miracle — The Splitting of the Moon, the Travelers & King Cheraman Perumal of India",
+    titreEs: "Milagro Profético e Histórico — La partición de la Luna, los viajeros y el Rey Cheraman Perumal de la India",
+    titreAr: "معجزة انشقاق القمر — شهادة الصحابة والمسافرين، وإسلام ملك الهند (مخطوطة لندن)",
+    resume: "« L'Heure approche et la Lune s'est fendue. » Un miracle observé à La Mecque (rapporté par voies Mutawātir dans Al-Bukhārī et Muslim), confirmé par les caravanes de voyageurs extérieurs interrogées par Quraysh, et observé jusqu'en Inde par le roi du Kerala Cheraman Perumal (attesté par le Hadīth d'Al-Hākim, la mosquée de 629 ap. J.-C. et le Manuscrit de Londres MS. Arabic 2807 cité par Muhammad Hamidullah).",
+    resumeEn: "'The Hour has drawn near and the Moon has split.' Witnessed in Makkah (Mutawātir in Al-Bukhārī & Muslim), confirmed by incoming caravans questioned by Quraysh, and observed in India by King Cheraman Perumal of Kerala (attested by Al-Hākim's Hadīth, the 629 CE Cheraman Mosque, and British Library MS. Arabic 2807 cited by Prof. Muhammad Hamidullah).",
+    resumeEs: "« La Hora se acerca y la Luna se ha partido. » Milagro observado en La Meca (Al-Bukhārī y Muslim), confirmado por las caravanas de viajeros interrogadas por Quraysh, y presenciado en la India por el rey Cheraman Perumal de Kerala (documentado en la mezquita de 629 d.C. y el Manuscrito de Londres MS. Arabic 2807).",
+    resumeAr: "﴿اقْتَرَبَتِ السَّاعَةُ وَانشَقَّ الْقَمَرُ﴾ معجزة حسية متواترة في البخاري ومسلم، أكّدتها القوافل القادمة من خارج مكة، ورصدها ملك الهند «شيرمان بيرومال» الذي رحل إلى النبي ﷺ وأسلم كما في مستدرك الحاكم ومخطوطة المكتبة البريطانية بلندن (MS. Arabic 2807).",
+    developpement: DEV_QAMAR_FR,
+    developpementEn: DEV_QAMAR_EN,
+    developpementEs: DEV_QAMAR_ES,
+    developpementAr: DEV_QAMAR_AR
   },
   "96:2": {
     titre: "Signe Embryologique — La création de l'homme à partir d'une adhérence ('Alaq)",
@@ -389,20 +579,6 @@ const MIRACLES_DE_BASE = {
     developpementEn: `<p><strong>The Proof Highlighted by the Scholars:</strong> Classical exegetes (including Al-Qurtubī and Ibn Kathīr) point out that this surah was revealed in Makkah more than ten years before the death of Abū Lahab. All he had to do was declare publicly (even out of hypocrisy): <em>"I have become a Muslim!"</em> to claim that the Quran was wrong. Yet he was never able to do so and died in disbelief exactly as decreed.</p>`,
     developpementEs: `<p><strong>La prueba destacada por los sabios:</strong> Los exégetas señalan que esta sura fue revelada en La Meca más de diez años antes de la muerte de Abū Lahab. Le habría bastado declarar públicamente (incluso por hipocresía): <em>« ¡Me he hecho musulmán! »</em> para pretender que el Corán se había equivocado, pero murió exactamente como el Corán decretó.</p>`,
     developpementAr: `<p><strong>الحجة الباهرة التي أبرزها العلماء:</strong> نزلت هذه السورة بمكة قبل هلاك أبي لهب بأكثر من عشر سنين، وكان يكفيه أن يتظاهر بالإسلام كذبًا ليطعن في الآية، لكنه لم يستطع ذلك قط ومات على الكفر كما قضى الله.</p>`
-  },
-  "54:1": {
-    titre: "Miracle Prophétique — La fente de la Lune (Inshiqāq Al-Qamar)",
-    titreEn: "Prophetic Miracle — The Splitting of the Moon (Inshiqāq Al-Qamar)",
-    titreEs: "Milagro Profético — La partición de la Luna (Inshiqāq Al-Qamar)",
-    titreAr: "معجزة انشقاق القمر — ﴿اقْتَرَبَتِ السَّاعَةُ وَانشَقَّ الْقَمَرُ﴾",
-    resume: "« L'Heure approche et la Lune s'est fendue. » Miracle observé à La Mecque et attesté par des chaînes de transmission multiples (Mutawātir).",
-    resumeEn: "'The Hour has drawn near and the Moon has split.' A miracle witnessed in Makkah and attested by multiple mass-transmitted (Mutawātir) chains.",
-    resumeEs: "« La Hora se acerca y la Luna se ha partido. » Milagro observado en La Meca y atestiguado por múltiples cadenas de transmisión (Mutawātir).",
-    resumeAr: "﴿اقْتَرَبَتِ السَّاعَةُ وَانشَقَّ الْقَمَرُ﴾ معجزة حسية رآها أهل مكة عيانًا وثبتت بالأحاديث المتواترة.",
-    developpement: `<p><strong>Les témoignages authentiques (Al-Bukhārī & Muslim) :</strong> Les imams Al-Bukhārī, Muslim, At-Tabarī et Ibn Kathīr rapportent par des voies multiples d'après ‘Abdullāh ibn Mas‘ūd, Anas ibn Mālik, Jubayr ibn Mut‘im et Ibn ‘Abbās que les habitants de La Mecque demandèrent au Prophète ﷺ un signe céleste. La Lune se fendit alors en deux parties distinctes, une moitié d'un côté de la montagne de Hirā' et l'autre moitié de l'autre côté, et le Prophète ﷺ leur dit : <em>« Soyez-en témoins ! »</em></p>`,
-    developpementEn: `<p><strong>Authentic Eyewitness Testimonies (Al-Bukhārī & Muslim):</strong> Imams Al-Bukhārī, Muslim, At-Tabarī, and Ibn Kathīr record through multiple authentic chains that the Moon split into two distinct halves in Makkah, and the Prophet ﷺ said: <em>"Bear witness!"</em></p>`,
-    developpementEs: `<p><strong>Los testimonios auténticos (Al-Bukhārī y Muslim):</strong> Los imames Al-Bukhārī, Muslim, At-Tabarī e Ibn Kathīr relatan por múltiples vías que la Luna se partió en dos mitades distintas en La Meca, y el Profeta ﷺ dijo: <em>« ¡Sed testigos de ello! »</em></p>`,
-    developpementAr: `<p><strong>الشهادات الصحيحة المتواترة (في البخاري ومسلم):</strong> روى البخاري ومسلم من طرق متعددة عن الصحابة أن القمر انشق فرقتين بمكة، فقال النبي ﷺ: <em>«اشهدوا!»</em></p>`
   }
 };
 
@@ -806,10 +982,7 @@ const MOTEUR_CIEL_JS = `
   renderFullSky();
 `;
 
-// ============================================================================
-// NAVIGATION V49 : BASE V44 AVEC BORDS ANIMÉS OR/BLEU (SANS TIKTOK NI MOTION DESIGN)
-// ============================================================================
-const SCRIPT_VERSET_V49 = `
+const SCRIPT_VERSET_V52 = `
   const audio = document.getElementById('ayahAudio');
   const preloadAudio = document.getElementById('preloadNextAudio');
   const playBtn = document.getElementById('playSyncBtn');
@@ -901,10 +1074,10 @@ const SCRIPT_VERSET_V49 = `
     const b = document.getElementById('miracleToggleBtn');
     if (!d || !b) return;
     const isO = d.classList.toggle('open');
-    if (currentLang === 'ar') b.textContent = isO ? "▲ إخفاء الشرح المفصل وشهادات المؤرخين" : "★ عرض الشرح الكامل وشهادات المؤرخين والحديث";
-    else if (currentLang === 'en') b.textContent = isO ? "▲ Hide detailed explanation & historian proofs" : "★ Read full explanation, Hadīth & Oxford Historian Proofs";
-    else if (currentLang === 'es') b.textContent = isO ? "▲ Ocultar explicación detallada y pruebas" : "★ Ver explicación completa, Hadiz y pruebas de historiadores";
-    else b.textContent = isO ? "▲ Masquer l'explication détaillée & les preuves des historiens" : "★ Développer l'explication complète, le Hadīth & les preuves des historiens";
+    if (currentLang === 'ar') b.textContent = isO ? "▲ إخفاء الشرح المفصل والمصادر التاريخية" : "★ عرض الشرح الكامل والأدلة والمخطوطات التاريخية";
+    else if (currentLang === 'en') b.textContent = isO ? "▲ Hide detailed explanation & historical proofs" : "★ Read full explanation, Hadīth & Historical Proofs";
+    else if (currentLang === 'es') b.textContent = isO ? "▲ Ocultar explicación detallada y pruebas" : "★ Ver explicación completa, Hadiz y pruebas históricas";
+    else b.textContent = isO ? "▲ Masquer l'explication détaillée & les preuves historiques" : "★ Développer l'explication complète, le Hadīth & les preuves historiques";
   }
   function construireMiracle(m) {
     if (!m) return '';
@@ -912,7 +1085,7 @@ const SCRIPT_VERSET_V49 = `
     const t = isAr ? (m.titreAr || m.titre) : (isEn ? (m.titreEn || m.titre) : (isEs ? (m.titreEs || m.titre) : m.titre));
     const r = isAr ? (m.resumeAr || m.resume) : (isEn ? (m.resumeEn || m.resume) : (isEs ? (m.resumeEs || m.resume) : m.resume));
     const dv = isAr ? (m.developpementAr || m.developpement) : (isEn ? (m.developpementEn || m.developpement) : (isEs ? (m.developpementEs || m.developpement) : m.developpement));
-    const bt = isAr ? "★ عرض الشرح الكامل وشهادات المؤرخين والحديث" : (isEn ? "★ Read full explanation, Hadīth & Oxford Historian Proofs" : (isEs ? "★ Ver explicación completa, Hadiz y pruebas de historiadores" : "★ Développer l'explication complète, le Hadīth & les preuves des historiens"));
+    const bt = isAr ? "★ عرض الشرح الكامل والأدلة والمخطوطات التاريخية" : (isEn ? "★ Read full explanation, Hadīth & Historical Proofs" : (isEs ? "★ Ver explicación completa, Hadiz y pruebas históricas" : "★ Développer l'explication complète, le Hadīth & les preuves historiques"));
     return '<div class="miracle-banner ae-laser-box"' + (isAr ? ' dir="rtl" style="text-align:right;"' : '') + '><div class="ae-shimmer-sweep"></div><div class="miracle-header"><span class="gold-star-icon">★</span> ' + t + '</div><p class="miracle-summary">' + r + '</p><button type="button" class="miracle-expand-btn" id="miracleToggleBtn" onclick="basculerDeveloppementMiracle()">' + bt + '</button><div class="miracle-deep-details" id="miracleDeepDetails">' + dv + '</div></div>';
   }
 
@@ -1034,9 +1207,6 @@ const SCRIPT_VERSET_V49 = `
   audio.onended = () => { arreterVisuel(); if (autoCheck.checked) naviguerVerset(null, document.getElementById('nextVerseLink').getAttribute('href'), true); };
 `;
 
-// ============================================================================
-// CSS V49 : LE DESIGN DE BASE IMAGE 2 + LES BORDS ANIMÉS OR/BLEU (DE LA V44)
-// ============================================================================
 const CSS_COMMUN = `
   @property --ae-angle {
     syntax: '<angle>';
@@ -1049,7 +1219,7 @@ const CSS_COMMUN = `
   }
   @keyframes aeShimmerSweep {
     0% { transform: translateX(-140%) skewX(-22deg); opacity: 0; }
-    18% { opacity: 0.75; }
+    18% { opacity: 0.45; }
     38% { transform: translateX(220%) skewX(-22deg); opacity: 0; }
     100% { transform: translateX(220%) skewX(-22deg); opacity: 0; }
   }
@@ -1062,7 +1232,7 @@ const CSS_COMMUN = `
     100% { background-position: 200% center; }
   }
 
-  :root { --bg-main:#020406; --bg-card:rgba(8,13,18,0.28); --bg-elevated:rgba(12,19,25,0.35); --sky-accent:#0ea5e9; --sky-bright:#38bdf8; --sky-light:#7dd3fc; --sky-dim:rgba(56,189,248,0.16); --gold-bright:#fbbf24; --gold-dim:rgba(251,191,36,0.18); --text-main:#f8fafc; --text-muted:#cbd5e1; --border-color:rgba(255,255,255,0.15); }
+  :root { --bg-main:#020406; --bg-card:rgba(8,13,18,0.28); --bg-elevated:rgba(12,19,25,0.35); --sky-accent:#0ea5e9; --sky-bright:#38bdf8; --sky-light:#7dd3fc; --sky-dim:rgba(56,189,248,0.16); --gold-soft:#e2c078; --gold-dim:rgba(226,192,120,0.12); --text-main:#f8fafc; --text-muted:#cbd5e1; --border-color:rgba(255,255,255,0.15); }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg-main); color:var(--text-main); font-family:'Plus Jakarta Sans',sans-serif; line-height:1.8; min-height:100vh; overflow-x:hidden; }
   .cosmos-exterior-wrapper { position:fixed; inset:0; width:100vw; height:100vh; z-index:0; pointer-events:none; overflow:hidden; background:radial-gradient(ellipse at 50% 40%, #070d14 0%, #030609 65%, #010203 100%); }
@@ -1075,36 +1245,44 @@ const CSS_COMMUN = `
   .revelation-pill { display:inline-flex; align-items:center; gap:5px; font-size:0.72rem; font-weight:800; text-transform:uppercase; padding:4px 10px; border-radius:99px; text-decoration:none; }
   .revelation-pill.mecquoise { background:rgba(56,189,248,0.15); color:#7dd3fc; border:1px solid rgba(56,189,248,0.45); }
   .revelation-pill.medinoise { background:rgba(16,185,129,0.16); color:#6ee7b7; border:1px solid rgba(52,211,153,0.38); }
-  .revelation-pill.miracle-pill { background:linear-gradient(135deg, rgba(251,191,36,0.28), rgba(245,158,11,0.16)); color:#fde68a; border:1.5px solid rgba(251,191,36,0.88); box-shadow:0 0 16px rgba(251,191,36,0.32); cursor:pointer; transition:0.25s; }
-  .revelation-pill.miracle-pill:hover { background:#fbbf24; color:#020406; box-shadow:0 0 24px rgba(251,191,36,0.7); }
+
+  .revelation-pill.miracle-pill {
+    background: linear-gradient(135deg, rgba(14,165,233,0.22), rgba(251,191,36,0.10));
+    color: #e0f2fe;
+    border: 1px solid rgba(56,189,248,0.55);
+    box-shadow: 0 0 12px rgba(56,189,248,0.18);
+    cursor: pointer;
+    transition: 0.25s;
+  }
+  .revelation-pill.miracle-pill:hover { background:rgba(56,189,248,0.32); color:#ffffff; border-color:#7dd3fc; box-shadow:0 0 18px rgba(56,189,248,0.4); }
+
   .lang-switcher-group { display:inline-flex; align-items:center; background:rgba(6,12,18,0.88); border:1px solid rgba(56,189,248,0.42); padding:3px; border-radius:99px; gap:3px; }
   .lang-pill-btn { background:transparent; color:#94a3b8; border:1px solid transparent; padding:5px 10px; border-radius:99px; font-family:inherit; font-size:0.74rem; font-weight:800; cursor:pointer; }
   .lang-pill-btn.active { background:linear-gradient(135deg, rgba(56,189,248,0.38), rgba(14,165,233,0.32)); color:#fff; border-color:rgba(56,189,248,0.85); box-shadow:0 0 12px rgba(56,189,248,0.35); }
-  .gold-star-icon { color:#fbbf24; text-shadow:0 0 10px rgba(251,191,36,0.95), 0 0 20px rgba(245,158,11,0.75); font-size:1.05em; }
-  .sort-btn.active .gold-star-icon { color:#fde047; text-shadow:0 2px 6px rgba(0,0,0,0.85), 0 0 14px rgba(251,191,36,1); }
+  .gold-star-icon { color:#f3d078; text-shadow:0 0 6px rgba(251,191,36,0.45); font-size:1.02em; }
+  .sort-btn.active .gold-star-icon { color:#fde68a; text-shadow:0 1px 4px rgba(0,0,0,0.75); }
 
-  /* BORDURES ANIMÉES EN OR & BLEU SUR LES BANNIÈRES DE MIRACLES */
   .miracle-banner {
     position: relative;
-    background: linear-gradient(145deg, rgba(6, 26, 44, 0.86) 0%, rgba(4, 12, 22, 0.94) 100%);
-    border: 1.5px solid rgba(251, 191, 36, 0.55);
+    background: linear-gradient(145deg, rgba(5, 22, 38, 0.88) 0%, rgba(3, 10, 19, 0.94) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.48);
     border-radius: 22px;
     padding: 24px 26px;
     margin-bottom: 22px;
     overflow: hidden;
-    box-shadow: 0 14px 40px rgba(0,0,0,0.65), 0 0 28px rgba(56,189,248,0.22), 0 0 42px rgba(251,191,36,0.16);
+    box-shadow: 0 14px 38px rgba(0,0,0,0.65), 0 0 24px rgba(56,189,248,0.18), 0 0 14px rgba(251,191,36,0.06);
   }
   .miracle-banner::before {
     content: "";
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    padding: 2.2px;
-    background: conic-gradient(from var(--ae-angle), transparent 15%, #38bdf8 38%, #ffffff 48%, #fbbf24 58%, transparent 78%);
+    padding: 1.8px;
+    background: conic-gradient(from var(--ae-angle), transparent 15%, #0ea5e9 34%, #38bdf8 46%, #7dd3fc 52%, rgba(251,191,36,0.52) 56%, #38bdf8 62%, transparent 82%);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-    animation: aeLaserSpin 4.2s linear infinite;
+    animation: aeLaserSpin 5.5s linear infinite;
     pointer-events: none;
     z-index: 2;
   }
@@ -1114,29 +1292,29 @@ const CSS_COMMUN = `
     left: 0;
     width: 45%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), rgba(251,191,36,0.10), transparent);
-    animation: aeShimmerSweep 6.5s ease-in-out infinite;
+    background: linear-gradient(90deg, transparent, rgba(56,189,248,0.06), rgba(251,191,36,0.04), transparent);
+    animation: aeShimmerSweep 7s ease-in-out infinite;
     pointer-events: none;
     z-index: 1;
   }
-  .miracle-header { position:relative; z-index:3; color:#fde68a; font-weight:800; font-size:1.14rem; margin-bottom:10px; line-height:1.4; text-shadow:0 2px 10px rgba(0,0,0,0.85), 0 0 18px rgba(251,191,36,0.3); }
-  .miracle-summary { position:relative; z-index:3; color:#e0f2fe; font-size:0.97rem; line-height:1.75; margin-bottom:16px; }
+  .miracle-header { position:relative; z-index:3; color:#e0f2fe; font-weight:800; font-size:1.14rem; margin-bottom:10px; line-height:1.4; text-shadow:0 2px 10px rgba(0,0,0,0.85), 0 0 14px rgba(56,189,248,0.28); }
+  .miracle-summary { position:relative; z-index:3; color:#cbd5e1; font-size:0.97rem; line-height:1.75; margin-bottom:16px; }
   .miracle-expand-btn {
     position: relative;
     z-index: 3;
-    background: linear-gradient(135deg, rgba(251,191,36,0.25), rgba(14,165,233,0.32));
-    color: #fde68a;
-    border: 1.5px solid rgba(251,191,36,0.85);
+    background: linear-gradient(135deg, rgba(14,165,233,0.28), rgba(56,189,248,0.16), rgba(251,191,36,0.10));
+    color: #e0f2fe;
+    border: 1px solid rgba(56,189,248,0.68);
     padding: 10px 20px;
     border-radius: 12px;
     font-family: inherit;
     font-size: 0.86rem;
     font-weight: 800;
     cursor: pointer;
-    box-shadow: 0 0 20px rgba(251,191,36,0.28);
+    box-shadow: 0 0 16px rgba(56,189,248,0.22);
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .miracle-expand-btn:hover { background:linear-gradient(135deg, #fbbf24, #38bdf8); color:#02060d; transform:translateY(-2px) scale(1.01); box-shadow:0 0 30px rgba(251,191,36,0.65); }
+  .miracle-expand-btn:hover { background:linear-gradient(135deg, #38bdf8, #0ea5e9); color:#02060d; transform:translateY(-2px); box-shadow:0 0 24px rgba(56,189,248,0.5); }
   .miracle-deep-details { position:relative; z-index:3; display:none; margin-top:20px; padding-top:20px; border-top:1px solid rgba(56,189,248,0.35); color:#f0f9ff; font-size:0.95rem; line-height:1.8; }
   .miracle-deep-details.open { display:block; animation:aeRevealCascade 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
   .miracle-deep-details p { margin-bottom:12px; }
@@ -1145,20 +1323,20 @@ const CSS_COMMUN = `
   .miracle-pillar-card {
     position: relative;
     background: linear-gradient(135deg, rgba(4, 15, 28, 0.88), rgba(2, 8, 16, 0.92));
-    border: 1px solid rgba(56, 189, 248, 0.45);
-    border-left: 4px solid #fbbf24;
+    border: 1px solid rgba(56, 189, 248, 0.42);
+    border-left: 4px solid #38bdf8;
     border-radius: 16px;
     padding: 18px 20px;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.5), inset 0 0 20px rgba(56,189,248,0.06);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.5), inset 0 0 20px rgba(56,189,248,0.05);
     transition: transform 0.25s ease, border-color 0.25s ease;
   }
-  .miracle-pillar-card:hover { transform: translateX(4px); border-color: #38bdf8; }
-  [dir="rtl"] .miracle-pillar-card { border-left: 1px solid rgba(56, 189, 248, 0.45); border-right: 4px solid #fbbf24; }
+  .miracle-pillar-card:hover { transform: translateX(4px); border-color: #7dd3fc; }
+  [dir="rtl"] .miracle-pillar-card { border-left: 1px solid rgba(56, 189, 248, 0.42); border-right: 4px solid #38bdf8; }
   .pillar-badge {
     display: inline-block;
-    background: linear-gradient(90deg, rgba(251, 191, 36, 0.24), rgba(56, 189, 248, 0.18));
-    color: #fde68a;
-    border: 1px solid rgba(251, 191, 36, 0.65);
+    background: linear-gradient(90deg, rgba(56, 189, 248, 0.22), rgba(251, 191, 36, 0.12));
+    color: #bae6fd;
+    border: 1px solid rgba(56, 189, 248, 0.55);
     font-size: 0.7rem;
     font-weight: 800;
     letter-spacing: 0.06em;
@@ -1169,35 +1347,35 @@ const CSS_COMMUN = `
   .miracle-pillar-card h4 { color:#7dd3fc; font-size:1.04rem; font-weight:800; margin-bottom:8px; }
   .historians-proof-section {
     position: relative;
-    background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(6, 12, 22, 0.95));
-    border: 1.5px solid rgba(251, 191, 36, 0.68);
+    background: linear-gradient(145deg, rgba(8, 20, 36, 0.92), rgba(4, 10, 20, 0.96));
+    border: 1px solid rgba(56, 189, 248, 0.52);
     border-radius: 18px;
     padding: 20px 22px;
-    box-shadow: 0 0 32px rgba(251, 191, 36, 0.18);
+    box-shadow: 0 0 26px rgba(56, 189, 248, 0.15);
   }
-  .historians-header { color:#fde68a; font-size:0.96rem; font-weight:900; letter-spacing:0.04em; margin-bottom:14px; text-transform:uppercase; }
+  .historians-header { color:#7dd3fc; font-size:0.95rem; font-weight:900; letter-spacing:0.04em; margin-bottom:14px; text-transform:uppercase; }
   .historian-quote-box {
     background: rgba(2, 6, 12, 0.78);
-    border: 1px solid rgba(56, 189, 248, 0.38);
+    border: 1px solid rgba(56, 189, 248, 0.35);
     border-radius: 14px;
     padding: 14px 16px;
     margin-bottom: 12px;
     transition: border-color 0.2s ease;
   }
-  .historian-quote-box:hover { border-color: rgba(251, 191, 36, 0.7); }
+  .historian-quote-box:hover { border-color: rgba(56, 189, 248, 0.75); }
   .historian-name { color:#38bdf8; font-weight:800; font-size:0.94rem; margin-bottom:3px; }
   .historian-role { color:#94a3b8; font-size:0.81rem; margin-bottom:8px; }
   .historian-quote-box blockquote {
     color: #f8fafc;
     font-size: 0.92rem;
     line-height: 1.7;
-    border-left: 3px solid #fbbf24;
+    border-left: 3px solid rgba(251, 191, 36, 0.65);
     padding-left: 12px;
     margin: 0;
   }
-  [dir="rtl"] .historian-quote-box blockquote { border-left: none; border-right: 3px solid #fbbf24; padding-left: 0; padding-right: 12px; }
+  [dir="rtl"] .historian-quote-box blockquote { border-left: none; border-right: 3px solid rgba(251, 191, 36, 0.65); padding-left: 0; padding-right: 12px; }
   .proof-links-bar { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.12); }
-  .proof-links-label { font-size:0.8rem; font-weight:800; color:#fde68a; width:100%; margin-bottom:4px; }
+  .proof-links-label { font-size:0.8rem; font-weight:800; color:#bae6fd; width:100%; margin-bottom:4px; }
   .proof-link-pill {
     display: inline-flex;
     align-items: center;
@@ -1213,23 +1391,28 @@ const CSS_COMMUN = `
   }
   .proof-link-pill:hover { background:#38bdf8; color:#021019; transform:translateY(-1px); box-shadow:0 0 14px rgba(56,189,248,0.5); }
 
-  .asso-legal-footer {
-    max-width: 820px;
-    margin: 26px auto 0 auto;
-    padding: 16px 20px;
-    text-align: center;
-    background: rgba(6, 12, 18, 0.55);
-    border: 1px solid rgba(56, 189, 248, 0.22);
-    border-radius: 16px;
-    font-size: 0.76rem;
-    color: #94a3b8;
-    line-height: 1.6;
+  /* BOUTON MENTIONS LÉGALES DISCRET TOUT EN BAS DE L'ORDRE CLASSIQUE */
+  .discreet-legal-btn {
+    background: rgba(8, 14, 22, 0.55);
+    color: #64748b;
+    border: 1px solid rgba(56, 189, 248, 0.18);
+    padding: 6px 16px;
+    border-radius: 99px;
+    font-family: inherit;
+    font-size: 0.74rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .discreet-legal-btn:hover {
+    color: #cbd5e1;
+    border-color: rgba(56, 189, 248, 0.45);
   }
 `;
 
 async function lancerGeneration() {
   console.log('================================================================================');
-  console.log('🚀 GÉNÉRATEUR V49 : DESIGN DE BASE IMAGE 2 + BORDS ANIMÉS OR/BLEU (VERSION V44)');
+  console.log('🚀 GÉNÉRATEUR V52 (ÉTAPE 1) : MENTIONS LÉGALES UNIQUEMENT SUR ORDRE CLASSIQUE');
   console.log('================================================================================\n');
 
   let hamidullahParSourate = {}, anglaisParSourate = {}, espagnolParSourate = {}, arabeParSourate = {};
@@ -1288,7 +1471,7 @@ async function lancerGeneration() {
       telechargerJSON(`https://quranenc.com/api/v1/translation/sura/arabic_mokhtasar/${numS}`).catch(() => ({ result: [] }))
     ]);
 
-    console.log(`[${numS}/114] Sourate ${numS} - ${nomS} [✓ V49 : Base Image 2 + Bords animés Or/Bleu]`);
+    console.log(`[${numS}/114] Sourate ${numS} - ${nomS} [✓ V52 : Sans pied de page d'adresse]`);
 
     const donneesS = { numSourate: numS, nomSourate: nomS, nomFr, nomEn, nomEs, nomArabe: nomAr, lieu, typeSourateLabel: typeLabel, typeSourateClasse: typeCls, ordreRev, nbVersets: nbV, versets: [] };
     const vTr = tradD.result || [];
@@ -1363,12 +1546,11 @@ async function lancerGeneration() {
     .tag { font-size:0.75rem; font-weight:600; padding:5px 11px; border-radius:99px; background:var(--bg-elevated); border:1px solid var(--border-color); }
     .centered-container { max-width:820px; margin:0 auto; }
 
-    /* PANNEAU DE LA SOURATE AVEC BORD ANIMÉ OR/BLEU */
     .panel {
       position: relative;
       background: var(--bg-card);
       backdrop-filter: blur(8px);
-      border: 1px solid rgba(56, 189, 248, 0.25);
+      border: 1px solid rgba(56, 189, 248, 0.28);
       border-radius: 24px;
       padding: 26px 28px;
       display: flex;
@@ -1382,7 +1564,7 @@ async function lancerGeneration() {
       inset: 0;
       border-radius: inherit;
       padding: 1.5px;
-      background: conic-gradient(from var(--ae-angle), transparent 25%, rgba(56,189,248,0.65) 48%, rgba(251,191,36,0.85) 50%, rgba(56,189,248,0.65) 52%, transparent 75%);
+      background: conic-gradient(from var(--ae-angle), transparent 22%, rgba(14,165,233,0.72) 44%, rgba(125,211,252,0.85) 50%, rgba(251,191,36,0.38) 53%, rgba(56,189,248,0.65) 58%, transparent 78%);
       -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
@@ -1412,13 +1594,13 @@ async function lancerGeneration() {
     }
     .verse-jumper-select:hover { background: var(--sky-bright); color: #020810; }
     .verse-jumper-select.is-miracle-gold {
-      background: linear-gradient(135deg, rgba(251, 191, 36, 0.28), rgba(245, 158, 11, 0.18));
-      color: #fde68a;
-      border-color: rgba(251, 191, 36, 0.9);
-      box-shadow: 0 0 20px rgba(251, 191, 36, 0.38);
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.25), rgba(251, 191, 36, 0.12));
+      color: #e0f2fe;
+      border-color: rgba(56, 189, 248, 0.78);
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
     }
     .verse-jumper-select option { background:#0b1116; color:#e0f2fe; font-weight:700; }
-    .verse-jumper-select option.opt-miracle-gold { background:#231905; color:#fde68a; font-weight:800; }
+    .verse-jumper-select option.opt-miracle-gold { background:#0c1d2c; color:#bae6fd; font-weight:800; }
 
     .badge-num {
       background: rgba(14, 165, 233, 0.18);
@@ -1434,11 +1616,10 @@ async function lancerGeneration() {
     .title-group p { color:var(--text-muted); font-size:0.84rem; }
     .arabic-surah { font-family:'Scheherazade New',serif; font-size:2.2rem; color:#fff; flex-shrink:0; }
 
-    /* CADRE DU VERSET AVEC BORD ANIMÉ OR & BLEU */
     .verse-stage {
       position: relative;
       background: rgba(4, 8, 14, 0.42);
-      border: 1.5px solid rgba(56, 189, 248, 0.32);
+      border: 1.5px solid rgba(56, 189, 248, 0.35);
       border-radius: 22px;
       padding: 38px 30px 20px 30px;
       margin-bottom: 18px;
@@ -1453,7 +1634,7 @@ async function lancerGeneration() {
       inset: 0;
       border-radius: inherit;
       padding: 1.8px;
-      background: conic-gradient(from var(--ae-angle), transparent 20%, #38bdf8 45%, #fbbf24 50%, #38bdf8 55%, transparent 80%);
+      background: conic-gradient(from var(--ae-angle), transparent 18%, #0ea5e9 40%, #7dd3fc 50%, rgba(251,191,36,0.42) 54%, #38bdf8 60%, transparent 82%);
       -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
@@ -1461,13 +1642,13 @@ async function lancerGeneration() {
       pointer-events: none;
     }
     .verse-stage.is-miracle-stage {
-      border-color: rgba(251, 191, 36, 0.65);
-      box-shadow: 0 0 35px rgba(251, 191, 36, 0.22), 0 0 55px rgba(56, 189, 248, 0.18), inset 0 0 28px rgba(251, 191, 36, 0.10);
+      border-color: rgba(56, 189, 248, 0.55);
+      box-shadow: 0 0 32px rgba(56, 189, 248, 0.22), 0 0 18px rgba(251, 191, 36, 0.08), inset 0 0 24px rgba(56, 189, 248, 0.08);
     }
     .verse-stage.is-miracle-stage::before {
-      padding: 2.2px;
-      background: conic-gradient(from var(--ae-angle), transparent 12%, #fbbf24 38%, #ffffff 50%, #38bdf8 62%, transparent 88%);
-      animation-duration: 4s;
+      padding: 2px;
+      background: conic-gradient(from var(--ae-angle), transparent 14%, #0ea5e9 34%, #38bdf8 46%, #e0f2fe 51%, rgba(251,191,36,0.55) 55%, #38bdf8 64%, transparent 86%);
+      animation-duration: 4.8s;
     }
 
     .arabic-glow-verse { position:relative; z-index:2; font-family:'Scheherazade New','Amiri',serif; font-size:2.9rem; line-height:2.15; direction:rtl; margin-bottom:22px; color:#fff; text-shadow:0 2px 6px rgba(0,0,0,0.95), 0 0 14px rgba(255,255,255,0.65); transition:font-size 0.15s ease; }
@@ -1605,16 +1786,13 @@ async function lancerGeneration() {
           <div class="sources-line" id="sourcesLineEl">Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar</div>
         </article>
       </main>
-      <footer class="asso-legal-footer">
-        Portail numérique gratuit et sans publicité édité par l'Association Loi 1901 à but non lucratif <strong>« Institut Numérique Coran, Langues &amp; Tafsīr »</strong> 
-      </footer>
     </div>
   </div>
   <script src="${fichierDataJS}?v=${ANTI_CACHE}"></script>
   <script>
     const numSourateActuelle = ${numS}; let numVersetActuel = ${numV}; let codeAudio = "${vObj.codeAudio}";
     ${MOTEUR_CIEL_JS}
-    ${SCRIPT_VERSET_V49}
+    ${SCRIPT_VERSET_V52}
   </script>
 </body>
 </html>`;
@@ -1646,7 +1824,6 @@ async function lancerGeneration() {
     body { padding:24px 4vw 60px 4vw; }
     .wrapper { max-width:1220px; margin:0 auto; }
 
-    /* HERO DE BASE IMAGE 2 + BORDURE ANIMÉE OR & BLEU */
     .hero {
       text-align: center;
       margin-bottom: 22px;
@@ -1666,7 +1843,7 @@ async function lancerGeneration() {
       inset: 0;
       border-radius: inherit;
       padding: 1.5px;
-      background: conic-gradient(from var(--ae-angle), transparent 20%, #38bdf8 46%, #ffffff 50%, #fbbf24 54%, transparent 80%);
+      background: conic-gradient(from var(--ae-angle), transparent 20%, #38bdf8 46%, #ffffff 50%, rgba(251,191,36,0.45) 54%, transparent 80%);
       -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
@@ -1675,7 +1852,6 @@ async function lancerGeneration() {
     }
     .hero-top-lang-bar { position:absolute; top:16px; right:20px; z-index:15; }
     .hero-ornament-top { font-family:'Scheherazade New',serif; font-size:1.4rem; color:rgba(255,255,255,0.85); margin-bottom:4px; }
-    /* TITRE EN DÉGRADÉ ANIMÉ COMME SUR L'IMAGE 2 */
     .hero h1 {
       font-family: 'Cinzel Decorative', 'Scheherazade New', serif;
       font-size: 2.85rem;
@@ -1691,7 +1867,6 @@ async function lancerGeneration() {
     .hero-bottom-bar { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:12px; }
     .hero-inline-logo { width:46px; height:46px; filter:drop-shadow(0 6px 16px rgba(0,0,0,0.9)) drop-shadow(0 0 14px rgba(56,189,248,0.5)); }
 
-    /* BOUTON METTRE LE SITE EN APPLICATION (DE L'IMAGE 2) */
     .app-install-trigger {
       display: inline-flex;
       align-items: center;
@@ -1712,7 +1887,6 @@ async function lancerGeneration() {
     .resume-reading-pill { display:none; align-items:center; gap:8px; background:rgba(16,185,129,0.18); color:#6ee7b7; border:1px solid rgba(52,211,153,0.48); padding:9px 18px; border-radius:99px; font-size:0.82rem; font-weight:700; text-decoration:none; box-shadow:0 0 16px rgba(16,185,129,0.22); transition:0.2s; }
     .resume-reading-pill:hover { background:#10b981; color:#021810; }
 
-    /* FENÊTRE GUIDE D'INSTALLATION SUR TÉLÉPHONE (SAFARI / ANDROID) */
     .app-modal-overlay { display:none; position:fixed; inset:0; background:rgba(2,5,9,0.85); backdrop-filter:blur(10px); z-index:999; align-items:center; justify-content:center; padding:20px; }
     .app-modal-overlay.open { display:flex; }
     .app-modal-card { background:#08111a; border:1.5px solid rgba(56,189,248,0.55); border-radius:22px; max-width:480px; width:100%; padding:24px; color:#f8fafc; box-shadow:0 20px 50px rgba(0,0,0,0.8); }
@@ -1730,38 +1904,36 @@ async function lancerGeneration() {
     .sort-btn:hover { border-color:#38bdf8; transform:translateY(-2px); }
     .sort-btn.active { background:linear-gradient(135deg,#38bdf8,#0ea5e9); color:#021019; border-color:#7dd3fc; box-shadow:0 0 25px rgba(56,189,248,0.55); }
 
-    /* BOUTON 3 AVEC BORD ANIMÉ OR & BLEU */
     .sort-btn.miracle-tab-btn {
-      background: linear-gradient(135deg, rgba(251, 191, 36, 0.16), rgba(14, 165, 233, 0.22));
-      border: 1.5px solid rgba(251, 191, 36, 0.78);
-      color: #fde68a;
-      box-shadow: 0 0 22px rgba(251, 191, 36, 0.25);
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.22), rgba(251, 191, 36, 0.08));
+      border: 1px solid rgba(56, 189, 248, 0.65);
+      color: #e0f2fe;
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.22);
     }
     .sort-btn.miracle-tab-btn::before {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      padding: 2px;
-      background: conic-gradient(from var(--ae-angle), transparent 15%, #fbbf24 42%, #ffffff 50%, #38bdf8 58%, transparent 85%);
+      padding: 1.8px;
+      background: conic-gradient(from var(--ae-angle), transparent 15%, #0ea5e9 38%, #7dd3fc 48%, rgba(251,191,36,0.48) 54%, #38bdf8 62%, transparent 85%);
       -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
-      animation: aeLaserSpin 3.6s linear infinite;
+      animation: aeLaserSpin 4.2s linear infinite;
       pointer-events: none;
     }
     .sort-btn.miracle-tab-btn.active {
-      background: linear-gradient(135deg, #fbbf24, #38bdf8);
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
       color: #020810;
-      border-color: #ffffff;
-      box-shadow: 0 0 30px rgba(251, 191, 36, 0.6), 0 0 45px rgba(56, 189, 248, 0.4);
+      border-color: #bae6fd;
+      box-shadow: 0 0 26px rgba(56, 189, 248, 0.55);
     }
 
     .search-box { width:100%; max-width:540px; margin:0 auto 26px auto; display:block; padding:14px 20px; border-radius:14px; border:1px solid rgba(56,189,248,0.32); background:var(--bg-card); color:#fff; font-size:0.95rem; outline:none; transition:0.2s; }
     .search-box:focus { border-color:#38bdf8; box-shadow:0 0 20px rgba(56,189,248,0.25); }
     .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(310px, 1fr)); gap:16px; }
 
-    /* CARTES DE SOURATES AVEC BORDS ANIMÉS OR & BLEU */
     .card {
       background: var(--bg-card);
       backdrop-filter: blur(6px);
@@ -1784,54 +1956,44 @@ async function lancerGeneration() {
     }
 
     .card.miracle-card-glow {
-      background: linear-gradient(145deg, rgba(10, 24, 40, 0.65) 0%, rgba(6, 12, 20, 0.50) 100%);
-      border: 1.5px solid rgba(251, 191, 36, 0.45);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.55), 0 0 22px rgba(251, 191, 36, 0.16);
+      background: linear-gradient(145deg, rgba(8, 22, 38, 0.62) 0%, rgba(5, 11, 19, 0.52) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.55), 0 0 18px rgba(56, 189, 248, 0.16);
     }
     .card.miracle-card-glow::before {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      padding: 1.8px;
-      background: conic-gradient(from var(--ae-angle), transparent 20%, #fbbf24 42%, #ffffff 50%, #38bdf8 58%, transparent 80%);
+      padding: 1.6px;
+      background: conic-gradient(from var(--ae-angle), transparent 18%, #0ea5e9 38%, #7dd3fc 48%, rgba(251,191,36,0.42) 53%, #38bdf8 60%, transparent 82%);
       -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
-      animation: aeLaserSpin 4.8s linear infinite;
+      animation: aeLaserSpin 5.2s linear infinite;
       pointer-events: none;
     }
     .card.miracle-card-glow:hover {
-      transform: translateY(-5px) scale(1.01);
-      box-shadow: 0 14px 36px rgba(251, 191, 36, 0.32), 0 0 28px rgba(56, 189, 248, 0.32);
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.82);
+      box-shadow: 0 14px 32px rgba(56, 189, 248, 0.28), 0 0 16px rgba(251, 191, 36, 0.12);
     }
 
     .card.rum-featured-card {
-      background: linear-gradient(135deg, rgba(16, 45, 72, 0.82) 0%, rgba(32, 22, 6, 0.68) 100%);
-      border: 2px solid rgba(251, 191, 36, 0.85);
-      box-shadow: 0 0 32px rgba(251, 191, 36, 0.38), 0 0 50px rgba(56, 189, 248, 0.25);
+      background: linear-gradient(135deg, rgba(10, 32, 54, 0.78) 0%, rgba(7, 18, 32, 0.68) 100%);
+      border: 1.5px solid rgba(56, 189, 248, 0.68);
+      box-shadow: 0 0 26px rgba(56, 189, 248, 0.28), 0 0 16px rgba(251, 191, 36, 0.10);
     }
     .card.rum-featured-card::before {
-      padding: 2.5px;
-      background: conic-gradient(from var(--ae-angle), #fbbf24 0%, #ffffff 18%, #38bdf8 35%, transparent 55%, #fbbf24 85%, #ffffff 100%);
-      animation-duration: 3.2s;
-    }
-    .card.rum-featured-card::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), rgba(251,191,36,0.16), transparent);
-      animation: aeShimmerSweep 5s ease-in-out infinite;
-      pointer-events: none;
+      padding: 2px;
+      background: conic-gradient(from var(--ae-angle), transparent 12%, #0ea5e9 32%, #38bdf8 45%, #e0f2fe 50%, rgba(251,191,36,0.52) 55%, #38bdf8 65%, transparent 88%);
+      animation-duration: 4.2s;
     }
     .card.rum-featured-card .num-badge {
-      background: linear-gradient(135deg, rgba(251, 191, 36, 0.32), rgba(245, 158, 11, 0.22));
-      color: #fde68a;
-      border-color: #fbbf24;
-      box-shadow: 0 0 16px rgba(251, 191, 36, 0.45);
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(251, 191, 36, 0.12));
+      color: #bae6fd;
+      border-color: rgba(56, 189, 248, 0.72);
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.28);
     }
 
     .card-left { position:relative; z-index:2; display:flex; align-items:center; gap:14px; }
@@ -1873,8 +2035,13 @@ async function lancerGeneration() {
       <button class="sort-btn" id="sortBtn2" onclick="trier('chrono', this)">2. Ordre de Révélation (1 à 114)</button>
       <button class="sort-btn miracle-tab-btn" id="sortBtn3" onclick="trier('miracles', this)">3. <span class="gold-star-icon">★</span> Les Miracles du Coran</button>
     </div>
-    <input type="text" id="searchInput" class="search-box" placeholder="Rechercher une sourate ou un verset direct (ex: 30:1, 2:255, 111:1...)" oninput="afficher()">
+    <input type="text" id="searchInput" class="search-box" placeholder="Rechercher une sourate ou un verset direct (ex: 30:1, 54:1, 2:255...)" oninput="afficher()">
     <div id="grid" class="grid"></div>
+
+    <!-- BOUTON MENTIONS LÉGALES VISIBLE UNIQUEMENT TOUT EN BAS DE L'ONGLET 1 (ORDRE CLASSIQUE) -->
+    <div id="classicLegalWrap" style="text-align:center; margin-top:34px; padding-bottom:10px;">
+      <button type="button" class="discreet-legal-btn" id="legalBtnEl" onclick="document.getElementById('legalModal').classList.add('open')">Mentions légales</button>
+    </div>
   </div>
 
   <div class="app-modal-overlay" id="appInstallModal" onclick="if(event.target===this)this.classList.remove('open')">
@@ -1883,6 +2050,16 @@ async function lancerGeneration() {
       <p><strong>Sur iPhone (Safari) :</strong> Appuyez sur l'icône <strong>Partager</strong> (le carré avec une flèche vers le haut en bas de l'écran), puis choisissez <strong>« Sur l'écran d'accueil »</strong>.</p>
       <p><strong>Sur Android (Chrome) :</strong> Appuyez sur les <strong>3 petits points</strong> en haut à droite, puis sélectionnez <strong>« Ajouter à l'écran d'accueil »</strong>.</p>
       <button type="button" class="app-modal-close" onclick="document.getElementById('appInstallModal').classList.remove('open')">Fermer</button>
+    </div>
+  </div>
+
+  <!-- FENÊTRE MENTIONS LÉGALES (UNIQUEMENT LE NOM DE L'ASSOCIATION, SANS ADRESSE NI VILLE) -->
+  <div class="app-modal-overlay" id="legalModal" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="app-modal-card" style="text-align:center;">
+      <h3>⚖️ Mentions légales</h3>
+      <p>Portail éducatif, linguistique et culturel gratuit (sans publicité commerciale) édité par l'Association Loi 1901 à but non lucratif :</p>
+      <p style="color:#7dd3fc; font-weight:800; font-size:0.98rem;">« Institut Numérique Coran, Langues &amp; Tafsīr »</p>
+      <button type="button" class="app-modal-close" onclick="document.getElementById('legalModal').classList.remove('open')">Fermer</button>
     </div>
   </div>
 
@@ -1956,14 +2133,21 @@ async function lancerGeneration() {
         : (isEn ? '3. <span class="gold-star-icon">★</span> Miracles of the Quran' : (isEs ? '3. <span class="gold-star-icon">★</span> Milagros del Corán' : '3. <span class="gold-star-icon">★</span> Les Miracles du Coran'));
 
       document.getElementById('searchInput').placeholder = isAr
-        ? "ابحث عن سورة أو آية مباشرة (مثال: 30:1، 2:255، 111:1...)"
-        : (isEn ? "Search a surah or direct verse (e.g., 30:1, 2:255, 111:1...)" : (isEs ? "Buscar una sura o aleya directa (ej: 30:1, 2:255, 111:1...)" : "Rechercher une sourate ou un verset direct (ex: 30:1, 2:255, 111:1...)"));
+        ? "ابحث عن سورة أو آية مباشرة (مثال: 30:1، 54:1، 2:255...)"
+        : (isEn ? "Search a surah or direct verse (e.g., 30:1, 54:1, 2:255...)" : (isEs ? "Buscar una sura o aleya directa (ej: 30:1, 54:1, 2:255...)" : "Rechercher une sourate ou un verset direct (ex: 30:1, 54:1, 2:255...)"));
 
       afficher();
     }
     function afficher() {
       const q = document.getElementById('searchInput').value.toLowerCase().trim();
       const isAr = currentLang === 'ar', isEn = currentLang === 'en', isEs = currentLang === 'es';
+
+      // Affichage du bouton Mentions légales uniquement tout en bas de l'Ordre classique
+      const legWrap = document.getElementById('classicLegalWrap');
+      if (legWrap) {
+        legWrap.style.display = (modeTri === 'classique' && !q) ? 'block' : 'none';
+      }
+
       let directHTML = '';
       const mv = q.match(/^(\\d{1,3})\\s*[:\\/-]\\s*(\\d{1,3})$/);
       if (mv) {
@@ -2022,7 +2206,7 @@ async function lancerGeneration() {
 </html>`;
   fs.writeFileSync(path.join(dossierSite, 'index.html'), htmlAccueil, 'utf8');
   console.log('\n================================================================================');
-  console.log(`✅ MISE À JOUR V49 TERMINÉE : DESIGN IMAGE 2 + BORDS ANIMÉS OR/BLEU (V44) !`);
+  console.log(`✅ MISE À JOUR V52 (ÉTAPE 1) TERMINÉE : MENTIONS LÉGALES UNIQUEMENT SUR ORDRE CLASSIQUE !`);
   console.log(`🔍 SCANNER QUALITÉ : ${totalVersetsVerifies} versets vérifiés | ${compteurDoublonsRepares} doublons séparés.`);
   console.log('================================================================================');
 }
