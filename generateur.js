@@ -1093,6 +1093,14 @@ const SCRIPT_VERSET_V52 = `
       const navL = (navigator.language || navigator.userLanguage || 'fr').toLowerCase().slice(0, 2);
       if (['fr','en','es','ar'].includes(navL)) currentLang = navL;
     }
+    else {
+      const navL = (navigator.language || navigator.userLanguage || 'fr').toLowerCase().slice(0, 2);
+      if (['fr','en','es','ar'].includes(navL)) currentLang = navL;
+    }
+    else {
+      const navL = (navigator.language || navigator.userLanguage || 'fr').toLowerCase().slice(0, 2);
+      if (['fr','en','es','ar'].includes(navL)) currentLang = navL;
+    }
   } catch(e){}
 
   function appliquerTailleTexte() {
@@ -2143,21 +2151,20 @@ async function lancerGeneration() {
   </div>
 
   <div class="app-modal-overlay" id="appInstallModal" onclick="if(event.target===this)this.classList.remove('open')">
-    <div class="app-modal-card">
-      <h3>📲 Installer CoranTafsir sur votre téléphone</h3>
-      <p><strong>Sur iPhone (Safari) :</strong> Appuyez sur l'icône <strong>Partager</strong> (le carré avec une flèche vers le haut en bas de l'écran), puis choisissez <strong>« Sur l'écran d'accueil »</strong>.</p>
-      <p><strong>Sur Android (Chrome) :</strong> Appuyez sur les <strong>3 petits points</strong> en haut à droite, puis sélectionnez <strong>« Ajouter à l'écran d'accueil »</strong>.</p>
-      <button type="button" class="app-modal-close" onclick="document.getElementById('appInstallModal').classList.remove('open')">Fermer</button>
+    <div class="app-modal-card" id="appInstallModalCard">
+      <h3 id="appModalTitleEl">📲 Installer CoranTafsir sur votre téléphone</h3>
+      <p id="appModalIosEl"><strong>Sur iPhone (Safari) :</strong> Appuyez sur l'icône <strong>Partager</strong> (le carré avec une flèche vers le haut en bas de l'écran), puis choisissez <strong>« Sur l'écran d'accueil »</strong>.</p>
+      <p id="appModalAndroidEl"><strong>Sur Android (Chrome) :</strong> Appuyez sur les <strong>3 petits points</strong> en haut à droite, puis sélectionnez <strong>« Ajouter à l'écran d'accueil »</strong>.</p>
+      <button type="button" class="app-modal-close" id="appModalCloseEl" onclick="document.getElementById('appInstallModal').classList.remove('open')">Fermer</button>
     </div>
   </div>
 
-  <!-- FENÊTRE MENTIONS LÉGALES (UNIQUEMENT LE NOM DE L'ASSOCIATION, SANS ADRESSE NI VILLE) -->
   <div class="app-modal-overlay" id="legalModal" onclick="if(event.target===this)this.classList.remove('open')">
-    <div class="app-modal-card" style="text-align:center;">
-      <h3>⚖️ Mentions légales</h3>
-      <p>Portail éducatif, linguistique et culturel gratuit (sans publicité commerciale) édité par l'Association Loi 1901 à but non lucratif :</p>
+    <div class="app-modal-card" id="legalModalCard" style="text-align:center;">
+      <h3 id="legalModalTitleEl">⚖️ Mentions légales</h3>
+      <p id="legalModalDescEl">Portail éducatif, linguistique et culturel gratuit (sans publicité commerciale) édité par l'Association Loi 1901 à but non lucratif :</p>
       <p style="color:#7dd3fc; font-weight:800; font-size:0.98rem;">« Institut Numérique Coran, Langues &amp; Tafsīr »</p>
-      <button type="button" class="app-modal-close" onclick="document.getElementById('legalModal').classList.remove('open')">Fermer</button>
+      <button type="button" class="app-modal-close" id="legalModalCloseEl" onclick="document.getElementById('legalModal').classList.remove('open')">Fermer</button>
     </div>
   </div>
 
@@ -2230,6 +2237,36 @@ async function lancerGeneration() {
         ? '3. <span class="gold-star-icon">★</span> آيات الإعجاز القرآني'
         : (isEn ? '3. <span class="gold-star-icon">★</span> Miracles of the Quran' : (isEs ? '3. <span class="gold-star-icon">★</span> Milagros del Corán' : '3. <span class="gold-star-icon">★</span> Les Miracles du Coran'));
 
+      // Traduction complète de la fenêtre "Installer l'application" (FR / EN / ES / AR)
+      const appCard = document.getElementById('appInstallModalCard');
+      if (appCard) {
+        appCard.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+        appCard.style.textAlign = isAr ? 'right' : 'left';
+      }
+      const appTitle = document.getElementById('appModalTitleEl');
+      if (appTitle) appTitle.textContent = isAr ? "📲 تثبيت الموقع كتطبيق على هاتفك" : (isEn ? "📲 Install CoranTafsir on your phone" : (isEs ? "📲 Instalar CoranTafsir en tu teléfono" : "📲 Installer CoranTafsir sur votre téléphone"));
+      const appIos = document.getElementById('appModalIosEl');
+      if (appIos) appIos.innerHTML = isAr
+        ? "<strong>على آيفون (Safari) :</strong> اضغط على أيقونة <strong>المشاركة</strong> (المربع الذي يخرج منه سهم للأعلى في أسفل الشاشة)، ثم اختر <strong>«إضافة إلى الشاشة الرئيسية»</strong>."
+        : (isEn
+            ? "<strong>On iPhone (Safari):</strong> Tap the <strong>Share</strong> icon (the square with an upward arrow at the bottom of the screen), then select <strong>«Add to Home Screen»</strong>."
+            : (isEs
+                ? "<strong>En iPhone (Safari):</strong> Pulsa el icono <strong>Compartir</strong> (el cuadrado con una flecha hacia arriba en la parte inferior) y elige <strong>«Añadir a la pantalla de inicio»</strong>."
+                : "<strong>Sur iPhone (Safari) :</strong> Appuyez sur l'icône <strong>Partager</strong> (le carré avec une flèche vers le haut en bas de l'écran), puis choisissez <strong>« Sur l'écran d'accueil »</strong>."));
+      const appAndroid = document.getElementById('appModalAndroidEl');
+      if (appAndroid) appAndroid.innerHTML = isAr
+        ? "<strong>على أندرويد (Chrome) :</strong> اضغط على <strong>النقاط الثلاث</strong> في أعلى اليمين، ثم اختر <strong>«الإضافة إلى الشاشة الرئيسية»</strong>."
+        : (isEn
+            ? "<strong>On Android (Chrome):</strong> Tap the <strong>3 dots</strong> in the top right corner, then select <strong>«Add to Home screen»</strong>."
+            : (isEs
+                ? "<strong>En Android (Chrome):</strong> Pulsa los <strong>3 puntos</strong> arriba a la derecha y selecciona <strong>«Añadir a pantalla de inicio»</strong>."
+                : "<strong>Sur Android (Chrome) :</strong> Appuyez sur les <strong>3 petits points</strong> en haut à droite, puis sélectionnez <strong>« Ajouter à l'écran d'accueil »</strong>."));
+      const appClose = document.getElementById('appModalCloseEl');
+      if (appClose) appClose.textContent = isAr ? "إغلاق" : (isEn ? "Close" : (isEs ? "Cerrar" : "Fermer"));
+
+      // Traduction complète du bouton et de la fenêtre "Mentions légales" (FR / EN / ES / AR)
+      const legCard = document.getElementById('legalModalCard');
+      if (legCard) legCard.setAttribute('dir', isAr ? 'rtl' : 'ltr');
       const legBtn = document.getElementById('legalBtnEl');
       if (legBtn) legBtn.textContent = isAr ? "الإشعار القانوني" : (isEn ? "Legal Notice" : (isEs ? "Aviso legal" : "Mentions légales"));
       const legTitle = document.getElementById('legalModalTitleEl');
@@ -2324,10 +2361,8 @@ async function lancerGeneration() {
     '\n</urlset>';
   fs.writeFileSync(path.join(dossierSite, 'sitemap.xml'), xmlSitemap, 'utf8');
   fs.writeFileSync(path.join(dossierSite, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: https://corantafsir.com/sitemap.xml\n', 'utf8');
-  console.log('✅ SEO INTERNATIONAL 4 LANGUES + SITEMAP.XML (6237 URLs) + ROBOTS.TXT GÉNÉRÉS !');
   console.log('\n================================================================================');
-  console.log(`✅ MISE À JOUR V52 (ÉTAPE 1) TERMINÉE : MENTIONS LÉGALES UNIQUEMENT SUR ORDRE CLASSIQUE !`);
-  console.log(`🔍 SCANNER QUALITÉ : ${totalVersetsVerifies} versets vérifiés | ${compteurDoublonsRepares} doublons séparés.`);
+  console.log('✅ SITE + SEO 4 LANGUES + SITEMAP.XML + MENTIONS LÉGALES & APP TRADUITS GÉNÉRÉS !');
   console.log('================================================================================');
 }
 
