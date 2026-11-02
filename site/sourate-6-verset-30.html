@@ -1,707 +1,388 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=31">
-  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/apple-touch-icon-precomposed.png?v=31">
-  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png?v=31">
-  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=31">
-  <link rel="manifest" href="/manifest.json?v=31">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1793581815303">
+  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=1793581815303">
   <link rel="canonical" href="https://corantafsir.com/sourate-6-verset-30.html">
-  <title>Sourate 6 verset 30 (Al-An'am) - Traduction Hamidullah 1977 & Tafsir</title>
-  <meta name="description" content="Sourate 6 verset 30 (Al-An'am - Sourate Mecquoise) : Texte arabe, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Scheherazade+New:wght@400;700&family=Cinzel+Decorative:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>Sourate 6 verset 30 (Al-An'am) - Coran & Tafsir</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-main: #020406;
-      --bg-card: rgba(8, 13, 18, 0.24);
-      --bg-elevated: rgba(12, 19, 25, 0.30);
-      --green-accent: #10b981;
-      --green-bright: #34d399;
-      --green-dim: rgba(16, 185, 129, 0.16);
-      --sky-accent: #38bdf8;
-      --sky-bright: #7dd3fc;
-      --text-main: #f8fafc;
-      --text-muted: #cbd5e1;
-      --border-color: rgba(255, 255, 255, 0.15);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background-color: var(--bg-main);
-      color: var(--text-main);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      line-height: 1.8;
-      min-height: 100vh;
-      padding: 18px 20px 88px 20px;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
     
-  .cosmos-exterior-wrapper {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    pointer-events: none;
-    overflow: hidden;
-    background: radial-gradient(ellipse at 50% 40%, #070d14 0%, #030609 65%, #010203 100%);
+  @property --ae-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+  @keyframes aeLaserSpin {
+    0% { --ae-angle: 0deg; }
+    100% { --ae-angle: 360deg; }
+  }
+  @keyframes aeShimmerSweep {
+    0% { transform: translateX(-140%) skewX(-22deg); opacity: 0; }
+    18% { opacity: 0.75; }
+    38% { transform: translateX(220%) skewX(-22deg); opacity: 0; }
+    100% { transform: translateX(220%) skewX(-22deg); opacity: 0; }
+  }
+  @keyframes aeRevealCascade {
+    0% { opacity: 0; transform: translateY(14px) scale(0.985); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes titleShimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
   }
 
-  #dynamicSkyLighting {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    transition: background 0.6s ease;
-  }
+  :root { --bg-main:#020406; --bg-card:rgba(8,13,18,0.28); --bg-elevated:rgba(12,19,25,0.35); --sky-accent:#0ea5e9; --sky-bright:#38bdf8; --sky-light:#7dd3fc; --sky-dim:rgba(56,189,248,0.16); --gold-bright:#fbbf24; --gold-dim:rgba(251,191,36,0.18); --text-main:#f8fafc; --text-muted:#cbd5e1; --border-color:rgba(255,255,255,0.15); }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg-main); color:var(--text-main); font-family:'Plus Jakarta Sans',sans-serif; line-height:1.8; min-height:100vh; overflow-x:hidden; }
+  .cosmos-exterior-wrapper { position:fixed; inset:0; width:100vw; height:100vh; z-index:0; pointer-events:none; overflow:hidden; background:radial-gradient(ellipse at 50% 40%, #070d14 0%, #030609 65%, #010203 100%); }
+  #fullPageSkyCanvas { position:absolute; inset:0; width:100%; height:100%; z-index:2; }
+  .flat-earth-sun { position:fixed; top:0; left:0; width:116px; height:116px; border-radius:50%; z-index:3; pointer-events:none; }
+  .sun-core { width:100%; height:100%; border-radius:50%; background:radial-gradient(circle, #fff 0%, #fef08a 38%, #f59e0b 72%, rgba(234,88,12,0) 100%); box-shadow:0 0 35px 10px rgba(253,224,71,0.85), 0 0 90px 35px rgba(245,158,11,0.45); }
+  .flat-earth-moon { position:fixed; top:0; left:0; width:128px; height:128px; border-radius:50%; z-index:3; pointer-events:none; }
+  .moon-white-core { width:100%; height:100%; border-radius:50%; background:radial-gradient(circle at 38% 38%, #fff 0%, #f1f5f9 78%, rgba(255,255,255,0) 100%); box-shadow:0 0 35px 12px rgba(255,255,255,0.95), 0 0 85px 32px rgba(226,232,240,0.55); }
+  .interface-layer { position:relative; z-index:10; }
+  .revelation-pill { display:inline-flex; align-items:center; gap:5px; font-size:0.72rem; font-weight:800; text-transform:uppercase; padding:4px 10px; border-radius:99px; text-decoration:none; }
+  .revelation-pill.mecquoise { background:rgba(56,189,248,0.15); color:#7dd3fc; border:1px solid rgba(56,189,248,0.45); }
+  .revelation-pill.medinoise { background:rgba(16,185,129,0.16); color:#6ee7b7; border:1px solid rgba(52,211,153,0.38); }
+  .revelation-pill.miracle-pill { background:linear-gradient(135deg, rgba(251,191,36,0.28), rgba(245,158,11,0.16)); color:#fde68a; border:1.5px solid rgba(251,191,36,0.88); box-shadow:0 0 16px rgba(251,191,36,0.32); cursor:pointer; transition:0.25s; }
+  .revelation-pill.miracle-pill:hover { background:#fbbf24; color:#020406; box-shadow:0 0 24px rgba(251,191,36,0.7); }
+  .lang-switcher-group { display:inline-flex; align-items:center; background:rgba(6,12,18,0.88); border:1px solid rgba(56,189,248,0.42); padding:3px; border-radius:99px; gap:3px; }
+  .lang-pill-btn { background:transparent; color:#94a3b8; border:1px solid transparent; padding:5px 10px; border-radius:99px; font-family:inherit; font-size:0.74rem; font-weight:800; cursor:pointer; }
+  .lang-pill-btn.active { background:linear-gradient(135deg, rgba(56,189,248,0.38), rgba(14,165,233,0.32)); color:#fff; border-color:rgba(56,189,248,0.85); box-shadow:0 0 12px rgba(56,189,248,0.35); }
+  .gold-star-icon { color:#fbbf24; text-shadow:0 0 10px rgba(251,191,36,0.95), 0 0 20px rgba(245,158,11,0.75); font-size:1.05em; }
+  .sort-btn.active .gold-star-icon { color:#fde047; text-shadow:0 2px 6px rgba(0,0,0,0.85), 0 0 14px rgba(251,191,36,1); }
 
-  #fullPageSkyCanvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-  }
-
-  .flat-earth-sun {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 116px;
-    height: 116px;
-    border-radius: 50%;
-    z-index: 3;
-    pointer-events: none;
-    will-change: transform;
-  }
-  .sun-core {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: radial-gradient(circle, #ffffff 0%, #fef08a 38%, #f59e0b 72%, rgba(234, 88, 12, 0) 100%);
-    box-shadow:
-      0 0 35px 10px rgba(253, 224, 71, 0.85),
-      0 0 90px 35px rgba(245, 158, 11, 0.45),
-      0 0 160px 70px rgba(234, 88, 12, 0.22);
-    animation: sunCoronaPulse 4s ease-in-out infinite alternate;
-  }
-  @keyframes sunCoronaPulse {
-    0% { transform: scale(0.96); opacity: 0.92; }
-    100% { transform: scale(1.05); opacity: 1; }
-  }
-
-  .flat-earth-moon {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 128px;
-    height: 128px;
-    border-radius: 50%;
-    z-index: 3;
-    pointer-events: none;
-    will-change: transform;
-  }
-  .moon-white-core {
+  /* BORDURES ANIMÉES EN OR & BLEU SUR LES BANNIÈRES DE MIRACLES */
+  .miracle-banner {
     position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: radial-gradient(circle at 38% 38%, #ffffff 0%, #ffffff 48%, #f1f5f9 78%, #e2e8f0 94%, rgba(255, 255, 255, 0) 100%);
-    box-shadow:
-      0 0 35px 12px rgba(255, 255, 255, 0.95),
-      0 0 85px 32px rgba(226, 232, 240, 0.55),
-      0 0 160px 65px rgba(186, 230, 253, 0.28),
-      inset -8px -8px 18px rgba(203, 213, 225, 0.45);
-    animation: whiteMoonPulse 4.5s ease-in-out infinite alternate;
+    background: linear-gradient(145deg, rgba(6, 26, 44, 0.86) 0%, rgba(4, 12, 22, 0.94) 100%);
+    border: 1.5px solid rgba(251, 191, 36, 0.55);
+    border-radius: 22px;
+    padding: 24px 26px;
+    margin-bottom: 22px;
+    overflow: hidden;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.65), 0 0 28px rgba(56,189,248,0.22), 0 0 42px rgba(251,191,36,0.16);
   }
-  @keyframes whiteMoonPulse {
-    0% { transform: scale(0.96); opacity: 0.92; }
-    100% { transform: scale(1.05); opacity: 1; }
-  }
-
-  .verse-stage.ash-shams-daylight {
-    border-color: rgba(56, 189, 248, 0.55);
-    box-shadow:
-      0 0 60px rgba(56, 189, 248, 0.22),
-      0 20px 50px rgba(0, 0, 0, 0.55),
-      inset 0 0 50px rgba(125, 211, 252, 0.12);
-    animation: daylightSweepPulse 3.5s ease-in-out infinite alternate;
-  }
-  @keyframes daylightSweepPulse {
-    0% { box-shadow: 0 0 45px rgba(56, 189, 248, 0.16), inset 0 0 35px rgba(125, 211, 252, 0.08); }
-    100% { box-shadow: 0 0 80px rgba(56, 189, 248, 0.32), inset 0 0 65px rgba(125, 211, 252, 0.18); }
-  }
-
-  .verse-stage.earth-leveled-glow::after {
+  .miracle-banner::before {
     content: "";
     position: absolute;
-    bottom: 6px;
-    left: 8%;
-    width: 84%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.85), #ffffff, rgba(56, 189, 248, 0.85), transparent);
-    box-shadow: 0 0 18px rgba(56, 189, 248, 0.9);
-    animation: horizonExpand 3s ease-in-out infinite alternate;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2.2px;
+    background: conic-gradient(from var(--ae-angle), transparent 15%, #38bdf8 38%, #ffffff 48%, #fbbf24 58%, transparent 78%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: aeLaserSpin 4.2s linear infinite;
+    pointer-events: none;
+    z-index: 2;
   }
-  @keyframes horizonExpand {
-    0% { transform: scaleX(0.85); opacity: 0.65; }
-    100% { transform: scaleX(1.05); opacity: 1; }
+  .ae-shimmer-sweep {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), rgba(251,191,36,0.10), transparent);
+    animation: aeShimmerSweep 6.5s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
   }
-
-  .revelation-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 0.72rem;
+  .miracle-header { position:relative; z-index:3; color:#fde68a; font-weight:800; font-size:1.14rem; margin-bottom:10px; line-height:1.4; text-shadow:0 2px 10px rgba(0,0,0,0.85), 0 0 18px rgba(251,191,36,0.3); }
+  .miracle-summary { position:relative; z-index:3; color:#e0f2fe; font-size:0.97rem; line-height:1.75; margin-bottom:16px; }
+  .miracle-expand-btn {
+    position: relative;
+    z-index: 3;
+    background: linear-gradient(135deg, rgba(251,191,36,0.25), rgba(14,165,233,0.32));
+    color: #fde68a;
+    border: 1.5px solid rgba(251,191,36,0.85);
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 0.86rem;
     font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding: 4px 10px;
-    border-radius: 99px;
-    text-decoration: none;
-  }
-  .revelation-pill.mecquoise {
-    background: rgba(56, 189, 248, 0.14);
-    color: #7dd3fc;
-    border: 1px solid rgba(56, 189, 248, 0.42);
-    box-shadow: 0 0 12px rgba(56, 189, 248, 0.12);
-  }
-  .revelation-pill.medinoise {
-    background: rgba(16, 185, 129, 0.16);
-    color: #6ee7b7;
-    border: 1px solid rgba(52, 211, 153, 0.38);
-  }
-  .revelation-pill.miracle-pill {
-    background: rgba(14, 165, 233, 0.22);
-    color: #38bdf8;
-    border: 1px solid rgba(56, 189, 248, 0.6);
-    box-shadow: 0 0 16px rgba(56, 189, 248, 0.28);
     cursor: pointer;
-    transition: all 0.2s ease;
+    box-shadow: 0 0 20px rgba(251,191,36,0.28);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .revelation-pill.miracle-pill:hover {
-    background: #38bdf8;
-    color: #031521;
-    box-shadow: 0 0 22px rgba(56, 189, 248, 0.55);
-  }
+  .miracle-expand-btn:hover { background:linear-gradient(135deg, #fbbf24, #38bdf8); color:#02060d; transform:translateY(-2px) scale(1.01); box-shadow:0 0 30px rgba(251,191,36,0.65); }
+  .miracle-deep-details { position:relative; z-index:3; display:none; margin-top:20px; padding-top:20px; border-top:1px solid rgba(56,189,248,0.35); color:#f0f9ff; font-size:0.95rem; line-height:1.8; }
+  .miracle-deep-details.open { display:block; animation:aeRevealCascade 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  .miracle-deep-details p { margin-bottom:12px; }
 
-  .sky-star-icon {
-    color: #38bdf8;
-    text-shadow: 0 0 10px rgba(56, 189, 248, 0.9), 0 0 20px rgba(14, 165, 233, 0.6);
+  .miracle-pillars-grid { display:flex; flex-direction:column; gap:14px; margin-bottom:20px; }
+  .miracle-pillar-card {
+    position: relative;
+    background: linear-gradient(135deg, rgba(4, 15, 28, 0.88), rgba(2, 8, 16, 0.92));
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    border-left: 4px solid #fbbf24;
+    border-radius: 16px;
+    padding: 18px 20px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.5), inset 0 0 20px rgba(56,189,248,0.06);
+    transition: transform 0.25s ease, border-color 0.25s ease;
   }
-
-  .miracle-banner {
-    background: linear-gradient(135deg, rgba(14, 165, 233, 0.16) 0%, rgba(8, 47, 73, 0.52) 100%);
-    border: 1px solid rgba(56, 189, 248, 0.5);
-    border-radius: 18px;
-    padding: 20px 24px;
-    margin-bottom: 20px;
-    box-shadow: 0 12px 35px rgba(2, 132, 199, 0.18), inset 0 0 25px rgba(56, 189, 248, 0.08);
-  }
-  .miracle-header {
-    color: #38bdf8;
-    text-shadow: 0 0 14px rgba(56, 189, 248, 0.4);
+  .miracle-pillar-card:hover { transform: translateX(4px); border-color: #38bdf8; }
+  [dir="rtl"] .miracle-pillar-card { border-left: 1px solid rgba(56, 189, 248, 0.45); border-right: 4px solid #fbbf24; }
+  .pillar-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, rgba(251, 191, 36, 0.24), rgba(56, 189, 248, 0.18));
+    color: #fde68a;
+    border: 1px solid rgba(251, 191, 36, 0.65);
+    font-size: 0.7rem;
     font-weight: 800;
-    font-size: 1.02rem;
+    letter-spacing: 0.06em;
+    padding: 3px 11px;
+    border-radius: 99px;
     margin-bottom: 8px;
   }
-  .miracle-summary {
-    color: #e0f2fe;
-    font-size: 0.95rem;
-    line-height: 1.7;
-    margin-bottom: 14px;
+  .miracle-pillar-card h4 { color:#7dd3fc; font-size:1.04rem; font-weight:800; margin-bottom:8px; }
+  .historians-proof-section {
+    position: relative;
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(6, 12, 22, 0.95));
+    border: 1.5px solid rgba(251, 191, 36, 0.68);
+    border-radius: 18px;
+    padding: 20px 22px;
+    box-shadow: 0 0 32px rgba(251, 191, 36, 0.18);
   }
-  .miracle-expand-btn {
+  .historians-header { color:#fde68a; font-size:0.96rem; font-weight:900; letter-spacing:0.04em; margin-bottom:14px; text-transform:uppercase; }
+  .historian-quote-box {
+    background: rgba(2, 6, 12, 0.78);
+    border: 1px solid rgba(56, 189, 248, 0.38);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    transition: border-color 0.2s ease;
+  }
+  .historian-quote-box:hover { border-color: rgba(251, 191, 36, 0.7); }
+  .historian-name { color:#38bdf8; font-weight:800; font-size:0.94rem; margin-bottom:3px; }
+  .historian-role { color:#94a3b8; font-size:0.81rem; margin-bottom:8px; }
+  .historian-quote-box blockquote {
+    color: #f8fafc;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    border-left: 3px solid #fbbf24;
+    padding-left: 12px;
+    margin: 0;
+  }
+  [dir="rtl"] .historian-quote-box blockquote { border-left: none; border-right: 3px solid #fbbf24; padding-left: 0; padding-right: 12px; }
+  .proof-links-bar { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.12); }
+  .proof-links-label { font-size:0.8rem; font-weight:800; color:#fde68a; width:100%; margin-bottom:4px; }
+  .proof-link-pill {
+    display: inline-flex;
+    align-items: center;
     background: rgba(56, 189, 248, 0.16);
     color: #7dd3fc;
     border: 1px solid rgba(56, 189, 248, 0.55);
-    padding: 9px 16px;
-    border-radius: 10px;
-    font-family: inherit;
-    font-size: 0.84rem;
+    padding: 5px 12px;
+    border-radius: 99px;
+    font-size: 0.76rem;
     font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+    text-decoration: none;
+    transition: 0.2s;
   }
-  .miracle-expand-btn:hover {
-    background: #38bdf8;
-    color: #031521;
-    box-shadow: 0 0 24px rgba(56, 189, 248, 0.5);
-  }
-  .miracle-deep-details {
-    display: none;
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid rgba(56, 189, 248, 0.3);
-    color: #f0f9ff;
-    font-size: 0.95rem;
-    line-height: 1.8;
-  }
-  .miracle-deep-details.open {
-    display: block;
-  }
-  .miracle-deep-details p {
-    margin-bottom: 12px;
+  .proof-link-pill:hover { background:#38bdf8; color:#021019; transform:translateY(-1px); box-shadow:0 0 14px rgba(56,189,248,0.5); }
+
+  .asso-legal-footer {
+    max-width: 820px;
+    margin: 26px auto 0 auto;
+    padding: 16px 20px;
+    text-align: center;
+    background: rgba(6, 12, 18, 0.55);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    border-radius: 16px;
+    font-size: 0.76rem;
+    color: #94a3b8;
+    line-height: 1.6;
   }
 
-  .interface-layer {
-    position: relative;
-    z-index: 10;
-  }
+    body { padding:18px 20px 45px 20px; }
+    .top-nav { max-width:820px; margin:0 auto 14px auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; background:var(--bg-card); backdrop-filter:blur(8px); border:1px solid rgba(56,189,248,0.28); padding:12px 20px; border-radius:16px; box-shadow:0 8px 28px rgba(0,0,0,0.45); }
+    .home-btn { color:var(--sky-light); text-decoration:none; font-weight:700; font-size:0.88rem; display:inline-flex; align-items:center; gap:10px; transition:0.2s; }
+    .home-btn:hover { color:#fff; }
+    .nav-logo-svg { width:34px; height:34px; display:block; filter:drop-shadow(0 0 8px rgba(56,189,248,0.4)); }
+    .meta-badges { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .tag { font-size:0.75rem; font-weight:600; padding:5px 11px; border-radius:99px; background:var(--bg-elevated); border:1px solid var(--border-color); }
+    .centered-container { max-width:820px; margin:0 auto; }
 
-
-    .top-nav {
-      max-width: 820px;
-      margin: 0 auto 14px auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
+    /* PANNEAU DE LA SOURATE AVEC BORD ANIMÉ OR/BLEU */
+    .panel {
+      position: relative;
       background: var(--bg-card);
       backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid var(--border-color);
-      padding: 12px 22px;
-      border-radius: 16px;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 24px;
+      padding: 26px 28px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 55px rgba(0,0,0,0.6), 0 0 30px rgba(56,189,248,0.08);
+      overflow: hidden;
     }
-    .home-btn {
-      color: var(--green-bright);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.9rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: 0.2s;
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: conic-gradient(from var(--ae-angle), transparent 25%, rgba(56,189,248,0.65) 48%, rgba(251,191,36,0.85) 50%, rgba(56,189,248,0.65) 52%, transparent 75%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: aeLaserSpin 8s linear infinite;
+      pointer-events: none;
     }
-    .nav-logo-svg {
-      width: 32px;
-      height: 32px;
-      display: block;
-      flex-shrink: 0;
-      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 10px rgba(56, 189, 248, 0.35));
-    }
-    .home-btn:hover { opacity: 0.85; transform: translateX(-2px); }
-    .meta-badges { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .tag {
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 5px 12px;
-      border-radius: 99px;
-      background: var(--bg-elevated);
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
-    }
-    .verse-jumper {
-      background: rgba(10, 16, 22, 0.75);
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
-      padding: 6px 14px;
+
+    .main-header { display:flex; justify-content:space-between; align-items:center; gap:16px; padding-bottom:16px; border-bottom:1px solid var(--border-color); margin-bottom:18px; }
+    .title-group { flex:1; min-width:0; }
+    .title-top-row { display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:6px; }
+    .title-top-row h1 { font-size:1.25rem; color:#fff; font-weight:800; line-height:1.3; }
+    .header-right-badges { display:inline-flex; align-items:center; gap:8px; flex-shrink:0; }
+
+    .verse-jumper-select {
+      background: rgba(14, 165, 233, 0.16);
+      color: var(--sky-light);
+      border: 1.5px solid rgba(56, 189, 248, 0.55);
+      padding: 6px 12px;
       border-radius: 10px;
       font-family: inherit;
       font-size: 0.82rem;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       outline: none;
-      transition: all 0.25s ease;
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.18);
+      transition: 0.2s;
     }
-    .verse-jumper.is-miracle-verse {
-      border-color: rgba(56, 189, 248, 0.75);
-      color: #7dd3fc;
-      box-shadow: 0 0 16px rgba(56, 189, 248, 0.3);
+    .verse-jumper-select:hover { background: var(--sky-bright); color: #020810; }
+    .verse-jumper-select.is-miracle-gold {
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.28), rgba(245, 158, 11, 0.18));
+      color: #fde68a;
+      border-color: rgba(251, 191, 36, 0.9);
+      box-shadow: 0 0 20px rgba(251, 191, 36, 0.38);
     }
-    .verse-jumper option { background: #0b1116; color: #fff; }
-    .verse-jumper option.opt-miracle-blue {
-      background: #082f49;
-      color: #38bdf8;
-      font-weight: 800;
-    }
+    .verse-jumper-select option { background:#0b1116; color:#e0f2fe; font-weight:700; }
+    .verse-jumper-select option.opt-miracle-gold { background:#231905; color:#fde68a; font-weight:800; }
 
-    .centered-container {
-      max-width: 820px;
-      margin: 0 auto;
-    }
-    .panel {
-      background: var(--bg-card);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid var(--border-color);
-      border-radius: 24px;
-      padding: 28px 30px;
-      min-height: calc(100vh - 165px);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.12);
-    }
-
-    /* EN-TÊTE OPTIMISÉ : TITRE ALIGNÉ À GAUCHE + BADGE NUMÉRO (2 : 19) PLACÉ À DROITE */
-    .main-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border-color);
-      margin-bottom: 20px;
-    }
-    .title-group {
-      flex: 1;
-      min-width: 0;
-    }
-    .title-top-row {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 4px;
-    }
-    .title-top-row h1 {
-      font-size: 1.28rem;
-      color: #fff;
-      font-weight: 800;
-      line-height: 1.35;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
-    }
     .badge-num {
-      background: var(--green-dim);
-      color: var(--green-bright);
-      border: 1px solid rgba(52, 211, 153, 0.38);
+      background: rgba(14, 165, 233, 0.18);
+      color: var(--sky-light);
+      border: 1px solid rgba(56, 189, 248, 0.5);
       font-weight: 800;
       font-size: 0.92rem;
       padding: 5px 13px;
       border-radius: 10px;
       white-space: nowrap;
       flex-shrink: 0;
-      box-shadow: 0 0 14px rgba(16, 185, 129, 0.15);
     }
-    .title-group p {
-      color: var(--text-muted);
-      font-size: 0.84rem;
-      line-height: 1.5;
-    }
-    .arabic-surah {
-      font-family: 'Scheherazade New', 'Amiri', serif;
-      font-size: 2.2rem;
-      color: #fff;
-      text-shadow: 0 0 16px rgba(255,255,255,0.6);
-      flex-shrink: 0;
-    }
+    .title-group p { color:var(--text-muted); font-size:0.84rem; }
+    .arabic-surah { font-family:'Scheherazade New',serif; font-size:2.2rem; color:#fff; flex-shrink:0; }
 
+    /* CADRE DU VERSET AVEC BORD ANIMÉ OR & BLEU */
     .verse-stage {
       position: relative;
-      background: rgba(4, 8, 12, 0.28);
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(4, 8, 14, 0.42);
+      border: 1.5px solid rgba(56, 189, 248, 0.32);
       border-radius: 22px;
-      padding: 46px 34px 40px 34px;
+      padding: 38px 30px 20px 30px;
       margin-bottom: 18px;
       text-align: center;
       overflow: hidden;
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5), inset 0 0 35px rgba(255, 255, 255, 0.04);
-      transition: all 0.4s ease;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5), inset 0 0 25px rgba(56,189,248,0.06);
+      transition: all 0.3s ease;
     }
-    .verse-stage.playing {
-      border-color: rgba(255, 255, 255, 0.5);
-      box-shadow: 0 0 50px rgba(255, 255, 255, 0.16), 0 25px 60px rgba(0, 0, 0, 0.65);
-    }
-
-    .arabic-glow-verse {
-      font-family: 'Scheherazade New', 'Amiri', serif;
-      font-size: 2.95rem;
-      line-height: 2.15;
-      direction: rtl;
-      margin-bottom: 24px;
-      color: #ffffff;
-      font-variant-ligatures: no-contextual;
-      font-feature-settings: "calt" 0, "liga" 1;
-      word-spacing: 4px;
-      text-shadow:
-        0 2px 6px rgba(0, 0, 0, 0.95),
-        0 0 10px rgba(255, 255, 255, 0.85),
-        0 0 26px rgba(255, 255, 255, 0.45),
-        0 0 55px rgba(255, 255, 255, 0.22);
-      position: relative;
-      z-index: 2;
-    }
-
-    .french-glow-verse {
-      font-family: 'Amiri', serif;
-      font-size: 1.55rem;
-      font-weight: 700;
-      line-height: 1.65;
-      color: #ffffff;
-      text-shadow:
-        0 2px 6px rgba(0, 0, 0, 0.95),
-        0 0 10px rgba(255, 255, 255, 0.85),
-        0 0 26px rgba(255, 255, 255, 0.45),
-        0 0 55px rgba(255, 255, 255, 0.22);
-      position: relative;
-      z-index: 2;
-      max-width: 92%;
-      margin: 0 auto;
-    }
-
-    .sync-progress-track {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: rgba(255,255,255,0.08);
-      z-index: 3;
-    }
-    .sync-progress-bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #38bdf8, #ffffff);
-      box-shadow: 0 0 12px #38bdf8;
-    }
-
-    .audio-control-strip {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-      background: var(--bg-elevated);
-      border: 1px solid var(--border-color);
-      padding: 12px 18px;
-      border-radius: 16px;
-      margin-bottom: 20px;
-      font-size: 0.85rem;
-    }
-    .audio-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .btn-listen-sync {
-      background: var(--green-dim);
-      color: var(--green-bright);
-      border: 1px solid rgba(52, 211, 153, 0.35);
-      padding: 8px 16px;
-      border-radius: 10px;
-      font-family: inherit;
-      font-weight: 700;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .btn-listen-sync:hover, .btn-listen-sync.active {
-      background: var(--green-accent);
-      color: #032218;
-      box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
-    }
-
-    .btn-replay-sync {
-      background: rgba(56, 189, 248, 0.14);
-      color: var(--sky-bright);
-      border: 1px solid rgba(56, 189, 248, 0.38);
-      padding: 8px 13px;
-      border-radius: 10px;
-      font-family: inherit;
-      font-weight: 700;
-      font-size: 0.83rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .btn-replay-sync:hover {
-      background: var(--sky-accent);
-      color: #031521;
-      border-color: var(--sky-bright);
-      box-shadow: 0 0 18px rgba(56, 189, 248, 0.4);
-    }
-
-    .reciter-mini {
-      background: rgba(8, 13, 18, 0.75);
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
-      padding: 7px 12px;
-      border-radius: 10px;
-      font-family: inherit;
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      outline: none;
-    }
-    .reciter-mini option { background: #0b1116; color: #fff; }
-
-    .auto-scroll-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(8, 13, 18, 0.72);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 6px 14px 6px 10px;
-      border-radius: 99px;
-      color: var(--text-muted);
-      font-size: 0.81rem;
-      font-weight: 700;
-      cursor: pointer;
-      user-select: none;
-      transition: all 0.25s ease;
-    }
-    .auto-scroll-toggle:hover {
-      border-color: rgba(56, 189, 248, 0.45);
-      color: #ffffff;
-    }
-    .auto-scroll-toggle input {
-      display: none;
-    }
-    .switch-slider {
-      position: relative;
-      width: 36px;
-      height: 20px;
-      background: rgba(255, 255, 255, 0.14);
-      border-radius: 99px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.25s ease;
-      flex-shrink: 0;
-    }
-    .switch-slider::after {
+    .verse-stage::before {
       content: "";
       position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 14px;
-      height: 14px;
-      background: #cbd5e1;
-      border-radius: 50%;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.8px;
+      background: conic-gradient(from var(--ae-angle), transparent 20%, #38bdf8 45%, #fbbf24 50%, #38bdf8 55%, transparent 80%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: aeLaserSpin 6s linear infinite;
+      pointer-events: none;
     }
-    .auto-scroll-toggle input:checked + .switch-slider {
-      background: rgba(16, 185, 129, 0.28);
-      border-color: var(--green-bright);
-      box-shadow: 0 0 14px rgba(16, 185, 129, 0.45);
+    .verse-stage.is-miracle-stage {
+      border-color: rgba(251, 191, 36, 0.65);
+      box-shadow: 0 0 35px rgba(251, 191, 36, 0.22), 0 0 55px rgba(56, 189, 248, 0.18), inset 0 0 28px rgba(251, 191, 36, 0.10);
     }
-    .auto-scroll-toggle input:checked + .switch-slider::after {
-      transform: translateX(16px);
-      background: var(--green-bright);
-      box-shadow: 0 0 10px var(--green-bright);
-    }
-    .auto-scroll-toggle input:checked ~ .switch-text {
-      color: var(--green-bright);
-      text-shadow: 0 0 10px rgba(52, 211, 153, 0.35);
+    .verse-stage.is-miracle-stage::before {
+      padding: 2.2px;
+      background: conic-gradient(from var(--ae-angle), transparent 12%, #fbbf24 38%, #ffffff 50%, #38bdf8 62%, transparent 88%);
+      animation-duration: 4s;
     }
 
-    .tafsir-box {
-      background: var(--bg-elevated);
-      border: 1px solid var(--border-color);
-      border-radius: 18px;
-      padding: 26px;
-      margin-bottom: 0;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .section-tag {
-      display: inline-block;
-      font-size: 0.74rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--green-bright);
-      margin-bottom: 10px;
-    }
-    .main-explanation {
-      font-size: 1.06rem;
-      color: #e2e8f0;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
-      line-height: 1.85;
-      margin-bottom: 14px;
-    }
-    .consensus-note {
-      background: rgba(16, 185, 129, 0.10);
-      border-left: 3px solid var(--green-bright);
-      padding: 13px 16px;
-      border-radius: 0 12px 12px 0;
-      color: #f1f5f9;
-      font-size: 0.95rem;
-      margin-top: 12px;
-    }
-    .sources-line {
-      margin-top: auto;
-      padding-top: 16px;
-      border-top: 1px solid var(--border-color);
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
+    .arabic-glow-verse { position:relative; z-index:2; font-family:'Scheherazade New','Amiri',serif; font-size:2.9rem; line-height:2.15; direction:rtl; margin-bottom:22px; color:#fff; text-shadow:0 2px 6px rgba(0,0,0,0.95), 0 0 14px rgba(255,255,255,0.65); transition:font-size 0.15s ease; }
+    .french-glow-verse { position:relative; z-index:2; font-family:'Amiri',serif; font-size:1.52rem; font-weight:700; line-height:1.65; color:#fff; text-shadow:0 2px 6px rgba(0,0,0,0.95), 0 0 12px rgba(255,255,255,0.55); max-width:94%; margin:0 auto; transition:font-size 0.15s ease; }
 
-    .bottom-nav {
-      position: fixed;
-      bottom: 14px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - 40px);
-      max-width: 820px;
-      background: rgba(8, 13, 18, 0.72);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 10px 18px;
-      border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
+    .stage-blue-nav {
+      position: relative;
+      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.75);
-      z-index: 50;
+      gap: 10px;
+      margin-top: 24px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(56, 189, 248, 0.22);
     }
-    .btn {
-      padding: 10px 24px;
+    .btn-blue-nav {
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      color: #021019;
+      border: 1px solid #7dd3fc;
+      padding: 9px 22px;
       border-radius: 12px;
-      font-size: 0.9rem;
-      font-weight: 700;
+      font-size: 0.88rem;
+      font-weight: 800;
       text-decoration: none;
-      transition: all 0.2s ease;
-      cursor: pointer;
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.35);
+      transition: 0.2s;
     }
-    .btn-prev { background: rgba(255,255,255,0.1); color: var(--text-main); }
-    .btn-next { background: var(--green-accent); color: #032218; }
-    .page-indicator { font-size: 0.85rem; color: var(--text-main); font-weight: 700; }
+    .btn-blue-nav:hover { background: #7dd3fc; transform: translateY(-1px); box-shadow: 0 0 24px rgba(56, 189, 248, 0.55); }
 
-    @media (max-width: 768px) {
-      body { padding: 12px 10px 85px 10px; }
-      .panel { padding: 20px 15px; min-height: calc(100vh - 145px); }
-      .title-top-row {
-        justify-content: space-between;
-        flex-wrap: nowrap;
-        gap: 10px;
-      }
-      .title-top-row h1 { font-size: 1.08rem; }
-      .badge-num { font-size: 0.84rem; padding: 4px 10px; }
-      .verse-stage { padding: 36px 18px 32px 18px; }
-      .arabic-glow-verse { font-size: 2.3rem; }
-      .french-glow-verse { font-size: 1.3rem; }
-      .arabic-surah { display: none; }
-      .bottom-nav { width: calc(100% - 20px); }
+    .sync-progress-track { position:absolute; bottom:0; left:0; width:100%; height:3px; background:rgba(255,255,255,0.08); }
+    .sync-progress-bar { height:100%; width:0%; background:linear-gradient(90deg,#38bdf8,#fff); }
+    .audio-control-strip { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; background:var(--bg-elevated); border:1px solid rgba(56,189,248,0.24); padding:12px 18px; border-radius:16px; margin-bottom:20px; }
+    .audio-left { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .btn-listen-sync { background:rgba(14,165,233,0.18); color:var(--sky-light); border:1px solid rgba(56,189,248,0.45); padding:8px 16px; border-radius:10px; font-weight:700; cursor:pointer; transition:0.2s; }
+    .btn-listen-sync:hover, .btn-listen-sync.active { background:var(--sky-bright); color:#021019; box-shadow:0 0 18px rgba(56,189,248,0.45); }
+    .btn-replay-sync { background:rgba(56,189,248,0.14); color:var(--sky-light); border:1px solid rgba(56,189,248,0.38); padding:8px 13px; border-radius:10px; font-weight:700; cursor:pointer; transition:0.2s; }
+    .btn-replay-sync:hover { background:var(--sky-bright); color:#021019; }
+    .reciter-mini { background:rgba(8,13,18,0.75); color:#fff; border:1px solid var(--border-color); padding:7px 12px; border-radius:10px; font-weight:600; }
+
+    .zoom-btn-group { display:inline-flex; align-items:center; gap:4px; background:rgba(6,12,18,0.75); border:1px solid rgba(56,189,248,0.38); padding:3px; border-radius:10px; }
+    .btn-zoom-text { background:rgba(56,189,248,0.14); color:var(--sky-light); border:1px solid rgba(56,189,248,0.35); padding:5px 10px; border-radius:7px; font-family:inherit; font-size:0.8rem; font-weight:800; cursor:pointer; transition:0.2s; }
+    .btn-zoom-text:hover { background:var(--sky-bright); color:#021019; }
+
+    .auto-scroll-toggle { display:inline-flex; align-items:center; gap:10px; background:rgba(8,13,18,0.72); border:1px solid rgba(255,255,255,0.14); padding:6px 14px 6px 10px; border-radius:99px; color:var(--text-muted); font-size:0.81rem; font-weight:700; cursor:pointer; }
+    .auto-scroll-toggle input { display:none; }
+    .switch-slider { position:relative; width:36px; height:20px; background:rgba(255,255,255,0.14); border-radius:99px; border:1px solid rgba(255,255,255,0.2); }
+    .switch-slider::after { content:""; position:absolute; top:2px; left:2px; width:14px; height:14px; background:#cbd5e1; border-radius:50%; transition:0.25s; }
+    .auto-scroll-toggle input:checked + .switch-slider { background:rgba(56,189,248,0.32); border-color:var(--sky-bright); }
+    .auto-scroll-toggle input:checked + .switch-slider::after { transform:translateX(16px); background:var(--sky-bright); }
+    .auto-scroll-toggle input:checked ~ .switch-text { color:var(--sky-light); }
+
+    .tafsir-box { background:var(--bg-elevated); border:1px solid rgba(56,189,248,0.25); border-radius:18px; padding:26px; flex:1; display:flex; flex-direction:column; box-shadow:inset 0 0 22px rgba(56,189,248,0.04); }
+    .section-tag { font-size:0.74rem; font-weight:800; text-transform:uppercase; color:var(--sky-light); margin-bottom:10px; }
+    .main-explanation { font-size:1.06rem; color:#e2e8f0; line-height:1.88; margin-bottom:14px; transition:font-size 0.15s ease; }
+    .consensus-note { background:rgba(56,189,248,0.10); border-left:3px solid var(--sky-bright); padding:13px 16px; border-radius:0 12px 12px 0; color:#f1f5f9; font-size:0.95rem; margin-top:12px; }
+    .sources-line { margin-top:auto; padding-top:16px; border-top:1px solid var(--border-color); font-size:0.8rem; color:var(--text-muted); }
+    @media (max-width:768px) {
+      body { padding:10px 8px 36px 8px; }
+      .panel { padding:18px 12px; }
+      .verse-stage { padding:28px 16px 16px 16px; }
+      .arabic-glow-verse { font-size:2.2rem; }
+      .french-glow-verse { font-size:1.25rem; }
+      .arabic-surah { display:none; }
     }
   </style>
 </head>
 <body>
-
-  
-  <div class="cosmos-exterior-wrapper">
-    <canvas id="fullPageSkyCanvas"></canvas>
-  </div>
-
-
+  <div class="cosmos-exterior-wrapper"><canvas id="fullPageSkyCanvas"></canvas></div>
   <div class="interface-layer">
     <header class="top-nav">
-      <a href="index.html" class="home-btn" onclick="sauvegarderConfigCiel()">
-        <svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Logo Le Noble Coran & Tafsir">
+      <a href="index.html?v=1793581815303" class="home-btn" onclick="sauvegarderConfigCiel()"><svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Logo Le Noble Coran & Tafsir">
     <defs>
       <linearGradient id="bgGrad_nav-logo-svg" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stop-color="#07111a"/>
@@ -722,570 +403,343 @@
     <path d="M60 20 L63.5 29.5 L73.5 30 L65.5 36 L68.5 45.5 L60 40 L51.5 45.5 L54.5 36 L46.5 30 L56.5 29.5 Z" fill="url(#titleGrad_nav-logo-svg)" filter="url(#glow_nav-logo-svg)"/>
     <path d="M24 54 C38 48, 52 52, 60 59 C68 52, 82 48, 96 54 L96 88 C82 82, 68 86, 60 93 C52 86, 38 82, 24 88 Z" fill="none" stroke="url(#titleGrad_nav-logo-svg)" stroke-width="5" stroke-linejoin="round" filter="url(#glow_nav-logo-svg)"/>
     <line x1="60" y1="59" x2="60" y2="93" stroke="url(#titleGrad_nav-logo-svg)" stroke-width="4" stroke-linecap="round"/>
-    <path d="M32 64 C42 61, 50 63, 55 67" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-    <path d="M32 74 C42 71, 50 73, 55 77" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-    <path d="M88 64 C78 61, 70 63, 65 67" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-    <path d="M88 74 C78 71, 70 73, 65 77" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-  </svg>
-        ‹ Retour aux 114 Sourates
-      </a>
+    <path d="M32 64 C42 61, 50 63, 55 67" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+    <path d="M32 74 C42 71, 50 73, 55 77" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+    <path d="M88 64 C78 61, 70 63, 65 67" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+    <path d="M88 74 C78 71, 70 73, 65 77" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+  </svg><span id="homeBtnTextEl">‹ Retour aux 114 Sourates</span></a>
       <div class="meta-badges">
-        <span class="revelation-pill mecquoise">Sourate Mecquoise</span>
+        <span class="revelation-pill mecquoise" id="typeSouratePillEl">Sourate Mecquoise</span>
         
-        <span class="tag">55e Sourate révélée (Sourate n°6)</span>
-        <select id="verseJumperSelect" class="verse-jumper " onchange="naviguerVerset(event, this.value, false)">
-          <option value="sourate-6-verset-1.html" >Verset 1 / 165</option><option value="sourate-6-verset-2.html" >Verset 2 / 165</option><option value="sourate-6-verset-3.html" >Verset 3 / 165</option><option value="sourate-6-verset-4.html" >Verset 4 / 165</option><option value="sourate-6-verset-5.html" >Verset 5 / 165</option><option value="sourate-6-verset-6.html" >Verset 6 / 165</option><option value="sourate-6-verset-7.html" >Verset 7 / 165</option><option value="sourate-6-verset-8.html" >Verset 8 / 165</option><option value="sourate-6-verset-9.html" >Verset 9 / 165</option><option value="sourate-6-verset-10.html" >Verset 10 / 165</option><option value="sourate-6-verset-11.html" >Verset 11 / 165</option><option value="sourate-6-verset-12.html" >Verset 12 / 165</option><option value="sourate-6-verset-13.html" >Verset 13 / 165</option><option value="sourate-6-verset-14.html" >Verset 14 / 165</option><option value="sourate-6-verset-15.html" >Verset 15 / 165</option><option value="sourate-6-verset-16.html" >Verset 16 / 165</option><option value="sourate-6-verset-17.html" >Verset 17 / 165</option><option value="sourate-6-verset-18.html" >Verset 18 / 165</option><option value="sourate-6-verset-19.html" >Verset 19 / 165</option><option value="sourate-6-verset-20.html" >Verset 20 / 165</option><option value="sourate-6-verset-21.html" >Verset 21 / 165</option><option value="sourate-6-verset-22.html" >Verset 22 / 165</option><option value="sourate-6-verset-23.html" >Verset 23 / 165</option><option value="sourate-6-verset-24.html" >Verset 24 / 165</option><option value="sourate-6-verset-25.html" >Verset 25 / 165</option><option value="sourate-6-verset-26.html" >Verset 26 / 165</option><option value="sourate-6-verset-27.html" >Verset 27 / 165</option><option value="sourate-6-verset-28.html" >Verset 28 / 165</option><option value="sourate-6-verset-29.html" >Verset 29 / 165</option><option value="sourate-6-verset-30.html" selected>Verset 30 / 165</option><option value="sourate-6-verset-31.html" >Verset 31 / 165</option><option value="sourate-6-verset-32.html" >Verset 32 / 165</option><option value="sourate-6-verset-33.html" >Verset 33 / 165</option><option value="sourate-6-verset-34.html" >Verset 34 / 165</option><option value="sourate-6-verset-35.html" >Verset 35 / 165</option><option value="sourate-6-verset-36.html" >Verset 36 / 165</option><option value="sourate-6-verset-37.html" >Verset 37 / 165</option><option value="sourate-6-verset-38.html" >Verset 38 / 165</option><option value="sourate-6-verset-39.html" >Verset 39 / 165</option><option value="sourate-6-verset-40.html" >Verset 40 / 165</option><option value="sourate-6-verset-41.html" >Verset 41 / 165</option><option value="sourate-6-verset-42.html" >Verset 42 / 165</option><option value="sourate-6-verset-43.html" >Verset 43 / 165</option><option value="sourate-6-verset-44.html" >Verset 44 / 165</option><option value="sourate-6-verset-45.html" >Verset 45 / 165</option><option value="sourate-6-verset-46.html" >Verset 46 / 165</option><option value="sourate-6-verset-47.html" >Verset 47 / 165</option><option value="sourate-6-verset-48.html" >Verset 48 / 165</option><option value="sourate-6-verset-49.html" >Verset 49 / 165</option><option value="sourate-6-verset-50.html" >Verset 50 / 165</option><option value="sourate-6-verset-51.html" >Verset 51 / 165</option><option value="sourate-6-verset-52.html" >Verset 52 / 165</option><option value="sourate-6-verset-53.html" >Verset 53 / 165</option><option value="sourate-6-verset-54.html" >Verset 54 / 165</option><option value="sourate-6-verset-55.html" >Verset 55 / 165</option><option value="sourate-6-verset-56.html" >Verset 56 / 165</option><option value="sourate-6-verset-57.html" >Verset 57 / 165</option><option value="sourate-6-verset-58.html" >Verset 58 / 165</option><option value="sourate-6-verset-59.html" >Verset 59 / 165</option><option value="sourate-6-verset-60.html" >Verset 60 / 165</option><option value="sourate-6-verset-61.html" >Verset 61 / 165</option><option value="sourate-6-verset-62.html" >Verset 62 / 165</option><option value="sourate-6-verset-63.html" >Verset 63 / 165</option><option value="sourate-6-verset-64.html" >Verset 64 / 165</option><option value="sourate-6-verset-65.html" >Verset 65 / 165</option><option value="sourate-6-verset-66.html" >Verset 66 / 165</option><option value="sourate-6-verset-67.html" >Verset 67 / 165</option><option value="sourate-6-verset-68.html" >Verset 68 / 165</option><option value="sourate-6-verset-69.html" >Verset 69 / 165</option><option value="sourate-6-verset-70.html" >Verset 70 / 165</option><option value="sourate-6-verset-71.html" >Verset 71 / 165</option><option value="sourate-6-verset-72.html" >Verset 72 / 165</option><option value="sourate-6-verset-73.html" >Verset 73 / 165</option><option value="sourate-6-verset-74.html" >Verset 74 / 165</option><option value="sourate-6-verset-75.html" >Verset 75 / 165</option><option value="sourate-6-verset-76.html" >Verset 76 / 165</option><option value="sourate-6-verset-77.html" >Verset 77 / 165</option><option value="sourate-6-verset-78.html" >Verset 78 / 165</option><option value="sourate-6-verset-79.html" >Verset 79 / 165</option><option value="sourate-6-verset-80.html" >Verset 80 / 165</option><option value="sourate-6-verset-81.html" >Verset 81 / 165</option><option value="sourate-6-verset-82.html" >Verset 82 / 165</option><option value="sourate-6-verset-83.html" >Verset 83 / 165</option><option value="sourate-6-verset-84.html" >Verset 84 / 165</option><option value="sourate-6-verset-85.html" >Verset 85 / 165</option><option value="sourate-6-verset-86.html" >Verset 86 / 165</option><option value="sourate-6-verset-87.html" >Verset 87 / 165</option><option value="sourate-6-verset-88.html" >Verset 88 / 165</option><option value="sourate-6-verset-89.html" >Verset 89 / 165</option><option value="sourate-6-verset-90.html" >Verset 90 / 165</option><option value="sourate-6-verset-91.html" >Verset 91 / 165</option><option value="sourate-6-verset-92.html" >Verset 92 / 165</option><option value="sourate-6-verset-93.html" >Verset 93 / 165</option><option value="sourate-6-verset-94.html" >Verset 94 / 165</option><option value="sourate-6-verset-95.html" >Verset 95 / 165</option><option value="sourate-6-verset-96.html" >Verset 96 / 165</option><option value="sourate-6-verset-97.html" >Verset 97 / 165</option><option value="sourate-6-verset-98.html" >Verset 98 / 165</option><option value="sourate-6-verset-99.html" >Verset 99 / 165</option><option value="sourate-6-verset-100.html" >Verset 100 / 165</option><option value="sourate-6-verset-101.html" >Verset 101 / 165</option><option value="sourate-6-verset-102.html" >Verset 102 / 165</option><option value="sourate-6-verset-103.html" >Verset 103 / 165</option><option value="sourate-6-verset-104.html" >Verset 104 / 165</option><option value="sourate-6-verset-105.html" >Verset 105 / 165</option><option value="sourate-6-verset-106.html" >Verset 106 / 165</option><option value="sourate-6-verset-107.html" >Verset 107 / 165</option><option value="sourate-6-verset-108.html" >Verset 108 / 165</option><option value="sourate-6-verset-109.html" >Verset 109 / 165</option><option value="sourate-6-verset-110.html" >Verset 110 / 165</option><option value="sourate-6-verset-111.html" >Verset 111 / 165</option><option value="sourate-6-verset-112.html" >Verset 112 / 165</option><option value="sourate-6-verset-113.html" >Verset 113 / 165</option><option value="sourate-6-verset-114.html" >Verset 114 / 165</option><option value="sourate-6-verset-115.html" >Verset 115 / 165</option><option value="sourate-6-verset-116.html" >Verset 116 / 165</option><option value="sourate-6-verset-117.html" >Verset 117 / 165</option><option value="sourate-6-verset-118.html" >Verset 118 / 165</option><option value="sourate-6-verset-119.html" >Verset 119 / 165</option><option value="sourate-6-verset-120.html" >Verset 120 / 165</option><option value="sourate-6-verset-121.html" >Verset 121 / 165</option><option value="sourate-6-verset-122.html" >Verset 122 / 165</option><option value="sourate-6-verset-123.html" >Verset 123 / 165</option><option value="sourate-6-verset-124.html" >Verset 124 / 165</option><option value="sourate-6-verset-125.html" >Verset 125 / 165</option><option value="sourate-6-verset-126.html" >Verset 126 / 165</option><option value="sourate-6-verset-127.html" >Verset 127 / 165</option><option value="sourate-6-verset-128.html" >Verset 128 / 165</option><option value="sourate-6-verset-129.html" >Verset 129 / 165</option><option value="sourate-6-verset-130.html" >Verset 130 / 165</option><option value="sourate-6-verset-131.html" >Verset 131 / 165</option><option value="sourate-6-verset-132.html" >Verset 132 / 165</option><option value="sourate-6-verset-133.html" >Verset 133 / 165</option><option value="sourate-6-verset-134.html" >Verset 134 / 165</option><option value="sourate-6-verset-135.html" >Verset 135 / 165</option><option value="sourate-6-verset-136.html" >Verset 136 / 165</option><option value="sourate-6-verset-137.html" >Verset 137 / 165</option><option value="sourate-6-verset-138.html" >Verset 138 / 165</option><option value="sourate-6-verset-139.html" >Verset 139 / 165</option><option value="sourate-6-verset-140.html" >Verset 140 / 165</option><option value="sourate-6-verset-141.html" >Verset 141 / 165</option><option value="sourate-6-verset-142.html" >Verset 142 / 165</option><option value="sourate-6-verset-143.html" >Verset 143 / 165</option><option value="sourate-6-verset-144.html" >Verset 144 / 165</option><option value="sourate-6-verset-145.html" >Verset 145 / 165</option><option value="sourate-6-verset-146.html" >Verset 146 / 165</option><option value="sourate-6-verset-147.html" >Verset 147 / 165</option><option value="sourate-6-verset-148.html" >Verset 148 / 165</option><option value="sourate-6-verset-149.html" >Verset 149 / 165</option><option value="sourate-6-verset-150.html" >Verset 150 / 165</option><option value="sourate-6-verset-151.html" >Verset 151 / 165</option><option value="sourate-6-verset-152.html" >Verset 152 / 165</option><option value="sourate-6-verset-153.html" >Verset 153 / 165</option><option value="sourate-6-verset-154.html" >Verset 154 / 165</option><option value="sourate-6-verset-155.html" >Verset 155 / 165</option><option value="sourate-6-verset-156.html" >Verset 156 / 165</option><option value="sourate-6-verset-157.html" >Verset 157 / 165</option><option value="sourate-6-verset-158.html" >Verset 158 / 165</option><option value="sourate-6-verset-159.html" >Verset 159 / 165</option><option value="sourate-6-verset-160.html" >Verset 160 / 165</option><option value="sourate-6-verset-161.html" >Verset 161 / 165</option><option value="sourate-6-verset-162.html" >Verset 162 / 165</option><option value="sourate-6-verset-163.html" >Verset 163 / 165</option><option value="sourate-6-verset-164.html" >Verset 164 / 165</option><option value="sourate-6-verset-165.html" >Verset 165 / 165</option>
-        </select>
+        <span class="tag" id="revOrderTagEl">55e Sourate révélée (n°6)</span>
+        <div class="lang-switcher-group">
+          <button type="button" class="lang-pill-btn active" data-lang="fr" onclick="changerLangueVerset('fr')">🇫🇷 FR</button>
+          <button type="button" class="lang-pill-btn" data-lang="en" onclick="changerLangueVerset('en')">🇬🇧 EN</button>
+          <button type="button" class="lang-pill-btn" data-lang="es" onclick="changerLangueVerset('es')">🇪🇸 ES</button>
+          <button type="button" class="lang-pill-btn" data-lang="ar" onclick="changerLangueVerset('ar')">🇸🇦 AR</button>
+        </div>
       </div>
     </header>
-
     <div class="centered-container">
       <main class="panel">
-        <div style="display: flex; flex-direction: column; flex: 1;">
-          <div class="main-header">
-            <div class="title-group">
-              <div class="title-top-row">
-                <h1 id="mainTitleEl">Sourate Al-An'am (Les bestiaux) — Verset 30</h1>
+        <div class="main-header">
+          <div class="title-group">
+            <div class="title-top-row">
+              <h1 id="mainTitleEl">Sourate Al-An'am (Les bestiaux) — Verset 30</h1>
+              <div class="header-right-badges">
                 <div class="badge-num" id="badgeNumEl">6 : 30</div>
               </div>
-              <p>Sourate Mecquoise (La Mecque) • Traduction Muhammad Hamidullah (1977) & Exégèse</p>
             </div>
-            <div class="arabic-surah">الأنعام</div>
+            <p id="subHeaderInfoEl">Sourate Mecquoise (La Mecque) • Traduction Muhammad Hamidullah (1977) & Exégèse</p>
           </div>
-
-          <section class="verse-stage" id="verseStage">
-            <div class="arabic-glow-verse" id="arabicVerseEl">وَلَوْ تَرَىٰٓ إِذْ وُقِفُواْ عَلَىٰ رَبِّهِمْ قَالَ أَلَيْسَ هَٰذَا بِالْحَقِّ قَالُواْ بَلَىٰ وَرَبِّنَا قَالَ فَذُوقُواْ الْعَذَابَ بِمَا كُنتُمْ تَكْفُرُونَ</div>
-            <div class="french-glow-verse" id="frenchVerseEl">30. Si tu les voyais, quand ils comparaîtront devant leur Seigneur. Il leur dira: «Cela n'est-il pas la vérité?» Ils diront: «Mais si! Par notre Seigneur!» Et, il dira: «Goûtez alors au châtiment pour n'avoir pas cru».</div>
-            <div class="sync-progress-track">
-              <div class="sync-progress-bar" id="syncProgressBar"></div>
-            </div>
-          </section>
-
-          <div id="miracleContainer">
-            
-          </div>
-
-          <div class="audio-control-strip">
-            <div class="audio-left">
-              <button type="button" class="btn-listen-sync" id="playSyncBtn" onclick="toggleAudioSync()">▶ Écouter le verset</button>
-              <button type="button" class="btn-replay-sync" id="replaySyncBtn" onclick="rejouerAudioVerset()" title="Remettre le son du verset au début">↺ Rejouer</button>
-              <select id="reciterSelect" class="reciter-mini" onchange="changerRecitateur()">
-                <option value="Yasser_Ad-Dussary_128kbps">Yasser Al-Dosari</option>
-                <option value="Alafasy_128kbps">Mishary Rashid Alafasy</option>
-                <option value="Abdurrahmaan_As-Sudais_192kbps">Abderrahman Al-Soudais (HD)</option>
-                <option value="Saood_ash-Shuraym_128kbps">Saoud Al-Shuraim</option>
-                <option value="Nasser_Alqatami_128kbps">Nasser Al-Qatami</option>
-                <option value="Abdullah_Basfar_192kbps">Abdullah Basfar (HD)</option>
-                <option value="Minshawy_Murattal_128kbps">Mohamed Siddiq Al-Minshawi</option>
-                <option value="Husary_128kbps">Mahmoud Khalil Al-Hussary</option>
-                <option value="Hudhaify_128kbps">Ali Al-Hudhaify</option>
-              </select>
-            </div>
-            <label class="auto-scroll-toggle">
-              <input type="checkbox" id="autoNextCheck" onchange="sauverAutoNext()">
-              <span class="switch-slider"></span>
-              <span class="switch-text">Enchaîner automatiquement</span>
-            </label>
-            <audio id="ayahAudio" preload="auto"></audio>
-            <audio id="preloadNextAudio" preload="auto" style="display:none;"></audio>
-          </div>
-
-          <article class="tafsir-box">
-            <span class="section-tag">Tafsīr & Explication du verset</span>
-            <p class="main-explanation" id="mainExplanationEl">Ô Messager, si tu voyais ceux qui traitent la Résurrection de mensonge quand ils comparaîtront devant leur Seigneur, tu serais témoin de l’état extraordinairement lamentable qui sera le leur lorsqu’Allah leur dira: Ne traitiez-vous pas de mensonge la Résurrection qui est une vérité établie et indubitable? Ils répondront: Nous faisons serment par notre Seigneur qui nous créa que c’est une vérité établie et indubitable. Allah leur dira alors: Goûtez donc au châtiment pour avoir rejeté l’existence de ce Jour dans le bas monde.</p>
-            <div id="extraNotesContainer">
-              
-              
-              
-            </div>
-            <div class="sources-line">
-              Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar
-            </div>
-          </article>
+          <div class="arabic-surah">الأنعام</div>
         </div>
+        <section class="verse-stage " id="verseStage">
+          <div class="arabic-glow-verse" id="arabicVerseEl">وَلَوْ تَرَىٰٓ إِذْ وُقِفُواْ عَلَىٰ رَبِّهِمْ قَالَ أَلَيْسَ هَٰذَا بِالْحَقِّ قَالُواْ بَلَىٰ وَرَبِّنَا قَالَ فَذُوقُواْ الْعَذَابَ بِمَا كُنتُمْ تَكْفُرُونَ</div>
+          <div class="french-glow-verse" id="frenchVerseEl">30. Si tu les voyais, quand ils comparaîtront devant leur Seigneur. Il leur dira: «Cela n'est-il pas la vérité?» Ils diront: «Mais si! Par notre Seigneur!» Et, il dira: «Goûtez alors au châtiment pour n'avoir pas cru».</div>
+          <div class="stage-blue-nav">
+            <a href="sourate-6-verset-29.html" id="prevVerseLink" class="btn-blue-nav" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">‹ Précédent</a>
+            <a href="sourate-6-verset-31.html" id="nextVerseLink" class="btn-blue-nav" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
+          </div>
+          <div class="sync-progress-track"><div class="sync-progress-bar" id="syncProgressBar"></div></div>
+        </section>
+        <div id="miracleContainer"></div>
+        <div class="audio-control-strip">
+          <div class="audio-left">
+            <button type="button" class="btn-listen-sync" id="playSyncBtn" onclick="toggleAudioSync()">▶ Écouter le verset</button>
+            <button type="button" class="btn-replay-sync" id="replaySyncBtn" onclick="rejouerAudioVerset()">↺ Rejouer</button>
+            <select id="reciterSelect" class="reciter-mini" onchange="changerRecitateur()">
+              <option value="Yasser_Ad-Dussary_128kbps">Yasser Al-Dosari</option>
+              <option value="Alafasy_128kbps">Mishary Rashid Alafasy</option>
+              <option value="Abdurrahmaan_As-Sudais_192kbps">Abderrahman Al-Soudais (HD)</option>
+              <option value="Saood_ash-Shuraym_128kbps">Saoud Al-Shuraim</option>
+              <option value="Nasser_Alqatami_128kbps">Nasser Al-Qatami</option>
+              <option value="Minshawy_Murattal_128kbps">Mohamed Siddiq Al-Minshawi</option>
+              <option value="Husary_128kbps">Mahmoud Khalil Al-Hussary</option>
+            </select>
+            <div class="zoom-btn-group" title="Modifier la taille du texte">
+              <button type="button" class="btn-zoom-text" onclick="modifierTailleTexte(-0.1)">A-</button>
+              <button type="button" class="btn-zoom-text" onclick="modifierTailleTexte(0.1)">A+</button>
+            </div>
+            <select id="verseJumperSelect" class="verse-jumper-select " onchange="naviguerVerset(event, this.value, false)"><option value="sourate-6-verset-1.html" class="" >Verset 1 / 165</option><option value="sourate-6-verset-2.html" class="" >Verset 2 / 165</option><option value="sourate-6-verset-3.html" class="" >Verset 3 / 165</option><option value="sourate-6-verset-4.html" class="" >Verset 4 / 165</option><option value="sourate-6-verset-5.html" class="" >Verset 5 / 165</option><option value="sourate-6-verset-6.html" class="" >Verset 6 / 165</option><option value="sourate-6-verset-7.html" class="" >Verset 7 / 165</option><option value="sourate-6-verset-8.html" class="" >Verset 8 / 165</option><option value="sourate-6-verset-9.html" class="" >Verset 9 / 165</option><option value="sourate-6-verset-10.html" class="" >Verset 10 / 165</option><option value="sourate-6-verset-11.html" class="" >Verset 11 / 165</option><option value="sourate-6-verset-12.html" class="" >Verset 12 / 165</option><option value="sourate-6-verset-13.html" class="" >Verset 13 / 165</option><option value="sourate-6-verset-14.html" class="" >Verset 14 / 165</option><option value="sourate-6-verset-15.html" class="" >Verset 15 / 165</option><option value="sourate-6-verset-16.html" class="" >Verset 16 / 165</option><option value="sourate-6-verset-17.html" class="" >Verset 17 / 165</option><option value="sourate-6-verset-18.html" class="" >Verset 18 / 165</option><option value="sourate-6-verset-19.html" class="" >Verset 19 / 165</option><option value="sourate-6-verset-20.html" class="" >Verset 20 / 165</option><option value="sourate-6-verset-21.html" class="" >Verset 21 / 165</option><option value="sourate-6-verset-22.html" class="" >Verset 22 / 165</option><option value="sourate-6-verset-23.html" class="" >Verset 23 / 165</option><option value="sourate-6-verset-24.html" class="" >Verset 24 / 165</option><option value="sourate-6-verset-25.html" class="" >Verset 25 / 165</option><option value="sourate-6-verset-26.html" class="" >Verset 26 / 165</option><option value="sourate-6-verset-27.html" class="" >Verset 27 / 165</option><option value="sourate-6-verset-28.html" class="" >Verset 28 / 165</option><option value="sourate-6-verset-29.html" class="" >Verset 29 / 165</option><option value="sourate-6-verset-30.html" class="" selected>Verset 30 / 165</option><option value="sourate-6-verset-31.html" class="" >Verset 31 / 165</option><option value="sourate-6-verset-32.html" class="" >Verset 32 / 165</option><option value="sourate-6-verset-33.html" class="" >Verset 33 / 165</option><option value="sourate-6-verset-34.html" class="" >Verset 34 / 165</option><option value="sourate-6-verset-35.html" class="" >Verset 35 / 165</option><option value="sourate-6-verset-36.html" class="" >Verset 36 / 165</option><option value="sourate-6-verset-37.html" class="" >Verset 37 / 165</option><option value="sourate-6-verset-38.html" class="" >Verset 38 / 165</option><option value="sourate-6-verset-39.html" class="" >Verset 39 / 165</option><option value="sourate-6-verset-40.html" class="" >Verset 40 / 165</option><option value="sourate-6-verset-41.html" class="" >Verset 41 / 165</option><option value="sourate-6-verset-42.html" class="" >Verset 42 / 165</option><option value="sourate-6-verset-43.html" class="" >Verset 43 / 165</option><option value="sourate-6-verset-44.html" class="" >Verset 44 / 165</option><option value="sourate-6-verset-45.html" class="" >Verset 45 / 165</option><option value="sourate-6-verset-46.html" class="" >Verset 46 / 165</option><option value="sourate-6-verset-47.html" class="" >Verset 47 / 165</option><option value="sourate-6-verset-48.html" class="" >Verset 48 / 165</option><option value="sourate-6-verset-49.html" class="" >Verset 49 / 165</option><option value="sourate-6-verset-50.html" class="" >Verset 50 / 165</option><option value="sourate-6-verset-51.html" class="" >Verset 51 / 165</option><option value="sourate-6-verset-52.html" class="" >Verset 52 / 165</option><option value="sourate-6-verset-53.html" class="" >Verset 53 / 165</option><option value="sourate-6-verset-54.html" class="" >Verset 54 / 165</option><option value="sourate-6-verset-55.html" class="" >Verset 55 / 165</option><option value="sourate-6-verset-56.html" class="" >Verset 56 / 165</option><option value="sourate-6-verset-57.html" class="" >Verset 57 / 165</option><option value="sourate-6-verset-58.html" class="" >Verset 58 / 165</option><option value="sourate-6-verset-59.html" class="" >Verset 59 / 165</option><option value="sourate-6-verset-60.html" class="" >Verset 60 / 165</option><option value="sourate-6-verset-61.html" class="" >Verset 61 / 165</option><option value="sourate-6-verset-62.html" class="" >Verset 62 / 165</option><option value="sourate-6-verset-63.html" class="" >Verset 63 / 165</option><option value="sourate-6-verset-64.html" class="" >Verset 64 / 165</option><option value="sourate-6-verset-65.html" class="" >Verset 65 / 165</option><option value="sourate-6-verset-66.html" class="" >Verset 66 / 165</option><option value="sourate-6-verset-67.html" class="" >Verset 67 / 165</option><option value="sourate-6-verset-68.html" class="" >Verset 68 / 165</option><option value="sourate-6-verset-69.html" class="" >Verset 69 / 165</option><option value="sourate-6-verset-70.html" class="" >Verset 70 / 165</option><option value="sourate-6-verset-71.html" class="" >Verset 71 / 165</option><option value="sourate-6-verset-72.html" class="" >Verset 72 / 165</option><option value="sourate-6-verset-73.html" class="" >Verset 73 / 165</option><option value="sourate-6-verset-74.html" class="" >Verset 74 / 165</option><option value="sourate-6-verset-75.html" class="" >Verset 75 / 165</option><option value="sourate-6-verset-76.html" class="" >Verset 76 / 165</option><option value="sourate-6-verset-77.html" class="" >Verset 77 / 165</option><option value="sourate-6-verset-78.html" class="" >Verset 78 / 165</option><option value="sourate-6-verset-79.html" class="" >Verset 79 / 165</option><option value="sourate-6-verset-80.html" class="" >Verset 80 / 165</option><option value="sourate-6-verset-81.html" class="" >Verset 81 / 165</option><option value="sourate-6-verset-82.html" class="" >Verset 82 / 165</option><option value="sourate-6-verset-83.html" class="" >Verset 83 / 165</option><option value="sourate-6-verset-84.html" class="" >Verset 84 / 165</option><option value="sourate-6-verset-85.html" class="" >Verset 85 / 165</option><option value="sourate-6-verset-86.html" class="" >Verset 86 / 165</option><option value="sourate-6-verset-87.html" class="" >Verset 87 / 165</option><option value="sourate-6-verset-88.html" class="" >Verset 88 / 165</option><option value="sourate-6-verset-89.html" class="" >Verset 89 / 165</option><option value="sourate-6-verset-90.html" class="" >Verset 90 / 165</option><option value="sourate-6-verset-91.html" class="" >Verset 91 / 165</option><option value="sourate-6-verset-92.html" class="" >Verset 92 / 165</option><option value="sourate-6-verset-93.html" class="" >Verset 93 / 165</option><option value="sourate-6-verset-94.html" class="" >Verset 94 / 165</option><option value="sourate-6-verset-95.html" class="" >Verset 95 / 165</option><option value="sourate-6-verset-96.html" class="" >Verset 96 / 165</option><option value="sourate-6-verset-97.html" class="" >Verset 97 / 165</option><option value="sourate-6-verset-98.html" class="" >Verset 98 / 165</option><option value="sourate-6-verset-99.html" class="" >Verset 99 / 165</option><option value="sourate-6-verset-100.html" class="" >Verset 100 / 165</option><option value="sourate-6-verset-101.html" class="" >Verset 101 / 165</option><option value="sourate-6-verset-102.html" class="" >Verset 102 / 165</option><option value="sourate-6-verset-103.html" class="" >Verset 103 / 165</option><option value="sourate-6-verset-104.html" class="" >Verset 104 / 165</option><option value="sourate-6-verset-105.html" class="" >Verset 105 / 165</option><option value="sourate-6-verset-106.html" class="" >Verset 106 / 165</option><option value="sourate-6-verset-107.html" class="" >Verset 107 / 165</option><option value="sourate-6-verset-108.html" class="" >Verset 108 / 165</option><option value="sourate-6-verset-109.html" class="" >Verset 109 / 165</option><option value="sourate-6-verset-110.html" class="" >Verset 110 / 165</option><option value="sourate-6-verset-111.html" class="" >Verset 111 / 165</option><option value="sourate-6-verset-112.html" class="" >Verset 112 / 165</option><option value="sourate-6-verset-113.html" class="" >Verset 113 / 165</option><option value="sourate-6-verset-114.html" class="" >Verset 114 / 165</option><option value="sourate-6-verset-115.html" class="" >Verset 115 / 165</option><option value="sourate-6-verset-116.html" class="" >Verset 116 / 165</option><option value="sourate-6-verset-117.html" class="" >Verset 117 / 165</option><option value="sourate-6-verset-118.html" class="" >Verset 118 / 165</option><option value="sourate-6-verset-119.html" class="" >Verset 119 / 165</option><option value="sourate-6-verset-120.html" class="" >Verset 120 / 165</option><option value="sourate-6-verset-121.html" class="" >Verset 121 / 165</option><option value="sourate-6-verset-122.html" class="" >Verset 122 / 165</option><option value="sourate-6-verset-123.html" class="" >Verset 123 / 165</option><option value="sourate-6-verset-124.html" class="" >Verset 124 / 165</option><option value="sourate-6-verset-125.html" class="" >Verset 125 / 165</option><option value="sourate-6-verset-126.html" class="" >Verset 126 / 165</option><option value="sourate-6-verset-127.html" class="" >Verset 127 / 165</option><option value="sourate-6-verset-128.html" class="" >Verset 128 / 165</option><option value="sourate-6-verset-129.html" class="" >Verset 129 / 165</option><option value="sourate-6-verset-130.html" class="" >Verset 130 / 165</option><option value="sourate-6-verset-131.html" class="" >Verset 131 / 165</option><option value="sourate-6-verset-132.html" class="" >Verset 132 / 165</option><option value="sourate-6-verset-133.html" class="" >Verset 133 / 165</option><option value="sourate-6-verset-134.html" class="" >Verset 134 / 165</option><option value="sourate-6-verset-135.html" class="" >Verset 135 / 165</option><option value="sourate-6-verset-136.html" class="" >Verset 136 / 165</option><option value="sourate-6-verset-137.html" class="" >Verset 137 / 165</option><option value="sourate-6-verset-138.html" class="" >Verset 138 / 165</option><option value="sourate-6-verset-139.html" class="" >Verset 139 / 165</option><option value="sourate-6-verset-140.html" class="" >Verset 140 / 165</option><option value="sourate-6-verset-141.html" class="" >Verset 141 / 165</option><option value="sourate-6-verset-142.html" class="" >Verset 142 / 165</option><option value="sourate-6-verset-143.html" class="" >Verset 143 / 165</option><option value="sourate-6-verset-144.html" class="" >Verset 144 / 165</option><option value="sourate-6-verset-145.html" class="" >Verset 145 / 165</option><option value="sourate-6-verset-146.html" class="" >Verset 146 / 165</option><option value="sourate-6-verset-147.html" class="" >Verset 147 / 165</option><option value="sourate-6-verset-148.html" class="" >Verset 148 / 165</option><option value="sourate-6-verset-149.html" class="" >Verset 149 / 165</option><option value="sourate-6-verset-150.html" class="" >Verset 150 / 165</option><option value="sourate-6-verset-151.html" class="" >Verset 151 / 165</option><option value="sourate-6-verset-152.html" class="" >Verset 152 / 165</option><option value="sourate-6-verset-153.html" class="" >Verset 153 / 165</option><option value="sourate-6-verset-154.html" class="" >Verset 154 / 165</option><option value="sourate-6-verset-155.html" class="" >Verset 155 / 165</option><option value="sourate-6-verset-156.html" class="" >Verset 156 / 165</option><option value="sourate-6-verset-157.html" class="" >Verset 157 / 165</option><option value="sourate-6-verset-158.html" class="" >Verset 158 / 165</option><option value="sourate-6-verset-159.html" class="" >Verset 159 / 165</option><option value="sourate-6-verset-160.html" class="" >Verset 160 / 165</option><option value="sourate-6-verset-161.html" class="" >Verset 161 / 165</option><option value="sourate-6-verset-162.html" class="" >Verset 162 / 165</option><option value="sourate-6-verset-163.html" class="" >Verset 163 / 165</option><option value="sourate-6-verset-164.html" class="" >Verset 164 / 165</option><option value="sourate-6-verset-165.html" class="" >Verset 165 / 165</option></select>
+          </div>
+          <label class="auto-scroll-toggle"><input type="checkbox" id="autoNextCheck"><span class="switch-slider"></span><span class="switch-text" id="switchAutoTextEl">Enchaîner automatiquement</span></label>
+          <audio id="ayahAudio" preload="auto"></audio><audio id="preloadNextAudio" preload="auto" style="display:none;"></audio>
+        </div>
+        <article class="tafsir-box">
+          <span class="section-tag" id="tafsirSectionTagEl">Tafsīr & Explication du verset</span>
+          <p class="main-explanation" id="mainExplanationEl">Ô Messager, si tu voyais ceux qui traitent la Résurrection de mensonge quand ils comparaîtront devant leur Seigneur, tu serais témoin de l’état extraordinairement lamentable qui sera le leur lorsqu’Allah leur dira: Ne traitiez-vous pas de mensonge la Résurrection qui est une vérité établie et indubitable? Ils répondront: Nous faisons serment par notre Seigneur qui nous créa que c’est une vérité établie et indubitable. Allah leur dira alors: Goûtez donc au châtiment pour avoir rejeté l’existence de ce Jour dans le bas monde.</p>
+          <div id="extraNotesContainer"></div>
+          <div class="sources-line" id="sourcesLineEl">Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar</div>
+        </article>
       </main>
+      <footer class="asso-legal-footer">
+        Portail numérique gratuit et sans publicité édité par l'Association Loi 1901 à but non lucratif <strong>« Institut Numérique Coran, Langues &amp; Tafsīr »</strong> (Siège : 180 rue Fabri de Peiresc, 34080 Montpellier).
+      </footer>
     </div>
   </div>
-
-  <nav class="bottom-nav">
-    <a href="sourate-6-verset-29.html" id="prevVerseLink" class="btn btn-prev" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">‹ Précédent</a>
-    <span class="page-indicator" id="pageIndicatorEl">Verset 30 / 165</span>
-    <a href="sourate-6-verset-31.html" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
-  </nav>
-
-  <script src="data-sourate-6.js?v=31"></script>
+  <script src="data-sourate-6.js?v=1793581815303"></script>
   <script>
-    const numSourateActuelle = 6;
-    let numVersetActuel = 30;
-    let codeAudio = "006030";
+    const numSourateActuelle = 6; let numVersetActuel = 30; let codeAudio = "006030";
     
   const bgCanvas = document.getElementById('fullPageSkyCanvas');
   const bgCtx = bgCanvas.getContext('2d');
   const sunEl = document.getElementById('flatEarthSun');
   const moonEl = document.getElementById('flatEarthMoon');
-  const skyLightingEl = document.getElementById('dynamicSkyLighting');
-
-  let wScreen = window.innerWidth;
-  let hScreen = window.innerHeight;
-  let stars = [];
-  let angleOrbite = 0.35;
-  let vitesseOrbite = 0.0015;
-
-  function chargerEtatOrbite() {
-    try {
-      const savedAngle = sessionStorage.getItem('orbit_angle_v21');
-      if (savedAngle !== null && !isNaN(Number(savedAngle))) {
-        angleOrbite = Number(savedAngle);
-      }
-    } catch (e) {}
-  }
-
-  function sauvegarderConfigCiel() {
-    try {
-      sessionStorage.setItem('orbit_angle_v21', String(angleOrbite));
-      sessionStorage.setItem('sky_stars_v21', JSON.stringify(stars));
-    } catch (e) {}
-  }
-
+  let wScreen = window.innerWidth, hScreen = window.innerHeight, stars = [], angleOrbite = 0.35;
+  try { const sa = sessionStorage.getItem('orbit_angle_v21'); if (sa !== null && !isNaN(Number(sa))) angleOrbite = Number(sa); } catch(e){}
+  function sauvegarderConfigCiel() { try { sessionStorage.setItem('orbit_angle_v21', String(angleOrbite)); } catch(e){} }
   window.addEventListener('beforeunload', sauvegarderConfigCiel);
-
-  function resizeFullSky() {
-    wScreen = window.innerWidth;
-    hScreen = window.innerHeight;
-    bgCanvas.width = wScreen;
-    bgCanvas.height = hScreen;
+  function resizeFullSky() { wScreen = window.innerWidth; hScreen = window.innerHeight; bgCanvas.width = wScreen; bgCanvas.height = hScreen; }
+  resizeFullSky();
+  for (let i = 0; i < 140; i++) {
+    const xr = Math.random(), yr = Math.random(), br = Math.random() < 0.22;
+    stars.push({ x: xr * wScreen, y: yr * hScreen, xr, yr, r: br ? 1.8 : 0.8, a: Math.random() * 0.6 + 0.25, p: Math.random() * 6.28, s: 0.015 });
   }
-
-  function initFullSky() {
-    resizeFullSky();
-    chargerEtatOrbite();
-
-    try {
-      const savedStars = sessionStorage.getItem('sky_stars_v21');
-      if (savedStars) {
-        const parsed = JSON.parse(savedStars);
-        if (Array.isArray(parsed) && parsed.length === 145) {
-          stars = parsed.map(function(s) {
-            return {
-              x: s.xRatio * wScreen,
-              y: s.yRatio * hScreen,
-              xRatio: s.xRatio,
-              yRatio: s.yRatio,
-              r: s.r,
-              alphaBase: s.alphaBase,
-              phase: s.phase,
-              speed: s.speed,
-              bright: s.bright
-            };
-          });
-          return;
-        }
-      }
-    } catch (e) {}
-
-    stars = [];
-    for (let i = 0; i < 145; i++) {
-      const xRatio = Math.random();
-      const yRatio = Math.random();
-      const bright = Math.random() < 0.22;
-      stars.push({
-        x: xRatio * wScreen,
-        y: yRatio * hScreen,
-        xRatio: xRatio,
-        yRatio: yRatio,
-        r: bright ? (Math.random() * 1.5 + 1.0) : (Math.random() * 0.9 + 0.3),
-        alphaBase: Math.random() * 0.6 + 0.25,
-        phase: Math.random() * Math.PI * 2,
-        speed: Math.random() * 0.02 + 0.006,
-        bright: bright
-      });
-    }
-  }
-
-  function mettreAJourAstres() {
-    if (!sunEl && !moonEl) return;
-
-    angleOrbite += vitesseOrbite;
-    const angleSoleil = angleOrbite;
-    const angleLune = angleOrbite - Math.PI;
-
-    const centreX = wScreen * 0.5;
-    const centreY = hScreen * 0.48;
-
-    const rayonX = Math.min(wScreen * 0.40, Math.max(330, wScreen * 0.35));
-    const rayonY = Math.min(hScreen * 0.38, Math.max(220, hScreen * 0.33));
-
-    const sunX = centreX + Math.cos(angleSoleil) * rayonX;
-    const sunY = centreY + Math.sin(angleSoleil) * rayonY;
-
-    const moonX = centreX + Math.cos(angleLune) * rayonX;
-    const moonY = centreY + Math.sin(angleLune) * rayonY;
-
-    if (sunEl) {
-      sunEl.style.transform = "translate3d(" + (sunX - 58) + "px, " + (sunY - 58) + "px, 0)";
-    }
-    if (moonEl) {
-      moonEl.style.transform = "translate3d(" + (moonX - 64) + "px, " + (moonY - 64) + "px, 0)";
-    }
-
-    if (skyLightingEl) {
-      const sunPctX = Math.round((sunX / wScreen) * 100);
-      const sunPctY = Math.round((sunY / hScreen) * 100);
-      const moonPctX = Math.round((moonX / wScreen) * 100);
-      const moonPctY = Math.round((moonY / hScreen) * 100);
-
-      skyLightingEl.style.background =
-        "radial-gradient(circle at " + sunPctX + "% " + sunPctY + "%, rgba(251, 191, 36, 0.17) 0%, rgba(245, 158, 11, 0.05) 24%, transparent 50%), " +
-        "radial-gradient(circle at " + moonPctX + "% " + moonPctY + "%, rgba(255, 255, 255, 0.20) 0%, rgba(226, 232, 240, 0.07) 26%, transparent 52%)";
-    }
-  }
-
   function renderFullSky() {
     bgCtx.clearRect(0, 0, wScreen, hScreen);
-
     for (let i = 0; i < stars.length; i++) {
-      const s = stars[i];
-      s.phase += s.speed;
-      const alpha = Math.max(0.08, Math.min(1, s.alphaBase + Math.sin(s.phase) * 0.35));
-
-      bgCtx.save();
-      bgCtx.beginPath();
-      if (s.bright) {
-        bgCtx.shadowBlur = 10;
-        bgCtx.shadowColor = "rgba(255, 255, 255, 0.85)";
-      }
-      bgCtx.fillStyle = "rgba(255, 255, 255, " + alpha + ")";
-      bgCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      bgCtx.fill();
-      bgCtx.restore();
+      const st = stars[i]; st.p += st.s;
+      const al = Math.max(0.1, Math.min(1, st.a + Math.sin(st.p) * 0.3));
+      bgCtx.fillStyle = "rgba(255,255,255," + al + ")";
+      bgCtx.beginPath(); bgCtx.arc(st.x, st.y, st.r, 0, 6.28); bgCtx.fill();
     }
-
-    mettreAJourAstres();
+    if (sunEl || moonEl) {
+      angleOrbite += 0.0015;
+      const cx = wScreen * 0.5, cy = hScreen * 0.48, rx = Math.max(320, wScreen * 0.36), ry = Math.max(210, hScreen * 0.34);
+      const sx = cx + Math.cos(angleOrbite) * rx, sy = cy + Math.sin(angleOrbite) * ry;
+      const mx = cx + Math.cos(angleOrbite - Math.PI) * rx, my = cy + Math.sin(angleOrbite - Math.PI) * ry;
+      if (sunEl) sunEl.style.transform = "translate3d(" + (sx - 58) + "px," + (sy - 58) + "px,0)";
+      if (moonEl) moonEl.style.transform = "translate3d(" + (mx - 64) + "px," + (my - 64) + "px,0)";
+    }
     requestAnimationFrame(renderFullSky);
   }
-
-  window.addEventListener('resize', function() {
-    resizeFullSky();
-    for (let i = 0; i < stars.length; i++) {
-      stars[i].x = stars[i].xRatio * wScreen;
-      stars[i].y = stars[i].yRatio * hScreen;
-    }
-  });
-
-  initFullSky();
+  window.addEventListener('resize', () => { resizeFullSky(); stars.forEach(s => { s.x = s.xr * wScreen; s.y = s.yr * hScreen; }); });
   renderFullSky();
 
     
   const audio = document.getElementById('ayahAudio');
   const preloadAudio = document.getElementById('preloadNextAudio');
   const playBtn = document.getElementById('playSyncBtn');
+  const replayBtn = document.getElementById('replaySyncBtn');
   const select = document.getElementById('reciterSelect');
   const autoCheck = document.getElementById('autoNextCheck');
   const stage = document.getElementById('verseStage');
   const progressBar = document.getElementById('syncProgressBar');
-  let animId = null;
-
-  const RECITATEURS_VALIDES = [
-    'Yasser_Ad-Dussary_128kbps',
-    'Alafasy_128kbps',
-    'Abdurrahmaan_As-Sudais_192kbps',
-    'Saood_ash-Shuraym_128kbps',
-    'Nasser_Alqatami_128kbps',
-    'Abdullah_Basfar_192kbps',
-    'Minshawy_Murattal_128kbps',
-    'Husary_128kbps',
-    'Hudhaify_128kbps'
-  ];
-
-  autoCheck.checked = false;
-  audio.volume = 1.0;
+  let animId = null, currentLang = 'fr', zoomScale = 1.0;
+  autoCheck.checked = false; audio.volume = 1.0;
 
   try {
-    localStorage.removeItem('autoNext');
-    localStorage.removeItem('autoNext_v2');
-    localStorage.removeItem('audio_volume_v25');
-    localStorage.removeItem('text_zoom_v28');
-    const savedReciter = localStorage.getItem('reciter');
-    if (savedReciter && RECITATEURS_VALIDES.indexOf(savedReciter) !== -1) {
-      select.value = savedReciter;
-    } else {
-      select.value = 'Yasser_Ad-Dussary_128kbps';
-    }
-  } catch (e) {}
+    const sr = localStorage.getItem('reciter');
+    if (sr) select.value = sr;
+    const savedZoom = parseFloat(localStorage.getItem('coran_zoom_v39'));
+    if (!isNaN(savedZoom) && savedZoom >= 0.75 && savedZoom <= 1.45) zoomScale = savedZoom;
+    const up = new URLSearchParams(window.location.search).get('lang');
+    const sl = localStorage.getItem('site_lang_v32');
+    if (['fr','en','es','ar'].includes(up)) { currentLang = up; localStorage.setItem('site_lang_v32', up); }
+    else if (['fr','en','es','ar'].includes(sl)) currentLang = sl;
+  } catch(e){}
 
-  function memoriserDernierVersetLu(numS, numV) {
+  function appliquerTailleTexte() {
+    const arEl = document.getElementById('arabicVerseEl');
+    const frEl = document.getElementById('frenchVerseEl');
+    const exEl = document.getElementById('mainExplanationEl');
+    const isMob = window.innerWidth <= 768;
+    if (arEl) arEl.style.fontSize = ((isMob ? 2.2 : 2.9) * zoomScale).toFixed(2) + "rem";
+    if (frEl) frEl.style.fontSize = ((isMob ? 1.25 : 1.52) * zoomScale).toFixed(2) + "rem";
+    if (exEl) {
+      const baseEx = (currentLang === 'ar') ? 1.38 : 1.06;
+      exEl.style.fontSize = (baseEx * zoomScale).toFixed(2) + "rem";
+    }
+  }
+
+  function modifierTailleTexte(delta) {
+    zoomScale = Math.max(0.75, Math.min(1.45, Math.round((zoomScale + delta) * 100) / 100));
+    try { localStorage.setItem('coran_zoom_v39', String(zoomScale)); } catch(e){}
+    appliquerTailleTexte();
+  }
+
+  function memoriserLecture(s, v) {
     try {
-      const nomS = (window.SOURATE_DATA && window.SOURATE_DATA.nomSourate) ? window.SOURATE_DATA.nomSourate : ("Sourate " + numS);
-      localStorage.setItem('last_read_v28', JSON.stringify({
-        s: numS,
-        v: numV,
-        nom: nomS
-      }));
-    } catch (e) {}
+      const nom = window.SOURATE_DATA ? window.SOURATE_DATA.nomSourate : ("Sourate " + s);
+      localStorage.setItem('last_read_v28', JSON.stringify({ s, v, nom }));
+    } catch(e){}
   }
-  memoriserDernierVersetLu(numSourateActuelle, numVersetActuel);
+  memoriserLecture(numSourateActuelle, numVersetActuel);
 
-  function prechargerVersetSuivant() {
-    if (!preloadAudio) return;
-    if (window.SOURATE_DATA && window.SOURATE_DATA.versets) {
-      const vSuiv = window.SOURATE_DATA.versets[numVersetActuel];
-      if (vSuiv && vSuiv.codeAudio) {
-        const nextUrl = "https://everyayah.com/data/" + select.value + "/" + vSuiv.codeAudio + ".mp3";
-        if (preloadAudio.src !== nextUrl) {
-          preloadAudio.src = nextUrl;
-        }
-      }
+  function txtPlay() {
+    if (!audio.paused) return currentLang === 'ar' ? "⏸ إيقاف مؤقت" : "⏸ Pause";
+    return currentLang === 'ar' ? "▶ استمع للآية" : (currentLang === 'en' ? "▶ Listen to verse" : (currentLang === 'es' ? "▶ Escuchar aleya" : "▶ Écouter le verset"));
+  }
+
+  function majAudio() {
+    const u = "https://everyayah.com/data/" + select.value + "/" + codeAudio + ".mp3";
+    if (audio.src !== u) audio.src = u;
+    if (preloadAudio && window.SOURATE_DATA && window.SOURATE_DATA.versets[numVersetActuel]) {
+      preloadAudio.src = "https://everyayah.com/data/" + select.value + "/" + window.SOURATE_DATA.versets[numVersetActuel].codeAudio + ".mp3";
     }
   }
-
-  function majSourceAudio() {
-    const nouvelleUrl = "https://everyayah.com/data/" + select.value + "/" + codeAudio + ".mp3";
-    if (audio.src !== nouvelleUrl) {
-      audio.src = nouvelleUrl;
-    }
-    audio.volume = 1.0;
-    prechargerVersetSuivant();
-  }
-  majSourceAudio();
-
-  function sauverAutoNext() {}
+  majAudio();
 
   function animerBarre() {
     if (audio.paused) return;
-    if (audio.duration && isFinite(audio.duration)) {
-      const pct = Math.min(100, (audio.currentTime / audio.duration) * 100);
-      progressBar.style.width = pct + "%";
-    }
+    if (audio.duration && isFinite(audio.duration)) progressBar.style.width = Math.min(100, (audio.currentTime / audio.duration) * 100) + "%";
     animId = requestAnimationFrame(animerBarre);
   }
-
   function arreterVisuel() {
     if (animId) cancelAnimationFrame(animId);
-    stage.classList.remove('playing');
-    progressBar.style.width = "0%";
-    playBtn.textContent = "▶ Écouter le verset";
-    playBtn.classList.remove('active');
+    stage.classList.remove('playing'); progressBar.style.width = "0%";
+    playBtn.textContent = txtPlay(); playBtn.classList.remove('active');
   }
-
   function toggleAudioSync() {
     if (audio.paused) {
-      audio.volume = 1.0;
-      stage.classList.add('playing');
-      playBtn.textContent = "⏸ Pause";
-      playBtn.classList.add('active');
-      prechargerVersetSuivant();
-      audio.play().then(function() {
-        animId = requestAnimationFrame(animerBarre);
-      }).catch(function() {
-        arreterVisuel();
-      });
-    } else {
-      audio.pause();
-      arreterVisuel();
-    }
+      stage.classList.add('playing'); playBtn.textContent = currentLang === 'ar' ? "⏸ إيقاف مؤقت" : "⏸ Pause"; playBtn.classList.add('active');
+      audio.play().then(() => { animId = requestAnimationFrame(animerBarre); }).catch(arreterVisuel);
+    } else { audio.pause(); arreterVisuel(); }
   }
-
   function rejouerAudioVerset() {
-    if (animId) cancelAnimationFrame(animId);
-    audio.pause();
-    audio.currentTime = 0;
-    audio.volume = 1.0;
-    progressBar.style.width = "0%";
-    stage.classList.add('playing');
-    playBtn.textContent = "⏸ Pause";
-    playBtn.classList.add('active');
-    prechargerVersetSuivant();
-    audio.play().then(function() {
-      animId = requestAnimationFrame(animerBarre);
-    }).catch(function() {
-      arreterVisuel();
-    });
+    audio.pause(); audio.currentTime = 0; toggleAudioSync();
   }
-
   function changerRecitateur() {
-    try { localStorage.setItem('reciter', select.value); } catch (e) {}
-    const enCours = !audio.paused;
-    majSourceAudio();
-    if (enCours) {
-      audio.play().then(function() {
-        animId = requestAnimationFrame(animerBarre);
-      }).catch(function() {
-        arreterVisuel();
-      });
-    }
+    try { localStorage.setItem('reciter', select.value); } catch(e){}
+    const enCours = !audio.paused; majAudio(); if (enCours) audio.play();
   }
-
   function basculerDeveloppementMiracle() {
-    const detailsEl = document.getElementById('miracleDeepDetails');
-    const btnEl = document.getElementById('miracleToggleBtn');
-    if (!detailsEl || !btnEl) return;
-    const estOuvert = detailsEl.classList.toggle('open');
-    btnEl.textContent = estOuvert
-      ? "▲ Masquer l'explication détaillée du miracle"
-      : "★ Développer l'explication complète & le Hadīth historique";
+    const d = document.getElementById('miracleDeepDetails');
+    const b = document.getElementById('miracleToggleBtn');
+    if (!d || !b) return;
+    const isO = d.classList.toggle('open');
+    if (currentLang === 'ar') b.textContent = isO ? "▲ إخفاء الشرح المفصل وشهادات المؤرخين" : "★ عرض الشرح الكامل وشهادات المؤرخين والحديث";
+    else if (currentLang === 'en') b.textContent = isO ? "▲ Hide detailed explanation & historian proofs" : "★ Read full explanation, Hadīth & Oxford Historian Proofs";
+    else if (currentLang === 'es') b.textContent = isO ? "▲ Ocultar explicación detallada y pruebas" : "★ Ver explicación completa, Hadiz y pruebas de historiadores";
+    else b.textContent = isO ? "▲ Masquer l'explication détaillée & les preuves des historiens" : "★ Développer l'explication complète, le Hadīth & les preuves des historiens";
+  }
+  function construireMiracle(m) {
+    if (!m) return '';
+    const isAr = currentLang === 'ar', isEn = currentLang === 'en', isEs = currentLang === 'es';
+    const t = isAr ? (m.titreAr || m.titre) : (isEn ? (m.titreEn || m.titre) : (isEs ? (m.titreEs || m.titre) : m.titre));
+    const r = isAr ? (m.resumeAr || m.resume) : (isEn ? (m.resumeEn || m.resume) : (isEs ? (m.resumeEs || m.resume) : m.resume));
+    const dv = isAr ? (m.developpementAr || m.developpement) : (isEn ? (m.developpementEn || m.developpement) : (isEs ? (m.developpementEs || m.developpement) : m.developpement));
+    const bt = isAr ? "★ عرض الشرح الكامل وشهادات المؤرخين والحديث" : (isEn ? "★ Read full explanation, Hadīth & Oxford Historian Proofs" : (isEs ? "★ Ver explicación completa, Hadiz y pruebas de historiadores" : "★ Développer l'explication complète, le Hadīth & les preuves des historiens"));
+    return '<div class="miracle-banner ae-laser-box"' + (isAr ? ' dir="rtl" style="text-align:right;"' : '') + '><div class="ae-shimmer-sweep"></div><div class="miracle-header"><span class="gold-star-icon">★</span> ' + t + '</div><p class="miracle-summary">' + r + '</p><button type="button" class="miracle-expand-btn" id="miracleToggleBtn" onclick="basculerDeveloppementMiracle()">' + bt + '</button><div class="miracle-deep-details" id="miracleDeepDetails">' + dv + '</div></div>';
   }
 
-  function construireHTMLMiracle(mObj) {
-    if (!mObj) return '';
-    return '<div class="miracle-banner">' +
-      '<div class="miracle-header"><span class="sky-star-icon">★</span> ' + mObj.titre + '</div>' +
-      '<p class="miracle-summary">' + mObj.resume + '</p>' +
-      '<button type="button" class="miracle-expand-btn" id="miracleToggleBtn" onclick="basculerDeveloppementMiracle()">' +
-        '★ Développer l\'explication complète & le Hadīth historique' +
-      '</button>' +
-      '<div class="miracle-deep-details" id="miracleDeepDetails">' +
-        mObj.developpement +
-      '</div>' +
-    '</div>';
+  function appliquerLangueVerset() {
+    document.querySelectorAll('.lang-pill-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-lang') === currentLang));
+    if (!window.SOURATE_DATA) return;
+    const S = window.SOURATE_DATA, vData = S.versets[numVersetActuel - 1];
+    if (!vData) return;
+    const isAr = currentLang === 'ar', isEn = currentLang === 'en', isEs = currentLang === 'es';
+    const estMec = S.typeSourateClasse === 'mecquoise';
+    const typeL = isAr ? (estMec ? 'سورة مكية' : 'سورة مدنية') : (isEn ? (estMec ? 'Meccan Surah' : 'Medinan Surah') : (isEs ? (estMec ? 'Sura Mequí' : 'Sura Medinense') : S.typeSourateLabel));
+    const lieuL = isAr ? (estMec ? 'مكة المكرمة' : 'المدينة المنورة') : (isEn ? (estMec ? 'Makkah' : 'Madinah') : (isEs ? (estMec ? 'La Meca' : 'Medina') : S.lieu));
+
+    document.getElementById('homeBtnTextEl').textContent = isAr ? "‹ العودة إلى السور الـ 114" : (isEn ? "‹ Back to 114 Surahs" : (isEs ? "‹ Volver a las 114 Suras" : "‹ Retour aux 114 Sourates"));
+    document.getElementById('typeSouratePillEl').textContent = typeL;
+    const revEl = document.getElementById('revOrderTagEl');
+    if (revEl) {
+      revEl.textContent = isAr
+        ? ("ترتيب النزول: " + S.ordreRev + " (سورة " + S.numSourate + ")")
+        : (isEn ? ("Revelation #" + S.ordreRev + " (Surah #" + S.numSourate + ")") : (isEs ? (S.ordreRev + "ª revelada (Sura n°" + S.numSourate + ")") : (S.ordreRev + "e Sourate révélée (n°" + S.numSourate + ")")));
+    }
+
+    const nomT = isEn ? S.nomEn : (isEs ? S.nomEs : S.nomFr);
+    const motS = isAr ? "سورة" : (isEn ? "Surah" : (isEs ? "Sura" : "Sourate"));
+    const motV = isAr ? "الآية" : (isEn ? "Verse" : (isEs ? "Aleya" : "Verset"));
+    const motMiracle = isAr ? "إعجاز" : (isEs ? "Milagro" : "Miracle");
+
+    document.getElementById('mainTitleEl').textContent = isAr ? ("سورة " + S.nomArabe + " — الآية " + numVersetActuel) : (motS + " " + S.nomSourate + " (" + nomT + ") — " + motV + " " + numVersetActuel);
+
+    const topMiracleLink = document.getElementById('topMiraclePillLink');
+    if (topMiracleLink) {
+      const vM = topMiracleLink.getAttribute('data-v');
+      if (S.numSourate === 30) {
+        topMiracleLink.innerHTML = '<span class="gold-star-icon">★</span> ' + (isAr ? '3 معجزات (آية 1-5)' : (isEs ? '3 Milagros (a.1-5)' : '3 Miracles (v.1-5)'));
+      } else {
+        topMiracleLink.innerHTML = '<span class="gold-star-icon">★</span> ' + (isAr ? ('إعجاز : آية ' + vM) : (isEs ? ('Milagro : a.' + vM) : ('Miracle : v.' + vM)));
+      }
+    }
+
+    const subEl = document.getElementById('subHeaderInfoEl');
+    if (subEl) {
+      subEl.textContent = isAr
+        ? (typeL + " (" + lieuL + ") • التفسير المختصر الصحيح")
+        : (isEn ? (typeL + " (" + lieuL + ") • Saheeh International & Exegesis") : (isEs ? (typeL + " (" + lieuL + ") • Traducción Sheikh Isa García y Exégesis") : (typeL + " (" + lieuL + ") • Traduction Muhammad Hamidullah (1977) & Exégèse")));
+    }
+
+    const estMiracleActuel = Boolean(vData.miracle);
+    if (stage) stage.classList.toggle('is-miracle-stage', estMiracleActuel);
+
+    const jEl = document.getElementById('verseJumperSelect');
+    if (jEl) {
+      jEl.classList.toggle('is-miracle-gold', estMiracleActuel);
+      for (let idx = 0; idx < jEl.options.length; idx++) {
+        const opt = jEl.options[idx];
+        const vNum = idx + 1;
+        const vEstMir = Boolean(S.versets[idx] && S.versets[idx].miracle);
+        opt.textContent = (vEstMir ? "★ " : "") + motV + " " + vNum + " / " + S.nbVersets + (vEstMir ? (" (" + motMiracle + ")") : "");
+      }
+    }
+
+    const arEl = document.getElementById('arabicVerseEl'), frEl = document.getElementById('frenchVerseEl');
+    arEl.innerHTML = vData.texteArabe;
+    if (isAr) {
+      frEl.innerHTML = ""; frEl.style.display = "none"; arEl.style.marginBottom = "0px";
+    } else {
+      frEl.innerHTML = numVersetActuel + ". " + (isEn ? (vData.tradEn || vData.tradPropre) : (isEs ? (vData.tradEs || vData.tradPropre) : vData.tradPropre));
+      frEl.style.display = "block"; arEl.style.marginBottom = "22px";
+    }
+
+    playBtn.textContent = txtPlay();
+    replayBtn.textContent = isAr ? "↺ إعادة" : (isEn ? "↺ Replay" : (isEs ? "↺ Repetir" : "↺ Rejouer"));
+    document.getElementById('switchAutoTextEl').textContent = isAr ? "الانتقال التلقائي للآية التالية" : (isEn ? "Auto-advance" : (isEs ? "Avance automático" : "Enchaîner automatiquement"));
+
+    const tBox = document.querySelector('.tafsir-box'), mExpl = document.getElementById('mainExplanationEl');
+    tBox.setAttribute('dir', isAr ? 'rtl' : 'ltr'); tBox.style.textAlign = isAr ? 'right' : 'left';
+    document.getElementById('tafsirSectionTagEl').textContent = isAr ? "التفسير المختصر وبيان المعنى" : (isEn ? "Tafsīr & Verse Explanation" : (isEs ? "Tafsīr y Explicación de la Aleya" : "Tafsīr & Explication du verset"));
+    mExpl.innerHTML = isAr ? (vData.explicationAr || vData.explicationUnanime) : (isEn ? (vData.explicationEn || vData.explicationUnanime) : (isEs ? (vData.explicationEs || vData.explicationUnanime) : vData.explicationUnanime));
+    mExpl.style.fontFamily = isAr ? "'Scheherazade New','Amiri',serif" : "";
+
+    appliquerTailleTexte();
+
+    const exC = document.getElementById('extraNotesContainer');
+    let exH = '';
+    if (currentLang === 'fr' && vData.precisionConsensus) exH += '<div class="consensus-note">' + vData.precisionConsensus + '</div>';
+    else if (isEn && vData.precisionEn) exH += '<div class="consensus-note">' + vData.precisionEn + '</div>';
+    else if (isEs && vData.precisionEs) exH += '<div class="consensus-note">' + vData.precisionEs + '</div>';
+    else if (isAr && vData.precisionAr) exH += '<div class="consensus-note" style="border-left:none;border-right:3px solid var(--sky-bright);border-radius:12px 0 0 12px;font-family:\'Scheherazade New\',serif;font-size:1.22rem;">' + vData.precisionAr + '</div>';
+    exC.innerHTML = exH;
+
+    document.getElementById('miracleContainer').innerHTML = construireMiracle(vData.miracle);
+    document.getElementById('prevVerseLink').textContent = isAr ? "‹ السابقة" : (isEn ? "‹ Previous" : (isEs ? "‹ Anterior" : "‹ Précédent"));
+    document.getElementById('nextVerseLink').textContent = isAr ? "التالية ›" : (isEn ? "Next ›" : (isEs ? "Siguiente ›" : "Suivant ›"));
   }
 
-  function majEffetSpecifiqueVerset(numS, numV) {
-    if (!stage) return;
-    stage.classList.toggle('ash-shams-daylight', numS === 91 && (numV === 1 || numV === 3));
-    stage.classList.toggle('earth-leveled-glow', (numS === 91 && numV === 6) || (numS === 88 && numV === 20) || (numS === 15 && numV === 19) || (numS === 50 && numV === 7) || (numS === 71 && numV === 19));
+  function changerLangueVerset(l) { currentLang = l; try { localStorage.setItem('site_lang_v32', l); } catch(e){} appliquerLangueVerset(); }
+  appliquerLangueVerset();
+
+  function allerAuVerset(n, auto) {
+    if (!window.SOURATE_DATA || !window.SOURATE_DATA.versets[n - 1]) { window.location.href = "sourate-" + numSourateActuelle + "-verset-" + n + ".html"; return; }
+    if (!audio.paused) audio.pause(); arreterVisuel();
+    numVersetActuel = n; const vD = window.SOURATE_DATA.versets[n - 1]; codeAudio = vD.codeAudio; majAudio();
+    memoriserLecture(numSourateActuelle, n);
+    document.getElementById('badgeNumEl').textContent = numSourateActuelle + " : " + n;
+    const jEl = document.getElementById('verseJumperSelect');
+    if (jEl) jEl.value = "sourate-" + numSourateActuelle + "-verset-" + n + ".html";
+    document.getElementById('prevVerseLink').setAttribute('href', vD.lienPrecedent);
+    document.getElementById('nextVerseLink').setAttribute('href', vD.lienSuivant);
+    appliquerLangueVerset();
+    try { history.pushState({ verset: n }, '', "sourate-" + numSourateActuelle + "-verset-" + n + ".html"); } catch(e){}
+    if (auto) toggleAudioSync();
   }
 
-  majEffetSpecifiqueVerset(numSourateActuelle, numVersetActuel);
-
-  function allerAuVersetSansRecharger(numVersetCible, lancerAudioAuto) {
-    if (!window.SOURATE_DATA || !window.SOURATE_DATA.versets) {
-      sauvegarderConfigCiel();
-      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html";
-      return;
-    }
-
-    const vData = window.SOURATE_DATA.versets[numVersetCible - 1];
-    if (!vData) {
-      sauvegarderConfigCiel();
-      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html";
-      return;
-    }
-
-    if (!audio.paused) {
-      audio.pause();
-    }
-    arreterVisuel();
-
-    numVersetActuel = numVersetCible;
-    codeAudio = vData.codeAudio;
-    majSourceAudio();
-    majEffetSpecifiqueVerset(numSourateActuelle, numVersetCible);
-    memoriserDernierVersetLu(numSourateActuelle, numVersetCible);
-
-    document.title = "Sourate " + numSourateActuelle + " verset " + numVersetCible + " (" + window.SOURATE_DATA.nomSourate + ") - Traduction Hamidullah 1977 & Tafsir";
-    document.getElementById('badgeNumEl').textContent = numSourateActuelle + " : " + numVersetCible;
-    document.getElementById('mainTitleEl').textContent = "Sourate " + window.SOURATE_DATA.nomSourate + " (" + window.SOURATE_DATA.nomFr + ") — Verset " + numVersetCible;
-    document.getElementById('arabicVerseEl').innerHTML = vData.texteArabe;
-    document.getElementById('frenchVerseEl').innerHTML = numVersetCible + ". " + vData.tradPropre;
-    document.getElementById('mainExplanationEl').innerHTML = vData.explicationUnanime;
-
-    const extraContainer = document.getElementById('extraNotesContainer');
-    let extraHTML = '';
-    if (vData.noteUnique) extraHTML += '<div class="consensus-note">' + vData.noteUnique + '</div>';
-    if (vData.precisionConsensus) extraHTML += '<div class="consensus-note">' + vData.precisionConsensus + '</div>';
-    if (vData.texteLaurierPerso) extraHTML += '<div class="consensus-note"><strong>Le Laurier de l\'Exégèse :</strong> ' + vData.texteLaurierPerso + '</div>';
-    extraContainer.innerHTML = extraHTML;
-
-    const miracleContainer = document.getElementById('miracleContainer');
-    miracleContainer.innerHTML = construireHTMLMiracle(vData.miracle);
-
-    const jumperEl = document.getElementById('verseJumperSelect');
-    if (jumperEl) {
-      jumperEl.value = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html";
-      jumperEl.classList.toggle('is-miracle-verse', Boolean(vData.miracle));
-    }
-
-    document.getElementById('pageIndicatorEl').textContent = "Verset " + numVersetCible + " / " + window.SOURATE_DATA.nbVersets;
-    document.getElementById('prevVerseLink').setAttribute('href', vData.lienPrecedent);
-    document.getElementById('nextVerseLink').setAttribute('href', vData.lienSuivant);
-
-    try {
-      history.pushState({ verset: numVersetCible }, '', "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html");
-    } catch (e) {}
-
-    if (lancerAudioAuto) {
-      stage.classList.add('playing');
-      playBtn.textContent = "⏸ Pause";
-      playBtn.classList.add('active');
-      audio.volume = 1.0;
-      audio.play().then(function() {
-        animId = requestAnimationFrame(animerBarre);
-      }).catch(function() {
-        arreterVisuel();
-      });
-    }
-  }
-
-  function naviguerVerset(event, lienCible, autoAudio) {
-    const cleanLien = String(lienCible).split('?')[0];
-    const match = cleanLien.match(/^sourate-(\d+)-verset-(\d+)\.html$/);
-    if (match && Number(match[1]) === numSourateActuelle) {
-      if (event) event.preventDefault();
-      allerAuVersetSansRecharger(Number(match[2]), autoAudio);
-      return false;
-    }
-    sauvegarderConfigCiel();
-    if (autoAudio) {
-      window.location.href = cleanLien + "?autoplay=1";
-      return false;
-    }
+  function naviguerVerset(ev, lien, auto) {
+    const m = String(lien).split('?')[0].match(/^sourate-(\d+)-verset-(\d+)\.html$/);
+    if (m && Number(m[1]) === numSourateActuelle) { if (ev) ev.preventDefault(); allerAuVerset(Number(m[2]), auto); return false; }
+    if (auto) { window.location.href = String(lien).split('?')[0] + "?autoplay=1"; return false; }
     return true;
   }
-
-  window.addEventListener('popstate', function(e) {
-    if (e.state && e.state.verset) {
-      allerAuVersetSansRecharger(e.state.verset, false);
-    }
-  });
-
-  // Navigation tactile (Swipe gauche / droite sur téléphone) sur la carte du verset
-  let touchStartX = 0;
-  let touchStartY = 0;
-  if (stage) {
-    stage.addEventListener('touchstart', function(e) {
-      if (e.changedTouches && e.changedTouches[0]) {
-        touchStartX = e.changedTouches[0].screenX;
-        touchStartY = e.changedTouches[0].screenY;
-      }
-    }, { passive: true });
-
-    stage.addEventListener('touchend', function(e) {
-      if (e.changedTouches && e.changedTouches[0]) {
-        const dx = e.changedTouches[0].screenX - touchStartX;
-        const dy = e.changedTouches[0].screenY - touchStartY;
-        if (Math.abs(dx) > 65 && Math.abs(dx) > Math.abs(dy) * 1.8) {
-          if (dx < 0) {
-            const hrefSuiv = document.getElementById('nextVerseLink').getAttribute('href');
-            naviguerVerset(null, hrefSuiv, false);
-          } else {
-            const hrefPrec = document.getElementById('prevVerseLink').getAttribute('href');
-            naviguerVerset(null, hrefPrec, false);
-          }
-        }
-      }
-    }, { passive: true });
-  }
-
-  audio.onended = function() {
-    arreterVisuel();
-    if (autoCheck.checked) {
-      const hrefSuiv = document.getElementById('nextVerseLink').getAttribute('href');
-      naviguerVerset(null, hrefSuiv, true);
-    }
-  };
-
-  if (window.location.search.indexOf('autoplay=1') !== -1) {
-    autoCheck.checked = true;
-    stage.classList.add('playing');
-    audio.volume = 1.0;
-    audio.play().then(function() {
-      playBtn.textContent = "⏸ Pause";
-      playBtn.classList.add('active');
-      animId = requestAnimationFrame(animerBarre);
-    }).catch(function() {
-      arreterVisuel();
-    });
-  }
+  audio.onended = () => { arreterVisuel(); if (autoCheck.checked) naviguerVerset(null, document.getElementById('nextVerseLink').getAttribute('href'), true); };
 
   </script>
 </body>

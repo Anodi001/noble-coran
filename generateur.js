@@ -2,123 +2,478 @@ const fs = require('fs');
 const path = require('path');
 const zlib = require('zlib');
 
+// Nettoyage automatique des anciens fichiers temporaires
+['tafsir-corrige.json', 'moteur.js', 'moteur-site.js'].forEach(f => {
+  const p = path.join(__dirname, f);
+  if (fs.existsSync(p)) {
+    try { fs.unlinkSync(p); } catch (e) {}
+  }
+});
+
+const ANTI_CACHE = Date.now();
+
 // ============================================================================
-// DOSSIERS DÉTAILLÉS DES MIRACLES & PROPHÉTIES AUTHENTIQUES DU CORAN
+// DOSSIER COMPLET DE SOURATE AR-RŪM (30:1 À 30:5) EN 4 LANGUES AVEC PREUVES & LIENS
 // ============================================================================
-const MIRACLES = {
+const DEV_RUM_FR = `
+  <div class="miracle-pillars-grid">
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">MIRACLE N°1 • GÉOGRAPHIE & ALTITUDE</div>
+      <h4>🌊 « Adnā al-Ard » : Le point émergé le plus bas sur Terre (-434 m)</h4>
+      <p>Au verset 3, le Coran précise que les Romains ont été vaincus <em>« Fī Adnā al-Ard »</em> (فِي أَدْنَى الْأَرْضِ). En langue arabe, le mot <strong>« Adnā »</strong> possède un double sens miraculeux : il signifie à la fois <strong>« la terre la plus proche »</strong> (le Levant / Ash-Shām, voisin de la péninsule arabique) et <strong>« la terre la plus basse »</strong> en altitude. Or, les relevés satellites modernes confirment que l'endroit exact où les Byzantins ont été écrasés autour du bassin de la <strong>Mer Morte</strong> constitue le point émergé le plus bas de toute la planète Terre, situé à <strong>434 mètres au-dessous du niveau de la mer</strong>.</p>
+    </div>
+
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">MIRACLE N°2 • PROPHÉTIE DE L'IMPOSSIBLE EN 3 À 9 ANS</div>
+      <h4>⏳ « Bid‘i sinīn » (3 à 9 ans) & La confiance absolue du Prophète ﷺ</h4>
+      <p>Vers <strong>615-616</strong>, les Perses sassanides écrasent les Byzantins, s'emparent de Damas, de Jérusalem et de l'Égypte, poussant Constantinople au bord de l'anéantissement. Les polythéistes de La Mecque se moquent des croyants. C'est à ce moment précis que le Coran annonce que les Romains vaincus triompheront dans <strong>« Bid‘i sinīn » (بِضْعِ سِنِينَ)</strong>, terme arabe qui désigne strictement une période de <strong>3 à 9 ans</strong>.</p>
+      <p>Abū Bakr As-Siddīq paria alors avec Ubayy ibn Khalaf (avant l'interdiction des paris) que les Romains gagneraient d'ici 3 ans. Informé, le Prophète Muhammad ﷺ lui dit avec une sérénité et une certitude absolues : <strong>« Le mot "Bid‘" désigne un nombre entre 3 et 9 ans ! Retourne le voir, augmente la mise et prolonge le délai ! »</strong> Abū Bakr porta le pari à <strong>100 chamelles sur 7 à 9 ans</strong>. Exactement <strong>8 ans plus tard (en 624)</strong>, la contre-offensive de l'empereur Héraclius écrasa les Perses, accomplissant la prophétie à la lettre (<em>Sunan At-Tirmidhī n°3193, Tafsīr At-Tabarī 18/165 n°27876, Ibn ‘Asākir 1/251, Al-Bayhaqī 2/333</em>).</p>
+    </div>
+
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">MIRACLE N°3 • DOUBLE VICTOIRE SIMULTANÉE À BADR</div>
+      <h4>⚔️ « Et ce jour-là, les croyants se réjouiront du secours d'Allah » (300 contre 1 000)</h4>
+      <p>Les versets 4 et 5 annoncent une seconde prophétie simultanée : <em>« Et ce jour-là, les croyants se réjouiront du secours d'Allah. Il secourt qui Il veut »</em>. Au moment même où les Romains remportaient leur victoire décisive contre les Perses en <strong>624</strong>, les musulmans — à peine <strong>300 soldats</strong> sous-équipés face à une armée mecquoise de <strong>1 000 soldats</strong> — remportaient la victoire historique de la <strong>bataille de Badr</strong> grâce au secours des Anges envoyés par Allah (<em>Sourate Āl-‘Imrān 3:123-125</em>). Le compagnon Niyār rapporte : <em>« À cet instant précis, énormément de gens embrassèrent l'Islam. »</em></p>
+    </div>
+  </div>
+
+  <div class="historians-proof-section">
+    <div class="historians-header">🏛️ CE QU'EN DISENT LES HISTORIENS NON-MUSULMANS & ATHÉES</div>
+
+    <div class="historian-quote-box">
+      <div class="historian-name">1. Prof. James Howard-Johnston (Université d'Oxford — Historien byzantiniste laïc/athée)</div>
+      <div class="historian-role">Formé à Christ Church (Oxford) et professeur émérite à Corpus Christi College (Université d'Oxford), grand spécialiste mondial des guerres romano-perses, dans son ouvrage de référence <em>The Last Great War of Antiquity</em> (Oxford University Press, 2021) :</div>
+      <blockquote>« Dès l'introduction de son ouvrage, James Howard-Johnston souligne que <strong>personne n'aurait pu prédire ni parier sur un tel retournement</strong>. Puis, décrivant l'offensive lancée au printemps 624, il écrit : <em>"Ce fut la première opération de la phase finale de la guerre, une phase remplie de drames qui allait culminer en <strong>un renversement de situation si extraordinaire qu'il semblait relever d'une intervention surnaturelle dans les affaires humaines</strong> (a reversal of fortunes so extraordinary as to suggest supernatural intervention in human affairs)."</em> »</blockquote>
+    </div>
+
+    <div class="historian-quote-box">
+      <div class="historian-name">2. Edward Gibbon (1737–1794 — Célèbre historien britannique sceptique/athée)</div>
+      <div class="historian-role">Auteur de l'œuvre monumentale <em>Histoire de la décadence et de la chute de l'Empire romain</em> (<em>The Decline and Fall of the Roman Empire</em>, vol. 2, p. 788) :</div>
+      <blockquote>« Au milieu des triomphes perses, il [Muhammad] osa prédire qu'avant que beaucoup d'années ne s'écoulent, la victoire reviendrait sous les bannières des Romains. <strong>Au moment où cette prédiction fut annoncée, aucune prophétie ne pouvait paraître plus éloignée de sa réalisation</strong>, puisque les douze premières années du règne d'Héraclius annonçaient la dissolution imminente de l'Empire. »</blockquote>
+    </div>
+
+    <div class="historian-quote-box">
+      <div class="historian-name">3. Les Chroniques de Théophane le Confesseur (Chroniqueur byzantin)</div>
+      <div class="historian-role">Dans sa <em>Chronographie</em> historique :</div>
+      <blockquote>« Théophane atteste l'état de crise économique et militaire totale dans lequel se trouvait l'Empire romain d'Orient face à l'occupation perse : humainement et militairement, l'Empire byzantin était considéré comme condamné. »</blockquote>
+    </div>
+
+    <div class="proof-links-bar">
+      <span class="proof-links-label">🔗 Sources & preuves historiques vérifiables :</span>
+      <a href="https://en.wikipedia.org/wiki/James_Howard-Johnston" target="_blank" rel="noopener" class="proof-link-pill">📘 James Howard-Johnston (Oxford)</a>
+      <a href="https://global.oup.com/academic/product/the-last-great-war-of-antiquity-9780198830191" target="_blank" rel="noopener" class="proof-link-pill">🏛️ The Last Great War of Antiquity (Oxford 2021)</a>
+      <a href="https://fr.wikipedia.org/wiki/Edward_Gibbon" target="_blank" rel="noopener" class="proof-link-pill">📜 Edward Gibbon (Decline & Fall)</a>
+      <a href="https://fr.wikipedia.org/wiki/Th%C3%A9ophane_le_Confesseur" target="_blank" rel="noopener" class="proof-link-pill">📖 Chroniques de Théophane</a>
+      <a href="https://fr.wikipedia.org/wiki/Mer_Morte" target="_blank" rel="noopener" class="proof-link-pill">🌍 Mer Morte (-434m)</a>
+      <a href="https://fr.wikipedia.org/wiki/Bataille_de_Badr" target="_blank" rel="noopener" class="proof-link-pill">⚔️ Bataille de Badr (300 vs 1000)</a>
+    </div>
+  </div>
+`;
+
+const DEV_RUM_EN = `
+  <div class="miracle-pillars-grid">
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">MIRACLE #1 • GEOGRAPHY & ALTITUDE</div>
+      <h4>🌊 'Adnā al-Ard': The Lowest Point on Dry Land on Earth (-434 m)</h4>
+      <p>In verse 3, the Quran states that the Romans were defeated <em>'Fī Adnā al-Ard'</em> (فِي أَدْنَى الْأَرْضِ). In Arabic, <strong>'Adnā'</strong> carries a dual meaning: <strong>'the nearest land'</strong> (Ash-Shām / the Levant bordering Arabia) and <strong>'the lowest land'</strong> in elevation. Modern satellite altimetry confirms that the Dead Sea basin where the Byzantine defeat took place is the lowest point of dry land on Earth, at <strong>434 meters below sea level</strong>.</p>
+    </div>
+
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">MIRACLE #2 • PREDICTING THE IMPOSSIBLE IN 3 TO 9 YEARS</div>
+      <h4>⏳ 'Bid‘i sinīn' (3 to 9 years) & The Prophet's ﷺ Absolute Confidence</h4>
+      <p>Around <strong>615–616 CE</strong>, the Sassanian Persians crushed the Byzantines, capturing Damascus, Jerusalem, and Egypt. Everyone believed the Byzantine Empire was finished. Yet the Quran proclaimed that the defeated Romans would be victorious within <strong>'Bid‘i sinīn'</strong>—an Arabic term strictly meaning <strong>3 to 9 years</strong>.</p>
+      <p>When Abū Bakr As-Siddīq bet Ubayy ibn Khalaf that the Romans would win within 3 years, the Prophet ﷺ told him with total confidence: <strong>"'Bid‘' denotes a number from 3 to 9 years! Go back, increase the stake, and extend the term!"</strong> Abū Bakr raised the wager to 100 camels over 7 to 9 years. Exactly <strong>8 years later (in 624 CE)</strong>, Emperor Heraclius defeated the Persians (<em>At-Tirmidhī 3193, At-Tabarī 18/165, Ibn ‘Asākir 1/251, Al-Bayhaqī 2/333</em>).</p>
+    </div>
+
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">MIRACLE #3 • SIMULTANEOUS MUSLIM VICTORY AT BADR</div>
+      <h4>⚔️ 'And that day the believers will rejoice in the victory of Allah' (300 vs 1,000)</h4>
+      <p>Verses 4–5 add a second simultaneous prophecy: <em>"And that day the believers will rejoice in the victory of Allah."</em> At the exact time the Romans defeated the Persians in <strong>624 CE</strong>, the poorly equipped Muslims—only <strong>300 soldiers against 1,000</strong> Meccan soldiers—won the historic <strong>Battle of Badr</strong> supported by angels sent by Allah (<em>Surah Āl-‘Imrān 3:123–125</em>). Niyār states: <em>"And at that point many people became Muslims."</em></p>
+    </div>
+  </div>
+
+  <div class="historians-proof-section">
+    <div class="historians-header">🏛️ TESTIMONIES OF SECULAR & ATHEIST HISTORIANS</div>
+
+    <div class="historian-quote-box">
+      <div class="historian-name">1. Prof. James Howard-Johnston (Oxford University — Secular Byzantine Historian)</div>
+      <div class="historian-role">Educated at Christ Church, Oxford, and Emeritus Fellow of Corpus Christi College, Oxford, in his landmark book <em>The Last Great War of Antiquity</em> (Oxford University Press, 2021):</div>
+      <blockquote>"In the introduction, Howard-Johnston notes that <strong>nobody could have predicted or bet on such an outcome</strong>. Describing Heraclius's campaign launched in spring 624, he writes: <em>'It was the first operation in the final phase of the war, a phase which was to be filled with drama and to culminate in <strong>a reversal of fortunes so extraordinary as to suggest supernatural intervention in human affairs</strong>.'</em>"</blockquote>
+    </div>
+
+    <div class="historian-quote-box">
+      <div class="historian-name">2. Edward Gibbon (1737–1794 — Famous Sceptical British Historian)</div>
+      <div class="historian-role">In <em>The History of the Decline and Fall of the Roman Empire</em> (Vol. 2, p. 788):</div>
+      <blockquote>"In the midst of the Persian triumphs he ventured to foretell that, before many years should elapse, victory would again return to the banners of the Romans. <strong>At the time when this prediction is said to have been delivered, no prophecy could be more distant from its accomplishment</strong>, since the first twelve years of Heraclius announced the approaching dissolution of the empire."</blockquote>
+    </div>
+
+    <div class="historian-quote-box">
+      <div class="historian-name">3. The Chronicles of Theophanes the Confessor (Byzantine Chronicler)</div>
+      <div class="historian-role">In his historical <em>Chronicle</em>:</div>
+      <blockquote>"Theophanes documents the total economic and military collapse of the Eastern Roman Empire during the Persian occupation, when no observer believed Byzantium could survive."</blockquote>
+    </div>
+
+    <div class="proof-links-bar">
+      <span class="proof-links-label">🔗 Verifiable Historical Sources:</span>
+      <a href="https://en.wikipedia.org/wiki/James_Howard-Johnston" target="_blank" rel="noopener" class="proof-link-pill">📘 James Howard-Johnston (Oxford)</a>
+      <a href="https://global.oup.com/academic/product/the-last-great-war-of-antiquity-9780198830191" target="_blank" rel="noopener" class="proof-link-pill">🏛️ The Last Great War of Antiquity (Oxford)</a>
+      <a href="https://en.wikipedia.org/wiki/Edward_Gibbon" target="_blank" rel="noopener" class="proof-link-pill">📜 Edward Gibbon</a>
+      <a href="https://en.wikipedia.org/wiki/Theophanes_the_Confessor" target="_blank" rel="noopener" class="proof-link-pill">📖 Chronicles of Theophanes</a>
+      <a href="https://en.wikipedia.org/wiki/Dead_Sea" target="_blank" rel="noopener" class="proof-link-pill">🌍 Dead Sea (-434m)</a>
+      <a href="https://en.wikipedia.org/wiki/Battle_of_Badr" target="_blank" rel="noopener" class="proof-link-pill">⚔️ Battle of Badr (300 vs 1000)</a>
+    </div>
+  </div>
+`;
+
+const DEV_RUM_ES = `
+  <div class="miracle-pillars-grid">
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">MILAGRO N°1 • GEOGRAFÍA Y ALTITUD</div>
+      <h4>🌊 « Adnā al-Ard »: El punto continental más bajo de la Tierra (-434 m)</h4>
+      <p>En la aleya 3, el Corán precisa que los Romanos fueron vencidos <em>« Fī Adnā al-Ard »</em> (فِي أَدْنَى الْأَرْضِ). En árabe, <strong>« Adnā »</strong> significa tanto <strong>« la tierra más cercana »</strong> (el Levante / Ash-Shām) como <strong>« la tierra más baja »</strong> en altitud. Las mediciones modernas confirman que la ribera del <strong>Mar Muerto</strong>, donde los Bizantinos fueron derrotados, es el punto emergido más bajo de toda la Tierra, a <strong>434 metros bajo el nivel del mar</strong>.</p>
+    </div>
+
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">MILAGRO N°2 • PROFECÍA DE LO IMPOSIBLE EN 3 A 9 AÑOS</div>
+      <h4>⏳ « Bid‘i sinīn » (3 a 9 años) y la confianza absoluta del Profeta ﷺ</h4>
+      <p>Hacia <strong>615-616</strong>, los Persas aplastaron a los Bizantinos tomando Damasco, Jerusalén y Egipto. Todo el mundo daba por muerto al Imperio romano de Oriente. Sin embargo, el Corán anunció que los Romanos vencerían en <strong>« Bid‘i sinīn »</strong> (un período estricto de <strong>3 a 9 años</strong>).</p>
+      <p>Abū Bakr As-Siddīq apostó con Ubayy ibn Khalaf a un plazo de 3 años, pero el Profeta ﷺ le indicó con total seguridad: <strong>« ¡La palabra "Bid‘" designa entre 3 y 9 años! Vuelve, aumenta la apuesta y amplía el plazo. »</strong> Abū Bakr subió la apuesta a 100 camellas a 7-9 años, y exactamente <strong>8 años después (en 624)</strong> Heraclio derrotó a los Persas (<em>At-Tirmidhī 3193, At-Tabarī 18/165, Ibn ‘Asākir 1/251, Al-Bayhaqī 2/333</em>).</p>
+    </div>
+
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">MILAGRO N°3 • VICTORIA SIMULTÁNEA EN BADR (300 CONTRA 1.000)</div>
+      <h4>⚔️ « Y ese día los creyentes se alegrarán con el auxilio de Allah »</h4>
+      <p>Las aleyas 4 y 5 anuncian que ese mismo día los creyentes se alegrarán con el socorro de Allah. Exactamente cuando los Romanos vencieron a los Persas en <strong>624</strong>, los musulmanes —solo <strong>300 soldados mal equipados frente a 1.000 soldados de Quraysh</strong>— ganaron la <strong>batalla de Badr</strong> ayudados por los Ángeles (<em>Sura Āl-‘Imrān 3:123-125</em>), lo que llevó a multitudes a abrazar el Islam.</p>
+    </div>
+  </div>
+
+  <div class="historians-proof-section">
+    <div class="historians-header">🏛️ TESTIMONIOS DE HISTORIADORES NO MUSULMANES Y ATEOS</div>
+
+    <div class="historian-quote-box">
+      <div class="historian-name">1. Prof. James Howard-Johnston (Universidad de Oxford — Historiador bizantinista ateo/laico)</div>
+      <div class="historian-role">Formado en Christ Church (Oxford) y profesor emérito de Corpus Christi College (Oxford), en su obra <em>The Last Great War of Antiquity</em> (Oxford University Press, 2021):</div>
+      <blockquote>« En la introducción afirma que <strong>nadie habría podido predecir ni apostar por semejante giro</strong>, y sobre la campaña de 624 escribe: <em>"Fue la primera operación de la fase final de la guerra, una fase llena de drama que culminaría en <strong>un giro del destino tan extraordinario que parecía sugerir una intervención sobrenatural en los asuntos humanos</strong>."</em> »</blockquote>
+    </div>
+
+    <div class="historian-quote-box">
+      <div class="historian-name">2. Edward Gibbon (1737–1794 — Célebre historiador británico escéptico/ateo)</div>
+      <div class="historian-role">En <em>Historia de la decadencia y caída del Imperio romano</em> (Vol. 2, p. 788):</div>
+      <blockquote>« En medio de los triunfos persas, se aventuró a predecir que en pocos años la victoria volvería a los estandartes romanos. <strong>En el momento en que se anunció esta predicción, ninguna profecía podía parecer más lejana de su cumplimiento</strong>, pues los doce primeros años de Heraclio anunciaban la disolución inminente del imperio. »</blockquote>
+    </div>
+
+    <div class="historian-quote-box">
+      <div class="historian-name">3. Las Crónicas de Teófanes el Confesor (Cronista bizantino)</div>
+      <div class="historian-role">En su <em>Cronografía</em>:</div>
+      <blockquote>« Teófanes documenta la crisis económica y militar absoluta del Imperio bizantino, cuando nadie creía posible su supervivencia. »</blockquote>
+    </div>
+
+    <div class="proof-links-bar">
+      <span class="proof-links-label">🔗 Fuentes históricas verificables:</span>
+      <a href="https://en.wikipedia.org/wiki/James_Howard-Johnston" target="_blank" rel="noopener" class="proof-link-pill">📘 James Howard-Johnston (Oxford)</a>
+      <a href="https://global.oup.com/academic/product/the-last-great-war-of-antiquity-9780198830191" target="_blank" rel="noopener" class="proof-link-pill">🏛️ The Last Great War of Antiquity (Oxford)</a>
+      <a href="https://es.wikipedia.org/wiki/Edward_Gibbon" target="_blank" rel="noopener" class="proof-link-pill">📜 Edward Gibbon</a>
+      <a href="https://es.wikipedia.org/wiki/Te%C3%B3fanes_el_Confesor" target="_blank" rel="noopener" class="proof-link-pill">📖 Crónicas de Teófanes</a>
+      <a href="https://es.wikipedia.org/wiki/Mar_Muerto" target="_blank" rel="noopener" class="proof-link-pill">🌍 Mar Muerto (-434m)</a>
+      <a href="https://es.wikipedia.org/wiki/Batalla_de_Badr" target="_blank" rel="noopener" class="proof-link-pill">⚔️ Batalla de Badr (300 vs 1000)</a>
+    </div>
+  </div>
+`;
+
+const DEV_RUM_AR = `
+  <div class="miracle-pillars-grid">
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">المعجزة الأولى • الإعجاز الجغرافي والمنسوب الأرضي</div>
+      <h4>🌊 ﴿فِي أَدْنَى الْأَرْضِ﴾ : أخفض بقعة على سطح اليابسة (-434 مترًا)</h4>
+      <p>أخبر القرآن الكريم أن الروم غُلبوا ﴿فِي أَدْنَى الْأَرْضِ﴾ (الروم: 3). ولفظ <strong>«أدنى»</strong> في اللسان العربي يحمل معنيين متلازمين: <strong>«أقرب الأرض»</strong> إلى جزيرة العرب (بلاد الشام)، و<strong>«أخفض الأرض»</strong> ارتفاعًا. وقد أثبتت القياسات الجغرافية الحديثة والأقمار الصناعية أن منطقة حوض <strong>البحر الميت</strong> التي وقعت فيها الهزيمة هي أخفض نقطة على اليابسة في الكرة الأرضية بعمق <strong>434 مترًا تحت مستوى سطح البحر</strong>.</p>
+    </div>
+
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">المعجزة الثانية • الإخبار بالمستحيل وتحديد الأجل (3 إلى 9 سنين)</div>
+      <h4>⏳ ﴿فِي بِضْعِ سِنِينَ﴾ ويقين النبي ﷺ التام في رهان أبي بكر الصديق</h4>
+      <p>نحو عام <strong>615-616م</strong> سحق الفرسُ الرومَ واستولوا على الشام وبيت المقدس ومصر، وأشرفـت القسطنطينية على السقوط، ففرح مشركو قريش. فنزل الوحي يعلن أن الروم سينتصرون <strong>﴿فِي بِضْعِ سِنِينَ﴾</strong>، والـبِضْع في لغة العرب ما بين <strong>3 إلى 9 سنين</strong>.</p>
+      <p>ولما راهن أبو بكر الصديق رضي الله عنه أُبيّ بن خلف على ثلاث سنين (قبل تحريم الرهان)، قال له النبي ﷺ بكل ثقة ويقين بوعد الله: <strong>«إنما البِضْع ما بين الثلاث إلى التسع، فزايِدْه في الخطر ومادَّه في الأجل!»</strong> فجعلها أبو بكر 100 قلوص إلى سبع أو تسع سنين، وبعد <strong>8 سنوات (عام 624م)</strong> انتصر هرقل على الفرس انتصارًا ساحقًا كما أخبر القرآن (<em>رواه الترمذي والطبري 18/165 وابن عساكر 1/251 والبيهقي في دلائل النبوة 2/333</em>).</p>
+    </div>
+
+    <div class="miracle-pillar-card">
+      <div class="pillar-badge">المعجزة الثالثة • النصر المتزامن للمسلمين يوم بدر (300 ضد 1000)</div>
+      <h4>⚔️ ﴿وَيَوْمَئِذٍ يَفْرَحُ الْمُؤْمِنُونَ * بِنَصْرِ اللَّهِ﴾</h4>
+      <p>تنبأت الآيتان 4 و5 ببشارة ثانية في نفس التوقيت: ففي الوقت الذي هزم فيه الرومُ الفرسَ عام <strong>624م</strong>، انتصر المسلمون في <strong>غزوة بدر الكبرى</strong> وهم قلة مستضعفون (نحو <strong>300 مجاهد</strong> ضعيفي العتاد في مواجهة <strong>1000 مقاتل</strong> من قريش) بمدد الملائكة الذي أنزله الله (<em>سورة آل عمران: 123-125</em>)، قال نيار الأسلمي: <em>«فعند ذلك أسلم خلق كثير»</em>.</p>
+    </div>
+  </div>
+
+  <div class="historians-proof-section">
+    <div class="historians-header">🏛️ شهادات المؤرخين الغربيين غير المسلمين والملاحدة</div>
+
+    <div class="historian-quote-box">
+      <div class="historian-name">1. البروفيسور جيمس هوارد-جونستون (James Howard-Johnston — جامعة أكسفورد)</div>
+      <div class="historian-role">مؤرخ بريطاني ملحد/غير مسلم، درس في كلية كرايست تشيرش وأستاذ فخري للدراسات البيزنطية في كلية كوربوس كريستي بجامعة أكسفورد، يقول في كتابه <em>The Last Great War of Antiquity</em> (جامعة أكسفورد، 2021):</div>
+      <blockquote>« أكّد في مقدمة كتابه أنه <strong>لم يكن بوسع أي إنسان أن يتنبأ بهذا الانقلاب أو يراهن عليه</strong>، ثم قال عن حملة ربيع 624م: <em>"كانت العملية الأولى في المرحلة النهائية من الحرب، وهي مرحلة بلغت ذروتها في <strong>انقلابٍ في الموازين خارقٍ للعادة إلى حدّ يوحي بتدخلٍ فوق طبيعي (إعجازي) في شؤون البشر</strong>."</em> »</blockquote>
+    </div>
+
+    <div class="historian-quote-box">
+      <div class="historian-name">2. إدوارد غيبون (Edward Gibbon — المؤرخ البريطاني الشهير)</div>
+      <div class="historian-role">في موسوعته التاريخية <em>تاريخ ضعف وسقوط الإمبراطورية الرومانية</em> (المجلد 2، ص 788):</div>
+      <blockquote>« في خضم انتصارات الفرس، أعلن [محمد ﷺ] أنه قبل مضي سنوات قليلة سيعود النصر إلى رايات الروم. <strong>وفي الوقت الذي أُعلنت فيه هذه النبوءة، لم يكن هناك أي نبوءة أبعد عن التحقق منها</strong>؛ إذ كانت السنوات الاثنتا عشرة الأولى من حكم هرقل تنذر بالانهيار الوشيك للإمبراطورية. »</blockquote>
+    </div>
+
+    <div class="historian-quote-box">
+      <div class="historian-name">3. حوليات المؤرخ البيزنطي ثيوفان المعترف (Theophanes)</div>
+      <div class="historian-role">في تاريخه البيزنطي:</div>
+      <blockquote>« يوثّق ثيوفان الانهيار الاقتصادي والعسكري الشامل الذي أصاب دولة الروم حتى ظن الجميع أنها قد انتهت إلى الأبد. »</blockquote>
+    </div>
+
+    <div class="proof-links-bar">
+      <span class="proof-links-label">🔗 روابط المصادر التاريخية الموثقة:</span>
+      <a href="https://en.wikipedia.org/wiki/James_Howard-Johnston" target="_blank" rel="noopener" class="proof-link-pill">📘 James Howard-Johnston (Oxford)</a>
+      <a href="https://global.oup.com/academic/product/the-last-great-war-of-antiquity-9780198830191" target="_blank" rel="noopener" class="proof-link-pill">🏛️ كتاب جامعة أكسفورد (2021)</a>
+      <a href="https://ar.wikipedia.org/wiki/%D8%A5%D8%AF%D9%88%D8%A7%D8%B1%D8%AF_%D8%AC%D9%8A%D8%A8%D9%88%D9%86" target="_blank" rel="noopener" class="proof-link-pill">📜 المؤرخ إدوارد غيبون</a>
+      <a href="https://ar.wikipedia.org/wiki/%D8%AB%D9%8A%D9%88%D9%81%D8%A7%D9%86_%D8%A7%D9%84%D9%85%D8%B9%D8%AA%D8%B1%D9%81" target="_blank" rel="noopener" class="proof-link-pill">📖 حوليات ثيوفان</a>
+      <a href="https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%A8%D8%AD%D8%B1_%D8%A7%D9%84%D9%85%D9%8A%D8%AA" target="_blank" rel="noopener" class="proof-link-pill">🌍 البحر الميت (-434م)</a>
+      <a href="https://ar.wikipedia.org/wiki/%D8%BA%D8%B2%D9%88%D8%A9_%D8%A8%D8%AF%D8%B1" target="_blank" rel="noopener" class="proof-link-pill">⚔️ غزوة بدر (300 ضد 1000)</a>
+    </div>
+  </div>
+`;
+
+const MIRACLES_DE_BASE = {
   "30:1": {
-    titre: "Prophétie Historique & Miracle Linguistique — La victoire des Romains et le pari d'Abū Bakr As-Siddīq",
-    resume: "Au moment où l'Empire byzantin (les Romains) venait d'être écrasé par l'Empire perse vers 614, le Coran annonce l'impossible : les Romains vaincus remporteront la victoire dans « quelques années » (Bid‘i sinīn : entre 3 et 9 ans).",
-    developpement: `
-      <p><strong>1. Le contexte historique (La défaite écrasante des Romains) :</strong> Vers l'an 613-614 après J.-C., les armées perses (adorateurs du feu) dirigées par Chosroès II écrasent les armées byzantines (chrétiennes, Gens du Livre) en Syrie et en Palestine, prenant Jérusalem et poussant l'Empire romain d'Orient au bord de l'effondrement total. À La Mecque, les polythéistes de Quraysh se réjouissent de la victoire des Perses polythéistes et se moquent des musulmans en disant : <em>« De même que nos frères perses ont vaincu les Gens du Livre, nous vous vaincrons ! »</em></p>
-      <p><strong>2. Le Hadīth authentique du pari d'Abū Bakr As-Siddīq (qu'Allāh l'agrée) :</strong> L'imam At-Tirmidhī, l'imam Ahmad, At-Tabarī, Al-Qurtubī et Ibn Kathīr rapportent d'après Ibn ‘Abbās et Niyār ibn Mukram Al-Aslamī qu'Allāh révéla alors : <em>« Alif, Lām, Mīm. Les Romains ont été vaincus, dans le pays voisin, et après leur défaite ils seront les vainqueurs, dans quelques années (fī bid‘i sinīn) »</em> (30:1-4).</p>
-      <p>Abū Bakr As-Siddīq sortit proclamer ces versets aux polythéistes de La Mecque. Ubayy ibn Khalaf lui lança : <em>« Tu mens, ô Abū Fasil ! Fixons un pari entre nous ! »</em> (Cela eut lieu avant que les paris ne soient interdits en Islam). Ils parièrent dix jeunes chamelles sur un délai de trois ans. Abū Bakr vint en informer le Prophète ﷺ, qui lui dit : <strong>« Qu'as-tu fait ? Le mot arabe "Bid‘" (بِضْع) désigne un nombre compris entre trois et neuf ans ! Retourne le voir, augmente la mise et prolonge le délai jusqu'à neuf ans. »</strong> Abū Bakr porta le pari à cent chamelles pour un délai de neuf ans.</p>
-      <p><strong>3. La réalisation exacte de la prophétie :</strong> Sept à neuf ans plus tard (vers 622-624, à l'époque de la bataille de Badr), l'empereur byzantin Héraclius mena une contre-offensive foudroyante et détruisit l'armée perse à Issos et Ninive. Les croyants se réjouirent de cette double victoire, et Abū Bakr remporta les cent chamelles auprès des héritiers d'Ubayy ibn Khalaf (mort après Badr). Le Prophète ﷺ lui ordonna d'en faire aumône aux pauvres.</p>
-      <p><strong>4. La précision géographique de « Adnā al-Ard » :</strong> Le terme arabe <em>« Adnā al-Ard »</em> (30:3) possède un double sens en langue arabe : « la terre la plus proche » (de la péninsule arabique, c'est-à-dire le bassin du Jourdain et de la Syrie-Palestine) et « la terre la plus basse » (le bassin de la Mer Morte, situé à plus de 400 mètres sous le niveau de la mer).</p>
-    `
+    titre: "Les 3 Miracles de Sourate Ar-Rūm — La Mer Morte (-434m), la Victoire impossible en 3 à 9 ans & Badr",
+    titreEn: "The 3 Miracles of Surah Ar-Rūm — The Dead Sea (-434m), the Impossible Victory in 3–9 Years & Badr",
+    titreEs: "Los 3 Milagros de Sura Ar-Rūm — El Mar Muerto (-434m), la Victoria imposible en 3–9 años y Badr",
+    titreAr: "المعجزات الثلاث في سورة الروم — أخفض الأرض (-434م)، والنصر المستحيل في بضع سنين، ويوم بدر",
+    resume: "Révélée vers 616 alors que l'Empire romain d'Orient s'effondrait face aux Perses, cette sourate réunit 3 miracles : le point le plus bas sur Terre (la Mer Morte à -434 m), la victoire impossible des Romains dans un intervalle précis de 3 à 9 ans (confirmée par les historiens d'Oxford James Howard-Johnston et Edward Gibbon), et la victoire simultanée des 300 musulmans contre 1 000 à Badr.",
+    resumeEn: "Revealed around 616 CE as the Eastern Roman Empire collapsed before the Persians, this surah unites 3 miracles: the lowest point on Earth (the Dead Sea at -434m), the impossible Roman victory within 3 to 9 years (attested by Oxford historian James Howard-Johnston and Edward Gibbon), and the simultaneous victory of 300 Muslims against 1,000 at Badr.",
+    resumeEs: "Revelada hacia el 616 cuando el Imperio romano colapsaba ante los Persas, esta sura reúne 3 milagros: el punto más bajo de la Tierra (el Mar Muerto a -434m), la victoria imposible romana en 3 a 9 años (atestiguada por los historiadores James Howard-Johnston de Oxford y Edward Gibbon), y la victoria simultánea de 300 musulmanes contra 1.000 en Badr.",
+    resumeAr: "نزلت عام 616م حين كانت دولة الروم تنهار أمام الفرس، فجمعت 3 معجزات باهرة: تحديد أخفض بقعة على الأرض (البحر الميت -434م)، والتنبؤ بانتصار الروم المستحيل في 3 إلى 9 سنين (بشهادة مؤرخ أكسفورد جيمس هوارد-جونستون وإدوارد غيبون)، وتزامن ذلك مع نصر 300 من المسلمين على 1000 يوم بدر.",
+    developpement: DEV_RUM_FR,
+    developpementEn: DEV_RUM_EN,
+    developpementEs: DEV_RUM_ES,
+    developpementAr: DEV_RUM_AR
   },
   "30:2": {
-    titre: "Prophétie Historique — « Les Romains ont été vaincus » (Sourate Ar-Rūm)",
-    resume: "Ce verset et les deux suivants annoncent la revanche inattendue des Byzantins sur les Perses dans un délai de 3 à 9 ans (Bid‘i sinīn), prophétie liée au célèbre récit d'Abū Bakr As-Siddīq.",
-    developpement: `
-      <p><strong>Le défi d'Abū Bakr As-Siddīq face à Quraysh :</strong> Lorsque ce verset fut révélé à La Mecque, personne ne pensait que l'Empire romain d'Orient, ruiné et amputé de l'Égypte, de la Syrie et de la Palestine par les Perses, pourrait se relever. Abū Bakr As-Siddīq engagea un pari de cent chamelles avec Ubayy ibn Khalaf sur la recommandation du Prophète ﷺ qui précisa que le terme <em>« Bid‘i sinīn »</em> (verset 4) désigne une période de 3 à 9 ans. La victoire décisive des Romains survint exactement dans cet intervalle, au moment même où les musulmans remportaient la victoire contre Quraysh.</p>
-    `
+    titre: "Miracle Historique (1/3) — « Les Romains ont été vaincus » : L'effondrement de 616 attesté par Théophane et Gibbon",
+    titreEn: "Historical Miracle (1/3) — 'The Romans have been defeated': The 616 Collapse Attested by Theophanes & Gibbon",
+    titreEs: "Milagro Histórico (1/3) — « Los Romanos han sido vencidos »: El colapso de 616 según Teófanes y Gibbon",
+    titreAr: "الإعجاز التاريخي (1/3) — ﴿غُلِبَتِ الرُّومُ﴾ : الانهيار التام عام 616م بشهادة ثيوفان وغيبون",
+    resume: "En 616, les Byzantins perdent le Levant, Jérusalem et l'Égypte. Les Chroniques de Théophane et l'historien athée Edward Gibbon confirment que personne ne pensait que l'Empire romain pourrait survivre.",
+    resumeEn: "In 616 CE, the Byzantines lost the Levant, Jerusalem, and Egypt. The Chronicles of Theophanes and historian Edward Gibbon confirm that nobody believed the Roman Empire could survive.",
+    resumeEs: "En 616, los Bizantinos perdieron el Levante, Jerusalén y Egipto. Las Crónicas de Teófanes y el historiador Edward Gibbon confirman que nadie creía que el Imperio romano sobreviviera.",
+    resumeAr: "في عام 616م خسر الروم الشام والقدس ومصر، وتؤكد حوليات ثيوفان والمؤرخ إدوارد غيبون أن الجميع ظن أن دولة الروم قد انتهت.",
+    developpement: DEV_RUM_FR,
+    developpementEn: DEV_RUM_EN,
+    developpementEs: DEV_RUM_ES,
+    developpementAr: DEV_RUM_AR
   },
   "30:3": {
-    titre: "Prophétie Historique & Géographique — « Dans le pays voisin, et après leur défaite ils seront les vainqueurs »",
-    resume: "L'expression « Adnā al-Ard » désigne la région limitrophe du Levant où eurent lieu les batailles entre Byzantins et Perses, et annonce le renversement total de la guerre.",
-    developpement: `
-      <p><strong>La promesse divine qui ne faillit jamais :</strong> Dans son Tafsīr, l'imam Ibn Kathīr rapporte d'après Ibn ‘Abbās et ‘Ikrimah que les polythéistes mecquois souhaitaient la victoire des Perses (idolâtres), tandis que les musulmans souhaitaient la victoire des Romains (détenteurs d'un Livre révélé). Allāh annonça la victoire future des Romains dans un délai inférieur à neuf ans, ce qui constitua l'une des preuves éclatantes de la véracité du Prophète Muhammad ﷺ aux yeux des Arabes.</p>
-    `
+    titre: "Miracle Géographique & Historique (2/3) — « Fī Adnā al-Ard » : La Mer Morte (-434 m) & le retournement « surnaturel »",
+    titreEn: "Geographical & Historical Miracle (2/3) — 'Fī Adnā al-Ard': The Dead Sea (-434m) & the 'Supernatural' Reversal",
+    titreEs: "Milagro Geográfico e Histórico (2/3) — « Fī Adnā al-Ard »: El Mar Muerto (-434m) y el giro « sobrenatural »",
+    titreAr: "الإعجاز الجغرافي والتاريخي (2/3) — ﴿فِي أَدْنَى الْأَرْضِ﴾ : البحر الميت (-434م) والانقلاب الخارق للعادة",
+    resume: "« Adnā al-Ard » désigne à la fois le pays voisin (le Shām) et la terre la plus basse sur Terre (le rivage de la Mer Morte à -434 m). Quant à la victoire annoncée, l'historien d'Oxford James Howard-Johnston la qualifie d'« intervention surnaturelle ».",
+    resumeEn: "'Adnā al-Ard' means both the nearest land (Ash-Shām) and the lowest land on Earth (the Dead Sea shore at -434m). Oxford historian James Howard-Johnston describes the subsequent Roman victory as suggesting 'supernatural intervention'.",
+    resumeEs: "« Adnā al-Ard » designa tanto la tierra cercana (Ash-Shām) como la tierra más baja del planeta (el Mar Muerto a -434m). El historiador de Oxford James Howard-Johnston califica la victoria romana como una « intervención sobrenatural ».",
+    resumeAr: "«أدنى الأرض» تعني أقرب الأرض (الشام) وأخفض الأرض منسوبًا (شاطئ البحر الميت -434م)، وقد وصف مؤرخ أكسفورد جيمس هوارد-جونستون انتصار الروم بأنه يوحي بتدخل فوق طبيعي.",
+    developpement: DEV_RUM_FR,
+    developpementEn: DEV_RUM_EN,
+    developpementEs: DEV_RUM_ES,
+    developpementAr: DEV_RUM_AR
   },
   "30:4": {
-    titre: "Miracle Prophétique — « Dans quelques années (Fī bid‘i sinīn)... Et ce jour-là les croyants se réjouiront »",
-    resume: "Le mot arabe « Bid‘ » fixe mathématiquement l'échéance entre 3 et 9 ans. Le jour de la victoire des Romains coïncida avec le triomphe des croyants musulmans.",
-    developpement: `
-      <p><strong>La double réjouissance des croyants :</strong> Les grands exégètes (At-Tabarī, Al-Qurtubī, Ibn Kathīr) rapportent d'après Ibn ‘Abbās, Abū Sa‘īd Al-Khudrī et As-Suddī que la nouvelle de la victoire des Byzantins sur les Perses parvint aux musulmans le jour de la bataille de Badr (ou lors de la trêve d'Al-Hudaybiyyah selon d'autres transmissions), accomplissant à la lettre la parole d'Allāh : <em>« Et ce jour-là, les croyants se réjouiront du secours d'Allah. »</em></p>
-    `
+    titre: "Miracle Mathématique & Prophétique (3/3) — « Dans quelques années (Bid‘i sinīn : 3 à 9 ans) » & le pari d'Abū Bakr",
+    titreEn: "Mathematical & Prophetic Miracle (3/3) — 'Within a few years (Bid‘i sinīn: 3 to 9 years)' & Abū Bakr's Wager",
+    titreEs: "Milagro Matemático y Profético (3/3) — « En pocos años (Bid‘i sinīn: 3 a 9 años) » y la apuesta de Abū Bakr",
+    titreAr: "الإعجاز الغيبي (3/3) — ﴿فِي بِضْعِ سِنِينَ﴾ (3 إلى 9 سنين) ويقين النبي ﷺ في رهان أبي بكر",
+    resume: "Le Prophète ﷺ ordonna à Abū Bakr d'augmenter son pari à 100 chamelles et de prolonger le délai au-delà de 3 ans car « Bid‘ » signifie 3 à 9 ans. Huit ans plus tard (en 624), les Romains écrasent les Perses le jour où les croyants triomphent à Badr.",
+    resumeEn: "The Prophet ﷺ instructed Abū Bakr to raise his wager to 100 camels and extend the term beyond 3 years because 'Bid‘' means 3 to 9 years. Eight years later (in 624 CE), the Romans defeated the Persians as the Muslims triumphed at Badr.",
+    resumeEs: "El Profeta ﷺ ordenó a Abū Bakr aumentar su apuesta a 100 camellas y ampliar el plazo porque « Bid‘ » significa de 3 a 9 años. Ocho años después (en 624), los Romanos vencieron a los Persas mientras los creyentes triunfaban en Badr.",
+    resumeAr: "أمر النبي ﷺ أبا بكر بزيادة الرهان إلى 100 قلوص ومدّ الأجل لأن «البضع» من 3 إلى 9 سنين، فانتصر الروم بعد 8 سنوات (عام 624م) بالتزامن مع نصر المؤمنين يوم بدر.",
+    developpement: DEV_RUM_FR,
+    developpementEn: DEV_RUM_EN,
+    developpementEs: DEV_RUM_ES,
+    developpementAr: DEV_RUM_AR
+  },
+  "30:5": {
+    titre: "Accomplissement de la Double Prophétie — « Du secours d'Allah » : 300 croyants contre 1 000 à la bataille de Badr",
+    titreEn: "Fulfillment of the Double Prophecy — 'In the victory of Allah': 300 Believers Against 1,000 at the Battle of Badr",
+    titreEs: "Cumplimiento de la Doble Profecía — « Con el auxilio de Allah »: 300 creyentes contra 1.000 en la batalla de Badr",
+    titreAr: "تحقق الوعد الإلهي المزدوج — ﴿بِنَصْرِ اللَّهِ﴾ : انتصار 300 من المؤمنين على 1000 يوم بدر",
+    resume: "Le jour même où les Romains renversaient les Perses en 624, Allah envoyait Ses Anges (Sourate 3:123-125) pour donner la victoire à 300 musulmans mal équipés contre 1 000 soldats de Quraysh à Badr, provoquant une vague de conversions à l'Islam.",
+    resumeEn: "At the very time the Romans reversed the war against the Persians in 624 CE, Allah sent His Angels (Surah 3:123–125) to grant victory to 300 poorly equipped Muslims over 1,000 Quraishi soldiers at Badr, leading many to embrace Islam.",
+    resumeEs: "En el mismo momento en que los Romanos vencían a los Persas en 624, Allah envió a Sus Ángeles (Sura 3:123-125) para dar la victoria a 300 musulmanes mal equipados frente a 1.000 soldados de Quraysh en Badr.",
+    resumeAr: "في الوقت نفسه الذي انتصر فيه الروم على الفرس عام 624م، أنزل الله الملائكة (آل عمران: 123-125) لنصرة 300 من المسلمين على 1000 من المشركين يوم بدر، فدخل خلق كثير في الإسلام.",
+    developpement: DEV_RUM_FR,
+    developpementEn: DEV_RUM_EN,
+    developpementEs: DEV_RUM_ES,
+    developpementAr: DEV_RUM_AR
   },
   "96:2": {
     titre: "Signe Embryologique — La création de l'homme à partir d'une adhérence ('Alaq)",
+    titreEn: "Embryological Sign — The Creation of Man from a Clinging Substance ('Alaq)",
+    titreEs: "Signo Embriológico — La creación del ser humano a partir de una adherencia ('Alaq)",
+    titreAr: "آية خلق الإنسان — ﴿خَلَقَ الْإِنسَانَ مِنْ عَلَقٍ﴾",
     resume: "Le terme arabe « 'Alaq » décrit l'embryon humain qui s'accroche à la paroi de l'utérus maternel et puise dans son sang.",
-    developpement: `
-      <p><strong>Analyse linguistique et exégétique :</strong> En langue arabe, le mot <em>« 'Alaq »</em> désigne toute chose qui s'accroche et reste suspendue, ainsi que le caillot sanguin et la sangsue qui adhère pour se nourrir du sang. Les exégètes classiques (At-Tabarī, Al-Qurtubī, Ibn Kathīr) expliquent qu'après le stade de la goutte (<em>Nutfah</em>), l'embryon s'accroche fermement à la paroi de l'utérus de la femme, description d'une précision remarquable révélée dès les tout premiers versets du Coran.</p>
-    `
+    resumeEn: "The Arabic term ''Alaq' describes the human embryo that clings to the maternal uterine wall and draws nourishment from its blood.",
+    resumeEs: "El término árabe « 'Alaq » describe al embrión humano que se aferra a la pared del útero materno y se nutre de su sangre.",
+    resumeAr: "يصف لفظ «علق» الجنين البشري الذي يتعلق ويلتصق بجدار رحم الأم ويتغذى من دمها.",
+    developpement: `<p><strong>Analyse linguistique et exégétique :</strong> En langue arabe, le mot <em>« 'Alaq »</em> désigne toute chose qui s'accroche et reste suspendue, ainsi que le caillot sanguin et la sangsue qui adhère pour se nourrir du sang. Les exégètes classiques (At-Tabarī, Al-Qurtubī, Ibn Kathīr) expliquent qu'après le stade de la goutte (<em>Nutfah</em>), l'embryon s'accroche fermement à la paroi de l'utérus de la femme, description d'une précision remarquable révélée dès les tout premiers versets du Coran.</p>`,
+    developpementEn: `<p><strong>Linguistic and Exegetical Analysis:</strong> In the Arabic language, the word <em>''Alaq'</em> denotes anything that clings and hangs suspended, as well as a blood clot and a leech that attaches itself to draw blood. Classical exegetes (At-Tabarī, Al-Qurtubī, Ibn Kathīr) explain that after the drop stage (<em>Nutfah</em>), the embryo firmly attaches itself to the wall of the mother's womb—a remarkably precise description revealed in the very first verses of the Quran.</p>`,
+    developpementEs: `<p><strong>Análisis lingüístico y exegético:</strong> En lengua árabe, la palabra <em>« 'Alaq »</em> designa todo aquello que se aferra y queda suspendido, así como el coágulo de sangre y la sanguijuela que se adhiere para alimentarse de sangre. Los exégetas clásicos (At-Tabarī, Al-Qurtubī, Ibn Kathīr) explican que tras la etapa de la gota (<em>Nutfah</em>), el embrión se adhiere firmemente a la pared del útero de la mujer.</p>`,
+    developpementAr: `<p><strong>البيان اللغوي والتفسيري:</strong> يدل لفظ «العلق» في اللغة العربية على كل ما يعلق ويلتصق، كما يطلق على الدم الجامد وعلى دودة العلق التي تتعلق لتمتص الدم. وقد بيّن أئمة التفسير أن الجنين بعد طور النطفة يصير علقة تتعلق بجدار رحم الأم.</p>`
   },
   "96:15": {
     titre: "Signe Anatomique — Le toupet / la région frontale « menteuse et fautive » (An-Nāsiyah)",
+    titreEn: "Anatomical Sign — The 'Lying and Sinful' Forelock / Frontal Region (An-Nāsiyah)",
+    titreEs: "Signo Anatómico — El copete / la región frontal « mentirosa y pecadora » (An-Nāsiyah)",
+    titreAr: "دقة الوصف القرآني — ﴿نَاصِيَةٍ كَاذِبَةٍ خَاطِئَةٍ﴾",
     resume: "Le Coran désigne la zone située derrière le front (An-Nāsiyah) comme étant « menteuse et pécheresse ».",
-    developpement: `
-      <p><strong>Précision du texte coranique :</strong> Dans les versets 15 et 16 de la Sourate Al-‘Alaq, Allāh dit à propos d'Abū Jahl : <em>« Nous le saisirons certes par le toupet (An-Nāsiyah), un toupet menteur et pécheur ! »</em> Au lieu de qualifier la personne entière ou sa langue de menteuse, le texte cible spécifiquement la région frontale supérieure du crâne (<em>Nāsiyah</em>), siège de l'élaboration des décisions, du mensonge et de l'obstination.</p>
-    `
+    resumeEn: "The Quran designates the region located behind the forehead (An-Nāsiyah) as being 'lying and sinful'.",
+    resumeEs: "El Corán señala la zona situada detrás de la frente (An-Nāsiyah) como « mentirosa y pecadora ».",
+    resumeAr: "يصف القرآن الكريم مقدمة الرأس (الناصية) بأنها «كاذبة خاطئة».",
+    developpement: `<p><strong>Précision du texte coranique :</strong> Dans les versets 15 et 16 de la Sourate Al-‘Alaq, Allāh dit à propos d'Abū Jahl : <em>« Nous le saisirons certes par le toupet (An-Nāsiyah), un toupet menteur et pécheur ! »</em> Au lieu de qualifier la langue de menteuse, le texte cible spécifiquement la région frontale supérieure du crâne (<em>Nāsiyah</em>), siège de l'élaboration des décisions, du mensonge et de l'obstination.</p>`,
+    developpementEn: `<p><strong>Precision of the Quranic Text:</strong> In verses 15 and 16 of Surah Al-‘Alaq, Allāh says regarding Abū Jahl: <em>"We will surely drag him by the forelock (An-Nāsiyah)—a lying, sinful forelock!"</em> Instead of calling the tongue a liar, the Quranic text specifically targets the upper frontal region of the skull (<em>Nāsiyah</em>), the seat of decision-making and premeditated lying.</p>`,
+    developpementEs: `<p><strong>Precisión del texto coránico:</strong> En los versículos 15 y 16 de la Sura Al-‘Alaq, Allah dice acerca de Abū Yahl: <em>« ¡Ciertamente lo agarraremos por el copete (An-Nāsiyah), un copete mentiroso y pecador! »</em> El texto apunta específicamente a la región frontal superior del cráneo (<em>Nāsiyah</em>), sede de las decisiones y la mentira premeditada.</p>`,
+    developpementAr: `<p><strong>دقة التعبير القرآني:</strong> خصّ القرآن الكريم منطقة مقدمة الرأس والجبهة (الناصية) بوصف الكذب والخطيئة في قوله: ﴿نَاصِيَةٍ كَاذِبَةٍ خَاطِئَةٍ﴾، لأنها مركز التدبير والتخطيط واتخاذ القرار.</p>`
   },
   "23:14": {
     titre: "Signe Embryologique — Les étapes successives de la formation du fœtus",
+    titreEn: "Embryological Sign — The Successive Stages of Fetal Development",
+    titreEs: "Signo Embriológico — Las etapas sucesivas de la formación del feto",
+    titreAr: "أطوار خلق الجنين — ﴿ثُمَّ خَلَقْنَا النُّطْفَةَ عَلَقَةً فَخَلَقْنَا الْعَلَقَةَ مُضْغَةً﴾",
     resume: "Description chronologique des stades : goutte (Nutfah), adhérence ('Alaqah), morceau de chair mâchée (Mudghah), ossature ('Idhām) puis enveloppement par la chair (Lahm).",
-    developpement: `
-      <p><strong>L'ordre exact des stades embryonnaires :</strong> Ce verset détaille avec une terminologie précise la transformation graduelle dans l'utérus : de la goutte (<em>Nutfah</em>) à l'adhérence (<em>'Alaqah</em>) qui s'implante dans la paroi utérine, puis à la <em>Mudghah</em> (substance ayant l'aspect d'une chair mâchée portant l'empreinte des dents, semblable aux somites de l'embryon), suivie de la formation du squelette cartilagineux puis de son habillage par les muscles.</p>
-    `
+    resumeEn: "Chronological description of the stages: drop (Nutfah), clinging substance ('Alaqah), chewed-like lump (Mudghah), skeletal bones ('Idhām), then clothing the bones with flesh (Lahm).",
+    resumeEs: "Descripción cronológica de las etapas: gota (Nutfah), adherencia ('Alaqah), bocado de carne masticada (Mudghah), estructura ósea ('Idhām) y revestimiento con carne (Lahm).",
+    resumeAr: "وصف زمني متسلسل لأطوار الجنين: النطفة، ثم العلقة، ثم المضغة، ثم العظام، ثم كسوة العظام باللحم.",
+    developpement: `<p><strong>L'ordre exact des stades embryonnaires :</strong> Ce verset détaille avec une terminologie précise la transformation graduelle dans l'utérus : de la goutte (<em>Nutfah</em>) à l'adhérence (<em>'Alaqah</em>) qui s'implante dans la paroi utérine, puis à la <em>Mudghah</em> (substance ayant l'aspect d'une chair mâchée portant l'empreinte des dents, semblable aux somites de l'embryon), suivie de la formation du squelette cartilagineux puis de son habillage par les muscles.</p>`,
+    developpementEn: `<p><strong>Exact Sequence of Embryonic Stages:</strong> This verse details with precise terminology the gradual transformation inside the uterus: from the drop (<em>Nutfah</em>) to the clinging substance (<em>'Alaqah</em>), then to the <em>Mudghah</em> (resembling chewed flesh with somite marks), followed by the formation of the skeleton and its clothing with muscles.</p>`,
+    developpementEs: `<p><strong>El orden exacto de las etapas embrionarias:</strong> Este versículo detalla con terminología precisa la transformación gradual en el útero: de la gota (<em>Nutfah</em>) a la adherencia (<em>'Alaqah</em>), luego a la <em>Mudghah</em>, seguida de los huesos y su revestimiento por los músculos.</p>`,
+    developpementAr: `<p><strong>الترتيب الدقيق لأطوار الجنين:</strong> تفصّل الآية الكريمة التحول التدريجي في الرحم من النطفة إلى العلقة ثم المضغة ثم تكوين العظام وإحاطتها بالعضلات واللحم.</p>`
   },
   "10:92": {
     titre: "Signe Historique — La sauvegarde du corps de Pharaon comme signe pour les générations futures",
+    titreEn: "Historical Sign — Preservation of Pharaoh's Body as a Sign for Future Generations",
+    titreEs: "Signo Histórico — La preservación del cuerpo del Faraón como señal para las generaciones futuras",
+    titreAr: "آية تاريخية — نجاة بدن فرعون ليكون آية لمن خلفه",
     resume: "« Aujourd'hui, Nous sauvons ton corps afin que tu sois un signe pour ceux qui viendront après toi. »",
-    developpement: `
-      <p><strong>Le récit d'Ibn ‘Abbās dans les Tafsīrs :</strong> L'imam Ibn Kathīr et l'imam At-Tabarī rapportent d'après Ibn ‘Abbās que certains parmi les Enfants d'Israël doutaient de la mort de Pharaon. Allāh ordonna alors à la mer de rejeter son corps sans vie, revêtu de sa cuirasse, sur une hauteur du rivage afin que tous puissent constater sa mort et que sa dépouille demeure préservée comme une leçon à travers les siècles.</p>
-    `
+    resumeEn: "'Today We will preserve your body so that you may be a sign for those who come after you.'",
+    resumeEs: "« Hoy salvaremos tu cuerpo para que seas una señal para quienes vengan después de ti. »",
+    resumeAr: "﴿فَالْيَوْمَ نُنَجِّيكَ بِبَدَنِكَ لِتَكُونَ لِمَنْ خَلْفَكَ آيَةً﴾.",
+    developpement: `<p><strong>Le récit d'Ibn ‘Abbās dans les Tafsīrs :</strong> L'imam Ibn Kathīr et l'imam At-Tabarī rapportent d'après Ibn ‘Abbās que certains parmi les Enfants d'Israël doutaient de la mort de Pharaon. Allāh ordonna alors à la mer de rejeter son corps sans vie, revêtu de sa cuirasse, sur une hauteur du rivage afin que tous puissent constater sa mort et que sa dépouille demeure préservée comme une leçon à travers les siècles.</p>`,
+    developpementEn: `<p><strong>The Account of Ibn ‘Abbās in the Tafsīrs:</strong> Imam Ibn Kathīr and Imam At-Tabarī report from Ibn ‘Abbās that some among the Children of Israel doubted Pharaoh's death. Allāh therefore commanded the sea to cast his lifeless body onto a raised bank of the shore so that his preserved corpse would remain a sign across the centuries.</p>`,
+    developpementEs: `<p><strong>El relato de Ibn ‘Abbās en los Tafsīrs:</strong> El imam Ibn Kathīr y el imam At-Tabarī relatan de Ibn ‘Abbās que Allah ordenó al mar que arrojara el cuerpo sin vida del Faraón sobre una elevación de la costa para que permaneciera preservado como señal a través de los siglos.</p>`,
+    developpementAr: `<p><strong>رواية ابن عباس في كتب التفسير:</strong> روى الإمام الطبري وابن كثير عن ابن عباس أن الله أمر البحر أن يلقي جسد فرعون ببدنه ودرعه على نجوة من الأرض ليبقى آية وعبرة للأجيال.</p>`
   },
   "55:19": {
     titre: "Signe Maritime — La barrière invisible (Barzakh) entre les deux mers",
+    titreEn: "Marine Sign — The Invisible Barrier (Barzakh) Between the Two Seas",
+    titreEs: "Signo Marítimo — La barrera invisible (Barzakh) entre los dos mares",
+    titreAr: "آية البحار — ﴿مَرَجَ الْبَحْرَيْنِ يَلْتَقِيَانِ * بَيْنَهُمَا بَرْزَخٌ لَّا يَبْغِيَانِ﴾",
     resume: "« Il a donné libre cours aux deux mers pour se rencontrer ; il y a entre elles une barrière qu'elles ne dépassent pas. »",
-    developpement: `
-      <p><strong>Les deux masses d'eau qui ne se confondent pas :</strong> Dans les versets 19 et 20 de la Sourate Ar-Rahmān (ainsi que dans Sourate Al-Furqān 25:53), Allāh décrit la rencontre entre deux masses d'eau (l'une douce et l'autre salée, ou deux mers contiguës) maintenues distinctes par une séparation (<em>Barzakh</em>) établie par la puissance divine afin que l'une n'altère pas la nature de l'autre.</p>
-    `
+    resumeEn: "'He released the two seas, meeting side by side; between them is a barrier they do not transgress.'",
+    resumeEs: "« Él ha dejado fluir los dos mares para que se encuentren; entre ambos hay una barrera que no sobrepasan. »",
+    resumeAr: "التقاء البحرين مع وجود حاجز خفي (برزخ) بقدرة الله يمنع طغيان أحدهما على الآخر.",
+    developpement: `<p><strong>Les deux masses d'eau qui ne se confondent pas :</strong> Dans les versets 19 et 20 de la Sourate Ar-Rahmān (ainsi que dans Sourate Al-Furqān 25:53), Allāh décrit la rencontre entre deux masses d'eau (l'une douce et l'autre salée, ou deux mers contiguës) maintenues distinctes par une séparation (<em>Barzakh</em>) établie par la puissance divine afin que l'une n'altère pas la nature de l'autre.</p>`,
+    developpementEn: `<p><strong>Two Bodies of Water That Do Not Merge:</strong> In verses 19 and 20 of Surah Ar-Rahmān (as well as in Surah Al-Furqān 25:53), Allāh describes the meeting of two bodies of water kept distinct by an unseen barrier (<em>Barzakh</em>) ordained by Divine power.</p>`,
+    developpementEs: `<p><strong>Las dos masas de agua que no se confunden:</strong> En los versículos 19 y 20 de la Sura Ar-Rahmān, Allah describe el encuentro entre dos masas de agua mantenidas distintas por una separación (<em>Barzakh</em>) establecida por el poder divino.</p>`,
+    developpementAr: `<p><strong>التقاء الكتلتين المائيتين دون طغيان:</strong> يصف الله عز وجل في سورة الرحمن (19-20) التقاء البحرين مع بقاء خصائص كلٍّ منهما محفوظة بفضل الحاجز الإلهي (البرزخ).</p>`
   },
   "111:1": {
     titre: "Prophétie Éclatante — La fin d'Abū Lahab annoncée dix ans à l'avance",
+    titreEn: "Clear Prophecy — The Fate of Abū Lahab Foretold Ten Years in Advance",
+    titreEs: "Profecía Clara — El destino de Abū Lahab anunciado con diez años de antelación",
+    titreAr: "إعجاز غيبي باهر — الإخبار بموت أبي لهب على الكفر قبل هلاكه بعشر سنين",
     resume: "La Sourate Al-Masad annonce qu'Abū Lahab mourra dans la mécréance, alors qu'il aurait suffi à ce dernier de prononcer une fausse conversion en dix ans pour tenter de contredire le Coran.",
-    developpement: `
-      <p><strong>La preuve soulignée par les savants :</strong> Les exégètes (dont Al-Qurtubī et Ibn Kathīr) font remarquer que cette sourate fut révélée à La Mecque plus de dix ans avant la mort d'Abū Lahab (survenue peu après la bataille de Badr). Durant toute cette décennie, Abū Lahab cherchait par tous les moyens à démentir le Prophète ﷺ. Il lui aurait suffi de déclarer publiquement (même par hypocrisie) : <em>« Je suis devenu musulman ! »</em> pour prétendre que le Coran s'était trompé. Pourtant, il ne put jamais le faire et mourut exactement comme le Coran l'avait décrété.</p>
-    `
+    resumeEn: "Surah Al-Masad announced that Abū Lahab would die in disbelief, even though he could have simply uttered a fake conversion at any point during ten years to try to contradict the Quran.",
+    resumeEs: "La Sura Al-Masad anuncia que Abū Lahab morirá en la incredulidad, aunque le habría bastado pronunciar una falsa conversión durante diez años para intentar contradecir el Corán.",
+    resumeAr: "أعلنت سورة المسد أن أبا لهب سيموت على الكفر والنار، مع أنه كان يكفيه طوال عشر سنين أن ينطق بالشهادتين ولو نفاقًا ليزعم معارضة القرآن.",
+    developpement: `<p><strong>La preuve soulignée par les savants :</strong> Les exégètes (dont Al-Qurtubī et Ibn Kathīr) font remarquer que cette sourate fut révélée à La Mecque plus de dix ans avant la mort d'Abū Lahab (survenue peu après la bataille de Badr). Durant toute cette décennie, Abū Lahab cherchait par tous les moyens à démentir le Prophète ﷺ. Il lui aurait suffi de déclarer publiquement (même par hypocrisie) : <em>« Je suis devenu musulman ! »</em> pour prétendre que le Coran s'était trompé. Pourtant, il ne put jamais le faire et mourut exactement comme le Coran l'avait décrété.</p>`,
+    developpementEn: `<p><strong>The Proof Highlighted by the Scholars:</strong> Classical exegetes (including Al-Qurtubī and Ibn Kathīr) point out that this surah was revealed in Makkah more than ten years before the death of Abū Lahab. All he had to do was declare publicly (even out of hypocrisy): <em>"I have become a Muslim!"</em> to claim that the Quran was wrong. Yet he was never able to do so and died in disbelief exactly as decreed.</p>`,
+    developpementEs: `<p><strong>La prueba destacada por los sabios:</strong> Los exégetas señalan que esta sura fue revelada en La Meca más de diez años antes de la muerte de Abū Lahab. Le habría bastado declarar públicamente (incluso por hipocresía): <em>« ¡Me he hecho musulmán! »</em> para pretender que el Corán se había equivocado, pero murió exactamente como el Corán decretó.</p>`,
+    developpementAr: `<p><strong>الحجة الباهرة التي أبرزها العلماء:</strong> نزلت هذه السورة بمكة قبل هلاك أبي لهب بأكثر من عشر سنين، وكان يكفيه أن يتظاهر بالإسلام كذبًا ليطعن في الآية، لكنه لم يستطع ذلك قط ومات على الكفر كما قضى الله.</p>`
   },
   "54:1": {
     titre: "Miracle Prophétique — La fente de la Lune (Inshiqāq Al-Qamar)",
+    titreEn: "Prophetic Miracle — The Splitting of the Moon (Inshiqāq Al-Qamar)",
+    titreEs: "Milagro Profético — La partición de la Luna (Inshiqāq Al-Qamar)",
+    titreAr: "معجزة انشقاق القمر — ﴿اقْتَرَبَتِ السَّاعَةُ وَانشَقَّ الْقَمَرُ﴾",
     resume: "« L'Heure approche et la Lune s'est fendue. » Miracle observé à La Mecque et attesté par des chaînes de transmission multiples (Mutawātir).",
-    developpement: `
-      <p><strong>Les témoignages authentiques (Al-Bukhārī & Muslim) :</strong> Les imams Al-Bukhārī, Muslim, At-Tabarī et Ibn Kathīr rapportent par des voies multiples d'après ‘Abdullāh ibn Mas‘ūd, Anas ibn Mālik, Jubayr ibn Mut‘im et Ibn ‘Abbās que les habitants de La Mecque demandèrent au Prophète ﷺ un signe céleste. La Lune se fendit alors en deux parties distinctes, une moitié d'un côté de la montagne de Hirā' et l'autre moitié de l'autre côté, et le Prophète ﷺ leur dit : <em>« Soyez-en témoins ! »</em></p>
-    `
+    resumeEn: "'The Hour has drawn near and the Moon has split.' A miracle witnessed in Makkah and attested by multiple mass-transmitted (Mutawātir) chains.",
+    resumeEs: "« La Hora se acerca y la Luna se ha partido. » Milagro observado en La Meca y atestiguado por múltiples cadenas de transmisión (Mutawātir).",
+    resumeAr: "﴿اقْتَرَبَتِ السَّاعَةُ وَانشَقَّ الْقَمَرُ﴾ معجزة حسية رآها أهل مكة عيانًا وثبتت بالأحاديث المتواترة.",
+    developpement: `<p><strong>Les témoignages authentiques (Al-Bukhārī & Muslim) :</strong> Les imams Al-Bukhārī, Muslim, At-Tabarī et Ibn Kathīr rapportent par des voies multiples d'après ‘Abdullāh ibn Mas‘ūd, Anas ibn Mālik, Jubayr ibn Mut‘im et Ibn ‘Abbās que les habitants de La Mecque demandèrent au Prophète ﷺ un signe céleste. La Lune se fendit alors en deux parties distinctes, une moitié d'un côté de la montagne de Hirā' et l'autre moitié de l'autre côté, et le Prophète ﷺ leur dit : <em>« Soyez-en témoins ! »</em></p>`,
+    developpementEn: `<p><strong>Authentic Eyewitness Testimonies (Al-Bukhārī & Muslim):</strong> Imams Al-Bukhārī, Muslim, At-Tabarī, and Ibn Kathīr record through multiple authentic chains that the Moon split into two distinct halves in Makkah, and the Prophet ﷺ said: <em>"Bear witness!"</em></p>`,
+    developpementEs: `<p><strong>Los testimonios auténticos (Al-Bukhārī y Muslim):</strong> Los imames Al-Bukhārī, Muslim, At-Tabarī e Ibn Kathīr relatan por múltiples vías que la Luna se partió en dos mitades distintas en La Meca, y el Profeta ﷺ dijo: <em>« ¡Sed testigos de ello! »</em></p>`,
+    developpementAr: `<p><strong>الشهادات الصحيحة المتواترة (في البخاري ومسلم):</strong> روى البخاري ومسلم من طرق متعددة عن الصحابة أن القمر انشق فرقتين بمكة، فقال النبي ﷺ: <em>«اشهدوا!»</em></p>`
   }
 };
 
-// ============================================================================
-// SYNTHÈSES CLASSIQUES COURTES (AT-TABARĪ, AL-QURTUBĪ, IBN KATHĪR, AL-JALĀLAYN)
-// ============================================================================
+const TAFSIR_INTEGRAL_DE_BASE_FR = {
+  "2:3": "<strong style='color:#ffffff;'>Ce verset désigne les pieux qui croient fermement à l'Invisible</strong> — c'est-à-dire tout ce qui ne peut être perçu par les sens ni par la seule raison, mais que nous connaissons uniquement grâce à la révélation d'Allāh et de Son Messager, comme les Anges, le Paradis, l'Enfer et le Jour Dernier.<br><br>Ils accomplissent également la prière (la Salât) conformément aux commandements d'Allāh et aux enseignements du Prophète ﷺ, et dépensent une partie des biens qu'Allāh leur a accordés en s'acquittant de l'aumône obligatoire (la Zakât) ainsi que des aumônes volontaires (Sadaqah), dans l'espoir d'être récompensés par Allāh.",
+  "2:4": "<strong style='color:#ffffff;'>Ces croyants sincères ont foi en la Révélation qu'Allāh t'a descendue (ô Muhammad), à savoir le Noble Coran,</strong> ainsi qu'en tous les Livres divins révélés aux Prophètes et Messagers avant toi (comme la Torah, l'Évangile et les Psaumes), sans faire aucune distinction entre les Envoyés d'Allāh. Et ils ont une certitude absolue quant à la vie de l'Au-delà, à la résurrection, au jugement, à la récompense du Paradis et au châtiment de l'Enfer.",
+  "2:6": "<strong style='color:#ffffff;'>Quant à ceux qui rejettent obstinément la foi (les mécréants), ils persistent dans leur égarement et leur obstination à refuser la vérité.</strong> Que tu les avertisses (ô Muhammad) du châtiment d'Allāh ou que tu ne les avertisses pas, cela leur est tout à fait égal : ils n'auront pas la foi, car ils ont choisi de fermer leurs cœurs à la guidée."
+};
+
+const cheminMemoire = path.join(__dirname, 'memoire-site.json');
+let memoireGlobale = { miracles: {}, tafsirFr: {}, tafsirEn: {}, tafsirEs: {}, tafsirAr: {} };
+if (fs.existsSync(cheminMemoire)) {
+  try {
+    const lu = JSON.parse(fs.readFileSync(cheminMemoire, 'utf8'));
+    if (lu && typeof lu === 'object') {
+      memoireGlobale.miracles = Object.assign({}, lu.miracles || {});
+      memoireGlobale.tafsirFr = Object.assign({}, lu.tafsirFr || {});
+      memoireGlobale.tafsirEn = Object.assign({}, lu.tafsirEn || {});
+      memoireGlobale.tafsirEs = Object.assign({}, lu.tafsirEs || {});
+      memoireGlobale.tafsirAr = Object.assign({}, lu.tafsirAr || {});
+    }
+  } catch (e) {}
+}
+Object.assign(memoireGlobale.miracles, MIRACLES_DE_BASE);
+Object.assign(memoireGlobale.tafsirFr, TAFSIR_INTEGRAL_DE_BASE_FR);
+try {
+  fs.writeFileSync(cheminMemoire, JSON.stringify(memoireGlobale, null, 2), 'utf8');
+} catch (e) {}
+
+const MIRACLES = memoireGlobale.miracles;
+const TAFSIR_INTEGRAL_CORRIGE_FR = memoireGlobale.tafsirFr;
+
+const NOMS_SOURATES_ES = {
+  1:"La Apertura",2:"La Vaca",3:"La Familia de Imrán",4:"Las Mujeres",5:"La Mesa Servida",6:"Los Rebaños",7:"Los Lugares Elevados",8:"El Botín",9:"El Arrepentimiento",10:"Jonás",11:"Hud",12:"José",13:"El Trueno",14:"Abraham",15:"Al-Hiyr",16:"Las Abejas",17:"El Viaje Nocturno",18:"La Caverna",19:"María",20:"Ta-Ha",21:"Los Profetas",22:"La Peregrinación",23:"Los Creyentes",24:"La Luz",25:"El Criterio",26:"Los Poetas",27:"Las Hormigas",28:"Los Relatos",29:"La Araña",30:"Los Romanos",31:"Luqmán",32:"La Postración",33:"Los Coaligados",34:"Saba",35:"El Originador",36:"Ya-Sin",37:"Los Ordenados en Filas",38:"Sad",39:"Los Grupos",40:"El Perdonador",41:"Explicadas Detalladamente",42:"La Consulta",43:"Los Adornos Dorados",44:"El Humo",45:"La Arrodillada",46:"Las Dunas",47:"Muhammad",48:"La Victoria",49:"Los Aposentos Privados",50:"Qaf",51:"Los Vientos que Esparcen",52:"El Monte",53:"La Estrella",54:"La Luna",55:"El Misericordioso",56:"El Suceso Inminente",57:"El Hierro",58:"La Mujer que Discute",59:"El Destierro",60:"La Examinada",61:"La Fila",62:"El Viernes",63:"Los Hipócritas",64:"El Desengaño",65:"El Divorcio",66:"La Prohibición",67:"La Soberanía",68:"El Cálamo",69:"La Realidad Inevitable",70:"Las Vías de Ascenso",71:"Noé",72:"Los Genios",73:"El Envuelto en su Manto",74:"El Arropado",75:"La Resurrección",76:"El Ser Humano",77:"Los Enviados",78:"La Gran Noticia",79:"Los que Arrancan",80:"Frunció el Ceño",81:"El Oscurecimiento",82:"La Hendidura",83:"Los Defraudadores",84:"El Resquebrajamiento",85:"Las Constelaciones",86:"El Astro Nocturno",87:"El Altísimo",88:"El Evento Abrumador",89:"La Aurora",90:"La Ciudad",91:"El Sol",92:"La Noche",93:"La Mañana",94:"La Apertura del Pecho",95:"La Higuera",96:"El Coágulo",97:"El Decreto",98:"La Prueba Clara",99:"El Terremoto",100:"Los Corceles",101:"La Calamidad",102:"El Afán de Acumular",103:"El Tiempo",104:"El Difamador",105:"El Elefante",106:"Quraysh",107:"La Ayuda Mínima",108:"La Abundancia",109:"Los Incrédulos",110:"El Socorro Divino",111:"Las Fibras de Palma",112:"La Unicidad Pura",113:"El Amanecer",114:"La Humanidad"
+};
+
 const SYNTHESE_LAURIER_EXEGESE = {
-  "1:1": "Étymologie & Exégèse : Le nom « Allāh » est le nom propre de l'Essence divine réunissant tous les attributs de perfection. « Ar-Rahmān » (le Tout-Miséricordieux) désigne Celui dont la miséricorde englobe toutes les créatures dans ce monde, tandis que « Ar-Rahīm » (le Très-Miséricordieux) désigne Celui qui réserve Sa miséricorde particulière aux croyants dans l'Au-delà.",
-  "1:2": "Exégèse classique (« Rabb al-‘Ālamīn » — Seigneur des mondes) : Les exégètes (At-Tabarī, Al-Qurtubī, Ibn Kathīr) expliquent qu'« Al-‘Ālamīn » est le pluriel de « ‘Ālam » (monde) et désigne l'ensemble des créatures d'ici-bas et de l'Au-delà (le monde des hommes, le monde des djinns, le monde des anges). C'est pourquoi la traduction fidèle de Muhammad Hamidullah (édition originale 1977) traduit ce terme par « Seigneur des mondes » et non « de l'univers ».",
-  "2:1": "Ces lettres isolées (Alif, Lām, Mīm) placées en ouverture de vingt-neuf sourates appartiennent au secret d'Allāh et démontrent le miracle inimitable du Coran : bien qu'il soit composé des mêmes lettres arabes que celles utilisées par les hommes dans leur langage quotidien, nul ne peut produire un livre semblable.",
-  "2:19": "Synthèse d'Ibn ‘Abbās & d'Al-Jalālayn (Sens de la parabole en bref) : La « pluie abondante » représente le Coran ; les « ténèbres » représentent les doutes des hypocrites ; le « tonnerre » correspond aux menaces et avertissements divins qui les effraient ; et les « éclairs » désignent la clarté de la Vérité coranique qui dévoile leur hypocrisie.",
-  "2:22": "Tafsīr d'At-Tabarī & d'Al-Qurtubī : Dans son Jāmi‘ Al-Bayān, l'imam At-Tabarī rapporte d'après Ibn ‘Abbās, Ibn Mas‘ūd et Mujāhid que « Firāshan » signifie qu'Allāh a fait de la Terre un lit étendu, un tapis plat et stable sur lequel les hommes marchent, s'installent et dorment. L'imam Al-Qurtubī ajoute que le ciel a été érigé au-dessus d'elle comme un « Binā' » (un dôme et un toit élevé dressé au-dessus de la Terre).",
-  "2:255": "Verset du Trône (Āyat Al-Kursī) : Il s'agit du plus grand verset du Coran. Le terme « Al-Hayy » désigne le Vivant par essence dont la vie est éternelle, et « Al-Qayyūm » désigne Celui qui subsiste par Lui-même et par qui subsistent toutes les créatures des cieux et de la terre.",
-  "6:1": "Étymologie & Exégèse : Allāh emploie le verbe « Khalaqa » (créer à partir du néant et déterminer avec mesure) pour les cieux et la terre, et le verbe « Ja‘ala » (établir, disposer) pour les ténèbres et la lumière. Les ténèbres sont mentionnées au pluriel (Zulumāt) car les voies de l'égarement sont multiples, tandis que la lumière (Nūr) est mentionnée au singulier car la voie de la Vérité est unique.",
-  "13:3": "Tafsīr d'At-Tabarī & d'Al-Qurtubī : L'imam At-Tabarī explique sous la parole « Wa huwa alladhī madda al-ard » : C'est Allāh qui a étendu la Terre à plat en longueur et en largeur, et y a posé des montagnes fermement ancrées (Rawāsiya) comme des pieux afin qu'elle demeure immobile pour ses habitants.",
-  "15:19": "Tafsīr d'At-Tabarī & d'Al-Qurtubī : Commentant « Wa al-arda madadnāhā », l'imam At-Tabarī et l'imam Al-Qurtubī rapportent d'après Ibn ‘Abbās et Qatādah qu'Allāh a étalé et aplani la Terre (Basatnāhā) sur la face des eaux à partir de La Mecque (Umm Al-Qurā), puis y a jeté de lourdes montagnes pour l'empêcher de pencher ou de trembler.",
-  "20:53": "Tafsīr d'At-Tabarī & d'Al-Qurtubī : Allāh rappelle qu'Il a fait de la Terre un « Mahd » (un lit aplani et un berceau étendu) et y a tracé des sentiers praticables d'un bout à l'autre.",
-  "41:9": "Tafsīr de la Création en 6 jours (Sourate Fussilat 41:9-12) : Comme l'expliquent At-Tabarī et Ibn Kathīr, Allāh a créé la Terre en deux jours, y a placé ses montagnes et ses subsistances en quatre jours au total, puis s'est tourné vers le ciel qui était fumée (Dukhān) et l'a agencé en sept cieux superposés en deux jours, achevant ainsi la création des cieux et de la terre en six jours.",
-  "43:10": "Tafsīr d'At-Tabarī & d'Al-Qurtubī : L'imam At-Tabarī et l'imam Al-Qurtubī expliquent que le terme « Mahdan » désigne une couche plane et stabilisée sur laquelle les créatures résident et se déplacent en suivant des voies tracées.",
-  "50:1": "Authenticité & Analyse des sources : L'avis authentique retenu par les exégètes est que la lettre « Qāf » fait partie des lettres isolées de l'alphabet arabe (Al-Hurūf Al-Muqatta‘ah) placées au début des sourates pour démontrer le miracle inimitable du Coran. Quant au récit mentionné chez certains auteurs anciens via la chaîne faible d'Abū Al-Yaqzān affirmant que « Qāf » serait une montagne entourant la Terre, l'imam Ibn Kathīr précise qu'il ne repose sur aucun hadith authentique du Prophète ﷺ et provient des Isrā'īliyyāt (récits issus des Gens du Livre).",
-  "50:7": "Tafsīr d'At-Tabarī & d'Al-Qurtubī : Après avoir invité l'homme à regarder le ciel construit au-dessus de lui sans la moindre fissure (50:6), Allāh dit : « Et la Terre, Nous l'avons étendue (Madadnāhā) ». At-Tabarī et Al-Qurtubī expliquent qu'elle a été déployée et étalée à plat sur l'eau et maintenue fixe par les montagnes.",
-  "51:47": "Tafsīr Classique & Analyse Grammaticale (« Wa innā lamūsi‘ūn ») : Dans la traduction originale de Muhammad Hamidullah (1977), ce verset est traduit par : « Et le ciel, Nous l'avons construit renforcé ; et c'est encore Nous l'Élargisseur. » Les grands exégètes classiques (At-Tabarī, Al-Qurtubī, Ibn Kathīr) expliquent qu'Allāh fait ici Son propre éloge par le participe actif « Mūsi‘ūn » : 1) Selon Ibn ‘Abbās, Mujāhid et Qatādah, cela signifie « Nous sommes détenteurs de puissance, de richesse et d'abondance (Dhū sa‘ah) » ; 2) Cela rappelle qu'Allāh a créé au-dessus de la Terre un toit céleste vaste et élevé sans piliers. Les exégètes classiques ne parlent nullement d'une expansion continue de l'univers, la création des sept cieux et de la terre ayant été parachevée en six jours.",
-  "51:48": "Tafsīr d'At-Tabarī & d'Al-Qurtubī (« Wa al-arda farashnāhā fa-ni‘ma al-māhidūn ») : Traduction originale de 1977 : « Et la terre, Nous l'avons faite lit ; et quel excellent berceur (niveleur) Nous sommes ! » At-Tabarī et Al-Qurtubī expliquent qu'Allāh a étendu, aplani et nivelé la Terre comme un lit stable pour Ses créatures, et Se loue Lui-même pour la perfection de cet aplanissement.",
-  "68:1": "Authenticité & Analyse des sources : La lettre « Nūn » fait partie des lettres isolées de l'alphabet arabe démontrant le miracle du Coran, suivie du serment divin par le Calame (la Plume céleste qui a écrit la destinée). Les récits identifiant « Nūn » à une baleine cosmique proviennent des Isrā'īliyyāt (traditions des Gens du Livre) et ne reposent sur aucun hadith prophétique authentique.",
-  "71:19": "Tafsīr d'At-Tabarī & d'Al-Qurtubī : Commentant la parole du prophète Nūh (Noé) « Et c'est Allāh qui vous a fait de la Terre un tapis (Bisātan) », At-Tabarī et Al-Qurtubī expliquent que « Bisāt » désigne littéralement un grand tapis étalé à plat sur lequel on marche, afin que les hommes puissent parcourir ses larges chemins (Subulan Fijājan).",
-  "78:6": "Tafsīr d'At-Tabarī & d'Al-Qurtubī : « N'avons-Nous pas fait de la Terre une couche aplanie (Mihādan) et des montagnes des pieux (Awtādan) ? » At-Tabarī et Al-Qurtubī expliquent que la Terre a été nivelée comme un tapis étendu, et que les montagnes y ont été enfoncées comme les piquets d'une tente pour l'immobiliser.",
-  "79:30": "Tafsīr d'At-Tabarī & d'Al-Qurtubī : Sous le verset « Et quant à la Terre, après cela, Il l'a étendue (Dahāhā) », l'imam At-Tabarī (d'après Ibn ‘Abbās et Sa‘īd ibn Jubayr) et l'imam Al-Qurtubī expliquent que « Dahāhā » signifie qu'Allāh l'a aplanie, étalée et déroulée d'Est en Ouest, en faisant jaillir ses eaux et ses pâturages et en y ancrant ses montagnes.",
-  "88:20": "Tafsīr d'At-Tabarī, d'Al-Qurtubī & d'Al-Jalālayn : Sous la parole « Et la Terre, comment elle est nivelée (Sutihat) ? », l'imam At-Tabarī écrit : « Comment elle a été étalée (Busitat) et aplanie (Muddat) ». L'imam Al-Qurtubī et le Tafsīr Al-Jalālayn soulignent explicitement que le terme arabe « Sutihat » (de la racine Sath : surface plane / toit plat) exprime selon le sens littéral apparent du texte (Zāhir) que la Terre a été aplanie et étendue à plat devant le regard de l'homme.",
-  "91:1": "Tafsīr d'At-Tabarī & d'Al-Qurtubī : Allāh jure ici par le Soleil et par sa clarté (« Duhāhā »). Ibn ‘Abbās, Mujāhid et Qatādah expliquent dans le Tafsīr d'At-Tabarī que « Duhāhā » désigne à la fois la lumière éclatante du Soleil lorsqu'il s'élève au matin et sa chaleur bienfaisante qui se répand sur la Terre.",
-  "91:2": "Tafsīr d'At-Tabarī & d'Al-Qurtubī : « Et par la Lune quand elle le suit (Talāhā) ! » At-Tabarī et Al-Qurtubī rapportent d'après Ibn ‘Abbās et Qatādah que la Lune suit directement le Soleil dans sa course : lorsque le Soleil se couche, la Lune apparaît et prend le relais pour éclairer la nuit.",
-  "91:3": "Tafsīr d'At-Tabarī & d'Al-Qurtubī : « Et par le jour quand il l'éclaire / le dévoile (Jallāhā) ! » L'imam At-Tabarī et l'imam Al-Qurtubī rapportent deux explications complémentaires des Salaf (Ibn ‘Abbās, Mujāhid, Qatādah) : 1) Quand le jour dévoile le Soleil dans toute sa splendeur et sa clarté ; 2) Quand la clarté du jour dévoile la surface de la Terre et dissipe l'obscurité qui la recouvrait.",
-  "91:6": "Tafsīr d'At-Tabarī & d'Al-Qurtubī sur la Terre nivelée (« Wa al-ardi wa mā tahāhā ») : Dans son Jāmi‘ Al-Bayān, l'imam At-Tabarī rapporte d'après Ibn ‘Abbās, Mujāhid, Qatādah, ‘Ikrimah et As-Suddī : « Tahāhā signifie : Il l'a aplanie et étendue à plat (Basatahā) sur l'eau de tous côtés. » L'imam Al-Qurtubī écrit dans Al-Jāmi‘ li-Ahkām Al-Qur'ān : « Tahāhā a le même sens que Dahāhā, c'est-à-dire qu'Allāh a nivelé, aplani et étalé la Terre de tous ses côtés (Basatahā min kulli jānib) comme un tapis stable pour l'installation des créatures. »",
-  "96:1": "Il s'agit du tout premier verset révélé au Prophète ﷺ dans la grotte de Hirā' par l'ange Jibrīl, inaugurant la révélation coranique par l'ordre de lire et d'apprendre au Nom d'Allāh le Créateur."
+  "1:2": "Exégèse classique (« Rabb al-‘Ālamīn » — Seigneur des mondes) : Les exégètes (At-Tabarī, Al-Qurtubī, Ibn Kathīr) expliquent qu'« Al-‘Ālamīn » est le pluriel de « ‘Ālam » (monde) et désigne l'ensemble des créatures. C'est pourquoi la traduction originale de Muhammad Hamidullah (1977) traduit ce terme par « Seigneur des mondes ».",
+  "2:1": "Ces lettres isolées (Alif, Lām, Mīm) placées en ouverture de vingt-neuf sourates appartiennent au secret d'Allāh et démontrent le miracle inimitable du Coran : bien qu'il soit composé des mêmes lettres arabes que celles utilisées par les hommes, nul ne peut produire un livre semblable.",
+  "2:19": "Synthèse d'Ibn ‘Abbās & d'Al-Jalālayn (Sens de la comparaison) : La « pluie abondante » représente le Coran ; les « ténèbres » représentent les doutes des hypocrites ; le « tonnerre » correspond aux avertissements divins qui les effraient ; et les « éclairs » désignent la clarté de la Vérité coranique qui dévoile leur hypocrisie.",
+  "2:22": "Tafsīr d'At-Tabarī & d'Al-Qurtubī : L'imam At-Tabarī rapporte d'après Ibn ‘Abbās et Mujāhid que « Firāshan » signifie qu'Allāh a fait de la Terre un lit étendu, un tapis plat et stable, et que le ciel a été érigé au-dessus d'elle comme un « Binā' » (un dôme et un toit élevé).",
+  "2:255": "Verset du Trône (Āyat Al-Kursī) : Il s'agit du plus grand verset du Coran. « Al-Hayy » désigne le Vivant par essence dont la vie est éternelle, et « Al-Qayyūm » désigne Celui qui subsiste par Lui-même et par qui subsistent toutes les créatures.",
+  "51:47": "Tafsīr Classique (« Wa innā lamūsi‘ūn ») : Traduction originale de Muhammad Hamidullah (1977) : « Et le ciel, Nous l'avons construit renforcé ; et c'est encore Nous l'Élargisseur. » At-Tabarī, Al-Qurtubī et Ibn Kathīr expliquent que « Mūsi‘ūn » signifie : détenteurs de puissance et d'abondance ayant érigé un toit céleste vaste sans piliers.",
+  "51:48": "Tafsīr d'At-Tabarī & d'Al-Qurtubī : Traduction originale de 1977 : « Et la terre, Nous l'avons faite lit ; et quel excellent berceur (niveleur) Nous sommes ! » Allāh a étendu, aplani et nivelé la Terre comme un lit stable.",
+  "71:19": "Tafsīr d'At-Tabarī & d'Al-Qurtubī : « Et c'est Allāh qui vous a fait de la Terre un tapis (Bisātan) » : un grand tapis étalé à plat sur lequel on marche.",
+  "88:20": "Tafsīr d'At-Tabarī, d'Al-Qurtubī & d'Al-Jalālayn : Sous « Et la Terre, comment elle est nivelée (Sutihat) ? », le terme « Sutihat » exprime selon le sens apparent du texte que la Terre a été aplanie et étendue à plat devant le regard de l'homme.",
+  "91:6": "Tafsīr d'At-Tabarī & d'Al-Qurtubī (« Wa al-ardi wa mā tahāhā ») : At-Tabarī et Al-Qurtubī expliquent que « Tahāhā » signifie qu'Allāh a nivelé, aplani et étalé la Terre de tous ses côtés (Basatahā min kulli jānib) comme un tapis stable."
+};
+
+const SYNTHESE_LAURIER_EN = {
+  "1:2": "Classical Exegesis ('Rabb al-‘Ālamīn' — Lord of the Worlds): At-Tabarī, Al-Qurtubī, and Ibn Kathīr explain that 'Al-‘Ālamīn' is the plural of '‘Ālam' (world) and refers to all created realms.",
+  "2:19": "Summary of Ibn ‘Abbās & Al-Jalālayn: The 'rainstorm' represents the Quran; 'darkness' represents the hypocrites' doubts; 'thunder' represents Divine warnings; and 'lightning' represents the clear truth.",
+  "2:255": "Verse of the Throne (Āyat Al-Kursī): The greatest verse of the Quran. 'Al-Hayy' is the Ever-Living, and 'Al-Qayyūm' is the Self-Sustaining Sustainer.",
+  "88:20": "Tafsīr of At-Tabarī, Al-Qurtubī & Al-Jalālayn: Under 'And the Earth, how it is spread out / leveled (Sutihat)?', scholars explain that the Earth was spread out flat and leveled.",
+  "91:6": "Tafsīr of At-Tabarī & Al-Qurtubī: 'Tahāhā' means He leveled and spread out the Earth on all sides."
+};
+
+const SYNTHESE_LAURIER_ES = {
+  "1:2": "Exégesis clásica (« Rabb al-‘Ālamīn » — Señor de los mundos): At-Tabarī, Al-Qurtubī e Ibn Kathīr explican que « Al-‘Ālamīn » es el plural de « ‘Ālam » (mundo).",
+  "2:19": "Síntesis de Ibn ‘Abbās y Al-Jalālayn: La « lluvia » representa el Corán; las « tinieblas » las dudas de los hipócritas; el « trueno » las advertencias divinas; y los « relámpagos » la Verdad.",
+  "2:255": "El Versículo del Trono (Āyat Al-Kursī): El versículo más grandioso del Corán.",
+  "88:20": "Tafsīr de At-Tabarī, Al-Qurtubī y Al-Jalālayn: Bajo « ¿Y la Tierra, cómo ha sido allanada (Sutihat)? », explican que la Tierra fue extendida y nivelada.",
+  "91:6": "Tafsīr de At-Tabarī y Al-Qurtubī: « Tahāhā » significa que Allah niveló y extendió la Tierra por todos sus lados."
+};
+
+const SYNTHESE_LAURIER_AR = {
+  "1:2": "تفسير الطبري والقرطبي وابن كثير: «العالمين» جمع عالَم، وهم كل ما سوى الله من الإنس والجن والملائكة وسائر المخلوقات.",
+  "2:19": "خلاصة تفسير ابن عباس والجلالين: «الصيّب» المطر وهو مَثَلٌ للقرآن، و«الظلمات» شكوك المنافقين، و«الرعد» الزواجر والوعيد، و«البرق» الحجج الباهرة.",
+  "2:255": "آية الكرسي: أعظم آية في كتاب الله، «الحي» الدائم الباقي، و«القيوم» القائم بنفسه المقيم لكل ما سواه.",
+  "88:20": "تفسير الطبري والقرطبي والجلالين: قوله تعالى ﴿وَإِلَى الْأَرْضِ كَيْفَ سُطِحَتْ﴾ أي كيف بُسطت ومُدّت ومُهّدت.",
+  "91:6": "تفسير الطبري والقرطبي: قال ابن عباس وقتادة في قوله ﴿وَالْأَرْضِ وَمَا طَحَاهَا﴾: أي بسطها ومدّها من كل جانب."
 };
 
 const VERSIONS_ORIGINALES_HAMIDULLAH_1977 = {
@@ -130,173 +485,6 @@ const VERSIONS_ORIGINALES_HAMIDULLAH_1977 = {
   "91:6": "Et par la terre et Celui qui l'a nivelée!"
 };
 
-// ============================================================================
-// GÉNÉRATION NATIVE DU PNG OPAQUE 24-BITS (NORME APPLE SAFARI IPHONE)
-// ============================================================================
-function creerAppleTouchIconPNG(taille = 180) {
-  const buf = Buffer.alloc(taille * (taille * 3 + 1));
-
-  function distSegment(px, py, ax, ay, bx, by) {
-    const dx = bx - ax, dy = by - ay;
-    const len2 = dx * dx + dy * dy;
-    let t = len2 === 0 ? 0 : ((px - ax) * dx + (py - ay) * dy) / len2;
-    t = Math.max(0, Math.min(1, t));
-    const cx = ax + t * dx, cy = ay + t * dy;
-    return Math.hypot(px - cx, py - cy);
-  }
-
-  const starPts = [
-    [60, 20], [63.5, 29.5], [73.5, 30], [65.5, 36], [68.5, 45.5],
-    [60, 40], [51.5, 45.5], [54.5, 36], [46.5, 30], [56.5, 29.5]
-  ];
-
-  function dansPolygone(x, y, poly) {
-    let inside = false;
-    for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
-      const xi = poly[i][0], yi = poly[i][1];
-      const xj = poly[j][0], yj = poly[j][1];
-      const intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi + 1e-9) + xi);
-      if (intersect) inside = !inside;
-    }
-    return inside;
-  }
-
-  for (let py = 0; py < taille; py++) {
-    const rowStart = py * (taille * 3 + 1);
-    buf[rowStart] = 0;
-    const y = (py / taille) * 120;
-
-    for (let px = 0; px < taille; px++) {
-      const x = (px / taille) * 120;
-      const tGrad = (x + y) / 240;
-
-      let r = Math.round(7 * (1 - tGrad) + 2 * tGrad);
-      let g = Math.round(17 * (1 - tGrad) + 4 * tGrad);
-      let b = Math.round(26 * (1 - tGrad) + 6 * tGrad);
-
-      const dCenter = Math.hypot(x - 60, y - 62);
-      if (dCenter < 52) {
-        const glow = Math.pow(1 - dCenter / 52, 2.2) * 0.42;
-        r = Math.min(255, Math.round(r + 45 * glow));
-        g = Math.min(255, Math.round(g + 189 * glow));
-        b = Math.min(255, Math.round(b + 248 * glow));
-      }
-
-      let gradR = 56, gradG = 189, gradB = 248;
-      if (tGrad < 0.45) {
-        const k = tGrad / 0.45;
-        gradR = Math.round(255 * (1 - k) + 125 * k);
-        gradG = Math.round(255 * (1 - k) + 211 * k);
-        gradB = Math.round(255 * (1 - k) + 252 * k);
-      } else {
-        const k = (tGrad - 0.45) / 0.55;
-        gradR = Math.round(125 * (1 - k) + 52 * k);
-        gradG = Math.round(211 * (1 - k) + 211 * k);
-        gradB = Math.round(252 * (1 - k) + 153 * k);
-      }
-
-      let dBook = 999;
-      if (x >= 24 && x <= 96) {
-        const dx = Math.abs(x - 60);
-        const arch = -6 * Math.sin((dx / 36) * Math.PI);
-        const yTop = 54 + (36 - dx) * (5 / 36) + arch;
-        const yBot = 88 + (36 - dx) * (5 / 36) + arch;
-
-        if (y >= yTop && y <= yBot) {
-          r = 3; g = 8; b = 13;
-        }
-        dBook = Math.min(Math.abs(y - yTop), Math.abs(y - yBot));
-        if (y < yTop - 3 || y > yBot + 3) dBook = 999;
-      }
-      dBook = Math.min(
-        dBook,
-        distSegment(x, y, 24, 54, 24, 88),
-        distSegment(x, y, 96, 54, 96, 88),
-        distSegment(x, y, 60, 59, 60, 93)
-      );
-
-      let dLinesLeft = 999, dLinesRight = 999;
-      if (x >= 32 && x <= 55) {
-        const k = (x - 32) / 23;
-        const yL1 = 64 + 3 * k - 2.2 * Math.sin(k * Math.PI);
-        const yL2 = 74 + 3 * k - 2.2 * Math.sin(k * Math.PI);
-        dLinesLeft = Math.min(Math.abs(y - yL1), Math.abs(y - yL2));
-      }
-      if (x >= 65 && x <= 88) {
-        const k = (88 - x) / 23;
-        const yR1 = 64 + 3 * k - 2.2 * Math.sin(k * Math.PI);
-        const yR2 = 74 + 3 * k - 2.2 * Math.sin(k * Math.PI);
-        dLinesRight = Math.min(Math.abs(y - yR1), Math.abs(y - yR2));
-      }
-
-      const inStar = dansPolygone(x, y, starPts);
-      let dStarEdge = 999;
-      for (let i = 0; i < starPts.length; i++) {
-        const p1 = starPts[i], p2 = starPts[(i + 1) % starPts.length];
-        dStarEdge = Math.min(dStarEdge, distSegment(x, y, p1[0], p1[1], p2[0], p2[1]));
-      }
-
-      const dMinGlow = Math.min(dBook, inStar ? 0 : dStarEdge);
-      if (dMinGlow < 6.5) {
-        const gFactor = Math.pow(1 - dMinGlow / 6.5, 2) * 0.6;
-        r = Math.min(255, Math.round(r + gradR * gFactor));
-        g = Math.min(255, Math.round(g + gradG * gFactor));
-        b = Math.min(255, Math.round(b + gradB * gFactor));
-      }
-
-      if (inStar || dStarEdge < 1.1 || dBook < 2.3) {
-        r = gradR; g = gradG; b = gradB;
-      } else if (dLinesLeft < 1.35) {
-        r = 125; g = 211; b = 252;
-      } else if (dLinesRight < 1.35) {
-        r = 52; g = 211; b = 153;
-      }
-
-      const idx = rowStart + 1 + px * 3;
-      buf[idx] = r;
-      buf[idx + 1] = g;
-      buf[idx + 2] = b;
-    }
-  }
-
-  const tableCRC = new Uint32Array(256);
-  for (let n = 0; n < 256; n++) {
-    let c = n;
-    for (let k = 0; k < 8; k++) c = (c & 1) ? (0xedb88320 ^ (c >>> 1)) : (c >>> 1);
-    tableCRC[n] = c >>> 0;
-  }
-  function crc32(b) {
-    let c = 0xffffffff;
-    for (let i = 0; i < b.length; i++) c = tableCRC[(c ^ b[i]) & 0xff] ^ (c >>> 8);
-    return (c ^ 0xffffffff) >>> 0;
-  }
-  function creerChunk(type, data) {
-    const out = Buffer.alloc(data.length + 12);
-    out.writeUInt32BE(data.length, 0);
-    out.write(type, 4, 4, 'ascii');
-    data.copy(out, 8);
-    out.writeUInt32BE(crc32(out.slice(4, data.length + 8)), data.length + 8);
-    return out;
-  }
-
-  const sig = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
-  const ihdr = Buffer.alloc(13);
-  ihdr.writeUInt32BE(taille, 0);
-  ihdr.writeUInt32BE(taille, 4);
-  ihdr[8] = 8;
-  ihdr[9] = 2;
-  const idat = zlib.deflateSync(buf, { level: 9 });
-  return Buffer.concat([
-    sig,
-    creerChunk('IHDR', ihdr),
-    creerChunk('IDAT', idat),
-    creerChunk('IEND', Buffer.alloc(0))
-  ]);
-}
-
-// ============================================================================
-// LE PREMIER LOGO EN 4K — SANS BORDURE BLEUE AUTOUR DU CARRÉ + OMBRE LUMINEUSE
-// ============================================================================
 const LOGO_FAVICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="512" height="512">
   <defs>
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -318,10 +506,10 @@ const LOGO_FAVICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1
   <path d="M60 20 L63.5 29.5 L73.5 30 L65.5 36 L68.5 45.5 L60 40 L51.5 45.5 L54.5 36 L46.5 30 L56.5 29.5 Z" fill="url(#titleGrad)" filter="url(#glow)"/>
   <path d="M24 54 C38 48, 52 52, 60 59 C68 52, 82 48, 96 54 L96 88 C82 82, 68 86, 60 93 C52 86, 38 82, 24 88 Z" fill="none" stroke="url(#titleGrad)" stroke-width="5" stroke-linejoin="round" filter="url(#glow)"/>
   <line x1="60" y1="59" x2="60" y2="93" stroke="url(#titleGrad)" stroke-width="4" stroke-linecap="round"/>
-  <path d="M32 64 C42 61, 50 63, 55 67" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-  <path d="M32 74 C42 71, 50 73, 55 77" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-  <path d="M88 64 C78 61, 70 63, 65 67" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-  <path d="M88 74 C78 71, 70 73, 65 77" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+  <path d="M32 64 C42 61, 50 63, 55 67" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+  <path d="M32 74 C42 71, 50 73, 55 77" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+  <path d="M88 64 C78 61, 70 63, 65 67" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+  <path d="M88 74 C78 71, 70 73, 65 77" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
 </svg>`;
 
 function genererLogoInlineSVG(classeCSS) {
@@ -346,1856 +534,1164 @@ function genererLogoInlineSVG(classeCSS) {
     <path d="M60 20 L63.5 29.5 L73.5 30 L65.5 36 L68.5 45.5 L60 40 L51.5 45.5 L54.5 36 L46.5 30 L56.5 29.5 Z" fill="url(#titleGrad_${classeCSS})" filter="url(#glow_${classeCSS})"/>
     <path d="M24 54 C38 48, 52 52, 60 59 C68 52, 82 48, 96 54 L96 88 C82 82, 68 86, 60 93 C52 86, 38 82, 24 88 Z" fill="none" stroke="url(#titleGrad_${classeCSS})" stroke-width="5" stroke-linejoin="round" filter="url(#glow_${classeCSS})"/>
     <line x1="60" y1="59" x2="60" y2="93" stroke="url(#titleGrad_${classeCSS})" stroke-width="4" stroke-linecap="round"/>
-    <path d="M32 64 C42 61, 50 63, 55 67" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-    <path d="M32 74 C42 71, 50 73, 55 77" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-    <path d="M88 64 C78 61, 70 63, 65 67" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-    <path d="M88 74 C78 71, 70 73, 65 77" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+    <path d="M32 64 C42 61, 50 63, 55 67" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+    <path d="M32 74 C42 71, 50 73, 55 77" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+    <path d="M88 64 C78 61, 70 63, 65 67" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+    <path d="M88 74 C78 71, 70 73, 65 77" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
   </svg>`;
 }
 
-// ============================================================================
-// GRAPHIE AUTHENTIQUE DES LETTRES MYSTÉRIEUSES + SIMPLIFICATION PROPRE DU RESTE
-// ============================================================================
+const ICONE_LIVRE_SVG = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`;
+
+function creerAppleTouchIconPNG(taille = 180) {
+  const buf = Buffer.alloc(taille * (taille * 3 + 1));
+  function distSeg(px, py, ax, ay, bx, by) {
+    const dx = bx - ax, dy = by - ay, l2 = dx * dx + dy * dy;
+    const t = l2 === 0 ? 0 : Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / l2));
+    return Math.hypot(px - (ax + t * dx), py - (ay + t * dy));
+  }
+  for (let py = 0; py < taille; py++) {
+    const row = py * (taille * 3 + 1);
+    buf[row] = 0;
+    const y = (py / taille) * 120;
+    for (let px = 0; px < taille; px++) {
+      const x = (px / taille) * 120, tg = (x + y) / 240;
+      let r = Math.round(7 * (1 - tg) + 2 * tg), g = Math.round(17 * (1 - tg) + 4 * tg), b = Math.round(26 * (1 - tg) + 6 * tg);
+      const dc = Math.hypot(x - 60, y - 62);
+      if (dc < 50) {
+        const gl = Math.pow(1 - dc / 50, 2) * 0.4;
+        r = Math.min(255, Math.round(r + 45 * gl)); g = Math.min(255, Math.round(g + 189 * gl)); b = Math.min(255, Math.round(b + 248 * gl));
+      }
+      let db = 999;
+      if (x >= 24 && x <= 96) {
+        const dx = Math.abs(x - 60), arch = -6 * Math.sin((dx / 36) * Math.PI);
+        const yt = 54 + (36 - dx) * (5 / 36) + arch, yb = 88 + (36 - dx) * (5 / 36) + arch;
+        if (y >= yt && y <= yb) { r = 3; g = 8; b = 13; }
+        db = Math.min(Math.abs(y - yt), Math.abs(y - yb));
+      }
+      db = Math.min(db, distSeg(x, y, 24, 54, 24, 88), distSeg(x, y, 96, 54, 96, 88), distSeg(x, y, 60, 59, 60, 93), Math.max(0, Math.hypot(x - 60, y - 33) - 9));
+      if (db < 2.4) { r = 56; g = 189; b = 248; }
+      const i = row + 1 + px * 3;
+      buf[i] = r; buf[i + 1] = g; buf[i + 2] = b;
+    }
+  }
+  const tab = new Uint32Array(256);
+  for (let n = 0; n < 256; n++) {
+    let c = n;
+    for (let k = 0; k < 8; k++) c = (c & 1) ? (0xedb88320 ^ (c >>> 1)) : (c >>> 1);
+    tab[n] = c >>> 0;
+  }
+  function crc(b) {
+    let c = 0xffffffff;
+    for (let i = 0; i < b.length; i++) c = tab[(c ^ b[i]) & 0xff] ^ (c >>> 8);
+    return (c ^ 0xffffffff) >>> 0;
+  }
+  function chk(t, d) {
+    const o = Buffer.alloc(d.length + 12);
+    o.writeUInt32BE(d.length, 0); o.write(t, 4, 4, 'ascii'); d.copy(o, 8);
+    o.writeUInt32BE(crc(o.slice(4, d.length + 8)), d.length + 8);
+    return o;
+  }
+  const ihdr = Buffer.alloc(13);
+  ihdr.writeUInt32BE(taille, 0); ihdr.writeUInt32BE(taille, 4); ihdr[8] = 8; ihdr[9] = 2;
+  return Buffer.concat([Buffer.from([137,80,78,71,13,10,26,10]), chk('IHDR', ihdr), chk('IDAT', zlib.deflateSync(buf)), chk('IEND', Buffer.alloc(0))]);
+}
+
 const LETTRES_MYSTERIEUSES_EXACTES = {
-  "2:1": "آلٓمٓ",
-  "3:1": "آلٓمٓ",
-  "7:1": "آلٓمٓصٓ",
-  "10:1": "آلٓر",
-  "11:1": "آلٓر",
-  "12:1": "آلٓر",
-  "13:1": "آلٓمٓر",
-  "14:1": "آلٓر",
-  "15:1": "آلٓر",
-  "19:1": "كٓهيعٓصٓ",
-  "20:1": "طه",
-  "26:1": "طسٓمٓ",
-  "27:1": "طسٓ",
-  "28:1": "طسٓمٓ",
-  "29:1": "آلٓمٓ",
-  "30:1": "آلٓمٓ",
-  "31:1": "آلٓمٓ",
-  "32:1": "آلٓمٓ",
-  "36:1": "يسٓ",
-  "38:1": "صٓ وَالْقُرْآنِ ذِي الذِّكْرِ",
-  "40:1": "حمٓ",
-  "41:1": "حمٓ",
-  "42:1": "حمٓ",
-  "42:2": "عٓسٓقٓ",
-  "43:1": "حمٓ",
-  "44:1": "حمٓ",
-  "45:1": "حمٓ",
-  "46:1": "حمٓ",
-  "50:1": "قٓ وَالْقُرْآنِ الْمَجِيدِ",
-  "68:1": "نٓ وَالْقَلَمِ وَمَا يَسْطُرُونَ"
+  "2:1":"آلٓمٓ","3:1":"آلٓمٓ","7:1":"آلٓمٓصٓ","10:1":"آلٓر","11:1":"آلٓر","12:1":"آلٓر","13:1":"آلٓمٓر","14:1":"آلٓر","15:1":"آلٓر","19:1":"كٓهيعٓصٓ","20:1":"طه","26:1":"طسٓمٓ","27:1":"طسٓ","28:1":"طسٓمٓ","29:1":"آلٓمٓ","30:1":"آلٓمٓ","31:1":"آلٓمٓ","32:1":"آلٓمٓ","36:1":"يسٓ","38:1":"صٓ وَالْقُرْآنِ ذِي الذِّكْرِ","40:1":"حمٓ","41:1":"حمٓ","42:1":"حمٓ","42:2":"عٓسٓقٓ","43:1":"حمٓ","44:1":"حمٓ","45:1":"حمٓ","46:1":"حمٓ","50:1":"قٓ وَالْقُرْآنِ الْمَجِيدِ","68:1":"نٓ وَالْقَلَمِ وَمَا يَسْطُرُونَ"
 };
 
-function nettoyerArabeToutEnGardantLettresMysterieuses(cleVerset, texteArabeBrut) {
-  if (LETTRES_MYSTERIEUSES_EXACTES[cleVerset]) {
-    return LETTRES_MYSTERIEUSES_EXACTES[cleVerset];
-  }
-  if (!texteArabeBrut) return '';
-  let t = String(texteArabeBrut);
-  t = t.replace(/\u0671/g, '\u0627');
-  t = t.replace(/\u06E1/g, '\u0652');
-  t = t.replace(/[\u06D6-\u06DC\u06DF\u06E0\u06E2\u06E3\u06E5\u06E6\u06E7\u06E8\u06EA\u06EB\u06EC\u06ED]/g, '');
-  return t.replace(/\s+/g, ' ').trim();
+function nettoyerArabe(cle, tBrut) {
+  if (LETTRES_MYSTERIEUSES_EXACTES[cle]) return LETTRES_MYSTERIEUSES_EXACTES[cle];
+  return String(tBrut || '').replace(/\u0671/g, '\u0627').replace(/\u06E1/g, '\u0652').replace(/[\u06D6-\u06DC\u06DF\u06E0\u06E2\u06E3\u06E5\u06E6\u06E7\u06E8\u06EA\u06EB\u06EC\u06ED]/g, '').replace(/\s+/g, ' ').trim();
 }
 
-function restaurerHamidullah1977(cleVerset, texte) {
-  if (VERSIONS_ORIGINALES_HAMIDULLAH_1977[cleVerset]) {
-    return VERSIONS_ORIGINALES_HAMIDULLAH_1977[cleVerset];
-  }
-  let t = String(texte || '');
-  t = t.replace(/Seigneur de l['’]univers/gi, 'Seigneur des mondes');
-  t = t.replace(/Seigneur des univers/gi, 'Seigneur des mondes');
-  t = t.replace(/pour l['’]univers/gi, 'pour les mondes');
-  t = t.replace(/à travers l['’]univers/gi, 'à travers les mondes');
-  t = t.replace(/sur l['’]univers/gi, 'sur les mondes');
-  t = t.replace(/dans l['’]univers/gi, 'dans les mondes');
-  t = t.replace(/de tout l['’]univers/gi, 'de tous les mondes');
-  return t;
+function restaurerHamidullah1977(cle, texte) {
+  if (VERSIONS_ORIGINALES_HAMIDULLAH_1977[cle]) return VERSIONS_ORIGINALES_HAMIDULLAH_1977[cle];
+  return String(texte || '').replace(/Seigneur de l['’]univers/gi, 'Seigneur des mondes').replace(/Seigneur des univers/gi, 'Seigneur des mondes').replace(/pour l['’]univers/gi, 'pour les mondes');
 }
 
-async function telechargerJSON(url, essais = 3) {
+async function telechargerJSON(url, essais = 5) {
   for (let i = 0; i < essais; i++) {
     try {
       const res = await fetch(url);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return await res.json();
-    } catch (err) {
-      if (i === essais - 1) throw err;
-      await new Promise(r => setTimeout(r, 1000));
+    } catch (e) {
+      if (i === essais - 1) throw e;
+      await new Promise(r => setTimeout(r, 1000 * (i + 1)));
     }
   }
 }
 
-function echapperHTML(texte) {
-  if (!texte) return '';
-  return String(texte)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+function echapperHTML(t) {
+  return String(t || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-function nettoyerTexteIntegralSansFaute(texteBrut) {
-  if (!texteBrut) return '';
-  let t = String(texteBrut);
+let compteurDoublonsRepares = 0;
+function separerDoublonsConsecutifs(listeTafsirBrut) {
+  const copie = listeTafsirBrut.map(item => Object.assign({}, item));
+  for (let i = 0; i < copie.length - 1; i++) {
+    const t1 = String(copie[i]?.translation || '').trim();
+    const t2 = String(copie[i + 1]?.translation || '').trim();
+    if (t1.length > 120 && t1 === t2) {
+      const phrases = t1.match(/[^.!?]+[.!?]+/g);
+      if (phrases && phrases.length >= 2) {
+        const milieu = Math.ceil(phrases.length / 2);
+        copie[i].translation = phrases.slice(0, milieu).join(' ').trim();
+        copie[i + 1].translation = phrases.slice(milieu).join(' ').trim();
+        compteurDoublonsRepares++;
+      }
+    }
+  }
+  return copie;
+}
 
-  t = t.replace(/\[\d+\]/g, '');
+function structurerEtMettreEnValeurTafsir(textePropre) {
+  if (!textePropre) return '';
+  let t = String(textePropre);
+  if (t.includes('<strong')) return t;
 
-  for (let passe = 0; passe < 4; passe++) {
-    t = t.replace(/\s*\([^()]*`[^()]*\)/g, '');
-    t = t.replace(/\s*\([a-zA-ZâîûôêÂÎÛÔÊĥĵ'-]+\)/g, function(match) {
-      if (/^(pluriel|singulier|littéralement|c'est-à-dire|ou)$/i.test(match.slice(1, -1))) return match;
-      if (match.includes('-') || /[âîûĥĵ]/i.test(match)) return '';
-      return match;
+  const idxPoint = t.search(/[.!?]\s+[A-ZÉÈÊÀÂÎÔÛÇÁÍÓÚÑ¡¿]/);
+  if (idxPoint > 22 && idxPoint < 260 && !t.startsWith('<br>')) {
+    const p1 = t.slice(0, idxPoint + 1);
+    let suite = t.slice(idxPoint + 1).trim();
+
+    if (suite.length > 380 && !suite.includes('<br>')) {
+      const moitie = Math.floor(suite.length * 0.48);
+      const sousChaine = suite.slice(moitie);
+      const idxCoupe = sousChaine.search(/[.!?]\s+[A-ZÉÈÊÀÂÎÔÛÇÁÍÓÚÑ¡¿]/);
+      if (idxCoupe !== -1 && idxCoupe < 220) {
+        const pos = moitie + idxCoupe + 1;
+        suite = suite.slice(0, pos).trim() + '<br><br>' + suite.slice(pos).trim();
+      }
+    }
+    return `<strong style="color:#ffffff;">${p1}</strong> ${suite}`;
+  }
+  return t;
+}
+
+function nettoyerEtSimplifierGrandTafsirFr(cle, tBrut) {
+  if (TAFSIR_INTEGRAL_CORRIGE_FR[cle]) return TAFSIR_INTEGRAL_CORRIGE_FR[cle];
+  let t = String(tBrut || '').replace(/\[\d+\]/g, '');
+
+  for (let p = 0; p < 6; p++) {
+    t = t.replace(/\s*\([^()]*[ṣḍṭḥḏẓāīūâîûĥĵšğ`ʼ'’_-][^()]*\)/gi, '');
+    t = t.replace(/\s*\([a-zA-Z\u00C0-\u024F\u1E00-\u1EFF\s'-]{1,30}\)/g, function(m) {
+      const interieur = m.slice(1, -1).trim();
+      if (/^(pluriel|singulier|ou|c'est-à-dire|littéralement)/i.test(interieur)) return m;
+      if (interieur.includes('-') || /[ṣḍṭḥḏẓāīūâîûĥĵ]/i.test(interieur)) return '';
+      return m;
     });
     t = t.replace(/\s*\(\s*\)/g, '');
   }
 
-  t = t.replace(/\s*\([^()]*voir\s+note[^()]*\)/gi, '');
-  t = t.replace(/`/g, '');
-  t = t.replace(/ĥ/g, 'h').replace(/Ĥ/g, 'H').replace(/ĵ/g, 'j').replace(/Ĵ/g, 'J');
+  t = t.replace(/([a-zàâéèêîôûùç])\.([A-ZÉÈÊÀÂÎÔÛÇL])/g, '$1. $2');
+  t = t.replace(/\s*\([^()]*voir\s+note[^()]*\)/gi, '').replace(/`/g, '');
   t = t.replace(/Seigneur de l['’]univers/gi, 'Seigneur des mondes');
+
+  t = t.replace(/\bleur entêtement\b/gi, 'leur obstination à refuser la vérité');
+  t = t.replace(/\bentêtement\b/gi, 'obstination');
+  t = t.replace(/\bl['’]entendement\b/gi, 'la raison et la capacité de comprendre');
+  t = t.replace(/\bentendement\b/gi, 'raison et compréhension');
+  t = t.replace(/\bprescriptions divines\b/gi, "commandements d'Allāh");
+  t = t.replace(/\brecommandations prophétiques\b/gi, 'enseignements du Prophète ﷺ');
+  t = t.replace(/\bd['’]être rétribués par\b/gi, "d'être récompensés par");
+  t = t.replace(/\brétribués\b/gi, 'récompensés');
+  t = t.replace(/\brétribuer\b/gi, 'récompenser selon les œuvres');
+  t = t.replace(/\bla rétribution\b/gi, 'la récompense et le jugement des œuvres');
+  t = t.replace(/\bCeux qui mécroient\b/g, 'Ceux qui rejettent la foi (les mécréants)');
+  t = t.replace(/\bmécroient\b/g, 'rejettent la foi');
+  t = t.replace(/\bl['’]ignominie\b/gi, "l'humiliation et le déshonneur");
+  t = t.replace(/\bl['’]opprobre\b/gi, "la honte et l'humiliation");
+  t = t.replace(/\bcourroux\b/gi, 'colère');
+  t = t.replace(/\binéluctable\b/gi, 'inévitable et certain');
+  t = t.replace(/\bdissension\b/gi, 'division et désaccord');
+  t = t.replace(/\bexhortation\b/gi, 'rappel et conseil bienveillant');
+  t = t.replace(/\bl['’]iniquité\b/gi, "l'injustice grave");
+  t = t.replace(/\bles iniques\b/gi, 'les injustes');
+  t = t.replace(/\binique\b/gi, 'injuste');
+  t = t.replace(/\bles réprouvés\b/gi, 'ceux qui sont voués au châtiment');
+  t = t.replace(/\bles prévaricateurs\b/gi, 'les transgresseurs qui désobéissent ouvertement');
+  t = t.replace(/\bprévaricateurs\b/gi, 'transgresseurs');
+  t = t.replace(/\bl['’]outrecuidance\b/gi, "l'arrogance démesurée");
+  t = t.replace(/\boutrecuidance\b/gi, 'arrogance démesurée');
+  t = t.replace(/\bsubterfuges\b/gi, 'ruses et stratagèmes trompeurs');
+  t = t.replace(/\bmanigances\b/gi, 'complots et ruses secrètes');
+  t = t.replace(/\bl['’]indigence\b/gi, 'la grande pauvreté');
+  t = t.replace(/\bl['’]opulence\b/gi, "la grande richesse et l'abondance");
+  t = t.replace(/\bla munificence\b/gi, 'la générosité infinie');
+  t = t.replace(/\bassujettis\b/gi, "soumis par la puissance d'Allāh");
+  t = t.replace(/\bassujetti\b/gi, "soumis par la puissance d'Allāh");
+  t = t.replace(/\blicite\b/gi, 'permis (Halāl)');
+  t = t.replace(/\billicite\b/gi, 'interdit (Harām)');
+  t = t.replace(/\bpéremptoire\b/gi, 'tranchant et indiscutable');
+  t = t.replace(/\ballégations\b/gi, 'affirmations mensongères sans preuve');
+  t = t.replace(/\baffliction\b/gi, 'grande peine et épreuve');
+  t = t.replace(/\bpérégrinations\b/gi, 'déplacements et voyages sur terre');
 
   t = t.replace(
     /Il a déjà été question de telles lettres séparées au début de [Ss]ourate Al-Baqarah\.?/gi,
     "Ces lettres isolées placées en ouverture de la sourate appartiennent au secret d'Allāh et démontrent le miracle inimitable du Coran, composé des mêmes lettres arabes que celles utilisées par les hommes."
   );
-  t = t.replace(
-    /Ces lettres séparées apparaissent dans [Ss]ourate Al-Baqarah et renvoient à/gi,
-    "Ces lettres isolées placées en ouverture de la sourate démontrent"
-  );
 
-  t = t.replace(/\bla zak[âa]t\b(?!\s*\()/gi, "la Zakât (l'aumône purificatrice obligatoire)");
-  t = t.replace(/\bla sal[âa]t\b(?!\s*\()/gi, "la Salât (la prière rituelle)");
-  t = t.replace(/\s+-\s+(All[âa]hu|Ar-Rahm[âa]nu|Ar-Rah[îi]mu)/g, '<br>• <strong>$1</strong>');
-
-  t = t.replace(/\s*\(\s*\)/g, '');
+  t = t.replace(/\s+(\d+)\s*-\s+/g, '<br>• <strong>$1.</strong> ');
   t = t.replace(/\s+/g, ' ').replace(/\s+([,.;:!?])/g, '$1').trim();
-
-  // Mise en valeur claire de la première phrase directrice lorsque le Tafsīr comporte plusieurs phrases
-  const idxPoint = t.search(/[.!?]\s+[A-ZÉÈÊÀÂÎÔÛÇ]/);
-  if (idxPoint > 25 && idxPoint < 260 && !t.includes('<br>')) {
-    const phraseCle = t.slice(0, idxPoint + 1);
-    const suite = t.slice(idxPoint + 1).trim();
-    if (suite.length > 20) {
-      t = `<strong style="color:#ffffff;">${phraseCle}</strong> ${suite}`;
-    }
-  }
-
-  return t;
+  return structurerEtMettreEnValeurTafsir(t);
 }
 
-function nettoyerTraductionPure(cleVerset, tradBrute, footnotesTrad, footnotesTafsir) {
-  let trad = restaurerHamidullah1977(cleVerset, tradBrute);
-  trad = trad.replace(/\s*\[\d+\]/g, '');
-  trad = trad.replace(/\s*\([^()]*voir\s+note[^()]*\)/gi, '');
-  trad = trad.replace(/\s*\([^()]*sourate\s+\d+[^()]*\)/gi, '');
-  trad = trad.replace(/\s*\(\s*\)/g, '');
-  trad = trad.replace(/`/g, '');
-
-  const notesMap = {};
-  const toutesFootnotes = [footnotesTrad || '', footnotesTafsir || ''].join('\n');
-
-  if (toutesFootnotes.trim()) {
-    const lignes = toutesFootnotes.split(/\n+/);
-    let numCourant = null;
-    for (const l of lignes) {
-      const match = l.match(/^\s*\[(\d+)\]\s*(.*)/);
-      if (match) {
-        numCourant = match[1];
-        if (!notesMap[numCourant]) {
-          notesMap[numCourant] = match[2].trim();
-        }
-      } else if (numCourant && l.trim()) {
-        notesMap[numCourant] += ' ' + l.trim();
-      }
-    }
+function nettoyerTexteIntl(tBrut, estTafsir = false) {
+  let t = String(tBrut || '').replace(/\[\d+\]/g, '').replace(/\s*\(\s*\)/g, '').replace(/`/g, '');
+  t = t.replace(/Al[\u002D\u2010\u2011\u2012\u2013\u2014\u2212]lah/gi, 'Allah');
+  t = t.replace(/\bAlá\b/g, 'Allah');
+  t = t.replace(/([a-z])\.([A-Z])/g, '$1. $2');
+  t = t.replace(
+    /Ya se ha hablado sobre las letras separadas en el comienzo de la sura Al-Báqarah\.?/gi,
+    "Estas letras aisladas situadas al comienzo de la sura pertenecen al conocimiento de Allah y demuestran el milagro inimitable del Corán, compuesto por las mismas letras árabes que conocen y utilizan los seres humanos."
+  );
+  t = t.replace(/\s+/g, ' ').replace(/\s+([,.;:!?])/g, '$1').trim();
+  let p = echapperHTML(t);
+  if (estTafsir) {
+    p = p.replace(/\s+(\d+)\s*-\s+/g, '<br>• <strong>$1.</strong> ');
+    p = structurerEtMettreEnValeurTafsir(p);
   }
-
-  let precisions = [];
-  for (const num of Object.keys(notesMap)) {
-    let noteTexte = notesMap[num]
-      .replace(/`/g, '')
-      .replace(/\s*\(?voir\s+note[^)]*\)?\.?/gi, '')
-      .replace(/\s*\(\s*\)/g, '')
-      .trim();
-
-    if (!noteTexte || /^voir\s/i.test(noteTexte)) continue;
-
-    if (noteTexte.length >= 25) {
-      precisions.push(`<strong>Précision exégétique :</strong> ${echapperHTML(noteTexte)}`);
-    }
-  }
-
-  const tradPropre = echapperHTML(trad.replace(/\s+/g, ' ').replace(/\s+([,.;:!?])/g, '$1').trim());
-  return { tradPropre, noteUnique: precisions.join('<br><br>') };
+  return p;
 }
 
-const MOTEUR_SOLEIL_LUNE_V21_JS = `
+function nettoyerTafsirArabe(tBrut) {
+  let t = String(tBrut || '').replace(/\[\d+\]/g, '').replace(/\s+/g, ' ').trim();
+  t = t.replace(/سبَق الكلام على الحروف المقطَّعة في أول سورة البقرة\.?/g, "هذه الحروف المقطعة في فواتح السور سرٌّ استأثر الله بعلمه، وفيها بيان إعجاز القرآن الكريم.");
+  return echapperHTML(t).replace(/\s*(\d+)\s*-\s*/g, '<br>• <strong>$1 - </strong>');
+}
+
+function nettoyerTradFr(cle, tradBrute) {
+  let t = restaurerHamidullah1977(cle, tradBrute).replace(/\s*\[\d+\]/g, '').replace(/\s*\([^()]*voir\s+note[^()]*\)/gi, '').replace(/`/g, '');
+  return echapperHTML(t.replace(/\s+/g, ' ').replace(/\s+([,.;:!?])/g, '$1').trim());
+}
+
+const MOTEUR_CIEL_JS = `
   const bgCanvas = document.getElementById('fullPageSkyCanvas');
   const bgCtx = bgCanvas.getContext('2d');
   const sunEl = document.getElementById('flatEarthSun');
   const moonEl = document.getElementById('flatEarthMoon');
-  const skyLightingEl = document.getElementById('dynamicSkyLighting');
-
-  let wScreen = window.innerWidth;
-  let hScreen = window.innerHeight;
-  let stars = [];
-  let angleOrbite = 0.35;
-  let vitesseOrbite = 0.0015;
-
-  function chargerEtatOrbite() {
-    try {
-      const savedAngle = sessionStorage.getItem('orbit_angle_v21');
-      if (savedAngle !== null && !isNaN(Number(savedAngle))) {
-        angleOrbite = Number(savedAngle);
-      }
-    } catch (e) {}
-  }
-
-  function sauvegarderConfigCiel() {
-    try {
-      sessionStorage.setItem('orbit_angle_v21', String(angleOrbite));
-      sessionStorage.setItem('sky_stars_v21', JSON.stringify(stars));
-    } catch (e) {}
-  }
-
+  let wScreen = window.innerWidth, hScreen = window.innerHeight, stars = [], angleOrbite = 0.35;
+  try { const sa = sessionStorage.getItem('orbit_angle_v21'); if (sa !== null && !isNaN(Number(sa))) angleOrbite = Number(sa); } catch(e){}
+  function sauvegarderConfigCiel() { try { sessionStorage.setItem('orbit_angle_v21', String(angleOrbite)); } catch(e){} }
   window.addEventListener('beforeunload', sauvegarderConfigCiel);
-
-  function resizeFullSky() {
-    wScreen = window.innerWidth;
-    hScreen = window.innerHeight;
-    bgCanvas.width = wScreen;
-    bgCanvas.height = hScreen;
+  function resizeFullSky() { wScreen = window.innerWidth; hScreen = window.innerHeight; bgCanvas.width = wScreen; bgCanvas.height = hScreen; }
+  resizeFullSky();
+  for (let i = 0; i < 140; i++) {
+    const xr = Math.random(), yr = Math.random(), br = Math.random() < 0.22;
+    stars.push({ x: xr * wScreen, y: yr * hScreen, xr, yr, r: br ? 1.8 : 0.8, a: Math.random() * 0.6 + 0.25, p: Math.random() * 6.28, s: 0.015 });
   }
-
-  function initFullSky() {
-    resizeFullSky();
-    chargerEtatOrbite();
-
-    try {
-      const savedStars = sessionStorage.getItem('sky_stars_v21');
-      if (savedStars) {
-        const parsed = JSON.parse(savedStars);
-        if (Array.isArray(parsed) && parsed.length === 145) {
-          stars = parsed.map(function(s) {
-            return {
-              x: s.xRatio * wScreen,
-              y: s.yRatio * hScreen,
-              xRatio: s.xRatio,
-              yRatio: s.yRatio,
-              r: s.r,
-              alphaBase: s.alphaBase,
-              phase: s.phase,
-              speed: s.speed,
-              bright: s.bright
-            };
-          });
-          return;
-        }
-      }
-    } catch (e) {}
-
-    stars = [];
-    for (let i = 0; i < 145; i++) {
-      const xRatio = Math.random();
-      const yRatio = Math.random();
-      const bright = Math.random() < 0.22;
-      stars.push({
-        x: xRatio * wScreen,
-        y: yRatio * hScreen,
-        xRatio: xRatio,
-        yRatio: yRatio,
-        r: bright ? (Math.random() * 1.5 + 1.0) : (Math.random() * 0.9 + 0.3),
-        alphaBase: Math.random() * 0.6 + 0.25,
-        phase: Math.random() * Math.PI * 2,
-        speed: Math.random() * 0.02 + 0.006,
-        bright: bright
-      });
-    }
-  }
-
-  function mettreAJourAstres() {
-    if (!sunEl && !moonEl) return;
-
-    angleOrbite += vitesseOrbite;
-    const angleSoleil = angleOrbite;
-    const angleLune = angleOrbite - Math.PI;
-
-    const centreX = wScreen * 0.5;
-    const centreY = hScreen * 0.48;
-
-    const rayonX = Math.min(wScreen * 0.40, Math.max(330, wScreen * 0.35));
-    const rayonY = Math.min(hScreen * 0.38, Math.max(220, hScreen * 0.33));
-
-    const sunX = centreX + Math.cos(angleSoleil) * rayonX;
-    const sunY = centreY + Math.sin(angleSoleil) * rayonY;
-
-    const moonX = centreX + Math.cos(angleLune) * rayonX;
-    const moonY = centreY + Math.sin(angleLune) * rayonY;
-
-    if (sunEl) {
-      sunEl.style.transform = "translate3d(" + (sunX - 58) + "px, " + (sunY - 58) + "px, 0)";
-    }
-    if (moonEl) {
-      moonEl.style.transform = "translate3d(" + (moonX - 64) + "px, " + (moonY - 64) + "px, 0)";
-    }
-
-    if (skyLightingEl) {
-      const sunPctX = Math.round((sunX / wScreen) * 100);
-      const sunPctY = Math.round((sunY / hScreen) * 100);
-      const moonPctX = Math.round((moonX / wScreen) * 100);
-      const moonPctY = Math.round((moonY / hScreen) * 100);
-
-      skyLightingEl.style.background =
-        "radial-gradient(circle at " + sunPctX + "% " + sunPctY + "%, rgba(251, 191, 36, 0.17) 0%, rgba(245, 158, 11, 0.05) 24%, transparent 50%), " +
-        "radial-gradient(circle at " + moonPctX + "% " + moonPctY + "%, rgba(255, 255, 255, 0.20) 0%, rgba(226, 232, 240, 0.07) 26%, transparent 52%)";
-    }
-  }
-
   function renderFullSky() {
     bgCtx.clearRect(0, 0, wScreen, hScreen);
-
     for (let i = 0; i < stars.length; i++) {
-      const s = stars[i];
-      s.phase += s.speed;
-      const alpha = Math.max(0.08, Math.min(1, s.alphaBase + Math.sin(s.phase) * 0.35));
-
-      bgCtx.save();
-      bgCtx.beginPath();
-      if (s.bright) {
-        bgCtx.shadowBlur = 10;
-        bgCtx.shadowColor = "rgba(255, 255, 255, 0.85)";
-      }
-      bgCtx.fillStyle = "rgba(255, 255, 255, " + alpha + ")";
-      bgCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      bgCtx.fill();
-      bgCtx.restore();
+      const st = stars[i]; st.p += st.s;
+      const al = Math.max(0.1, Math.min(1, st.a + Math.sin(st.p) * 0.3));
+      bgCtx.fillStyle = "rgba(255,255,255," + al + ")";
+      bgCtx.beginPath(); bgCtx.arc(st.x, st.y, st.r, 0, 6.28); bgCtx.fill();
     }
-
-    mettreAJourAstres();
+    if (sunEl || moonEl) {
+      angleOrbite += 0.0015;
+      const cx = wScreen * 0.5, cy = hScreen * 0.48, rx = Math.max(320, wScreen * 0.36), ry = Math.max(210, hScreen * 0.34);
+      const sx = cx + Math.cos(angleOrbite) * rx, sy = cy + Math.sin(angleOrbite) * ry;
+      const mx = cx + Math.cos(angleOrbite - Math.PI) * rx, my = cy + Math.sin(angleOrbite - Math.PI) * ry;
+      if (sunEl) sunEl.style.transform = "translate3d(" + (sx - 58) + "px," + (sy - 58) + "px,0)";
+      if (moonEl) moonEl.style.transform = "translate3d(" + (mx - 64) + "px," + (my - 64) + "px,0)";
+    }
     requestAnimationFrame(renderFullSky);
   }
-
-  window.addEventListener('resize', function() {
-    resizeFullSky();
-    for (let i = 0; i < stars.length; i++) {
-      stars[i].x = stars[i].xRatio * wScreen;
-      stars[i].y = stars[i].yRatio * hScreen;
-    }
-  });
-
-  initFullSky();
+  window.addEventListener('resize', () => { resizeFullSky(); stars.forEach(s => { s.x = s.xr * wScreen; s.y = s.yr * hScreen; }); });
   renderFullSky();
 `;
 
 // ============================================================================
-// NAVIGATION V31 : BADGE À DROITE + BOUTON REJOUER (↺) + SWIPE TACTILE MOBILE
+// NAVIGATION V49 : BASE V44 AVEC BORDS ANIMÉS OR/BLEU (SANS TIKTOK NI MOTION DESIGN)
 // ============================================================================
-const SCRIPT_NAVIGATION_CLASSIQUE_V31 = `
+const SCRIPT_VERSET_V49 = `
   const audio = document.getElementById('ayahAudio');
   const preloadAudio = document.getElementById('preloadNextAudio');
   const playBtn = document.getElementById('playSyncBtn');
+  const replayBtn = document.getElementById('replaySyncBtn');
   const select = document.getElementById('reciterSelect');
   const autoCheck = document.getElementById('autoNextCheck');
   const stage = document.getElementById('verseStage');
   const progressBar = document.getElementById('syncProgressBar');
-  let animId = null;
-
-  const RECITATEURS_VALIDES = [
-    'Yasser_Ad-Dussary_128kbps',
-    'Alafasy_128kbps',
-    'Abdurrahmaan_As-Sudais_192kbps',
-    'Saood_ash-Shuraym_128kbps',
-    'Nasser_Alqatami_128kbps',
-    'Abdullah_Basfar_192kbps',
-    'Minshawy_Murattal_128kbps',
-    'Husary_128kbps',
-    'Hudhaify_128kbps'
-  ];
-
-  autoCheck.checked = false;
-  audio.volume = 1.0;
+  let animId = null, currentLang = 'fr', zoomScale = 1.0;
+  autoCheck.checked = false; audio.volume = 1.0;
 
   try {
-    localStorage.removeItem('autoNext');
-    localStorage.removeItem('autoNext_v2');
-    localStorage.removeItem('audio_volume_v25');
-    localStorage.removeItem('text_zoom_v28');
-    const savedReciter = localStorage.getItem('reciter');
-    if (savedReciter && RECITATEURS_VALIDES.indexOf(savedReciter) !== -1) {
-      select.value = savedReciter;
-    } else {
-      select.value = 'Yasser_Ad-Dussary_128kbps';
-    }
-  } catch (e) {}
+    const sr = localStorage.getItem('reciter');
+    if (sr) select.value = sr;
+    const savedZoom = parseFloat(localStorage.getItem('coran_zoom_v39'));
+    if (!isNaN(savedZoom) && savedZoom >= 0.75 && savedZoom <= 1.45) zoomScale = savedZoom;
+    const up = new URLSearchParams(window.location.search).get('lang');
+    const sl = localStorage.getItem('site_lang_v32');
+    if (['fr','en','es','ar'].includes(up)) { currentLang = up; localStorage.setItem('site_lang_v32', up); }
+    else if (['fr','en','es','ar'].includes(sl)) currentLang = sl;
+  } catch(e){}
 
-  function memoriserDernierVersetLu(numS, numV) {
+  function appliquerTailleTexte() {
+    const arEl = document.getElementById('arabicVerseEl');
+    const frEl = document.getElementById('frenchVerseEl');
+    const exEl = document.getElementById('mainExplanationEl');
+    const isMob = window.innerWidth <= 768;
+    if (arEl) arEl.style.fontSize = ((isMob ? 2.2 : 2.9) * zoomScale).toFixed(2) + "rem";
+    if (frEl) frEl.style.fontSize = ((isMob ? 1.25 : 1.52) * zoomScale).toFixed(2) + "rem";
+    if (exEl) {
+      const baseEx = (currentLang === 'ar') ? 1.38 : 1.06;
+      exEl.style.fontSize = (baseEx * zoomScale).toFixed(2) + "rem";
+    }
+  }
+
+  function modifierTailleTexte(delta) {
+    zoomScale = Math.max(0.75, Math.min(1.45, Math.round((zoomScale + delta) * 100) / 100));
+    try { localStorage.setItem('coran_zoom_v39', String(zoomScale)); } catch(e){}
+    appliquerTailleTexte();
+  }
+
+  function memoriserLecture(s, v) {
     try {
-      const nomS = (window.SOURATE_DATA && window.SOURATE_DATA.nomSourate) ? window.SOURATE_DATA.nomSourate : ("Sourate " + numS);
-      localStorage.setItem('last_read_v28', JSON.stringify({
-        s: numS,
-        v: numV,
-        nom: nomS
-      }));
-    } catch (e) {}
+      const nom = window.SOURATE_DATA ? window.SOURATE_DATA.nomSourate : ("Sourate " + s);
+      localStorage.setItem('last_read_v28', JSON.stringify({ s, v, nom }));
+    } catch(e){}
   }
-  memoriserDernierVersetLu(numSourateActuelle, numVersetActuel);
+  memoriserLecture(numSourateActuelle, numVersetActuel);
 
-  function prechargerVersetSuivant() {
-    if (!preloadAudio) return;
-    if (window.SOURATE_DATA && window.SOURATE_DATA.versets) {
-      const vSuiv = window.SOURATE_DATA.versets[numVersetActuel];
-      if (vSuiv && vSuiv.codeAudio) {
-        const nextUrl = "https://everyayah.com/data/" + select.value + "/" + vSuiv.codeAudio + ".mp3";
-        if (preloadAudio.src !== nextUrl) {
-          preloadAudio.src = nextUrl;
-        }
-      }
+  function txtPlay() {
+    if (!audio.paused) return currentLang === 'ar' ? "⏸ إيقاف مؤقت" : "⏸ Pause";
+    return currentLang === 'ar' ? "▶ استمع للآية" : (currentLang === 'en' ? "▶ Listen to verse" : (currentLang === 'es' ? "▶ Escuchar aleya" : "▶ Écouter le verset"));
+  }
+
+  function majAudio() {
+    const u = "https://everyayah.com/data/" + select.value + "/" + codeAudio + ".mp3";
+    if (audio.src !== u) audio.src = u;
+    if (preloadAudio && window.SOURATE_DATA && window.SOURATE_DATA.versets[numVersetActuel]) {
+      preloadAudio.src = "https://everyayah.com/data/" + select.value + "/" + window.SOURATE_DATA.versets[numVersetActuel].codeAudio + ".mp3";
     }
   }
-
-  function majSourceAudio() {
-    const nouvelleUrl = "https://everyayah.com/data/" + select.value + "/" + codeAudio + ".mp3";
-    if (audio.src !== nouvelleUrl) {
-      audio.src = nouvelleUrl;
-    }
-    audio.volume = 1.0;
-    prechargerVersetSuivant();
-  }
-  majSourceAudio();
-
-  function sauverAutoNext() {}
+  majAudio();
 
   function animerBarre() {
     if (audio.paused) return;
-    if (audio.duration && isFinite(audio.duration)) {
-      const pct = Math.min(100, (audio.currentTime / audio.duration) * 100);
-      progressBar.style.width = pct + "%";
-    }
+    if (audio.duration && isFinite(audio.duration)) progressBar.style.width = Math.min(100, (audio.currentTime / audio.duration) * 100) + "%";
     animId = requestAnimationFrame(animerBarre);
   }
-
   function arreterVisuel() {
     if (animId) cancelAnimationFrame(animId);
-    stage.classList.remove('playing');
-    progressBar.style.width = "0%";
-    playBtn.textContent = "▶ Écouter le verset";
-    playBtn.classList.remove('active');
+    stage.classList.remove('playing'); progressBar.style.width = "0%";
+    playBtn.textContent = txtPlay(); playBtn.classList.remove('active');
   }
-
   function toggleAudioSync() {
     if (audio.paused) {
-      audio.volume = 1.0;
-      stage.classList.add('playing');
-      playBtn.textContent = "⏸ Pause";
-      playBtn.classList.add('active');
-      prechargerVersetSuivant();
-      audio.play().then(function() {
-        animId = requestAnimationFrame(animerBarre);
-      }).catch(function() {
-        arreterVisuel();
-      });
-    } else {
-      audio.pause();
-      arreterVisuel();
-    }
+      stage.classList.add('playing'); playBtn.textContent = currentLang === 'ar' ? "⏸ إيقاف مؤقت" : "⏸ Pause"; playBtn.classList.add('active');
+      audio.play().then(() => { animId = requestAnimationFrame(animerBarre); }).catch(arreterVisuel);
+    } else { audio.pause(); arreterVisuel(); }
   }
-
   function rejouerAudioVerset() {
-    if (animId) cancelAnimationFrame(animId);
-    audio.pause();
-    audio.currentTime = 0;
-    audio.volume = 1.0;
-    progressBar.style.width = "0%";
-    stage.classList.add('playing');
-    playBtn.textContent = "⏸ Pause";
-    playBtn.classList.add('active');
-    prechargerVersetSuivant();
-    audio.play().then(function() {
-      animId = requestAnimationFrame(animerBarre);
-    }).catch(function() {
-      arreterVisuel();
-    });
+    audio.pause(); audio.currentTime = 0; toggleAudioSync();
   }
-
   function changerRecitateur() {
-    try { localStorage.setItem('reciter', select.value); } catch (e) {}
-    const enCours = !audio.paused;
-    majSourceAudio();
-    if (enCours) {
-      audio.play().then(function() {
-        animId = requestAnimationFrame(animerBarre);
-      }).catch(function() {
-        arreterVisuel();
-      });
-    }
+    try { localStorage.setItem('reciter', select.value); } catch(e){}
+    const enCours = !audio.paused; majAudio(); if (enCours) audio.play();
   }
-
   function basculerDeveloppementMiracle() {
-    const detailsEl = document.getElementById('miracleDeepDetails');
-    const btnEl = document.getElementById('miracleToggleBtn');
-    if (!detailsEl || !btnEl) return;
-    const estOuvert = detailsEl.classList.toggle('open');
-    btnEl.textContent = estOuvert
-      ? "▲ Masquer l'explication détaillée du miracle"
-      : "★ Développer l'explication complète & le Hadīth historique";
+    const d = document.getElementById('miracleDeepDetails');
+    const b = document.getElementById('miracleToggleBtn');
+    if (!d || !b) return;
+    const isO = d.classList.toggle('open');
+    if (currentLang === 'ar') b.textContent = isO ? "▲ إخفاء الشرح المفصل وشهادات المؤرخين" : "★ عرض الشرح الكامل وشهادات المؤرخين والحديث";
+    else if (currentLang === 'en') b.textContent = isO ? "▲ Hide detailed explanation & historian proofs" : "★ Read full explanation, Hadīth & Oxford Historian Proofs";
+    else if (currentLang === 'es') b.textContent = isO ? "▲ Ocultar explicación detallada y pruebas" : "★ Ver explicación completa, Hadiz y pruebas de historiadores";
+    else b.textContent = isO ? "▲ Masquer l'explication détaillée & les preuves des historiens" : "★ Développer l'explication complète, le Hadīth & les preuves des historiens";
+  }
+  function construireMiracle(m) {
+    if (!m) return '';
+    const isAr = currentLang === 'ar', isEn = currentLang === 'en', isEs = currentLang === 'es';
+    const t = isAr ? (m.titreAr || m.titre) : (isEn ? (m.titreEn || m.titre) : (isEs ? (m.titreEs || m.titre) : m.titre));
+    const r = isAr ? (m.resumeAr || m.resume) : (isEn ? (m.resumeEn || m.resume) : (isEs ? (m.resumeEs || m.resume) : m.resume));
+    const dv = isAr ? (m.developpementAr || m.developpement) : (isEn ? (m.developpementEn || m.developpement) : (isEs ? (m.developpementEs || m.developpement) : m.developpement));
+    const bt = isAr ? "★ عرض الشرح الكامل وشهادات المؤرخين والحديث" : (isEn ? "★ Read full explanation, Hadīth & Oxford Historian Proofs" : (isEs ? "★ Ver explicación completa, Hadiz y pruebas de historiadores" : "★ Développer l'explication complète, le Hadīth & les preuves des historiens"));
+    return '<div class="miracle-banner ae-laser-box"' + (isAr ? ' dir="rtl" style="text-align:right;"' : '') + '><div class="ae-shimmer-sweep"></div><div class="miracle-header"><span class="gold-star-icon">★</span> ' + t + '</div><p class="miracle-summary">' + r + '</p><button type="button" class="miracle-expand-btn" id="miracleToggleBtn" onclick="basculerDeveloppementMiracle()">' + bt + '</button><div class="miracle-deep-details" id="miracleDeepDetails">' + dv + '</div></div>';
   }
 
-  function construireHTMLMiracle(mObj) {
-    if (!mObj) return '';
-    return '<div class="miracle-banner">' +
-      '<div class="miracle-header"><span class="sky-star-icon">★</span> ' + mObj.titre + '</div>' +
-      '<p class="miracle-summary">' + mObj.resume + '</p>' +
-      '<button type="button" class="miracle-expand-btn" id="miracleToggleBtn" onclick="basculerDeveloppementMiracle()">' +
-        '★ Développer l\\'explication complète & le Hadīth historique' +
-      '</button>' +
-      '<div class="miracle-deep-details" id="miracleDeepDetails">' +
-        mObj.developpement +
-      '</div>' +
-    '</div>';
+  function appliquerLangueVerset() {
+    document.querySelectorAll('.lang-pill-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-lang') === currentLang));
+    if (!window.SOURATE_DATA) return;
+    const S = window.SOURATE_DATA, vData = S.versets[numVersetActuel - 1];
+    if (!vData) return;
+    const isAr = currentLang === 'ar', isEn = currentLang === 'en', isEs = currentLang === 'es';
+    const estMec = S.typeSourateClasse === 'mecquoise';
+    const typeL = isAr ? (estMec ? 'سورة مكية' : 'سورة مدنية') : (isEn ? (estMec ? 'Meccan Surah' : 'Medinan Surah') : (isEs ? (estMec ? 'Sura Mequí' : 'Sura Medinense') : S.typeSourateLabel));
+    const lieuL = isAr ? (estMec ? 'مكة المكرمة' : 'المدينة المنورة') : (isEn ? (estMec ? 'Makkah' : 'Madinah') : (isEs ? (estMec ? 'La Meca' : 'Medina') : S.lieu));
+
+    document.getElementById('homeBtnTextEl').textContent = isAr ? "‹ العودة إلى السور الـ 114" : (isEn ? "‹ Back to 114 Surahs" : (isEs ? "‹ Volver a las 114 Suras" : "‹ Retour aux 114 Sourates"));
+    document.getElementById('typeSouratePillEl').textContent = typeL;
+    const revEl = document.getElementById('revOrderTagEl');
+    if (revEl) {
+      revEl.textContent = isAr
+        ? ("ترتيب النزول: " + S.ordreRev + " (سورة " + S.numSourate + ")")
+        : (isEn ? ("Revelation #" + S.ordreRev + " (Surah #" + S.numSourate + ")") : (isEs ? (S.ordreRev + "ª revelada (Sura n°" + S.numSourate + ")") : (S.ordreRev + "e Sourate révélée (n°" + S.numSourate + ")")));
+    }
+
+    const nomT = isEn ? S.nomEn : (isEs ? S.nomEs : S.nomFr);
+    const motS = isAr ? "سورة" : (isEn ? "Surah" : (isEs ? "Sura" : "Sourate"));
+    const motV = isAr ? "الآية" : (isEn ? "Verse" : (isEs ? "Aleya" : "Verset"));
+    const motMiracle = isAr ? "إعجاز" : (isEs ? "Milagro" : "Miracle");
+
+    document.getElementById('mainTitleEl').textContent = isAr ? ("سورة " + S.nomArabe + " — الآية " + numVersetActuel) : (motS + " " + S.nomSourate + " (" + nomT + ") — " + motV + " " + numVersetActuel);
+
+    const topMiracleLink = document.getElementById('topMiraclePillLink');
+    if (topMiracleLink) {
+      const vM = topMiracleLink.getAttribute('data-v');
+      if (S.numSourate === 30) {
+        topMiracleLink.innerHTML = '<span class="gold-star-icon">★</span> ' + (isAr ? '3 معجزات (آية 1-5)' : (isEs ? '3 Milagros (a.1-5)' : '3 Miracles (v.1-5)'));
+      } else {
+        topMiracleLink.innerHTML = '<span class="gold-star-icon">★</span> ' + (isAr ? ('إعجاز : آية ' + vM) : (isEs ? ('Milagro : a.' + vM) : ('Miracle : v.' + vM)));
+      }
+    }
+
+    const subEl = document.getElementById('subHeaderInfoEl');
+    if (subEl) {
+      subEl.textContent = isAr
+        ? (typeL + " (" + lieuL + ") • التفسير المختصر الصحيح")
+        : (isEn ? (typeL + " (" + lieuL + ") • Saheeh International & Exegesis") : (isEs ? (typeL + " (" + lieuL + ") • Traducción Sheikh Isa García y Exégesis") : (typeL + " (" + lieuL + ") • Traduction Muhammad Hamidullah (1977) & Exégèse")));
+    }
+
+    const estMiracleActuel = Boolean(vData.miracle);
+    if (stage) stage.classList.toggle('is-miracle-stage', estMiracleActuel);
+
+    const jEl = document.getElementById('verseJumperSelect');
+    if (jEl) {
+      jEl.classList.toggle('is-miracle-gold', estMiracleActuel);
+      for (let idx = 0; idx < jEl.options.length; idx++) {
+        const opt = jEl.options[idx];
+        const vNum = idx + 1;
+        const vEstMir = Boolean(S.versets[idx] && S.versets[idx].miracle);
+        opt.textContent = (vEstMir ? "★ " : "") + motV + " " + vNum + " / " + S.nbVersets + (vEstMir ? (" (" + motMiracle + ")") : "");
+      }
+    }
+
+    const arEl = document.getElementById('arabicVerseEl'), frEl = document.getElementById('frenchVerseEl');
+    arEl.innerHTML = vData.texteArabe;
+    if (isAr) {
+      frEl.innerHTML = ""; frEl.style.display = "none"; arEl.style.marginBottom = "0px";
+    } else {
+      frEl.innerHTML = numVersetActuel + ". " + (isEn ? (vData.tradEn || vData.tradPropre) : (isEs ? (vData.tradEs || vData.tradPropre) : vData.tradPropre));
+      frEl.style.display = "block"; arEl.style.marginBottom = "22px";
+    }
+
+    playBtn.textContent = txtPlay();
+    replayBtn.textContent = isAr ? "↺ إعادة" : (isEn ? "↺ Replay" : (isEs ? "↺ Repetir" : "↺ Rejouer"));
+    document.getElementById('switchAutoTextEl').textContent = isAr ? "الانتقال التلقائي للآية التالية" : (isEn ? "Auto-advance" : (isEs ? "Avance automático" : "Enchaîner automatiquement"));
+
+    const tBox = document.querySelector('.tafsir-box'), mExpl = document.getElementById('mainExplanationEl');
+    tBox.setAttribute('dir', isAr ? 'rtl' : 'ltr'); tBox.style.textAlign = isAr ? 'right' : 'left';
+    document.getElementById('tafsirSectionTagEl').textContent = isAr ? "التفسير المختصر وبيان المعنى" : (isEn ? "Tafsīr & Verse Explanation" : (isEs ? "Tafsīr y Explicación de la Aleya" : "Tafsīr & Explication du verset"));
+    mExpl.innerHTML = isAr ? (vData.explicationAr || vData.explicationUnanime) : (isEn ? (vData.explicationEn || vData.explicationUnanime) : (isEs ? (vData.explicationEs || vData.explicationUnanime) : vData.explicationUnanime));
+    mExpl.style.fontFamily = isAr ? "'Scheherazade New','Amiri',serif" : "";
+
+    appliquerTailleTexte();
+
+    const exC = document.getElementById('extraNotesContainer');
+    let exH = '';
+    if (currentLang === 'fr' && vData.precisionConsensus) exH += '<div class="consensus-note">' + vData.precisionConsensus + '</div>';
+    else if (isEn && vData.precisionEn) exH += '<div class="consensus-note">' + vData.precisionEn + '</div>';
+    else if (isEs && vData.precisionEs) exH += '<div class="consensus-note">' + vData.precisionEs + '</div>';
+    else if (isAr && vData.precisionAr) exH += '<div class="consensus-note" style="border-left:none;border-right:3px solid var(--sky-bright);border-radius:12px 0 0 12px;font-family:\\'Scheherazade New\\',serif;font-size:1.22rem;">' + vData.precisionAr + '</div>';
+    exC.innerHTML = exH;
+
+    document.getElementById('miracleContainer').innerHTML = construireMiracle(vData.miracle);
+    document.getElementById('prevVerseLink').textContent = isAr ? "‹ السابقة" : (isEn ? "‹ Previous" : (isEs ? "‹ Anterior" : "‹ Précédent"));
+    document.getElementById('nextVerseLink').textContent = isAr ? "التالية ›" : (isEn ? "Next ›" : (isEs ? "Siguiente ›" : "Suivant ›"));
   }
 
-  function majEffetSpecifiqueVerset(numS, numV) {
-    if (!stage) return;
-    stage.classList.toggle('ash-shams-daylight', numS === 91 && (numV === 1 || numV === 3));
-    stage.classList.toggle('earth-leveled-glow', (numS === 91 && numV === 6) || (numS === 88 && numV === 20) || (numS === 15 && numV === 19) || (numS === 50 && numV === 7) || (numS === 71 && numV === 19));
+  function changerLangueVerset(l) { currentLang = l; try { localStorage.setItem('site_lang_v32', l); } catch(e){} appliquerLangueVerset(); }
+  appliquerLangueVerset();
+
+  function allerAuVerset(n, auto) {
+    if (!window.SOURATE_DATA || !window.SOURATE_DATA.versets[n - 1]) { window.location.href = "sourate-" + numSourateActuelle + "-verset-" + n + ".html"; return; }
+    if (!audio.paused) audio.pause(); arreterVisuel();
+    numVersetActuel = n; const vD = window.SOURATE_DATA.versets[n - 1]; codeAudio = vD.codeAudio; majAudio();
+    memoriserLecture(numSourateActuelle, n);
+    document.getElementById('badgeNumEl').textContent = numSourateActuelle + " : " + n;
+    const jEl = document.getElementById('verseJumperSelect');
+    if (jEl) jEl.value = "sourate-" + numSourateActuelle + "-verset-" + n + ".html";
+    document.getElementById('prevVerseLink').setAttribute('href', vD.lienPrecedent);
+    document.getElementById('nextVerseLink').setAttribute('href', vD.lienSuivant);
+    appliquerLangueVerset();
+    try { history.pushState({ verset: n }, '', "sourate-" + numSourateActuelle + "-verset-" + n + ".html"); } catch(e){}
+    if (auto) toggleAudioSync();
   }
 
-  majEffetSpecifiqueVerset(numSourateActuelle, numVersetActuel);
-
-  function allerAuVersetSansRecharger(numVersetCible, lancerAudioAuto) {
-    if (!window.SOURATE_DATA || !window.SOURATE_DATA.versets) {
-      sauvegarderConfigCiel();
-      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html";
-      return;
-    }
-
-    const vData = window.SOURATE_DATA.versets[numVersetCible - 1];
-    if (!vData) {
-      sauvegarderConfigCiel();
-      window.location.href = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html";
-      return;
-    }
-
-    if (!audio.paused) {
-      audio.pause();
-    }
-    arreterVisuel();
-
-    numVersetActuel = numVersetCible;
-    codeAudio = vData.codeAudio;
-    majSourceAudio();
-    majEffetSpecifiqueVerset(numSourateActuelle, numVersetCible);
-    memoriserDernierVersetLu(numSourateActuelle, numVersetCible);
-
-    document.title = "Sourate " + numSourateActuelle + " verset " + numVersetCible + " (" + window.SOURATE_DATA.nomSourate + ") - Traduction Hamidullah 1977 & Tafsir";
-    document.getElementById('badgeNumEl').textContent = numSourateActuelle + " : " + numVersetCible;
-    document.getElementById('mainTitleEl').textContent = "Sourate " + window.SOURATE_DATA.nomSourate + " (" + window.SOURATE_DATA.nomFr + ") — Verset " + numVersetCible;
-    document.getElementById('arabicVerseEl').innerHTML = vData.texteArabe;
-    document.getElementById('frenchVerseEl').innerHTML = numVersetCible + ". " + vData.tradPropre;
-    document.getElementById('mainExplanationEl').innerHTML = vData.explicationUnanime;
-
-    const extraContainer = document.getElementById('extraNotesContainer');
-    let extraHTML = '';
-    if (vData.noteUnique) extraHTML += '<div class="consensus-note">' + vData.noteUnique + '</div>';
-    if (vData.precisionConsensus) extraHTML += '<div class="consensus-note">' + vData.precisionConsensus + '</div>';
-    if (vData.texteLaurierPerso) extraHTML += '<div class="consensus-note"><strong>Le Laurier de l\\'Exégèse :</strong> ' + vData.texteLaurierPerso + '</div>';
-    extraContainer.innerHTML = extraHTML;
-
-    const miracleContainer = document.getElementById('miracleContainer');
-    miracleContainer.innerHTML = construireHTMLMiracle(vData.miracle);
-
-    const jumperEl = document.getElementById('verseJumperSelect');
-    if (jumperEl) {
-      jumperEl.value = "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html";
-      jumperEl.classList.toggle('is-miracle-verse', Boolean(vData.miracle));
-    }
-
-    document.getElementById('pageIndicatorEl').textContent = "Verset " + numVersetCible + " / " + window.SOURATE_DATA.nbVersets;
-    document.getElementById('prevVerseLink').setAttribute('href', vData.lienPrecedent);
-    document.getElementById('nextVerseLink').setAttribute('href', vData.lienSuivant);
-
-    try {
-      history.pushState({ verset: numVersetCible }, '', "sourate-" + numSourateActuelle + "-verset-" + numVersetCible + ".html");
-    } catch (e) {}
-
-    if (lancerAudioAuto) {
-      stage.classList.add('playing');
-      playBtn.textContent = "⏸ Pause";
-      playBtn.classList.add('active');
-      audio.volume = 1.0;
-      audio.play().then(function() {
-        animId = requestAnimationFrame(animerBarre);
-      }).catch(function() {
-        arreterVisuel();
-      });
-    }
-  }
-
-  function naviguerVerset(event, lienCible, autoAudio) {
-    const cleanLien = String(lienCible).split('?')[0];
-    const match = cleanLien.match(/^sourate-(\\d+)-verset-(\\d+)\\.html$/);
-    if (match && Number(match[1]) === numSourateActuelle) {
-      if (event) event.preventDefault();
-      allerAuVersetSansRecharger(Number(match[2]), autoAudio);
-      return false;
-    }
-    sauvegarderConfigCiel();
-    if (autoAudio) {
-      window.location.href = cleanLien + "?autoplay=1";
-      return false;
-    }
+  function naviguerVerset(ev, lien, auto) {
+    const m = String(lien).split('?')[0].match(/^sourate-(\\d+)-verset-(\\d+)\\.html$/);
+    if (m && Number(m[1]) === numSourateActuelle) { if (ev) ev.preventDefault(); allerAuVerset(Number(m[2]), auto); return false; }
+    if (auto) { window.location.href = String(lien).split('?')[0] + "?autoplay=1"; return false; }
     return true;
   }
-
-  window.addEventListener('popstate', function(e) {
-    if (e.state && e.state.verset) {
-      allerAuVersetSansRecharger(e.state.verset, false);
-    }
-  });
-
-  // Navigation tactile (Swipe gauche / droite sur téléphone) sur la carte du verset
-  let touchStartX = 0;
-  let touchStartY = 0;
-  if (stage) {
-    stage.addEventListener('touchstart', function(e) {
-      if (e.changedTouches && e.changedTouches[0]) {
-        touchStartX = e.changedTouches[0].screenX;
-        touchStartY = e.changedTouches[0].screenY;
-      }
-    }, { passive: true });
-
-    stage.addEventListener('touchend', function(e) {
-      if (e.changedTouches && e.changedTouches[0]) {
-        const dx = e.changedTouches[0].screenX - touchStartX;
-        const dy = e.changedTouches[0].screenY - touchStartY;
-        if (Math.abs(dx) > 65 && Math.abs(dx) > Math.abs(dy) * 1.8) {
-          if (dx < 0) {
-            const hrefSuiv = document.getElementById('nextVerseLink').getAttribute('href');
-            naviguerVerset(null, hrefSuiv, false);
-          } else {
-            const hrefPrec = document.getElementById('prevVerseLink').getAttribute('href');
-            naviguerVerset(null, hrefPrec, false);
-          }
-        }
-      }
-    }, { passive: true });
-  }
-
-  audio.onended = function() {
-    arreterVisuel();
-    if (autoCheck.checked) {
-      const hrefSuiv = document.getElementById('nextVerseLink').getAttribute('href');
-      naviguerVerset(null, hrefSuiv, true);
-    }
-  };
-
-  if (window.location.search.indexOf('autoplay=1') !== -1) {
-    autoCheck.checked = true;
-    stage.classList.add('playing');
-    audio.volume = 1.0;
-    audio.play().then(function() {
-      playBtn.textContent = "⏸ Pause";
-      playBtn.classList.add('active');
-      animId = requestAnimationFrame(animerBarre);
-    }).catch(function() {
-      arreterVisuel();
-    });
-  }
+  audio.onended = () => { arreterVisuel(); if (autoCheck.checked) naviguerVerset(null, document.getElementById('nextVerseLink').getAttribute('href'), true); };
 `;
 
-const CSS_BLEU_CIEL_V21 = `
-  .cosmos-exterior-wrapper {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    pointer-events: none;
-    overflow: hidden;
-    background: radial-gradient(ellipse at 50% 40%, #070d14 0%, #030609 65%, #010203 100%);
+// ============================================================================
+// CSS V49 : LE DESIGN DE BASE IMAGE 2 + LES BORDS ANIMÉS OR/BLEU (DE LA V44)
+// ============================================================================
+const CSS_COMMUN = `
+  @property --ae-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+  @keyframes aeLaserSpin {
+    0% { --ae-angle: 0deg; }
+    100% { --ae-angle: 360deg; }
+  }
+  @keyframes aeShimmerSweep {
+    0% { transform: translateX(-140%) skewX(-22deg); opacity: 0; }
+    18% { opacity: 0.75; }
+    38% { transform: translateX(220%) skewX(-22deg); opacity: 0; }
+    100% { transform: translateX(220%) skewX(-22deg); opacity: 0; }
+  }
+  @keyframes aeRevealCascade {
+    0% { opacity: 0; transform: translateY(14px) scale(0.985); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes titleShimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
   }
 
-  #dynamicSkyLighting {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    transition: background 0.6s ease;
-  }
+  :root { --bg-main:#020406; --bg-card:rgba(8,13,18,0.28); --bg-elevated:rgba(12,19,25,0.35); --sky-accent:#0ea5e9; --sky-bright:#38bdf8; --sky-light:#7dd3fc; --sky-dim:rgba(56,189,248,0.16); --gold-bright:#fbbf24; --gold-dim:rgba(251,191,36,0.18); --text-main:#f8fafc; --text-muted:#cbd5e1; --border-color:rgba(255,255,255,0.15); }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg-main); color:var(--text-main); font-family:'Plus Jakarta Sans',sans-serif; line-height:1.8; min-height:100vh; overflow-x:hidden; }
+  .cosmos-exterior-wrapper { position:fixed; inset:0; width:100vw; height:100vh; z-index:0; pointer-events:none; overflow:hidden; background:radial-gradient(ellipse at 50% 40%, #070d14 0%, #030609 65%, #010203 100%); }
+  #fullPageSkyCanvas { position:absolute; inset:0; width:100%; height:100%; z-index:2; }
+  .flat-earth-sun { position:fixed; top:0; left:0; width:116px; height:116px; border-radius:50%; z-index:3; pointer-events:none; }
+  .sun-core { width:100%; height:100%; border-radius:50%; background:radial-gradient(circle, #fff 0%, #fef08a 38%, #f59e0b 72%, rgba(234,88,12,0) 100%); box-shadow:0 0 35px 10px rgba(253,224,71,0.85), 0 0 90px 35px rgba(245,158,11,0.45); }
+  .flat-earth-moon { position:fixed; top:0; left:0; width:128px; height:128px; border-radius:50%; z-index:3; pointer-events:none; }
+  .moon-white-core { width:100%; height:100%; border-radius:50%; background:radial-gradient(circle at 38% 38%, #fff 0%, #f1f5f9 78%, rgba(255,255,255,0) 100%); box-shadow:0 0 35px 12px rgba(255,255,255,0.95), 0 0 85px 32px rgba(226,232,240,0.55); }
+  .interface-layer { position:relative; z-index:10; }
+  .revelation-pill { display:inline-flex; align-items:center; gap:5px; font-size:0.72rem; font-weight:800; text-transform:uppercase; padding:4px 10px; border-radius:99px; text-decoration:none; }
+  .revelation-pill.mecquoise { background:rgba(56,189,248,0.15); color:#7dd3fc; border:1px solid rgba(56,189,248,0.45); }
+  .revelation-pill.medinoise { background:rgba(16,185,129,0.16); color:#6ee7b7; border:1px solid rgba(52,211,153,0.38); }
+  .revelation-pill.miracle-pill { background:linear-gradient(135deg, rgba(251,191,36,0.28), rgba(245,158,11,0.16)); color:#fde68a; border:1.5px solid rgba(251,191,36,0.88); box-shadow:0 0 16px rgba(251,191,36,0.32); cursor:pointer; transition:0.25s; }
+  .revelation-pill.miracle-pill:hover { background:#fbbf24; color:#020406; box-shadow:0 0 24px rgba(251,191,36,0.7); }
+  .lang-switcher-group { display:inline-flex; align-items:center; background:rgba(6,12,18,0.88); border:1px solid rgba(56,189,248,0.42); padding:3px; border-radius:99px; gap:3px; }
+  .lang-pill-btn { background:transparent; color:#94a3b8; border:1px solid transparent; padding:5px 10px; border-radius:99px; font-family:inherit; font-size:0.74rem; font-weight:800; cursor:pointer; }
+  .lang-pill-btn.active { background:linear-gradient(135deg, rgba(56,189,248,0.38), rgba(14,165,233,0.32)); color:#fff; border-color:rgba(56,189,248,0.85); box-shadow:0 0 12px rgba(56,189,248,0.35); }
+  .gold-star-icon { color:#fbbf24; text-shadow:0 0 10px rgba(251,191,36,0.95), 0 0 20px rgba(245,158,11,0.75); font-size:1.05em; }
+  .sort-btn.active .gold-star-icon { color:#fde047; text-shadow:0 2px 6px rgba(0,0,0,0.85), 0 0 14px rgba(251,191,36,1); }
 
-  #fullPageSkyCanvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-  }
-
-  .flat-earth-sun {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 116px;
-    height: 116px;
-    border-radius: 50%;
-    z-index: 3;
-    pointer-events: none;
-    will-change: transform;
-  }
-  .sun-core {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: radial-gradient(circle, #ffffff 0%, #fef08a 38%, #f59e0b 72%, rgba(234, 88, 12, 0) 100%);
-    box-shadow:
-      0 0 35px 10px rgba(253, 224, 71, 0.85),
-      0 0 90px 35px rgba(245, 158, 11, 0.45),
-      0 0 160px 70px rgba(234, 88, 12, 0.22);
-    animation: sunCoronaPulse 4s ease-in-out infinite alternate;
-  }
-  @keyframes sunCoronaPulse {
-    0% { transform: scale(0.96); opacity: 0.92; }
-    100% { transform: scale(1.05); opacity: 1; }
-  }
-
-  .flat-earth-moon {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 128px;
-    height: 128px;
-    border-radius: 50%;
-    z-index: 3;
-    pointer-events: none;
-    will-change: transform;
-  }
-  .moon-white-core {
+  /* BORDURES ANIMÉES EN OR & BLEU SUR LES BANNIÈRES DE MIRACLES */
+  .miracle-banner {
     position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: radial-gradient(circle at 38% 38%, #ffffff 0%, #ffffff 48%, #f1f5f9 78%, #e2e8f0 94%, rgba(255, 255, 255, 0) 100%);
-    box-shadow:
-      0 0 35px 12px rgba(255, 255, 255, 0.95),
-      0 0 85px 32px rgba(226, 232, 240, 0.55),
-      0 0 160px 65px rgba(186, 230, 253, 0.28),
-      inset -8px -8px 18px rgba(203, 213, 225, 0.45);
-    animation: whiteMoonPulse 4.5s ease-in-out infinite alternate;
+    background: linear-gradient(145deg, rgba(6, 26, 44, 0.86) 0%, rgba(4, 12, 22, 0.94) 100%);
+    border: 1.5px solid rgba(251, 191, 36, 0.55);
+    border-radius: 22px;
+    padding: 24px 26px;
+    margin-bottom: 22px;
+    overflow: hidden;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.65), 0 0 28px rgba(56,189,248,0.22), 0 0 42px rgba(251,191,36,0.16);
   }
-  @keyframes whiteMoonPulse {
-    0% { transform: scale(0.96); opacity: 0.92; }
-    100% { transform: scale(1.05); opacity: 1; }
-  }
-
-  .verse-stage.ash-shams-daylight {
-    border-color: rgba(56, 189, 248, 0.55);
-    box-shadow:
-      0 0 60px rgba(56, 189, 248, 0.22),
-      0 20px 50px rgba(0, 0, 0, 0.55),
-      inset 0 0 50px rgba(125, 211, 252, 0.12);
-    animation: daylightSweepPulse 3.5s ease-in-out infinite alternate;
-  }
-  @keyframes daylightSweepPulse {
-    0% { box-shadow: 0 0 45px rgba(56, 189, 248, 0.16), inset 0 0 35px rgba(125, 211, 252, 0.08); }
-    100% { box-shadow: 0 0 80px rgba(56, 189, 248, 0.32), inset 0 0 65px rgba(125, 211, 252, 0.18); }
-  }
-
-  .verse-stage.earth-leveled-glow::after {
+  .miracle-banner::before {
     content: "";
     position: absolute;
-    bottom: 6px;
-    left: 8%;
-    width: 84%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.85), #ffffff, rgba(56, 189, 248, 0.85), transparent);
-    box-shadow: 0 0 18px rgba(56, 189, 248, 0.9);
-    animation: horizonExpand 3s ease-in-out infinite alternate;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2.2px;
+    background: conic-gradient(from var(--ae-angle), transparent 15%, #38bdf8 38%, #ffffff 48%, #fbbf24 58%, transparent 78%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: aeLaserSpin 4.2s linear infinite;
+    pointer-events: none;
+    z-index: 2;
   }
-  @keyframes horizonExpand {
-    0% { transform: scaleX(0.85); opacity: 0.65; }
-    100% { transform: scaleX(1.05); opacity: 1; }
+  .ae-shimmer-sweep {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), rgba(251,191,36,0.10), transparent);
+    animation: aeShimmerSweep 6.5s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
   }
-
-  .revelation-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 0.72rem;
+  .miracle-header { position:relative; z-index:3; color:#fde68a; font-weight:800; font-size:1.14rem; margin-bottom:10px; line-height:1.4; text-shadow:0 2px 10px rgba(0,0,0,0.85), 0 0 18px rgba(251,191,36,0.3); }
+  .miracle-summary { position:relative; z-index:3; color:#e0f2fe; font-size:0.97rem; line-height:1.75; margin-bottom:16px; }
+  .miracle-expand-btn {
+    position: relative;
+    z-index: 3;
+    background: linear-gradient(135deg, rgba(251,191,36,0.25), rgba(14,165,233,0.32));
+    color: #fde68a;
+    border: 1.5px solid rgba(251,191,36,0.85);
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 0.86rem;
     font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding: 4px 10px;
-    border-radius: 99px;
-    text-decoration: none;
-  }
-  .revelation-pill.mecquoise {
-    background: rgba(56, 189, 248, 0.14);
-    color: #7dd3fc;
-    border: 1px solid rgba(56, 189, 248, 0.42);
-    box-shadow: 0 0 12px rgba(56, 189, 248, 0.12);
-  }
-  .revelation-pill.medinoise {
-    background: rgba(16, 185, 129, 0.16);
-    color: #6ee7b7;
-    border: 1px solid rgba(52, 211, 153, 0.38);
-  }
-  .revelation-pill.miracle-pill {
-    background: rgba(14, 165, 233, 0.22);
-    color: #38bdf8;
-    border: 1px solid rgba(56, 189, 248, 0.6);
-    box-shadow: 0 0 16px rgba(56, 189, 248, 0.28);
     cursor: pointer;
-    transition: all 0.2s ease;
+    box-shadow: 0 0 20px rgba(251,191,36,0.28);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .revelation-pill.miracle-pill:hover {
-    background: #38bdf8;
-    color: #031521;
-    box-shadow: 0 0 22px rgba(56, 189, 248, 0.55);
-  }
+  .miracle-expand-btn:hover { background:linear-gradient(135deg, #fbbf24, #38bdf8); color:#02060d; transform:translateY(-2px) scale(1.01); box-shadow:0 0 30px rgba(251,191,36,0.65); }
+  .miracle-deep-details { position:relative; z-index:3; display:none; margin-top:20px; padding-top:20px; border-top:1px solid rgba(56,189,248,0.35); color:#f0f9ff; font-size:0.95rem; line-height:1.8; }
+  .miracle-deep-details.open { display:block; animation:aeRevealCascade 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  .miracle-deep-details p { margin-bottom:12px; }
 
-  .sky-star-icon {
-    color: #38bdf8;
-    text-shadow: 0 0 10px rgba(56, 189, 248, 0.9), 0 0 20px rgba(14, 165, 233, 0.6);
+  .miracle-pillars-grid { display:flex; flex-direction:column; gap:14px; margin-bottom:20px; }
+  .miracle-pillar-card {
+    position: relative;
+    background: linear-gradient(135deg, rgba(4, 15, 28, 0.88), rgba(2, 8, 16, 0.92));
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    border-left: 4px solid #fbbf24;
+    border-radius: 16px;
+    padding: 18px 20px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.5), inset 0 0 20px rgba(56,189,248,0.06);
+    transition: transform 0.25s ease, border-color 0.25s ease;
   }
-
-  .miracle-banner {
-    background: linear-gradient(135deg, rgba(14, 165, 233, 0.16) 0%, rgba(8, 47, 73, 0.52) 100%);
-    border: 1px solid rgba(56, 189, 248, 0.5);
-    border-radius: 18px;
-    padding: 20px 24px;
-    margin-bottom: 20px;
-    box-shadow: 0 12px 35px rgba(2, 132, 199, 0.18), inset 0 0 25px rgba(56, 189, 248, 0.08);
-  }
-  .miracle-header {
-    color: #38bdf8;
-    text-shadow: 0 0 14px rgba(56, 189, 248, 0.4);
+  .miracle-pillar-card:hover { transform: translateX(4px); border-color: #38bdf8; }
+  [dir="rtl"] .miracle-pillar-card { border-left: 1px solid rgba(56, 189, 248, 0.45); border-right: 4px solid #fbbf24; }
+  .pillar-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, rgba(251, 191, 36, 0.24), rgba(56, 189, 248, 0.18));
+    color: #fde68a;
+    border: 1px solid rgba(251, 191, 36, 0.65);
+    font-size: 0.7rem;
     font-weight: 800;
-    font-size: 1.02rem;
+    letter-spacing: 0.06em;
+    padding: 3px 11px;
+    border-radius: 99px;
     margin-bottom: 8px;
   }
-  .miracle-summary {
-    color: #e0f2fe;
-    font-size: 0.95rem;
-    line-height: 1.7;
-    margin-bottom: 14px;
+  .miracle-pillar-card h4 { color:#7dd3fc; font-size:1.04rem; font-weight:800; margin-bottom:8px; }
+  .historians-proof-section {
+    position: relative;
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(6, 12, 22, 0.95));
+    border: 1.5px solid rgba(251, 191, 36, 0.68);
+    border-radius: 18px;
+    padding: 20px 22px;
+    box-shadow: 0 0 32px rgba(251, 191, 36, 0.18);
   }
-  .miracle-expand-btn {
+  .historians-header { color:#fde68a; font-size:0.96rem; font-weight:900; letter-spacing:0.04em; margin-bottom:14px; text-transform:uppercase; }
+  .historian-quote-box {
+    background: rgba(2, 6, 12, 0.78);
+    border: 1px solid rgba(56, 189, 248, 0.38);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    transition: border-color 0.2s ease;
+  }
+  .historian-quote-box:hover { border-color: rgba(251, 191, 36, 0.7); }
+  .historian-name { color:#38bdf8; font-weight:800; font-size:0.94rem; margin-bottom:3px; }
+  .historian-role { color:#94a3b8; font-size:0.81rem; margin-bottom:8px; }
+  .historian-quote-box blockquote {
+    color: #f8fafc;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    border-left: 3px solid #fbbf24;
+    padding-left: 12px;
+    margin: 0;
+  }
+  [dir="rtl"] .historian-quote-box blockquote { border-left: none; border-right: 3px solid #fbbf24; padding-left: 0; padding-right: 12px; }
+  .proof-links-bar { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.12); }
+  .proof-links-label { font-size:0.8rem; font-weight:800; color:#fde68a; width:100%; margin-bottom:4px; }
+  .proof-link-pill {
+    display: inline-flex;
+    align-items: center;
     background: rgba(56, 189, 248, 0.16);
     color: #7dd3fc;
     border: 1px solid rgba(56, 189, 248, 0.55);
-    padding: 9px 16px;
-    border-radius: 10px;
-    font-family: inherit;
-    font-size: 0.84rem;
+    padding: 5px 12px;
+    border-radius: 99px;
+    font-size: 0.76rem;
     font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+    text-decoration: none;
+    transition: 0.2s;
   }
-  .miracle-expand-btn:hover {
-    background: #38bdf8;
-    color: #031521;
-    box-shadow: 0 0 24px rgba(56, 189, 248, 0.5);
-  }
-  .miracle-deep-details {
-    display: none;
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid rgba(56, 189, 248, 0.3);
-    color: #f0f9ff;
-    font-size: 0.95rem;
-    line-height: 1.8;
-  }
-  .miracle-deep-details.open {
-    display: block;
-  }
-  .miracle-deep-details p {
-    margin-bottom: 12px;
-  }
+  .proof-link-pill:hover { background:#38bdf8; color:#021019; transform:translateY(-1px); box-shadow:0 0 14px rgba(56,189,248,0.5); }
 
-  .interface-layer {
-    position: relative;
-    z-index: 10;
+  .asso-legal-footer {
+    max-width: 820px;
+    margin: 26px auto 0 auto;
+    padding: 16px 20px;
+    text-align: center;
+    background: rgba(6, 12, 18, 0.55);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    border-radius: 16px;
+    font-size: 0.76rem;
+    color: #94a3b8;
+    line-height: 1.6;
   }
-`;
-
-// AVEC SOLEIL & LUNE (Uniquement pour index.html)
-const HTML_SOLEIL_LUNE_ACCUEIL = `
-  <div class="cosmos-exterior-wrapper">
-    <div id="dynamicSkyLighting"></div>
-    <canvas id="fullPageSkyCanvas"></canvas>
-
-    <div class="flat-earth-sun" id="flatEarthSun">
-      <div class="sun-core"></div>
-    </div>
-
-    <div class="flat-earth-moon" id="flatEarthMoon">
-      <div class="moon-white-core"></div>
-    </div>
-  </div>
-`;
-
-// SANS SOLEIL NI LUNE (Pour l'intérieur des sourates)
-const HTML_CIEL_ETOILE_SOURATE = `
-  <div class="cosmos-exterior-wrapper">
-    <canvas id="fullPageSkyCanvas"></canvas>
-  </div>
 `;
 
 async function lancerGeneration() {
   console.log('================================================================================');
-  console.log('🚀 GÉNÉRATEUR V31 : NUMÉRO SOURATE:VERSET À DROITE + TAFSĪR LISIBLE + SWIPE IPHONE');
+  console.log('🚀 GÉNÉRATEUR V49 : DESIGN DE BASE IMAGE 2 + BORDS ANIMÉS OR/BLEU (VERSION V44)');
   console.log('================================================================================\n');
 
-  let extraitsLaurierPerso = {};
-  const cheminLaurierJSON = path.join(__dirname, 'laurier.json');
-  if (fs.existsSync(cheminLaurierJSON)) {
-    try {
-      extraitsLaurierPerso = JSON.parse(fs.readFileSync(cheminLaurierJSON, 'utf8'));
-    } catch (e) {}
-  }
-
-  let hamidullahParSourate = {};
+  let hamidullahParSourate = {}, anglaisParSourate = {}, espagnolParSourate = {}, arabeParSourate = {};
   try {
-    console.log('📖 Téléchargement du texte original de Muhammad Hamidullah (1977)...');
-    const hamidullahData = await telechargerJSON('https://api.alquran.cloud/v1/quran/fr.hamidullah');
-    if (hamidullahData && hamidullahData.data && Array.isArray(hamidullahData.data.surahs)) {
-      for (const sObj of hamidullahData.data.surahs) {
-        hamidullahParSourate[sObj.number] = sObj.ayahs;
-      }
-      console.log('✅ Traduction Hamidullah 1977 chargée !\n');
-    }
-  } catch (e) {
-    console.log('⚠️ Connexion secondaire utilisée pour la traduction.\n');
-  }
+    const [frB, enB, esB, arB] = await Promise.all([
+      telechargerJSON('https://api.alquran.cloud/v1/quran/fr.hamidullah'),
+      telechargerJSON('https://api.alquran.cloud/v1/quran/en.sahih'),
+      telechargerJSON('https://api.alquran.cloud/v1/quran/es.garcia').catch(() => telechargerJSON('https://api.alquran.cloud/v1/quran/es.cortes')),
+      telechargerJSON('https://api.alquran.cloud/v1/quran/ar.muyassar').catch(() => ({ data: { surahs: [] } }))
+    ]);
+    if (frB?.data?.surahs) frB.data.surahs.forEach(s => hamidullahParSourate[s.number] = s.ayahs);
+    if (enB?.data?.surahs) enB.data.surahs.forEach(s => anglaisParSourate[s.number] = s.ayahs);
+    if (esB?.data?.surahs) esB.data.surahs.forEach(s => espagnolParSourate[s.number] = s.ayahs);
+    if (arB?.data?.surahs) arB.data.surahs.forEach(s => arabeParSourate[s.number] = s.ayahs);
+  } catch (e) {}
 
-  const chapitresDataFr = await telechargerJSON('https://api.quran.com/api/v4/chapters?language=fr');
-  const sourates = chapitresDataFr.chapters;
+  const [chapFr, chapEn] = await Promise.all([
+    telechargerJSON('https://api.quran.com/api/v4/chapters?language=fr'),
+    telechargerJSON('https://api.quran.com/api/v4/chapters?language=en')
+  ]);
+  const sourates = chapFr.chapters, souratesEnMap = {};
+  if (chapEn?.chapters) chapEn.chapters.forEach(c => souratesEnMap[c.id] = c.translated_name ? c.translated_name.name : '');
 
   const dossierSite = path.join(__dirname, 'site');
-  if (!fs.existsSync(dossierSite)) {
-    fs.mkdirSync(dossierSite);
-  }
-
+  if (!fs.existsSync(dossierSite)) fs.mkdirSync(dossierSite);
   fs.writeFileSync(path.join(dossierSite, 'favicon.svg'), LOGO_FAVICON_SVG, 'utf8');
   fs.writeFileSync(path.join(dossierSite, 'logo-v30.svg'), LOGO_FAVICON_SVG, 'utf8');
 
-  console.log('📱 Création de l\'icône PNG RGB 24-bits (apple-touch-icon.png + Base64) pour Safari iPhone...');
-  const pngBuffer180 = creerAppleTouchIconPNG(180);
-  const pngBuffer512 = creerAppleTouchIconPNG(512);
-  fs.writeFileSync(path.join(dossierSite, 'apple-touch-icon.png'), pngBuffer180);
-  fs.writeFileSync(path.join(dossierSite, 'apple-touch-icon-precomposed.png'), pngBuffer180);
-  fs.writeFileSync(path.join(dossierSite, 'apple-touch-icon-180x180.png'), pngBuffer180);
-  fs.writeFileSync(path.join(dossierSite, 'icon-512.png'), pngBuffer512);
+  const png180 = creerAppleTouchIconPNG(180);
+  fs.writeFileSync(path.join(dossierSite, 'apple-touch-icon.png'), png180);
+  const appleIconDataUri = 'data:image/png;base64,' + png180.toString('base64');
 
-  const appleIconDataUri = 'data:image/png;base64,' + pngBuffer180.toString('base64');
-
-  const manifestJSON = {
-    name: "Le Noble Coran & Tafsīr",
-    short_name: "Coran Tafsīr",
-    description: "Traduction originale de Muhammad Hamidullah (1977) & Exégèse (Tafsīr) Al-Mukhtasar",
-    start_url: "/",
-    display: "standalone",
-    background_color: "#020406",
-    theme_color: "#020406",
-    icons: [
-      { src: "/apple-touch-icon.png?v=31", sizes: "180x180", type: "image/png" },
-      { src: "/icon-512.png?v=31", sizes: "512x512", type: "image/png", purpose: "any maskable" }
-    ]
-  };
-  fs.writeFileSync(path.join(dossierSite, 'manifest.json'), JSON.stringify(manifestJSON, null, 2), 'utf8');
-
-  const cheminHeaders = path.join(dossierSite, '_headers');
-  if (fs.existsSync(cheminHeaders)) {
-    try { fs.unlinkSync(cheminHeaders); } catch (e) {}
-  }
-
-  const souratesAvecMiracleMap = {};
-  for (const cle of Object.keys(MIRACLES)) {
-    const [sId, vId] = cle.split(':').map(Number);
-    if (!souratesAvecMiracleMap[sId]) {
-      souratesAvecMiracleMap[sId] = { premierVersetMiracle: vId, versetsMiracles: [], titre: MIRACLES[cle].titre };
-    }
-    souratesAvecMiracleMap[sId].versetsMiracles.push(vId);
-  }
+  const souratesMiracle = {};
+  Object.keys(MIRACLES).forEach(k => {
+    const [sId, vId] = k.split(':').map(Number);
+    if (!souratesMiracle[sId]) souratesMiracle[sId] = { premierVersetMiracle: vId, titre: MIRACLES[k].titre };
+  });
 
   const urlsSitemap = ['https://corantafsir.com/'];
+  let totalVersetsVerifies = 0;
 
   for (let s = 0; s < sourates.length; s++) {
-    const sourate = sourates[s];
-    const numSourate = sourate.id;
-    const nomSourate = sourate.name_simple;
-    const nomFr = sourate.translated_name ? sourate.translated_name.name : '';
-    const nomArabe = sourate.name_arabic;
-    const estMecquoise = sourate.revelation_place === 'makkah';
-    const typeSourateLabel = estMecquoise ? 'Sourate Mecquoise' : 'Sourate Médinoise';
-    const typeSourateClasse = estMecquoise ? 'mecquoise' : 'medinoise';
-    const lieu = estMecquoise ? 'La Mecque' : 'Médine';
-    const ordreRev = sourate.revelation_order;
-    const nbVersets = sourate.verses_count;
-    const infoMiracleSourate = souratesAvecMiracleMap[numSourate] || null;
+    const sr = sourates[s], numS = sr.id, nomS = sr.name_simple;
+    const nomFr = sr.translated_name ? sr.translated_name.name : '', nomEn = souratesEnMap[numS] || nomFr, nomEs = NOMS_SOURATES_ES[numS] || nomFr, nomAr = sr.name_arabic;
+    const estMec = sr.revelation_place === 'makkah', typeLabel = estMec ? 'Sourate Mecquoise' : 'Sourate Médinoise', typeCls = estMec ? 'mecquoise' : 'medinoise', lieu = estMec ? 'La Mecque' : 'Médine';
+    const ordreRev = sr.revelation_order, nbV = sr.verses_count;
+    const infoMiracleSourate = souratesMiracle[numS] || null;
 
-    console.log(`[${numSourate}/114] Génération V31 de Sourate ${numSourate} - ${nomSourate}...`);
-
-    const [tradData, tafsirData] = await Promise.all([
-      telechargerJSON(`https://quranenc.com/api/v1/translation/sura/french_rashid/${numSourate}`),
-      telechargerJSON(`https://quranenc.com/api/v1/translation/sura/french_mokhtasar/${numSourate}`)
+    const [tradD, tafFrD] = await Promise.all([
+      telechargerJSON(`https://quranenc.com/api/v1/translation/sura/french_rashid/${numS}`),
+      telechargerJSON(`https://quranenc.com/api/v1/translation/sura/french_mokhtasar/${numS}`)
+    ]);
+    const [tafEnD, tafEsD, tafArD] = await Promise.all([
+      telechargerJSON(`https://quranenc.com/api/v1/translation/sura/english_mokhtasar/${numS}`).catch(() => ({ result: [] })),
+      telechargerJSON(`https://quranenc.com/api/v1/translation/sura/spanish_mokhtasar/${numS}`).catch(() => ({ result: [] })),
+      telechargerJSON(`https://quranenc.com/api/v1/translation/sura/arabic_mokhtasar/${numS}`).catch(() => ({ result: [] }))
     ]);
 
-    const versetsTrad = tradData.result || [];
-    const versetsTafsir = tafsirData.result || [];
-    const versetsHamidullah = hamidullahParSourate[numSourate] || [];
+    console.log(`[${numS}/114] Sourate ${numS} - ${nomS} [✓ V49 : Base Image 2 + Bords animés Or/Bleu]`);
 
-    const donneesSourate = {
-      numSourate,
-      nomSourate,
-      nomFr,
-      nomArabe,
-      lieu,
-      typeSourateLabel,
-      typeSourateClasse,
-      ordreRev,
-      nbVersets,
-      versets: []
-    };
+    const donneesS = { numSourate: numS, nomSourate: nomS, nomFr, nomEn, nomEs, nomArabe: nomAr, lieu, typeSourateLabel: typeLabel, typeSourateClasse: typeCls, ordreRev, nbVersets: nbV, versets: [] };
+    const vTr = tradD.result || [];
+    const vTFr = separerDoublonsConsecutifs(tafFrD.result || []);
+    const vTEn = separerDoublonsConsecutifs(tafEnD.result || []);
+    const vTEs = separerDoublonsConsecutifs(tafEsD.result || []);
+    const vTAr = tafArD.result || [];
+    const vHam = hamidullahParSourate[numS] || [], vEn = anglaisParSourate[numS] || [], vEs = espagnolParSourate[numS] || [], vArM = arabeParSourate[numS] || [];
 
-    for (let v = 0; v < versetsTrad.length; v++) {
-      const itemTrad = versetsTrad[v];
-      const itemTafsir = versetsTafsir[v] || {};
-      const itemHamidullah = versetsHamidullah[v] || null;
-      const numVerset = Number(itemTrad.aya);
-      const cleVerset = `${numSourate}:${numVerset}`;
-      const miracle = MIRACLES[cleVerset] || null;
+    for (let v = 0; v < vTr.length; v++) {
+      totalVersetsVerifies++;
+      const numV = Number(vTr[v].aya), cle = `${numS}:${numV}`;
+      const texteArabe = echapperHTML(nettoyerArabe(cle, vTr[v].arabic_text));
+      const tradPropre = nettoyerTradFr(cle, vHam[v]?.text || vTr[v].translation);
+      const explicationUnanime = nettoyerEtSimplifierGrandTafsirFr(cle, vTFr[v]?.translation);
+      const tradEn = nettoyerTexteIntl(vEn[v]?.text || '', false);
+      const explicationEn = memoireGlobale.tafsirEn[cle] || nettoyerTexteIntl(vTEn[v]?.translation || '', true) || tradEn;
+      const tradEs = nettoyerTexteIntl(vEs[v]?.text || '', false);
+      const explicationEs = memoireGlobale.tafsirEs[cle] || nettoyerTexteIntl(vTEs[v]?.translation || '', true) || tradEs;
+      const explicationAr = memoireGlobale.tafsirAr[cle] || nettoyerTafsirArabe(vTAr[v]?.translation || vArM[v]?.text || '') || texteArabe;
 
-      const texteArabePropre = nettoyerArabeToutEnGardantLettresMysterieuses(cleVerset, itemTrad.arabic_text || '');
-      const texteArabe = echapperHTML(texteArabePropre);
+      const lienPrecedent = numV > 1 ? `sourate-${numS}-verset-${numV - 1}.html` : (numS > 1 ? `sourate-${sourates[s - 1].id}-verset-${sourates[s - 1].verses_count}.html` : 'index.html');
+      const lienSuivant = numV < nbV ? `sourate-${numS}-verset-${numV + 1}.html` : (numS < 114 ? `sourate-${numS + 1}-verset-1.html` : 'index.html');
 
-      const texteFrSource = (itemHamidullah && itemHamidullah.text) ? itemHamidullah.text : itemTrad.translation;
-
-      const { tradPropre, noteUnique } = nettoyerTraductionPure(
-        cleVerset,
-        texteFrSource,
-        itemTrad.footnotes,
-        itemTafsir.footnotes
-      );
-      const explicationUnanime = nettoyerTexteIntegralSansFaute(itemTafsir.translation);
-      const precisionConsensus = SYNTHESE_LAURIER_EXEGESE[cleVerset] || '';
-      const texteLaurierPerso = extraitsLaurierPerso[cleVerset] ? echapperHTML(extraitsLaurierPerso[cleVerset]) : '';
-
-      const codeAudio = String(numSourate).padStart(3, '0') + String(numVerset).padStart(3, '0');
-
-      let lienPrecedent = 'index.html';
-      if (numVerset > 1) {
-        lienPrecedent = `sourate-${numSourate}-verset-${numVerset - 1}.html`;
-      } else if (numSourate > 1) {
-        const souratePrec = sourates[s - 1];
-        lienPrecedent = `sourate-${souratePrec.id}-verset-${souratePrec.verses_count}.html`;
-      }
-
-      let lienSuivant = 'index.html';
-      if (numVerset < nbVersets) {
-        lienSuivant = `sourate-${numSourate}-verset-${numVerset + 1}.html`;
-      } else if (numSourate < 114) {
-        lienSuivant = `sourate-${numSourate + 1}-verset-1.html`;
-      }
-
-      donneesSourate.versets.push({
-        numVerset,
-        texteArabe,
-        tradPropre,
-        noteUnique,
-        explicationUnanime,
-        precisionConsensus,
-        texteLaurierPerso,
-        miracle,
-        codeAudio,
-        lienPrecedent,
-        lienSuivant
+      donneesS.versets.push({
+        numVerset: numV, texteArabe, tradPropre, tradEn, tradEs, noteUnique: '',
+        explicationUnanime, explicationEn, explicationEs, explicationAr,
+        precisionConsensus: SYNTHESE_LAURIER_EXEGESE[cle] || '',
+        precisionEn: SYNTHESE_LAURIER_EN[cle] || '',
+        precisionEs: SYNTHESE_LAURIER_ES[cle] || '',
+        precisionAr: SYNTHESE_LAURIER_AR[cle] || '',
+        miracle: MIRACLES[cle] || null,
+        codeAudio: String(numS).padStart(3, '0') + String(numV).padStart(3, '0'),
+        lienPrecedent, lienSuivant
       });
     }
 
-    const fichierDataJS = `data-sourate-${numSourate}.js`;
-    fs.writeFileSync(
-      path.join(dossierSite, fichierDataJS),
-      `window.SOURATE_DATA = ${JSON.stringify(donneesSourate)};`,
-      'utf8'
-    );
+    const fichierDataJS = `data-sourate-${numS}.js`;
+    fs.writeFileSync(path.join(dossierSite, fichierDataJS), `window.SOURATE_DATA = ${JSON.stringify(donneesS)};`, 'utf8');
 
+    const labelMiracleHaut = numS === 30 ? '3 Miracles (v.1-5)' : `Miracle : v.${infoMiracleSourate ? infoMiracleSourate.premierVersetMiracle : 1}`;
     const htmlAccesRapideMiracle = infoMiracleSourate
-      ? `<a href="sourate-${numSourate}-verset-${infoMiracleSourate.premierVersetMiracle}.html" class="revelation-pill miracle-pill" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">★ Verset Miracle : v.${infoMiracleSourate.premierVersetMiracle}</a>`
+      ? `<a href="sourate-${numS}-verset-${infoMiracleSourate.premierVersetMiracle}.html" id="topMiraclePillLink" data-v="${infoMiracleSourate.premierVersetMiracle}" class="revelation-pill miracle-pill" onclick="return naviguerVerset(event, this.getAttribute('href'), false)"><span class="gold-star-icon">★</span> ${labelMiracleHaut}</a>`
       : '';
 
-    for (let v = 0; v < donneesSourate.versets.length; v++) {
-      const vObj = donneesSourate.versets[v];
-      const numVerset = vObj.numVerset;
-
-      let optionsSelectVerset = '';
-      for (let i = 1; i <= nbVersets; i++) {
-        const sel = i === numVerset ? 'selected' : '';
-        const estVersetMiracle = Boolean(MIRACLES[`${numSourate}:${i}`]);
-        if (estVersetMiracle) {
-          optionsSelectVerset += `<option value="sourate-${numSourate}-verset-${i}.html" class="opt-miracle-blue" ${sel}>★ Verset ${i} / ${nbVersets} — Miracle</option>`;
-        } else {
-          optionsSelectVerset += `<option value="sourate-${numSourate}-verset-${i}.html" ${sel}>Verset ${i} / ${nbVersets}</option>`;
-        }
+    for (let v = 0; v < donneesS.versets.length; v++) {
+      const vObj = donneesS.versets[v], numV = vObj.numVerset, nomFichier = `sourate-${numS}-verset-${numV}.html`;
+      urlsSitemap.push(`https://corantafsir.com/${nomFichier}`);
+      let opts = '';
+      for (let i = 1; i <= nbV; i++) {
+        const estM = Boolean(MIRACLES[`${numS}:${i}`]);
+        opts += `<option value="sourate-${numS}-verset-${i}.html" class="${estM ? 'opt-miracle-gold' : ''}" ${i === numV ? 'selected' : ''}>${estM ? '★ ' : ''}Verset ${i} / ${nbV}${estM ? ' (Miracle)' : ''}</option>`;
       }
 
-      const nomFichier = `sourate-${numSourate}-verset-${numVerset}.html`;
-      urlsSitemap.push(`https://corantafsir.com/${nomFichier}`);
-
-      const htmlVerset = `<!DOCTYPE html>
+      const htmlV = `<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=31">
-  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/apple-touch-icon-precomposed.png?v=31">
-  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png?v=31">
-  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=31">
-  <link rel="manifest" href="/manifest.json?v=31">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=${ANTI_CACHE}">
+  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=${ANTI_CACHE}">
   <link rel="canonical" href="https://corantafsir.com/${nomFichier}">
-  <title>Sourate ${numSourate} verset ${numVerset} (${nomSourate}) - Traduction Hamidullah 1977 & Tafsir</title>
-  <meta name="description" content="Sourate ${numSourate} verset ${numVerset} (${nomSourate} - ${typeSourateLabel}) : Texte arabe, traduction originale de Muhammad Hamidullah (1977) et exégèse (Tafsīr) Al-Mukhtasar.">
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Scheherazade+New:wght@400;700&family=Cinzel+Decorative:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>Sourate ${numS} verset ${numV} (${nomS}) - Coran & Tafsir</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-main: #020406;
-      --bg-card: rgba(8, 13, 18, 0.24);
-      --bg-elevated: rgba(12, 19, 25, 0.30);
-      --green-accent: #10b981;
-      --green-bright: #34d399;
-      --green-dim: rgba(16, 185, 129, 0.16);
-      --sky-accent: #38bdf8;
-      --sky-bright: #7dd3fc;
-      --text-main: #f8fafc;
-      --text-muted: #cbd5e1;
-      --border-color: rgba(255, 255, 255, 0.15);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background-color: var(--bg-main);
-      color: var(--text-main);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      line-height: 1.8;
-      min-height: 100vh;
-      padding: 18px 20px 88px 20px;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
+    ${CSS_COMMUN}
+    body { padding:18px 20px 45px 20px; }
+    .top-nav { max-width:820px; margin:0 auto 14px auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; background:var(--bg-card); backdrop-filter:blur(8px); border:1px solid rgba(56,189,248,0.28); padding:12px 20px; border-radius:16px; box-shadow:0 8px 28px rgba(0,0,0,0.45); }
+    .home-btn { color:var(--sky-light); text-decoration:none; font-weight:700; font-size:0.88rem; display:inline-flex; align-items:center; gap:10px; transition:0.2s; }
+    .home-btn:hover { color:#fff; }
+    .nav-logo-svg { width:34px; height:34px; display:block; filter:drop-shadow(0 0 8px rgba(56,189,248,0.4)); }
+    .meta-badges { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .tag { font-size:0.75rem; font-weight:600; padding:5px 11px; border-radius:99px; background:var(--bg-elevated); border:1px solid var(--border-color); }
+    .centered-container { max-width:820px; margin:0 auto; }
 
-    ${CSS_BLEU_CIEL_V21}
-
-    .top-nav {
-      max-width: 820px;
-      margin: 0 auto 14px auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
+    /* PANNEAU DE LA SOURATE AVEC BORD ANIMÉ OR/BLEU */
+    .panel {
+      position: relative;
       background: var(--bg-card);
       backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid var(--border-color);
-      padding: 12px 22px;
-      border-radius: 16px;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 24px;
+      padding: 26px 28px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 55px rgba(0,0,0,0.6), 0 0 30px rgba(56,189,248,0.08);
+      overflow: hidden;
     }
-    .home-btn {
-      color: var(--green-bright);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.9rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: 0.2s;
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: conic-gradient(from var(--ae-angle), transparent 25%, rgba(56,189,248,0.65) 48%, rgba(251,191,36,0.85) 50%, rgba(56,189,248,0.65) 52%, transparent 75%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: aeLaserSpin 8s linear infinite;
+      pointer-events: none;
     }
-    .nav-logo-svg {
-      width: 32px;
-      height: 32px;
-      display: block;
-      flex-shrink: 0;
-      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 10px rgba(56, 189, 248, 0.35));
-    }
-    .home-btn:hover { opacity: 0.85; transform: translateX(-2px); }
-    .meta-badges { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .tag {
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 5px 12px;
-      border-radius: 99px;
-      background: var(--bg-elevated);
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
-    }
-    .verse-jumper {
-      background: rgba(10, 16, 22, 0.75);
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
-      padding: 6px 14px;
+
+    .main-header { display:flex; justify-content:space-between; align-items:center; gap:16px; padding-bottom:16px; border-bottom:1px solid var(--border-color); margin-bottom:18px; }
+    .title-group { flex:1; min-width:0; }
+    .title-top-row { display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:6px; }
+    .title-top-row h1 { font-size:1.25rem; color:#fff; font-weight:800; line-height:1.3; }
+    .header-right-badges { display:inline-flex; align-items:center; gap:8px; flex-shrink:0; }
+
+    .verse-jumper-select {
+      background: rgba(14, 165, 233, 0.16);
+      color: var(--sky-light);
+      border: 1.5px solid rgba(56, 189, 248, 0.55);
+      padding: 6px 12px;
       border-radius: 10px;
       font-family: inherit;
       font-size: 0.82rem;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       outline: none;
-      transition: all 0.25s ease;
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.18);
+      transition: 0.2s;
     }
-    .verse-jumper.is-miracle-verse {
-      border-color: rgba(56, 189, 248, 0.75);
-      color: #7dd3fc;
-      box-shadow: 0 0 16px rgba(56, 189, 248, 0.3);
+    .verse-jumper-select:hover { background: var(--sky-bright); color: #020810; }
+    .verse-jumper-select.is-miracle-gold {
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.28), rgba(245, 158, 11, 0.18));
+      color: #fde68a;
+      border-color: rgba(251, 191, 36, 0.9);
+      box-shadow: 0 0 20px rgba(251, 191, 36, 0.38);
     }
-    .verse-jumper option { background: #0b1116; color: #fff; }
-    .verse-jumper option.opt-miracle-blue {
-      background: #082f49;
-      color: #38bdf8;
-      font-weight: 800;
-    }
+    .verse-jumper-select option { background:#0b1116; color:#e0f2fe; font-weight:700; }
+    .verse-jumper-select option.opt-miracle-gold { background:#231905; color:#fde68a; font-weight:800; }
 
-    .centered-container {
-      max-width: 820px;
-      margin: 0 auto;
-    }
-    .panel {
-      background: var(--bg-card);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid var(--border-color);
-      border-radius: 24px;
-      padding: 28px 30px;
-      min-height: calc(100vh - 165px);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.12);
-    }
-
-    /* EN-TÊTE OPTIMISÉ : TITRE ALIGNÉ À GAUCHE + BADGE NUMÉRO (2 : 19) PLACÉ À DROITE */
-    .main-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border-color);
-      margin-bottom: 20px;
-    }
-    .title-group {
-      flex: 1;
-      min-width: 0;
-    }
-    .title-top-row {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 4px;
-    }
-    .title-top-row h1 {
-      font-size: 1.28rem;
-      color: #fff;
-      font-weight: 800;
-      line-height: 1.35;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
-    }
     .badge-num {
-      background: var(--green-dim);
-      color: var(--green-bright);
-      border: 1px solid rgba(52, 211, 153, 0.38);
+      background: rgba(14, 165, 233, 0.18);
+      color: var(--sky-light);
+      border: 1px solid rgba(56, 189, 248, 0.5);
       font-weight: 800;
       font-size: 0.92rem;
       padding: 5px 13px;
       border-radius: 10px;
       white-space: nowrap;
       flex-shrink: 0;
-      box-shadow: 0 0 14px rgba(16, 185, 129, 0.15);
     }
-    .title-group p {
-      color: var(--text-muted);
-      font-size: 0.84rem;
-      line-height: 1.5;
-    }
-    .arabic-surah {
-      font-family: 'Scheherazade New', 'Amiri', serif;
-      font-size: 2.2rem;
-      color: #fff;
-      text-shadow: 0 0 16px rgba(255,255,255,0.6);
-      flex-shrink: 0;
-    }
+    .title-group p { color:var(--text-muted); font-size:0.84rem; }
+    .arabic-surah { font-family:'Scheherazade New',serif; font-size:2.2rem; color:#fff; flex-shrink:0; }
 
+    /* CADRE DU VERSET AVEC BORD ANIMÉ OR & BLEU */
     .verse-stage {
       position: relative;
-      background: rgba(4, 8, 12, 0.28);
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(4, 8, 14, 0.42);
+      border: 1.5px solid rgba(56, 189, 248, 0.32);
       border-radius: 22px;
-      padding: 46px 34px 40px 34px;
+      padding: 38px 30px 20px 30px;
       margin-bottom: 18px;
       text-align: center;
       overflow: hidden;
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5), inset 0 0 35px rgba(255, 255, 255, 0.04);
-      transition: all 0.4s ease;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5), inset 0 0 25px rgba(56,189,248,0.06);
+      transition: all 0.3s ease;
     }
-    .verse-stage.playing {
-      border-color: rgba(255, 255, 255, 0.5);
-      box-shadow: 0 0 50px rgba(255, 255, 255, 0.16), 0 25px 60px rgba(0, 0, 0, 0.65);
-    }
-
-    .arabic-glow-verse {
-      font-family: 'Scheherazade New', 'Amiri', serif;
-      font-size: 2.95rem;
-      line-height: 2.15;
-      direction: rtl;
-      margin-bottom: 24px;
-      color: #ffffff;
-      font-variant-ligatures: no-contextual;
-      font-feature-settings: "calt" 0, "liga" 1;
-      word-spacing: 4px;
-      text-shadow:
-        0 2px 6px rgba(0, 0, 0, 0.95),
-        0 0 10px rgba(255, 255, 255, 0.85),
-        0 0 26px rgba(255, 255, 255, 0.45),
-        0 0 55px rgba(255, 255, 255, 0.22);
-      position: relative;
-      z-index: 2;
-    }
-
-    .french-glow-verse {
-      font-family: 'Amiri', serif;
-      font-size: 1.55rem;
-      font-weight: 700;
-      line-height: 1.65;
-      color: #ffffff;
-      text-shadow:
-        0 2px 6px rgba(0, 0, 0, 0.95),
-        0 0 10px rgba(255, 255, 255, 0.85),
-        0 0 26px rgba(255, 255, 255, 0.45),
-        0 0 55px rgba(255, 255, 255, 0.22);
-      position: relative;
-      z-index: 2;
-      max-width: 92%;
-      margin: 0 auto;
-    }
-
-    .sync-progress-track {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: rgba(255,255,255,0.08);
-      z-index: 3;
-    }
-    .sync-progress-bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #38bdf8, #ffffff);
-      box-shadow: 0 0 12px #38bdf8;
-    }
-
-    .audio-control-strip {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-      background: var(--bg-elevated);
-      border: 1px solid var(--border-color);
-      padding: 12px 18px;
-      border-radius: 16px;
-      margin-bottom: 20px;
-      font-size: 0.85rem;
-    }
-    .audio-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .btn-listen-sync {
-      background: var(--green-dim);
-      color: var(--green-bright);
-      border: 1px solid rgba(52, 211, 153, 0.35);
-      padding: 8px 16px;
-      border-radius: 10px;
-      font-family: inherit;
-      font-weight: 700;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .btn-listen-sync:hover, .btn-listen-sync.active {
-      background: var(--green-accent);
-      color: #032218;
-      box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
-    }
-
-    .btn-replay-sync {
-      background: rgba(56, 189, 248, 0.14);
-      color: var(--sky-bright);
-      border: 1px solid rgba(56, 189, 248, 0.38);
-      padding: 8px 13px;
-      border-radius: 10px;
-      font-family: inherit;
-      font-weight: 700;
-      font-size: 0.83rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .btn-replay-sync:hover {
-      background: var(--sky-accent);
-      color: #031521;
-      border-color: var(--sky-bright);
-      box-shadow: 0 0 18px rgba(56, 189, 248, 0.4);
-    }
-
-    .reciter-mini {
-      background: rgba(8, 13, 18, 0.75);
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
-      padding: 7px 12px;
-      border-radius: 10px;
-      font-family: inherit;
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      outline: none;
-    }
-    .reciter-mini option { background: #0b1116; color: #fff; }
-
-    .auto-scroll-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(8, 13, 18, 0.72);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 6px 14px 6px 10px;
-      border-radius: 99px;
-      color: var(--text-muted);
-      font-size: 0.81rem;
-      font-weight: 700;
-      cursor: pointer;
-      user-select: none;
-      transition: all 0.25s ease;
-    }
-    .auto-scroll-toggle:hover {
-      border-color: rgba(56, 189, 248, 0.45);
-      color: #ffffff;
-    }
-    .auto-scroll-toggle input {
-      display: none;
-    }
-    .switch-slider {
-      position: relative;
-      width: 36px;
-      height: 20px;
-      background: rgba(255, 255, 255, 0.14);
-      border-radius: 99px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.25s ease;
-      flex-shrink: 0;
-    }
-    .switch-slider::after {
+    .verse-stage::before {
       content: "";
       position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 14px;
-      height: 14px;
-      background: #cbd5e1;
-      border-radius: 50%;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.8px;
+      background: conic-gradient(from var(--ae-angle), transparent 20%, #38bdf8 45%, #fbbf24 50%, #38bdf8 55%, transparent 80%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: aeLaserSpin 6s linear infinite;
+      pointer-events: none;
     }
-    .auto-scroll-toggle input:checked + .switch-slider {
-      background: rgba(16, 185, 129, 0.28);
-      border-color: var(--green-bright);
-      box-shadow: 0 0 14px rgba(16, 185, 129, 0.45);
+    .verse-stage.is-miracle-stage {
+      border-color: rgba(251, 191, 36, 0.65);
+      box-shadow: 0 0 35px rgba(251, 191, 36, 0.22), 0 0 55px rgba(56, 189, 248, 0.18), inset 0 0 28px rgba(251, 191, 36, 0.10);
     }
-    .auto-scroll-toggle input:checked + .switch-slider::after {
-      transform: translateX(16px);
-      background: var(--green-bright);
-      box-shadow: 0 0 10px var(--green-bright);
-    }
-    .auto-scroll-toggle input:checked ~ .switch-text {
-      color: var(--green-bright);
-      text-shadow: 0 0 10px rgba(52, 211, 153, 0.35);
+    .verse-stage.is-miracle-stage::before {
+      padding: 2.2px;
+      background: conic-gradient(from var(--ae-angle), transparent 12%, #fbbf24 38%, #ffffff 50%, #38bdf8 62%, transparent 88%);
+      animation-duration: 4s;
     }
 
-    .tafsir-box {
-      background: var(--bg-elevated);
-      border: 1px solid var(--border-color);
-      border-radius: 18px;
-      padding: 26px;
-      margin-bottom: 0;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .section-tag {
-      display: inline-block;
-      font-size: 0.74rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--green-bright);
-      margin-bottom: 10px;
-    }
-    .main-explanation {
-      font-size: 1.06rem;
-      color: #e2e8f0;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
-      line-height: 1.85;
-      margin-bottom: 14px;
-    }
-    .consensus-note {
-      background: rgba(16, 185, 129, 0.10);
-      border-left: 3px solid var(--green-bright);
-      padding: 13px 16px;
-      border-radius: 0 12px 12px 0;
-      color: #f1f5f9;
-      font-size: 0.95rem;
-      margin-top: 12px;
-    }
-    .sources-line {
-      margin-top: auto;
-      padding-top: 16px;
-      border-top: 1px solid var(--border-color);
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
+    .arabic-glow-verse { position:relative; z-index:2; font-family:'Scheherazade New','Amiri',serif; font-size:2.9rem; line-height:2.15; direction:rtl; margin-bottom:22px; color:#fff; text-shadow:0 2px 6px rgba(0,0,0,0.95), 0 0 14px rgba(255,255,255,0.65); transition:font-size 0.15s ease; }
+    .french-glow-verse { position:relative; z-index:2; font-family:'Amiri',serif; font-size:1.52rem; font-weight:700; line-height:1.65; color:#fff; text-shadow:0 2px 6px rgba(0,0,0,0.95), 0 0 12px rgba(255,255,255,0.55); max-width:94%; margin:0 auto; transition:font-size 0.15s ease; }
 
-    .bottom-nav {
-      position: fixed;
-      bottom: 14px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - 40px);
-      max-width: 820px;
-      background: rgba(8, 13, 18, 0.72);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 10px 18px;
-      border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
+    .stage-blue-nav {
+      position: relative;
+      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.75);
-      z-index: 50;
+      gap: 10px;
+      margin-top: 24px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(56, 189, 248, 0.22);
     }
-    .btn {
-      padding: 10px 24px;
+    .btn-blue-nav {
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      color: #021019;
+      border: 1px solid #7dd3fc;
+      padding: 9px 22px;
       border-radius: 12px;
-      font-size: 0.9rem;
-      font-weight: 700;
+      font-size: 0.88rem;
+      font-weight: 800;
       text-decoration: none;
-      transition: all 0.2s ease;
-      cursor: pointer;
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.35);
+      transition: 0.2s;
     }
-    .btn-prev { background: rgba(255,255,255,0.1); color: var(--text-main); }
-    .btn-next { background: var(--green-accent); color: #032218; }
-    .page-indicator { font-size: 0.85rem; color: var(--text-main); font-weight: 700; }
+    .btn-blue-nav:hover { background: #7dd3fc; transform: translateY(-1px); box-shadow: 0 0 24px rgba(56, 189, 248, 0.55); }
 
-    @media (max-width: 768px) {
-      body { padding: 12px 10px 85px 10px; }
-      .panel { padding: 20px 15px; min-height: calc(100vh - 145px); }
-      .title-top-row {
-        justify-content: space-between;
-        flex-wrap: nowrap;
-        gap: 10px;
-      }
-      .title-top-row h1 { font-size: 1.08rem; }
-      .badge-num { font-size: 0.84rem; padding: 4px 10px; }
-      .verse-stage { padding: 36px 18px 32px 18px; }
-      .arabic-glow-verse { font-size: 2.3rem; }
-      .french-glow-verse { font-size: 1.3rem; }
-      .arabic-surah { display: none; }
-      .bottom-nav { width: calc(100% - 20px); }
+    .sync-progress-track { position:absolute; bottom:0; left:0; width:100%; height:3px; background:rgba(255,255,255,0.08); }
+    .sync-progress-bar { height:100%; width:0%; background:linear-gradient(90deg,#38bdf8,#fff); }
+    .audio-control-strip { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; background:var(--bg-elevated); border:1px solid rgba(56,189,248,0.24); padding:12px 18px; border-radius:16px; margin-bottom:20px; }
+    .audio-left { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .btn-listen-sync { background:rgba(14,165,233,0.18); color:var(--sky-light); border:1px solid rgba(56,189,248,0.45); padding:8px 16px; border-radius:10px; font-weight:700; cursor:pointer; transition:0.2s; }
+    .btn-listen-sync:hover, .btn-listen-sync.active { background:var(--sky-bright); color:#021019; box-shadow:0 0 18px rgba(56,189,248,0.45); }
+    .btn-replay-sync { background:rgba(56,189,248,0.14); color:var(--sky-light); border:1px solid rgba(56,189,248,0.38); padding:8px 13px; border-radius:10px; font-weight:700; cursor:pointer; transition:0.2s; }
+    .btn-replay-sync:hover { background:var(--sky-bright); color:#021019; }
+    .reciter-mini { background:rgba(8,13,18,0.75); color:#fff; border:1px solid var(--border-color); padding:7px 12px; border-radius:10px; font-weight:600; }
+
+    .zoom-btn-group { display:inline-flex; align-items:center; gap:4px; background:rgba(6,12,18,0.75); border:1px solid rgba(56,189,248,0.38); padding:3px; border-radius:10px; }
+    .btn-zoom-text { background:rgba(56,189,248,0.14); color:var(--sky-light); border:1px solid rgba(56,189,248,0.35); padding:5px 10px; border-radius:7px; font-family:inherit; font-size:0.8rem; font-weight:800; cursor:pointer; transition:0.2s; }
+    .btn-zoom-text:hover { background:var(--sky-bright); color:#021019; }
+
+    .auto-scroll-toggle { display:inline-flex; align-items:center; gap:10px; background:rgba(8,13,18,0.72); border:1px solid rgba(255,255,255,0.14); padding:6px 14px 6px 10px; border-radius:99px; color:var(--text-muted); font-size:0.81rem; font-weight:700; cursor:pointer; }
+    .auto-scroll-toggle input { display:none; }
+    .switch-slider { position:relative; width:36px; height:20px; background:rgba(255,255,255,0.14); border-radius:99px; border:1px solid rgba(255,255,255,0.2); }
+    .switch-slider::after { content:""; position:absolute; top:2px; left:2px; width:14px; height:14px; background:#cbd5e1; border-radius:50%; transition:0.25s; }
+    .auto-scroll-toggle input:checked + .switch-slider { background:rgba(56,189,248,0.32); border-color:var(--sky-bright); }
+    .auto-scroll-toggle input:checked + .switch-slider::after { transform:translateX(16px); background:var(--sky-bright); }
+    .auto-scroll-toggle input:checked ~ .switch-text { color:var(--sky-light); }
+
+    .tafsir-box { background:var(--bg-elevated); border:1px solid rgba(56,189,248,0.25); border-radius:18px; padding:26px; flex:1; display:flex; flex-direction:column; box-shadow:inset 0 0 22px rgba(56,189,248,0.04); }
+    .section-tag { font-size:0.74rem; font-weight:800; text-transform:uppercase; color:var(--sky-light); margin-bottom:10px; }
+    .main-explanation { font-size:1.06rem; color:#e2e8f0; line-height:1.88; margin-bottom:14px; transition:font-size 0.15s ease; }
+    .consensus-note { background:rgba(56,189,248,0.10); border-left:3px solid var(--sky-bright); padding:13px 16px; border-radius:0 12px 12px 0; color:#f1f5f9; font-size:0.95rem; margin-top:12px; }
+    .sources-line { margin-top:auto; padding-top:16px; border-top:1px solid var(--border-color); font-size:0.8rem; color:var(--text-muted); }
+    @media (max-width:768px) {
+      body { padding:10px 8px 36px 8px; }
+      .panel { padding:18px 12px; }
+      .verse-stage { padding:28px 16px 16px 16px; }
+      .arabic-glow-verse { font-size:2.2rem; }
+      .french-glow-verse { font-size:1.25rem; }
+      .arabic-surah { display:none; }
     }
   </style>
 </head>
 <body>
-
-  ${HTML_CIEL_ETOILE_SOURATE}
-
+  <div class="cosmos-exterior-wrapper"><canvas id="fullPageSkyCanvas"></canvas></div>
   <div class="interface-layer">
     <header class="top-nav">
-      <a href="index.html" class="home-btn" onclick="sauvegarderConfigCiel()">
-        ${genererLogoInlineSVG('nav-logo-svg')}
-        ‹ Retour aux 114 Sourates
-      </a>
+      <a href="index.html?v=${ANTI_CACHE}" class="home-btn" onclick="sauvegarderConfigCiel()">${genererLogoInlineSVG('nav-logo-svg')}<span id="homeBtnTextEl">‹ Retour aux 114 Sourates</span></a>
       <div class="meta-badges">
-        <span class="revelation-pill ${typeSourateClasse}">${typeSourateLabel}</span>
+        <span class="revelation-pill ${typeCls}" id="typeSouratePillEl">${typeLabel}</span>
         ${htmlAccesRapideMiracle}
-        <span class="tag">${ordreRev === 1 ? '1re Sourate révélée' : ordreRev + 'e Sourate révélée'} (Sourate n°${numSourate})</span>
-        <select id="verseJumperSelect" class="verse-jumper ${vObj.miracle ? 'is-miracle-verse' : ''}" onchange="naviguerVerset(event, this.value, false)">
-          ${optionsSelectVerset}
-        </select>
+        <span class="tag" id="revOrderTagEl">${ordreRev}e Sourate révélée (n°${numS})</span>
+        <div class="lang-switcher-group">
+          <button type="button" class="lang-pill-btn active" data-lang="fr" onclick="changerLangueVerset('fr')">🇫🇷 FR</button>
+          <button type="button" class="lang-pill-btn" data-lang="en" onclick="changerLangueVerset('en')">🇬🇧 EN</button>
+          <button type="button" class="lang-pill-btn" data-lang="es" onclick="changerLangueVerset('es')">🇪🇸 ES</button>
+          <button type="button" class="lang-pill-btn" data-lang="ar" onclick="changerLangueVerset('ar')">🇸🇦 AR</button>
+        </div>
       </div>
     </header>
-
     <div class="centered-container">
       <main class="panel">
-        <div style="display: flex; flex-direction: column; flex: 1;">
-          <div class="main-header">
-            <div class="title-group">
-              <div class="title-top-row">
-                <h1 id="mainTitleEl">Sourate ${nomSourate} (${nomFr}) — Verset ${numVerset}</h1>
-                <div class="badge-num" id="badgeNumEl">${numSourate} : ${numVerset}</div>
-              </div>
-              <p>${typeSourateLabel} (${lieu}) • Traduction Muhammad Hamidullah (1977) & Exégèse</p>
-            </div>
-            <div class="arabic-surah">${nomArabe}</div>
-          </div>
-
-          <section class="verse-stage" id="verseStage">
-            <div class="arabic-glow-verse" id="arabicVerseEl">${vObj.texteArabe}</div>
-            <div class="french-glow-verse" id="frenchVerseEl">${numVerset}. ${vObj.tradPropre}</div>
-            <div class="sync-progress-track">
-              <div class="sync-progress-bar" id="syncProgressBar"></div>
-            </div>
-          </section>
-
-          <div id="miracleContainer">
-            ${vObj.miracle ? `
-            <div class="miracle-banner">
-              <div class="miracle-header"><span class="sky-star-icon">★</span> ${vObj.miracle.titre}</div>
-              <p class="miracle-summary">${vObj.miracle.resume}</p>
-              <button type="button" class="miracle-expand-btn" id="miracleToggleBtn" onclick="basculerDeveloppementMiracle()">
-                ★ Développer l'explication complète & le Hadīth historique
-              </button>
-              <div class="miracle-deep-details" id="miracleDeepDetails">
-                ${vObj.miracle.developpement}
+        <div class="main-header">
+          <div class="title-group">
+            <div class="title-top-row">
+              <h1 id="mainTitleEl">Sourate ${nomS} (${nomFr}) — Verset ${numV}</h1>
+              <div class="header-right-badges">
+                <div class="badge-num" id="badgeNumEl">${numS} : ${numV}</div>
               </div>
             </div>
-            ` : ''}
+            <p id="subHeaderInfoEl">${typeLabel} (${lieu}) • Traduction Muhammad Hamidullah (1977) & Exégèse</p>
           </div>
-
-          <div class="audio-control-strip">
-            <div class="audio-left">
-              <button type="button" class="btn-listen-sync" id="playSyncBtn" onclick="toggleAudioSync()">▶ Écouter le verset</button>
-              <button type="button" class="btn-replay-sync" id="replaySyncBtn" onclick="rejouerAudioVerset()" title="Remettre le son du verset au début">↺ Rejouer</button>
-              <select id="reciterSelect" class="reciter-mini" onchange="changerRecitateur()">
-                <option value="Yasser_Ad-Dussary_128kbps">Yasser Al-Dosari</option>
-                <option value="Alafasy_128kbps">Mishary Rashid Alafasy</option>
-                <option value="Abdurrahmaan_As-Sudais_192kbps">Abderrahman Al-Soudais (HD)</option>
-                <option value="Saood_ash-Shuraym_128kbps">Saoud Al-Shuraim</option>
-                <option value="Nasser_Alqatami_128kbps">Nasser Al-Qatami</option>
-                <option value="Abdullah_Basfar_192kbps">Abdullah Basfar (HD)</option>
-                <option value="Minshawy_Murattal_128kbps">Mohamed Siddiq Al-Minshawi</option>
-                <option value="Husary_128kbps">Mahmoud Khalil Al-Hussary</option>
-                <option value="Hudhaify_128kbps">Ali Al-Hudhaify</option>
-              </select>
-            </div>
-            <label class="auto-scroll-toggle">
-              <input type="checkbox" id="autoNextCheck" onchange="sauverAutoNext()">
-              <span class="switch-slider"></span>
-              <span class="switch-text">Enchaîner automatiquement</span>
-            </label>
-            <audio id="ayahAudio" preload="auto"></audio>
-            <audio id="preloadNextAudio" preload="auto" style="display:none;"></audio>
-          </div>
-
-          <article class="tafsir-box">
-            <span class="section-tag">Tafsīr & Explication du verset</span>
-            <p class="main-explanation" id="mainExplanationEl">${vObj.explicationUnanime}</p>
-            <div id="extraNotesContainer">
-              ${vObj.noteUnique ? `<div class="consensus-note">${vObj.noteUnique}</div>` : ''}
-              ${vObj.precisionConsensus ? `<div class="consensus-note">${vObj.precisionConsensus}</div>` : ''}
-              ${vObj.texteLaurierPerso ? `<div class="consensus-note"><strong>Le Laurier de l'Exégèse :</strong> ${vObj.texteLaurierPerso}</div>` : ''}
-            </div>
-            <div class="sources-line">
-              Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar
-            </div>
-          </article>
+          <div class="arabic-surah">${nomAr}</div>
         </div>
+        <section class="verse-stage ${vObj.miracle ? 'is-miracle-stage' : ''}" id="verseStage">
+          <div class="arabic-glow-verse" id="arabicVerseEl">${vObj.texteArabe}</div>
+          <div class="french-glow-verse" id="frenchVerseEl">${numV}. ${vObj.tradPropre}</div>
+          <div class="stage-blue-nav">
+            <a href="${vObj.lienPrecedent}" id="prevVerseLink" class="btn-blue-nav" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">‹ Précédent</a>
+            <a href="${vObj.lienSuivant}" id="nextVerseLink" class="btn-blue-nav" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
+          </div>
+          <div class="sync-progress-track"><div class="sync-progress-bar" id="syncProgressBar"></div></div>
+        </section>
+        <div id="miracleContainer"></div>
+        <div class="audio-control-strip">
+          <div class="audio-left">
+            <button type="button" class="btn-listen-sync" id="playSyncBtn" onclick="toggleAudioSync()">▶ Écouter le verset</button>
+            <button type="button" class="btn-replay-sync" id="replaySyncBtn" onclick="rejouerAudioVerset()">↺ Rejouer</button>
+            <select id="reciterSelect" class="reciter-mini" onchange="changerRecitateur()">
+              <option value="Yasser_Ad-Dussary_128kbps">Yasser Al-Dosari</option>
+              <option value="Alafasy_128kbps">Mishary Rashid Alafasy</option>
+              <option value="Abdurrahmaan_As-Sudais_192kbps">Abderrahman Al-Soudais (HD)</option>
+              <option value="Saood_ash-Shuraym_128kbps">Saoud Al-Shuraim</option>
+              <option value="Nasser_Alqatami_128kbps">Nasser Al-Qatami</option>
+              <option value="Minshawy_Murattal_128kbps">Mohamed Siddiq Al-Minshawi</option>
+              <option value="Husary_128kbps">Mahmoud Khalil Al-Hussary</option>
+            </select>
+            <div class="zoom-btn-group" title="Modifier la taille du texte">
+              <button type="button" class="btn-zoom-text" onclick="modifierTailleTexte(-0.1)">A-</button>
+              <button type="button" class="btn-zoom-text" onclick="modifierTailleTexte(0.1)">A+</button>
+            </div>
+            <select id="verseJumperSelect" class="verse-jumper-select ${vObj.miracle ? 'is-miracle-gold' : ''}" onchange="naviguerVerset(event, this.value, false)">${opts}</select>
+          </div>
+          <label class="auto-scroll-toggle"><input type="checkbox" id="autoNextCheck"><span class="switch-slider"></span><span class="switch-text" id="switchAutoTextEl">Enchaîner automatiquement</span></label>
+          <audio id="ayahAudio" preload="auto"></audio><audio id="preloadNextAudio" preload="auto" style="display:none;"></audio>
+        </div>
+        <article class="tafsir-box">
+          <span class="section-tag" id="tafsirSectionTagEl">Tafsīr & Explication du verset</span>
+          <p class="main-explanation" id="mainExplanationEl">${vObj.explicationUnanime}</p>
+          <div id="extraNotesContainer"></div>
+          <div class="sources-line" id="sourcesLineEl">Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar</div>
+        </article>
       </main>
+      <footer class="asso-legal-footer">
+        Portail numérique gratuit et sans publicité édité par l'Association Loi 1901 à but non lucratif <strong>« Institut Numérique Coran, Langues &amp; Tafsīr »</strong> (Siège : 180 rue Fabri de Peiresc, 34080 Montpellier).
+      </footer>
     </div>
   </div>
-
-  <nav class="bottom-nav">
-    <a href="${vObj.lienPrecedent}" id="prevVerseLink" class="btn btn-prev" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">‹ Précédent</a>
-    <span class="page-indicator" id="pageIndicatorEl">Verset ${numVerset} / ${nbVersets}</span>
-    <a href="${vObj.lienSuivant}" id="nextVerseLink" class="btn btn-next" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">Suivant ›</a>
-  </nav>
-
-  <script src="${fichierDataJS}?v=31"></script>
+  <script src="${fichierDataJS}?v=${ANTI_CACHE}"></script>
   <script>
-    const numSourateActuelle = ${numSourate};
-    let numVersetActuel = ${numVerset};
-    let codeAudio = "${vObj.codeAudio}";
-    ${MOTEUR_SOLEIL_LUNE_V21_JS}
-    ${SCRIPT_NAVIGATION_CLASSIQUE_V31}
+    const numSourateActuelle = ${numS}; let numVersetActuel = ${numV}; let codeAudio = "${vObj.codeAudio}";
+    ${MOTEUR_CIEL_JS}
+    ${SCRIPT_VERSET_V49}
   </script>
 </body>
 </html>`;
-
-      fs.writeFileSync(path.join(dossierSite, nomFichier), htmlVerset, 'utf8');
+      fs.writeFileSync(path.join(dossierSite, nomFichier), htmlV, 'utf8');
     }
   }
 
-  console.log('\nMise à jour de la page d\'accueil (index.html)...');
-
-  const cartesSouratesJSON = JSON.stringify(sourates.map(s => {
-    const estMecquoise = s.revelation_place === 'makkah';
-    const infoMiracle = souratesAvecMiracleMap[s.id] || null;
+  const cartesJSON = JSON.stringify(sourates.map(s => {
+    const estM = s.revelation_place === 'makkah', infM = souratesMiracle[s.id] || null;
     return {
-      id: s.id,
-      nom: s.name_simple,
-      nomFr: s.translated_name ? s.translated_name.name : '',
-      nomAr: s.name_arabic,
-      versets: s.verses_count,
-      ordreRev: s.revelation_order,
-      typeLabel: estMecquoise ? 'Mecquoise' : 'Médinoise',
-      typeClasse: estMecquoise ? 'mecquoise' : 'medinoise',
-      hasMiracle: Boolean(infoMiracle),
-      miracleVerset: infoMiracle ? infoMiracle.premierVersetMiracle : 1,
-      miracleTitre: infoMiracle ? infoMiracle.titre : ''
+      id: s.id, nom: s.name_simple, nomFr: s.translated_name ? s.translated_name.name : '',
+      nomEn: souratesEnMap[s.id] || '', nomEs: NOMS_SOURATES_ES[s.id] || '', nomAr: s.name_arabic,
+      versets: s.verses_count, ordreRev: s.revelation_order,
+      typeLabel: estM ? 'Mecquoise' : 'Médinoise', typeLabelEn: estM ? 'Meccan' : 'Medinan', typeLabelEs: estM ? 'Mequí' : 'Medinense', typeLabelAr: estM ? 'مكية' : 'مدنية',
+      typeClasse: estM ? 'mecquoise' : 'medinoise', hasMiracle: Boolean(infM), miracleVerset: infM ? infM.premierVersetMiracle : 1
     };
   }));
 
   const htmlAccueil = `<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Coran Tafsīr">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="apple-touch-icon" sizes="180x180" href="${appleIconDataUri}">
-  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="${appleIconDataUri}">
-  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png?v=31">
-  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=31">
-  <link rel="manifest" href="/manifest.json?v=31">
-  <link rel="canonical" href="https://corantafsir.com/">
-  <title>Le Noble Coran & Tafsīr — Traduction Muhammad Hamidullah (1977) & Exégèse Al-Mukhtasar</title>
-  <meta name="description" content="Lisez et écoutez les 114 sourates du Noble Coran avec le texte arabe, la traduction originale de Muhammad Hamidullah (1977) et l'exégèse (Tafsīr) Al-Mukhtasar.">
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Scheherazade+New:wght@400;700&family=Cinzel+Decorative:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=${ANTI_CACHE}">
+  <title>Le Noble Coran & Tafsīr — Français • English • Español • العربية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Cinzel+Decorative:wght@700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-main: #020406;
-      --bg-card: rgba(8, 14, 20, 0.22);
-      --bg-card-hover: rgba(14, 24, 32, 0.36);
-      --green-accent: #10b981;
-      --green-bright: #34d399;
-      --green-soft: rgba(16, 185, 129, 0.18);
-      --sky-accent: #38bdf8;
-      --sky-bright: #7dd3fc;
-      --text-main: #f8fafc;
-      --text-muted: #cbd5e1;
-      --border-color: rgba(255, 255, 255, 0.15);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background-color: var(--bg-main);
-      color: var(--text-main);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      padding: 24px 4vw 60px 4vw;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
+    ${CSS_COMMUN}
+    body { padding:24px 4vw 60px 4vw; }
+    .wrapper { max-width:1220px; margin:0 auto; }
 
-    ${CSS_BLEU_CIEL_V21}
-
-    .wrapper { width: 100%; max-width: 1220px; margin: 0 auto; }
-
+    /* HERO DE BASE IMAGE 2 + BORDURE ANIMÉE OR & BLEU */
     .hero {
       text-align: center;
       margin-bottom: 22px;
-      padding: 24px 24px 22px 24px;
-      background: rgba(6, 11, 16, 0.18);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 28px 24px 22px 24px;
+      background: rgba(6, 11, 16, 0.22);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(56, 189, 248, 0.28);
       border-radius: 26px;
-      box-shadow: 0 18px 45px rgba(0,0,0,0.4), inset 0 0 30px rgba(255,255,255,0.03);
       position: relative;
       overflow: hidden;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.5);
     }
-    .hero-ornament-top {
-      font-family: 'Scheherazade New', 'Amiri', serif;
-      font-size: 1.4rem;
-      color: rgba(255, 255, 255, 0.85);
-      letter-spacing: 0.04em;
-      margin-bottom: 4px;
-      text-shadow: 0 0 14px rgba(255, 255, 255, 0.6);
-      animation: gentleFloatTitle 4s ease-in-out infinite alternate;
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: conic-gradient(from var(--ae-angle), transparent 20%, #38bdf8 46%, #ffffff 50%, #fbbf24 54%, transparent 80%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: aeLaserSpin 9s linear infinite;
+      pointer-events: none;
     }
+    .hero-top-lang-bar { position:absolute; top:16px; right:20px; z-index:15; }
+    .hero-ornament-top { font-family:'Scheherazade New',serif; font-size:1.4rem; color:rgba(255,255,255,0.85); margin-bottom:4px; }
+    /* TITRE EN DÉGRADÉ ANIMÉ COMME SUR L'IMAGE 2 */
     .hero h1 {
-      font-family: 'Cinzel Decorative', 'Amiri', serif;
-      font-size: 2.95rem;
+      font-family: 'Cinzel Decorative', 'Scheherazade New', serif;
+      font-size: 2.85rem;
       font-weight: 900;
-      letter-spacing: 0.03em;
-      background: linear-gradient(
-        110deg,
-        #ffffff 0%,
-        #e0f2fe 22%,
-        #7dd3fc 45%,
-        #ffffff 55%,
-        #a7f3d0 78%,
-        #ffffff 100%
-      );
-      background-size: 240% auto;
+      background: linear-gradient(90deg, #0f2942 0%, #38bdf8 25%, #e0f2fe 50%, #34d399 75%, #0f2942 100%);
+      background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.35)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.85));
-      animation: continuousTitleShimmer 6.5s linear infinite, gentleFloatTitle 4s ease-in-out infinite alternate;
+      animation: titleShimmer 8s linear infinite;
+      filter: drop-shadow(0 0 18px rgba(56,189,248,0.28));
     }
-    @keyframes continuousTitleShimmer {
-      0% { background-position: 0% center; }
-      100% { background-position: 240% center; }
-    }
-    @keyframes gentleFloatTitle {
-      0% { transform: translateY(0px); }
-      100% { transform: translateY(-4px); }
-    }
-    .hero-glow-line {
-      width: 240px;
-      height: 2px;
-      margin: 12px auto 14px auto;
-      border-radius: 99px;
-      background: linear-gradient(90deg, transparent, #ffffff, #38bdf8, #ffffff, transparent);
-      background-size: 200% 100%;
-      box-shadow: 0 0 16px rgba(56, 189, 248, 0.85);
-      animation: lineGlowSweep 3.5s ease-in-out infinite alternate;
-    }
-    @keyframes lineGlowSweep {
-      0% { width: 170px; opacity: 0.65; background-position: 0% 50%; }
-      100% { width: 310px; opacity: 1; background-position: 100% 50%; }
-    }
+    .hero-glow-line { width:240px; height:2px; margin:12px auto 14px auto; background:linear-gradient(90deg,transparent,#fff,#38bdf8,#fff,transparent); }
+    .hero-bottom-bar { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:12px; }
+    .hero-inline-logo { width:46px; height:46px; filter:drop-shadow(0 6px 16px rgba(0,0,0,0.9)) drop-shadow(0 0 14px rgba(56,189,248,0.5)); }
 
-    .hero-bottom-bar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 2px;
-    }
-    .hero-inline-logo {
-      width: 44px;
-      height: 44px;
-      display: block;
-      flex-shrink: 0;
-      filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 14px rgba(56, 189, 248, 0.48));
-      transition: transform 0.25s ease;
-    }
-    .hero-inline-logo:hover {
-      transform: scale(1.06);
-    }
-
+    /* BOUTON METTRE LE SITE EN APPLICATION (DE L'IMAGE 2) */
     .app-install-trigger {
       display: inline-flex;
       align-items: center;
@@ -2209,195 +1705,67 @@ async function lancerGeneration() {
       font-size: 0.82rem;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 0 16px rgba(56, 189, 248, 0.18);
+      transition: 0.2s;
     }
-    .app-install-trigger:hover {
-      background: #38bdf8;
-      color: #031521;
-      box-shadow: 0 0 24px rgba(56, 189, 248, 0.5);
-    }
+    .app-install-trigger:hover { background: #38bdf8; color: #021019; }
 
-    .resume-reading-pill {
-      display: none;
-      align-items: center;
-      gap: 8px;
-      background: rgba(16, 185, 129, 0.18);
-      color: #6ee7b7;
-      border: 1px solid rgba(52, 211, 153, 0.48);
-      padding: 9px 18px;
-      border-radius: 99px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      box-shadow: 0 0 16px rgba(16, 185, 129, 0.22);
-    }
-    .resume-reading-pill:hover {
-      background: var(--green-accent);
-      color: #032218;
-      box-shadow: 0 0 24px rgba(16, 185, 129, 0.5);
-    }
+    .resume-reading-pill { display:none; align-items:center; gap:8px; background:rgba(16,185,129,0.18); color:#6ee7b7; border:1px solid rgba(52,211,153,0.48); padding:9px 18px; border-radius:99px; font-size:0.82rem; font-weight:700; text-decoration:none; box-shadow:0 0 16px rgba(16,185,129,0.22); transition:0.2s; }
+    .resume-reading-pill:hover { background:#10b981; color:#021810; }
 
-    .modal-tuto-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(2, 4, 6, 0.82);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+    /* FENÊTRE GUIDE D'INSTALLATION SUR TÉLÉPHONE (SAFARI / ANDROID) */
+    .app-modal-overlay { display:none; position:fixed; inset:0; background:rgba(2,5,9,0.85); backdrop-filter:blur(10px); z-index:999; align-items:center; justify-content:center; padding:20px; }
+    .app-modal-overlay.open { display:flex; }
+    .app-modal-card { background:#08111a; border:1.5px solid rgba(56,189,248,0.55); border-radius:22px; max-width:480px; width:100%; padding:24px; color:#f8fafc; box-shadow:0 20px 50px rgba(0,0,0,0.8); }
+    .app-modal-card h3 { color:#7dd3fc; margin-bottom:12px; font-size:1.1rem; }
+    .app-modal-card p { font-size:0.9rem; color:#cbd5e1; margin-bottom:12px; line-height:1.6; }
+    .app-modal-close { background:linear-gradient(135deg,#38bdf8,#0ea5e9); color:#021019; border:none; padding:9px 20px; border-radius:10px; font-weight:800; cursor:pointer; width:100%; margin-top:8px; }
+
+    .revelation-guide-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:22px; }
+    .guide-box { background:rgba(8,14,20,0.28); backdrop-filter:blur(7px); border:1px solid rgba(56,189,248,0.25); border-radius:20px; padding:18px 22px; box-shadow:0 8px 24px rgba(0,0,0,0.35); }
+    .guide-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; gap:8px; }
+    .guide-header h3 { font-size:1rem; color:#fff; font-weight:800; }
+    .guide-box p { font-size:0.86rem; color:#e2e8f0; line-height:1.68; }
+    .controls { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-bottom:20px; }
+    .sort-btn { position:relative; overflow:hidden; background:var(--bg-card); color:#fff; border:1px solid rgba(56,189,248,0.3); padding:12px 22px; border-radius:14px; font-weight:700; cursor:pointer; transition:0.25s; }
+    .sort-btn:hover { border-color:#38bdf8; transform:translateY(-2px); }
+    .sort-btn.active { background:linear-gradient(135deg,#38bdf8,#0ea5e9); color:#021019; border-color:#7dd3fc; box-shadow:0 0 25px rgba(56,189,248,0.55); }
+
+    /* BOUTON 3 AVEC BORD ANIMÉ OR & BLEU */
+    .sort-btn.miracle-tab-btn {
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.16), rgba(14, 165, 233, 0.22));
+      border: 1.5px solid rgba(251, 191, 36, 0.78);
+      color: #fde68a;
+      box-shadow: 0 0 22px rgba(251, 191, 36, 0.25);
     }
-    .modal-tuto-overlay.open {
-      display: flex;
-    }
-    .modal-tuto-card {
-      background: #071018;
-      border: 1px solid rgba(56, 189, 248, 0.45);
-      border-radius: 22px;
-      max-width: 540px;
-      width: 100%;
-      padding: 26px 28px;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.85), 0 0 35px rgba(56, 189, 248, 0.2);
-      color: #f8fafc;
-      position: relative;
-    }
-    .modal-tuto-close {
+    .sort-btn.miracle-tab-btn::before {
+      content: "";
       position: absolute;
-      top: 16px;
-      right: 18px;
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      border: none;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      font-weight: 800;
-      cursor: pointer;
+      inset: 0;
+      border-radius: inherit;
+      padding: 2px;
+      background: conic-gradient(from var(--ae-angle), transparent 15%, #fbbf24 42%, #ffffff 50%, #38bdf8 58%, transparent 85%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: aeLaserSpin 3.6s linear infinite;
+      pointer-events: none;
     }
-    .modal-tuto-card h3 {
-      font-size: 1.18rem;
-      color: #7dd3fc;
-      margin-bottom: 14px;
-    }
-    .tuto-box {
-      background: rgba(12, 21, 30, 0.85);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 14px;
-      padding: 14px 16px;
-      margin-bottom: 12px;
-    }
-    .tuto-box h4 {
-      color: #34d399;
-      font-size: 0.92rem;
-      margin-bottom: 6px;
-    }
-    .tuto-box ol {
-      padding-left: 18px;
-      font-size: 0.86rem;
-      color: #e2e8f0;
-      line-height: 1.7;
+    .sort-btn.miracle-tab-btn.active {
+      background: linear-gradient(135deg, #fbbf24, #38bdf8);
+      color: #020810;
+      border-color: #ffffff;
+      box-shadow: 0 0 30px rgba(251, 191, 36, 0.6), 0 0 45px rgba(56, 189, 248, 0.4);
     }
 
-    .revelation-guide-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 22px;
-    }
-    .guide-box {
-      background: rgba(8, 14, 20, 0.24);
-      backdrop-filter: blur(7px);
-      -webkit-backdrop-filter: blur(7px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 20px;
-      padding: 18px 22px;
-      box-shadow: 0 12px 32px rgba(0,0,0,0.35);
-    }
-    .guide-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 8px;
-    }
-    .guide-header h3 {
-      font-size: 1rem;
-      color: #ffffff;
-      font-weight: 800;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
-    }
-    .guide-box p {
-      font-size: 0.86rem;
-      color: #e2e8f0;
-      line-height: 1.65;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.85);
-    }
+    .search-box { width:100%; max-width:540px; margin:0 auto 26px auto; display:block; padding:14px 20px; border-radius:14px; border:1px solid rgba(56,189,248,0.32); background:var(--bg-card); color:#fff; font-size:0.95rem; outline:none; transition:0.2s; }
+    .search-box:focus { border-color:#38bdf8; box-shadow:0 0 20px rgba(56,189,248,0.25); }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(310px, 1fr)); gap:16px; }
 
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-    .sort-btn {
-      background: var(--bg-card);
-      backdrop-filter: blur(8px);
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
-      padding: 12px 22px;
-      border-radius: 14px;
-      cursor: pointer;
-      font-family: inherit;
-      font-weight: 700;
-      font-size: 0.92rem;
-      transition: all 0.2s ease;
-    }
-    .sort-btn:hover { border-color: var(--sky-bright); color: #fff; }
-    .sort-btn.active {
-      background: var(--green-accent);
-      color: #032218;
-      border-color: var(--green-bright);
-      box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
-    }
-    .sort-btn.miracle-btn-filter.active {
-      background: var(--sky-accent);
-      color: #031521;
-      border-color: var(--sky-bright);
-      box-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
-    }
-
-    .search-box {
-      width: 100%;
-      max-width: 540px;
-      margin: 0 auto 26px auto;
-      display: block;
-      padding: 14px 20px;
-      border-radius: 14px;
-      border: 1px solid var(--border-color);
-      background: var(--bg-card);
-      backdrop-filter: blur(8px);
-      color: #fff;
-      font-family: inherit;
-      font-size: 0.95rem;
-      outline: none;
-    }
-    .search-box::placeholder { color: #cbd5e1; }
-    .search-box:focus { border-color: var(--sky-bright); }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-      gap: 16px;
-    }
+    /* CARTES DE SOURATES AVEC BORDS ANIMÉS OR & BLEU */
     .card {
       background: var(--bg-card);
       backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border: 1px solid var(--border-color);
+      border: 1px solid rgba(56, 189, 248, 0.22);
       border-radius: 18px;
       padding: 18px 20px;
       text-decoration: none;
@@ -2405,262 +1773,261 @@ async function lancerGeneration() {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: all 0.22s ease;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.3);
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
     }
     .card:hover {
-      background: var(--bg-card-hover);
-      border-color: rgba(56, 189, 248, 0.45);
-      transform: translateY(-3px);
-      box-shadow: 0 16px 35px rgba(0,0,0,0.5);
-    }
-    .card.direct-verse-card {
-      border-color: rgba(52, 211, 153, 0.65);
-      background: rgba(16, 185, 129, 0.14);
-    }
-    .card-left { display: flex; align-items: center; gap: 14px; }
-    .num-badge {
-      background: var(--green-soft);
-      color: var(--green-bright);
-      border: 1px solid rgba(52, 211, 153, 0.3);
-      font-weight: 800;
-      padding: 9px 13px;
-      border-radius: 10px;
-      font-size: 0.92rem;
-      min-width: 48px;
-      text-align: center;
-    }
-    .card-info h2 {
-      font-size: 1.02rem;
-      color: #ffffff;
-      margin-bottom: 5px;
-      font-weight: 700;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
-    }
-    .surah-subnum {
-      color: #7dd3fc;
-      font-size: 0.84rem;
-      font-weight: 700;
-    }
-    .card-meta-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .card-meta-text {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      text-shadow: 0 1px 3px rgba(0,0,0,0.9);
-    }
-    .ar-name {
-      font-family: 'Scheherazade New', 'Amiri', serif;
-      font-size: 1.7rem;
-      color: #ffffff;
-      text-shadow: 0 0 12px rgba(255,255,255,0.55);
-      margin-left: 8px;
+      border-color: rgba(56, 189, 248, 0.75);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.55), 0 0 22px rgba(56,189,248,0.25);
     }
 
-    @media (max-width: 820px) {
-      .hero h1 { font-size: 2.05rem; }
-      .revelation-guide-grid { grid-template-columns: 1fr; }
+    .card.miracle-card-glow {
+      background: linear-gradient(145deg, rgba(10, 24, 40, 0.65) 0%, rgba(6, 12, 20, 0.50) 100%);
+      border: 1.5px solid rgba(251, 191, 36, 0.45);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.55), 0 0 22px rgba(251, 191, 36, 0.16);
     }
+    .card.miracle-card-glow::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.8px;
+      background: conic-gradient(from var(--ae-angle), transparent 20%, #fbbf24 42%, #ffffff 50%, #38bdf8 58%, transparent 80%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: aeLaserSpin 4.8s linear infinite;
+      pointer-events: none;
+    }
+    .card.miracle-card-glow:hover {
+      transform: translateY(-5px) scale(1.01);
+      box-shadow: 0 14px 36px rgba(251, 191, 36, 0.32), 0 0 28px rgba(56, 189, 248, 0.32);
+    }
+
+    .card.rum-featured-card {
+      background: linear-gradient(135deg, rgba(16, 45, 72, 0.82) 0%, rgba(32, 22, 6, 0.68) 100%);
+      border: 2px solid rgba(251, 191, 36, 0.85);
+      box-shadow: 0 0 32px rgba(251, 191, 36, 0.38), 0 0 50px rgba(56, 189, 248, 0.25);
+    }
+    .card.rum-featured-card::before {
+      padding: 2.5px;
+      background: conic-gradient(from var(--ae-angle), #fbbf24 0%, #ffffff 18%, #38bdf8 35%, transparent 55%, #fbbf24 85%, #ffffff 100%);
+      animation-duration: 3.2s;
+    }
+    .card.rum-featured-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), rgba(251,191,36,0.16), transparent);
+      animation: aeShimmerSweep 5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .card.rum-featured-card .num-badge {
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.32), rgba(245, 158, 11, 0.22));
+      color: #fde68a;
+      border-color: #fbbf24;
+      box-shadow: 0 0 16px rgba(251, 191, 36, 0.45);
+    }
+
+    .card-left { position:relative; z-index:2; display:flex; align-items:center; gap:14px; }
+    .num-badge { background:rgba(14,165,233,0.18); color:var(--sky-light); border:1px solid rgba(56,189,248,0.38); font-weight:800; padding:9px 13px; border-radius:10px; min-width:48px; text-align:center; }
+    .card-info h2 { font-size:1.02rem; color:#fff; margin-bottom:5px; font-weight:700; }
+    .card-meta-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .card-meta-text { font-size:0.78rem; color:var(--text-muted); }
+    .ar-name { position:relative; z-index:2; font-family:'Scheherazade New',serif; font-size:1.7rem; color:#fff; }
+    @media (max-width:820px) { .hero-top-lang-bar { position:static; margin-bottom:10px; display:flex; justify-content:center; } .hero h1 { font-size:2rem; } .revelation-guide-grid { grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
-
-  ${HTML_SOLEIL_LUNE_ACCUEIL}
-
+  <div class="cosmos-exterior-wrapper"><div id="dynamicSkyLighting"></div><canvas id="fullPageSkyCanvas"></canvas><div class="flat-earth-sun" id="flatEarthSun"><div class="sun-core"></div></div><div class="flat-earth-moon" id="flatEarthMoon"><div class="moon-white-core"></div></div></div>
   <div class="wrapper interface-layer">
     <header class="hero">
+      <div class="hero-top-lang-bar">
+        <div class="lang-switcher-group">
+          <button type="button" class="lang-pill-btn active" data-lang="fr" onclick="changerLangueAccueil('fr')">🇫🇷 FR</button>
+          <button type="button" class="lang-pill-btn" data-lang="en" onclick="changerLangueAccueil('en')">🇬🇧 EN</button>
+          <button type="button" class="lang-pill-btn" data-lang="es" onclick="changerLangueAccueil('es')">🇪🇸 ES</button>
+          <button type="button" class="lang-pill-btn" data-lang="ar" onclick="changerLangueAccueil('ar')">🇸🇦 AR</button>
+        </div>
+      </div>
       <div class="hero-ornament-top">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-      <h1>Le Noble Coran & Tafsīr</h1>
+      <h1 id="heroTitleEl">LE NOBLE CORAN &amp; TAFSĪR</h1>
       <div class="hero-glow-line"></div>
       <div class="hero-bottom-bar">
         ${genererLogoInlineSVG('hero-inline-logo')}
-        <button type="button" class="app-install-trigger" onclick="document.getElementById('tutoModal').classList.add('open')">
-          📲 Mettre le site en application sur téléphone (Safari / Android)
-        </button>
-        <a href="#" id="resumeReadingBtn" class="resume-reading-pill" onclick="sauvegarderConfigCiel()">
-          📖 Reprendre ma lecture
-        </a>
+        <button type="button" class="app-install-trigger" id="appInstallBtnEl" onclick="document.getElementById('appInstallModal').classList.add('open')">📲 Mettre le site en application sur téléphone (Safari / Android)</button>
+        <a href="#" id="resumeReadingBtn" class="resume-reading-pill" onclick="sauvegarderConfigCiel()">${ICONE_LIVRE_SVG}<span id="resumeTextSpan">Reprendre ma lecture</span></a>
       </div>
     </header>
-
-    <div class="modal-tuto-overlay" id="tutoModal" onclick="if(event.target===this)this.classList.remove('open')">
-      <div class="modal-tuto-card">
-        <button type="button" class="modal-tuto-close" onclick="document.getElementById('tutoModal').classList.remove('open')">✕</button>
-        <h3>📲 Ajouter Coran Tafsīr sur votre écran d'accueil</h3>
-        <div class="tuto-box">
-          <h4>🍎 Sur iPhone / iPad (avec Safari) :</h4>
-          <ol>
-            <li>Ouvrez <strong>corantafsir.com</strong> dans l'application <strong>Safari</strong>.</li>
-            <li>Appuyez sur l'icône <strong>Partager</strong> (le carré avec une flèche vers le haut <strong>⬆️</strong> tout en bas de l'écran).</li>
-            <li>Faites défiler vers le bas et appuyez sur <strong>« Sur l'écran d'accueil »</strong> puis sur <strong>Ajouter</strong> en haut à droite.</li>
-          </ol>
-        </div>
-        <div class="tuto-box">
-          <h4>🤖 Sur Android (avec Chrome) :</h4>
-          <ol>
-            <li>Ouvrez <strong>corantafsir.com</strong> dans <strong>Google Chrome</strong>.</li>
-            <li>Appuyez sur les <strong>trois petits points (⋮)</strong> tout en haut à droite.</li>
-            <li>Appuyez sur <strong>« Ajouter à l'écran d'accueil »</strong> ou <strong>« Installer l'application »</strong>.</li>
-          </ol>
-        </div>
-      </div>
-    </div>
-
-    <section class="revelation-guide-grid">
-      <div class="guide-box">
-        <div class="guide-header">
-          <h3>Qu'est-ce qu'une Sourate Mecquoise ?</h3>
-          <span class="revelation-pill mecquoise">Mecquoise • 86 Sourates</span>
-        </div>
-        <p>
-          Révélée <strong>avant l'Hégire</strong> (l'émigration du Prophète ﷺ vers Médine). Ces sourates fondent la foi du croyant : elles appellent à l'Unicité pure d'Allāh (<em>Tawhīd</em>), rappellent la Résurrection, le Jour du Jugement, le Paradis et l'Enfer, et relatent l'histoire des Prophètes anciens.
-        </p>
-      </div>
-      <div class="guide-box">
-        <div class="guide-header">
-          <h3>Qu'est-ce qu'une Sourate Médinoise ?</h3>
-          <span class="revelation-pill medinoise">Médinoise • 28 Sourates</span>
-        </div>
-        <p>
-          Révélée <strong>après l'Hégire</strong>, lorsque les croyants formaient une société établie à Médine. Ces sourates détaillent les adorations pratiques, les lois familiales et sociales, la justice, l'éthique communautaire et les règles encadrant la vie des croyants.
-        </p>
-      </div>
+    <section class="revelation-guide-grid" id="guideGridEl">
+      <div class="guide-box"><div class="guide-header"><h3 id="mecTitleEl">Qu'est-ce qu'une Sourate Mecquoise ?</h3><span class="revelation-pill mecquoise" id="mecPillEl">Mecquoise • 86 Sourates</span></div><p id="mecDescEl">Révélée au début de la révélation (avant l'Hégire), lorsque les croyants étaient encore peu nombreux à La Mecque : fonde l'Unicité pure d'Allāh (Tawhīd), les preuves de la foi, le Jugement dernier et l'histoire des Prophètes.</p></div>
+      <div class="guide-box"><div class="guide-header"><h3 id="medTitleEl">Qu'est-ce qu'une Sourate Médinoise ?</h3><span class="revelation-pill medinoise" id="medPillEl">Médinoise • 28 Sourates</span></div><p id="medDescEl">Révélée après l'Hégire, lorsque les musulmans sont devenus nombreux, unis à Médine, victorieux lors des grandes batailles (comme Badr) et jusqu'à la conquête de La Mecque : détaille les adorations, les lois sociales et la justice.</p></div>
     </section>
-
     <div class="controls">
-      <button class="sort-btn active" onclick="trier('classique', this)">1. Ordre classique (1 à 114)</button>
-      <button class="sort-btn" onclick="trier('chrono', this)">2. Ordre de Révélation (Chronologique : 1 à 114)</button>
-      <button class="sort-btn miracle-btn-filter" onclick="trier('miracles', this)">3. <span class="sky-star-icon">★</span> Les Miracles & Prophéties du Coran</button>
+      <button class="sort-btn active" id="sortBtn1" onclick="trier('classique', this)">1. Ordre classique (1 à 114)</button>
+      <button class="sort-btn" id="sortBtn2" onclick="trier('chrono', this)">2. Ordre de Révélation (1 à 114)</button>
+      <button class="sort-btn miracle-tab-btn" id="sortBtn3" onclick="trier('miracles', this)">3. <span class="gold-star-icon">★</span> Les Miracles du Coran</button>
     </div>
-
-    <input type="text" id="searchInput" class="search-box" placeholder="Rechercher une sourate ou un verset direct (ex: 2:255, 18, Al-Kahf, Miracle...)" oninput="afficher()">
-
+    <input type="text" id="searchInput" class="search-box" placeholder="Rechercher une sourate ou un verset direct (ex: 30:1, 2:255, 111:1...)" oninput="afficher()">
     <div id="grid" class="grid"></div>
+    <footer class="asso-legal-footer" style="max-width:1220px;">
+      Portail éducatif, linguistique et culturel gratuit (sans publicité commerciale) édité par l'Association Loi 1901 à but non lucratif <strong>« Institut Numérique Coran, Langues &amp; Tafsīr »</strong> — Siège social : 180 rue Fabri de Peiresc, 34080 Montpellier.
+    </footer>
+  </div>
+
+  <div class="app-modal-overlay" id="appInstallModal" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="app-modal-card">
+      <h3>📲 Installer CoranTafsir sur votre téléphone</h3>
+      <p><strong>Sur iPhone (Safari) :</strong> Appuyez sur l'icône <strong>Partager</strong> (le carré avec une flèche vers le haut en bas de l'écran), puis choisissez <strong>« Sur l'écran d'accueil »</strong>.</p>
+      <p><strong>Sur Android (Chrome) :</strong> Appuyez sur les <strong>3 petits points</strong> en haut à droite, puis sélectionnez <strong>« Ajouter à l'écran d'accueil »</strong>.</p>
+      <button type="button" class="app-modal-close" onclick="document.getElementById('appInstallModal').classList.remove('open')">Fermer</button>
+    </div>
   </div>
 
   <script>
-    const sourates = ${cartesSouratesJSON};
-    let modeTri = 'classique';
-
+    const sourates = ${cartesJSON};
+    const V_STAMP = "${ANTI_CACHE}";
+    let modeTri = 'classique', currentLang = 'fr', lastReadData = null;
     try {
-      const savedRead = localStorage.getItem('last_read_v28');
-      if (savedRead) {
-        const parsed = JSON.parse(savedRead);
-        if (parsed && parsed.s && parsed.v) {
-          const btnResume = document.getElementById('resumeReadingBtn');
-          if (btnResume) {
-            btnResume.href = "sourate-" + parsed.s + "-verset-" + parsed.v + ".html";
-            btnResume.textContent = "📖 Reprendre : " + (parsed.nom || ("Sourate " + parsed.s)) + " (v." + parsed.v + ")";
-            btnResume.style.display = "inline-flex";
-          }
-        }
+      const sl = localStorage.getItem('site_lang_v32');
+      if (['fr','en','es','ar'].includes(sl)) currentLang = sl;
+      const sr = localStorage.getItem('last_read_v28');
+      if (sr) {
+        const p = JSON.parse(sr);
+        if (p && p.s && p.v) lastReadData = p;
       }
-    } catch (e) {}
+    } catch(e){}
+    function trier(m, btn) { modeTri = m; document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); afficher(); }
+    function changerLangueAccueil(l) { currentLang = l; try { localStorage.setItem('site_lang_v32', l); } catch(e){} appliquerLangueAccueil(); }
+    function appliquerLangueAccueil() {
+      document.querySelectorAll('.lang-pill-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-lang') === currentLang));
+      const isAr = currentLang === 'ar', isEn = currentLang === 'en', isEs = currentLang === 'es';
 
-    function trier(mode, btn) {
-      modeTri = mode;
-      document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      document.getElementById('heroTitleEl').textContent = isAr ? "القرآن الكريم والتفسير المختصر" : (isEn ? "THE NOBLE QURAN & TAFSĪR" : (isEs ? "EL NOBLE CORÁN Y TAFSĪR" : "LE NOBLE CORAN & TAFSĪR"));
+
+      const appBtn = document.getElementById('appInstallBtnEl');
+      if (appBtn) {
+        appBtn.textContent = isAr
+          ? "📲 تثبيت الموقع كتطبيق على الهاتف (آيفون / أندرويد)"
+          : (isEn ? "📲 Add website as an App on phone (Safari / Android)" : (isEs ? "📲 Instalar como aplicación en el móvil (Safari / Android)" : "📲 Mettre le site en application sur téléphone (Safari / Android)"));
+      }
+
+      if (lastReadData) {
+        const btnR = document.getElementById('resumeReadingBtn');
+        const spanR = document.getElementById('resumeTextSpan');
+        btnR.href = "sourate-" + lastReadData.s + "-verset-" + lastReadData.v + ".html?v=" + V_STAMP;
+        const pref = isAr ? "متابعة القراءة : " : (isEn ? "Resume: " : (isEs ? "Continuar: " : "Reprendre : "));
+        const motV = isAr ? "آية " : (isEs ? "a." : "v.");
+        spanR.textContent = pref + (lastReadData.nom || ("Surah " + lastReadData.s)) + " (" + motV + lastReadData.v + ")";
+        btnR.style.display = "inline-flex";
+      }
+
+      const guideGrid = document.getElementById('guideGridEl');
+      if (guideGrid) {
+        guideGrid.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+        guideGrid.style.textAlign = isAr ? 'right' : 'left';
+      }
+      document.getElementById('mecTitleEl').textContent = isAr ? "ما هي السورة المكية؟" : (isEn ? "What is a Meccan Surah?" : (isEs ? "¿Qué es una Sura Mequí?" : "Qu'est-ce qu'une Sourate Mecquoise ?"));
+      document.getElementById('mecPillEl').textContent = isAr ? "مكية • 86 سورة" : (isEn ? "Meccan • 86 Surahs" : (isEs ? "Mequí • 86 Suras" : "Mecquoise • 86 Sourates"));
+      document.getElementById('mecDescEl').textContent = isAr
+        ? "نزلت في بداية الوحي (قبل الهجرة) حين كان المسلمون قلة مستضعفين بمكة : ترسّخ التوحيد الخالص لله، ودلائل الإيمان، والبعث وقصص الأنبياء."
+        : (isEn
+            ? "Revealed at the beginning of revelation (before the Hijrah), when the believers were still few in Makkah: establishes the pure Oneness of Allāh (Tawhīd), proofs of faith, the Hereafter, and the stories of the Prophets."
+            : (isEs
+                ? "Revelada al inicio de la revelación (antes de la Hégira), cuando los creyentes aún eran pocos en La Meca: establece el Monoteísmo puro de Allah (Tawhīd), las pruebas de la fe, el Juicio Final y las historias de los Profetas."
+                : "Révélée au début de la révélation (avant l'Hégire), lorsque les croyants étaient encore peu nombreux à La Mecque : fonde l'Unicité pure d'Allāh (Tawhīd), les preuves de la foi, le Jugement dernier et l'histoire des Prophètes."));
+
+      document.getElementById('medTitleEl').textContent = isAr ? "ما هي السورة المدنية؟" : (isEn ? "What is a Medinan Surah?" : (isEs ? "¿Qué es una Sura Medinense?" : "Qu'est-ce qu'une Sourate Médinoise ?"));
+      document.getElementById('medPillEl').textContent = isAr ? "مدنية • 28 سورة" : (isEn ? "Medinan • 28 Surahs" : (isEs ? "Medinense • 28 Suras" : "Médinoise • 28 Sourates"));
+      document.getElementById('medDescEl').textContent = isAr
+        ? "نزلت بعد الهجرة حين كثر المسلمون وقويت شوكتهم بالمدينة وانتصروا في الغزوات (كبدر) وحتى فتح مكة : تفصّل العبادات والشرائع والعدل."
+        : (isEn
+            ? "Revealed after the Hijrah, when the Muslims grew numerous, united in Madinah, victorious in major battles (like Badr) and up to the Conquest of Makkah: details worship, social laws, and justice."
+            : (isEs
+                ? "Revelada después de la Hégira, cuando los musulmanes se hicieron numerosos en Medina, victoriosos en las batallas (como Badr) y hasta la conquista de La Meca: detalla las adoraciones, las leyes sociales y la justicia."
+                : "Révélée après l'Hégire, lorsque les musulmans sont devenus nombreux, unis à Médine, victorieux lors des grandes batailles (comme Badr) et jusqu'à la conquête de La Mecque : détaille les adorations, les lois sociales et la justice."));
+
+      document.getElementById('sortBtn1').textContent = isAr ? "1. ترتيب المصحف (1 إلى 114)" : (isEn ? "1. Traditional Order (1 to 114)" : (isEs ? "1. Orden tradicional (1 a 114)" : "1. Ordre classique (1 à 114)"));
+      document.getElementById('sortBtn2').textContent = isAr ? "2. ترتيب النزول (1 إلى 114)" : (isEn ? "2. Revelation Order (1 to 114)" : (isEs ? "2. Orden de Revelación (1 a 114)" : "2. Ordre de Révélation (1 à 114)"));
+      document.getElementById('sortBtn3').innerHTML = isAr
+        ? '3. <span class="gold-star-icon">★</span> آيات الإعجاز القرآني'
+        : (isEn ? '3. <span class="gold-star-icon">★</span> Miracles of the Quran' : (isEs ? '3. <span class="gold-star-icon">★</span> Milagros del Corán' : '3. <span class="gold-star-icon">★</span> Les Miracles du Coran'));
+
+      document.getElementById('searchInput').placeholder = isAr
+        ? "ابحث عن سورة أو آية مباشرة (مثال: 30:1، 2:255، 111:1...)"
+        : (isEn ? "Search a surah or direct verse (e.g., 30:1, 2:255, 111:1...)" : (isEs ? "Buscar una sura o aleya directa (ej: 30:1, 2:255, 111:1...)" : "Rechercher une sourate ou un verset direct (ex: 30:1, 2:255, 111:1...)"));
+
       afficher();
     }
-
     function afficher() {
       const q = document.getElementById('searchInput').value.toLowerCase().trim();
-      const container = document.getElementById('grid');
-
-      let htmlCarteVersetDirect = '';
-      const matchVerset = q.match(/^(\\d{1,3})\\s*[:\\/-]\\s*(\\d{1,3})$/);
-      if (matchVerset) {
-        const numS = Number(matchVerset[1]);
-        const numV = Number(matchVerset[2]);
-        const sTrouvee = sourates.find(item => item.id === numS);
-        if (sTrouvee && numV >= 1 && numV <= sTrouvee.versets) {
-          htmlCarteVersetDirect = \`
-          <a href="sourate-\${numS}-verset-\${numV}.html" class="card direct-verse-card" onclick="sauvegarderConfigCiel()">
-            <div class="card-left">
-              <div class="num-badge">\${numS}:\${numV}</div>
-              <div class="card-info">
-                <h2>Ouvrir directement : Sourate \${sTrouvee.nom} — Verset \${numV}</h2>
-                <div class="card-meta-row">
-                  <span class="revelation-pill medinoise">Accès direct au verset \${numV} / \${sTrouvee.versets}</span>
-                </div>
-              </div>
-            </div>
-            <div class="ar-name">\${sTrouvee.nomAr}</div>
-          </a>\`;
+      const isAr = currentLang === 'ar', isEn = currentLang === 'en', isEs = currentLang === 'es';
+      let directHTML = '';
+      const mv = q.match(/^(\\d{1,3})\\s*[:\\/-]\\s*(\\d{1,3})$/);
+      if (mv) {
+        const ns = Number(mv[1]), nv = Number(mv[2]), st = sourates.find(x => x.id === ns);
+        if (st && nv >= 1 && nv <= st.versets) {
+          const txtOuvrir = isAr ? ('فتح سورة ' + st.nomAr + ' — الآية ' + nv) : (isEn ? ('Open Surah ' + st.nom + ' — Verse ' + nv) : (isEs ? ('Abrir Sura ' + st.nom + ' — Aleya ' + nv) : ('Ouvrir Sourate ' + st.nom + ' — Verset ' + nv)));
+          directHTML = '<a href="sourate-' + ns + '-verset-' + nv + '.html?v=' + V_STAMP + '" class="card miracle-card-glow"><div class="card-left"><div class="num-badge">' + ns + ':' + nv + '</div><div class="card-info"><h2>' + txtOuvrir + '</h2></div></div><div class="ar-name">' + st.nomAr + '</div></a>';
         }
       }
-
       let liste = sourates.filter(s => {
         if (modeTri === 'miracles' && !s.hasMiracle) return false;
-        if (matchVerset) return s.id === Number(matchVerset[1]);
-        return (
-          s.nom.toLowerCase().includes(q) ||
-          s.nomFr.toLowerCase().includes(q) ||
-          s.typeLabel.toLowerCase().includes(q) ||
-          s.miracleTitre.toLowerCase().includes(q) ||
-          String(s.id) === q ||
-          String(s.ordreRev) === q
-        );
+        if (mv) return s.id === Number(mv[1]);
+        return s.nom.toLowerCase().includes(q) || s.nomFr.toLowerCase().includes(q) || s.nomEn.toLowerCase().includes(q) || s.nomEs.toLowerCase().includes(q) || s.nomAr.includes(q) || String(s.id) === q;
       });
 
-      if (modeTri === 'chrono') {
+      if (modeTri === 'miracles') {
+        liste.sort((a, b) => {
+          if (a.id === 30) return -1;
+          if (b.id === 30) return 1;
+          return a.id - b.id;
+        });
+      } else if (modeTri === 'chrono') {
         liste.sort((a, b) => a.ordreRev - b.ordreRev);
       } else {
         liste.sort((a, b) => a.id - b.id);
       }
 
-      container.innerHTML = htmlCarteVersetDirect + liste.map(s => {
-        const badgeNumero = modeTri === 'chrono' ? s.ordreRev : s.id;
-        const titreSourate = modeTri === 'chrono'
-          ? \`\${s.nom} (\${s.nomFr}) <span class="surah-subnum">(Sourate \${s.id})</span>\`
-          : \`\${s.nom} (\${s.nomFr})\`;
-        const texteMeta = modeTri === 'chrono'
-          ? \`\${s.ordreRev === 1 ? '1re sourate révélée' : s.ordreRev + 'e sourate révélée'} • \${s.versets} versets\`
-          : \`\${s.versets} versets • Révélation n°\${s.ordreRev}\`;
-        const versetCible = (modeTri === 'miracles' && s.hasMiracle) ? s.miracleVerset : 1;
+      document.getElementById('grid').innerHTML = directHTML + liste.map(s => {
+        const badge = modeTri === 'chrono' ? s.ordreRev : s.id;
+        const nomT = isEn ? s.nomEn : (isEs ? s.nomEs : s.nomFr);
+        const titre = isAr ? ("سورة " + s.nomAr + " (" + s.nom + ")") : (s.nom + " (" + nomT + ")");
+        const typeP = isAr ? s.typeLabelAr : (isEn ? s.typeLabelEn : (isEs ? s.typeLabelEs : s.typeLabel));
+        const vCible = (modeTri === 'miracles' && s.hasMiracle) ? s.miracleVerset : 1;
 
-        return \`
-        <a href="sourate-\${s.id}-verset-\${versetCible}.html" class="card" onclick="sauvegarderConfigCiel()">
-          <div class="card-left">
-            <div class="num-badge">\${badgeNumero}</div>
-            <div class="card-info">
-              <h2>\${titreSourate}</h2>
-              <div class="card-meta-row">
-                <span class="revelation-pill \${s.typeClasse}">\${s.typeLabel}</span>
-                \${s.hasMiracle ? \`<span class="revelation-pill miracle-pill">★ Miracle (v.\${s.miracleVerset})</span>\` : ''}
-                <span class="card-meta-text">\${texteMeta}</span>
-              </div>
-            </div>
-          </div>
-          <div class="ar-name">\${s.nomAr}</div>
-        </a>
-        \`;
+        let txtBadgeMiracle = '';
+        if (s.id === 30) {
+          txtBadgeMiracle = isAr
+            ? '<span class="gold-star-icon">★</span> 3 معجزات (آية 1-5)'
+            : (isEs ? '<span class="gold-star-icon">★</span> 3 Milagros (a.1-5)' : '<span class="gold-star-icon">★</span> 3 Miracles (v.1-5)');
+        } else {
+          txtBadgeMiracle = isAr
+            ? ('<span class="gold-star-icon">★</span> إعجاز (آية ' + s.miracleVerset + ')')
+            : (isEs ? ('<span class="gold-star-icon">★</span> Milagro (a.' + s.miracleVerset + ')') : ('<span class="gold-star-icon">★</span> Miracle (v.' + s.miracleVerset + ')'));
+        }
+
+        const mPill = s.hasMiracle ? '<span class="revelation-pill miracle-pill">' + txtBadgeMiracle + '</span>' : '';
+        const txtNbV = isAr ? (s.versets + ' آية') : (isEs ? (s.versets + ' a.') : (s.versets + ' v.'));
+        const classesCarte = 'card' + (s.hasMiracle ? ' miracle-card-glow' : '') + (s.id === 30 && modeTri === 'miracles' ? ' rum-featured-card' : '');
+        return '<a href="sourate-' + s.id + '-verset-' + vCible + '.html?v=' + V_STAMP + '" class="' + classesCarte + '" onclick="sauvegarderConfigCiel()"><div class="card-left"><div class="num-badge">' + badge + '</div><div class="card-info"><h2>' + titre + '</h2><div class="card-meta-row"><span class="revelation-pill ' + s.typeClasse + '">' + typeP + '</span>' + mPill + '<span class="card-meta-text">' + txtNbV + '</span></div></div></div><div class="ar-name">' + s.nomAr + '</div></a>';
       }).join('');
     }
-    afficher();
-
-    ${MOTEUR_SOLEIL_LUNE_V21_JS}
+    appliquerLangueAccueil();
+    ${MOTEUR_CIEL_JS}
   </script>
 </body>
 </html>`;
-
   fs.writeFileSync(path.join(dossierSite, 'index.html'), htmlAccueil, 'utf8');
-
-  const sitemapXML = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-    urlsSitemap.map(u => `  <url><loc>${u}</loc></url>`).join('\n') +
-    `\n</urlset>`;
-  fs.writeFileSync(path.join(dossierSite, 'sitemap.xml'), sitemapXML, 'utf8');
-
-  const robotsTXT = `User-agent: *\nAllow: /\nSitemap: https://corantafsir.com/sitemap.xml\n`;
-  fs.writeFileSync(path.join(dossierSite, 'robots.txt'), robotsTXT, 'utf8');
-
-  console.log('\n✅ MISE À JOUR V31 TERMINÉE !');
-  console.log('👉 Badge numéro (2 : 19) déplacé à droite + Tafsīr mis en valeur + Swipe tactile mobile activé !');
+  console.log('\n================================================================================');
+  console.log(`✅ MISE À JOUR V49 TERMINÉE : DESIGN IMAGE 2 + BORDS ANIMÉS OR/BLEU (V44) !`);
+  console.log(`🔍 SCANNER QUALITÉ : ${totalVersetsVerifies} versets vérifiés | ${compteurDoublonsRepares} doublons séparés.`);
+  console.log('================================================================================');
 }
 
 lancerGeneration();
