@@ -133,4 +133,4 @@ if (fs.existsSync(cheminIndex)) {
   fs.writeFileSync(path.join(dossierSite, 'sitemap.xml'), xml, 'utf8');
   fs.writeFileSync(path.join(dossierSite, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: https://corantafsir.com/sitemap.xml\n', 'utf8');
   console.log(`✅ 3/3 : site/sitemap.xml (${urls.length} URLs) et site/robots.txt créés instantanément !`);
-}
+}	
