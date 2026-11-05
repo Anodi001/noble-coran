@@ -689,7 +689,232 @@ Object.assign(MIRACLES_DE_BASE, {
   }
 });
 Object.assign(memoireGlobale.miracles, MIRACLES_DE_BASE);
-Object.assign(memoireGlobale.tafsirFr, TAFSIR_INTEGRAL_DE_BASE_FR);
+const TAFSIR_SOURATE_96_FR = {
+  "96:1": "<strong style='color:#ffffff;'>Ô Messager, lis ce qu’Allāh te révèle en commençant par le Nom de ton Seigneur qui a créé toutes les créatures.</strong><br><br>📜 <strong>Hadith du début de la Révélation (1re sourate révélée) :</strong> ‘Ā’ishah, la Mère des croyants (qu’Allāh l’agrée), rapporte : <em>« Le début de la révélation au Messager d’Allāh ﷺ prit la forme de visions pieuses durant son sommeil, aussi claires que l’aube. Puis l’amour de la retraite lui fut inspiré et il se retirait seul dans la <strong>grotte de Hirā’</strong> pour adorer Allāh durant plusieurs nuits avant de revenir s’approvisionner auprès de Khadījah. »</em><br><br>Un jour, l’Ange <strong>Jibrīl (Gabriel)</strong> vint à lui dans la grotte et dit : <em>« Lis ! (Iqra’) »</em>. Le Prophète ﷺ répondit : <em>« Je ne sais pas lire. »</em> Il raconte : <em>« L’Ange me saisit et me serra jusqu’à me faire perdre toute force, puis me relâcha et dit : “Lis !” Je répondis : “Je ne sais pas lire.” Il me serra une deuxième fois puis une troisième fois avant de me relâcher en disant : “Lis, au nom de ton Seigneur qui a créé, qui a créé l’homme d’une adhérence. Lis ! Ton Seigneur est le Très Noble.” »</em><br><br>Le Messager d’Allāh ﷺ rentra avec ces versets, le cœur tremblant, auprès de <strong>Khadījah bint Khuwaylid</strong> et dit : <em>« Enveloppez-moi ! Enveloppez-moi ! »</em>. Khadījah le rassura : <em>« Non ! Par Allāh, Allāh ne t’humiliera jamais : tu maintiens les liens de parenté, tu portes le fardeau du faible, tu donnes au démuni et tu secours les victimes des épreuves. »</em> Elle l’emmena ensuite chez son cousin <strong>Waraqah ibn Nawfal</strong>, qui s’écria : <em>« C’est le Nāmūs (l’Ange Jibrīl) qu’Allāh a envoyé à Moïse ! »</em> (<em>Rapporté par Al-Bukhārī n°3 et Muslim n°160</em>).",
+  "96:2": "<strong style='color:#ffffff;'>C’est Lui qui a créé l’être humain à partir d’une « ‘Alaqah » (une adhérence suspendue et irriguée de sang)</strong>, après le stade de la goutte séminale (<em>Nutfah</em>).<br><br>Après avoir proclamé au verset 1 qu’Allāh est le Créateur de tout l’univers, ce verset rappelle à l’homme l’humilité de son origine biologique : formé à partir d’une minuscule adhérence accrochée à la paroi utérine, il a été élevé par la grâce d’Allāh au rang de créature douée d’intelligence, de parole et de discernement.",
+  "96:3": "<strong style='color:#ffffff;'>Lis, ô Messager, ce qu’Allāh te révèle ! Car ton Seigneur est le Très Noble (Al-Akram)</strong>, Celui dont la générosité, la clémence et la magnanimité n’ont aucun égal.<br><br>Lorsque le Prophète ﷺ répondit à l’Ange <em>« Je ne sais pas lire »</em>, Allāh répéta l’ordre <em>« Lis ! »</em> en lui annonçant que son Seigneur est <strong>Al-Akram (le Très Généreux)</strong> : Celui qui enseigne à qui ne savait pas lire, facilite la mémorisation du Coran et comble Ses serviteurs de Ses bienfaits.",
+  "96:4": "<strong style='color:#ffffff;'>C’est Lui qui a enseigné l’écriture à l’être humain par l’usage de la plume (Al-Qalam)</strong>.<br><br>Par cet immense bienfait divin, l’homme peut fixer la parole, préserver les sciences, consigner la Révélation et transmettre le savoir à travers les siècles. Qatādah disait : <em>« La plume est un bienfait grandiose d’Allāh ; sans elle, aucune religion ne subsisterait et aucune vie sociale ne serait ordonnée. »</em>",
+  "96:5": "<strong style='color:#ffffff;'>Et Il a enseigné à l’être humain ce qu’il ne savait absolument pas</strong>.<br><br>Sorti du ventre de sa mère dépourvu de toute connaissance (<em>Sourate An-Nahl 16:78</em>), l’être humain a reçu d’Allāh l’ouïe, la vue, la raison et la révélation prophétique qui l’ont fait sortir des ténèbres de l’ignorance vers la lumière du savoir.",
+  "96:6": "<strong style='color:#ffffff;'>Prenez garde ! En vérité, l’être humain rebelle dépasse toutes les limites (Yatghā)</strong> et s’enfle d’arrogance lorsqu’il oublie son Créateur.<br><br>📜 <strong>Contexte de révélation :</strong> Les exégètes (At-Tabarī, Al-Qurtubī, Ibn Kathīr) précisent que les versets 6 à 19 furent révélés au sujet d’<strong>Abū Jahl (‘Amr ibn Hishām)</strong>, le chef mecquois qui persécutait le Prophète ﷺ, tout en visant quiconque se laisse aveugler par l’orgueil et la fortune.",
+  "96:7": "<strong style='color:#ffffff;'>Et cela dès qu’il se voit dans l’aisance et s’imagine pouvoir se suffire à lui-même (Istaghna)</strong> grâce à sa richesse, son prestige et ses partisans.<br><br>Quand il se voit comblé de biens et de santé, l’homme ingrat — à l’image d’Abū Jahl à La Mecque — s’imagine qu’il n’a plus besoin de son Seigneur ni de Ses commandements.",
+  "96:8": "<strong style='color:#ffffff;'>Mais en vérité, c’est vers ton Seigneur qu’aura lieu le retour final (Ar-Ruj‘ā) de toute créature !</strong><br><br>Allāh le menace ici en lui rappelant : comment peut-il se rebeller contre son Seigneur alors qu’il retournera inévitablement seul devant Lui au Jour de la Résurrection pour rendre compte de sa richesse et de chacun de ses actes ?",
+  "96:9": "<strong style='color:#ffffff;'>As-tu vu (ô Messager) un cas plus étonnant que celui qui interdit</strong> avec arrogance d’adorer Allāh ?<br><br>📜 <strong>Récit historique :</strong> Ibn ‘Abbās rapporte que ce verset fut révélé au sujet d’<strong>Abū Jahl</strong> lorsqu’il menaça le Prophète Muhammad ﷺ et voulut l’empêcher de prier près de la Ka‘bah sacrée (<em>Sahīh Al-Bukhārī n°4958</em>).",
+  "96:10": "<strong style='color:#ffffff;'>Qui ose interdire à un serviteur d’Allāh — le Prophète Muhammad ﷺ — d’accomplir sa prière (Salāt)</strong> lorsqu’il se lève et se prosterne pour son Seigneur près de la Ka‘bah ?<br><br>En qualifiant Muhammad ﷺ de <strong>« ‘Abd » (Serviteur d’Allāh)</strong>, Allāh honore son Prophète ﷺ et souligne que sa prière ne dépend que du Maître des mondes, et non des tyrans de Quraysh.",
+  "96:11": "<strong style='color:#ffffff;'>Que penses-tu (ô Abū Jahl) si ce serviteur que tu empêches de prier (Muhammad ﷺ) est sur la bonne voie (Al-Hudā)</strong> et sur une lumière claire venant de son Seigneur ?<br><br>Comment oses-tu menacer un homme guidé par la vérité divine alors que tu demeures toi-même dans l’égarement et l’idolâtrie ?",
+  "96:12": "<strong style='color:#ffffff;'>Ou s’il ordonne la piété (At-Taqwā), l’Unicité d’Allāh et la bienfaisance ?</strong><br><br>Celui qui appelle les gens à craindre Allāh, à délaisser les interdits et à accomplir le bien mérite-t-il d’être soutenu et respecté, ou d’être combattu et empêché de prier ?",
+  "96:13": "<strong style='color:#ffffff;'>Vois-tu (ô Muhammad ﷺ) la gravité de son sort si cet oppresseur (Abū Jahl) dément la vérité (Kadh-dhaba) et tourne le dos (Tawallā)</strong> au Coran et à la foi ?<br><br>Il réunit ainsi contre lui-même deux crimes : rejeter le Message divin par le mensonge et persécuter le Messager d’Allāh ﷺ qui prie.",
+  "96:14": "<strong style='color:#ffffff;'>Cet homme arrogant (Abū Jahl) ne sait-il donc pas qu’Allāh voit absolument tout ce qu’il fait ?</strong><br><br>Il s’agit d’une question d’avertissement et de menace : Allāh l’Omniscient voit parfaitement toutes les manigances et les menaces d’Abū Jahl envers le Prophète ﷺ, et rien ne Lui échappe.",
+  "96:15": "<strong style='color:#ffffff;'>Mais non (Kallā) ! S’il ne cesse pas son hostilité contre le Prophète ﷺ, Nous le saisirons certes violemment par le toupet (An-Nāsiyah)</strong> pour le traîner au Feu !<br><br>Le mot <em>« Kallā »</em> exprime une réprimande tranchante. Saisir un chef arrogant par le toupet (la partie avant du crâne et du front) constituait chez les Arabes le symbole suprême de l’humiliation et de la défaite.",
+  "96:16": "<strong style='color:#ffffff;'>Le toupet d’un grand menteur dans ses paroles, d’un grand pécheur (fautif) dans ses actes !</strong><br><br>Il s’agit toujours d’Abū Jahl : le Coran qualifie directement sa région frontale (<em>Nāsiyah</em>) de menteuse et fautive (<em>Kādhibatin Khāti’ah</em>), car c’est elle qui dirige son mensonge obstiné et sa rébellion contre Allāh.",
+  "96:17": "<strong style='color:#ffffff;'>Qu’il appelle donc à son secours son assemblée et les gens de son clan (Nādiyah)</strong> dont il se vantait !<br><br>📜 <strong>Hadith d’Ibn ‘Abbās :</strong> Lorsque le Prophète ﷺ réprimanda Abū Jahl, ce dernier répliqua avec orgueil : <em>« Ô Muhammad, avec quoi me menaces-tu alors que tu sais bien que c’est moi qui possède la plus grande assemblée (le plus nombreux clan de partisans) de toute cette vallée ? »</em> Le mot <strong>« Nādī »</strong> désigne le lieu où les notables mecquois se réunissaient. Allāh lui lança alors ce défi (<em>Rapporté par At-Tirmidhī n°3349</em>).",
+  "96:18": "<strong style='color:#ffffff;'>Pour Notre part, Nous appellerons les « Zabāniyah » — les redoutables Anges gardiens de l’Enfer</strong> afin qu’ils se saisissent de lui !<br><br>📜 <strong>Hadith d’Ibn ‘Abbās :</strong> Le mot <em>« Az-Zabāniyah »</em> désigne les Anges du châtiment d’une force irrésistible. Ibn ‘Abbās a dit : <em>« Par Allāh ! Si Abū Jahl avait appelé les gens de son assemblée, les Anges du châtiment (Az-Zabāniyah) l’auraient saisi sur-le-champ sous leurs yeux ! »</em> (<em>Rapporté par Al-Bukhārī n°4958 et At-Tirmidhī n°3349</em>).",
+  "96:19": "<strong style='color:#ffffff;'>Non (Kallā) ! Ne lui obéis point, ô Muhammad ﷺ, mais persévère dans ta prosternation (Wasjud) et rapproche-toi de ton Seigneur (Waqtarib) !</strong><br><br>📜 <strong>1. Le Hadith d’Abū Hurayrah sur la terreur d’Abū Jahl :</strong> Abū Hurayrah rapporte qu’Abū Jahl dit aux gens de Quraysh : <em>« Muhammad pose-t-il son visage contre terre (en prosternation) devant vous ? — Oui, lui répondit-on. — Par Al-Lāt et Al-‘Uzzā ! Si je le vois faire cela, je lui foulerai le cou du pied et je roulerai son visage dans la poussière ! »</em> Plus tard, Abū Jahl arriva alors que le Messager d’Allāh ﷺ priait. Voulant s’avancer pour lui piétiner le cou, il recula soudain précipitamment sur ses talons en se protégeant le visage de ses deux mains, effrayé ! On lui demanda : <em>« Qu’as-tu, ô Abū Al-Hakam ? »</em> Il répondit : <em>« Un fossé en flammes me sépare de lui, ainsi qu’une terreur et des ailes effrayantes ! »</em> Le Messager d’Allāh ﷺ dit alors : <strong>« S’il s’était approché de moi, les Anges l’auraient saisi et déchiqueté membre par membre ! »</strong> (<em>Rapporté par Muslim n°2797, Ahmad et An-Nasā’ī</em>).<br><br>📜 <strong>2. Le Hadith authentique de la Prosternation :</strong> D’après Abū Hurayrah également, le Messager d’Allāh ﷺ a dit : <strong>« La position où le serviteur est le plus proche de son Seigneur est lorsqu’il est en prosternation (Sājid) ; multipliez-y donc vos invocations ! »</strong> (<em>Rapporté par Muslim n°482</em>)."
+};
+const TAFSIR_SOURATE_96_EN = {
+  "96:1": "<strong style='color:#ffffff;'>Read, O Messenger, what Allāh reveals to you, beginning in the Name of your Lord who created all things.</strong><br><br>📜 <strong>Hadith of the First Revelation:</strong> ‘Ā’ishah, the Mother of the Believers (may Allāh be pleased with her), narrated that revelation to the Messenger of Allāh ﷺ began with true visions in sleep as bright as dawn. Then he was made to love seclusion in the <strong>Cave of Hirā’</strong>, worshipping Allāh for several nights before returning to Khadījah.<br><br>One day the Angel <strong>Jibrīl (Gabriel)</strong> came to him and said: <em>‘Read! (Iqra’)’</em> The Prophet ﷺ replied: <em>‘I do not know how to read.’</em> The Angel embraced him tightly three times until he was exhausted, then released him and recited: <em>‘Read in the name of your Lord who created—created man from a clinging substance. Read! And your Lord is the Most Generous.’</em><br><br>The Messenger of Allāh ﷺ returned with his heart trembling to <strong>Khadījah bint Khuwaylid</strong> saying: <em>‘Cover me! Cover me!’</em> Khadījah reassured him: <em>‘Never! By Allāh, Allāh will never disgrace you: you uphold family ties, bear the burden of the weak, give to the destitute, and help the afflicted.’</em> She took him to her cousin <strong>Waraqah ibn Nawfal</strong>, who declared: <em>‘This is the Nāmūs (Angel Gabriel) whom Allāh sent down to Moses!’</em> (<em>Sahīh Al-Bukhārī #3 & Sahīh Muslim #160</em>).",
+  "96:2": "<strong style='color:#ffffff;'>He created the human being from an ‘Alaqah (a clinging, blood-nourished embryonic substance)</strong> after the drop stage, reminding humankind of its humble origin and the supreme power of its Creator.",
+  "96:3": "<strong style='color:#ffffff;'>Read, O Prophet! And your Lord is the Most Generous (Al-Akram)</strong>, whose bounty and forbearance have no equal—teaching the unlettered and making the Revelation easy to preserve.",
+  "96:4": "<strong style='color:#ffffff;'>He is the One who taught humankind writing by means of the Pen (Al-Qalam)</strong>, whereby knowledge, sciences, and Divine Revelation are preserved across generations.",
+  "96:5": "<strong style='color:#ffffff;'>And He taught the human being what he did not know</strong>, bringing him forth from complete ignorance into the light of intellect, revelation, and guidance.",
+  "96:6": "<strong style='color:#ffffff;'>No indeed! Truly the rebellious human being transgresses all bounds (Yatghā)</strong> when he forgets his Creator.<br><br>📜 <strong>Context of Revelation:</strong> Revealed regarding <strong>Abū Jahl (‘Amr ibn Hishām)</strong>, while applying generally to anyone blinded by wealth and arrogance.",
+  "96:7": "<strong style='color:#ffffff;'>Because he sees himself as self-sufficient (Istaghna)</strong> through his wealth, prestige, and followers, imagining he has no need to obey his Lord.",
+  "96:8": "<strong style='color:#ffffff;'>Indeed, to your Lord is the ultimate return (Ar-Ruj‘ā) of all creation!</strong> On that Day, Allāh will hold every arrogant transgressor accountable for his wealth and deeds.",
+  "96:9": "<strong style='color:#ffffff;'>Have you seen the astonishing case of the one who forbids</strong> others from worshipping Allāh?<br><br>📜 <strong>Historical Context:</strong> Revealed concerning <strong>Abū Jahl</strong> when he threatened the Prophet Muhammad ﷺ and tried to stop him from praying near the Ka‘bah (<em>Sahīh Al-Bukhārī #4958</em>).",
+  "96:10": "<strong style='color:#ffffff;'>Forbidding a servant of Allāh—Prophet Muhammad ﷺ—when he stands and prostrates in prayer (Salāt)</strong> near the Sacred House?",
+  "96:11": "<strong style='color:#ffffff;'>Tell me (O Abū Jahl): what if this praying servant (Muhammad ﷺ) is upon clear guidance (Al-Hudā) from his Lord</strong>, while you blindly oppose him?",
+  "96:12": "<strong style='color:#ffffff;'>Or what if he enjoins righteousness and God-consciousness (At-Taqwā)?</strong> Should one who calls to truth and virtue be prevented from praying?",
+  "96:13": "<strong style='color:#ffffff;'>Do you see, O Messenger, his dreadful fate if this tyrant denies the truth (Kadh-dhaba) and turns his back (Tawallā)</strong> on the Quran and faith?",
+  "96:14": "<strong style='color:#ffffff;'>Does he (Abū Jahl) not know that Allāh sees everything he does</strong>, and that none of his plots or threats escape the All-Seeing?",
+  "96:15": "<strong style='color:#ffffff;'>No indeed (Kallā)! If he does not desist from opposing the Prophet ﷺ, We will surely seize and drag him by the forelock (An-Nāsiyah)</strong> into the Hellfire—an utter humiliation for his pride!",
+  "96:16": "<strong style='color:#ffffff;'>A lying, sinful forelock (Nāsiyatin Kādhibatin Khāti’ah)!</strong> It refers once again to Abū Jahl, whose frontal region directs his deliberate lies and sinful aggression.",
+  "96:17": "<strong style='color:#ffffff;'>Then let him call upon his assembly and clansmen (Nādiyah)</strong> of whom he boasted!<br><br>📜 <strong>Hadith of Ibn ‘Abbās:</strong> Abū Jahl boasted to the Prophet ﷺ: <em>‘With what do you threaten me when you know I have the largest assembly of supporters in this valley?’</em> Allāh therefore revealed this challenge (<em>Sunan At-Tirmidhī #3349</em>).",
+  "96:18": "<strong style='color:#ffffff;'>We will call the Zabāniyah—the fierce, mighty Angels of Hell</strong> so it will be seen who is stronger!<br><br>📜 <strong>Hadith:</strong> Ibn ‘Abbās said: <em>‘By Allāh, had he called his assembly, the Angels of punishment (Az-Zabāniyah) would have seized him on the spot before their eyes!’</em> (<em>Sahīh Al-Bukhārī #4958</em>).",
+  "96:19": "<strong style='color:#ffffff;'>No indeed! Do not obey him, O Muhammad ﷺ, but persevere in prostration (Wasjud) and draw near to your Lord (Waqtarib)!</strong><br><br>📜 <strong>1. Hadith of Abū Hurayrah on Abū Jahl’s Terror:</strong> Abū Jahl swore by Al-Lāt and Al-‘Uzzā that if he saw Muhammad ﷺ prostrating near the Ka‘bah he would trample his neck. When he approached the Prophet ﷺ while he was praying, he suddenly retreated in terror, shielding his face with both hands! When asked what happened, he said: <em>‘A fiery trench separates me from him, along with terror and wings!’</em> The Messenger of Allāh ﷺ said: <strong>‘Had he come near me, the Angels would have snatched him limb from limb!’</strong> (<em>Sahīh Muslim #2797, Ahmad & An-Nasā’ī</em>).<br><br>📜 <strong>2. Hadith on Closeness in Prostration:</strong> Abū Hurayrah narrated that the Messenger of Allāh ﷺ said: <strong>‘The closest a servant is to his Lord is when he is prostrating (Sājid), so multiply your supplications therein!’</strong> (<em>Sahīh Muslim #482</em>)."
+};
+const TAFSIR_SOURATE_96_ES = {
+  "96:1": "<strong style='color:#ffffff;'>¡Lee, oh Mensajero, lo que Allah te revela comenzando en el Nombre de tu Señor que creó todas las cosas!</strong><br><br>📜 <strong>Hadiz del inicio de la Revelación:</strong> ‘Ā’ishah, la Madre de los Creyentes, relató que el comienzo de la revelación al Mensajero de Allah ﷺ fue mediante visiones verídicas en sueños tan claras como la aurora. Luego se retiraba a adorar a Allah en la <strong>cueva de Hirā’</strong>.<br><br>Un día se le presentó el Ángel <strong>Yibrīl (Gabriel)</strong> y le dijo: <em>«¡Lee! (Iqra’)»</em>. El Profeta ﷺ respondió: <em>«No sé leer.»</em> El Ángel lo estrechó tres veces hasta dejarlo sin fuerzas y luego le reveló: <em>«¡Lee en el nombre de tu Señor que creó, que creó al ser humano de una adherencia! ¡Lee, que tu Señor es el Más Generoso!»</em><br><br>El Profeta ﷺ regresó con el corazón tembloroso junto a <strong>Khadījah bint Khuwaylid</strong> diciendo: <em>«¡Cubridme! ¡Cubridme!»</em> Ella lo consoló y lo llevó ante su primo <strong>Waraqah ibn Nawfal</strong>, quien anunció: <em>«¡Éste es el Nāmūs (el Ángel Gabriel) que Allah envió a Moisés!»</em> (<em>Sahīh Al-Bukhārī n°3 y Sahīh Muslim n°160</em>).",
+  "96:2": "<strong style='color:#ffffff;'>Él creó al ser humano a partir de una « ‘Alaqah » (una adherencia suspendida y nutrida de sangre)</strong> tras la etapa de la gota fecundada, recordándole la humildad de su origen frente a la grandeza de su Creador.",
+  "96:3": "<strong style='color:#ffffff;'>¡Lee, oh Profeta! Pues tu Señor es el Más Generoso y Noble (Al-Akram)</strong>, cuya bondad infinita enseña a quien no sabía leer y facilita la memorización de la Revelación.",
+  "96:4": "<strong style='color:#ffffff;'>Él es Quien enseñó al ser humano la escritura mediante el cálamo (Al-Qalam)</strong>, gracias al cual se conservan las ciencias, la Revelación y el conocimiento a través de los siglos.",
+  "96:5": "<strong style='color:#ffffff;'>Y enseñó al ser humano lo que no sabía</strong>, dotándolo de oído, vista, razón y guía revelada tras haber nacido sin conocimiento alguno.",
+  "96:6": "<strong style='color:#ffffff;'>¡Pero no! En verdad el ser humano rebelde se extralimita en la arrogancia y la injusticia (Yatghā)</strong> cuando olvida a su Creador.<br><br>📜 <strong>Contexto de revelación:</strong> Revelado acerca de <strong>Abū Yahl (‘Amr ibn Hishām)</strong> y aplicable a todo aquel que se deja cegar por la soberbia.",
+  "96:7": "<strong style='color:#ffffff;'>Cuando se ve rico y cree bastarse a sí mismo (Istaghna)</strong> gracias a su riqueza y prestigio, pensando que ya no necesita obedecer a su Señor.",
+  "96:8": "<strong style='color:#ffffff;'>¡Pero ciertamente hacia tu Señor es el retorno final (Ar-Ruj‘ā) de todos!</strong> Allah lo amenaza recordándole que volverá ante Él para ser juzgado y rendir cuentas.",
+  "96:9": "<strong style='color:#ffffff;'>¿Has visto a aquel que prohíbe</strong> con arrogancia adorar a Allah?<br><br>📜 <strong>Relato histórico:</strong> Este versículo fue revelado acerca de <strong>Abū Yahl</strong> cuando amenazó al Profeta Muhammad ﷺ y quiso impedirle rezar junto a la Ka‘bah (<em>Sahīh Al-Bukhārī n°4958</em>).",
+  "96:10": "<strong style='color:#ffffff;'>¿Impidiendo a un siervo de Allah —el Profeta Muhammad ﷺ— realizar la oración (Salāt)</strong> junto a la Casa Sagrada?",
+  "96:11": "<strong style='color:#ffffff;'>¿Qué piensas (oh Abū Yahl) si este siervo a quien prohíbes rezar está en la buena vía (Al-Hudā)</strong> y la guía de su Señor?",
+  "96:12": "<strong style='color:#ffffff;'>¿O si ordena la piedad (At-Taqwā) y exhorta a los demás a hacer el bien?</strong> ¿Por qué entonces le impides rezar y adorar a Allah?",
+  "96:13": "<strong style='color:#ffffff;'>¿Ves, oh Muhammad ﷺ, su destino si este opresor (Abū Yahl) desmiente y rechaza el Mensaje (el Corán) y da la espalda (Tawallā)</strong> a la fe?",
+  "96:14": "<strong style='color:#ffffff;'>¿Acaso no sabe que verdaderamente Allah ve todo lo que hace?</strong> Allah el Omnisciente observa todas las amenazas de Abū Yahl contra el Profeta ﷺ.",
+  "96:15": "<strong style='color:#ffffff;'>¡Pero no (Kallā)! Si no cesa en su hostilidad contra Allah y Su Mensajero ﷺ, ciertamente lo agarraremos por el copete (An-Nāsiyah)</strong>, símbolo de humillación para su soberbia, y lo arrastraremos al Infierno.",
+  "96:16": "<strong style='color:#ffffff;'>¡El copete de un mentiroso y un pecador!</strong> Se refiere nuevamente a Abū Yahl, cuya región frontal dirige sus mentiras y pecados.",
+  "96:17": "<strong style='color:#ffffff;'>¡Que llame entonces a sus partidarios y a los miembros de su asamblea (Nādiyah)</strong> para que vengan en su ayuda!<br><br>📜 <strong>Hadiz de Ibn ‘Abbās:</strong> Abū Yahl se jactaba de tener la mayor asamblea (<em>Nādī</em>) de partidarios en el valle de La Meca, por lo que Allah le lanzó este desafío (<em>Sunan At-Tirmidhī n°3349</em>).",
+  "96:18": "<strong style='color:#ffffff;'>¡Nosotros llamaremos a los « Zabāniyah » (los severos Ángeles guardianes del Infierno)</strong> para que quede claro quién tiene el poder absoluto!<br><br>📜 <strong>Hadiz:</strong> Dijo Ibn ‘Abbās: <em>«¡Por Allah! Si hubiera llamado a su asamblea, los Ángeles del castigo lo habrían arrebatado al instante ante sus propios ojos!»</em> (<em>Sahīh Al-Bukhārī n°4958</em>).",
+  "96:19": "<strong style='color:#ffffff;'>¡No! ¡No le obedezcas, oh Muhammad ﷺ, sino póstrate (Wasjud) y acércate a tu Señor (Waqtarib)!</strong><br><br>📜 <strong>1. Hadiz de Abū Hurayrah sobre el terror de Abū Yahl:</strong> Abū Yahl juró por Al-Lāt y Al-‘Uzzā que si veía a Muhammad ﷺ postrarse le pisotearía el cuello. Cuando se acercó al Profeta ﷺ mientras rezaba en la Ka‘bah, retrocedió de golpe cubriéndose el rostro con ambas manos, aterrado, y dijo: <em>«¡Un foso en llamas me separa de él, junto con terror y alas espantosas!»</em> El Mensajero de Allah ﷺ dijo: <strong>«¡Si se hubiera acercado a mí, los Ángeles lo habrían despedazado miembro por miembro!»</strong> (<em>Sahīh Muslim n°2797, Ahmad y An-Nasā’ī</em>).<br><br>📜 <strong>2. Hadiz sobre la Postración:</strong> Dijo el Mensajero de Allah ﷺ: <strong>«La posición en que el siervo está más cerca de su Señor es la postración (Sājid); multiplicad, pues, en ella vuestras súplicas.»</strong> (<em>Sahīh Muslim n°482</em>)."
+};
+const TAFSIR_SOURATE_96_AR = {
+  "96:1": "<strong style='color:#ffffff;'>اقرأ يا نبي الله ما أُنزل إليك من القرآن مُفتتحًا باسم ربك الذي خلق الخلق كله.</strong><br><br>📜 <strong>حديث بدء الوحي (أول سورة نزلت من القرآن الكريم) :</strong> عن عائشة أم المؤمنين رضي الله عنها قالت: «أول ما بُدئ به رسول الله ﷺ من الوحي الرؤيا الصالحة في النوم، فكان لا يرى رؤيا إلا جاءت مثل فلق الصبح، ثم حُبِّب إليه الخلاء، وكان يخلو بـ<strong>غار حراء</strong> فيتحنّث فيه الليالي ذوات العدد قبل أن ينزع إلى أهله ويتزوّد لذلك، حتى جاءه الحق وهو في غار حراء، فجاءه الملَك (جبريل عليه السلام) فقال: <strong>اقرأ!</strong> قال: <em>ما أنا بقارئ</em>. قال: <em>فأخذني فغطّني حتى بلغ مني الجهد، ثم أرسلني فقال: اقرأ! قلت: ما أنا بقارئ، فأخذني فغطّني الثانية ثم الثالثة، ثم أرسلني فقال: ﴿اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ * خَلَقَ الْإِنسَانَ مِنْ عَلَقٍ * اقْرَأْ وَرَبُّكَ الْأَكْرَمُ﴾</em>».<br><br>فرجع بها رسول الله ﷺ يرجف فؤاده فدخل على <strong>خديجة بنت خويلد</strong> رضي الله عنها فقال: <em>«زمّلوني! زمّلوني!»</em> فطَمأنته خديجة وقالت: <em>«كلا والله ما يخزيك الله أبدًا؛ إنك لتصل الرحم، وتحمل الكَلّ، وتكسب المعدوم، وتقري الضيف، وتعين على نوائب الحق»</em>، ثم انطلقت به إلى ابن عمها <strong>ورقة بن نوفل</strong> فقال: <em>«هذا الناموس الذي نزل الله على موسى! يا ليتني فيها جذعًا إذ يخرجك قومك!»</em> (<em>رواه البخاري رقم 3 ومسلم رقم 160</em>).",
+  "96:2": "<strong style='color:#ffffff;'>خلق اللهُ الإنسانَ من «علقة»</strong> (قطعة دمٍ غليظة متعلقة بجدار الرحم بعد طور النطفة)، تذكيرًا للإنسان بأصله الضعيف وعظيم قدرة خالقه الذي سوّاه بشرًا عاقلًا ناطقًا.",
+  "96:3": "<strong style='color:#ffffff;'>اقرأ يا نبي الله ما يوحى إليك، وربك هو الأكرم</strong> الذي لا يوازيه كريم في جوده وحلمه وإحسانه، يعلّم الأميّ وييسّر له حفظ الوحي وتبليغه.",
+  "96:4": "<strong style='color:#ffffff;'>الذي علّم الإنسان الكتابة بالقلم</strong>، فبه تُحفظ العلوم والشرائع وتُدوَّن أخبار الأمم عبر القرون، وهو من أعظم نعم الله على البشر.",
+  "96:5": "<strong style='color:#ffffff;'>وعلّم الإنسان ما لم يكن يعلمه</strong>، فأخرجه من ظلمة الجهل بعد أن خُلق لا يعلم شيئًا إلى نور العلم والوحي والبيان.",
+  "96:6": "<strong style='color:#ffffff;'>حقًّا إن الإنسان المتمرد ليتجاوز الحدّ في الكبر والطغيان (لَيَطْغَى)</strong> إذا غفل عن خالقه.<br><br>📜 <strong>سبب النزول :</strong> نزلت هذه الآيات (من الآية 6 إلى آخر السورة) في <strong>أبي جهل (عمرو بن هشام)</strong> عدو الله حين طغى وتجبّر بمكة، ولفظها عامٌّ في كل من أطغاه الغنى والكِبر.",
+  "96:7": "<strong style='color:#ffffff;'>من أجل أنه رأى نفسه ذا مالٍ وثروةٍ وعشيرةٍ فظنّ أنه قد استغنى بذلك عن ربه</strong> وعن الانقياد للحق.",
+  "96:8": "<strong style='color:#ffffff;'>إن إلى ربك وحده مصير الخلائق ورجوعهم يوم القيامة (الرُّجْعَى)</strong>، فيحاسب كلَّ طاغية على ماله وعمله.",
+  "96:9": "<strong style='color:#ffffff;'>أرأيت أعجبَ من حال هذا الطاغية (أبي جهل) الذي ينهى</strong> عن عبادة الله؟<br><br>📜 نزلت في أبي جهل حين توعّد النبيَّ ﷺ وأراد منعه من الصلاة عند الكعبة المشرفة (<em>صحيح البخاري رقم 4958</em>).",
+  "96:10": "<strong style='color:#ffffff;'>ينهى عبدًا لله — وهو نبينا محمد ﷺ — إذا قام يصلي لربه</strong> عند الكعبة المشرفة؟",
+  "96:11": "<strong style='color:#ffffff;'>أرأيت (يا أبا جهل) إن كان هذا العبد المصلي (محمد ﷺ) على الهدى المستقيم</strong> والبصيرة من ربه، فكيف تنهاه عن صلاته؟",
+  "96:12": "<strong style='color:#ffffff;'>أو كان يأمر الناس بتقوى الله وإخلاص التوحيد وعمل الخير؟</strong> أينبغي أن يُمنع من الصلاة أم يُتّبع ويُناصر؟",
+  "96:13": "<strong style='color:#ffffff;'>أرأيت (يا محمد ﷺ) إن كذّب هذا الناهي (أبو جهل) بالقرآن وأعرض عن الإيمان</strong> والطاعة، ما أعظم جرمه؟",
+  "96:14": "<strong style='color:#ffffff;'>ألم يعلم هذا المتجبّر أن الله يرى كل ما يصنع</strong> ويسمع وعيده للنبي ﷺ، ولا يخفى عليه شيء من أمره؟",
+  "96:15": "<strong style='color:#ffffff;'>كلا! لئن لم ينتهِ أبو جهل عن عداوته وأذاه للنبي ﷺ لنأخذنّ بمقدّم رأسه (النَّاصِيَة)</strong> ولنسحبنّه بها إلى النار إذلالًا لكبريائه!",
+  "96:16": "<strong style='color:#ffffff;'>ناصيةٍ صاحبُها (أبو جهل) كاذبٌ في مقاله، خاطئٌ آثمٌ في أفعاله!</strong>",
+  "96:17": "<strong style='color:#ffffff;'>فليدعُ إذن أهلَ ناديه ومجلس عشيرته الذين افتخر بكثرتهم لينصروه!</strong><br><br>📜 <strong>حديث ابن عباس رضي الله عنهما :</strong> لما انتهر النبيُّ ﷺ أبا جهل، قال أبو جهل: <em>«يا محمد، بأي شيء تهددني؟ فوالله إني لأكثر أهل هذا الوادي ناديًا!»</em> فأنزل الله تعالى: ﴿فَلْيَدْعُ نَادِيَهُ * سَنَدْعُ الزَّبَانِيَةَ﴾ (<em>رواه الترمذي رقم 3349 وصححه</em>).",
+  "96:18": "<strong style='color:#ffffff;'>سندعو نحن الزبانية — وهم ملائكة العذاب الغلاظ الشداد</strong> حتى يتبيّن من الغالب!<br><br>📜 قال ابن عباس رضي الله عنهما: <strong>«فوالله لو دعا ناديه لأخذته زبانيةُ الله من ساعته عيانًا!»</strong> (<em>رواه البخاري رقم 4958 والترمذي رقم 3349</em>).",
+  "96:19": "<strong style='color:#ffffff;'>كلا! لا تطعه يا محمد ﷺ فيما يأمرك به من ترك الصلاة، بل اثبت على صلاتك واسجد لربك واقترب منه بالطاعة والدعاء!</strong><br><br>📜 <strong>1. حديث أبي هريرة رضي الله عنه في رعب أبي جهل :</strong> قال أبو جهل لقريش: <em>«هل يعفّر محمد وجهه بين أظهركم؟»</em> قيل: نعم، فقال: <em>«واللات والعزى لئن رأيته يفعل ذلك لأطأنّ على رقبته ولأعفّرنّ وجهه في التراب!»</em> فأتى رسول الله ﷺ وهو يصلي ليركب رقبته، فما فجأهم إلا وهو ينكص على عقبيه ويتّقي بيديه! فقيل له: ما لك؟ فقال: <em>«إن بيني وبينه لخندقًا من نار وهولًا وأجنحة!»</em> فقال رسول الله ﷺ: <strong>«لو دنا مني لاختطفته الملائكةُ عضوًا عضوًا!»</strong> (<em>رواه مسلم رقم 2797 وأحمد والنسائي</em>).<br><br>📜 <strong>2. حديث فضل السجود والدعاء فيه :</strong> عن أبي هريرة رضي الله عنه أن رسول الله ﷺ قال: <strong>«أقرب ما يكون العبد من ربه وهو ساجد، فأكثروا الدعاء»</strong> (<em>رواه مسلم رقم 482</em>)."
+};
+const MIRACLE_CHAMEAU_88_17 = {
+  "88:17": {
+    "titre": "Miracle Biologique — L'ingénierie anatomique et cellulaire du Chameau (« Afalā yandhurūna ilā al-ibili kayfa khuliqat »)",
+    "titreEn": "Biological Miracle — The Anatomical & Cellular Engineering of the Camel ('Do they not look at the camels, how they are created?')",
+    "titreEs": "Milagro Biológico — La ingeniería anatómica y celular del Camello (« ¿Acaso no observan los camellos, cómo han sido creados? »)",
+    "titreAr": "الإعجاز البيولوجي والتشريحي في خلق الإبل — ﴿أَفَلَا يَنظُرُونَ إِلَى الْإِبِلِ كَيْفَ خُلِقَتْ﴾",
+    "resume": "« Ne considèrent-ils donc pas les chameaux, comment ils ont été créés ? » (88:17). La biologie et l'hématologie modernes ont révélé chez le chameau des caractéristiques uniques parmi tous les mammifères : des globules rouges ovales capables de gonfler jusqu'à 240 % sans éclater, une thermorégulation interne de 34 °C à 41 °C et un système de filtration optique et respiratoire conçu pour survivre aux tempêtes du désert.",
+    "resumeEn": "'Do they not look at the camels—how they are created?' (88:17). Modern biology and hematology have revealed features in the camel unique among all mammals: oval red blood cells capable of expanding up to 240% without rupturing, internal thermoregulation ranging from 34°C to 41°C, and specialized optical and respiratory shields built for desert survival.",
+    "resumeEs": "« ¿Acaso no observan los camellos, cómo han sido creados? » (88:17). La biología y la hematología modernas han descubierto en el camello características únicas entre todos los mamíferos: glóbulos rojos ovalados capaces de expandirse hasta un 240 % sin estallar, termorregulación interna de 34 °C a 41 °C y escudos anatómicos frente a las tormentas de arena.",
+    "resumeAr": "﴿أَفَلَا يَنظُرُونَ إِلَى الْإِبِلِ كَيْفَ خُلِقَتْ﴾ كشف علم الأحياء وأمراض الدم الحديث عن خصائص فريدة في الإبل لا توجد في سائر الثدييات: كريات دم حمراء بيضاوية تتمدد حتى 240% دون أن تنفجر، ونظام حراري متغير من 34 إلى 41 درجة مئوية، ودروع تشريحية مذهلة لمقاومة العواصف الرملية والعطش.",
+    "developpement": "\n      <div class=\"miracle-pillars-grid\">\n        <div class=\"miracle-pillar-card\">\n          <div class=\"pillar-badge\">PREUVE N°1 • HÉMATOLOGIE UNIQUE CHEZ LES MAMMIFÈRES</div>\n          <h4>🩸 Des globules rouges ovales capables de gonfler jusqu'à 240 %</h4>\n          <p>Contrairement à tous les autres mammifères dont les globules rouges sont ronds, ceux du chameau sont de forme <strong>ovale (elliptique)</strong>. Cette géométrie unique leur permet de continuer à circuler dans les capillaires les plus fins même lorsque le sang devient extrêmement épais et visqueux après une perte de <strong>30 % de son poids en eau</strong> (seuil mortel pour l'être humain dès 12 %). De plus, leur membrane ultra-élastique peut gonfler jusqu'à <strong>240 % de son volume initial</strong> sans éclater par choc osmotique lorsque le chameau boit plus de <strong>100 à 130 litres d'eau en 10 minutes</strong>.</p>\n        </div>\n        <div class=\"miracle-pillar-card\">\n          <div class=\"pillar-badge\">PREUVE N°2 • THERMORÉGULATION & CONDENSATION NASALE</div>\n          <h4>🌡️ Une climatisation interne de 34 °C à 41 °C qui bloque l'évaporation</h4>\n          <p>Pour économiser chaque goutte d'eau sous une chaleur torride, le chameau possède un thermostat biologique programmable : sa température corporelle descend à <strong>34 °C la nuit</strong> et monte très lentement jusqu'à <strong>41 °C le jour</strong> avant qu'il ne commence à transpirer, économisant ainsi jusqu'à 5 litres d'eau par jour. Parallèlement, ses cornets nasaux en spirale refroidissent l'air expiré et récupèrent par condensation <strong>près de 70 % de l'humidité</strong> de son souffle.</p>\n        </div>\n        <div class=\"miracle-pillar-card\">\n          <div class=\"pillar-badge\">PREUVE N°3 • BOUCLIER ANATOMIQUE DU DÉSERT</div>\n          <h4>🐪 Triple paupière translucide, narines étanches & papilles kératinisées</h4>\n          <p>Ses yeux sont protégés par une double rangée de longs cils entrecroisés et une <strong>troisième paupière translucide (membrane nictitante)</strong> qui se ferme comme des lunettes de protection, lui permettant de marcher en pleine tempête de sable tout en voyant son chemin. Ses narines se ferment hermétiquement sur commande musculaire, et sa bouche est tapissée de <strong>papilles coniques dures en kératine</strong> qui lui permettent de broyer les buissons d'épines les plus acérés du désert sans jamais se blesser.</p>\n        </div>\n      </div>\n      <div class=\"historians-proof-section\">\n        <div class=\"historians-header\">🔗 SOURCES BIOLOGIQUES & PHYSIOLOGIQUES VÉRIFIABLES</div>\n        <div class=\"proof-links-bar\">\n          <a href=\"https://fr.wikipedia.org/wiki/Dromadaire#Adaptations_physiologiques_et_anatomiques\" target=\"_blank\" rel=\"noopener\" class=\"proof-link-pill\">🐪 Adaptations physiologiques des camélidés</a>\n          <a href=\"https://en.wikipedia.org/wiki/Camel#Eco-behavioral_adaptations\" target=\"_blank\" rel=\"noopener\" class=\"proof-link-pill\">🩸 Hématologie & Globules rouges elliptiques</a>\n          <a href=\"https://fr.wikipedia.org/wiki/Membrane_nictitante\" target=\"_blank\" rel=\"noopener\" class=\"proof-link-pill\">👁️ Membrane nictitante (3e paupière)</a>\n        </div>\n      </div>",
+    "developpementEn": "\n      <div class=\"miracle-pillars-grid\">\n        <div class=\"miracle-pillar-card\">\n          <div class=\"pillar-badge\">PROOF #1 • UNIQUE HEMATOLOGY AMONG MAMMALS</div>\n          <h4>🩸 Oval Red Blood Cells Expanding up to 240% Without Rupturing</h4>\n          <p>Unlike all other mammals whose red blood cells are circular, the camel's red blood cells are <strong>oval (elliptical)</strong>. This allows them to flow smoothly through narrow capillaries even during severe dehydration when blood viscosity increases drastically. Furthermore, their elastic membrane can swell to <strong>240% of their original volume</strong> without bursting when the camel drinks over <strong>100 liters of water in minutes</strong>.</p>\n        </div>\n        <div class=\"miracle-pillar-card\">\n          <div class=\"pillar-badge\">PROOF #2 • THERMOREGULATION & NASAL MOISTURE RECOVERY</div>\n          <h4>🌡️ Internal Temperature Fluctuating from 34°C to 41°C</h4>\n          <p>To prevent water loss through sweating, the camel varies its body temperature from <strong>34°C at night to 41°C during the day</strong>, while its labyrinthine nasal turbinates condense and recover nearly 70% of the moisture in its exhaled breath.</p>\n        </div>\n        <div class=\"miracle-pillar-card\">\n          <div class=\"pillar-badge\">PROOF #3 • DESERT ANATOMICAL SHIELD</div>\n          <h4>🐪 Translucent Third Eyelid, Sealable Nostrils & Keratinized Mouth</h4>\n          <p>Equipped with interlocking double eyelashes, a <strong>translucent nictitating membrane</strong> acting as sand-goggles, muscularly sealable nostrils, and horn-like keratinized oral papillae to chew desert thorns effortlessly.</p>\n        </div>\n      </div>",
+    "developpementEs": "\n      <div class=\"miracle-pillars-grid\">\n        <div class=\"miracle-pillar-card\">\n          <div class=\"pillar-badge\">PRUEBA N°1 • HEMATOLOGÍA ÚNICA ENTRE LOS MAMÍFEROS</div>\n          <h4>🩸 Glóbulos rojos ovalados que se expanden hasta un 240 %</h4>\n          <p>A diferencia de todos los demás mamíferos, los glóbulos rojos del camello son <strong>ovalados</strong>, lo que les permite circular incluso cuando la sangre se espesa tras perder un 30 % de agua, y expandirse hasta un <strong>240 %</strong> sin estallar al beber 100 litros de agua en poucos minutos.</p>\n        </div>\n        <div class=\"miracle-pillar-card\">\n          <div class=\"pillar-badge\">PRUEBA N°2 • TERMORREGULACIÓN DE 34 °C A 41 °C</div>\n          <h4>🌡️ Ahorro extremo de agua y condensación nasal</h4>\n          <p>Su temperatura corporal oscila entre <strong>34 °C por la noche y 41 °C durante el día</strong> para evitar la sudoración, mientras sus cornetes nasales recuperan la humedad del aire exhalado.</p>\n        </div>\n        <div class=\"miracle-pillar-card\">\n          <div class=\"pillar-badge\">PRUEBA N°3 • ESCUDO ANATÓMICO DEL DESIERTO</div>\n          <h4>🐪 Tercer párpado translúcido, fosas nasales herméticas y papilas córneas</h4>\n          <p>Posee doble hilera de pestañas, una <strong>membrana nictitante translúcida</strong> que le permite caminar viendo en plena tormenta de arena, narinas que se cierran herméticamente y papilas bucales endurecidas para masticar espinas.</p>\n        </div>\n      </div>",
+    "developpementAr": "\n      <div class=\"miracle-pillars-grid\">\n        <div class=\"miracle-pillar-card\">\n          <div class=\"pillar-badge\">الدليل الأول • هندسة فريدة لكريات الدم الحمراء</div>\n          <h4>🩸 كريات دم بيضاوية تتمدد حتى 240% دون انفجار</h4>\n          <p>خلافًا لجميع الثدييات الأخرى ذات الكريات الدائرية، تمتاز الإبل بكريات دم حمراء <strong>بيضاوية الشكل</strong> تنساب في أدق الشعيرات الدموية حتى عند زيادة لزوجة الدم بسبب العطش الشديد، كما تتمدد أغشيتها المرنة حتى <strong>240% من حجمها</strong> دون أن تنفجر عندما يشرب الجمل أكثر من 100 لتر من الماء في دقائق معدودة.</p>\n        </div>\n        <div class=\"miracle-pillar-card\">\n          <div class=\"pillar-badge\">الدليل الثاني • التنظيم الحراري وتكثيف بخار التنفس</div>\n          <h4>🌡️ تغيّر حرارة الجسم من 34°م ليلًا إلى 41°م نهارًا</h4>\n          <p>يرفع الجمل حرارة جسمه تدريجيًّا حتى <strong>41 درجة مئوية</strong> قبل أن يبدأ بالتعرق ليحفظ ماءه، وتقوم التجاويف الأنفية الحلزونية بتبريد هواء الزفير واستعادة نحو 70% من رطوبته.</p>\n        </div>\n        <div class=\"miracle-pillar-card\">\n          <div class=\"pillar-badge\">الدليل الثالث • الدروع التشريحية في الصحراء</div>\n          <h4>🐪 جفن ثالث شفاف، ومنخران محكمان، وحليمات فموية قرنية</h4>\n          <p>زُوّدت الإبل بأهداب مزدوجة متشابكة، و<strong>غشاء رامش شفاف (جفن ثالث)</strong> يعمل كنظارة واقية يسير بها الجمل وسط العواصف الرملية وهو يبصر طريقه، مع فم مبطّن بحليمات مخروطية صلبة يمضغ بها أشواك الصحراء القاسية دون أذى.</p>\n        </div>\n      </div>"
+  }
+};
+Object.assign(MIRACLES_DE_BASE, MIRACLE_CHAMEAU_88_17);
+Object.assign(memoireGlobale.miracles, MIRACLES_DE_BASE);
+
+const TAFSIR_SOURATES_68_73_FR = {
+  "68:1": "<strong style='color:#ffffff;'>Nūn (Lettre détachée). Par la plume et ce qu'ils écrivent !</strong><br><br>📜 <strong>1. Le défi de la lettre détachée :</strong> Allāh commence cette sourate par une lettre détachée (<em>Nūn</em>) pour mettre les Arabes au défi : ce Coran est composé des mêmes lettres que votre alphabet, essayez donc de produire une œuvre semblable !<br><br>📜 <strong>2. La Plume céleste (Al-Qalam) et les Anges scribes :</strong> Quant à <em>« la plume et ce qu'ils écrivent »</em>, <strong>As-Suddī</strong> a dit qu'il s'agit des Anges qui consignent toutes les actions des hommes. D'autres exégètes ont expliqué qu'il s'agit de la Plume céleste (<em>Al-Qalam</em>) à laquelle Allāh a ordonné d'écrire tout ce qu'Il a prédestiné et tout ce qui sera de toutes les créatures <strong>cinquante mille ans avant la création des cieux et de la terre</strong>, conformément au Hadith authentique rapporté par <em>Muslim (n°2653), Abū Dāwūd (n°4700) et At-Tirmidhī (n°2155)</em>.",
+  "68:2": "<strong style='color:#ffffff;'>Tu (Muhammad) n'es pas, par la grâce de ton Seigneur, un possédé.</strong><br><br>Allāh s'adresse à Son Prophète Muhammad ﷺ qui fut injustement traité de fou et de possédé par les Qurayshites : Il le rassure en attestant que par la grâce de la Prophétie et de la Révélation dont Il l'a comblé, il n'est ni fou ni possédé.",
+  "68:3": "<strong style='color:#ffffff;'>Et il y aura pour toi certes, une récompense infinie (ininterrompue).</strong><br><br>Allāh lui assure que sa patience et ses efforts pour transmettre le Message seront récompensés par un salaire immense qui ne diminuera et ne s'interrompra jamais (<em>Ghayra mamnūn</em>).",
+  "68:4": "<strong style='color:#ffffff;'>Et tu es certes, d'une moralité éminente (Khuluqin ‘Adhīm).</strong><br><br>📜 <strong>Le Hadith de ‘Ā'ishah sur le caractère du Prophète ﷺ :</strong> Allāh atteste que la moralité de Son Prophète ﷺ est irréprochable et sublime. Interrogée sur le comportement du Messager d'Allāh ﷺ, <strong>‘Ā'ishah (qu'Allāh l'agrée)</strong> répondit : <strong>« Son caractère était le Coran ! (Kāna khuluquhu Al-Qur'ān) »</strong> (<em>Rapporté par Muslim n°746</em>) : il se conformait à tous ses ordres, s'écartait de ses interdits et incarnait sa miséricorde, sa patience et sa noblesse.",
+  "68:5": "<strong style='color:#ffffff;'>Tu verras et ils verront,</strong><br><br>Tu verras bientôt, ô Muhammad ﷺ, et ces mécréants qui te rejettent verront eux aussi lorsque la vérité éclatera,",
+  "68:6": "<strong style='color:#ffffff;'>qui d'entre vous a perdu la raison (Al-Maftūn).</strong><br><br>Ces négateurs idolâtres qui te traitent de menteur et d'insensé verront alors clairement lequel des deux camps avait l'esprit dérangé et égaré par Satan.",
+  "68:7": "<strong style='color:#ffffff;'>C'est ton Seigneur qui connaît mieux ceux qui s'égarent de Son chemin, et Il connaît mieux ceux qui suivent la bonne voie.</strong>",
+  "68:8": "<strong style='color:#ffffff;'>N'obéis pas à ceux qui crient au mensonge (les négateurs),</strong><br><br>Ô Muhammad ﷺ, n'écoute pas les chefs mecquois qui démentent le Coran et ne cède jamais lorsqu'ils te demandent d'assouplir ou de délaisser ta mission.",
+  "68:9": "<strong style='color:#ffffff;'>Ils aimeraient bien que tu transiges avec eux afin qu'ils transigent avec toi.</strong><br><br>Ils voudraient que tu fasses des compromis sur tes convictions et l'Unicité d'Allāh en flattant leurs idoles, au lieu de demeurer ferme sur la Vérité.",
+  "68:10": "<strong style='color:#ffffff;'>Et n'obéis à aucun grand jureur (Hallāfin), méprisable (Mahīn),</strong><br><br>N'obéis pas à celui qui jure à tort et à travers tout en sachant qu'il ment : car celui qui ment habituellement est vil et méprisable.",
+  "68:11": "<strong style='color:#ffffff;'>grand diffamateur (Hammāz), grand colporteur de médisances (Mash-shā'in bi-namīm),</strong><br><br>Allāh décrit les comportements vils de cet ennemi : il diffame les gens et colporte les paroles des uns aux autres (<em>Namīmah</em>) pour semer la haine et la division.",
+  "68:12": "<strong style='color:#ffffff;'>grand empêcheur du bien, transgresseur, grand pécheur,</strong><br><br>Non seulement il refuse de dépenser dans le bien, mais il empêche aussi ses proches d'embrasser l'Islam et transgresse ouvertement les limites d'Allāh.",
+  "68:13": "<strong style='color:#ffffff;'>au cœur dur (‘Utullin), et en plus de cela « Zanīm ».</strong><br><br>📜 <strong>Les 3 explications de « Zanīm » chez les exégètes :</strong><br>• D'après <strong>‘Ikrimah</strong> : il désigne l'adultérin (né hors mariage).<br>• D'après <strong>Ibn ‘Abbās</strong> : il désigne l'homme dévergondé, connu de tous pour sa méchanceté et sa débauche (comme la marque pendante au cou d'une brebis).<br>• Troisième sens : celui qui s'attribue une fausse origine (qui prétend appartenir à une tribu qui n'est pas réellement la sienne). Les exégètes précisent que ces versets furent révélés au sujet d'<strong>Al-Walīd ibn Al-Mughīrah</strong> (ou d'Al-Akhnas ibn Sharīq).",
+  "68:14": "<strong style='color:#ffffff;'>Même s'il est doté de richesses et de (nombreux) enfants.</strong><br><br>Au lieu de remercier Allāh qui l'a comblé d'une immense fortune et d'une nombreuse descendance mâle, il en tire orgueil contre la vérité.",
+  "68:15": "<strong style='color:#ffffff;'>Quand Nos versets lui sont récités, il dit : « Des contes d'anciens ! »</strong><br><br>Par ingratitude et arrogance, lorsqu'il entend le Coran, il s'en détourne et prétend qu'il ne s'agit que de vieilles fables héritées des peuples anciens.",
+  "68:16": "<strong style='color:#ffffff;'>Nous le marquerons sur le museau (le nez — Al-Khurtūm) !</strong><br><br>📜 <strong>Accomplissement historique :</strong> Il s'agit d'une expression arabe désignant un châtiment et un déshonneur indélébiles, car le marquage en plein visage (sur le nez) est le comble de l'humiliation. Les exégètes (At-Tabarī, Ibn Kathīr) rapportent que cette prophétie s'accomplit dès ce monde à la bataille de Badr où son nez fut fendu d'un coup d'épée, avant que son visage ne soit noirci en Enfer.",
+  "68:17": "<strong style='color:#ffffff;'>Nous les avons éprouvés comme Nous avons éprouvés les propriétaires du verger qui avaient juré d'en faire la récolte au matin,</strong><br><br>📜 <strong>La parabole des propriétaires du verger :</strong> Allāh a éprouvé les riches Mecquois par la venue du Prophète ﷺ tout comme Il éprouva autrefois les propriétaires d'un riche verger (situé au Yémen près de Sanaa selon Ibn ‘Abbās) : après la mort de leur père pieux qui donnait toujours aux pauvres leur part le jour de la moisson, les fils jurèrent entre eux de tout récolter à l'aube en cachette afin qu'aucun indigent ne vienne demander l'aumône.",
+  "68:18": "<strong style='color:#ffffff;'>sans dire : « Si Allāh le veut » (Wa lā yastathnūn).</strong><br><br>Aveuglés par leur avarice, ils prirent cette décision sans jamais formuler la réserve de la volonté d'Allāh (<em>In shā' Allāh</em>).",
+  "68:19": "<strong style='color:#ffffff;'>Une calamité de la part de ton Seigneur tomba dessus pendant qu'ils dormaient,</strong><br><br>Durant la nuit même où ils dormaient en préparant leur ruse contre les pauvres, Allāh envoya un feu céleste qui consuma entièrement ce jardin dont ils étaient si fiers.",
+  "68:20": "<strong style='color:#ffffff;'>et le matin, il (le verger) devint noir semblable à la nuit sombre (Ka-as-Sarīm).</strong><br><br>Le mot <strong>« Sarīm »</strong> désigne la nuit noire (ou la terre brûlée et moissonnée) : le jardin verdoyant et chargé de fruits se transforma en un champ de cendres noires.",
+  "68:21": "<strong style='color:#ffffff;'>Le (lendemain) matin, ils s'appelèrent les uns les autres :</strong><br><br>Comme prévu, ils se réveillèrent à l'aube et s'interpellèrent, ignorant encore tout du désastre survenu dans la nuit.",
+  "68:22": "<strong style='color:#ffffff;'>« Partez tôt à votre champ si vous voulez le récolter ! »</strong>",
+  "68:23": "<strong style='color:#ffffff;'>Ils allèrent donc, tout en parlant entre eux à voix basse :</strong><br><br>Ils marchaient discrètement en chuchotant pour que les pauvres ne les entendent pas partir.",
+  "68:24": "<strong style='color:#ffffff;'>« Qu'aucun pauvre n'entre aujourd'hui chez vous (dans le verger) ! »</strong>",
+  "68:25": "<strong style='color:#ffffff;'>Ils partirent de bonne heure, décidés à user d'avarice (envers les pauvres), convaincus que cela était en leur pouvoir.</strong><br><br>Ils s'imaginaient détenir un pouvoir absolu sur leur récolte, oubliant Celui qui détient les cieux et la terre.",
+  "68:26": "<strong style='color:#ffffff;'>Puis, quand ils le virent (le jardin calciné), ils dirent : « Vraiment, nous avons perdu notre chemin ! »</strong><br><br>En découvrant les terres noircies et dévastées, ils crurent d'abord s'être trompés de route.",
+  "68:27": "<strong style='color:#ffffff;'>« Ou plutôt, nous sommes frustrés (privés de tout) ! »</strong><br><br>Après avoir reconnu les lieux, ils comprirent que c'était bien leur verger et qu'ils avaient été privés de ses fruits pour avoir voulu en priver les pauvres.",
+  "68:28": "<strong style='color:#ffffff;'>Le plus juste d'entre eux (Awsatuhum) dit : « Ne vous avais-je pas dit : si seulement vous aviez rendu gloire à Allāh (et dit In shā' Allāh) ! »</strong><br><br>Le plus sage et le plus équitable des frères leur rappela son conseil qu'ils avaient refusé d'écouter la veille.",
+  "68:29": "<strong style='color:#ffffff;'>Ils dirent : « Gloire à notre Seigneur ! Oui, nous avons été des injustes. »</strong><br><br>Prenant conscience de leur faute, ils purifièrent Allāh de toute injustice et reconnurent leur propre tort.",
+  "68:30": "<strong style='color:#ffffff;'>Puis ils se mirent à se blâmer les uns les autres.</strong>",
+  "68:31": "<strong style='color:#ffffff;'>Ils dirent : « Malheur à nous ! Nous avons été des transgresseurs.</strong>",
+  "68:32": "<strong style='color:#ffffff;'>Nous souhaitons que notre Seigneur nous le remplace par quelque chose de meilleur. Nous désirons nous rapprocher de notre Seigneur. »</strong><br><br>Ils implorèrent Allāh avec un repentir sincère, espérant Son pardon et une compensation meilleure.",
+  "68:33": "<strong style='color:#ffffff;'>Tel fut le châtiment (dans ce monde) ; et le châtiment de l'Au-delà est plus grand encore, si seulement ils savaient !</strong>",
+  "68:34": "<strong style='color:#ffffff;'>Les pieux auront auprès de leur Seigneur les Jardins du délice.</strong><br><br>Après avoir montré le sort du jardin terrestre détruit à cause de l'avarice, Allāh promet à ceux qui Le craignent les Jardins éternels du Paradis qui ne périront jamais.",
+  "68:35": "<strong style='color:#ffffff;'>Allons-Nous traiter ceux qui se soumettent (les musulmans) de la même façon que les criminels ?</strong><br><br>Lorsque les polythéistes mecquois prétendirent que s'il y avait une résurrection, ils auraient dans l'Au-delà encore plus de biens que les croyants, Allāh leur répondit par cette vérité éclatante : la justice divine ne saurait jamais traiter l'obéissant comme le rebelle.",
+  "68:36": "<strong style='color:#ffffff;'>Qu'avez-vous ? Comment jugez-vous ainsi ?</strong>",
+  "68:37": "<strong style='color:#ffffff;'>Avez-vous un Livre (révélé) dans lequel vous étudiez (cela),</strong>",
+  "68:38": "<strong style='color:#ffffff;'>et où il serait écrit que vous aurez en vérité tout ce que vous choisirez ?</strong>",
+  "68:39": "<strong style='color:#ffffff;'>Ou bien avez-vous obtenu de Nous des serments valables jusqu'au Jour de la Résurrection, nous engageant à vous donner ce que vous décidez ?</strong>",
+  "68:40": "<strong style='color:#ffffff;'>Demande-leur qui d'entre eux en est garant !</strong>",
+  "68:41": "<strong style='color:#ffffff;'>Ou encore, ont-ils des associés ? Eh bien, qu'ils fassent venir leurs associés s'ils sont véridiques !</strong>",
+  "68:42": "<strong style='color:#ffffff;'>Le jour où la Jambe sera découverte (Yawma yukshafu ‘an sāq) et où ils seront appelés à la prosternation, mais ils ne le pourront pas,</strong><br><br>📜 <strong>Le Hadith authentique d'Abū Sa‘īd Al-Khudrī (Al-Bukhārī & Muslim) :</strong> Au sujet de ce verset, le Messager d'Allāh ﷺ a dit : <strong>« Notre Seigneur découvrira Sa Jambe, alors tout croyant et toute croyante se prosternera devant Lui. Il ne restera que celui qui se prosternait dans le bas monde par ostentation et pour la renommée : il voudra alors se prosterner, mais son dos redeviendra un seul bloc rigide (Tabaqan wāhidan, incapable de plier) ! »</strong> (<em>Rapporté par Al-Bukhārī n°4919 et Muslim n°183</em>).",
+  "68:43": "<strong style='color:#ffffff;'>leurs regards seront abaissés, et l'avilissement les couvrira. Or, ils étaient appelés à la prosternation au temps où ils étaient sains et saufs !</strong><br><br>Conviés chaque jour à se prosterner par l'appel à la prière (<em>Hayya ‘alā as-Salāh</em>) dans ce bas monde alors qu'ils étaient en parfaite santé et libres de leurs mouvements, ils refusaient par orgueil ; au Jour du Jugement, leur colonne vertébrale sera figée en punition de leur refus.",
+  "68:44": "<strong style='color:#ffffff;'>Laisse-Moi donc avec quiconque traite ce discours (le Coran) de mensonge ; Nous allons les mener graduellement vers leur perte (Sanastadrijuhum) par où ils ne savent pas !</strong><br><br>C'est la loi divine de l'<em>Istidrāj</em> : lorsque le pécheur persiste dans son arrogance, Allāh lui ouvre les portes des richesses et de la santé jusqu'à ce qu'il croie être à l'abri, puis Il le saisit soudainement.",
+  "68:45": "<strong style='color:#ffffff;'>Et Je leur accorde un délai, car Mon stratagème est sûr (infaillible) !</strong>",
+  "68:46": "<strong style='color:#ffffff;'>Ou bien est-ce que tu leur demandes un salaire, les accablant ainsi d'une lourde dette ?</strong><br><br>Question rhétorique : leur demandes-tu de l'argent en échange de la guidée ? Non, le Prophète ﷺ les appelle gratuitement au salut.",
+  "68:47": "<strong style='color:#ffffff;'>Ou savent-ils l'Inconnaissable (Al-Ghayb) et c'est de là qu'ils écrivent (leurs prétentions) ?</strong>",
+  "68:48": "<strong style='color:#ffffff;'>Endure avec patience la sentence de ton Seigneur, et ne sois pas comme l'Homme au Poisson (Jonas / Yūnus) qui appela (Allāh) dans sa grande détresse (Makdhūm).</strong><br><br>📜 <strong>L'histoire du Prophète Yūnus (Jonas) :</strong> Allāh exhorte Son Prophète Muhammad ﷺ à patienter face aux persécutions de son peuple sans se précipiter comme le fit Yūnus (Jonas) lorsqu'il quitta son peuple irrité avant d'en avoir reçu l'autorisation divine. Avalé par le grand poisson dans les profondeurs de la mer, il invoqua son Seigneur du fond des ténèbres : <strong>« Il n'y a de divinité que Toi ! Gloire et pureté à Toi ! J'étais certes du nombre des injustes ! »</strong> (<em>Sourate Al-Anbiyā' 21:87 & Sunan At-Tirmidhī n°3505</em>).",
+  "68:49": "<strong style='color:#ffffff;'>Si un bienfait de son Seigneur ne l'avait pas atteint, il aurait été rejeté honni sur une terre déserte,</strong><br><br>Si la grâce d'Allāh, son passé de grand adorateur et son repentir sincère ne l'avaient pas secouru dans le ventre du poisson, il aurait été rejeté sur une plage aride tout en étant blâmé.",
+  "68:50": "<strong style='color:#ffffff;'>Mais son Seigneur l'élut (l'agréa) et le plaça au nombre des gens de bien (As-Sālihīn).</strong>",
+  "68:51": "<strong style='color:#ffffff;'>Peu s'en faut que ceux qui mécroient ne te transpercent par leurs regards, quand ils entendent le Coran, et qu'ils disent : « Il est certes fou ! »</strong><br><br>📜 <strong>Le mauvais œil (Al-‘Ayn) et la haine des négateurs :</strong> Les exégètes (Ibn ‘Abbās, Ibn Kathīr, Al-Qurtubī) expliquent que les mécréants regardaient le Prophète ﷺ avec une telle haine et une telle jalousie lorsqu'il récitait le Coran qu'ils auraient voulu le foudroyer du mauvais œil si Allāh ne l'avait pas protégé. Ce verset est l'une des preuves coraniques de la réalité du mauvais œil, confirmée par le Hadith : <strong>« Le mauvais œil (Al-‘Ayn) est une réalité »</strong> (<em>Rapporté par Al-Bukhārī n°5740 et Muslim n°2187</em>).",
+  "68:52": "<strong style='color:#ffffff;'>Et ce (Coran) n'est qu'un Rappel, adressé aux Mondes (hommes et djinns) !</strong>",
+  "73:1": "<strong style='color:#ffffff;'>Ô toi, l'enveloppé (dans tes vêtements — Al-Muzzammil) !</strong><br><br>Ce verset s'adresse avec douceur au Prophète Muhammad ﷺ alors qu'il s'était enveloppé dans ses vêtements. Faisant partie des toutes premières sourates révélées à La Mecque, elle lui ordonne de quitter le confort du sommeil pour se lever dans l'adoration nocturne.",
+  "73:2": "<strong style='color:#ffffff;'>Lève-toi (pour prier), toute la nuit, excepté une petite partie ;</strong><br><br>📜 <strong>L'obligation initiale de la prière nocturne (Qiyām al-Layl) :</strong> Au début de l'Islam, par ces versets, Allāh décréta la prière de la nuit comme une obligation pour le Prophète ﷺ et les premiers croyants afin de forger leur âme et de les préparer à porter le poids de la mission prophétique, avant que cette obligation ne soit allégée un an plus tard au verset 20.",
+  "73:3": "<strong style='color:#ffffff;'>Sa moitié, ou un peu moins ;</strong><br><br>Allāh lui précise avec miséricorde la part de la nuit à consacrer à la prière : la moitié de la nuit, ou un peu moins (jusqu'au tiers),",
+  "73:4": "<strong style='color:#ffffff;'>ou un peu plus (jusqu'aux deux tiers). Et récite le Coran, lentement et clairement (Wa rattili al-Qur'āna tartīlā).</strong><br><br>📜 <strong>L'ordre du Tartīl :</strong> Allāh ordonne de réciter le Coran avec <em>Tartīl</em>, c'est-à-dire posément, en articulant distinctement chaque lettre, en respectant les règles de prononciation et en méditant profondément ses sens. ‘Alī ibn Abī Tālib (qu'Allāh l'agrée) a expliqué que le <em>Tartīl</em> consiste à bien prononcer les lettres et à connaître les pauses.",
+  "73:5": "<strong style='color:#ffffff;'>Nous allons te révéler des paroles lourdes (très importantes — Qawlan Thaqīlā).</strong><br><br>Allāh prépare Son Prophète ﷺ : le Coran est une parole « lourde » par la majesté de ses commandements, par son poids immense sur la Balance au Jour de la Résurrection, et même physiquement lors de la descente de la Révélation (comme le rapporte ‘Ā'ishah dans <em>Sahīh Al-Bukhārī n°2</em> : le front du Prophète ﷺ perlait de sueur par grand froid lorsque la Révélation descendait sur lui).",
+  "73:6": "<strong style='color:#ffffff;'>La prière pendant la nuit (Nāshi'ata al-layl) est plus efficace (pour toucher le cœur) et plus propice pour la récitation.</strong><br><br>Les heures de la nuit sont le moment où le cœur et la langue s'accordent le mieux, loin du bruit et des distractions du monde, apportant une sérénité et une concentration profondes.",
+  "73:7": "<strong style='color:#ffffff;'>Tu as, dans la journée, à vaquer à de longues occupations.</strong><br><br>Durant le jour, tu as tout le temps nécessaire pour accomplir tes besoins quotidiens, rencontrer les gens et transmettre le Message ; réserve donc ta nuit à l'intimité avec ton Seigneur.",
+  "73:8": "<strong style='color:#ffffff;'>Et invoque le nom de ton Seigneur et consacre-toi totalement à Lui (Tabattul),</strong><br><br>Mentionne abondamment ton Seigneur, détache ton cœur des créatures et voue-Lui un culte sincère et exclusif.",
+  "73:9": "<strong style='color:#ffffff;'>le Seigneur du Levant et du Couchant. Il n'y a point de divinité à part Lui. Prends-Le donc comme Protecteur (Wakīlā).</strong><br><br>Il est l'Unique Souverain de l'Orient et de l'Occident : confie-Lui donc toutes tes affaires en toute confiance.",
+  "73:10": "<strong style='color:#ffffff;'>Et endure ce qu'ils disent ; et écarte-toi d'eux d'une façon convenable (Hajran Jamīlā).</strong><br><br>Supporte avec patience les calomnies et les moqueries des mécréants mecquois, et détourne-toi d'eux dignement sans leur rendre leurs insultes.",
+  "73:11": "<strong style='color:#ffffff;'>Et laisse-Moi avec ceux qui crient au mensonge et qui vivent dans l'aisance ; et accorde-leur un court répit :</strong><br><br>Allāh rassure Son Prophète ﷺ : laisse-Moi Me charger Moi-même de ces chefs opulents de Quraysh qui rejettent la vérité, et accorde-leur un court délai en ce bas monde.",
+  "73:12": "<strong style='color:#ffffff;'>Nous avons (pour eux) de lourdes chaînes (Ankālan) et la Fournaise (Jahīmā),</strong>",
+  "73:13": "<strong style='color:#ffffff;'>et une nourriture à faire suffoquer (qui reste coincée dans la gorge), et un châtiment douloureux,</strong><br><br>Ibn ‘Abbās explique qu'il s'agit d'une nourriture épineuse infernale (<em>Ad-Darī‘</em> et <em>Az-Zaqqūm</em>) qui s'accroche dans la gorge sans pouvoir ni descendre ni ressortir.",
+  "73:14": "<strong style='color:#ffffff;'>le jour où la terre et les montagnes trembleront, tandis que les montagnes deviendront comme une dune de sable dispersée (qui s'écoule).</strong><br><br>Au Jour de la Résurrection, les montagnes de roche solide seront pulvérisées et s'affaisseront comme des tas de sable mouvant.",
+  "73:15": "<strong style='color:#ffffff;'>Nous vous avons envoyé un Messager pour être témoin contre vous, de même que Nous avions envoyé un Messager à Pharaon (Fir‘awn).</strong><br><br>Allāh avertit les habitants de La Mecque en établissant un parallèle direct : Il leur a envoyé Muhammad ﷺ tout comme Il avait envoyé Mūsā (Moïse) à Pharaon.",
+  "73:16": "<strong style='color:#ffffff;'>Pharaon désobéit alors au Messager. Nous le saisîmes donc rudement (d'un châtiment dévastateur).</strong><br><br>Prenez donc garde, ô chefs de Quraysh, de subir un sort semblable à celui de Pharaon qui fut englouti malgré toute sa puissance !",
+  "73:17": "<strong style='color:#ffffff;'>Comment vous préserverez-vous, si vous mécroyez, d'un Jour qui rendra les enfants comme des vieillards aux cheveux blancs ?</strong><br><br>Tant la terreur et l'angoisse du Jour du Jugement seront intenses, les jeunes enfants auraient les cheveux blanchis sur-le-champ.",
+  "73:18": "<strong style='color:#ffffff;'>(Et) durant lequel le ciel se fendra. Sa promesse s'accomplira sans aucun doute.</strong>",
+  "73:19": "<strong style='color:#ffffff;'>Ceci est un rappel. Que celui qui veut prenne donc une voie (menant) à son Seigneur !</strong>",
+  "73:20": "<strong style='color:#ffffff;'>Ton Seigneur sait, certes, que tu (Muhammad) te tiens debout moins de deux tiers de la nuit, ou sa moitié, ou son tiers, de même qu'une partie de ceux qui sont avec toi...</strong><br><br>📜 <strong>Le Hadith de ‘Ā'ishah sur l'allègement après un an (Sahīh Muslim n°746) :</strong> ‘Ā'ishah (qu'Allāh l'agrée) rapporte qu'Allāh révéla les premiers versets de cette sourate rendant obligatoire la prière de la nuit. Le Prophète ﷺ et ses compagnons accomplirent alors cette obligation durant <strong>une année entière</strong> jusqu'à ce que leurs pieds enflent, tandis qu'Allāh retint au ciel la fin de la sourate pendant douze mois, avant de faire descendre ce verset 20 d'allègement : la prière nocturne (<em>Qiyām al-Layl</em>) devint alors surérogatoire (recommandée) après avoir été obligatoire.<br><br>⚖️ <strong>Les enseignements majeurs de ce verset :</strong><br>• <strong>1. La miséricorde d'Allāh envers les croyants :</strong> Allāh sait que Ses serviteurs ne peuvent pas calculer avec précision les fractions de la nuit ni veiller indéfiniment, car certains sont touchés par <strong>la maladie</strong>, d'autres <strong>voyagent sur terre pour gagner licitement leur subsistance par le commerce</strong>, et d'autres <strong>combattent dans le sentier d'Allāh</strong>. Il ordonne donc : <em>« Récitez ce qui vous est possible du Coran ! »</em><br>• <strong>2. L'institution de la Zakât dès La Mecque :</strong> L'ordre <em>« Accomplissez la Salât et acquittez la Zakât »</em> dans cette sourate mecquoise prouve que le principe de l'aumône légale (Zakât) fut prescrit dès la période mecquoise, tandis que ses seuils imposables (<em>Nisāb</em>) et ses barèmes détaillés furent fixés à Médine.<br>• <strong>3. Le prêt sincère à Allāh et l'Istighfār :</strong> Tout bien dépensé pour Allāh est comparé à un <em>« beau prêt » (Qardan hasanā)</em> qu'Allāh multiplie au centuple, et la sourate se conclut par l'ordre d'implorer le pardon d'Allāh, le Pardonneur et Très Miséricordieux."
+};
+const TAFSIR_SOURATES_68_73_EN = {
+  "68:1": "<strong style='color:#ffffff;'>Nūn (Detached Letter). By the Pen and what they inscribe!</strong><br><br>📜 <strong>1. The Challenge of the Detached Letter:</strong> Allāh begins with the letter <em>Nūn</em> to challenge the Arabs: this Quran is composed of the very letters of your alphabet, yet none can produce its like.<br><br>📜 <strong>2. The Heavenly Pen (Al-Qalam) & the Scribing Angels:</strong> <strong>As-Suddī</strong> stated this refers to the Angels recording human deeds, while other scholars explained it refers to the Heavenly Pen which Allāh commanded to write the decree of all things <strong>fifty thousand years before creating the heavens and the earth</strong> (<em>Sahīh Muslim #2653, Abū Dāwūd #4700 & At-Tirmidhī #2155</em>).",
+  "68:4": "<strong style='color:#ffffff;'>And indeed, you are of a sublime moral character (Khuluqin ‘Adhīm).</strong><br><br>📜 <strong>Hadith of ‘Ā'ishah:</strong> When asked about the character of the Messenger of Allāh ﷺ, <strong>‘Ā'ishah (may Allāh be pleased with her)</strong> said: <strong>'His character was the Quran!'</strong> (<em>Sahīh Muslim #746</em>).",
+  "68:13": "<strong style='color:#ffffff;'>Cruel and coarse (‘Utullin), and moreover ignoble (Zanīm).</strong><br><br>📜 <strong>Three Classical Explanations of 'Zanīm':</strong> According to <strong>‘Ikrimah</strong>, one born out of wedlock; according to <strong>Ibn ‘Abbās</strong>, a notoriously wicked person known for evil; and thirdly, one who falsely claims lineage in a tribe. Revealed regarding <strong>Al-Walīd ibn Al-Mughīrah</strong>.",
+  "68:16": "<strong style='color:#ffffff;'>We will brand him upon the snout (nose — Al-Khurtūm)!</strong><br><br>📜 Branding on the nose was the ultimate mark of humiliation among the Arabs; fulfilled at the Battle of Badr when his nose was struck by a sword, leaving a permanent scar until his death.",
+  "68:17": "<strong style='color:#ffffff;'>Indeed, We have tried them just as We tried the owners of the garden when they swore to harvest its fruit in the early morning,</strong><br><br>📜 A historical parable of brothers in Yemen who inherited a lush orchard from their righteous father, but conspired to harvest it in secret at dawn to deprive the poor of charity.",
+  "68:18": "<strong style='color:#ffffff;'>Without making exception (without saying: 'In shā' Allāh — If Allāh wills').</strong>",
+  "68:20": "<strong style='color:#ffffff;'>And by morning it became as pitch-black ashes / dark night (Ka-as-Sarīm).</strong>",
+  "68:42": "<strong style='color:#ffffff;'>The Day the Shin will be uncovered (Yawma yukshafu ‘an sāq) and they are invited to prostration, yet they will not be able to do so!</strong><br><br>📜 <strong>Hadith of Abū Sa‘īd Al-Khudrī (Al-Bukhārī #4919 & Muslim #183):</strong> The Prophet ﷺ said: <strong>'Our Lord will uncover His Shin, and every believing man and woman will prostrate to Him. Only those who used to prostrate in the world for show and reputation will remain; when they try to prostrate, their backs will become a single rigid plate!'</strong>",
+  "68:43": "<strong style='color:#ffffff;'>Their eyes humbled, humiliation will cover them; for indeed they used to be called to prostrate while they were sound and healthy!</strong>",
+  "68:48": "<strong style='color:#ffffff;'>So wait patiently for the decree of your Lord, and do not be like the Companion of the Fish (Jonah / Yūnus) when he cried out in deep distress.</strong><br><br>📜 Inside the belly of the whale, Yūnus called upon Allāh: <strong>'There is no deity except You; exalted are You! Indeed, I have been of the wrongdoers.'</strong> (<em>Surah 21:87 & At-Tirmidhī #3505</em>).",
+  "68:51": "<strong style='color:#ffffff;'>And indeed, those who disbelieve would almost strike you down with their eyes when they hear the Reminder (the Quran), saying: 'Surely he is mad!'</strong><br><br>📜 <strong>Reality of the Evil Eye (Al-‘Ayn):</strong> Ibn ‘Abbās and Ibn Kathīr explain that the disbelievers glared at the Prophet ﷺ with intense envy and hatred, wishing to afflict him with the evil eye. The Prophet ﷺ said: <strong>'The evil eye is real.'</strong> (<em>Sahīh Al-Bukhārī #5740 & Sahīh Muslim #2187</em>).",
+  "73:1": "<strong style='color:#ffffff;'>O you who wraps himself (in his garments — Al-Muzzammil)!</strong><br><br>A gentle address to Prophet Muhammad ﷺ in the earliest days of revelation in Makkah, calling him to rise from sleep to night prayer.",
+  "73:2": "<strong style='color:#ffffff;'>Stand (in prayer) through the night, except a little—</strong><br><br>📜 Night prayer (<em>Qiyām al-Layl</em>) was initially made obligatory upon the Prophet ﷺ and the early believers for one full year to prepare their hearts for the heavy mission of the Quran, before being lightened in verse 20.",
+  "73:4": "<strong style='color:#ffffff;'>Or add to it a little; and recite the Quran with measured, distinct recitation (Wa rattili al-Qur'āna tartīlā).</strong><br><br>📜 Allāh commands reciting the Quran slowly and clearly (<em>Tartīl</em>), pronouncing every letter properly while pondering its meanings.",
+  "73:20": "<strong style='color:#ffffff;'>Indeed, your Lord knows that you stand (in prayer) less than two-thirds of the night, or half of it, or a third of it, as does a group of those with you...</strong><br><br>📜 <strong>Hadith of ‘Ā'ishah in Sahīh Muslim (#746):</strong> ‘Ā'ishah reported that after the Prophet ﷺ and his companions stood in obligatory night prayer for <strong>twelve months</strong> until their feet swelled, Allāh revealed this final verse to lighten the obligation and make night prayer voluntary.<br><br>⚖️ Allāh acknowledged three excused groups—the <strong>sick</strong>, <strong>travelers seeking Allāh's bounty through lawful trade</strong>, and <strong>those striving in Allāh's cause</strong>—and ordained establishing Prayer, giving <strong>Zakāh</strong> (showing Zakāh was instituted in principle in Makkah before its thresholds were detailed in Madinah), lending Allāh a goodly loan, and seeking His forgiveness."
+};
+const TAFSIR_SOURATES_68_73_ES = {
+  "68:1": "<strong style='color:#ffffff;'>Nūn (Letra aislada). ¡Por el cálamo y lo que escriben!</strong><br><br>📜 <strong>1. El desafío de las letras aisladas:</strong> Allah desafía a los árabes a producir algo semejante a este Corán compuesto con las letras de su propio alfabeto.<br><br>📜 <strong>2. El Cálamo celestial (Al-Qalam) y los Ángeles:</strong> <strong>As-Suddī</strong> dijo que se refiere a los Ángeles escribas, mientras que otros sabios explican que es el Cálamo al que Allah ordenó escribir todo lo predestinado <strong>cincuenta mil años antes de la creación de los cielos y de la tierra</strong> (<em>Sahīh Muslim n°2653 y At-Tirmidhī n°2155</em>).",
+  "68:4": "<strong style='color:#ffffff;'>Y ciertamente eres de una moralidad sublime (Khuluqin ‘Adhīm).</strong><br><br>📜 <strong>Hadiz de ‘Ā'ishah:</strong> Cuando le preguntaron por el carácter del Profeta ﷺ, <strong>‘Ā'ishah</strong> respondió: <strong>«¡Su carácter era el Corán!»</strong> (<em>Sahīh Muslim n°746</em>).",
+  "68:13": "<strong style='color:#ffffff;'>De corazón duro (‘Utullin), y además de eso « Zanīm ».</strong><br><br>📜 <strong>Las 3 explicaciones de « Zanīm »:</strong> Según <strong>‘Ikrimah</strong>, es el hijo ilegítimo; según <strong>Ibn ‘Abbās</strong>, el libertino conocido por su maldad; y el que se atribuye un falso linaje tribal, revelado sobre <strong>Al-Walīd ibn Al-Mughīrah</strong>.",
+  "68:16": "<strong style='color:#ffffff;'>¡Lo marcaremos en el hocico (la nariz — Al-Khurtūm)!</strong><br><br>📜 Expresión árabe que designa un castigo humillante; se cumplió en la batalla de Badr cuando recibió un golpe de espada en la nariz cuya cicatriz llevó hasta su muerte.",
+  "68:17": "<strong style='color:#ffffff;'>Los hemos puesto a prueba como probamos a los dueños del huerto cuando juraron cosechar sus frutos por la mañana,</strong><br><br>📜 Parábola histórica de los hermanos dueños de un jardín que juraron cosechar al amanecer en secreto para no dar limosna a los pobres, sin decir <em>« Si Allah quiere » (In shā' Allāh)</em> (v.18), por lo que Allah quemó su jardín mientras dormían dejándolo negro como la noche oscura (<em>As-Sarīm</em>, v.20).",
+  "68:42": "<strong style='color:#ffffff;'>El Día en que se descubra la Pierna (Yawma yukshafu ‘an sāq) y sean llamados a la postración, pero no podrán hacerlo.</strong><br><br>📜 <strong>Hadiz de Abū Sa‘īd Al-Khudrī (Al-Bukhārī n°4919 y Muslim n°183):</strong> En el Día del Juicio, todo creyente sincero se postrará ante su Señor, mientras que quienes rechazaban rezar en el mundo cuando estaban sanos y salvos (v.43) o lo hacían por hipocresía querrán postrarse, pero <strong>sus espaldas se volverán rígidas como una sola placa</strong>.",
+  "68:48": "<strong style='color:#ffffff;'>Soporta con paciencia el decreto de tu Señor y no seas como el Hombre del Pez (Jonás / Yūnus) cuando invocó lleno de angustia.</strong><br><br>📜 Yūnus (Jonás) se marchó airado antes del permiso de Allah y desde el vientre de la ballena suplicó: <strong>«¡No hay divinidad sino Tú! ¡Glorificado seas! Ciertamente fui de los injustos.»</strong> (<em>Sura 21:87</em>).",
+  "68:51": "<strong style='color:#ffffff;'>Casi te fulminan con sus miradas los incrédulos cuando escuchan el Recuerdo (el Corán), y dicen: «¡Ciertamente está loco!»</strong><br><br>📜 Prueba coránica de la realidad del <strong>mal de ojo (Al-‘Ayn)</strong> por envidia y odio, confirmada por el Hadiz: <strong>«El mal de ojo es una realidad»</strong> (<em>Al-Bukhārī n°5740 y Muslim n°2187</em>).",
+  "73:1": "<strong style='color:#ffffff;'>¡Oh tú, el envuelto en sus vestiduras (Al-Muzzammil)!</strong><br><br>Llamado afectuoso al Profeta Muhammad ﷺ al inicio de la revelación en La Meca para levantarse a rezar por la noche.",
+  "73:4": "<strong style='color:#ffffff;'>O un poco más; y recita el Corán lenta y claramente (Wa rattili al-Qur'āna tartīlā).</strong><br><br>📜 Orden divina de recitar el Corán pausadamente, articulando cada letra y meditando sus significados.",
+  "73:20": "<strong style='color:#ffffff;'>Tu Señor sabe que te levantas a rezar menos de dos tercios de la noche, o la mitad, o un tercio, al igual que una parte de los que están contigo...</strong><br><br>📜 <strong>Hadiz de ‘Ā'ishah (Sahīh Muslim n°746):</strong> Tras haber cumplido el Profeta ﷺ y sus compañeros la obligación de rezar gran parte de la noche durante <strong>un año entero</strong>, Allah reveló esta última aleya abrogando la obligatoriedad y haciéndola voluntaria, teniendo en cuenta a los <strong>enfermos</strong>, a los que <strong>viajan buscando el sustento lícito</strong> y a quienes <strong>combaten por la causa de Allah</strong>, e instituyendo el principio del <strong>Zakāt</strong> ya en La Meca antes de que sus cuantías se detallaran en Medina."
+};
+const TAFSIR_SOURATES_68_73_AR = {
+  "68:1": "<strong style='color:#ffffff;'>﴿ن ۚ وَالْقَلَمِ وَمَا يَسْطُرُونَ﴾</strong><br><br>📜 <strong>1. التحدي بالحروف المقطعة :</strong> افتتح الله السورة بالحرف المقطّع (ن) تحديًا للعرب بأن هذا القرآن مؤلّف من جنس الحروف التي ينطقون بها ومع ذلك عجزوا عن الإتيان بمثله.<br><br>📜 <strong>2. القلم وما يسطرون :</strong> قال <strong>السُّدِّيّ</strong>: المراد الملائكة الحفظة وما يكتبون من أعمال العباد، وقال جمهور المفسرين (كابن عباس وقتادة): هو القلم الأول الذي خلقه الله وأمره بكتابة مقادير كل شيء <strong>قبل خلق السماوات والأرض بخمسين ألف سنة</strong>، كما ثبت في الحديث الصحيح: <strong>«إن أول ما خلق الله القلم، فقال له: اكتب! قال: ربِّ وماذا أكتب؟ قال: اكتب مقادير كل شيء حتى تقوم الساعة»</strong> (<em>رواه أبو داود 4700 والترمذي 2155 ومسلم 2653</em>).",
+  "68:4": "<strong style='color:#ffffff;'>﴿وَإِنَّكَ لَعَلَىٰ خُلُقٍ عَظِيمٍ﴾</strong><br><br>📜 <strong>حديث عائشة رضي الله عنها في خُلُق النبي ﷺ :</strong> زكّى الله عز وجل نبيه محمدًا ﷺ بأعظم تزكية، ولما سُئلت أم المؤمنين <strong>عائشة رضي الله عنها</strong> عن خُلُق رسول الله ﷺ قالت: <strong>«كان خُلُقُه القرآن!»</strong> (<em>رواه مسلم رقم 746</em>)، يمتثل أوامره ويجتنب نواهيه ويتحلى بآدابه.",
+  "68:13": "<strong style='color:#ffffff;'>﴿عُتُلٍّ بَعْدَ ذَٰلِكَ زَنِيمٍ﴾</strong><br><br>📜 <strong>تفسير «الزَّنِيم» عند السلف :</strong> العُتُلّ هو الغليظ الجافي القاسي القلب، وأما <strong>«الزنيم»</strong> ففيه ثلاثة أقوال متلازمة: قال <strong>عكرمة</strong>: هو ولد الزنا، وقال <strong>ابن عباس</strong>: هو الرجل الفاجر العِربيد المعروف بالشر كما تُعرف الشاة بزنمتها، والثالث: الدَّعِيّ المُلصَق في القوم وليس منهم؛ ونزلت في <strong>الوليد بن المغيرة</strong>.",
+  "68:16": "<strong style='color:#ffffff;'>﴿سَنَسِمُهُ عَلَى الْخُرْطُومِ﴾</strong><br><br>📜 <strong>تحقق الوعيد الإلهي :</strong> السِّمَة على الأنف (الخرطوم) غاية الإذلال والعار عند العرب، وقد تحقق ذلك في الدنيا يوم بدر حين ضُرب أنفه بالسيف فبقيت علامته ظاهرة في وجهه حتى هلك، قبل سواد الوجه في الآخرة.",
+  "68:17": "<strong style='color:#ffffff;'>﴿إِنَّا بَلَوْنَاهُمْ كَمَا بَلَوْنَا أَصْحَابَ الْجَنَّةِ إِذْ أَقْسَمُوا لَيَصْرِمُنَّهَا مُصْبِحِينَ﴾</strong><br><br>📜 <strong>قصة أصحاب الجنة :</strong> ضرب الله مثلًا لكفار قريش في كفران النعمة بأصحاب البستان (قرب صنعاء باليمن)، حين ورثوا جنةً عن أبيهم الصالح الذي كان يعطي المساكين حقهم، فحلف الأبناء سرًّا أن يقطعوا ثمارها في الصباح الباكر حرمانًا للفقراء، <strong>دون أن يقولوا «إن شاء الله» (آية 18)</strong>، فأرسل الله عليها نارًا ليلًا وهم نائمون فأصبحت <strong>﴿كَالصَّرِيمِ﴾ (آية 20)</strong> أي سوداء كالليل المظلم، فلما رأوها ندموا وتابوا إلى ربهم (آية 28-32).",
+  "68:42": "<strong style='color:#ffffff;'>﴿يَوْمَ يُكْشَفُ عَن سَاقٍ وَيُدْعَوْنَ إِلَى السُّجُودِ فَلَا يَسْتَطِيعُونَ﴾</strong><br><br>📜 <strong>حديث أبي سعيد الخدري في الصحيحين :</strong> قال رسول الله ﷺ: <strong>«يكشف ربنا عن ساقه، فيسجد له كل مؤمن ومؤمنة، ويبقى من كان يسجد في الدنيا رياءً وسمعةً، فيذهب ليسجد فيعود ظهره طبقًا واحدًا (أي عظمًا واحدًا متصلًا كصفيحة صلبة لا ينحني)!»</strong> (<em>رواه البخاري 4919 ومسلم 183</em>)، وذلك جزاءً لهم لأنهم كانوا يُدعون إلى السجود في الدنيا بالأذان وهم سالمون أصحاء فيمتنعون استكبارًا (آية 43).",
+  "68:48": "<strong style='color:#ffffff;'>﴿فَاصْبِرْ لِحُكْمِ رَبِّكَ وَلَا تَكُن كَصَاحِبِ الْحُوتِ إِذْ نَادَىٰ وَهُوَ مَكْظُومٌ﴾</strong><br><br>📜 يأمر الله نبيه ﷺ بالصبر على أذى قومه وألا يعجل كعجلة نبي الله <strong>يونس بن متّى عليه السلام (صاحب الحوت)</strong> حين خرج مغاضبًا لقومه قبل إذن ربه، فالتقمه الحوت فنادى في الظلمات وهو مكظوم مملوء غمًّا: <strong>﴿لَّا إِلَٰهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ﴾</strong> فنجّاه الله واجتباه وجعله من الصالحين (آية 49-50).",
+  "68:51": "<strong style='color:#ffffff;'>﴿وَإِن يَكَادُ الَّذِينَ كَفَرُوا لَيُزْلِقُونَكَ بِأَبْصَارِهِمْ لَمَّا سَمِعُوا الذِّكْرَ وَيَقُولُونَ إِنَّهُ لَمَجْنُونٌ﴾</strong><br><br>📜 <strong>إثبات حقيقة العين والحسد :</strong> قال ابن عباس ومجاهد وابن كثير: أي لَينفذونك ويعينونك بأبصارهم حسدًا وبغضًا لك لولا وقاية الله وحفظه؛ وفي الآية دليل على أن <strong>«العين حق»</strong> كما صح عن النبي ﷺ في <em>صحيح البخاري (5740) وصحيح مسلم (2187)</em>.",
+  "73:1": "<strong style='color:#ffffff;'>﴿يَا أَيُّهَا الْمُزَّمِّلُ﴾</strong><br><br>نداءٌ لطيف لنبي الله محمد ﷺ وهو متلفّف في ثيابه في أوائل الوحي بمكة، يأمره بالنهوض إلى قيام الليل ومناجاة ربه.",
+  "73:2": "<strong style='color:#ffffff;'>﴿قُمِ اللَّيْلَ إِلَّا قَلِيلًا﴾</strong><br><br>📜 فرض الله قيام الليل في أول هذه السورة على النبي ﷺ وأصحابه <strong>حولًا كاملًا</strong> إعدادًا لقلوبهم لتحمّل القول الثقيل (القرآن الكريم)، قبل أن ينزل التخفيف في آخر السورة.",
+  "73:4": "<strong style='color:#ffffff;'>﴿أَوْ زِدْ عَلَيْهِ وَرَتِّلِ الْقُرْآنَ تَرْتِيلًا﴾</strong><br><br>📜 <strong>الأمر بترتيل القرآن :</strong> أي اقرأه على تمهّل وتبيين للحروف وتدبّر للمعاني؛ قال علي بن أبي طالب رضي الله عنه: <em>«الترتيل تجويد الحروف ومعرفة الوقوف»</em>.",
+  "73:20": "<strong style='color:#ffffff;'>﴿إِنَّ رَبَّكَ يَعْلَمُ أَنَّكَ تَقُومُ أَدْنَىٰ مِن ثُلُثَيِ اللَّيْلِ وَنِصْفَهُ وَثُلُثَهُ وَطَائِفَةٌ مِّنَ الَّذِينَ مَعَكَ...﴾</strong><br><br>📜 <strong>حديث عائشة رضي الله عنها في صحيح مسلم (746) :</strong> قالت عائشة رضي الله عنها: إن الله افترض قيام الليل في أول هذه السورة، فقام نبي الله ﷺ وأصحابه <strong>حولًا كاملًا</strong> حتى انتفخت أقدامهم، وأمسك الله خاتمتها في السماء اثني عشر شهرًا، ثم أنزل الله التخفيف في آخر هذه السورة فصار قيام الليل تطوّعًا بعد فريضة.<br><br>⚖️ <strong>فوائد الآية العظيمة :</strong> رحم الله الأمة لعلمه بعجزهم عن إحصاء ساعات الليل، ولوجود الأعذار كـ<strong>المرض</strong>، و<strong>السفر في الأرض للتجارة وطلب الرزق الحلال</strong>، و<strong>الجهاد في سبيل الله</strong>، فأمرهم بقراءة ما تيسّر من القرآن، وإقام الصلاة وإيتاء <strong>الزكاة</strong> (مما يدل على أن أصل فرض الزكاة شُرع بمكة ثم فُصّلت أنصبتها ومقاديرها بالمدينة)، وإقراض الله قرضًا حسنًا بالصدقة، وكثرة الاستغفار."
+};
+
+Object.assign(memoireGlobale.tafsirFr, TAFSIR_INTEGRAL_DE_BASE_FR, TAFSIR_SOURATE_96_FR, TAFSIR_SOURATES_68_73_FR);
+Object.assign(memoireGlobale.tafsirEn, TAFSIR_SOURATE_96_EN, TAFSIR_SOURATES_68_73_EN);
+Object.assign(memoireGlobale.tafsirEs, TAFSIR_SOURATE_96_ES, TAFSIR_SOURATES_68_73_ES);
+Object.assign(memoireGlobale.tafsirAr, TAFSIR_SOURATE_96_AR, TAFSIR_SOURATES_68_73_AR);
 try {
   fs.writeFileSync(cheminMemoire, JSON.stringify(memoireGlobale, null, 2), 'utf8');
 } catch (e) {}
@@ -1834,30 +2059,22 @@ async function lancerGeneration() {
     
     
     
-    .btn-wbw-toggle { display:inline-flex; align-items:center; justify-content:center; gap:6px; height:34px; padding:0 14px; white-space:nowrap; background:rgba(14,165,233,0.10); color:var(--sky-light); border:1px solid rgba(56,189,248,0.35); border-radius:999px; font-family:inherit; font-size:0.82rem; font-weight:700; cursor:pointer; transition:background 0.18s, border-color 0.18s, box-shadow 0.18s, color 0.18s, transform 0.1s; -webkit-tap-highlight-color:transparent; }
-    .btn-wbw-toggle:hover { background:rgba(56,189,248,0.2); border-color:#38bdf8; }
-    .btn-wbw-toggle.active { background:linear-gradient(135deg,#38bdf8,#0ea5e9); color:#021019; border-color:transparent; box-shadow:0 0 14px rgba(56,189,248,0.45); }
-    .btn-wbw-toggle.active:hover { filter:brightness(1.08); }
-    .btn-wbw-toggle:active { transform:scale(0.96); }
-    .btn-wbw-toggle.pending { border-style:dashed; }
-    .btn-wbw-toggle:focus-visible { outline:2px solid #fde047; outline-offset:2px; }
-    .brown-noise-group { border-radius:999px !important; padding:2px 4px 2px 2px !important; }
+    .btn-wbw-toggle { background:rgba(14,165,233,0.14); color:var(--sky-light); border:1px solid rgba(56,189,248,0.4); padding:6px 13px; border-radius:11px; font-family:inherit; font-size:0.81rem; font-weight:800; cursor:pointer; transition:0.22s; }
+    .btn-wbw-toggle:hover, .btn-wbw-toggle.active { background:var(--sky-bright); color:#021019; box-shadow:0 0 16px rgba(56,189,248,0.48); }
     .brown-noise-group { display:inline-flex; align-items:center; gap:6px; background:rgba(6,12,20,0.65); border:1px solid rgba(56,189,248,0.28); padding:3px 6px; border-radius:13px; }
     .brown-vol-box { display:inline-flex; align-items:center; gap:5px; padding:0 4px; }
     .btn-brown-vol { background:rgba(56,189,248,0.15); color:var(--sky-light); border:1px solid rgba(56,189,248,0.35); width:24px; height:24px; border-radius:7px; font-weight:800; font-size:0.9rem; line-height:1; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; transition:0.18s; }
     .btn-brown-vol:hover { background:var(--sky-bright); color:#021019; }
     .brown-vol-slider { width:68px; height:5px; accent-color:#38bdf8; cursor:pointer; }
-    .inline-clickable-word::after, .wbw-word-box::after { content:""; position:absolute; left:8%; right:8%; bottom:2px; height:3px; border-radius:99px; background:linear-gradient(270deg,#fde047,#38bdf8); transform:scaleX(var(--p,0)); transform-origin:right center; opacity:0; transition:opacity 0.15s; pointer-events:none; will-change:transform; }
-    .inline-clickable-word.playing::after, .wbw-word-box.playing::after { opacity:1; }
+    .inline-clickable-word::after, .wbw-word-box::after { display:none !important; }
     .wbw-word-box { position:relative; }
-    .inline-clickable-word { position:relative; display:inline-block; padding:2px 6px; border-radius:10px; cursor:pointer; transition:color 0.12s, background-color 0.12s, border-color 0.12s, transform 0.12s, text-shadow 0.12s; border:1px solid transparent; }
+    .inline-clickable-word { position:relative; display:inline-block; padding:2px 8px; border-radius:12px; cursor:pointer; transition:all 0.2s cubic-bezier(0.16,1,0.3,1); border:1px solid transparent; }
     .inline-clickable-word:hover { background:rgba(56,189,248,0.15); transform:translateY(-2px); }
-    .inline-clickable-word.playing { color:#fde047 !important; background:none !important; border-color:transparent !important; box-shadow:none !important; text-shadow:0 0 14px rgba(253,224,71,0.55) !important; }
+    .inline-clickable-word.playing { color:#fde047 !important; background:linear-gradient(135deg, rgba(234,179,8,0.26), rgba(56,189,248,0.16)) !important; border-color:rgba(253,224,71,0.68) !important; box-shadow:0 8px 24px rgba(0,0,0,0.65), 0 0 22px rgba(253,224,71,0.45) !important; text-shadow:0 0 18px rgba(253,224,71,0.85) !important; transform:translateY(-4px) scale(1.07) !important; z-index:5; }
     .wbw-stage-grid { position:relative; z-index:2; display:flex; flex-wrap:wrap; direction:rtl; justify-content:center; align-items:stretch; gap:14px 16px; margin-bottom:26px; padding:10px 6px; }
-    .wbw-word-box { display:flex; flex-direction:column; align-items:center; justify-content:space-between; background:linear-gradient(145deg, rgba(12,22,35,0.88), rgba(6,12,20,0.94)); border:1.5px solid rgba(56,189,248,0.28); border-radius:18px; padding:12px 14px; min-width:96px; cursor:pointer; transition:transform 0.15s, border-color 0.15s, background 0.15s, box-shadow 0.15s; -webkit-tap-highlight-color:transparent; box-shadow:0 8px 24px rgba(0,0,0,0.45), inset 0 0 12px rgba(56,189,248,0.04); }
+    .wbw-word-box { display:flex; flex-direction:column; align-items:center; justify-content:space-between; background:linear-gradient(145deg, rgba(12,22,35,0.88), rgba(6,12,20,0.94)); border:1.5px solid rgba(56,189,248,0.28); border-radius:18px; padding:12px 14px; min-width:96px; cursor:pointer; transition:transform 0.18s, border-color 0.18s, background 0.18s, box-shadow 0.18s; -webkit-tap-highlight-color:transparent; box-shadow:0 8px 24px rgba(0,0,0,0.45), inset 0 0 12px rgba(56,189,248,0.04); }
     .wbw-word-box:hover { transform:translateY(-4px); border-color:var(--sky-bright); background:linear-gradient(145deg, rgba(14,165,233,0.18), rgba(8,16,26,0.96)); box-shadow:0 12px 28px rgba(0,0,0,0.6), 0 0 20px rgba(56,189,248,0.32); }
-    .wbw-word-box.playing { z-index:5; }
-    #verseStage.playing .wbw-word-box { background:none !important; border-color:transparent !important; box-shadow:none !important; transform:none !important; }
+    .wbw-word-box.playing { z-index:5; border-color:#fde047 !important; background:linear-gradient(145deg, rgba(234,179,8,0.26), rgba(14,165,233,0.18)) !important; box-shadow:0 14px 32px rgba(0,0,0,0.75), 0 0 26px rgba(253,224,71,0.5) !important; transform:translateY(-6px) scale(1.04) !important; }
     .wbw-word-box.playing .wbw-ar { color:#fde047 !important; text-shadow:0 0 18px rgba(253,224,71,0.7) !important; }
     .wbw-word-box.playing .wbw-tr { color:#fef08a !important; border-top-color:rgba(253,224,71,0.4) !important; }
     .wbw-ar { font-family:'Scheherazade New','Amiri',serif; font-size:2.3rem; line-height:1.55; color:#fff; margin-bottom:8px; text-align:center; transition:color 0.12s, text-shadow 0.12s; }
@@ -1902,6 +2119,12 @@ async function lancerGeneration() {
       .arabic-glow-verse { font-size:2.2rem; }
       .french-glow-verse { font-size:1.25rem; }
       .arabic-surah { display:none; }
+      .btn-listen-sync, .btn-replay-sync, .btn-blue-nav { white-space:nowrap; }
+      .stage-blue-nav { flex-wrap:wrap; justify-content:center; gap:10px; }
+      .stage-blue-nav > div { order:-1; width:100%; display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin-bottom:4px; }
+      .stage-blue-nav > a.btn-blue-nav { flex:1; text-align:center; justify-content:center; }
+      .btn-listen-sync { padding:10px 18px; font-size:0.86rem; }
+      .btn-replay-sync { padding:9px 14px; font-size:0.84rem; }
     }
   </style>
 </head>
@@ -1999,6 +2222,7 @@ async function lancerGeneration() {
             </div>
             <button type="button" class="btn-wbw-toggle" id="btnToggleWbw" onclick="basculerMotAMot()">📖 Mot à mot</button>
             <button type="button" class="btn-wbw-toggle" id="btnToggleTajweed" onclick="basculerTajweed()">🎨 Tajwīd</button>
+            <button type="button" class="btn-wbw-toggle" id="btnToggleSuivi" onclick="basculerSuivi()">✨ Suivi</button>
             
             <div class="brown-noise-group" id="brownNoiseGroup">
               <button type="button" class="btn-wbw-toggle" id="btnToggleBrown" onclick="basculerBrownNoise()">🌊 Bruit Brun</button>
@@ -2092,12 +2316,11 @@ async function lancerGeneration() {
   <script>
     let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     let modeTajweedActif = localStorage.getItem('coran_tajweed_mode') === '1';
-    let modeSuiviActif = false;
-    // Récitateurs dont le suivi mot à mot n'est pas assez précis (audio et repères temporels issus d'enregistrements différents)
-    const SUIVI_NON_FIABLE = { "Yasser_Ad-Dussary_128kbps": true };
+    let modeSuiviActif = localStorage.getItem('coran_suivi_mode') !== '0';
+    // Karaoké réservé exclusivement à Mahmoud Khalil Al-Hussary
     function suiviDisponible() {
       const sel = document.getElementById('reciterSelect');
-      return !(sel && SUIVI_NON_FIABLE[sel.value]);
+      return Boolean(sel && sel.value.includes('Husary'));
     }
     function majBoutonSuivi() {
       const b = document.getElementById('btnToggleSuivi');
@@ -2105,8 +2328,7 @@ async function lancerGeneration() {
       const lg = (typeof currentLang !== 'undefined' && UI_WBW_I18N[currentLang]) ? currentLang : 'fr';
       b.textContent = UI_WBW_I18N[lg].btnSuivi;
       const dispo = suiviDisponible();
-      b.disabled = !dispo;
-      b.style.opacity = dispo ? '' : '0.45';
+      b.style.display = dispo ? 'inline-block' : 'none';
       b.classList.toggle('active', dispo && modeSuiviActif);
       if (!dispo) eteindreSurlignageKaraoke();
     }
@@ -2169,7 +2391,6 @@ async function lancerGeneration() {
         if (brownAudioCtx && brownAudioCtx.state === 'suspended') brownAudioCtx.resume();
         if (brownGainNode) brownGainNode.gain.setTargetAtTime(brownVolume, brownAudioCtx.currentTime, 0.08);
         brownActif = true;
-        try { localStorage.setItem('coran_brown_on', '1'); } catch(e){}
         if (btn) btn.classList.add('active');
         if (volBox) volBox.style.display = 'inline-flex';
       } else {
@@ -2178,7 +2399,6 @@ async function lancerGeneration() {
           setTimeout(() => { if (!brownActif && brownAudioCtx) brownAudioCtx.suspend(); }, 120);
         }
         brownActif = false;
-        try { localStorage.setItem('coran_brown_on', '0'); } catch(e){}
         if (btn) btn.classList.remove('active');
         if (volBox) volBox.style.display = 'none';
       }
@@ -2292,7 +2512,7 @@ async function lancerGeneration() {
       const bW = document.getElementById('btnToggleWbw');
       const bT = document.getElementById('btnToggleTajweed');
       const bB = document.getElementById('btnToggleBrown');
-      if (bW) { bW.textContent = t.btnWbw; bW.style.display = (lg === 'ar') ? 'none' : ''; }
+      if (bW) { bW.textContent = t.btnWbw; bW.style.display = (lg === 'ar') ? 'none' : 'inline-block'; }
       if (bT) bT.textContent = t.btnTaj;
       majBoutonSuivi();
       if (bB) bB.textContent = t.btnBrown;
@@ -2322,18 +2542,138 @@ async function lancerGeneration() {
       return null;
     }
 
-    // Mot à mot calé sur la traduction de Hamidullah : une entrée par verset, un texte par mot arabe (même nombre de mots).
+    // Mot à mot calé directement sur la traduction de Muhammad Hamidullah (Zéro antislash pour compatibilité template literal)
     const GLOSE_HAMIDULLAH_FR = {
       "1:1": ["Au nom", "d'Allah", "le Tout Miséricordieux", "le Très Miséricordieux"],
-      "1:2": ["Louange", "à Allah", "Seigneur", "de l'univers"],
-      "1:3": ["le Tout Miséricordieux", "le Très Miséricordieux"],
+      "1:2": ["Louange", "à Allah", "Seigneur", "des mondes"],
+      "1:3": ["Le Tout Miséricordieux", "le Très Miséricordieux"],
       "1:4": ["Maître", "du Jour", "de la rétribution"],
       "1:5": ["C'est Toi [Seul]", "que nous adorons", "et c'est Toi [Seul]", "dont nous implorons secours"],
-      "1:6": ["Guide-nous", "le chemin", "droit"],
-      "1:7": ["le chemin", "de ceux que", "Tu as comblés de faveurs", "sur eux", "non pas de ceux", "qui encourent Ta colère", "sur eux", "ni", "des égarés"],
-      "2:3": ["qui", "croient", "à l'invisible", "et accomplissent", "la Salât", "et de ce que", "Nous leur avons attribué", "dépensent"]
+      "1:6": ["Guide-nous", "dans le droit", "chemin"],
+      "1:7": ["le chemin", "de ceux que", "Tu as comblés de faveurs", "sur eux", "non pas de ceux", "qui ont encouru Ta colère", "sur eux", "ni", "des égarés"],
+      "2:1": ["Alif, Lām, Mīm"],
+      "2:2": ["C'est", "le Livre", "il n'y a aucun", "doute", "au sujet duquel", "c'est un guide", "pour les pieux"],
+      "2:3": ["qui", "croient", "à l'inconnaissable", "et accomplissent", "la Salât", "et de ce que", "Nous leur avons attribué", "dépensent"],
+      "2:4": ["et qui", "croient", "à ce qui", "t'a été descendu (révélé)", "vers toi", "et à ce qui", "a été descendu", "avant", "toi", "et quant à l'au-delà", "ils", "ont la certitude"],
+      "2:5": ["Ceux-là", "sont sur", "le bon chemin", "de", "leur Seigneur", "et ce sont", "eux", "qui réussissent"],
+      "10:92": ["Nous allons aujourd'hui", "épargner", "ton corps", "afin que tu deviennes", "pour ceux qui", "sont tes successeurs", "un signe", "Cependant", "beaucoup", "de", "gens", "à", "Nos signes (d'avertissement)", "ne prêtent aucune attention"],
+      "96:1": ["Lis", "au nom", "de ton Seigneur", "qui", "a créé"],
+      "96:2": ["Il a créé", "l'homme", "d'une", "adhérence"],
+      "96:3": ["Lis !", "Ton Seigneur", "est le Très Noble"],
+      "96:4": ["qui", "a enseigné", "par la plume"],
+      "96:5": ["a enseigné", "à l'homme", "ce qu'il", "ne savait pas"]
     };
-    async function traduireGlossaireVerset(mots, langCible, cleVerset) { if (langCible === 'ar') { mots.forEach(w => { w.tradLocalisee = ''; }); return; } const manuel = (langCible === 'fr' && typeof GLOSE_HAMIDULLAH_FR !== 'undefined') ? GLOSE_HAMIDULLAH_FR[cleVerset] : null; if (manuel && manuel.length === mots.length) { mots.forEach((w, i) => { w.tradLocalisee = manuel[i]; }); return; } const S = window.SOURATE_DATA; const vData = (S && S.versets) ? S.versets[numVersetActuel - 1] : null; const phrase = vData ? (langCible === 'en' ? (vData.tradEn || '') : (langCible === 'es' ? (vData.tradEs || '') : (vData.tradPropre || ''))) : ''; if ((langCible === 'fr' || langCible === 'es') && phrase && mots.length > 0) { const txt = document.createElement('textarea'); txt.innerHTML = phrase; const propre = txt.value.replace(/^\\s*\\d+\\s*[\\.\\-]\\s*/, '').replace(/\\s+/g, ' ').trim(); const outils = new Set(['le','la','les','l','un','une','des','du','de','d','au','aux','a','à','en','dans','sur','par','pour','vers','sans','avec','ce','cet','cette','ces','mon','ton','son','ma','ta','sa','mes','tes','ses','notre','votre','leur','nos','vos','leurs','je','tu','il','elle','on','nous','vous','ils','elles','me','te','se','lui','y','qui','que','qu','dont','ou','où','et','ni','mais','car','ne','n','pas','point','plus','aucun','aucune','c','est','sont','tout','tous','toute','toutes','tres','très','comme','afin']); const bruts = propre.split(' ').filter(Boolean); const groupes = []; let buf = []; for (let i = 0; i < bruts.length; i++) { const t = bruts[i]; const sm = t.toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').split(/[^a-z0-9]+/).filter(Boolean); const dernier = sm[sm.length - 1] || ''; const estOutil = sm.length > 0 && sm.every(x => outils.has(x)); buf.push(t); const rest = bruts.length - 1 - i; const manq = mots.length - (groupes.length + 1); if (rest <= manq) { groupes.push(buf.join(' ')); buf = []; } else if ((!estOutil && !outils.has(dernier)) || /[,.;:!?\\]\\)]$/.test(t) || buf.length >= 4) { groupes.push(buf.join(' ')); buf = []; } } if (buf.length) { if (groupes.length) groupes[groupes.length - 1] += ' ' + buf.join(' '); else groupes.push(buf.join(' ')); } while (groupes.length > mots.length && groupes.length > 1) { let mI = 0, mL = 9999; for (let i = 0; i < groupes.length - 1; i++) { const l = groupes[i].length + groupes[i + 1].length; if (l < mL) { mL = l; mI = i; } } groupes.splice(mI, 2, groupes[mI] + ' ' + groupes[mI + 1]); } mots.forEach((w, i) => { const idx = Math.min(groupes.length - 1, Math.floor((i * groupes.length) / mots.length)); w.tradLocalisee = groupes[idx] || ''; }); return; } mots.forEach(w => { w.tradLocalisee = (w.translation && w.translation.text) ? w.translation.text : ''; }); }
+    const PONT_SENS_HAMIDULLAH = {
+      book:["livre"], doubt:["doute"], in:["sujet","duquel","dans","en"], it:["sujet","duquel","lui","elle"],
+      no:["aucun","pas","point","nul"], that:["c'est","ce","cela","voici"], this:["c'est","ce","ceci"],
+      guidance:["guide","chemin"], righteous:["pieux","craignent"], god:["pieux","allah"],
+      believe:["croient","foi"], unseen:["inconnaissable","invisible"], prayer:["salat","priere"],
+      spend:["depensent"], provided:["attribue"], sent:["descendu","revele"], before:["avant"],
+      hereafter:["au-dela","future"], lord:["seigneur"], successful:["reussissent"]
+    };
+    function normaliserAsciiSimple(str) {
+      const s = String(str || '').toLowerCase().normalize('NFD');
+      let out = '';
+      for (let i = 0; i < s.length; i++) {
+        const c = s.charCodeAt(i);
+        if (c >= 0x0300 && c <= 0x036f) continue;
+        if ((c >= 97 && c <= 122) || (c >= 48 && c <= 57)) out += s[i];
+        else out += ' ';
+      }
+      return out.trim();
+    }
+    function retirerNumeroVersetDebut(str) {
+      let s = String(str || '').trim();
+      let i = 0;
+      while (i < s.length && s.charCodeAt(i) >= 48 && s.charCodeAt(i) <= 57) i++;
+      if (i > 0 && i < s.length && (s[i] === '.' || s[i] === '-')) {
+        return s.slice(i + 1).trim();
+      }
+      return s;
+    }
+    async function traduireGlossaireVerset(mots, langCible, cleVerset) {
+      if (langCible === 'ar') {
+        mots.forEach(w => { w.tradLocalisee = ''; });
+        return;
+      }
+      const manuel = (langCible === 'fr') ? GLOSE_HAMIDULLAH_FR[cleVerset] : null;
+      if (manuel && manuel.length === mots.length) {
+        mots.forEach((w, i) => { w.tradLocalisee = manuel[i]; });
+        return;
+      }
+      const S = window.SOURATE_DATA;
+      const vData = (S && S.versets) ? S.versets[numVersetActuel - 1] : null;
+      const phrase = vData ? (langCible === 'en' ? (vData.tradEn || '') : (langCible === 'es' ? (vData.tradEs || '') : (vData.tradPropre || ''))) : '';
+      if ((langCible === 'fr' || langCible === 'es') && phrase && mots.length > 0) {
+        const txt = document.createElement('textarea');
+        txt.innerHTML = phrase;
+        const propre = retirerNumeroVersetDebut(txt.value);
+        if (mots.length === 1) {
+          mots[0].tradLocalisee = propre;
+          return;
+        }
+        const outils = new Set(['le','la','les','l','un','une','des','du','de','d','au','aux','a','en','dans','sur','par','pour','vers','sans','avec','ce','cet','cette','ces','mon','ton','son','ma','ta','sa','mes','tes','ses','notre','votre','leur','nos','vos','leurs','je','tu','il','elle','on','nous','vous','ils','elles','me','te','se','lui','y','qui','que','qu','dont','ou','et','ni','mais','car','ne','n','pas','point','plus','aucun','aucune','c','est','sont','tout','tous','toute','toutes','tres','comme','afin','sujet']);
+        const bruts = propre.split(' ').filter(Boolean);
+        const groupes = [];
+        let buf = [];
+        const ponctForte = ',.;:!?])';
+        for (let i = 0; i < bruts.length; i++) {
+          const t = bruts[i];
+          const sm = normaliserAsciiSimple(t).split(' ').filter(Boolean);
+          const dernier = sm[sm.length - 1] || '';
+          const estOutil = sm.length > 0 && sm.every(x => outils.has(x));
+          buf.push(t);
+          const rest = bruts.length - 1 - i;
+          const manq = mots.length - (groupes.length + 1);
+          const dernChar = t[t.length - 1] || '';
+          if (rest <= manq) {
+            groupes.push(buf.join(' '));
+            buf = [];
+          } else if ((!estOutil && !outils.has(dernier)) || ponctForte.includes(dernChar) || buf.length >= 4) {
+            groupes.push(buf.join(' '));
+            buf = [];
+          }
+        }
+        if (buf.length) {
+          if (groupes.length) groupes[groupes.length - 1] += ' ' + buf.join(' ');
+          else groupes.push(buf.join(' '));
+        }
+        while (groupes.length > mots.length && groupes.length > 1) {
+          let mI = 0, mL = 9999;
+          for (let i = 0; i < groupes.length - 1; i++) {
+            const l = groupes[i].length + groupes[i + 1].length;
+            if (l < mL) { mL = l; mI = i; }
+          }
+          groupes.splice(mI, 2, groupes[mI] + ' ' + groupes[mI + 1]);
+        }
+        const pris = new Array(groupes.length).fill(false);
+        mots.forEach((w, i) => {
+          const enW = normaliserAsciiSimple((w.translation && w.translation.text) || '').split(' ').filter(Boolean);
+          const cibleIdx = Math.min(groupes.length - 1, Math.round((i * (groupes.length - 1)) / Math.max(1, mots.length - 1)));
+          let bestJ = -1, bestSc = -99;
+          for (let j = Math.max(0, cibleIdx - 2); j <= Math.min(groupes.length - 1, cibleIdx + 2); j++) {
+            if (pris[j]) continue;
+            const gNorm = normaliserAsciiSimple(groupes[j]);
+            let sc = -Math.abs(j - cibleIdx) * 0.6;
+            enW.forEach(ew => {
+              (PONT_SENS_HAMIDULLAH[ew] || [ew.slice(0,4)]).forEach(frK => {
+                if (frK.length >= 3 && gNorm.includes(frK)) sc += 5;
+              });
+            });
+            if (sc > bestSc) { bestSc = sc; bestJ = j; }
+          }
+          if (bestJ === -1) bestJ = pris.findIndex(p => !p);
+          if (bestJ !== -1) {
+            pris[bestJ] = true;
+            w.tradLocalisee = groupes[bestJ];
+          } else {
+            w.tradLocalisee = groupes[cibleIdx] || '';
+          }
+        });
+        return;
+      }
+      mots.forEach(w => { w.tradLocalisee = (w.translation && w.translation.text) ? w.translation.text : ''; });
+    }
 
     async function chargerDonneesMotAMotEtTajweed() {
       majTextesInterfaceWbw();
@@ -2579,37 +2919,30 @@ async function lancerGeneration() {
 
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(chargerDonneesMotAMotEtTajweed, 60);
-      ['btnToggleWbw', 'btnToggleTajweed', 'btnToggleBrown'].forEach(id => {
-        const b = document.getElementById(id);
-        if (!b) return;
-        const maj = () => b.setAttribute('aria-pressed', b.classList.contains('active') ? 'true' : 'false');
-        maj();
-        new MutationObserver(maj).observe(b, { attributes: true, attributeFilter: ['class'] });
-      });
-      try {
-        if (localStorage.getItem('coran_brown_on') === '1') {
-          const bb = document.getElementById('btnToggleBrown');
-          if (bb) bb.classList.add('pending');
-          const go = (e) => {
-            document.removeEventListener('pointerdown', go);
-            document.removeEventListener('keydown', go);
-            if (bb) bb.classList.remove('pending');
-            if (e.target && e.target.closest && e.target.closest('#brownNoiseGroup')) return;
-            if (!brownActif) basculerBrownNoise();
-          };
-          document.addEventListener('pointerdown', go);
-          document.addEventListener('keydown', go);
-        }
-      } catch (e) {}
 
       const mainAudioEl = document.getElementById('ayahAudio');
       const selRecitateur = document.getElementById('reciterSelect');
       if (selRecitateur) selRecitateur.addEventListener('change', majBoutonSuivi);
       majBoutonSuivi();
       if (mainAudioEl) {
+        mainAudioEl.addEventListener('play', () => {
+          if (suiviDisponible() && modeSuiviActif) {
+            prechargerSegmentsKaraoke().then(() => { vtCle = ''; demarrerBoucleKaraoke(); });
+            demarrerBoucleKaraoke();
+          } else {
+            eteindreSurlignageKaraoke();
+          }
+        });
+        mainAudioEl.addEventListener('timeupdate', mettreAJourSurlignageKaraoke);
         mainAudioEl.addEventListener('pause', eteindreSurlignageKaraoke);
         mainAudioEl.addEventListener('ended', eteindreSurlignageKaraoke);
       }
+      document.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
+        if (e.code === 'Space') { e.preventDefault(); toggleAudioSync(); }
+        else if (e.code === 'ArrowRight') { const n = document.getElementById('nextVerseLink'); if (n) n.click(); }
+        else if (e.code === 'ArrowLeft') { const p = document.getElementById('prevVerseLink'); if (p) p.click(); }
+      });
 
       setInterval(() => {
         const lg = (typeof currentLang !== 'undefined' && ['fr','en','es','ar'].includes(currentLang)) ? currentLang : 'fr';
