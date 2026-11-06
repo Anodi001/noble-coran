@@ -1261,29 +1261,108 @@ const MOTEUR_CIEL_JS = `
   const bgCtx = bgCanvas.getContext('2d');
   const sunEl = document.getElementById('flatEarthSun');
   const moonEl = document.getElementById('flatEarthMoon');
-  let wScreen = window.innerWidth, hScreen = window.innerHeight, stars = [], angleOrbite = 0.35;
+  if (sunEl) sunEl.style.display = 'block';
+  if (moonEl) moonEl.style.display = 'block';
+  let wScreen = window.innerWidth, hScreen = window.innerHeight, stars = [], flakes = [], angleOrbite = 0.35;
   try { const sa = sessionStorage.getItem('orbit_angle_v21'); if (sa !== null && !isNaN(Number(sa))) angleOrbite = Number(sa); } catch(e){}
   function sauvegarderConfigCiel() { try { sessionStorage.setItem('orbit_angle_v21', String(angleOrbite)); } catch(e){} }
   window.addEventListener('beforeunload', sauvegarderConfigCiel);
   function resizeFullSky() { wScreen = window.innerWidth; hScreen = window.innerHeight; bgCanvas.width = wScreen; bgCanvas.height = hScreen; }
   resizeFullSky();
-  for (let i = 0; i < 140; i++) {
-    const xr = Math.random(), yr = Math.random(), br = Math.random() < 0.22;
-    stars.push({ x: xr * wScreen, y: yr * hScreen, xr, yr, r: br ? 1.8 : 0.8, a: Math.random() * 0.6 + 0.25, p: Math.random() * 6.28, s: 0.015 });
+
+  // Étoiles et particules bleues scintillantes
+  for (let i = 0; i < 145; i++) {
+    const xr = Math.random(), yr = Math.random(), br = Math.random() < 0.28;
+    stars.push({
+      x: xr * wScreen, y: yr * hScreen,
+      r: br ? (Math.random() * 1.8 + 1.2) : (Math.random() * 1.0 + 0.5),
+      a: Math.random() * 0.65 + 0.25,
+      p: Math.random() * 6.28,
+      s: Math.random() * 0.025 + 0.01,
+      vx: (Math.random() - 0.5) * 0.22,
+      vy: Math.random() * 0.38 + 0.12,
+      hue: Math.random() < 0.72 ? '56, 189, 248' : '186, 230, 253'
+    });
   }
+
+  // Flocons cristallins bleus (style neige céleste bleue)
+  for (let i = 0; i < 26; i++) {
+    flakes.push({
+      x: Math.random() * wScreen,
+      y: Math.random() * hScreen,
+      size: Math.random() * 7 + 4.5,
+      a: Math.random() * 0.42 + 0.18,
+      rot: Math.random() * 6.28,
+      vRot: (Math.random() - 0.5) * 0.008,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: Math.random() * 0.45 + 0.18
+    });
+  }
+
+  function dessinerFloconBleu(ctx, x, y, rad, rot, alpha) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(rot);
+    ctx.strokeStyle = "rgba(56, 189, 248, " + alpha + ")";
+    ctx.shadowColor = "rgba(14, 165, 233, " + Math.min(1, alpha * 1.6) + ")";
+    ctx.shadowBlur = 8;
+    ctx.lineWidth = 1.15;
+    ctx.beginPath();
+    for (let b = 0; b < 6; b++) {
+      const ang = (b * Math.PI) / 3;
+      const cos = Math.cos(ang), sin = Math.sin(ang);
+      ctx.moveTo(0, 0);
+      ctx.lineTo(cos * rad, sin * rad);
+      const rMid = rad * 0.58, rBr = rad * 0.32;
+      const mx = cos * rMid, my = sin * rMid;
+      ctx.moveTo(mx, my);
+      ctx.lineTo(mx + Math.cos(ang + 0.55) * rBr, my + Math.sin(ang + 0.55) * rBr);
+      ctx.moveTo(mx, my);
+      ctx.lineTo(mx + Math.cos(ang - 0.55) * rBr, my + Math.sin(ang - 0.55) * rBr);
+    }
+    ctx.stroke();
+    ctx.restore();
+  }
+
   let dernierDessinCiel = 0;
   function renderFullSky(t) {
     requestAnimationFrame(renderFullSky);
     t = t || performance.now();
-    if (document.hidden || t - dernierDessinCiel < 33) return;
+    if (document.hidden || t - dernierDessinCiel < 30) return;
     dernierDessinCiel = t;
     bgCtx.clearRect(0, 0, wScreen, hScreen);
+
     for (let i = 0; i < stars.length; i++) {
-      const st = stars[i]; st.p += st.s * 2;
-      const al = Math.max(0.1, Math.min(1, st.a + Math.sin(st.p) * 0.3));
-      bgCtx.fillStyle = "rgba(255,255,255," + al + ")";
-      bgCtx.beginPath(); bgCtx.arc(st.x, st.y, st.r, 0, 6.28); bgCtx.fill();
+      const st = stars[i];
+      st.p += st.s;
+      st.x += st.vx;
+      st.y += st.vy;
+      if (st.y > hScreen + 10) { st.y = -10; st.x = Math.random() * wScreen; }
+      if (st.x < -10) st.x = wScreen + 10;
+      if (st.x > wScreen + 10) st.x = -10;
+      const al = Math.max(0.12, Math.min(0.95, st.a + Math.sin(st.p) * 0.28));
+      bgCtx.save();
+      bgCtx.fillStyle = "rgba(" + st.hue + "," + al + ")";
+      bgCtx.shadowColor = "rgba(14, 165, 233, " + al + ")";
+      bgCtx.shadowBlur = st.r > 1.3 ? 10 : 5;
+      bgCtx.beginPath();
+      bgCtx.arc(st.x, st.y, st.r, 0, 6.28);
+      bgCtx.fill();
+      bgCtx.restore();
     }
+
+    for (let i = 0; i < flakes.length; i++) {
+      const fl = flakes[i];
+      fl.x += fl.vx;
+      fl.y += fl.vy;
+      fl.rot += fl.vRot;
+      if (fl.y > hScreen + 20) { fl.y = -20; fl.x = Math.random() * wScreen; }
+      if (fl.x < -20) fl.x = wScreen + 20;
+      if (fl.x > wScreen + 20) fl.x = -20;
+      dessinerFloconBleu(bgCtx, fl.x, fl.y, fl.size, fl.rot, fl.a);
+    }
+
+    // Orbite du Soleil et de la Lune
     if (sunEl || moonEl) {
       angleOrbite += 0.003;
       const cx = wScreen * 0.5, cy = hScreen * 0.48, rx = Math.max(320, wScreen * 0.36), ry = Math.max(210, hScreen * 0.34);
@@ -1293,7 +1372,7 @@ const MOTEUR_CIEL_JS = `
       if (moonEl) moonEl.style.transform = "translate3d(" + (mx - 64) + "px," + (my - 64) + "px,0)";
     }
   }
-  window.addEventListener('resize', () => { resizeFullSky(); stars.forEach(s => { s.x = s.xr * wScreen; s.y = s.yr * hScreen; }); });
+  window.addEventListener('resize', resizeFullSky);
   renderFullSky();
 `;
 
@@ -1307,7 +1386,7 @@ const SCRIPT_VERSET_V52 = `
   const stage = document.getElementById('verseStage');
   const progressBar = document.getElementById('syncProgressBar');
   let animId = null, currentLang = 'fr', zoomScale = 1.0;
-  autoCheck.checked = false; audio.volume = 1.0;
+  autoCheck.checked = (localStorage.getItem('coran_auto_next') !== '0'); autoCheck.addEventListener('change', () => { try { localStorage.setItem('coran_auto_next', autoCheck.checked ? '1' : '0'); } catch(e){} }); audio.volume = 1.0;
 
   try {
     const sr = localStorage.getItem('reciter');
@@ -1941,7 +2020,7 @@ async function lancerGeneration() {
 
     .verse-stage {
       position: relative;
-      background: rgba(4, 8, 14, 0.42);
+      background: radial-gradient(ellipse at 50% 40%, rgba(14, 165, 233, 0.22) 0%, rgba(4, 12, 24, 0.72) 65%, rgba(4, 8, 14, 0.85) 100%);
       border: 1.5px solid rgba(56, 189, 248, 0.35);
       border-radius: 22px;
       padding: 38px 30px 20px 30px;
@@ -1974,7 +2053,7 @@ async function lancerGeneration() {
       animation-duration: 4.8s;
     }
 
-    .arabic-glow-verse { position:relative; z-index:2; font-family:'Scheherazade New','Amiri',serif; font-size:2.9rem; line-height:2.15; direction:rtl; margin-bottom:22px; color:#fff; text-shadow:0 2px 6px rgba(0,0,0,0.95), 0 0 14px rgba(255,255,255,0.65); transition:font-size 0.15s ease; }
+    .arabic-glow-verse { position:relative; z-index:2; font-family:'Scheherazade New','Amiri',serif; font-size:2.9rem; line-height:2.15; direction:rtl; margin-bottom:22px; color:#f0f9ff; text-shadow:0 0 6px rgba(125,211,252,0.98), 0 0 16px #38bdf8, 0 0 34px #0ea5e9, 0 0 62px rgba(2,132,199,0.88), 0 2px 6px rgba(0,0,0,0.95); transition:font-size 0.15s ease; }
     .french-glow-verse { position:relative; z-index:2; font-family:'Amiri',serif; font-size:1.52rem; font-weight:700; line-height:1.65; color:#fff; text-shadow:0 2px 6px rgba(0,0,0,0.95), 0 0 12px rgba(255,255,255,0.55); max-width:94%; margin:0 auto; transition:font-size 0.15s ease; }
 
     .stage-blue-nav {
@@ -2075,9 +2154,9 @@ async function lancerGeneration() {
     .wbw-word-box { display:flex; flex-direction:column; align-items:center; justify-content:space-between; background:linear-gradient(145deg, rgba(12,22,35,0.88), rgba(6,12,20,0.94)); border:1.5px solid rgba(56,189,248,0.28); border-radius:18px; padding:12px 14px; min-width:96px; cursor:pointer; transition:transform 0.18s, border-color 0.18s, background 0.18s, box-shadow 0.18s; -webkit-tap-highlight-color:transparent; box-shadow:0 8px 24px rgba(0,0,0,0.45), inset 0 0 12px rgba(56,189,248,0.04); }
     .wbw-word-box:hover { transform:translateY(-4px); border-color:var(--sky-bright); background:linear-gradient(145deg, rgba(14,165,233,0.18), rgba(8,16,26,0.96)); box-shadow:0 12px 28px rgba(0,0,0,0.6), 0 0 20px rgba(56,189,248,0.32); }
     .wbw-word-box.playing { z-index:5; border-color:#fde047 !important; background:linear-gradient(145deg, rgba(234,179,8,0.26), rgba(14,165,233,0.18)) !important; box-shadow:0 14px 32px rgba(0,0,0,0.75), 0 0 26px rgba(253,224,71,0.5) !important; transform:translateY(-6px) scale(1.04) !important; }
-    .wbw-word-box.playing .wbw-ar { color:#fde047 !important; text-shadow:0 0 18px rgba(253,224,71,0.7) !important; }
+    .wbw-word-box.playing .wbw-ar { font-family:'Scheherazade New','Amiri',serif; font-size:2.3rem; line-height:1.55; color:#f0f9ff; text-shadow:0 0 6px rgba(125,211,252,0.95), 0 0 15px #38bdf8, 0 0 30px rgba(14,165,233,0.85); margin-bottom:8px; text-align:center; transition:color 0.12s, text-shadow 0.12s; }
     .wbw-word-box.playing .wbw-tr { color:#fef08a !important; border-top-color:rgba(253,224,71,0.4) !important; }
-    .wbw-ar { font-family:'Scheherazade New','Amiri',serif; font-size:2.3rem; line-height:1.55; color:#fff; margin-bottom:8px; text-align:center; transition:color 0.12s, text-shadow 0.12s; }
+    .wbw-ar { font-family:'Scheherazade New','Amiri',serif; font-size:2.3rem; line-height:1.55; color:#f0f9ff; text-shadow:0 0 6px rgba(125,211,252,0.95), 0 0 15px #38bdf8, 0 0 30px rgba(14,165,233,0.85); margin-bottom:8px; text-align:center; transition:color 0.12s, text-shadow 0.12s; }
     .wbw-tr { font-family:'Plus Jakarta Sans',sans-serif; font-size:0.82rem; font-weight:700; color:#bae6fd; direction:ltr; text-align:center; max-width:160px; line-height:1.35; border-top:1px solid rgba(56,189,248,0.22); padding-top:8px; width:100%; transition:color 0.12s; }
 
     tajweed, .tajweed { font-family:inherit; pointer-events:none; }
@@ -2116,7 +2195,7 @@ async function lancerGeneration() {
       body { padding:10px 8px 36px 8px; }
       .panel { padding:18px 12px; }
       .verse-stage { padding:28px 16px 16px 16px; }
-      .arabic-glow-verse { font-size:2.2rem; }
+      .arabic-glow-verse { position:relative; z-index:2; font-family:'Scheherazade New','Amiri',serif; font-size:2.9rem; line-height:2.15; direction:rtl; margin-bottom:22px; color:#f0f9ff; text-shadow:0 0 6px rgba(125,211,252,0.98), 0 0 16px #38bdf8, 0 0 34px #0ea5e9, 0 0 62px rgba(2,132,199,0.88), 0 2px 6px rgba(0,0,0,0.95); transition:font-size 0.15s ease; }
       .french-glow-verse { font-size:1.25rem; }
       .arabic-surah { display:none; }
       .btn-listen-sync, .btn-replay-sync, .btn-blue-nav { white-space:nowrap; }
@@ -2129,7 +2208,7 @@ async function lancerGeneration() {
   </style>
 </head>
 <body>
-  <div class="cosmos-exterior-wrapper"><canvas id="fullPageSkyCanvas"></canvas></div>
+  <div class="cosmos-exterior-wrapper"><canvas id="fullPageSkyCanvas"></canvas><div class="flat-earth-sun" id="flatEarthSun"><div class="sun-core"></div></div><div class="flat-earth-moon" id="flatEarthMoon"><div class="moon-white-core"></div></div></div>
   <div class="interface-layer">
     <header class="top-nav">
       <a href="index.html?v=${ANTI_CACHE}" class="home-btn" onclick="sauvegarderConfigCiel()">${genererLogoInlineSVG('nav-logo-svg')}<span id="homeBtnTextEl">‹ Retour aux 114 Sourates</span></a>
@@ -2234,7 +2313,7 @@ async function lancerGeneration() {
             </div>
             <select id="verseJumperSelect" class="verse-jumper-select ${vObj.miracle ? 'is-miracle-gold' : ''}" onchange="naviguerVerset(event, this.value, false)">${opts}</select>
           </div>
-          <label class="auto-scroll-toggle"><input type="checkbox" id="autoNextCheck"><span class="switch-slider"></span><span class="switch-text" id="switchAutoTextEl">Enchaîner automatiquement</span></label>
+          <label class="auto-scroll-toggle"><input type="checkbox" id="autoNextCheck" checked><span class="switch-slider"></span><span class="switch-text" id="switchAutoTextEl">Enchaîner automatiquement</span></label>
           <audio id="ayahAudio" preload="auto"></audio><audio id="preloadNextAudio" preload="auto" style="display:none;"></audio>
           <div id="tajweedLegendBar" class="tajweed-legend-bar" style="display:none;">
             <span class="taj-tooltip" data-title="Nasalisation (son par le nez) maintenue sur 2 temps."><i style="background:#4ade80"></i><b>Ghunnah / Ikhfā'</b></span>
@@ -3198,8 +3277,8 @@ async function lancerGeneration() {
       <div class="guide-box"><div class="guide-header"><h3 id="medTitleEl">Qu'est-ce qu'une Sourate Médinoise ?</h3><span class="revelation-pill medinoise" id="medPillEl">Médinoise • 28 Sourates</span></div><p id="medDescEl">Révélée après l'Hégire, lorsque les musulmans sont devenus nombreux, unis à Médine, victorieux lors des grandes batailles (comme Badr) et jusqu'à la conquête de La Mecque : détaille les adorations, les lois sociales et la justice.</p></div>
     </section>
     <div class="controls">
-      <button class="sort-btn active" id="sortBtn1" onclick="trier('classique', this)">1. Ordre classique (1 à 114)</button>
-      <button class="sort-btn" id="sortBtn2" onclick="trier('chrono', this)">2. Ordre de Révélation (1 à 114)</button>
+      <button class="sort-btn active" id="sortBtn2" onclick="trier('chrono', this)">1. Ordre de Révélation (1 à 114)</button>
+      <button class="sort-btn" id="sortBtn1" onclick="trier('classique', this)">2. Ordre classique (1 à 114)</button>
       <button class="sort-btn miracle-tab-btn" id="sortBtn3" onclick="trier('miracles', this)">3. <span class="gold-star-icon">★</span> Les Miracles du Coran</button>
     </div>
     <input type="text" id="searchInput" class="search-box" placeholder="Rechercher une sourate ou un verset direct (ex: 30:1, 54:1, 2:255...)" oninput="afficher()">
@@ -3232,7 +3311,7 @@ async function lancerGeneration() {
   <script>
     const sourates = ${cartesJSON};
     const V_STAMP = "${ANTI_CACHE}";
-    let modeTri = 'classique', currentLang = 'fr', lastReadData = null;
+    let modeTri = 'chrono', currentLang = 'fr', lastReadData = null;
     try {
       const sl = localStorage.getItem('site_lang_v32');
       if (['fr','en','es','ar'].includes(sl)) currentLang = sl;
@@ -3292,8 +3371,8 @@ async function lancerGeneration() {
                 ? "Revelada después de la Hégira, cuando los musulmanes se hicieron numerosos en Medina, victoriosos en las batallas (como Badr) y hasta la conquista de La Meca: detalla las adoraciones, las leyes sociales y la justicia."
                 : "Révélée après l'Hégire, lorsque les musulmans sont devenus nombreux, unis à Médine, victorieux lors des grandes batailles (comme Badr) et jusqu'à la conquête de La Mecque : détaille les adorations, les lois sociales et la justice."));
 
-      document.getElementById('sortBtn1').textContent = isAr ? "1. ترتيب المصحف (1 إلى 114)" : (isEn ? "1. Traditional Order (1 to 114)" : (isEs ? "1. Orden tradicional (1 a 114)" : "1. Ordre classique (1 à 114)"));
-      document.getElementById('sortBtn2').textContent = isAr ? "2. ترتيب النزول (1 إلى 114)" : (isEn ? "2. Revelation Order (1 to 114)" : (isEs ? "2. Orden de Revelación (1 a 114)" : "2. Ordre de Révélation (1 à 114)"));
+      document.getElementById('sortBtn1').textContent = isAr ? "2. ترتيب المصحف (1 إلى 114)" : (isEn ? "2. Traditional Order (1 to 114)" : (isEs ? "2. Orden tradicional (1 a 114)" : "2. Ordre classique (1 à 114)"));
+      document.getElementById('sortBtn2').textContent = isAr ? "1. ترتيب النزول (1 إلى 114)" : (isEn ? "1. Revelation Order (1 to 114)" : (isEs ? "1. Orden de Revelación (1 a 114)" : "1. Ordre de Révélation (1 à 114)"));
       document.getElementById('sortBtn3').innerHTML = isAr
         ? '3. <span class="gold-star-icon">★</span> آيات الإعجاز القرآني'
         : (isEn ? '3. <span class="gold-star-icon">★</span> Miracles of the Quran' : (isEs ? '3. <span class="gold-star-icon">★</span> Milagros del Corán' : '3. <span class="gold-star-icon">★</span> Les Miracles du Coran'));
@@ -3356,7 +3435,7 @@ async function lancerGeneration() {
       // Affichage du bouton Mentions légales uniquement tout en bas de l'Ordre classique
       const legWrap = document.getElementById('classicLegalWrap');
       if (legWrap) {
-        legWrap.style.display = (modeTri === 'classique' && !q) ? 'block' : 'none';
+        legWrap.style.display = (modeTri !== 'miracles' && !q) ? 'block' : 'none';
       }
 
       let directHTML = '';
