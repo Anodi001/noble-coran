@@ -2,13 +2,153 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1793988706743">
-  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=1793988706743">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1794065603706">
+  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=1794065603706">
   <link rel="canonical" href="https://corantafsir.com/sourate-9-verset-107.html">
   <title>Sourate 9 verset 107 (At-Tawbah) - Coran & Tafsir</title>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     
+
+/* PATCH_SUIVI_LUMINOSITE_PURE_V5 */
+.arabic-glow-verse span,
+#arabicVerse span,
+.ar-word-follow,
+.ar-word,
+.follow-word,
+.karaoke-word,
+[data-word-index],
+[data-widx] {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 0 3px !important;
+  display: inline-block !important;
+  transition: color 0.16s ease, text-shadow 0.16s ease, transform 0.16s ease, filter 0.16s ease !important;
+}
+
+/* Quand le mode Suivi est actif : les mots non lus s'assombrissent légèrement pour faire ressortir l'illumination du mot lu */
+.arabic-glow-verse.follow-active span:not(.active):not(.speaking),
+#arabicVerse.follow-active span:not(.active):not(.speaking) {
+  opacity: 0.62 !important;
+  filter: brightness(0.85);
+}
+
+.arabic-glow-verse span.active,
+.arabic-glow-verse span.speaking,
+.arabic-glow-verse span.current,
+.arabic-glow-verse span.highlight,
+#arabicVerse span.active,
+.ar-word-follow.active,
+.ar-word.active,
+.follow-word.active,
+.karaoke-word.active,
+[data-word-index].active,
+[data-widx].active {
+  opacity: 1 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #ffffff !important;
+  filter: brightness(1.35) drop-shadow(0 0 12px rgba(56, 189, 248, 0.95)) drop-shadow(0 0 26px rgba(250, 204, 21, 0.9)) !important;
+  text-shadow: 0 0 8px #ffffff, 0 0 18px #fde047, 0 0 36px #f59e0b, 0 0 65px rgba(250, 204, 21, 0.95) !important;
+  transform: translateY(-4px) scale(1.11) !important;
+}
+
+.arabic-glow-verse span.active::after,
+#arabicVerse span.active::after,
+.ar-word-follow.active::after {
+  display: none !important;
+}
+
+
+/* PATCH_FOLLOW_ULTIME_V3 */
+.arabic-glow-verse span,
+#arabicVerse span,
+.ar-word-follow,
+.ar-word,
+.follow-word,
+.karaoke-word {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-color: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 0 2px !important;
+  margin: 0 !important;
+  display: inline-block !important;
+  position: relative !important;
+  transition: color 0.18s cubic-bezier(0.22, 1, 0.36, 1), text-shadow 0.18s cubic-bezier(0.22, 1, 0.36, 1), transform 0.18s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.arabic-glow-verse span.active,
+.arabic-glow-verse span.speaking,
+.arabic-glow-verse span.current,
+.arabic-glow-verse span.highlight,
+#arabicVerse span.active,
+.ar-word-follow.active,
+.ar-word.active,
+.follow-word.active,
+.karaoke-word.active {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #fde047 !important;
+  text-shadow: 0 0 8px #fef08a, 0 0 20px #facc15, 0 0 42px #eab308, 0 0 70px rgba(234, 179, 8, 0.9) !important;
+  transform: translateY(-4px) scale(1.1) !important;
+}
+
+/* Rayons lumineux subtils sous le mot actif (sans aucun carré) */
+.arabic-glow-verse span.active::after,
+#arabicVerse span.active::after,
+.ar-word-follow.active::after {
+  content: '' !important;
+  position: absolute !important;
+  left: 12% !important;
+  right: 12% !important;
+  bottom: 4px !important;
+  height: 3px !important;
+  border-radius: 99px !important;
+  background: linear-gradient(90deg, transparent, #fde047, #f59e0b, #fde047, transparent) !important;
+  box-shadow: 0 0 12px #facc15, 0 0 24px #eab308 !important;
+  pointer-events: none !important;
+}
+
+/* Masquage automatique de la phrase de traduction quand Mot-à-mot est actif */
+body.wbw-mode-on .verse-translation,
+body.wbw-mode-on #verseTranslation,
+body.wbw-mode-on .translation-text,
+body.wbw-mode-on .fr-verse-text {
+  display: none !important;
+}
+
+
+.wbw-card, .wbw-item, .wbw-word {
+  border-radius: 18px !important;
+  background: rgba(10, 20, 35, 0.65) !important;
+  border: 1px solid rgba(56, 189, 248, 0.2) !important;
+  transition: all 0.2s ease !important;
+}
+.wbw-card.active, .wbw-item.active, .wbw-word.active {
+  background: radial-gradient(circle at 50% 40%, rgba(250, 204, 21, 0.22), rgba(14, 165, 233, 0.08)) !important;
+  border-color: rgba(250, 204, 21, 0.85) !important;
+  box-shadow: 0 0 22px rgba(250, 204, 21, 0.35) !important;
+  transform: translateY(-3px) !important;
+}
+
   @property --ae-angle {
     syntax: '<angle>';
     initial-value: 0deg;
@@ -482,7 +622,7 @@
   <div class="cosmos-exterior-wrapper"><canvas id="fullPageSkyCanvas"></canvas><div class="flat-earth-sun" id="flatEarthSun"><div class="sun-core"></div></div><div class="flat-earth-moon" id="flatEarthMoon"><div class="moon-white-core"></div></div></div>
   <div class="interface-layer">
     <header class="top-nav">
-      <a href="index.html?v=1793988706743" class="home-btn" onclick="sauvegarderConfigCiel()"><svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Logo Le Noble Coran & Tafsir">
+      <a href="index.html?v=1794065603706" class="home-btn" onclick="sauvegarderConfigCiel()"><svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Logo Le Noble Coran & Tafsir">
     <defs>
       <linearGradient id="bgGrad_nav-logo-svg" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stop-color="#07111a"/>
@@ -648,7 +788,7 @@
       </main>
     </div>
   </div>
-  <script src="data-sourate-9.js?v=1793988706743"></script>
+  <script src="data-sourate-9.js?v=1794065603706"></script>
   <script>
     const numSourateActuelle = 9; let numVersetActuel = 107; let codeAudio = "009107";
     
@@ -769,6 +909,55 @@
   }
   window.addEventListener('resize', resizeFullSky);
   renderFullSky();
+
+/* JS_FOLLOW_CLEANER_V3 */
+(function(){
+  function nettoyerFollowEtWbw() {
+    // 1. Enlever tout fond/bordure inline sur les mots arabes du mode Suivi
+    var arSpans = document.querySelectorAll('.arabic-glow-verse span, #arabicVerse span');
+    for (var i = 0; i < arSpans.length; i++) {
+      var s = arSpans[i];
+      if (s.style && (s.style.background || s.style.backgroundColor || s.style.border || s.style.boxShadow)) {
+        s.style.setProperty('background', 'transparent', 'important');
+        s.style.setProperty('background-color', 'transparent', 'important');
+        s.style.setProperty('border', 'none', 'important');
+        s.style.setProperty('box-shadow', 'none', 'important');
+      }
+    }
+    // 2. Masquer la phrase de traduction sous le verset quand Mot-à-mot (Word by Word) est ouvert
+    var wbwEl = document.getElementById('wbwBox') || document.getElementById('wbwContainer') || document.querySelector('.wbw-grid, .wbw-container, .wbw-wrap');
+    var wbwVisible = wbwEl && wbwEl.offsetParent !== null && wbwEl.innerHTML.trim() !== '';
+    var stage = document.querySelector('.verse-stage') || document.body;
+    var tradCandidates = stage.querySelectorAll('.verse-translation, #verseTranslation, .translation-text, .trad-text, p, div');
+    for (var j = 0; j < tradCandidates.length; j++) {
+      var el = tradCandidates[j];
+      if (el.id === 'verseTranslation' || el.classList.contains('verse-translation') || el.classList.contains('translation-text') || el.classList.contains('trad-text')) {
+        el.style.display = wbwVisible ? 'none' : '';
+      }
+    }
+    document.body.classList.toggle('wbw-mode-on', !!wbwVisible);
+  }
+  setInterval(nettoyerFollowEtWbw, 80);
+  document.addEventListener('click', function(){ setTimeout(nettoyerFollowEtWbw, 15); });
+})();
+
+
+/* AUTO_HIDE_TRAD_WBW_V2 */
+(function(){
+  function syncTradVisibility() {
+    var wbwBox = document.getElementById('wbwContainer') || document.querySelector('.wbw-container, .wbw-grid, #wordByWordBox');
+    var tradEl = document.getElementById('verseTranslation') || document.querySelector('.verse-translation, .translation-text, #traductionTexte');
+    var wbwBtn = document.getElementById('wbwBtn') || document.querySelector('[onclick*="toggleWbw"], [onclick*=" toggleWBW"]');
+    var isWbwActive = (wbwBtn && wbwBtn.classList.contains('active')) || (wbwBox && wbwBox.offsetParent !== null && wbwBox.children.length > 0);
+    if (tradEl) {
+      tradEl.style.display = isWbwActive ? 'none' : '';
+    }
+  }
+  document.addEventListener('click', function(){ setTimeout(syncTradVisibility, 25); });
+  window.addEventListener('DOMContentLoaded', function(){ setTimeout(syncTradVisibility, 60); });
+  setInterval(syncTradVisibility, 350);
+})();
+
 
     
   const audio = document.getElementById('ayahAudio');
