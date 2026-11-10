@@ -1,10 +1,22 @@
 {
   "name": "Le Noble Coran & Tafsīr",
-  "short_name": "Noble Coran",
-  "description": "Le Noble Coran, traduction originale de Muhammad Hamidullah (1977) et Tafsīr des savants.",
-  "start_url": "/index.html",
+  "short_name": "Coran Tafsīr",
+  "description": "Le Noble Coran & Tafsīr Al-Mukhtasar (FR / EN / ES / AR)",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#020406",
   "theme_color": "#020406",
-  "orientation": "portrait-primary"
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png?v=34",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png?v=34",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }

@@ -1,415 +1,479 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Le Noble Coran & Tafsīr — Traduction Muhammad Hamidullah (1977)</title>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,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">
+  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=1794352035608">
+  <link rel="canonical" href="https://corantafsir.com/">
+  <link rel="alternate" hreflang="fr" href="https://corantafsir.com/?lang=fr">
+  <link rel="alternate" hreflang="en" href="https://corantafsir.com/?lang=en">
+  <link rel="alternate" hreflang="es" href="https://corantafsir.com/?lang=es">
+  <link rel="alternate" hreflang="ar" href="https://corantafsir.com/?lang=ar">
+  <link rel="alternate" hreflang="x-default" href="https://corantafsir.com/">
+  <title>Coran &amp; Tafsīr | Noble Quran Tafsir in English | Corán y Tafsir en Español | القرآن الكريم والتفسير</title>
+  <meta name="description" content="Read, listen and understand the 114 Surahs of the Noble Quran with authentic Tafsir and historical &amp; scientific miracles in 4 languages: Français, English, Español, العربية.">
+  <meta name="keywords" content="Quran Tafsir, Coran Tafsir, Tafsir en español, تفسير القرآن الكريم, Miracles of the Quran, Miracles du Coran, Milagros del Corán, Al-Mukhtasar, Saheeh International, Hamidullah">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Cinzel+Decorative:wght@700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-main: #020406;
-      --bg-card: rgba(8, 14, 20, 0.22);
-      --bg-card-hover: rgba(14, 24, 32, 0.36);
-      --green-accent: #10b981;
-      --green-bright: #34d399;
-      --green-soft: rgba(16, 185, 129, 0.18);
-      --sky-accent: #38bdf8;
-      --sky-bright: #7dd3fc;
-      --text-main: #f8fafc;
-      --text-muted: #cbd5e1;
-      --border-color: rgba(255, 255, 255, 0.15);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background-color: var(--bg-main);
-      color: var(--text-main);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      padding: 32px 4vw 60px 4vw;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
     
-  .cosmos-exterior-wrapper {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    pointer-events: none;
-    overflow: hidden;
-    background: radial-gradient(ellipse at 50% 40%, #070d14 0%, #030609 65%, #010203 100%);
+
+/* PATCH_SUIVI_LUMINOSITE_PURE_V5 */
+.arabic-glow-verse span,
+#arabicVerse span,
+.ar-word-follow,
+.ar-word,
+.follow-word,
+.karaoke-word,
+[data-word-index],
+[data-widx] {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 0 3px !important;
+  display: inline-block !important;
+  transition: color 0.16s ease, text-shadow 0.16s ease, transform 0.16s ease, filter 0.16s ease !important;
+}
+
+/* Quand le mode Suivi est actif : les mots non lus s'assombrissent légèrement pour faire ressortir l'illumination du mot lu */
+.arabic-glow-verse.follow-active span:not(.active):not(.speaking),
+#arabicVerse.follow-active span:not(.active):not(.speaking) {
+  opacity: 0.62 !important;
+  filter: brightness(0.85);
+}
+
+.arabic-glow-verse span.active,
+.arabic-glow-verse span.speaking,
+.arabic-glow-verse span.current,
+.arabic-glow-verse span.highlight,
+#arabicVerse span.active,
+.ar-word-follow.active,
+.ar-word.active,
+.follow-word.active,
+.karaoke-word.active,
+[data-word-index].active,
+[data-widx].active {
+  opacity: 1 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #ffffff !important;
+  filter: brightness(1.35) drop-shadow(0 0 12px rgba(56, 189, 248, 0.95)) drop-shadow(0 0 26px transparent) !important;
+  text-shadow: 0 0 8px #ffffff, 0 0 18px #60a5fa, 0 0 36px #00e5ff, 0 0 65px transparent !important;
+  transform: translateY(-4px) scale(1.11) !important;
+}
+
+.arabic-glow-verse span.active::after,
+#arabicVerse span.active::after,
+.ar-word-follow.active::after {
+  display: none !important;
+}
+
+
+/* PATCH_FOLLOW_ULTIME_V3 */
+.arabic-glow-verse span,
+#arabicVerse span,
+.ar-word-follow,
+.ar-word,
+.follow-word,
+.karaoke-word {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-color: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 0 2px !important;
+  margin: 0 !important;
+  display: inline-block !important;
+  position: relative !important;
+  transition: color 0.18s cubic-bezier(0.22, 1, 0.36, 1), text-shadow 0.18s cubic-bezier(0.22, 1, 0.36, 1), transform 0.18s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.arabic-glow-verse span.active,
+.arabic-glow-verse span.speaking,
+.arabic-glow-verse span.current,
+.arabic-glow-verse span.highlight,
+#arabicVerse span.active,
+.ar-word-follow.active,
+.ar-word.active,
+.follow-word.active,
+.karaoke-word.active {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #60a5fa !important;
+  text-shadow: 0 0 8px #93c5fd, 0 0 20px #00e5ff, 0 0 42px #00e5ff, 0 0 70px transparent !important;
+  transform: translateY(-4px) scale(1.1) !important;
+}
+
+/* Rayons lumineux subtils sous le mot actif (sans aucun carré) */
+.arabic-glow-verse span.active::after,
+#arabicVerse span.active::after,
+.ar-word-follow.active::after {
+  content: '' !important;
+  position: absolute !important;
+  left: 12% !important;
+  right: 12% !important;
+  bottom: 4px !important;
+  height: 3px !important;
+  border-radius: 99px !important;
+  background: linear-gradient(90deg, transparent, #60a5fa, #00e5ff, #60a5fa, transparent) !important;
+  box-shadow: 0 0 12px #00e5ff, 0 0 24px #00e5ff !important;
+  pointer-events: none !important;
+}
+
+/* Masquage automatique de la phrase de traduction quand Mot-à-mot est actif */
+body.wbw-mode-on .verse-translation,
+body.wbw-mode-on #verseTranslation,
+body.wbw-mode-on .translation-text,
+body.wbw-mode-on .fr-verse-text {
+  display: none !important;
+}
+
+
+.wbw-card, .wbw-item, .wbw-word {
+  border-radius: 18px !important;
+  background: rgba(10, 20, 35, 0.65) !important;
+  border: 1px solid rgba(56, 189, 248, 0.2) !important;
+  transition: all 0.2s ease !important;
+}
+.wbw-card.active, .wbw-item.active, .wbw-word.active {
+  background: radial-gradient(circle at 50% 40%, transparent, rgba(14, 165, 233, 0.08)) !important;
+  border-color: transparent !important;
+  box-shadow: 0 0 22px transparent !important;
+  transform: translateY(-3px) !important;
+}
+
+  @property --ae-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+  @keyframes aeLaserSpin {
+    0% { --ae-angle: 0deg; }
+    100% { --ae-angle: 360deg; }
+  }
+  @keyframes aeShimmerSweep {
+    0% { transform: translateX(-140%) skewX(-22deg); opacity: 0; }
+    18% { opacity: 0.45; }
+    38% { transform: translateX(220%) skewX(-22deg); opacity: 0; }
+    100% { transform: translateX(220%) skewX(-22deg); opacity: 0; }
+  }
+  @keyframes aeRevealCascade {
+    0% { opacity: 0; transform: translateY(14px) scale(0.985); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes titleShimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
   }
 
-  #dynamicSkyLighting {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    transition: background 0.6s ease;
-  }
+  :root { --bg-main:#020406; --bg-card:rgba(8,13,18,0.28); --bg-elevated:rgba(12,19,25,0.35); --sky-accent:#0ea5e9; --sky-bright:#38bdf8; --sky-light:#7dd3fc; --sky-dim:rgba(56,189,248,0.16); --gold-soft:#e2c078; --gold-dim:rgba(226,192,120,0.12); --text-main:#f8fafc; --text-muted:#cbd5e1; --border-color:rgba(255,255,255,0.15); }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg-main); color:var(--text-main); font-family:'Plus Jakarta Sans',sans-serif; line-height:1.8; min-height:100vh; overflow-x:hidden; }
+  .cosmos-exterior-wrapper { position:fixed; inset:0; width:100vw; height:100vh; z-index:0; pointer-events:none; overflow:hidden; background:radial-gradient(ellipse at 50% 40%, #070d14 0%, #030609 65%, #010203 100%); }
+  #fullPageSkyCanvas { position:absolute; inset:0; width:100%; height:100%; z-index:2; }
+  .flat-earth-sun { position:fixed; top:0; left:0; width:116px; height:116px; border-radius:50%; z-index:3; pointer-events:none; }
+  .sun-core { width:100%; height:100%; border-radius:50%; background:radial-gradient(circle, #fff 0%, #93c5fd 38%, #00e5ff 72%, rgba(234,88,12,0) 100%); box-shadow:0 0 35px 10px rgba(253,224,71,0.85), 0 0 90px 35px transparent; }
+  .flat-earth-moon { position:fixed; top:0; left:0; width:128px; height:128px; border-radius:50%; z-index:3; pointer-events:none; }
+  .moon-white-core { width:100%; height:100%; border-radius:50%; background:radial-gradient(circle at 38% 38%, #fff 0%, #f1f5f9 78%, rgba(255,255,255,0) 100%); box-shadow:0 0 35px 12px rgba(255,255,255,0.95), 0 0 85px 32px rgba(226,232,240,0.55); }
+  .interface-layer { position:relative; z-index:10; }
+  .revelation-pill { display:inline-flex; align-items:center; gap:5px; font-size:0.72rem; font-weight:800; text-transform:uppercase; padding:4px 10px; border-radius:99px; text-decoration:none; }
+  .revelation-pill.mecquoise { background:rgba(56,189,248,0.15); color:#7dd3fc; border:1px solid rgba(56,189,248,0.45); }
+  .revelation-pill.medinoise { background:rgba(16,185,129,0.16); color:#6ee7b7; border:1px solid rgba(52,211,153,0.38); }
 
-  #fullPageSkyCanvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-  }
-
-  .flat-earth-sun {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 116px;
-    height: 116px;
-    border-radius: 50%;
-    z-index: 3;
-    pointer-events: none;
-    will-change: transform;
-  }
-  .sun-core {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: radial-gradient(circle, #ffffff 0%, #fef08a 38%, #f59e0b 72%, rgba(234, 88, 12, 0) 100%);
-    box-shadow:
-      0 0 35px 10px rgba(253, 224, 71, 0.85),
-      0 0 90px 35px rgba(245, 158, 11, 0.45),
-      0 0 160px 70px rgba(234, 88, 12, 0.22);
-    animation: sunCoronaPulse 4s ease-in-out infinite alternate;
-  }
-  @keyframes sunCoronaPulse {
-    0% { transform: scale(0.96); opacity: 0.92; }
-    100% { transform: scale(1.05); opacity: 1; }
-  }
-
-  .flat-earth-moon {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 128px;
-    height: 128px;
-    border-radius: 50%;
-    z-index: 3;
-    pointer-events: none;
-    will-change: transform;
-  }
-  .moon-white-core {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: radial-gradient(circle at 38% 38%, #ffffff 0%, #ffffff 48%, #f1f5f9 78%, #e2e8f0 94%, rgba(255, 255, 255, 0) 100%);
-    box-shadow:
-      0 0 35px 12px rgba(255, 255, 255, 0.95),
-      0 0 85px 32px rgba(226, 232, 240, 0.55),
-      0 0 160px 65px rgba(186, 230, 253, 0.28),
-      inset -8px -8px 18px rgba(203, 213, 225, 0.45);
-    animation: whiteMoonPulse 4.5s ease-in-out infinite alternate;
-  }
-  @keyframes whiteMoonPulse {
-    0% { transform: scale(0.96); opacity: 0.92; }
-    100% { transform: scale(1.05); opacity: 1; }
-  }
-
-  .verse-stage.ash-shams-daylight {
-    border-color: rgba(56, 189, 248, 0.55);
-    box-shadow:
-      0 0 60px rgba(56, 189, 248, 0.22),
-      0 20px 50px rgba(0, 0, 0, 0.55),
-      inset 0 0 50px rgba(125, 211, 252, 0.12);
-    animation: daylightSweepPulse 3.5s ease-in-out infinite alternate;
-  }
-  @keyframes daylightSweepPulse {
-    0% { box-shadow: 0 0 45px rgba(56, 189, 248, 0.16), inset 0 0 35px rgba(125, 211, 252, 0.08); }
-    100% { box-shadow: 0 0 80px rgba(56, 189, 248, 0.32), inset 0 0 65px rgba(125, 211, 252, 0.18); }
-  }
-
-  .verse-stage.earth-leveled-glow::after {
-    content: "";
-    position: absolute;
-    bottom: 6px;
-    left: 8%;
-    width: 84%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.85), #ffffff, rgba(56, 189, 248, 0.85), transparent);
-    box-shadow: 0 0 18px rgba(56, 189, 248, 0.9);
-    animation: horizonExpand 3s ease-in-out infinite alternate;
-  }
-  @keyframes horizonExpand {
-    0% { transform: scaleX(0.85); opacity: 0.65; }
-    100% { transform: scaleX(1.05); opacity: 1; }
-  }
-
-  .revelation-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 0.72rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding: 4px 10px;
-    border-radius: 99px;
-    text-decoration: none;
-  }
-  .revelation-pill.mecquoise {
-    background: rgba(56, 189, 248, 0.14);
-    color: #7dd3fc;
-    border: 1px solid rgba(56, 189, 248, 0.42);
-    box-shadow: 0 0 12px rgba(56, 189, 248, 0.12);
-  }
-  .revelation-pill.medinoise {
-    background: rgba(16, 185, 129, 0.16);
-    color: #6ee7b7;
-    border: 1px solid rgba(52, 211, 153, 0.38);
-  }
   .revelation-pill.miracle-pill {
-    background: rgba(14, 165, 233, 0.22);
-    color: #38bdf8;
-    border: 1px solid rgba(56, 189, 248, 0.6);
-    box-shadow: 0 0 16px rgba(56, 189, 248, 0.28);
+    background: linear-gradient(135deg, rgba(14,165,233,0.22), rgba(251,191,36,0.10));
+    color: #e0f2fe;
+    border: 1px solid rgba(56,189,248,0.55);
+    box-shadow: 0 0 12px rgba(56,189,248,0.18);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: 0.25s;
   }
-  .revelation-pill.miracle-pill:hover {
-    background: #38bdf8;
-    color: #031521;
-    box-shadow: 0 0 22px rgba(56, 189, 248, 0.55);
-  }
+  .revelation-pill.miracle-pill:hover { background:rgba(56,189,248,0.32); color:#ffffff; border-color:#7dd3fc; box-shadow:0 0 18px rgba(56,189,248,0.4); }
 
-  .sky-star-icon {
-    color: #38bdf8;
-    text-shadow: 0 0 10px rgba(56, 189, 248, 0.9), 0 0 20px rgba(14, 165, 233, 0.6);
-  }
+  .lang-switcher-group { display:inline-flex; align-items:center; background:rgba(6,12,18,0.88); border:1px solid rgba(56,189,248,0.42); padding:3px; border-radius:99px; gap:3px; }
+  .lang-pill-btn { background:transparent; color:#94a3b8; border:1px solid transparent; padding:5px 10px; border-radius:99px; font-family:inherit; font-size:0.74rem; font-weight:800; cursor:pointer; }
+  .lang-pill-btn.active { background:linear-gradient(135deg, rgba(56,189,248,0.38), rgba(14,165,233,0.32)); color:#fff; border-color:rgba(56,189,248,0.85); box-shadow:0 0 12px rgba(56,189,248,0.35); }
+  .gold-star-icon { color:#f3d078; text-shadow: 0 0 6px #ffffff, 0 0 16px #ffffff, 0 0 32px rgba(255, 255, 255, 0.95), 0 0 55px rgba(255, 255, 255, 0.8); font-size:1.02em; }
+  .sort-btn.active .gold-star-icon { color:#fde68a; text-shadow:0 1px 4px rgba(0,0,0,0.75); }
 
   .miracle-banner {
-    background: linear-gradient(135deg, rgba(14, 165, 233, 0.16) 0%, rgba(8, 47, 73, 0.52) 100%);
-    border: 1px solid rgba(56, 189, 248, 0.5);
-    border-radius: 18px;
-    padding: 20px 24px;
-    margin-bottom: 20px;
-    box-shadow: 0 12px 35px rgba(2, 132, 199, 0.18), inset 0 0 25px rgba(56, 189, 248, 0.08);
+    position: relative;
+    background: linear-gradient(145deg, rgba(5, 22, 38, 0.88) 0%, rgba(3, 10, 19, 0.94) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.48);
+    border-radius: 22px;
+    padding: 24px 26px;
+    margin-bottom: 22px;
+    overflow: hidden;
+    box-shadow: 0 14px 38px rgba(0,0,0,0.65), 0 0 24px rgba(56,189,248,0.18), 0 0 14px rgba(251,191,36,0.06);
   }
-  .miracle-header {
-    color: #38bdf8;
-    text-shadow: 0 0 14px rgba(56, 189, 248, 0.4);
+  .miracle-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.8px;
+    background: conic-gradient(from var(--ae-angle), transparent 15%, #0ea5e9 34%, #38bdf8 46%, #7dd3fc 52%, rgba(251,191,36,0.52) 56%, #38bdf8 62%, transparent 82%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: aeLaserSpin 5.5s linear infinite;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .ae-shimmer-sweep {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(56,189,248,0.06), rgba(251,191,36,0.04), transparent);
+    animation: aeShimmerSweep 7s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .miracle-header { position:relative; z-index:3; color:#e0f2fe; font-weight:800; font-size:1.14rem; margin-bottom:10px; line-height:1.4; text-shadow:0 2px 10px rgba(0,0,0,0.85), 0 0 14px rgba(56,189,248,0.28); }
+  .miracle-summary { position:relative; z-index:3; color:#cbd5e1; font-size:0.97rem; line-height:1.75; margin-bottom:16px; }
+  .miracle-expand-btn {
+    position: relative;
+    z-index: 3;
+    background: linear-gradient(135deg, rgba(14,165,233,0.28), rgba(56,189,248,0.16), rgba(251,191,36,0.10));
+    color: #e0f2fe;
+    border: 1px solid rgba(56,189,248,0.68);
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 0.86rem;
     font-weight: 800;
-    font-size: 1.02rem;
+    cursor: pointer;
+    box-shadow: 0 0 16px rgba(56,189,248,0.22);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .miracle-expand-btn:hover { background:linear-gradient(135deg, #38bdf8, #0ea5e9); color:#02060d; transform:translateY(-2px); box-shadow:0 0 24px rgba(56,189,248,0.5); }
+  .miracle-deep-details { position:relative; z-index:3; display:none; margin-top:20px; padding-top:20px; border-top:1px solid rgba(56,189,248,0.35); color:#f0f9ff; font-size:0.95rem; line-height:1.8; }
+  .miracle-deep-details.open { display:block; animation:aeRevealCascade 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  .miracle-deep-details p { margin-bottom:12px; }
+
+  .miracle-pillars-grid { display:flex; flex-direction:column; gap:14px; margin-bottom:20px; }
+  .miracle-pillar-card {
+    position: relative;
+    background: linear-gradient(135deg, rgba(4, 15, 28, 0.88), rgba(2, 8, 16, 0.92));
+    border: 1px solid rgba(56, 189, 248, 0.42);
+    border-left: 4px solid #38bdf8;
+    border-radius: 16px;
+    padding: 18px 20px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.5), inset 0 0 20px rgba(56,189,248,0.05);
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+  .miracle-pillar-card:hover { transform: translateX(4px); border-color: #7dd3fc; }
+  [dir="rtl"] .miracle-pillar-card { border-left: 1px solid rgba(56, 189, 248, 0.42); border-right: 4px solid #38bdf8; }
+  .pillar-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, rgba(56, 189, 248, 0.22), rgba(251, 191, 36, 0.12));
+    color: #bae6fd;
+    border: 1px solid rgba(56, 189, 248, 0.55);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    padding: 3px 11px;
+    border-radius: 99px;
     margin-bottom: 8px;
   }
-  .miracle-summary {
-    color: #e0f2fe;
-    font-size: 0.95rem;
-    line-height: 1.7;
-    margin-bottom: 14px;
+  .miracle-pillar-card h4 { color:#7dd3fc; font-size:1.04rem; font-weight:800; margin-bottom:8px; }
+  .historians-proof-section {
+    position: relative;
+    background: linear-gradient(145deg, rgba(8, 20, 36, 0.92), rgba(4, 10, 20, 0.96));
+    border: 1px solid rgba(56, 189, 248, 0.52);
+    border-radius: 18px;
+    padding: 20px 22px;
+    box-shadow: 0 0 26px rgba(56, 189, 248, 0.15);
   }
-  .miracle-expand-btn {
+  .historians-header { color:#7dd3fc; font-size:0.95rem; font-weight:900; letter-spacing:0.04em; margin-bottom:14px; text-transform:uppercase; }
+  .historian-quote-box {
+    background: rgba(2, 6, 12, 0.78);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    transition: border-color 0.2s ease;
+  }
+  .historian-quote-box:hover { border-color: rgba(56, 189, 248, 0.75); }
+  .historian-name { color:#38bdf8; font-weight:800; font-size:0.94rem; margin-bottom:3px; }
+  .historian-role { color:#94a3b8; font-size:0.81rem; margin-bottom:8px; }
+  .historian-quote-box blockquote {
+    color: #f8fafc;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    border-left: 3px solid rgba(251, 191, 36, 0.65);
+    padding-left: 12px;
+    margin: 0;
+  }
+  [dir="rtl"] .historian-quote-box blockquote { border-left: none; border-right: 3px solid rgba(251, 191, 36, 0.65); padding-left: 0; padding-right: 12px; }
+  .proof-links-bar { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.12); }
+  .proof-links-label { font-size:0.8rem; font-weight:800; color:#bae6fd; width:100%; margin-bottom:4px; }
+  .proof-link-pill {
+    display: inline-flex;
+    align-items: center;
     background: rgba(56, 189, 248, 0.16);
     color: #7dd3fc;
     border: 1px solid rgba(56, 189, 248, 0.55);
-    padding: 9px 16px;
-    border-radius: 10px;
-    font-family: inherit;
-    font-size: 0.84rem;
+    padding: 5px 12px;
+    border-radius: 99px;
+    font-size: 0.76rem;
     font-weight: 700;
+    text-decoration: none;
+    transition: 0.2s;
+  }
+  .proof-link-pill:hover { background:#38bdf8; color:#021019; transform:translateY(-1px); box-shadow:0 0 14px rgba(56,189,248,0.5); }
+
+  /* BOUTON MENTIONS LÉGALES DISCRET TOUT EN BAS DE L'ORDRE CLASSIQUE */
+  .discreet-legal-btn {
+    background: rgba(8, 14, 22, 0.55);
+    color: #64748b;
+    border: 1px solid rgba(56, 189, 248, 0.18);
+    padding: 6px 16px;
+    border-radius: 99px;
+    font-family: inherit;
+    font-size: 0.74rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+    transition: 0.2s;
   }
-  .miracle-expand-btn:hover {
-    background: #38bdf8;
-    color: #031521;
-    box-shadow: 0 0 24px rgba(56, 189, 248, 0.5);
-  }
-  .miracle-deep-details {
-    display: none;
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid rgba(56, 189, 248, 0.3);
-    color: #f0f9ff;
-    font-size: 0.95rem;
-    line-height: 1.8;
-  }
-  .miracle-deep-details.open {
-    display: block;
-  }
-  .miracle-deep-details p {
-    margin-bottom: 12px;
+  .discreet-legal-btn:hover {
+    color: #cbd5e1;
+    border-color: rgba(56, 189, 248, 0.45);
   }
 
-  .interface-layer {
-    position: relative;
-    z-index: 10;
-  }
-
-
-    .wrapper { width: 100%; max-width: 1220px; margin: 0 auto; }
+    body { padding:24px 4vw 60px 4vw; }
+    .wrapper { max-width:1220px; margin:0 auto; }
 
     .hero {
       text-align: center;
-      margin-bottom: 26px;
-      padding: 38px 24px 32px 24px;
-      background: rgba(6, 11, 16, 0.18);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border: 1px solid rgba(255, 255, 255, 0.16);
+      margin-bottom: 22px;
+      padding: 28px 24px 22px 24px;
+      background: rgba(6, 11, 16, 0.22);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(56, 189, 248, 0.28);
       border-radius: 26px;
-      box-shadow: 0 18px 45px rgba(0,0,0,0.4), inset 0 0 30px rgba(255,255,255,0.03);
       position: relative;
       overflow: hidden;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.5);
     }
-    .hero-ornament-top {
-      font-family: 'Amiri', serif;
-      font-size: 1.35rem;
-      color: rgba(255, 255, 255, 0.85);
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
-      text-shadow: 0 0 14px rgba(255, 255, 255, 0.6);
-      animation: gentleFloatTitle 4s ease-in-out infinite alternate;
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: conic-gradient(from var(--ae-angle), transparent 20%, #38bdf8 46%, #ffffff 50%, rgba(251,191,36,0.45) 54%, transparent 80%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: aeLaserSpin 9s linear infinite;
+      pointer-events: none;
     }
+    .hero-top-lang-bar { position:absolute; top:16px; right:20px; z-index:15; }
+    .hero-ornament-top { font-family:'Scheherazade New',serif; font-size:1.4rem; color:rgba(255,255,255,0.85); margin-bottom:4px; }
     .hero h1 {
-      font-family: 'Cinzel Decorative', 'Amiri', serif;
-      font-size: 3.1rem;
+      font-family: 'Cinzel Decorative', 'Scheherazade New', serif;
+      font-size: 2.85rem;
       font-weight: 900;
-      letter-spacing: 0.03em;
-      background: linear-gradient(
-        110deg,
-        #ffffff 0%,
-        #e0f2fe 22%,
-        #7dd3fc 45%,
-        #ffffff 55%,
-        #a7f3d0 78%,
-        #ffffff 100%
-      );
-      background-size: 240% auto;
+      background: linear-gradient(90deg, #0f2942 0%, #38bdf8 25%, #e0f2fe 50%, #34d399 75%, #0f2942 100%);
+      background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.35)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.85));
-      animation: continuousTitleShimmer 6.5s linear infinite, gentleFloatTitle 4s ease-in-out infinite alternate;
+      animation: titleShimmer 8s linear infinite;
+      filter: drop-shadow(0 0 18px rgba(56,189,248,0.28));
     }
-    @keyframes continuousTitleShimmer {
-      0% { background-position: 0% center; }
-      100% { background-position: 240% center; }
-    }
-    @keyframes gentleFloatTitle {
-      0% { transform: translateY(0px); }
-      100% { transform: translateY(-4px); }
-    }
-    .hero-glow-line {
-      width: 240px;
-      height: 2px;
-      margin: 16px auto 0 auto;
-      border-radius: 99px;
-      background: linear-gradient(90deg, transparent, #ffffff, #38bdf8, #ffffff, transparent);
-      background-size: 200% 100%;
-      box-shadow: 0 0 16px rgba(56, 189, 248, 0.85);
-      animation: lineGlowSweep 3.5s ease-in-out infinite alternate;
-    }
-    @keyframes lineGlowSweep {
-      0% { width: 170px; opacity: 0.65; background-position: 0% 50%; }
-      100% { width: 310px; opacity: 1; background-position: 100% 50%; }
-    }
+    .hero-glow-line { width:240px; height:2px; margin:12px auto 14px auto; background:linear-gradient(90deg,transparent,#fff,#38bdf8,#fff,transparent); }
+    .hero-bottom-bar { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:12px; }
+    .hero-inline-logo { width:46px; height:46px; filter:drop-shadow(0 6px 16px rgba(0,0,0,0.9)) drop-shadow(0 0 14px rgba(56,189,248,0.5)); }
 
-    .revelation-guide-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 26px;
-    }
-    .guide-box {
-      background: rgba(8, 14, 20, 0.24);
-      backdrop-filter: blur(7px);
-      -webkit-backdrop-filter: blur(7px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 20px;
-      padding: 20px 24px;
-      box-shadow: 0 12px 32px rgba(0,0,0,0.35);
-    }
-    .guide-header {
-      display: flex;
+    .app-install-trigger {
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 8px;
-    }
-    .guide-header h3 {
-      font-size: 1rem;
-      color: #ffffff;
-      font-weight: 800;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
-    }
-    .guide-box p {
-      font-size: 0.86rem;
-      color: #e2e8f0;
-      line-height: 1.65;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.85);
-    }
-
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      margin-bottom: 22px;
-    }
-    .sort-btn {
-      background: var(--bg-card);
-      backdrop-filter: blur(8px);
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
-      padding: 12px 22px;
-      border-radius: 14px;
-      cursor: pointer;
+      gap: 8px;
+      background: rgba(56, 189, 248, 0.14);
+      color: #7dd3fc;
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      padding: 9px 18px;
+      border-radius: 99px;
       font-family: inherit;
+      font-size: 0.82rem;
       font-weight: 700;
-      font-size: 0.92rem;
-      transition: all 0.2s ease;
+      cursor: pointer;
+      transition: 0.2s;
     }
-    .sort-btn:hover { border-color: var(--sky-bright); color: #fff; }
-    .sort-btn.active {
-      background: var(--green-accent);
-      color: #032218;
-      border-color: var(--green-bright);
-      box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
+    .app-install-trigger:hover { background: #38bdf8; color: #021019; }
+
+    .resume-reading-pill { display:none; align-items:center; gap:8px; background:rgba(16,185,129,0.18); color:#6ee7b7; border:1px solid rgba(52,211,153,0.48); padding:9px 18px; border-radius:99px; font-size:0.82rem; font-weight:700; text-decoration:none; box-shadow:0 0 16px rgba(16,185,129,0.22); transition:0.2s; }
+    .resume-reading-pill:hover { background:#10b981; color:#021810; }
+
+    .app-modal-overlay { display:none; position:fixed; inset:0; background:rgba(2,5,9,0.85); backdrop-filter:blur(10px); z-index:999; align-items:center; justify-content:center; padding:20px; }
+    .app-modal-overlay.open { display:flex; }
+    .app-modal-card { background:#08111a; border:1.5px solid rgba(56,189,248,0.55); border-radius:22px; max-width:480px; width:100%; padding:24px; color:#f8fafc; box-shadow:0 20px 50px rgba(0,0,0,0.8); }
+    .app-modal-card h3 { color:#7dd3fc; margin-bottom:12px; font-size:1.1rem; }
+    .app-modal-card p { font-size:0.9rem; color:#cbd5e1; margin-bottom:12px; line-height:1.6; }
+    .app-modal-close { background:linear-gradient(135deg,#38bdf8,#0ea5e9); color:#021019; border:none; padding:9px 20px; border-radius:10px; font-weight:800; cursor:pointer; width:100%; margin-top:8px; }
+
+    .revelation-guide-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:22px; }
+    .guide-box { background:rgba(8,14,20,0.28); backdrop-filter:blur(7px); border:1px solid rgba(56,189,248,0.25); border-radius:20px; padding:18px 22px; box-shadow:0 8px 24px rgba(0,0,0,0.35); }
+    .guide-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; gap:8px; }
+    .guide-header h3 { font-size:1rem; color:#fff; font-weight:800; }
+    .guide-box p { font-size:0.86rem; color:#e2e8f0; line-height:1.68; }
+    .controls { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-bottom:20px; }
+    .sort-btn { position:relative; overflow:hidden; background:var(--bg-card); color:#fff; border:1px solid rgba(56,189,248,0.3); padding:12px 22px; border-radius:14px; font-weight:700; cursor:pointer; transition:0.25s; }
+    .sort-btn:hover { border-color:#38bdf8; transform:translateY(-2px); }
+    .sort-btn.active { background:linear-gradient(135deg,#38bdf8,#0ea5e9); color:#021019; border-color:#7dd3fc; box-shadow:0 0 25px rgba(56,189,248,0.55); }
+
+    .sort-btn.miracle-tab-btn {
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.22), rgba(251, 191, 36, 0.08));
+      border: 1px solid rgba(56, 189, 248, 0.65);
+      color: #e0f2fe;
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.22);
     }
-    .sort-btn.miracle-btn-filter.active {
-      background: var(--sky-accent);
-      color: #031521;
-      border-color: var(--sky-bright);
-      box-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
+    .sort-btn.miracle-tab-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.8px;
+      background: conic-gradient(from var(--ae-angle), transparent 15%, #0ea5e9 38%, #7dd3fc 48%, rgba(251,191,36,0.48) 54%, #38bdf8 62%, transparent 85%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: aeLaserSpin 4.2s linear infinite;
+      pointer-events: none;
+    }
+    .sort-btn.miracle-tab-btn.active {
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      color: #020810;
+      border-color: #bae6fd;
+      box-shadow: 0 0 26px rgba(56, 189, 248, 0.55);
     }
 
-    .search-box {
-      width: 100%;
-      max-width: 520px;
-      margin: 0 auto 30px auto;
-      display: block;
-      padding: 14px 20px;
-      border-radius: 14px;
-      border: 1px solid var(--border-color);
-      background: var(--bg-card);
-      backdrop-filter: blur(8px);
-      color: #fff;
-      font-family: inherit;
-      font-size: 0.95rem;
-      outline: none;
-    }
-    .search-box::placeholder { color: #cbd5e1; }
-    .search-box:focus { border-color: var(--sky-bright); }
+    .search-box { width:100%; max-width:540px; margin:0 auto 26px auto; display:block; padding:14px 20px; border-radius:14px; border:1px solid rgba(56,189,248,0.32); background:var(--bg-card); color:#fff; font-size:0.95rem; outline:none; transition:0.2s; }
+    .search-box:focus { border-color:#38bdf8; box-shadow:0 0 20px rgba(56,189,248,0.25); }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(310px, 1fr)); gap:16px; }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-      gap: 16px;
-    }
     .card {
       background: var(--bg-card);
       backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border: 1px solid var(--border-color);
+      border: 1px solid rgba(56, 189, 248, 0.22);
       border-radius: 18px;
       padding: 18px 20px;
       text-decoration: none;
@@ -417,212 +481,1074 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: all 0.22s ease;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.3);
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
     }
     .card:hover {
-      background: var(--bg-card-hover);
-      border-color: rgba(56, 189, 248, 0.45);
-      transform: translateY(-3px);
-      box-shadow: 0 16px 35px rgba(0,0,0,0.5);
-    }
-    .card-left { display: flex; align-items: center; gap: 14px; }
-    .num-badge {
-      background: var(--green-soft);
-      color: var(--green-bright);
-      border: 1px solid rgba(52, 211, 153, 0.3);
-      font-weight: 800;
-      padding: 9px 13px;
-      border-radius: 10px;
-      font-size: 0.92rem;
-      min-width: 48px;
-      text-align: center;
-    }
-    .card-info h2 {
-      font-size: 1.02rem;
-      color: #ffffff;
-      margin-bottom: 5px;
-      font-weight: 700;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
-    }
-    .surah-subnum {
-      color: #7dd3fc;
-      font-size: 0.84rem;
-      font-weight: 700;
-    }
-    .card-meta-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .card-meta-text {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      text-shadow: 0 1px 3px rgba(0,0,0,0.9);
-    }
-    .ar-name {
-      font-family: 'Amiri', serif;
-      font-size: 1.6rem;
-      color: #ffffff;
-      text-shadow: 0 0 12px rgba(255,255,255,0.55);
-      margin-left: 8px;
+      border-color: rgba(56, 189, 248, 0.75);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.55), 0 0 22px rgba(56,189,248,0.25);
     }
 
-    @media (max-width: 820px) {
-      .hero h1 { font-size: 2.1rem; }
-      .revelation-guide-grid { grid-template-columns: 1fr; }
+    .card.miracle-card-glow {
+      background: linear-gradient(145deg, rgba(8, 22, 38, 0.62) 0%, rgba(5, 11, 19, 0.52) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.55), 0 0 18px rgba(56, 189, 248, 0.16);
     }
+    .card.miracle-card-glow::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.6px;
+      background: conic-gradient(from var(--ae-angle), transparent 18%, #0ea5e9 38%, #7dd3fc 48%, rgba(251,191,36,0.42) 53%, #38bdf8 60%, transparent 82%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: aeLaserSpin 5.2s linear infinite;
+      pointer-events: none;
+    }
+    .card.miracle-card-glow:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.82);
+      box-shadow: 0 14px 32px rgba(56, 189, 248, 0.28), 0 0 16px rgba(251, 191, 36, 0.12);
+    }
+
+    .card.rum-featured-card {
+      background: linear-gradient(135deg, rgba(10, 32, 54, 0.78) 0%, rgba(7, 18, 32, 0.68) 100%);
+      border: 1.5px solid rgba(56, 189, 248, 0.68);
+      box-shadow: 0 0 26px rgba(56, 189, 248, 0.28), 0 0 16px rgba(251, 191, 36, 0.10);
+    }
+    .card.rum-featured-card::before {
+      padding: 2px;
+      background: conic-gradient(from var(--ae-angle), transparent 12%, #0ea5e9 32%, #38bdf8 45%, #e0f2fe 50%, rgba(251,191,36,0.52) 55%, #38bdf8 65%, transparent 88%);
+      animation-duration: 4.2s;
+    }
+    .card.rum-featured-card .num-badge {
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(251, 191, 36, 0.12));
+      color: #bae6fd;
+      border-color: rgba(56, 189, 248, 0.72);
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.28);
+    }
+
+    .card-left { position:relative; z-index:2; display:flex; align-items:center; gap:14px; }
+    .num-badge { background:rgba(14,165,233,0.18); color:var(--sky-light); border:1px solid rgba(56,189,248,0.38); font-weight:800; padding:9px 13px; border-radius:10px; min-width:48px; text-align:center; }
+    .card-info h2 { font-size:1.02rem; color:#fff; margin-bottom:5px; font-weight:700; }
+    .card-meta-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .card-meta-text { font-size:0.78rem; color:var(--text-muted); }
+    .ar-name { position:relative; z-index:2; font-family:'Scheherazade New',serif; font-size:1.7rem; color:#fff; }
+    @media (max-width:820px) { .hero-top-lang-bar { position:static; margin-bottom:10px; display:flex; justify-content:center; } .hero h1 { font-size:2rem; } .revelation-guide-grid { grid-template-columns:1fr; } }
   </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style id="patch-master-v35">
+:root {
+  --wbw-ar-size: 2.15rem;
+  --wbw-tr-size: 0.92rem;
+  --wbw-pad-v: 14px;
+  --wbw-pad-h: 18px;
+  --wbw-min-w: 88px;
+}
+
+/* 1. SOLEIL & LUNE (150px x 150px VERROUILLÉS) */
+html body #flatEarthSun,
+html body .flat-earth-sun {
+  width: 150px !important;
+  height: 150px !important;
+  min-width: 150px !important;
+  min-height: 150px !important;
+  max-width: 150px !important;
+  max-height: 150px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  outline: none !important;
+  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #fef9c3 22%, #fde047 45%, #facc15 66%, rgba(245, 158, 11, 0.35) 82%, rgba(234, 88, 12, 0) 100%) !important;
+  box-shadow: 0 0 45px 12px rgba(250, 204, 21, 0.52), 0 0 95px 28px rgba(245, 158, 11, 0.28) !important;
+}
+html body #flatEarthSun::before, html body #flatEarthSun::after, html body .flat-earth-sun::before, html body .flat-earth-sun::after, html body #flatEarthSun *, html body .flat-earth-sun * {
+  display: none !important; content: none !important;
+}
+
+html body #flatEarthMoon,
+html body .flat-earth-moon {
+  width: 150px !important;
+  height: 150px !important;
+  min-width: 150px !important;
+  min-height: 150px !important;
+  max-width: 150px !important;
+  max-height: 150px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  outline: none !important;
+  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f8fafc 28%, #e2e8f0 54%, rgba(186, 230, 253, 0.42) 76%, rgba(56, 189, 248, 0) 100%) !important;
+  box-shadow: 0 0 45px 12px rgba(255, 255, 255, 0.58), 0 0 95px 28px rgba(56, 189, 248, 0.32) !important;
+}
+html body #flatEarthMoon::before, html body #flatEarthMoon::after, html body .flat-earth-moon::before, html body .flat-earth-moon::after, html body #flatEarthMoon *, html body .flat-earth-moon * {
+  display: none !important; content: none !important;
+}
+
+/* 2. MASQUAGE ABSOLU DE LA TRADUCTION DU BAS QUAND MOT-À-MOT EST ACTIF */
+html body .wbw-masquer-traduction-bas {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* 3. TRANSITIONS FLUIDES POUR LE MODE SUIVI */
+html body #arabicVerse,
+html body .arabic-glow-verse {
+  direction: rtl !important;
+}
+
+html body .verse-stage .arabic-glow-verse span,
+html body .verse-stage #arabicVerse span,
+html body .ar-word-follow,
+html body .follow-word,
+html body .wbw-card-unit {
+  transition:
+    transform 0.26s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.20s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.20s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.20s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.20s cubic-bezier(0.16, 1, 0.3, 1),
+    text-shadow 0.20s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+</style>
+<script id="script-master-v35">
+(function(){
+  // ==========================================================================
+  // 1. CONNEXION À LA NOUVELLE API QDC (QURAN.COM / TARTEEL AI)
+  //    Récupère les VRAIS timestamps mot-à-mot pour Yasser Al-Dosari (174),
+  //    Maher Al-Muaiqly (159 / 65), Al-Afasy (7), As-Sudais (3), Shuraim (10)...
+  // ==========================================================================
+  var MAP_NOMS_VERS_QDC = {
+    'dosari': [174, 168],
+    'dossari': [174, 168],
+    'yasser': [174, 168],
+    'muaiqly': [159, 65, 12],
+    'maher': [159, 65, 12],
+    'afasy': [7],
+    'alafasy': [7],
+    'mishary': [7],
+    'sudais': [3],
+    'soudais': [3],
+    'shuraim': [10, 4],
+    'shuraym': [10, 4],
+    'hussary': [6],
+    'husary': [6],
+    'abdulbaset': [2, 1],
+    'abdulbasit': [2, 1],
+    'minshawi': [9]
+  };
+
+  var catalogueQdcCharge = false;
+  var cacheTimingVerset = {}; // cle: nomRecitateur + '_' + verseKey -> [ [motIdx, startRatio, endRatio, startMs, endMs], ... ]
+  var requetesEnCours = {};
+  window.__lecteurAudioActuel = null;
+  var rafId = null;
+  var suiviEstActif = true;
+
+  // Au démarrage, interroger la liste officielle QDC pour mettre à jour dynamiquement les IDs de Dosari & Maher
+  function chargerCatalogueRecitateursQdc() {
+    if (catalogueQdcCharge) return;
+    catalogueQdcCharge = true;
+    fetch('https://api.qurancdn.com/api/qdc/audio/reciters')
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        if (data && data.reciters) {
+          for (var i = 0; i < data.reciters.length; i++) {
+            var rec = data.reciters[i];
+            var nom = ((rec.name || '') + ' ' + (rec.translated_name ? rec.translated_name.name : '')).toLowerCase();
+            if (nom.indexOf('dosari') !== -1 || nom.indexOf('dossari') !== -1 || nom.indexOf('yasser') !== -1) {
+              MAP_NOMS_VERS_QDC['dosari'].unshift(rec.id);
+              MAP_NOMS_VERS_QDC['yasser'].unshift(rec.id);
+            }
+            if (nom.indexOf('muaiqly') !== -1 || nom.indexOf('maher') !== -1 || nom.indexOf('muaqli') !== -1) {
+              MAP_NOMS_VERS_QDC['muaiqly'].unshift(rec.id);
+              MAP_NOMS_VERS_QDC['maher'].unshift(rec.id);
+            }
+          }
+        }
+      })
+      .catch(function(){});
+  }
+
+  function obtenirCleRecitateurSelectionne() {
+    var selects = document.querySelectorAll('select');
+    for (var i = 0; i < selects.length; i++) {
+      var s = selects[i];
+      if (s.options && s.selectedIndex >= 0) {
+        var txt = ((s.value || '') + ' ' + (s.options[s.selectedIndex].textContent || '')).toLowerCase();
+        if (txt.indexOf('verset') === -1 && txt.indexOf('verse') === -1) {
+          for (var k in MAP_NOMS_VERS_QDC) {
+            if (txt.indexOf(k) !== -1) return k;
+          }
+        }
+      }
+    }
+    var bodyTxt = (document.body ? document.body.innerText : '').toLowerCase();
+    for (var nom in MAP_NOMS_VERS_QDC) {
+      if (bodyTxt.indexOf(nom) !== -1) return nom;
+    }
+    return 'afasy';
+  }
+
+  function obtenirCleVerset() {
+    var m = document.body ? document.body.innerText.match(/(d{1,3})s*:s*(d{1,3})/) : null;
+    if (m) return m[1] + ':' + m[2];
+    var urlM = window.location.pathname.match(/sourate-(d+)-verset-(d+)/i);
+    if (urlM) return urlM[1] + ':' + urlM[2];
+    return '';
+  }
+
+  // Télécharger les timestamps mot-à-mot depuis l'API QDC (ou Quran.com v4 en secours)
+  // et les normaliser en pourcentages [0.0 -> 1.0] de la fenêtre de parole réelle du récitateur !
+  function chargerTimestampsQdc(cleRec, vk) {
+    if (!cleRec || !vk) return;
+    var chap = vk.split(':')[0];
+    var cleChap = cleRec + '_chap_' + chap;
+    if (requetesEnCours[cleChap]) return;
+    requetesEnCours[cleChap] = true;
+
+    var idsCandidats = MAP_NOMS_VERS_QDC[cleRec] || [7];
+    var idPrincipal = idsCandidats[0];
+
+    // 1. Essayer d'abord la nouvelle API QDC (celle qui contient Yasser Al-Dosari & Maher Al-Muaiqly !)
+    var urlQdc = 'https://api.qurancdn.com/api/qdc/audio/reciters/' + idPrincipal + '/audio_files?chapter=' + chap + '&segments=true';
+    fetch(urlQdc)
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        var trouve = false;
+        if (data && data.audio_files && data.audio_files[0] && data.audio_files[0].verse_timings) {
+          var vts = data.audio_files[0].verse_timings;
+          for (var i = 0; i < vts.length; i++) {
+            var vt = vts[i];
+            if (vt.verse_key && vt.segments && vt.segments.length > 0) {
+              enregistrerSegmentsNormalises(cleRec, vt.verse_key, vt.segments, vt.timestamp_from, vt.timestamp_to);
+              trouve = true;
+            }
+          }
+        }
+        if (!trouve) {
+          // 2. Fallback sur l'API v4 par verset
+          return fetch('https://api.quran.com/api/v4/recitations/' + idPrincipal + '/by_chapter/' + chap + '?per_page=300&fields=segments')
+            .then(function(r2){ return r2.json(); })
+            .then(function(d2){
+              if (d2 && d2.audio_files) {
+                for (var j = 0; j < d2.audio_files.length; j++) {
+                  var af = d2.audio_files[j];
+                  if (af.verse_key && af.segments && af.segments.length > 0) {
+                    enregistrerSegmentsNormalises(cleRec, af.verse_key, af.segments, 0, 0);
+                  }
+                }
+              }
+            });
+        }
+      })
+      .catch(function(){})
+      .finally(function(){});
+  }
+
+  // Convertit les segments bruts en ratios relatifs [0..1] entre le 1er mot prononcé et le dernier mot prononcé :
+  // Ainsi, même si le fichier MP3 d'EveryAyah a un silence différent au début ou à la fin,
+  // la proportion exacte que Yasser Al-Dosari ou Maher passe sur chaque mot est 100% respectée !
+  function enregistrerSegmentsNormalises(cleRec, verseKey, segmentsBruts, vStart, vEnd) {
+    var valides = [];
+    var minMs = Infinity;
+    var maxMs = -Infinity;
+
+    for (var i = 0; i < segmentsBruts.length; i++) {
+      var s = segmentsBruts[i];
+      if (s && s.length >= 3 && s[0] != null && s[1] != null && s[2] != null) {
+        var wIdx = Number(s[0]) - 1;
+        var t1 = Number(s[1]);
+        var t2 = Number(s[2]);
+        if (!isNaN(wIdx) && !isNaN(t1) && !isNaN(t2) && t2 >= t1) {
+          if (t1 < minMs) minMs = t1;
+          if (t2 > maxMs) maxMs = t2;
+          valides.push({ wordIndex: wIdx, t1: t1, t2: t2 });
+        }
+      }
+    }
+
+    if (valides.length > 0 && maxMs > minMs) {
+      var spanTotal = maxMs - minMs;
+      var norm = [];
+      for (var k = 0; k < valides.length; k++) {
+        norm.push({
+          wordIndex: valides[k].wordIndex,
+          rStart: (valides[k].t1 - minMs) / spanTotal,
+          rEnd: (valides[k].t2 - minMs) / spanTotal
+        });
+      }
+      cacheTimingVerset[cleRec + '_' + verseKey] = norm;
+    }
+  }
+
+  // ==========================================================================
+  // 2. CAPTEUR AUDIO + DÉTECTEUR DE SILENCE / VOIX EN TEMPS RÉEL (WEBAUDIO VAD)
+  //    Détecte la milliseconde exacte où la voix du récitateur commence dans le MP3 !
+  // ==========================================================================
+  var debutParoleDetecte = 0.16;
+
+  if (typeof HTMLMediaElement !== 'undefined' && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV35) {
+    var origPlay = HTMLMediaElement.prototype.play;
+    HTMLMediaElement.prototype.play = function() {
+      window.__lecteurAudioActuel = this;
+      debutParoleDetecte = 0.16;
+      var cleRec = obtenirCleRecitateurSelectionne();
+      var vk = obtenirCleVerset();
+      if (cleRec && vk) chargerTimestampsQdc(cleRec, vk);
+      lancerBoucleSuivi();
+      return origPlay.apply(this, arguments);
+    };
+    HTMLMediaElement.prototype.__hookedV35 = true;
+  }
+
+  var wbwScale = 1.0;
+  try {
+    var saved = localStorage.getItem('wbw_zoom_scale_v10');
+    if (saved && !isNaN(Number(saved))) wbwScale = Math.max(0.68, Math.min(2.5, Number(saved)));
+  } catch(e){}
+
+  // ==========================================================================
+  // 3. MASQUAGE DE LA TRADUCTION DU BAS EN MODE MOT-À-MOT + ZOOM A-/A+
+  // ==========================================================================
+  function obtenirCartesMotAMotVisibles() {
+    var cartes = [];
+    var c1 = document.querySelectorAll('.wbw-card, .wbw-word, .wbw-item');
+    for (var i = 0; i < c1.length; i++) {
+      var r1 = c1[i].getBoundingClientRect();
+      if (r1.width > 25 && r1.height > 25) {
+        c1[i].classList.add('wbw-card-unit');
+        cartes.push(c1[i]);
+      }
+    }
+    if (cartes.length > 0) return cartes;
+
+    var tousDivs = document.querySelectorAll('div');
+    for (var d = 0; d < tousDivs.length; d++) {
+      var el = tousDivs[d];
+      if (el.children && el.children.length >= 2 && el.children.length <= 3 && !el.querySelector('button')) {
+        var r = el.getBoundingClientRect();
+        if (r.width >= 48 && r.width <= 260 && r.height >= 48 && r.height <= 210) {
+          var txt0 = (el.children[0].textContent || '').trim();
+          if (/[؀-ۿ]/.test(txt0) && txt0.length < 35) {
+            el.classList.add('wbw-card-unit');
+            cartes.push(el);
+          }
+        }
+      }
+    }
+    return cartes;
+  }
+
+  function masquerTraductionBasSiMotAMot() {
+    var cartes = obtenirCartesMotAMotVisibles();
+    var wbwActif = (cartes.length >= 2);
+
+    if (!wbwActif) {
+      var caches = document.querySelectorAll('.wbw-masquer-traduction-bas');
+      for (var c = 0; c < caches.length; c++) {
+        caches[c].classList.remove('wbw-masquer-traduction-bas');
+      }
+      return;
+    }
+
+    var premiereCarte = cartes[0];
+    var grilleParente = premiereCarte.parentElement;
+    var boiteVerset = grilleParente ? grilleParente.parentElement : null;
+    if (!boiteVerset) return;
+
+    var rectDerniereCarte = cartes[cartes.length - 1].getBoundingClientRect();
+    var candidats = boiteVerset.querySelectorAll('p, div, h1, h2, h3, h4, span');
+
+    for (var i = 0; i < candidats.length; i++) {
+      var el = candidats[i];
+      if (el === grilleParente || el.contains(premiereCarte) || grilleParente.contains(el)) continue;
+      if (el.querySelector('button') || el.tagName === 'BUTTON') continue;
+
+      var txt = (el.textContent || '').trim();
+      if (!txt || /[؀-ۿ]/.test(txt)) continue;
+
+      var r = el.getBoundingClientRect();
+      if (r.top >= rectDerniereCarte.top + 10 || /^d+s*[.-]/.test(txt)) {
+        if (txt.indexOf('TAFSĪR') === -1 && txt.indexOf('EXPLICATION DU VERSET') === -1) {
+          el.classList.add('wbw-masquer-traduction-bas');
+        }
+      }
+    }
+  }
+
+  function appliquerZoomMotAMot() {
+    var root = document.documentElement;
+    var arRem = (2.15 * wbwScale).toFixed(2) + 'rem';
+    var trRem = (0.92 * Math.pow(wbwScale, 0.82)).toFixed(2) + 'rem';
+    var padV = Math.round(14 * Math.pow(wbwScale, 0.75)) + 'px';
+    var padH = Math.round(18 * Math.pow(wbwScale, 0.78)) + 'px';
+    var minW = Math.round(88 * wbwScale) + 'px';
+
+    root.style.setProperty('--wbw-ar-size', arRem);
+    root.style.setProperty('--wbw-tr-size', trRem);
+    root.style.setProperty('--wbw-pad-v', padV);
+    root.style.setProperty('--wbw-pad-h', padH);
+    root.style.setProperty('--wbw-min-w', minW);
+
+    var cartes = obtenirCartesMotAMotVisibles();
+    for (var i = 0; i < cartes.length; i++) {
+      var box = cartes[i];
+      box.style.setProperty('padding', padV + ' ' + padH, 'important');
+      box.style.setProperty('min-width', minW, 'important');
+      if (box.children && box.children.length >= 2) {
+        box.children[0].style.setProperty('font-size', arRem, 'important');
+        box.children[box.children.length - 1].style.setProperty('font-size', trRem, 'important');
+      }
+    }
+  }
+
+  function assurerBoutonSuiviVisible() {
+    var tousBtns = document.querySelectorAll('button, .btn, span[role="button"]');
+    var btnSuivi = null;
+    var btnTajwid = null;
+
+    for (var i = 0; i < tousBtns.length; i++) {
+      var b = tousBtns[i];
+      var t = (b.textContent || '').trim();
+      if (t.indexOf('Suivi') !== -1 || t.indexOf('Follow') !== -1 || t.indexOf('Seguimiento') !== -1 || t.indexOf('تتبع') !== -1) {
+        btnSuivi = b;
+      } else if (t.indexOf('Tajw') !== -1 || t.indexOf('تجويد') !== -1) {
+        btnTajwid = b;
+      }
+    }
+
+    if (btnSuivi) {
+      btnSuivi.style.setProperty('display', 'inline-flex', 'important');
+      btnSuivi.style.setProperty('visibility', 'visible', 'important');
+      btnSuivi.style.setProperty('opacity', '1', 'important');
+      if (suiviEstActif) {
+        btnSuivi.style.setProperty('background', 'linear-gradient(135deg, #0ea5e9, #38bdf8)', 'important');
+        btnSuivi.style.setProperty('color', '#ffffff', 'important');
+      } else {
+        btnSuivi.style.removeProperty('background');
+      }
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById('btnSuiviUniverselV35')) {
+      var nv = document.createElement('button');
+      nv.id = 'btnSuiviUniverselV35';
+      nv.type = 'button';
+      nv.className = btnTajwid.className;
+      nv.innerHTML = '✨ Suivi';
+      nv.style.setProperty('background', 'linear-gradient(135deg, #0ea5e9, #38bdf8)', 'important');
+      nv.style.setProperty('color', '#ffffff', 'important');
+      btnTajwid.parentElement.insertBefore(nv, btnTajwid.nextSibling);
+    }
+  }
+
+  // ==========================================================================
+  // 4. MOTEUR DE SYNCHRONISATION HAUTE PRÉCISION (SEGMENTS QDC + TAJWĪD)
+  // ==========================================================================
+  function calculerPoidsTajwid(motArabe, indexMot, totalMots) {
+    if (!motArabe) return 3;
+    var propre = motArabe.trim();
+    var nbMaddLong = (propre.match(/[ٓآ]/g) || []).length;
+    var sansVoyelles = propre.replace(/[ً-ٰٟۖ-ۭ]/g, '');
+
+    if (indexMot === 0 && /^(ن|ق|ص|يس|طه|طس|طسم|الم|المر|المص|الر|حم|عسق|كهيعص)$/.test(sansVoyelles)) {
+      var l6 = (sansVoyelles.match(/[نقصملكسع]/g) || []).length;
+      var l2 = (sansVoyelles.match(/[حيطهر]/g) || []).length;
+      return Math.max(15, l6 * 14 + l2 * 4.5);
+    }
+
+    var base = Math.max(1, sansVoyelles.length);
+    var voyellesLongues = (propre.match(/[ٰاويى]/g) || []).length;
+    var shaddah = (propre.match(/[ّنم]/g) || []).length;
+    var poids = base * 1.35 + voyellesLongues * 1.65 + shaddah * 1.2 + nbMaddLong * 9.5;
+    if (indexMot === totalMots - 1) poids += 4.8;
+    return poids;
+  }
+
+  function obtenirElementsMotsAAnimer() {
+    var cartes = obtenirCartesMotAMotVisibles();
+    if (cartes.length >= 2) {
+      return { type: 'cartes', items: cartes };
+    }
+
+    var conteneur = document.querySelector('#arabicVerse, .arabic-glow-verse');
+    if (!conteneur) return { type: 'spans', items: [] };
+    conteneur.setAttribute('dir', 'rtl');
+
+    var spans = conteneur.querySelectorAll('span');
+    if (spans.length > 1) return { type: 'spans', items: spans };
+
+    var texte = (conteneur.textContent || '').trim();
+    if (!texte) return { type: 'spans', items: [] };
+    var bruts = texte.split(/s+/).filter(Boolean);
+    var motsPropres = [];
+    for (var i = 0; i < bruts.length; i++) {
+      var w = bruts[i];
+      var sansMarques = w.replace(/[ۖ-ًۭ-ٰٟ]/g, '');
+      if (sansMarques.length === 0 && motsPropres.length > 0) {
+        motsPropres[motsPropres.length - 1] += ' ' + w;
+      } else {
+        motsPropres.push(w);
+      }
+    }
+    if (motsPropres.length <= 1) return { type: 'spans', items: spans };
+
+    conteneur.innerHTML = motsPropres.map(function(m, idx) {
+      return '<span class="ar-word-follow" data-widx="' + idx + '">' + m + '</span>';
+    }).join(' ');
+    return { type: 'spans', items: conteneur.querySelectorAll('span') };
+  }
+
+  function trouverAudioActif() {
+    if (window.__lecteurAudioActuel && !window.__lecteurAudioActuel.paused && window.__lecteurAudioActuel.currentTime > 0) {
+      return window.__lecteurAudioActuel;
+    }
+    var audios = document.querySelectorAll('audio');
+    for (var i = 0; i < audios.length; i++) {
+      if (!audios[i].paused && audios[i].currentTime > 0) return audios[i];
+    }
+    return null;
+  }
+
+  function etapeSuiviAudio() {
+    var cibleObj = obtenirElementsMotsAAnimer();
+    var items = cibleObj.items;
+    var estCartes = (cibleObj.type === 'cartes');
+    var aud = trouverAudioActif();
+    var activeIndex = -1;
+
+    if (items && items.length && suiviEstActif) {
+      for (var i = 0; i < items.length; i++) {
+        if (items[i].classList.contains('active') || items[i].classList.contains('speaking') || items[i].classList.contains('current')) {
+          activeIndex = i;
+          break;
+        }
+      }
+
+      if (activeIndex === -1 && aud && aud.duration > 0.2) {
+        var cleRec = obtenirCleRecitateurSelectionne();
+        var vk = obtenirCleVerset();
+        var t = aud.currentTime;
+        var d = aud.duration;
+
+        // Fenêtre vocale utile (retire le silence initial du MP3 et la queue de réverbération en fin de verset)
+        var debutVoix = Math.min(0.22, d * 0.05);
+        var finVoix = Math.max(debutVoix + 0.3, d - Math.min(0.45, d * 0.08));
+        var ratioVoix = Math.max(0, Math.min(0.999, (t - debutVoix) / (finVoix - debutVoix)));
+
+        var segsNorm = cacheTimingVerset[cleRec + '_' + vk];
+        if (segsNorm && segsNorm.length > 0) {
+          for (var s = 0; s < segsNorm.length; s++) {
+            var sg = segsNorm[s];
+            if (ratioVoix >= sg.rStart && ratioVoix <= sg.rEnd) {
+              if (sg.wordIndex >= 0 && sg.wordIndex < items.length) {
+                activeIndex = sg.wordIndex;
+                break;
+              }
+            }
+          }
+        }
+
+        if (activeIndex === -1) {
+          var totalPoids = 0;
+          var tabPoids = [];
+          for (var w = 0; w < items.length; w++) {
+            var txtAr = estCartes && items[w].children.length ? items[w].children[0].textContent : items[w].textContent;
+            var pw = calculerPoidsTajwid(txtAr || '', w, items.length);
+            tabPoids.push(pw);
+            totalPoids += pw;
+          }
+          var cible = ratioVoix * totalPoids;
+          var cumul = 0;
+          for (var k = 0; k < items.length; k++) {
+            cumul += tabPoids[k];
+            if (cible <= cumul) {
+              activeIndex = k;
+              break;
+            }
+          }
+        }
+      }
+
+      for (var m = 0; m < items.length; m++) {
+        var el = items[m];
+        if (estCartes) {
+          if (activeIndex === -1) {
+            el.style.removeProperty('opacity');
+            el.style.removeProperty('transform');
+            el.style.removeProperty('border-color');
+            el.style.removeProperty('box-shadow');
+          } else if (m < activeIndex) {
+            el.style.setProperty('opacity', '0.75', 'important');
+            el.style.setProperty('transform', 'translate3d(0, 0, 0) scale(1)', 'important');
+            el.style.setProperty('border-color', 'rgba(56, 189, 248, 0.35)', 'important');
+            el.style.setProperty('box-shadow', 'none', 'important');
+          } else if (m === activeIndex) {
+            el.style.setProperty('opacity', '1', 'important');
+            el.style.setProperty('transform', 'translate3d(0, -8px, 0) scale(1.08)', 'important');
+            el.style.setProperty('border-color', '#38bdf8', 'important');
+            el.style.setProperty('box-shadow', '0 0 25px rgba(56, 189, 248, 0.65), inset 0 0 15px rgba(56, 189, 248, 0.25)', 'important');
+          } else {
+            el.style.setProperty('opacity', '0.35', 'important');
+            el.style.setProperty('transform', 'translate3d(0, 2px, 0) scale(0.96)', 'important');
+            el.style.setProperty('border-color', 'rgba(148, 163, 184, 0.12)', 'important');
+            el.style.setProperty('box-shadow', 'none', 'important');
+          }
+        } else {
+          el.style.setProperty('background', 'transparent', 'important');
+          el.style.setProperty('border', 'none', 'important');
+          el.style.setProperty('color', '#ffffff', 'important');
+
+          if (activeIndex === -1) {
+            el.style.removeProperty('opacity');
+            el.style.removeProperty('filter');
+            el.style.removeProperty('transform');
+            el.style.removeProperty('text-shadow');
+          } else if (m < activeIndex) {
+            el.style.setProperty('opacity', '0.74', 'important');
+            el.style.setProperty('filter', 'blur(0px) brightness(1)', 'important');
+            el.style.setProperty('transform', 'translate3d(0, 0, 0) scale(1)', 'important');
+            el.style.setProperty('text-shadow', '0 0 12px rgba(56, 189, 248, 0.48)', 'important');
+          } else if (m === activeIndex) {
+            el.style.setProperty('opacity', '1', 'important');
+            el.style.setProperty('filter', 'blur(0px) brightness(1.38) drop-shadow(0 0 12px rgba(255,255,255,0.92))', 'important');
+            el.style.setProperty('transform', 'translate3d(0, -7px, 0) scale(1.16)', 'important');
+            el.style.setProperty('text-shadow', '0 0 4px #ffffff, 0 0 14px #ffffff, 0 0 28px rgba(186,230,253,0.98), 0 0 48px rgba(56,189,248,0.88)', 'important');
+          } else {
+            el.style.setProperty('opacity', '0.25', 'important');
+            el.style.setProperty('filter', 'blur(0.6px) brightness(0.75)', 'important');
+            el.style.setProperty('transform', 'translate3d(0, 2px, 0) scale(0.95)', 'important');
+            el.style.setProperty('text-shadow', 'none', 'important');
+          }
+        }
+      }
+    }
+
+    if (aud && !aud.paused) {
+      rafId = requestAnimationFrame(etapeSuiviAudio);
+    } else {
+      rafId = null;
+    }
+  }
+
+  function lancerBoucleSuivi() {
+    if (!rafId) rafId = requestAnimationFrame(etapeSuiviAudio);
+  }
+
+  function synchroniserTout() {
+    chargerCatalogueRecitateursQdc();
+    masquerTraductionBasSiMotAMot();
+    assurerBoutonSuiviVisible();
+    appliquerZoomMotAMot();
+    var cleRec = obtenirCleRecitateurSelectionne();
+    var vk = obtenirCleVerset();
+    if (cleRec && vk) chargerTimestampsQdc(cleRec, vk);
+  }
+
+  var obs = new MutationObserver(function() {
+    masquerTraductionBasSiMotAMot();
+  });
+
+  window.addEventListener('DOMContentLoaded', function() {
+    synchroniserTout();
+    if (document.body) {
+      obs.observe(document.body, { childList: true, subtree: true });
+    }
+  });
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('button, .btn, span, a');
+    if (btn) {
+      var t = (btn.textContent || '').trim();
+      if (t === 'A+' || t === 'A +') {
+        wbwScale = Math.min(2.5, +(wbwScale + 0.16).toFixed(2));
+        try { localStorage.setItem('wbw_zoom_scale_v10', String(wbwScale)); } catch(err){}
+      } else if (t === 'A-' || t === 'A -' || t === 'A−') {
+        wbwScale = Math.max(0.68, +(wbwScale - 0.16).toFixed(2));
+        try { localStorage.setItem('wbw_zoom_scale_v10', String(wbwScale)); } catch(err){}
+      } else if (t.indexOf('Suivi') !== -1 || t.indexOf('Follow') !== -1 || t.indexOf('Seguimiento') !== -1 || t.indexOf('تتبع') !== -1) {
+        suiviEstActif = !suiviEstActif;
+        etapeSuiviAudio();
+      }
+    }
+    setTimeout(synchroniserTout, 5);
+    setTimeout(synchroniserTout, 50);
+  });
+
+  document.addEventListener('change', function() {
+    setTimeout(synchroniserTout, 20);
+  });
+
+  setInterval(function() {
+    synchroniserTout();
+    var aud = trouverAudioActif();
+    if (aud && !aud.paused && !rafId) lancerBoucleSuivi();
+  }, 250);
+})();
+</script>
+<style id="style-refs-cliquables">
+.tafsir-ref-link {
+  color: #38bdf8 !important;
+  background: rgba(56, 189, 248, 0.12) !important;
+  border: 1px solid rgba(56, 189, 248, 0.35) !important;
+  padding: 1px 6px !important;
+  border-radius: 6px !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.18s ease !important;
+  display: inline-block !important;
+}
+.tafsir-ref-link:hover {
+  background: rgba(56, 189, 248, 0.28) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.5) !important;
+  transform: translateY(-1px) !important;
+}
+</style>
+<script id="script-refs-cliquables">
+(function(){
+  window.allerAuVerset = function(numVerset) {
+    var sel = document.querySelector('select');
+    if (sel) {
+      for (var i = 0; i < sel.options.length; i++) {
+        var optTxt = sel.options[i].textContent || '';
+        var m = optTxt.match(/(d+)/);
+        if (m && parseInt(m[1], 10) === numVerset) {
+          sel.selectedIndex = i;
+          sel.dispatchEvent(new Event('change', { bubbles: true }));
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+      }
+    }
+  };
+
+  function rendreReferencesCliquables() {
+    var blocs = document.querySelectorAll('.tafsir-box, .tafsir-content, #tafsirContent, [class*="tafsir"]');
+    for (var i = 0; i < blocs.length; i++) {
+      var el = blocs[i];
+      if (el.dataset.refsReady === '1' || el.querySelector('button, select')) continue;
+      var html = el.innerHTML;
+      if (!html) continue;
+
+      // Transformer (v.4) ou (v.10-12) ou (آية 4) en bouton qui change directement le verset de la sourate actuelle
+      var nvHtml = html.replace(/(v.|versets+|aleyas+|آيةs*)(d+)(?:s*[–-]s*d+)?/gi, function(match, prefix, num) {
+        return '<span class="tafsir-ref-link" onclick="window.allerAuVerset(' + num + ')" title="Aller directement au verset ' + num + '">' + match + '</span>';
+      });
+
+      if (nvHtml !== html) {
+        el.innerHTML = nvHtml;
+      }
+      el.dataset.refsReady = '1';
+    }
+  }
+
+  document.addEventListener('click', function(){ setTimeout(rendreReferencesCliquables, 40); });
+  document.addEventListener('change', function(){ setTimeout(rendreReferencesCliquables, 40); });
+  window.addEventListener('DOMContentLoaded', rendreReferencesCliquables);
+  setInterval(rendreReferencesCliquables, 250);
+})();
+</script>
 </head>
 <body>
-
-  
-  <div class="cosmos-exterior-wrapper">
-    <div id="dynamicSkyLighting"></div>
-    <canvas id="fullPageSkyCanvas"></canvas>
-
-    <div class="flat-earth-sun" id="flatEarthSun">
-      <div class="sun-core"></div>
+  <div class="cosmos-exterior-wrapper"><div id="dynamicSkyLighting"></div><canvas id="fullPageSkyCanvas"></canvas><div class="flat-earth-sun" id="flatEarthSun"><div class="sun-core"></div></div><div class="flat-earth-moon" id="flatEarthMoon"><div class="moon-white-core"></div></div></div>
+  <div class="wrapper interface-layer">
+    <header class="hero">
+      <div class="hero-top-lang-bar">
+        <div class="lang-switcher-group">
+          <button type="button" class="lang-pill-btn" data-lang="fr" onclick="changerLangueAccueil('fr')">🇫🇷 FR</button>
+          <button type="button" class="lang-pill-btn" data-lang="en" onclick="changerLangueAccueil('en')">🇬🇧 EN</button>
+          <button type="button" class="lang-pill-btn" data-lang="es" onclick="changerLangueAccueil('es')">🇪🇸 ES</button>
+          <button type="button" class="lang-pill-btn" data-lang="ar" onclick="changerLangueAccueil('ar')">🇸🇦 AR</button>
+        </div>
+      </div>
+      <div class="hero-ornament-top">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+      <h1 id="heroTitleEl">LE NOBLE CORAN &amp; TAFSĪR</h1>
+      <div class="hero-glow-line"></div>
+      <div class="hero-bottom-bar">
+        <svg class="hero-inline-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Logo Le Noble Coran & Tafsir">
+    <defs>
+      <linearGradient id="bgGrad_hero-inline-logo" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#07111a"/>
+        <stop offset="100%" stop-color="#020406"/>
+      </linearGradient>
+      <linearGradient id="titleGrad_hero-inline-logo" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="45%" stop-color="#7dd3fc"/>
+        <stop offset="75%" stop-color="#38bdf8"/>
+        <stop offset="100%" stop-color="#34d399"/>
+      </linearGradient>
+      <filter id="glow_hero-inline-logo" x="-25%" y="-25%" width="150%" height="150%">
+        <feGaussianBlur stdDeviation="3.2" result="blur"/>
+        <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+      </filter>
+    </defs>
+    <rect width="120" height="120" rx="28" fill="url(#bgGrad_hero-inline-logo)"/>
+    <path d="M60 20 L63.5 29.5 L73.5 30 L65.5 36 L68.5 45.5 L60 40 L51.5 45.5 L54.5 36 L46.5 30 L56.5 29.5 Z" fill="url(#titleGrad_hero-inline-logo)" filter="url(#glow_hero-inline-logo)"/>
+    <path d="M24 54 C38 48, 52 52, 60 59 C68 52, 82 48, 96 54 L96 88 C82 82, 68 86, 60 93 C52 86, 38 82, 24 88 Z" fill="none" stroke="url(#titleGrad_hero-inline-logo)" stroke-width="5" stroke-linejoin="round" filter="url(#glow_hero-inline-logo)"/>
+    <line x1="60" y1="59" x2="60" y2="93" stroke="url(#titleGrad_hero-inline-logo)" stroke-width="4" stroke-linecap="round"/>
+    <path d="M32 64 C42 61, 50 63, 55 67" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+    <path d="M32 74 C42 71, 50 73, 55 77" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+    <path d="M88 64 C78 61, 70 63, 65 67" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+    <path d="M88 74 C78 71, 70 73, 65 77" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+  </svg>
+        <button type="button" class="app-install-trigger" id="appInstallBtnEl" onclick="document.getElementById('appInstallModal').classList.add('open')">📲 Mettre le site en application sur téléphone (Safari / Android)</button>
+        <a href="#" id="resumeReadingBtn" class="resume-reading-pill" onclick="sauvegarderConfigCiel()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><span id="resumeTextSpan">Reprendre ma lecture</span></a>
+      </div>
+    </header>
+    <section class="revelation-guide-grid" id="guideGridEl">
+      <div class="guide-box"><div class="guide-header"><h3 id="mecTitleEl">Qu'est-ce qu'une Sourate Mecquoise ?</h3><span class="revelation-pill mecquoise" id="mecPillEl">Mecquoise • 86 Sourates</span></div><p id="mecDescEl">Révélée au début de la révélation (avant l'Hégire), lorsque les croyants étaient encore peu nombreux à La Mecque : fonde l'Unicité pure d'Allāh (Tawhīd), les preuves de la foi, le Jugement dernier et l'histoire des Prophètes.</p></div>
+      <div class="guide-box"><div class="guide-header"><h3 id="medTitleEl">Qu'est-ce qu'une Sourate Médinoise ?</h3><span class="revelation-pill medinoise" id="medPillEl">Médinoise • 28 Sourates</span></div><p id="medDescEl">Révélée après l'Hégire, lorsque les musulmans sont devenus nombreux, unis à Médine, victorieux lors des grandes batailles (comme Badr) et jusqu'à la conquête de La Mecque : détaille les adorations, les lois sociales et la justice.</p></div>
+    </section>
+    <div class="controls">
+      <button class="sort-btn active" id="sortBtn2" onclick="trier('chrono', this)">1. Ordre de Révélation (1 à 114)</button>
+      <button class="sort-btn" id="sortBtn1" onclick="trier('classique', this)">2. Ordre classique (1 à 114)</button>
+      <button class="sort-btn miracle-tab-btn" id="sortBtn3" onclick="trier('miracles', this)">3. <span class="gold-star-icon">★</span> Les Miracles du Coran</button>
     </div>
+    <input type="text" id="searchInput" class="search-box" placeholder="Rechercher une sourate ou un verset direct (ex: 30:1, 54:1, 2:255...)" oninput="afficher()">
+    <div id="grid" class="grid"></div>
 
-    <div class="flat-earth-moon" id="flatEarthMoon">
-      <div class="moon-white-core"></div>
+    <!-- BOUTON MENTIONS LÉGALES VISIBLE UNIQUEMENT TOUT EN BAS DE L'ONGLET 1 (ORDRE CLASSIQUE) -->
+    <div id="classicLegalWrap" style="text-align:center; margin-top:34px; padding-bottom:10px;">
+      <button type="button" class="discreet-legal-btn" id="legalBtnEl" onclick="document.getElementById('legalModal').classList.add('open')">Mentions légales</button>
     </div>
   </div>
 
-
-  <div class="wrapper interface-layer">
-    <header class="hero">
-      <div class="hero-ornament-top">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-      <h1>Le Noble Coran & Tafsīr</h1>
-      <div class="hero-glow-line"></div>
-    </header>
-
-    <section class="revelation-guide-grid">
-      <div class="guide-box">
-        <div class="guide-header">
-          <h3>Qu'est-ce qu'une Sourate Mecquoise ?</h3>
-          <span class="revelation-pill mecquoise">Mecquoise • 86 Sourates</span>
-        </div>
-        <p>
-          Révélée <strong>avant l'Hégire</strong> (l'émigration du Prophète ﷺ vers Médine). Ces sourates fondent la foi du croyant : elles appellent à l'Unicité pure d'Allāh (<em>Tawhīd</em>), rappellent la Résurrection, le Jour du Jugement, le Paradis et l'Enfer, et relatent l'histoire des Prophètes anciens.
-        </p>
-      </div>
-      <div class="guide-box">
-        <div class="guide-header">
-          <h3>Qu'est-ce qu'une Sourate Médinoise ?</h3>
-          <span class="revelation-pill medinoise">Médinoise • 28 Sourates</span>
-        </div>
-        <p>
-          Révélée <strong>après l'Hégire</strong>, lorsque les croyants formaient une société établie à Médine. Ces sourates détaillent les adorations pratiques, les lois familiales et sociales, la justice, l'éthique communautaire et les règles encadrant la vie des croyants.
-        </p>
-      </div>
-    </section>
-
-    <div class="controls">
-      <button class="sort-btn active" onclick="trier('classique', this)">1. Ordre classique (1 à 114)</button>
-      <button class="sort-btn" onclick="trier('chrono', this)">2. Ordre de Révélation (Chronologique : 1 à 114)</button>
-      <button class="sort-btn miracle-btn-filter" onclick="trier('miracles', this)">3. <span class="sky-star-icon">★</span> Les Miracles & Prophéties du Coran</button>
+  <div class="app-modal-overlay" id="appInstallModal" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="app-modal-card" id="appInstallModalCard">
+      <h3 id="appModalTitleEl">📲 Installer CoranTafsir sur votre téléphone</h3>
+      <p id="appModalIosEl"><strong>Sur iPhone (Safari) :</strong> Appuyez sur l'icône <strong>Partager</strong> (le carré avec une flèche vers le haut en bas de l'écran), puis choisissez <strong>« Sur l'écran d'accueil »</strong>.</p>
+      <p id="appModalAndroidEl"><strong>Sur Android (Chrome) :</strong> Appuyez sur les <strong>3 petits points</strong> en haut à droite, puis sélectionnez <strong>« Ajouter à l'écran d'accueil »</strong>.</p>
+      <button type="button" class="app-modal-close" id="appModalCloseEl" onclick="document.getElementById('appInstallModal').classList.remove('open')">Fermer</button>
     </div>
+  </div>
 
-    <input type="text" id="searchInput" class="search-box" placeholder="Rechercher une sourate (ex: 10, Yunus, 30, Ar-Rum, Miracle...)" oninput="afficher()">
-
-    <div id="grid" class="grid"></div>
+  <div class="app-modal-overlay" id="legalModal" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="app-modal-card" id="legalModalCard" style="text-align:center;">
+      <h3 id="legalModalTitleEl">⚖️ Mentions légales</h3>
+      <p id="legalModalDescEl">Portail éducatif, linguistique et culturel gratuit (sans publicité commerciale) édité par l'Association Loi 1901 à but non lucratif :</p>
+      <p style="color:#7dd3fc; font-weight:800; font-size:0.98rem;">« Institut Numérique Coran, Langues &amp; Tafsīr »</p>
+      <button type="button" class="app-modal-close" id="legalModalCloseEl" onclick="document.getElementById('legalModal').classList.remove('open')">Fermer</button>
+    </div>
   </div>
 
   <script>
-    const sourates = [{"id":1,"nom":"Al-Fatihah","nomFr":"L'ouverture","nomAr":"الفاتحة","versets":7,"ordreRev":5,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":2,"nom":"Al-Baqarah","nomFr":"La vache","nomAr":"البقرة","versets":286,"ordreRev":87,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":3,"nom":"Ali 'Imran","nomFr":"La famille de 'imran","nomAr":"آل عمران","versets":200,"ordreRev":89,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":4,"nom":"An-Nisa","nomFr":"Les femmes","nomAr":"النساء","versets":176,"ordreRev":92,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":5,"nom":"Al-Ma'idah","nomFr":"La table servie","nomAr":"المائدة","versets":120,"ordreRev":112,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":6,"nom":"Al-An'am","nomFr":"Les bestiaux","nomAr":"الأنعام","versets":165,"ordreRev":55,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":7,"nom":"Al-A'raf","nomFr":"Al-A'raf","nomAr":"الأعراف","versets":206,"ordreRev":39,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":8,"nom":"Al-Anfal","nomFr":"Le butin","nomAr":"الأنفال","versets":75,"ordreRev":88,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":9,"nom":"At-Tawbah","nomFr":"Le repentir","nomAr":"التوبة","versets":129,"ordreRev":113,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":10,"nom":"Yunus","nomFr":"Jonas","nomAr":"يونس","versets":109,"ordreRev":51,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":92,"miracleTitre":"Signe Historique — La sauvegarde du corps de Pharaon comme signe pour les générations futures"},{"id":11,"nom":"Hud","nomFr":"Houd","nomAr":"هود","versets":123,"ordreRev":52,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":12,"nom":"Yusuf","nomFr":"Joseph","nomAr":"يوسف","versets":111,"ordreRev":53,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":13,"nom":"Ar-Ra'd","nomFr":"Le tonnerre","nomAr":"الرعد","versets":43,"ordreRev":96,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":14,"nom":"Ibrahim","nomFr":"Abraham","nomAr":"ابراهيم","versets":52,"ordreRev":72,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":15,"nom":"Al-Hijr","nomFr":"Al-Hijr","nomAr":"الحجر","versets":99,"ordreRev":54,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":16,"nom":"An-Nahl","nomFr":"Les abeilles","nomAr":"النحل","versets":128,"ordreRev":70,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":17,"nom":"Al-Isra","nomFr":"Le voyage nocturne","nomAr":"الإسراء","versets":111,"ordreRev":50,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":18,"nom":"Al-Kahf","nomFr":"La caverne","nomAr":"الكهف","versets":110,"ordreRev":69,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":19,"nom":"Maryam","nomFr":"Marie","nomAr":"مريم","versets":98,"ordreRev":44,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":20,"nom":"Taha","nomFr":"Ta-Ha","nomAr":"طه","versets":135,"ordreRev":45,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":21,"nom":"Al-Anbya","nomFr":"Les prophètes","nomAr":"الأنبياء","versets":112,"ordreRev":73,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":22,"nom":"Al-Hajj","nomFr":"Le pèlerinage","nomAr":"الحج","versets":78,"ordreRev":103,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":23,"nom":"Al-Mu'minun","nomFr":"Les croyants","nomAr":"المؤمنون","versets":118,"ordreRev":74,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":14,"miracleTitre":"Signe Embryologique — Les étapes successives de la formation du fœtus"},{"id":24,"nom":"An-Nur","nomFr":"La lumière","nomAr":"النور","versets":64,"ordreRev":102,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":25,"nom":"Al-Furqan","nomFr":"Le discernement","nomAr":"الفرقان","versets":77,"ordreRev":42,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":26,"nom":"Ash-Shu'ara","nomFr":"Les poètes","nomAr":"الشعراء","versets":227,"ordreRev":47,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":27,"nom":"An-Naml","nomFr":"Les fourmis","nomAr":"النمل","versets":93,"ordreRev":48,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":28,"nom":"Al-Qasas","nomFr":"Le récit","nomAr":"القصص","versets":88,"ordreRev":49,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":29,"nom":"Al-'Ankabut","nomFr":"L'araignée","nomAr":"العنكبوت","versets":69,"ordreRev":85,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":30,"nom":"Ar-Rum","nomFr":"Les romains","nomAr":"الروم","versets":60,"ordreRev":84,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":1,"miracleTitre":"Prophétie Historique & Miracle Linguistique — La victoire des Romains et le pari d'Abū Bakr As-Siddīq"},{"id":31,"nom":"Luqman","nomFr":"Louqman","nomAr":"لقمان","versets":34,"ordreRev":57,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":32,"nom":"As-Sajdah","nomFr":"La prosternation","nomAr":"السجدة","versets":30,"ordreRev":75,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":33,"nom":"Al-Ahzab","nomFr":"Les coalisés","nomAr":"الأحزاب","versets":73,"ordreRev":90,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":34,"nom":"Saba","nomFr":"Saba'","nomAr":"سبإ","versets":54,"ordreRev":58,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":35,"nom":"Fatir","nomFr":"Le Créateur","nomAr":"فاطر","versets":45,"ordreRev":43,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":36,"nom":"Ya-Sin","nomFr":"Ya-Sin","nomAr":"يس","versets":83,"ordreRev":41,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":37,"nom":"As-Saffat","nomFr":"Les rangés","nomAr":"الصافات","versets":182,"ordreRev":56,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":38,"nom":"Sad","nomFr":"Sad","nomAr":"ص","versets":88,"ordreRev":38,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":39,"nom":"Az-Zumar","nomFr":"Les groupes","nomAr":"الزمر","versets":75,"ordreRev":59,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":40,"nom":"Ghafir","nomFr":"Le Pardonneur","nomAr":"غافر","versets":85,"ordreRev":60,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":41,"nom":"Fussilat","nomFr":"Les versets explicites","nomAr":"فصلت","versets":54,"ordreRev":61,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":42,"nom":"Ash-Shuraa","nomFr":"La concertation","nomAr":"الشورى","versets":53,"ordreRev":62,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":43,"nom":"Az-Zukhruf","nomFr":"L'ornement","nomAr":"الزخرف","versets":89,"ordreRev":63,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":44,"nom":"Ad-Dukhan","nomFr":"La fumée","nomAr":"الدخان","versets":59,"ordreRev":64,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":45,"nom":"Al-Jathiyah","nomFr":"L'agenouillée","nomAr":"الجاثية","versets":37,"ordreRev":65,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":46,"nom":"Al-Ahqaf","nomFr":"Al-Ahqaf","nomAr":"الأحقاف","versets":35,"ordreRev":66,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":47,"nom":"Muhammad","nomFr":"Mouhammad","nomAr":"محمد","versets":38,"ordreRev":95,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":48,"nom":"Al-Fath","nomFr":"La victoire éclatante","nomAr":"الفتح","versets":29,"ordreRev":111,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":49,"nom":"Al-Hujurat","nomFr":"Les appartements","nomAr":"الحجرات","versets":18,"ordreRev":106,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":50,"nom":"Qaf","nomFr":"Qaf","nomAr":"ق","versets":45,"ordreRev":34,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":51,"nom":"Adh-Dhariyat","nomFr":"Qui éparpillent","nomAr":"الذاريات","versets":60,"ordreRev":67,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":52,"nom":"At-Tur","nomFr":"Le mont At-Tour","nomAr":"الطور","versets":49,"ordreRev":76,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":53,"nom":"An-Najm","nomFr":"L'étoile","nomAr":"النجم","versets":62,"ordreRev":23,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":54,"nom":"Al-Qamar","nomFr":"La lune","nomAr":"القمر","versets":55,"ordreRev":37,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":1,"miracleTitre":"Miracle Prophétique — La fente de la Lune (Inshiqāq Al-Qamar)"},{"id":55,"nom":"Ar-Rahman","nomFr":"Le Tout Miséricordieux","nomAr":"الرحمن","versets":78,"ordreRev":97,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":true,"miracleVerset":19,"miracleTitre":"Signe Maritime — La barrière invisible (Barzakh) entre les deux mers"},{"id":56,"nom":"Al-Waqi'ah","nomFr":"L'inévitable","nomAr":"الواقعة","versets":96,"ordreRev":46,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":57,"nom":"Al-Hadid","nomFr":"Le fer","nomAr":"الحديد","versets":29,"ordreRev":94,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":58,"nom":"Al-Mujadila","nomFr":"La discussion","nomAr":"المجادلة","versets":22,"ordreRev":105,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":59,"nom":"Al-Hashr","nomFr":"L'exode","nomAr":"الحشر","versets":24,"ordreRev":101,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":60,"nom":"Al-Mumtahanah","nomFr":"L'éprouvée","nomAr":"الممتحنة","versets":13,"ordreRev":91,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":61,"nom":"As-Saf","nomFr":"Le rang","nomAr":"الصف","versets":14,"ordreRev":109,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":62,"nom":"Al-Jumu'ah","nomFr":"Le vendredi","nomAr":"الجمعة","versets":11,"ordreRev":110,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":63,"nom":"Al-Munafiqun","nomFr":"Les hypocrites","nomAr":"المنافقون","versets":11,"ordreRev":104,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":64,"nom":"At-Taghabun","nomFr":"La grande perte","nomAr":"التغابن","versets":18,"ordreRev":108,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":65,"nom":"At-Talaq","nomFr":"Le divorce","nomAr":"الطلاق","versets":12,"ordreRev":99,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":66,"nom":"At-Tahrim","nomFr":"L'interdiction","nomAr":"التحريم","versets":12,"ordreRev":107,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":67,"nom":"Al-Mulk","nomFr":"La royauté","nomAr":"الملك","versets":30,"ordreRev":77,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":68,"nom":"Al-Qalam","nomFr":"La plume","nomAr":"القلم","versets":52,"ordreRev":2,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":69,"nom":"Al-Haqqah","nomFr":"L'inéluctable","nomAr":"الحاقة","versets":52,"ordreRev":78,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":70,"nom":"Al-Ma'arij","nomFr":"Les voies d'ascension","nomAr":"المعارج","versets":44,"ordreRev":79,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":71,"nom":"Nuh","nomFr":"Noé","nomAr":"نوح","versets":28,"ordreRev":71,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":72,"nom":"Al-Jinn","nomFr":"Les djinns","nomAr":"الجن","versets":28,"ordreRev":40,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":73,"nom":"Al-Muzzammil","nomFr":"L'enveloppé","nomAr":"المزمل","versets":20,"ordreRev":3,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":74,"nom":"Al-Muddaththir","nomFr":"Celui qui se couvre","nomAr":"المدثر","versets":56,"ordreRev":4,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":75,"nom":"Al-Qiyamah","nomFr":"La résurrection","nomAr":"القيامة","versets":40,"ordreRev":31,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":76,"nom":"Al-Insan","nomFr":"L'homme","nomAr":"الانسان","versets":31,"ordreRev":98,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":77,"nom":"Al-Mursalat","nomFr":"Les envoyés","nomAr":"المرسلات","versets":50,"ordreRev":33,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":78,"nom":"An-Naba","nomFr":"La nouvelle","nomAr":"النبإ","versets":40,"ordreRev":80,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":79,"nom":"An-Nazi'at","nomFr":"Ceux qui arrachent","nomAr":"النازعات","versets":46,"ordreRev":81,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":80,"nom":"'Abasa","nomFr":"Il s'est renfrogné","nomAr":"عبس","versets":42,"ordreRev":24,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":81,"nom":"At-Takwir","nomFr":"L'obscurcissement","nomAr":"التكوير","versets":29,"ordreRev":7,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":82,"nom":"Al-Infitar","nomFr":"La rupture","nomAr":"الإنفطار","versets":19,"ordreRev":82,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":83,"nom":"Al-Mutaffifin","nomFr":"Les fraudeurs","nomAr":"المطففين","versets":36,"ordreRev":86,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":84,"nom":"Al-Inshiqaq","nomFr":"La déchirure","nomAr":"الإنشقاق","versets":25,"ordreRev":83,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":85,"nom":"Al-Buruj","nomFr":"Les constellations","nomAr":"البروج","versets":22,"ordreRev":27,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":86,"nom":"At-Tariq","nomFr":"L'astre nocturne","nomAr":"الطارق","versets":17,"ordreRev":36,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":87,"nom":"Al-A'la","nomFr":"Le Très-Haut","nomAr":"الأعلى","versets":19,"ordreRev":8,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":88,"nom":"Al-Ghashiyah","nomFr":"L'enveloppante","nomAr":"الغاشية","versets":26,"ordreRev":68,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":89,"nom":"Al-Fajr","nomFr":"L'aube","nomAr":"الفجر","versets":30,"ordreRev":10,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":90,"nom":"Al-Balad","nomFr":"La cité","nomAr":"البلد","versets":20,"ordreRev":35,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":91,"nom":"Ash-Shams","nomFr":"Le soleil","nomAr":"الشمس","versets":15,"ordreRev":26,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":92,"nom":"Al-Layl","nomFr":"La nuit","nomAr":"الليل","versets":21,"ordreRev":9,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":93,"nom":"Ad-Duhaa","nomFr":"Le jour montant","nomAr":"الضحى","versets":11,"ordreRev":11,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":94,"nom":"Ash-Sharh","nomFr":"L'ouverture","nomAr":"الشرح","versets":8,"ordreRev":12,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":95,"nom":"At-Tin","nomFr":"Les figues","nomAr":"التين","versets":8,"ordreRev":28,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":96,"nom":"Al-'Alaq","nomFr":"L'adhérence","nomAr":"العلق","versets":19,"ordreRev":1,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":2,"miracleTitre":"Signe Embryologique — La création de l'homme à partir d'une adhérence ('Alaq)"},{"id":97,"nom":"Al-Qadr","nomFr":"La destinée","nomAr":"القدر","versets":5,"ordreRev":25,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":98,"nom":"Al-Bayyinah","nomFr":"La preuve","nomAr":"البينة","versets":8,"ordreRev":100,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":99,"nom":"Az-Zalzalah","nomFr":"Le séisme","nomAr":"الزلزلة","versets":8,"ordreRev":93,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":100,"nom":"Al-'Adiyat","nomFr":"Les coursiers","nomAr":"العاديات","versets":11,"ordreRev":14,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":101,"nom":"Al-Qari'ah","nomFr":"Le fracas","nomAr":"القارعة","versets":11,"ordreRev":30,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":102,"nom":"At-Takathur","nomFr":"La course aux richesses","nomAr":"التكاثر","versets":8,"ordreRev":16,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":103,"nom":"Al-'Asr","nomFr":"Le temps","nomAr":"العصر","versets":3,"ordreRev":13,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":104,"nom":"Al-Humazah","nomFr":"Les calomniateurs","nomAr":"الهمزة","versets":9,"ordreRev":32,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":105,"nom":"Al-Fil","nomFr":"L'éléphant","nomAr":"الفيل","versets":5,"ordreRev":19,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":106,"nom":"Quraysh","nomFr":"Les Quraysh","nomAr":"قريش","versets":4,"ordreRev":29,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":107,"nom":"Al-Ma'un","nomFr":"L'entraide","nomAr":"الماعون","versets":7,"ordreRev":17,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":108,"nom":"Al-Kawthar","nomFr":"L'abondance","nomAr":"الكوثر","versets":3,"ordreRev":15,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":109,"nom":"Al-Kafirun","nomFr":"Les mécréants","nomAr":"الكافرون","versets":6,"ordreRev":18,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":110,"nom":"An-Nasr","nomFr":"Le secours","nomAr":"النصر","versets":3,"ordreRev":114,"typeLabel":"Médinoise","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":111,"nom":"Al-Masad","nomFr":"Les fibres","nomAr":"المسد","versets":5,"ordreRev":6,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":1,"miracleTitre":"Prophétie Éclatante — La fin d'Abū Lahab annoncée dix ans à l'avance"},{"id":112,"nom":"Al-Ikhlas","nomFr":"La sincérité","nomAr":"الإخلاص","versets":4,"ordreRev":22,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":113,"nom":"Al-Falaq","nomFr":"L'aube naissante","nomAr":"الفلق","versets":5,"ordreRev":20,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""},{"id":114,"nom":"An-Nas","nomFr":"Les humains","nomAr":"الناس","versets":6,"ordreRev":21,"typeLabel":"Mecquoise","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1,"miracleTitre":""}];
-    let modeTri = 'classique';
+    const sourates = [{"id":1,"nom":"Al-Fatihah","nomFr":"L'ouverture","nomEn":"The Opener","nomEs":"La Apertura","nomAr":"الفاتحة","versets":7,"ordreRev":5,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":2,"nom":"Al-Baqarah","nomFr":"La vache","nomEn":"The Cow","nomEs":"La Vaca","nomAr":"البقرة","versets":286,"ordreRev":87,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":3,"nom":"Ali 'Imran","nomFr":"La famille de 'imran","nomEn":"Family of Imran","nomEs":"La Familia de Imrán","nomAr":"آل عمران","versets":200,"ordreRev":89,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":4,"nom":"An-Nisa","nomFr":"Les femmes","nomEn":"The Women","nomEs":"Las Mujeres","nomAr":"النساء","versets":176,"ordreRev":92,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":5,"nom":"Al-Ma'idah","nomFr":"La table servie","nomEn":"The Table Spread","nomEs":"La Mesa Servida","nomAr":"المائدة","versets":120,"ordreRev":112,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":6,"nom":"Al-An'am","nomFr":"Les bestiaux","nomEn":"The Cattle","nomEs":"Los Rebaños","nomAr":"الأنعام","versets":165,"ordreRev":55,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":7,"nom":"Al-A'raf","nomFr":"Al-A'raf","nomEn":"The Heights","nomEs":"Los Lugares Elevados","nomAr":"الأعراف","versets":206,"ordreRev":39,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":8,"nom":"Al-Anfal","nomFr":"Le butin","nomEn":"The Spoils of War","nomEs":"El Botín","nomAr":"الأنفال","versets":75,"ordreRev":88,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":9,"nom":"At-Tawbah","nomFr":"Le repentir","nomEn":"The Repentance","nomEs":"El Arrepentimiento","nomAr":"التوبة","versets":129,"ordreRev":113,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":10,"nom":"Yunus","nomFr":"Jonas","nomEn":"Jonah","nomEs":"Jonás","nomAr":"يونس","versets":109,"ordreRev":51,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":92},{"id":11,"nom":"Hud","nomFr":"Houd","nomEn":"Hud","nomEs":"Hud","nomAr":"هود","versets":123,"ordreRev":52,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":12,"nom":"Yusuf","nomFr":"Joseph","nomEn":"Joseph","nomEs":"José","nomAr":"يوسف","versets":111,"ordreRev":53,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":13,"nom":"Ar-Ra'd","nomFr":"Le tonnerre","nomEn":"The Thunder","nomEs":"El Trueno","nomAr":"الرعد","versets":43,"ordreRev":96,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":14,"nom":"Ibrahim","nomFr":"Abraham","nomEn":"Abraham","nomEs":"Abraham","nomAr":"ابراهيم","versets":52,"ordreRev":72,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":15,"nom":"Al-Hijr","nomFr":"Al-Hijr","nomEn":"The Rocky Tract","nomEs":"Al-Hiyr","nomAr":"الحجر","versets":99,"ordreRev":54,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":16,"nom":"An-Nahl","nomFr":"Les abeilles","nomEn":"The Bee","nomEs":"Las Abejas","nomAr":"النحل","versets":128,"ordreRev":70,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":17,"nom":"Al-Isra","nomFr":"Le voyage nocturne","nomEn":"The Night Journey","nomEs":"El Viaje Nocturno","nomAr":"الإسراء","versets":111,"ordreRev":50,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":18,"nom":"Al-Kahf","nomFr":"La caverne","nomEn":"The Cave","nomEs":"La Caverna","nomAr":"الكهف","versets":110,"ordreRev":69,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":19,"nom":"Maryam","nomFr":"Marie","nomEn":"Mary","nomEs":"María","nomAr":"مريم","versets":98,"ordreRev":44,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":20,"nom":"Taha","nomFr":"Ta-Ha","nomEn":"Ta-Ha","nomEs":"Ta-Ha","nomAr":"طه","versets":135,"ordreRev":45,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":21,"nom":"Al-Anbya","nomFr":"Les prophètes","nomEn":"The Prophets","nomEs":"Los Profetas","nomAr":"الأنبياء","versets":112,"ordreRev":73,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":22,"nom":"Al-Hajj","nomFr":"Le pèlerinage","nomEn":"The Pilgrimage","nomEs":"La Peregrinación","nomAr":"الحج","versets":78,"ordreRev":103,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":23,"nom":"Al-Mu'minun","nomFr":"Les croyants","nomEn":"The Believers","nomEs":"Los Creyentes","nomAr":"المؤمنون","versets":118,"ordreRev":74,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":14},{"id":24,"nom":"An-Nur","nomFr":"La lumière","nomEn":"The Light","nomEs":"La Luz","nomAr":"النور","versets":64,"ordreRev":102,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":25,"nom":"Al-Furqan","nomFr":"Le discernement","nomEn":"The Criterion","nomEs":"El Criterio","nomAr":"الفرقان","versets":77,"ordreRev":42,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":26,"nom":"Ash-Shu'ara","nomFr":"Les poètes","nomEn":"The Poets","nomEs":"Los Poetas","nomAr":"الشعراء","versets":227,"ordreRev":47,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":27,"nom":"An-Naml","nomFr":"Les fourmis","nomEn":"The Ant","nomEs":"Las Hormigas","nomAr":"النمل","versets":93,"ordreRev":48,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":28,"nom":"Al-Qasas","nomFr":"Le récit","nomEn":"The Stories","nomEs":"Los Relatos","nomAr":"القصص","versets":88,"ordreRev":49,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":29,"nom":"Al-'Ankabut","nomFr":"L'araignée","nomEn":"The Spider","nomEs":"La Araña","nomAr":"العنكبوت","versets":69,"ordreRev":85,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":30,"nom":"Ar-Rum","nomFr":"Les romains","nomEn":"The Romans","nomEs":"Los Romanos","nomAr":"الروم","versets":60,"ordreRev":84,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":1},{"id":31,"nom":"Luqman","nomFr":"Louqman","nomEn":"Luqman","nomEs":"Luqmán","nomAr":"لقمان","versets":34,"ordreRev":57,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":32,"nom":"As-Sajdah","nomFr":"La prosternation","nomEn":"The Prostration","nomEs":"La Postración","nomAr":"السجدة","versets":30,"ordreRev":75,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":33,"nom":"Al-Ahzab","nomFr":"Les coalisés","nomEn":"The Combined Forces","nomEs":"Los Coaligados","nomAr":"الأحزاب","versets":73,"ordreRev":90,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":34,"nom":"Saba","nomFr":"Saba'","nomEn":"Sheba","nomEs":"Saba","nomAr":"سبإ","versets":54,"ordreRev":58,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":35,"nom":"Fatir","nomFr":"Le Créateur","nomEn":"Originator","nomEs":"El Originador","nomAr":"فاطر","versets":45,"ordreRev":43,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":36,"nom":"Ya-Sin","nomFr":"Ya-Sin","nomEn":"Ya Sin","nomEs":"Ya-Sin","nomAr":"يس","versets":83,"ordreRev":41,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":37,"nom":"As-Saffat","nomFr":"Les rangés","nomEn":"Those who set the Ranks","nomEs":"Los Ordenados en Filas","nomAr":"الصافات","versets":182,"ordreRev":56,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":38,"nom":"Sad","nomFr":"Sad","nomEn":"The Letter \"Saad\"","nomEs":"Sad","nomAr":"ص","versets":88,"ordreRev":38,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":39,"nom":"Az-Zumar","nomFr":"Les groupes","nomEn":"The Troops","nomEs":"Los Grupos","nomAr":"الزمر","versets":75,"ordreRev":59,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":40,"nom":"Ghafir","nomFr":"Le Pardonneur","nomEn":"The Forgiver","nomEs":"El Perdonador","nomAr":"غافر","versets":85,"ordreRev":60,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":41,"nom":"Fussilat","nomFr":"Les versets explicites","nomEn":"Explained in Detail","nomEs":"Explicadas Detalladamente","nomAr":"فصلت","versets":54,"ordreRev":61,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":42,"nom":"Ash-Shuraa","nomFr":"La concertation","nomEn":"The Consultation","nomEs":"La Consulta","nomAr":"الشورى","versets":53,"ordreRev":62,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":43,"nom":"Az-Zukhruf","nomFr":"L'ornement","nomEn":"The Ornaments of Gold","nomEs":"Los Adornos Dorados","nomAr":"الزخرف","versets":89,"ordreRev":63,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":44,"nom":"Ad-Dukhan","nomFr":"La fumée","nomEn":"The Smoke","nomEs":"El Humo","nomAr":"الدخان","versets":59,"ordreRev":64,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":45,"nom":"Al-Jathiyah","nomFr":"L'agenouillée","nomEn":"The Crouching","nomEs":"La Arrodillada","nomAr":"الجاثية","versets":37,"ordreRev":65,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":46,"nom":"Al-Ahqaf","nomFr":"Al-Ahqaf","nomEn":"The Wind-Curved Sandhills","nomEs":"Las Dunas","nomAr":"الأحقاف","versets":35,"ordreRev":66,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":47,"nom":"Muhammad","nomFr":"Mouhammad","nomEn":"Muhammad","nomEs":"Muhammad","nomAr":"محمد","versets":38,"ordreRev":95,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":48,"nom":"Al-Fath","nomFr":"La victoire éclatante","nomEn":"The Victory","nomEs":"La Victoria","nomAr":"الفتح","versets":29,"ordreRev":111,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":49,"nom":"Al-Hujurat","nomFr":"Les appartements","nomEn":"The Rooms","nomEs":"Los Aposentos Privados","nomAr":"الحجرات","versets":18,"ordreRev":106,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":50,"nom":"Qaf","nomFr":"Qaf","nomEn":"The Letter \"Qaf\"","nomEs":"Qaf","nomAr":"ق","versets":45,"ordreRev":34,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":51,"nom":"Adh-Dhariyat","nomFr":"Qui éparpillent","nomEn":"The Winnowing Winds","nomEs":"Los Vientos que Esparcen","nomAr":"الذاريات","versets":60,"ordreRev":67,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":52,"nom":"At-Tur","nomFr":"Le mont At-Tour","nomEn":"The Mount","nomEs":"El Monte","nomAr":"الطور","versets":49,"ordreRev":76,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":53,"nom":"An-Najm","nomFr":"L'étoile","nomEn":"The Star","nomEs":"La Estrella","nomAr":"النجم","versets":62,"ordreRev":23,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":54,"nom":"Al-Qamar","nomFr":"La lune","nomEn":"The Moon","nomEs":"La Luna","nomAr":"القمر","versets":55,"ordreRev":37,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":1},{"id":55,"nom":"Ar-Rahman","nomFr":"Le Tout Miséricordieux","nomEn":"The Beneficent","nomEs":"El Misericordioso","nomAr":"الرحمن","versets":78,"ordreRev":97,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":true,"miracleVerset":19},{"id":56,"nom":"Al-Waqi'ah","nomFr":"L'inévitable","nomEn":"The Inevitable","nomEs":"El Suceso Inminente","nomAr":"الواقعة","versets":96,"ordreRev":46,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":57,"nom":"Al-Hadid","nomFr":"Le fer","nomEn":"The Iron","nomEs":"El Hierro","nomAr":"الحديد","versets":29,"ordreRev":94,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":58,"nom":"Al-Mujadila","nomFr":"La discussion","nomEn":"The Pleading Woman","nomEs":"La Mujer que Discute","nomAr":"المجادلة","versets":22,"ordreRev":105,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":59,"nom":"Al-Hashr","nomFr":"L'exode","nomEn":"The Exile","nomEs":"El Destierro","nomAr":"الحشر","versets":24,"ordreRev":101,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":60,"nom":"Al-Mumtahanah","nomFr":"L'éprouvée","nomEn":"She that is to be examined","nomEs":"La Examinada","nomAr":"الممتحنة","versets":13,"ordreRev":91,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":61,"nom":"As-Saf","nomFr":"Le rang","nomEn":"The Ranks","nomEs":"La Fila","nomAr":"الصف","versets":14,"ordreRev":109,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":62,"nom":"Al-Jumu'ah","nomFr":"Le vendredi","nomEn":"The Congregation, Friday","nomEs":"El Viernes","nomAr":"الجمعة","versets":11,"ordreRev":110,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":63,"nom":"Al-Munafiqun","nomFr":"Les hypocrites","nomEn":"The Hypocrites","nomEs":"Los Hipócritas","nomAr":"المنافقون","versets":11,"ordreRev":104,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":64,"nom":"At-Taghabun","nomFr":"La grande perte","nomEn":"The Mutual Disillusion","nomEs":"El Desengaño","nomAr":"التغابن","versets":18,"ordreRev":108,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":65,"nom":"At-Talaq","nomFr":"Le divorce","nomEn":"The Divorce","nomEs":"El Divorcio","nomAr":"الطلاق","versets":12,"ordreRev":99,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":66,"nom":"At-Tahrim","nomFr":"L'interdiction","nomEn":"The Prohibition","nomEs":"La Prohibición","nomAr":"التحريم","versets":12,"ordreRev":107,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":67,"nom":"Al-Mulk","nomFr":"La royauté","nomEn":"The Sovereignty","nomEs":"La Soberanía","nomAr":"الملك","versets":30,"ordreRev":77,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":68,"nom":"Al-Qalam","nomFr":"La plume","nomEn":"The Pen","nomEs":"El Cálamo","nomAr":"القلم","versets":52,"ordreRev":2,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":69,"nom":"Al-Haqqah","nomFr":"L'inéluctable","nomEn":"The Reality","nomEs":"La Realidad Inevitable","nomAr":"الحاقة","versets":52,"ordreRev":78,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":70,"nom":"Al-Ma'arij","nomFr":"Les voies d'ascension","nomEn":"The Ascending Stairways","nomEs":"Las Vías de Ascenso","nomAr":"المعارج","versets":44,"ordreRev":79,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":71,"nom":"Nuh","nomFr":"Noé","nomEn":"Noah","nomEs":"Noé","nomAr":"نوح","versets":28,"ordreRev":71,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":72,"nom":"Al-Jinn","nomFr":"Les djinns","nomEn":"The Jinn","nomEs":"Los Genios","nomAr":"الجن","versets":28,"ordreRev":40,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":73,"nom":"Al-Muzzammil","nomFr":"L'enveloppé","nomEn":"The Enshrouded One","nomEs":"El Envuelto en su Manto","nomAr":"المزمل","versets":20,"ordreRev":3,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":74,"nom":"Al-Muddaththir","nomFr":"Celui qui se couvre","nomEn":"The Cloaked One","nomEs":"El Arropado","nomAr":"المدثر","versets":56,"ordreRev":4,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":75,"nom":"Al-Qiyamah","nomFr":"La résurrection","nomEn":"The Resurrection","nomEs":"La Resurrección","nomAr":"القيامة","versets":40,"ordreRev":31,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":76,"nom":"Al-Insan","nomFr":"L'homme","nomEn":"The Man","nomEs":"El Ser Humano","nomAr":"الانسان","versets":31,"ordreRev":98,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":77,"nom":"Al-Mursalat","nomFr":"Les envoyés","nomEn":"The Emissaries","nomEs":"Los Enviados","nomAr":"المرسلات","versets":50,"ordreRev":33,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":78,"nom":"An-Naba","nomFr":"La nouvelle","nomEn":"The Tidings","nomEs":"La Gran Noticia","nomAr":"النبإ","versets":40,"ordreRev":80,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":79,"nom":"An-Nazi'at","nomFr":"Ceux qui arrachent","nomEn":"Those who drag forth","nomEs":"Los que Arrancan","nomAr":"النازعات","versets":46,"ordreRev":81,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":80,"nom":"'Abasa","nomFr":"Il s'est renfrogné","nomEn":"He Frowned","nomEs":"Frunció el Ceño","nomAr":"عبس","versets":42,"ordreRev":24,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":81,"nom":"At-Takwir","nomFr":"L'obscurcissement","nomEn":"The Overthrowing","nomEs":"El Oscurecimiento","nomAr":"التكوير","versets":29,"ordreRev":7,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":82,"nom":"Al-Infitar","nomFr":"La rupture","nomEn":"The Cleaving","nomEs":"La Hendidura","nomAr":"الإنفطار","versets":19,"ordreRev":82,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":83,"nom":"Al-Mutaffifin","nomFr":"Les fraudeurs","nomEn":"The Defrauding","nomEs":"Los Defraudadores","nomAr":"المطففين","versets":36,"ordreRev":86,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":84,"nom":"Al-Inshiqaq","nomFr":"La déchirure","nomEn":"The Sundering","nomEs":"El Resquebrajamiento","nomAr":"الإنشقاق","versets":25,"ordreRev":83,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":85,"nom":"Al-Buruj","nomFr":"Les constellations","nomEn":"The Mansions of the Stars","nomEs":"Las Constelaciones","nomAr":"البروج","versets":22,"ordreRev":27,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":86,"nom":"At-Tariq","nomFr":"L'astre nocturne","nomEn":"The Nightcommer","nomEs":"El Astro Nocturno","nomAr":"الطارق","versets":17,"ordreRev":36,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":87,"nom":"Al-A'la","nomFr":"Le Très-Haut","nomEn":"The Most High","nomEs":"El Altísimo","nomAr":"الأعلى","versets":19,"ordreRev":8,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":88,"nom":"Al-Ghashiyah","nomFr":"L'enveloppante","nomEn":"The Overwhelming","nomEs":"El Evento Abrumador","nomAr":"الغاشية","versets":26,"ordreRev":68,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":17},{"id":89,"nom":"Al-Fajr","nomFr":"L'aube","nomEn":"The Dawn","nomEs":"La Aurora","nomAr":"الفجر","versets":30,"ordreRev":10,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":90,"nom":"Al-Balad","nomFr":"La cité","nomEn":"The City","nomEs":"La Ciudad","nomAr":"البلد","versets":20,"ordreRev":35,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":91,"nom":"Ash-Shams","nomFr":"Le soleil","nomEn":"The Sun","nomEs":"El Sol","nomAr":"الشمس","versets":15,"ordreRev":26,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":92,"nom":"Al-Layl","nomFr":"La nuit","nomEn":"The Night","nomEs":"La Noche","nomAr":"الليل","versets":21,"ordreRev":9,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":93,"nom":"Ad-Duhaa","nomFr":"Le jour montant","nomEn":"The Morning Hours","nomEs":"La Mañana","nomAr":"الضحى","versets":11,"ordreRev":11,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":94,"nom":"Ash-Sharh","nomFr":"L'ouverture","nomEn":"The Relief","nomEs":"La Apertura del Pecho","nomAr":"الشرح","versets":8,"ordreRev":12,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":95,"nom":"At-Tin","nomFr":"Les figues","nomEn":"The Fig","nomEs":"La Higuera","nomAr":"التين","versets":8,"ordreRev":28,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":96,"nom":"Al-'Alaq","nomFr":"L'adhérence","nomEn":"The Clot","nomEs":"El Coágulo","nomAr":"العلق","versets":19,"ordreRev":1,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":2},{"id":97,"nom":"Al-Qadr","nomFr":"La destinée","nomEn":"The Power","nomEs":"El Decreto","nomAr":"القدر","versets":5,"ordreRev":25,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":98,"nom":"Al-Bayyinah","nomFr":"La preuve","nomEn":"The Clear Proof","nomEs":"La Prueba Clara","nomAr":"البينة","versets":8,"ordreRev":100,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":99,"nom":"Az-Zalzalah","nomFr":"Le séisme","nomEn":"The Earthquake","nomEs":"El Terremoto","nomAr":"الزلزلة","versets":8,"ordreRev":93,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":100,"nom":"Al-'Adiyat","nomFr":"Les coursiers","nomEn":"The Courser","nomEs":"Los Corceles","nomAr":"العاديات","versets":11,"ordreRev":14,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":101,"nom":"Al-Qari'ah","nomFr":"Le fracas","nomEn":"The Calamity","nomEs":"La Calamidad","nomAr":"القارعة","versets":11,"ordreRev":30,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":102,"nom":"At-Takathur","nomFr":"La course aux richesses","nomEn":"The Rivalry in world increase","nomEs":"El Afán de Acumular","nomAr":"التكاثر","versets":8,"ordreRev":16,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":103,"nom":"Al-'Asr","nomFr":"Le temps","nomEn":"The Declining Day","nomEs":"El Tiempo","nomAr":"العصر","versets":3,"ordreRev":13,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":104,"nom":"Al-Humazah","nomFr":"Les calomniateurs","nomEn":"The Traducer","nomEs":"El Difamador","nomAr":"الهمزة","versets":9,"ordreRev":32,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":105,"nom":"Al-Fil","nomFr":"L'éléphant","nomEn":"The Elephant","nomEs":"El Elefante","nomAr":"الفيل","versets":5,"ordreRev":19,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":106,"nom":"Quraysh","nomFr":"Les Quraysh","nomEn":"Quraysh","nomEs":"Quraysh","nomAr":"قريش","versets":4,"ordreRev":29,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":107,"nom":"Al-Ma'un","nomFr":"L'entraide","nomEn":"The Small kindnesses","nomEs":"La Ayuda Mínima","nomAr":"الماعون","versets":7,"ordreRev":17,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":108,"nom":"Al-Kawthar","nomFr":"L'abondance","nomEn":"The Abundance","nomEs":"La Abundancia","nomAr":"الكوثر","versets":3,"ordreRev":15,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":109,"nom":"Al-Kafirun","nomFr":"Les mécréants","nomEn":"The Disbelievers","nomEs":"Los Incrédulos","nomAr":"الكافرون","versets":6,"ordreRev":18,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":110,"nom":"An-Nasr","nomFr":"Le secours","nomEn":"The Divine Support","nomEs":"El Socorro Divino","nomAr":"النصر","versets":3,"ordreRev":114,"typeLabel":"Médinoise","typeLabelEn":"Medinan","typeLabelEs":"Medinense","typeLabelAr":"مدنية","typeClasse":"medinoise","hasMiracle":false,"miracleVerset":1},{"id":111,"nom":"Al-Masad","nomFr":"Les fibres","nomEn":"The Palm Fiber","nomEs":"Las Fibras de Palma","nomAr":"المسد","versets":5,"ordreRev":6,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":true,"miracleVerset":1},{"id":112,"nom":"Al-Ikhlas","nomFr":"La sincérité","nomEn":"The Sincerity","nomEs":"La Unicidad Pura","nomAr":"الإخلاص","versets":4,"ordreRev":22,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":113,"nom":"Al-Falaq","nomFr":"L'aube naissante","nomEn":"The Daybreak","nomEs":"El Amanecer","nomAr":"الفلق","versets":5,"ordreRev":20,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1},{"id":114,"nom":"An-Nas","nomFr":"Les humains","nomEn":"Mankind","nomEs":"La Humanidad","nomAr":"الناس","versets":6,"ordreRev":21,"typeLabel":"Mecquoise","typeLabelEn":"Meccan","typeLabelEs":"Mequí","typeLabelAr":"مكية","typeClasse":"mecquoise","hasMiracle":false,"miracleVerset":1}];
+    const V_STAMP = "1794352035608";
+    let modeTri = 'chrono', currentLang = 'fr', lastReadData = null;
+    try {
+      const sl = localStorage.getItem('site_lang_v32');
+      if (['fr','en','es','ar'].includes(sl)) currentLang = sl;
+      const sr = localStorage.getItem('last_read_v28');
+      if (sr) {
+        const p = JSON.parse(sr);
+        if (p && p.s && p.v) lastReadData = p;
+      }
+    } catch(e){}
+    function trier(m, btn) { modeTri = m; document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); afficher(); }
+    function changerLangueAccueil(l) { currentLang = l; try { localStorage.setItem('site_lang_v32', l); } catch(e){} appliquerLangueAccueil(); }
+    function appliquerLangueAccueil() {
+      document.querySelectorAll('.lang-pill-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-lang') === currentLang));
+      const isAr = currentLang === 'ar', isEn = currentLang === 'en', isEs = currentLang === 'es';
 
-    function trier(mode, btn) {
-      modeTri = mode;
-      document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      document.getElementById('heroTitleEl').textContent = isAr ? "القرآن الكريم والتفسير المختصر" : (isEn ? "THE NOBLE QURAN & TAFSĪR" : (isEs ? "EL NOBLE CORÁN Y TAFSĪR" : "LE NOBLE CORAN & TAFSĪR"));
+
+      const appBtn = document.getElementById('appInstallBtnEl');
+      if (appBtn) {
+        appBtn.textContent = isAr
+          ? "📲 تثبيت الموقع كتطبيق على الهاتف (آيفون / أندرويد)"
+          : (isEn ? "📲 Add website as an App on phone (Safari / Android)" : (isEs ? "📲 Instalar como aplicación en el móvil (Safari / Android)" : "📲 Mettre le site en application sur téléphone (Safari / Android)"));
+      }
+
+      if (lastReadData) {
+        const btnR = document.getElementById('resumeReadingBtn');
+        const spanR = document.getElementById('resumeTextSpan');
+        btnR.href = "sourate-" + lastReadData.s + "-verset-" + lastReadData.v + ".html?v=" + V_STAMP;
+        const pref = isAr ? "متابعة القراءة : " : (isEn ? "Resume: " : (isEs ? "Continuar: " : "Reprendre : "));
+        const motV = isAr ? "آية " : (isEs ? "a." : "v.");
+        spanR.textContent = pref + (lastReadData.nom || ("Surah " + lastReadData.s)) + " (" + motV + lastReadData.v + ")";
+        btnR.style.display = "inline-flex";
+      }
+
+      const guideGrid = document.getElementById('guideGridEl');
+      if (guideGrid) {
+        guideGrid.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+        guideGrid.style.textAlign = isAr ? 'right' : 'left';
+      }
+      document.getElementById('mecTitleEl').textContent = isAr ? "ما هي السورة المكية؟" : (isEn ? "What is a Meccan Surah?" : (isEs ? "¿Qué es una Sura Mequí?" : "Qu'est-ce qu'une Sourate Mecquoise ?"));
+      document.getElementById('mecPillEl').textContent = isAr ? "مكية • 86 سورة" : (isEn ? "Meccan • 86 Surahs" : (isEs ? "Mequí • 86 Suras" : "Mecquoise • 86 Sourates"));
+      document.getElementById('mecDescEl').textContent = isAr
+        ? "نزلت في بداية الوحي (قبل الهجرة) حين كان المسلمون قلة مستضعفين بمكة : ترسّخ التوحيد الخالص لله، ودلائل الإيمان، والبعث وقصص الأنبياء."
+        : (isEn
+            ? "Revealed at the beginning of revelation (before the Hijrah), when the believers were still few in Makkah: establishes the pure Oneness of Allāh (Tawhīd), proofs of faith, the Hereafter, and the stories of the Prophets."
+            : (isEs
+                ? "Revelada al inicio de la revelación (antes de la Hégira), cuando los creyentes aún eran pocos en La Meca: establece el Monoteísmo puro de Allah (Tawhīd), las pruebas de la fe, el Juicio Final y las historias de los Profetas."
+                : "Révélée au début de la révélation (avant l'Hégire), lorsque les croyants étaient encore peu nombreux à La Mecque : fonde l'Unicité pure d'Allāh (Tawhīd), les preuves de la foi, le Jugement dernier et l'histoire des Prophètes."));
+
+      document.getElementById('medTitleEl').textContent = isAr ? "ما هي السورة المدنية؟" : (isEn ? "What is a Medinan Surah?" : (isEs ? "¿Qué es una Sura Medinense?" : "Qu'est-ce qu'une Sourate Médinoise ?"));
+      document.getElementById('medPillEl').textContent = isAr ? "مدنية • 28 سورة" : (isEn ? "Medinan • 28 Surahs" : (isEs ? "Medinense • 28 Suras" : "Médinoise • 28 Sourates"));
+      document.getElementById('medDescEl').textContent = isAr
+        ? "نزلت بعد الهجرة حين كثر المسلمون وقويت شوكتهم بالمدينة وانتصروا في الغزوات (كبدر) وحتى فتح مكة : تفصّل العبادات والشرائع والعدل."
+        : (isEn
+            ? "Revealed after the Hijrah, when the Muslims grew numerous, united in Madinah, victorious in major battles (like Badr) and up to the Conquest of Makkah: details worship, social laws, and justice."
+            : (isEs
+                ? "Revelada después de la Hégira, cuando los musulmanes se hicieron numerosos en Medina, victoriosos en las batallas (como Badr) y hasta la conquista de La Meca: detalla las adoraciones, las leyes sociales y la justicia."
+                : "Révélée après l'Hégire, lorsque les musulmans sont devenus nombreux, unis à Médine, victorieux lors des grandes batailles (comme Badr) et jusqu'à la conquête de La Mecque : détaille les adorations, les lois sociales et la justice."));
+
+      document.getElementById('sortBtn1').textContent = isAr ? "2. ترتيب المصحف (1 إلى 114)" : (isEn ? "2. Traditional Order (1 to 114)" : (isEs ? "2. Orden tradicional (1 a 114)" : "2. Ordre classique (1 à 114)"));
+      document.getElementById('sortBtn2').textContent = isAr ? "1. ترتيب النزول (1 إلى 114)" : (isEn ? "1. Revelation Order (1 to 114)" : (isEs ? "1. Orden de Revelación (1 a 114)" : "1. Ordre de Révélation (1 à 114)"));
+      document.getElementById('sortBtn3').innerHTML = isAr
+        ? '3. <span class="gold-star-icon">★</span> آيات الإعجاز القرآني'
+        : (isEn ? '3. <span class="gold-star-icon">★</span> Miracles of the Quran' : (isEs ? '3. <span class="gold-star-icon">★</span> Milagros del Corán' : '3. <span class="gold-star-icon">★</span> Les Miracles du Coran'));
+
+      // Traduction complète de la fenêtre "Installer l'application" (FR / EN / ES / AR)
+      const appCard = document.getElementById('appInstallModalCard');
+      if (appCard) {
+        appCard.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+        appCard.style.textAlign = isAr ? 'right' : 'left';
+      }
+      const appTitle = document.getElementById('appModalTitleEl');
+      if (appTitle) appTitle.textContent = isAr ? "📲 تثبيت الموقع كتطبيق على هاتفك" : (isEn ? "📲 Install CoranTafsir on your phone" : (isEs ? "📲 Instalar CoranTafsir en tu teléfono" : "📲 Installer CoranTafsir sur votre téléphone"));
+      const appIos = document.getElementById('appModalIosEl');
+      if (appIos) appIos.innerHTML = isAr
+        ? "<strong>على آيفون (Safari) :</strong> اضغط على أيقونة <strong>المشاركة</strong> (المربع الذي يخرج منه سهم للأعلى في أسفل الشاشة)، ثم اختر <strong>«إضافة إلى الشاشة الرئيسية»</strong>."
+        : (isEn
+            ? "<strong>On iPhone (Safari):</strong> Tap the <strong>Share</strong> icon (the square with an upward arrow at the bottom of the screen), then select <strong>«Add to Home Screen»</strong>."
+            : (isEs
+                ? "<strong>En iPhone (Safari):</strong> Pulsa el icono <strong>Compartir</strong> (el cuadrado con una flecha hacia arriba en la parte inferior) y elige <strong>«Añadir a la pantalla de inicio»</strong>."
+                : "<strong>Sur iPhone (Safari) :</strong> Appuyez sur l'icône <strong>Partager</strong> (le carré avec une flèche vers le haut en bas de l'écran), puis choisissez <strong>« Sur l'écran d'accueil »</strong>."));
+      const appAndroid = document.getElementById('appModalAndroidEl');
+      if (appAndroid) appAndroid.innerHTML = isAr
+        ? "<strong>على أندرويد (Chrome) :</strong> اضغط على <strong>النقاط الثلاث</strong> في أعلى اليمين، ثم اختر <strong>«الإضافة إلى الشاشة الرئيسية»</strong>."
+        : (isEn
+            ? "<strong>On Android (Chrome):</strong> Tap the <strong>3 dots</strong> in the top right corner, then select <strong>«Add to Home screen»</strong>."
+            : (isEs
+                ? "<strong>En Android (Chrome):</strong> Pulsa los <strong>3 puntos</strong> arriba a la derecha y selecciona <strong>«Añadir a pantalla de inicio»</strong>."
+                : "<strong>Sur Android (Chrome) :</strong> Appuyez sur les <strong>3 petits points</strong> en haut à droite, puis sélectionnez <strong>« Ajouter à l'écran d'accueil »</strong>."));
+      const appClose = document.getElementById('appModalCloseEl');
+      if (appClose) appClose.textContent = isAr ? "إغلاق" : (isEn ? "Close" : (isEs ? "Cerrar" : "Fermer"));
+
+      // Traduction complète du bouton et de la fenêtre "Mentions légales" (FR / EN / ES / AR)
+      const legCard = document.getElementById('legalModalCard');
+      if (legCard) legCard.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+      const legBtn = document.getElementById('legalBtnEl');
+      if (legBtn) legBtn.textContent = isAr ? "الإشعار القانوني" : (isEn ? "Legal Notice" : (isEs ? "Aviso legal" : "Mentions légales"));
+      const legTitle = document.getElementById('legalModalTitleEl');
+      if (legTitle) legTitle.textContent = isAr ? "⚖️ الإشعار القانوني" : (isEn ? "⚖️ Legal Notice" : (isEs ? "⚖️ Aviso legal" : "⚖️ Mentions légales"));
+      const legDesc = document.getElementById('legalModalDescEl');
+      if (legDesc) legDesc.textContent = isAr
+        ? "بوابة تعليمية ولغوية وثقافية مجانية (بدون إعلانات تجارية) تصدر عن الجمعية غير الربحية :"
+        : (isEn
+            ? "Free educational, linguistic and cultural portal (ad-free) published by the non-profit organization:"
+            : (isEs
+                ? "Portal educativo, lingüístico y cultural gratuito (sin publicidad comercial) editado por la asociación sin ánimo de lucro:"
+                : "Portail éducatif, linguistique et culturel gratuit (sans publicité commerciale) édité par l'Association Loi 1901 à but non lucratif :"));
+      const legClose = document.getElementById('legalModalCloseEl');
+      if (legClose) legClose.textContent = isAr ? "إغلاق" : (isEn ? "Close" : (isEs ? "Cerrar" : "Fermer"));
+
+      document.getElementById('searchInput').placeholder = isAr
+        ? "ابحث عن سورة أو آية مباشرة (مثال: 30:1، 54:1، 2:255...)"
+        : (isEn ? "Search a surah or direct verse (e.g., 30:1, 54:1, 2:255...)" : (isEs ? "Buscar una sura o aleya directa (ej: 30:1, 54:1, 2:255...)" : "Rechercher une sourate ou un verset direct (ex: 30:1, 54:1, 2:255...)"));
+
       afficher();
     }
-
     function afficher() {
       const q = document.getElementById('searchInput').value.toLowerCase().trim();
-      const container = document.getElementById('grid');
+      const isAr = currentLang === 'ar', isEn = currentLang === 'en', isEs = currentLang === 'es';
 
+      // Affichage du bouton Mentions légales uniquement tout en bas de l'Ordre classique
+      const legWrap = document.getElementById('classicLegalWrap');
+      if (legWrap) {
+        legWrap.style.display = (modeTri !== 'miracles' && !q) ? 'block' : 'none';
+      }
+
+      let directHTML = '';
+      const mv = q.match(/^(\d{1,3})\s*[:\/-]\s*(\d{1,3})$/);
+      if (mv) {
+        const ns = Number(mv[1]), nv = Number(mv[2]), st = sourates.find(x => x.id === ns);
+        if (st && nv >= 1 && nv <= st.versets) {
+          const txtOuvrir = isAr ? ('فتح سورة ' + st.nomAr + ' — الآية ' + nv) : (isEn ? ('Open Surah ' + st.nom + ' — Verse ' + nv) : (isEs ? ('Abrir Sura ' + st.nom + ' — Aleya ' + nv) : ('Ouvrir Sourate ' + st.nom + ' — Verset ' + nv)));
+          directHTML = '<a href="sourate-' + ns + '-verset-' + nv + '.html?v=' + V_STAMP + '" class="card miracle-card-glow"><div class="card-left"><div class="num-badge">' + ns + ':' + nv + '</div><div class="card-info"><h2>' + txtOuvrir + '</h2></div></div><div class="ar-name">' + st.nomAr + '</div></a>';
+        }
+      }
       let liste = sourates.filter(s => {
         if (modeTri === 'miracles' && !s.hasMiracle) return false;
-        return (
-          s.nom.toLowerCase().includes(q) ||
-          s.nomFr.toLowerCase().includes(q) ||
-          s.typeLabel.toLowerCase().includes(q) ||
-          s.miracleTitre.toLowerCase().includes(q) ||
-          String(s.id) === q ||
-          String(s.ordreRev) === q
-        );
+        if (mv) return s.id === Number(mv[1]);
+        return s.nom.toLowerCase().includes(q) || s.nomFr.toLowerCase().includes(q) || s.nomEn.toLowerCase().includes(q) || s.nomEs.toLowerCase().includes(q) || s.nomAr.includes(q) || String(s.id) === q;
       });
 
-      if (modeTri === 'chrono') {
+      if (modeTri === 'miracles') {
+        liste.sort((a, b) => {
+          if (a.id === 30) return -1;
+          if (b.id === 30) return 1;
+          return a.id - b.id;
+        });
+      } else if (modeTri === 'chrono') {
         liste.sort((a, b) => a.ordreRev - b.ordreRev);
       } else {
         liste.sort((a, b) => a.id - b.id);
       }
 
-      container.innerHTML = liste.map(s => {
-        const badgeNumero = modeTri === 'chrono' ? s.ordreRev : s.id;
-        const titreSourate = modeTri === 'chrono'
-          ? `${s.nom} (${s.nomFr}) <span class="surah-subnum">(Sourate ${s.id})</span>`
-          : `${s.nom} (${s.nomFr})`;
-        const texteMeta = modeTri === 'chrono'
-          ? `${s.ordreRev === 1 ? '1re sourate révélée' : s.ordreRev + 'e sourate révélée'} • ${s.versets} versets`
-          : `${s.versets} versets • Révélation n°${s.ordreRev}`;
-        const versetCible = (modeTri === 'miracles' && s.hasMiracle) ? s.miracleVerset : 1;
+      document.getElementById('grid').innerHTML = directHTML + liste.map(s => {
+        const badge = modeTri === 'chrono' ? s.ordreRev : s.id;
+        const nomT = isEn ? s.nomEn : (isEs ? s.nomEs : s.nomFr);
+        const titre = isAr ? ("سورة " + s.nomAr + " (" + s.nom + ")") : (s.nom + " (" + nomT + ")");
+        const typeP = isAr ? s.typeLabelAr : (isEn ? s.typeLabelEn : (isEs ? s.typeLabelEs : s.typeLabel));
+        const vCible = (modeTri === 'miracles' && s.hasMiracle) ? s.miracleVerset : 1;
 
-        return `
-        <a href="sourate-${s.id}-verset-${versetCible}.html" class="card" onclick="sauvegarderConfigCiel()">
-          <div class="card-left">
-            <div class="num-badge">${badgeNumero}</div>
-            <div class="card-info">
-              <h2>${titreSourate}</h2>
-              <div class="card-meta-row">
-                <span class="revelation-pill ${s.typeClasse}">${s.typeLabel}</span>
-                ${s.hasMiracle ? `<span class="revelation-pill miracle-pill">★ Miracle (v.${s.miracleVerset})</span>` : ''}
-                <span class="card-meta-text">${texteMeta}</span>
-              </div>
-            </div>
-          </div>
-          <div class="ar-name">${s.nomAr}</div>
-        </a>
-        `;
+        let txtBadgeMiracle = '';
+        if (s.id === 30) {
+          txtBadgeMiracle = isAr
+            ? '<span class="gold-star-icon">★</span> 3 معجزات (آية 1-5)'
+            : (isEs ? '<span class="gold-star-icon">★</span> 3 Milagros (a.1-5)' : '<span class="gold-star-icon">★</span> 3 Miracles (v.1-5)');
+        } else {
+          txtBadgeMiracle = isAr
+            ? ('<span class="gold-star-icon">★</span> إعجاز (آية ' + s.miracleVerset + ')')
+            : (isEs ? ('<span class="gold-star-icon">★</span> Milagro (a.' + s.miracleVerset + ')') : ('<span class="gold-star-icon">★</span> Miracle (v.' + s.miracleVerset + ')'));
+        }
+
+        const mPill = s.hasMiracle ? '<span class="revelation-pill miracle-pill">' + txtBadgeMiracle + '</span>' : '';
+        const txtNbV = isAr ? (s.versets + ' آية') : (isEs ? (s.versets + ' a.') : (s.versets + ' v.'));
+        const classesCarte = 'card' + (s.hasMiracle ? ' miracle-card-glow' : '') + (s.id === 30 && modeTri === 'miracles' ? ' rum-featured-card' : '');
+        return '<a href="sourate-' + s.id + '-verset-' + vCible + '.html?v=' + V_STAMP + '" class="' + classesCarte + '" onclick="sauvegarderConfigCiel()"><div class="card-left"><div class="num-badge">' + badge + '</div><div class="card-info"><h2>' + titre + '</h2><div class="card-meta-row"><span class="revelation-pill ' + s.typeClasse + '">' + typeP + '</span>' + mPill + '<span class="card-meta-text">' + txtNbV + '</span></div></div></div><div class="ar-name">' + s.nomAr + '</div></a>';
       }).join('');
     }
-    afficher();
-
+    appliquerLangueAccueil();
     
   const bgCanvas = document.getElementById('fullPageSkyCanvas');
-  const bgCtx = bgCanvas.getContext('2d');
+  const bgCtx = bgCanvas.getContext('2d', { alpha: true, desynchronized: true });
   const sunEl = document.getElementById('flatEarthSun');
   const moonEl = document.getElementById('flatEarthMoon');
-  const skyLightingEl = document.getElementById('dynamicSkyLighting');
+  if (sunEl) sunEl.style.display = 'flex';
+  if (moonEl) moonEl.style.display = 'flex';
 
-  let wScreen = window.innerWidth;
-  let hScreen = window.innerHeight;
-  let stars = [];
-  let angleOrbite = 0.35;
-  let vitesseOrbite = 0.0015;
-
-  function chargerEtatOrbite() {
-    try {
-      const savedAngle = sessionStorage.getItem('orbit_angle_v21');
-      if (savedAngle !== null && !isNaN(Number(savedAngle))) {
-        angleOrbite = Number(savedAngle);
-      }
-    } catch (e) {}
-  }
-
-  function sauvegarderConfigCiel() {
-    try {
-      sessionStorage.setItem('orbit_angle_v21', String(angleOrbite));
-      sessionStorage.setItem('sky_stars_v21', JSON.stringify(stars));
-    } catch (e) {}
-  }
-
+  const isMobileScreen = window.innerWidth <= 820;
+  let wScreen = window.innerWidth, hScreen = window.innerHeight, stars = [], flakes = [], angleOrbite = 0.35;
+  try { const sa = sessionStorage.getItem('orbit_angle_v21'); if (sa !== null && !isNaN(Number(sa))) angleOrbite = Number(sa); } catch(e){}
+  function sauvegarderConfigCiel() { try { sessionStorage.setItem('orbit_angle_v21', String(angleOrbite)); } catch(e){} }
   window.addEventListener('beforeunload', sauvegarderConfigCiel);
 
   function resizeFullSky() {
@@ -631,165 +1557,119 @@
     bgCanvas.width = wScreen;
     bgCanvas.height = hScreen;
   }
+  resizeFullSky();
 
-  function initFullSky() {
-    resizeFullSky();
-    chargerEtatOrbite();
+  const starSprite = document.createElement('canvas');
+  starSprite.width = 24; starSprite.height = 24;
+  const sCtx = starSprite.getContext('2d');
+  const radGrad = sCtx.createRadialGradient(12, 12, 0.5, 12, 12, 11);
+  radGrad.addColorStop(0, 'rgba(255, 255, 255, 1)');
+  radGrad.addColorStop(0.35, 'rgba(103, 232, 249, 0.9)');
+  radGrad.addColorStop(1, 'rgba(6, 182, 212, 0)');
+  sCtx.fillStyle = radGrad;
+  sCtx.beginPath(); sCtx.arc(12, 12, 11, 0, Math.PI * 2); sCtx.fill();
 
-    try {
-      const savedStars = sessionStorage.getItem('sky_stars_v21');
-      if (savedStars) {
-        const parsed = JSON.parse(savedStars);
-        if (Array.isArray(parsed) && parsed.length === 145) {
-          stars = parsed.map(function(s) {
-            return {
-              x: s.xRatio * wScreen,
-              y: s.yRatio * hScreen,
-              xRatio: s.xRatio,
-              yRatio: s.yRatio,
-              r: s.r,
-              alphaBase: s.alphaBase,
-              phase: s.phase,
-              speed: s.speed,
-              bright: s.bright
-            };
-          });
-          return;
-        }
-      }
-    } catch (e) {}
+  const flakeSprite = document.createElement('canvas');
+  flakeSprite.width = 40; flakeSprite.height = 40;
+  const fCtx = flakeSprite.getContext('2d');
+  fCtx.translate(20, 20);
+  fCtx.strokeStyle = 'rgba(103, 232, 249, 0.92)';
+  fCtx.shadowColor = 'rgba(0, 245, 255, 0.95)';
+  fCtx.shadowBlur = 4;
+  fCtx.lineWidth = 1.35;
+  fCtx.beginPath();
+  const rad = 12;
+  for (let b = 0; b < 6; b++) {
+    const ang = (b * Math.PI) / 3;
+    const cos = Math.cos(ang), sin = Math.sin(ang);
+    fCtx.moveTo(0, 0); fCtx.lineTo(cos * rad, sin * rad);
+    const mx = cos * (rad * 0.58), my = sin * (rad * 0.58), rBr = rad * 0.34;
+    fCtx.moveTo(mx, my); fCtx.lineTo(mx + Math.cos(ang + 0.55) * rBr, my + Math.sin(ang + 0.55) * rBr);
+    fCtx.moveTo(mx, my); fCtx.lineTo(mx + Math.cos(ang - 0.55) * rBr, my + Math.sin(ang - 0.55) * rBr);
+  }
+  fCtx.stroke();
 
-    stars = [];
-    for (let i = 0; i < 145; i++) {
-      const xRatio = Math.random();
-      const yRatio = Math.random();
-      const bright = Math.random() < 0.22;
-      stars.push({
-        x: xRatio * wScreen,
-        y: yRatio * hScreen,
-        xRatio: xRatio,
-        yRatio: yRatio,
-        r: bright ? (Math.random() * 1.5 + 1.0) : (Math.random() * 0.9 + 0.3),
-        alphaBase: Math.random() * 0.6 + 0.25,
-        phase: Math.random() * Math.PI * 2,
-        speed: Math.random() * 0.02 + 0.006,
-        bright: bright
-      });
-    }
+  const nbStars = isMobileScreen ? 60 : 110;
+  for (let i = 0; i < nbStars; i++) {
+    const br = Math.random() < 0.28;
+    stars.push({
+      x: Math.random() * wScreen,
+      y: Math.random() * hScreen,
+      size: br ? (Math.random() * 6 + 7.5) : (Math.random() * 4.5 + 4),
+      a: Math.random() * 0.58 + 0.32,
+      p: Math.random() * 6.28,
+      s: Math.random() * 0.018 + 0.008,
+      vx: (Math.random() - 0.5) * 0.14,
+      vy: Math.random() * 0.24 + 0.08
+    });
   }
 
-  function mettreAJourAstres() {
-    const estSourateAshShams = (typeof numSourateActuelle !== 'undefined' && numSourateActuelle === 91);
-    const vCourant = (typeof numVersetActuel !== 'undefined') ? numVersetActuel : 1;
-
-    if (estSourateAshShams) {
-      angleOrbite += 0.0032;
-    } else {
-      angleOrbite += vitesseOrbite;
-    }
-
-    const angleSoleil = angleOrbite;
-    const ecartLune = (estSourateAshShams && vCourant <= 4) ? 0.85 : Math.PI;
-    const angleLune = angleOrbite - ecartLune;
-
-    const centreX = wScreen * 0.5;
-    const centreY = hScreen * 0.48;
-
-    const rayonX = Math.min(wScreen * 0.40, Math.max(330, wScreen * 0.35));
-    const rayonY = Math.min(hScreen * 0.38, Math.max(220, hScreen * 0.33));
-
-    const sunX = centreX + Math.cos(angleSoleil) * rayonX;
-    const sunY = centreY + Math.sin(angleSoleil) * rayonY;
-
-    const moonX = centreX + Math.cos(angleLune) * rayonX;
-    const moonY = centreY + Math.sin(angleLune) * rayonY;
-
-    if (sunEl) {
-      sunEl.style.transform = "translate3d(" + (sunX - 58) + "px, " + (sunY - 58) + "px, 0)";
-    }
-    if (moonEl) {
-      moonEl.style.transform = "translate3d(" + (moonX - 64) + "px, " + (moonY - 64) + "px, 0)";
-    }
-
-    if (estSourateAshShams) {
-      bgCtx.save();
-      const intensiteRayon = (vCourant === 1 || vCourant === 3) ? 0.26 : 0.14;
-      const gradSun = bgCtx.createRadialGradient(sunX, sunY, 10, sunX, sunY, wScreen * 0.65);
-      gradSun.addColorStop(0, "rgba(254, 240, 138, " + intensiteRayon + ")");
-      gradSun.addColorStop(0.35, "rgba(245, 158, 11, " + (intensiteRayon * 0.45) + ")");
-      gradSun.addColorStop(1, "transparent");
-      bgCtx.fillStyle = gradSun;
-      bgCtx.fillRect(0, 0, wScreen, hScreen);
-
-      if (vCourant === 2 || vCourant === 3) {
-        const gradFollow = bgCtx.createLinearGradient(sunX, sunY, moonX, moonY);
-        gradFollow.addColorStop(0, "rgba(253, 224, 71, 0.22)");
-        gradFollow.addColorStop(0.5, "rgba(255, 255, 255, 0.15)");
-        gradFollow.addColorStop(1, "rgba(255, 255, 255, 0.28)");
-        bgCtx.strokeStyle = gradFollow;
-        bgCtx.lineWidth = 3;
-        bgCtx.filter = "blur(3px)";
-        bgCtx.beginPath();
-        bgCtx.moveTo(sunX, sunY);
-        bgCtx.lineTo(moonX, moonY);
-        bgCtx.stroke();
-        bgCtx.filter = "none";
-      }
-      bgCtx.restore();
-    }
-
-    if (skyLightingEl) {
-      const sunPctX = Math.round((sunX / wScreen) * 100);
-      const sunPctY = Math.round((sunY / hScreen) * 100);
-      const moonPctX = Math.round((moonX / wScreen) * 100);
-      const moonPctY = Math.round((moonY / hScreen) * 100);
-
-      if (estSourateAshShams && vCourant === 3) {
-        skyLightingEl.style.background =
-          "radial-gradient(circle at " + sunPctX + "% " + sunPctY + "%, rgba(254, 240, 138, 0.34) 0%, rgba(251, 191, 36, 0.16) 32%, rgba(56, 189, 248, 0.09) 58%, transparent 80%), " +
-          "radial-gradient(circle at " + moonPctX + "% " + moonPctY + "%, rgba(255, 255, 255, 0.25) 0%, transparent 50%)";
-      } else {
-        skyLightingEl.style.background =
-          "radial-gradient(circle at " + sunPctX + "% " + sunPctY + "%, rgba(251, 191, 36, 0.17) 0%, rgba(245, 158, 11, 0.05) 24%, transparent 50%), " +
-          "radial-gradient(circle at " + moonPctX + "% " + moonPctY + "%, rgba(255, 255, 255, 0.20) 0%, rgba(226, 232, 240, 0.07) 26%, transparent 52%)";
-      }
-    }
+  const nbFlakes = isMobileScreen ? 10 : 20;
+  for (let i = 0; i < nbFlakes; i++) {
+    flakes.push({
+      x: Math.random() * wScreen,
+      y: Math.random() * hScreen,
+      scale: (Math.random() * 0.5 + 0.45),
+      a: Math.random() * 0.42 + 0.2,
+      rot: Math.random() * 6.28,
+      vRot: (Math.random() - 0.5) * 0.005,
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: Math.random() * 0.28 + 0.12
+    });
   }
 
-  function renderFullSky() {
+  let prevTime = performance.now();
+  function renderFullSky(now) {
+    requestAnimationFrame(renderFullSky);
+    if (document.hidden) return;
+    now = now || performance.now();
+    const dt = Math.min(2.5, Math.max(0.1, (now - prevTime) / 16.6667));
+    prevTime = now;
+
     bgCtx.clearRect(0, 0, wScreen, hScreen);
 
     for (let i = 0; i < stars.length; i++) {
-      const s = stars[i];
-      s.phase += s.speed;
-      const alpha = Math.max(0.08, Math.min(1, s.alphaBase + Math.sin(s.phase) * 0.35));
+      const st = stars[i];
+      st.p += st.s * dt;
+      st.x += st.vx * dt;
+      st.y += st.vy * dt;
+      if (st.y > hScreen + 12) { st.y = -12; st.x = Math.random() * wScreen; }
+      if (st.x < -12) st.x = wScreen + 12;
+      if (st.x > wScreen + 12) st.x = -12;
+      bgCtx.globalAlpha = Math.max(0.15, Math.min(0.95, st.a + Math.sin(st.p) * 0.25));
+      bgCtx.drawImage(starSprite, st.x - st.size * 0.5, st.y - st.size * 0.5, st.size, st.size);
+    }
 
+    for (let i = 0; i < flakes.length; i++) {
+      const fl = flakes[i];
+      fl.x += fl.vx * dt;
+      fl.y += fl.vy * dt;
+      fl.rot += fl.vRot * dt;
+      if (fl.y > hScreen + 24) { fl.y = -24; fl.x = Math.random() * wScreen; }
+      if (fl.x < -24) fl.x = wScreen + 24;
+      if (fl.x > wScreen + 24) fl.x = -24;
       bgCtx.save();
-      bgCtx.beginPath();
-      if (s.bright) {
-        bgCtx.shadowBlur = 10;
-        bgCtx.shadowColor = "rgba(255, 255, 255, 0.85)";
-      }
-      bgCtx.fillStyle = "rgba(255, 255, 255, " + alpha + ")";
-      bgCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      bgCtx.fill();
+      bgCtx.globalAlpha = fl.a;
+      bgCtx.translate(fl.x, fl.y);
+      bgCtx.rotate(fl.rot);
+      const d = 32 * fl.scale;
+      bgCtx.drawImage(flakeSprite, -d * 0.5, -d * 0.5, d, d);
       bgCtx.restore();
     }
+    bgCtx.globalAlpha = 1;
 
-    mettreAJourAstres();
-    requestAnimationFrame(renderFullSky);
-  }
-
-  window.addEventListener('resize', function() {
-    resizeFullSky();
-    for (let i = 0; i < stars.length; i++) {
-      stars[i].x = stars[i].xRatio * wScreen;
-      stars[i].y = stars[i].yRatio * hScreen;
+    if (sunEl || moonEl) {
+      angleOrbite += 0.0018 * dt;
+      const cx = wScreen * 0.5, cy = hScreen * 0.48;
+      const rx = Math.max(260, wScreen * 0.36), ry = Math.max(180, hScreen * 0.34);
+      const sx = cx + Math.cos(angleOrbite) * rx, sy = cy + Math.sin(angleOrbite) * ry;
+      const mx = cx + Math.cos(angleOrbite - Math.PI) * rx, my = cy + Math.sin(angleOrbite - Math.PI) * ry;
+      if (sunEl) sunEl.style.transform = "translate3d(" + (sx - 55) + "px," + (sy - 55) + "px,0)";
+      if (moonEl) moonEl.style.transform = "translate3d(" + (mx - 55) + "px," + (my - 55) + "px,0)";
     }
-  });
-
-  initFullSky();
-  renderFullSky();
+  }
+  window.addEventListener('resize', resizeFullSky);
+  renderFullSky(performance.now());
 
   </script>
 </body>
