@@ -2451,7 +2451,8 @@ async function lancerGeneration() {
 
 <link rel="preconnect" href="https://api.quran.com" crossorigin>
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
-<style id="patch-master-v43">
+<link rel="preconnect" href="https://everyayah.com" crossorigin>
+<style id="patch-master-v44">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -2460,10 +2461,10 @@ async function lancerGeneration() {
   --wbw-min-w: 92px;
 }
 
-/* 1. SOLEIL & LUNE 150px PURS (DESTRUCTION TOTALE DU ROND NOIR INTERNE) */
+/* 1. SOLEIL & LUNE 150px PURS (SANS ROND NOIR) */
 html body #flatEarthSun,
 html body .flat-earth-sun,
-html body .astre-soleil-pur-v43 {
+html body .astre-soleil-pur-v44 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -2484,11 +2485,11 @@ html body #flatEarthSun::before,
 html body #flatEarthSun::after,
 html body .flat-earth-sun::before,
 html body .flat-earth-sun::after,
-html body .astre-soleil-pur-v43::before,
-html body .astre-soleil-pur-v43::after,
+html body .astre-soleil-pur-v44::before,
+html body .astre-soleil-pur-v44::after,
 html body #flatEarthSun *,
 html body .flat-earth-sun *,
-html body .astre-soleil-pur-v43 * {
+html body .astre-soleil-pur-v44 * {
   display: none !important;
   content: none !important;
   background: transparent !important;
@@ -2498,7 +2499,7 @@ html body .astre-soleil-pur-v43 * {
 
 html body #flatEarthMoon,
 html body .flat-earth-moon,
-html body .astre-lune-pure-v43 {
+html body .astre-lune-pure-v44 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -2519,11 +2520,11 @@ html body #flatEarthMoon::before,
 html body #flatEarthMoon::after,
 html body .flat-earth-moon::before,
 html body .flat-earth-moon::after,
-html body .astre-lune-pure-v43::before,
-html body .astre-lune-pure-v43::after,
+html body .astre-lune-pure-v44::before,
+html body .astre-lune-pure-v44::after,
 html body #flatEarthMoon *,
 html body .flat-earth-moon *,
-html body .astre-lune-pure-v43 * {
+html body .astre-lune-pure-v44 * {
   display: none !important;
   content: none !important;
   background: transparent !important;
@@ -2535,7 +2536,7 @@ html body .astre-lune-pure-v43 * {
 html body img[src*="maher" i],
 html body [data-reciter*="maher" i],
 html body [data-value*="maher" i],
-html body .maher-supprime-v43 {
+html body .maher-supprime-v44 {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
@@ -2614,21 +2615,16 @@ html body .follow-word {
   position: relative !important; background: transparent !important; border: none !important; box-shadow: none !important; color: #ffffff !important; padding: 0 7px !important; display: inline-block !important; transform-origin: 50% 85% !important; will-change: transform, opacity, filter, text-shadow !important; backface-visibility: hidden !important; -webkit-font-smoothing: antialiased !important;
 }
 </style>
-<script id="script-master-v43">(function codeClientV43() {
-  // ==========================================================================
-  // 1. DÉTECTION GÉOMÉTRIQUE & RÉPARATION TOTALE DU SOLEIL ET DE LA LUNE
-  //    Trouve les 2 sphères célestes même si leur ID/classe a changé et
-  //    supprime tout disque noir interne ou ombre inset !
-  // ==========================================================================
+<script id="script-master-v44">(function codeClientV44() {
+  // 1. DÉTECTION GÉOMÉTRIQUE & RÉPARATION DU SOLEIL ET DE LA LUNE
   function reparerSoleilEtLuneSansRondNoir() {
     var tousDivs = document.querySelectorAll("div, span, canvas");
-    var sphèresTrouvees = [];
+    var spheresTrouvees = [];
 
     for (var i = 0; i < tousDivs.length; i++) {
       var el = tousDivs[i];
       var idCls = ((el.id || "") + " " + (el.className && typeof el.className === "string" ? el.className : "")).toLowerCase();
 
-      // Si l'élément porte explicitement sun ou moon dans son id/classe
       var estNommeSun = idCls.indexOf("sun") !== -1 || idCls.indexOf("soleil") !== -1;
       var estNommeMoon = idCls.indexOf("moon") !== -1 || idCls.indexOf("lune") !== -1;
 
@@ -2643,7 +2639,7 @@ html body .follow-word {
       if (estNommeSun || estNommeMoon || estRondVide) {
         var st = window.getComputedStyle(el);
         if (estNommeSun || estNommeMoon || st.borderRadius.indexOf("50%") !== -1 || parseFloat(st.borderRadius) >= r.width * 0.4) {
-          sphèresTrouvees.push({
+          spheresTrouvees.push({
             el: el,
             cx: r.left + r.width / 2,
             cy: r.top + r.height / 2,
@@ -2655,17 +2651,15 @@ html body .follow-word {
       }
     }
 
-    // Filtrer les disques noirs superposés au même endroit qu'une sphère principale
     var astresPrincipaux = [];
-    for (var j = 0; j < sphèresTrouvees.length; j++) {
-      var s = sphèresTrouvees[j];
+    for (var j = 0; j < spheresTrouvees.length; j++) {
+      var s = spheresTrouvees[j];
       var doublonSuperpose = false;
       for (var k = 0; k < astresPrincipaux.length; k++) {
         var p = astresPrincipaux[k];
         var dist = Math.hypot(s.cx - p.cx, s.cy - p.cy);
         if (dist < 45) {
           doublonSuperpose = true;
-          // Masquer le disque interne superposé qui crée le trou noir !
           s.el.style.setProperty("display", "none", "important");
           break;
         }
@@ -2675,28 +2669,26 @@ html body .follow-word {
       }
     }
 
-    // Appliquer le style Soleil Doré 150px et Lune Blanche 150px sur les astres principaux
     for (var m = 0; m < astresPrincipaux.length; m++) {
       var astre = astresPrincipaux[m];
       var node = astre.el;
 
-      // Vider tout enfant interne qui dessinerait un rond noir
       if (node.children && node.children.length > 0) {
         node.innerHTML = "";
       }
 
       var appliquerSoleil = astre.isSun || (!astre.isMoon && m === 0);
       if (appliquerSoleil) {
-        node.classList.remove("astre-lune-pure-v43");
-        node.classList.add("astre-soleil-pur-v43");
+        node.classList.remove("astre-lune-pure-v44");
+        node.classList.add("astre-soleil-pur-v44");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
         node.style.setProperty("background", "radial-gradient(circle at 50% 50%, #ffffff 0%, #fef9c3 24%, #fde047 48%, #facc15 68%, rgba(245, 158, 11, 0.38) 84%, rgba(234, 88, 12, 0) 100%)", "important");
         node.style.setProperty("box-shadow", "0 0 45px 12px rgba(250, 204, 21, 0.55), 0 0 95px 28px rgba(245, 158, 11, 0.30)", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v43");
-        node.classList.add("astre-lune-pure-v43");
+        node.classList.remove("astre-soleil-pur-v44");
+        node.classList.add("astre-lune-pure-v44");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -2706,9 +2698,7 @@ html body .follow-word {
     }
   }
 
-  // ==========================================================================
-  // 2. SUPPRESSION TOTALE DE MAHER AL-MUAIQLY (SELECT + MENU CUSTOM)
-  // ==========================================================================
+  // 2. SUPPRESSION TOTALE DE MAHER AL-MUAIQLY
   function retirerRecitateurMaher() {
     try {
       for (var i = 0; i < localStorage.length; i++) {
@@ -2755,7 +2745,7 @@ html body .follow-word {
             cible = el.parentElement;
           }
         }
-        cible.classList.add("maher-supprime-v43");
+        cible.classList.add("maher-supprime-v44");
         if (cible.parentNode) cible.parentNode.removeChild(cible);
       }
     }
@@ -2768,16 +2758,14 @@ html body .follow-word {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v43");
+          row.classList.add("maher-supprime-v44");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
     }
   }
 
-  // ==========================================================================
   // 3. DÉTECTION DE LA LANGUE ACTIVE & MENTIONS MULTILINGUES
-  // ==========================================================================
   function obtenirLangueActive() {
     var bodyTxt = document.body ? document.body.innerText : "";
     if (bodyTxt.indexOf("Escuchar aleya") !== -1 || bodyTxt.indexOf("EXPLICACIÓN DE LA ALEYA") !== -1 || bodyTxt.indexOf("Ruido Marrón") !== -1) {
@@ -2841,9 +2829,7 @@ html body .follow-word {
     }
   }
 
-  // ==========================================================================
   // 4. MOT-À-MOT AVEC ORDRE "1. ALLĀH -> 2. A SCELLÉ"
-  // ==========================================================================
   var DICO_MULTILINGUE = {
     fr: {
       "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn", "طه": "Tā-Hā", "طسم": "Tā-Sīn-Mīm", "حم": "Hā-Mīm", "كهيعص": "Kāf-Hā-Yā-‘Ayn-Sād",
@@ -2871,7 +2857,7 @@ html body .follow-word {
   var sensGrilleRtl = true;
 
   try {
-    var sauv = localStorage.getItem("cache_wbw_exact_v43");
+    var sauv = localStorage.getItem("cache_wbw_exact_v44");
     if (sauv) cacheVersetMotsExact = JSON.parse(sauv);
   } catch (e) {}
 
@@ -2961,7 +2947,7 @@ html body .follow-word {
 
         if (aTraduireTextes.length === 0) {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v43", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v44", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -2988,7 +2974,7 @@ html body .follow-word {
           .catch(function () {})
           .finally(function () {
             cacheVersetMotsExact[cleCache] = motsQdc;
-            try { localStorage.setItem("cache_wbw_exact_v43", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+            try { localStorage.setItem("cache_wbw_exact_v44", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
             appliquerVraiMotAMotSurDOM();
           });
       })
@@ -3080,8 +3066,8 @@ html body .follow-word {
         if (!cVerbe.children.length || !cSuiv.children.length) continue;
         var ar1 = normaliserArabeCle(cVerbe.children[0].textContent || "");
         var ar2 = normaliserArabeCle(cSuiv.children[0].textContent || "");
-        if (ar2 === "الله" && ar1 !== "ان" && ar1 !== "وان" && ar1 !== "باسم" && ar1 !== "بسم" && ar1 !== "سبحان" && ar1 !== "الحمد" && !cSuiv.getAttribute("data-swapped-v43")) {
-          cSuiv.setAttribute("data-swapped-v43", "1");
+        if (ar2 === "الله" && ar1 !== "ان" && ar1 !== "وان" && ar1 !== "باسم" && ar1 !== "بسم" && ar1 !== "سبحان" && ar1 !== "الحمد" && !cSuiv.getAttribute("data-swapped-v44")) {
+          cSuiv.setAttribute("data-swapped-v44", "1");
           grilleParente.insertBefore(cSuiv, cVerbe);
           break;
         }
@@ -3150,40 +3136,117 @@ html body .follow-word {
     }
   }
 
+  // ==========================================================================
+  // 5. PACK SEO COMPLET (META DESCRIPTION + OPENGRAPH + CANONICAL + 3 SCHEMAS)
+  // ==========================================================================
   var dernierVersetSeo = "";
-  function injecterSchemaSeoGoogle() {
+  function injecterPackSeoComplet() {
     var vk = obtenirCleVerset();
-    if (!vk || vk === dernierVersetSeo) return;
-    dernierVersetSeo = vk;
+    var lang = obtenirLangueActive();
+    var cleSeo = vk + "_" + lang;
+    if (!vk || cleSeo === dernierVersetSeo) return;
+    dernierVersetSeo = cleSeo;
+
+    var parts = vk.split(":");
+    var numS = parts[0];
+    var numV = parts[1];
+    var urlCanonique = "https://corantafsir.com/sourate-" + numS + "-verset-" + numV + ".html";
 
     var h1 = document.querySelector("h1, h2");
-    var titreVerset = h1 ? (h1.textContent || "").trim() : "Coran " + vk;
-    var blocTafsir = document.querySelector("#tafsirText, .tafsir-content, .tafsir-box");
-    var descTafsir = blocTafsir ? (blocTafsir.textContent || "").trim().slice(0, 320) : document.title;
+    var titreVerset = h1 ? (h1.textContent || "").trim() : "Sourate " + numS + " Verset " + numV;
 
-    var elJson = document.getElementById("seo-jsonld-v43");
+    // Extraire le texte du Tafsir pour la meta description et les Rich Snippets Google
+    var tousBlocs = document.querySelectorAll("div, p");
+    var texteTafsirPropre = "";
+    for (var i = 0; i < tousBlocs.length; i++) {
+      var t = (tousBlocs[i].textContent || "").trim();
+      if ((t.indexOf("TAFSĪR") !== -1 || t.indexOf("EXPLICATION") !== -1) && t.length > 80 && t.length < 4000) {
+        texteTafsirPropre = t.replace(/TAFSĪR\\s*&\\s*EXPLICATION DU VERSET/i, "").trim();
+        break;
+      }
+    }
+    if (!texteTafsirPropre) texteTafsirPropre = titreVerset + " — Traduction, Mot à mot, Audio et Exégèse (Tafsīr Ibn Kathīr & Al-Mukhtasar).";
+
+    var metaDescCourte = (titreVerset + " (" + vk + ") : " + texteTafsirPropre).replace(/\\s+/g, " ").slice(0, 158);
+    var nouveauTitle = titreVerset + " (" + vk + ") — Tafsīr, Cause de révélation & Mot à mot | CoranTafsir";
+    if (document.title !== nouveauTitle) {
+      document.title = nouveauTitle;
+    }
+
+    function definirMeta(attrName, attrVal, contentVal) {
+      var sel = "meta[" + attrName + "='" + attrVal + "']";
+      var m = document.querySelector(sel);
+      if (!m) {
+        m = document.createElement("meta");
+        m.setAttribute(attrName, attrVal);
+        document.head.appendChild(m);
+      }
+      m.setAttribute("content", contentVal);
+    }
+
+    definirMeta("name", "description", metaDescCourte);
+    definirMeta("name", "robots", "index, follow, max-snippet:-1, max-image-preview:large");
+    definirMeta("property", "og:title", nouveauTitle);
+    definirMeta("property", "og:description", metaDescCourte);
+    definirMeta("property", "og:url", urlCanonique);
+    definirMeta("property", "og:type", "article");
+    definirMeta("property", "og:site_name", "CoranTafsir");
+    definirMeta("name", "twitter:card", "summary_large_image");
+    definirMeta("name", "twitter:title", nouveauTitle);
+    definirMeta("name", "twitter:description", metaDescCourte);
+
+    var linkCan = document.querySelector("link[rel='canonical']");
+    if (!linkCan) {
+      linkCan = document.createElement("link");
+      linkCan.setAttribute("rel", "canonical");
+      document.head.appendChild(linkCan);
+    }
+    linkCan.setAttribute("href", urlCanonique);
+
+    var elJson = document.getElementById("seo-jsonld-v44");
     if (!elJson) {
       elJson = document.createElement("script");
-      elJson.id = "seo-jsonld-v43";
+      elJson.id = "seo-jsonld-v44";
       elJson.type = "application/ld+json";
       document.head.appendChild(elJson);
     }
 
-    var schema = {
+    var schemaGraph = {
       "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
+      "@graph": [
         {
-          "@type": "Question",
-          "name": "Quelle est l'explication (Tafsīr) et la cause de révélation de " + titreVerset + " (" + vk + ") ?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": descTafsir
-          }
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Accueil Coran (114 Sourates)", "item": "https://corantafsir.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Sourate " + numS, "item": "https://corantafsir.com/sourate-" + numS + "-verset-1.html" },
+            { "@type": "ListItem", "position": 3, "name": titreVerset + " (" + vk + ")", "item": urlCanonique }
+          ]
+        },
+        {
+          "@type": "Article",
+          "headline": nouveauTitle,
+          "description": metaDescCourte,
+          "mainEntityOfPage": urlCanonique,
+          "inLanguage": lang,
+          "author": { "@type": "Organization", "name": "CoranTafsir" },
+          "publisher": { "@type": "Organization", "name": "CoranTafsir", "url": "https://corantafsir.com/" }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Quelle est l'explication (Tafsīr) et la cause de révélation de " + titreVerset + " (" + vk + ") ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": texteTafsirPropre.slice(0, 800)
+              }
+            }
+          ]
         }
       ]
     };
-    elJson.textContent = JSON.stringify(schema);
+    elJson.textContent = JSON.stringify(schemaGraph);
   }
 
   var wbwScale = 1.0;
@@ -3243,9 +3306,9 @@ html body .follow-word {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV43")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV44")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV43";
+      nv.id = "btnSuiviUniverselV44";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.innerHTML = "✨ Suivi";
@@ -3343,7 +3406,7 @@ html body .follow-word {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV43) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV44) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       window.__lecteurAudioActuel = this;
@@ -3353,7 +3416,7 @@ html body .follow-word {
       lancerBoucleSuivi();
       return origPlay.apply(this, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV43 = true;
+    HTMLMediaElement.prototype.__hookedV44 = true;
   }
 
   function trouverAudioActif() {
@@ -3526,7 +3589,7 @@ html body .follow-word {
     appliquerVraiMotAMotSurDOM();
     assurerBoutonSuiviVisible();
     appliquerZoomMotAMot();
-    injecterSchemaSeoGoogle();
+    injecterPackSeoComplet();
     var cleRec = obtenirCleRecitateurSelectionne();
     var vk = obtenirCleVerset();
     if (cleRec && vk) chargerTimestampsQdc(cleRec, vk);
@@ -4709,7 +4772,8 @@ html body .follow-word {
 
 <link rel="preconnect" href="https://api.quran.com" crossorigin>
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
-<style id="patch-master-v43">
+<link rel="preconnect" href="https://everyayah.com" crossorigin>
+<style id="patch-master-v44">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -4718,10 +4782,10 @@ html body .follow-word {
   --wbw-min-w: 92px;
 }
 
-/* 1. SOLEIL & LUNE 150px PURS (DESTRUCTION TOTALE DU ROND NOIR INTERNE) */
+/* 1. SOLEIL & LUNE 150px PURS (SANS ROND NOIR) */
 html body #flatEarthSun,
 html body .flat-earth-sun,
-html body .astre-soleil-pur-v43 {
+html body .astre-soleil-pur-v44 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -4742,11 +4806,11 @@ html body #flatEarthSun::before,
 html body #flatEarthSun::after,
 html body .flat-earth-sun::before,
 html body .flat-earth-sun::after,
-html body .astre-soleil-pur-v43::before,
-html body .astre-soleil-pur-v43::after,
+html body .astre-soleil-pur-v44::before,
+html body .astre-soleil-pur-v44::after,
 html body #flatEarthSun *,
 html body .flat-earth-sun *,
-html body .astre-soleil-pur-v43 * {
+html body .astre-soleil-pur-v44 * {
   display: none !important;
   content: none !important;
   background: transparent !important;
@@ -4756,7 +4820,7 @@ html body .astre-soleil-pur-v43 * {
 
 html body #flatEarthMoon,
 html body .flat-earth-moon,
-html body .astre-lune-pure-v43 {
+html body .astre-lune-pure-v44 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -4777,11 +4841,11 @@ html body #flatEarthMoon::before,
 html body #flatEarthMoon::after,
 html body .flat-earth-moon::before,
 html body .flat-earth-moon::after,
-html body .astre-lune-pure-v43::before,
-html body .astre-lune-pure-v43::after,
+html body .astre-lune-pure-v44::before,
+html body .astre-lune-pure-v44::after,
 html body #flatEarthMoon *,
 html body .flat-earth-moon *,
-html body .astre-lune-pure-v43 * {
+html body .astre-lune-pure-v44 * {
   display: none !important;
   content: none !important;
   background: transparent !important;
@@ -4793,7 +4857,7 @@ html body .astre-lune-pure-v43 * {
 html body img[src*="maher" i],
 html body [data-reciter*="maher" i],
 html body [data-value*="maher" i],
-html body .maher-supprime-v43 {
+html body .maher-supprime-v44 {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
@@ -4872,21 +4936,16 @@ html body .follow-word {
   position: relative !important; background: transparent !important; border: none !important; box-shadow: none !important; color: #ffffff !important; padding: 0 7px !important; display: inline-block !important; transform-origin: 50% 85% !important; will-change: transform, opacity, filter, text-shadow !important; backface-visibility: hidden !important; -webkit-font-smoothing: antialiased !important;
 }
 </style>
-<script id="script-master-v43">(function codeClientV43() {
-  // ==========================================================================
-  // 1. DÉTECTION GÉOMÉTRIQUE & RÉPARATION TOTALE DU SOLEIL ET DE LA LUNE
-  //    Trouve les 2 sphères célestes même si leur ID/classe a changé et
-  //    supprime tout disque noir interne ou ombre inset !
-  // ==========================================================================
+<script id="script-master-v44">(function codeClientV44() {
+  // 1. DÉTECTION GÉOMÉTRIQUE & RÉPARATION DU SOLEIL ET DE LA LUNE
   function reparerSoleilEtLuneSansRondNoir() {
     var tousDivs = document.querySelectorAll("div, span, canvas");
-    var sphèresTrouvees = [];
+    var spheresTrouvees = [];
 
     for (var i = 0; i < tousDivs.length; i++) {
       var el = tousDivs[i];
       var idCls = ((el.id || "") + " " + (el.className && typeof el.className === "string" ? el.className : "")).toLowerCase();
 
-      // Si l'élément porte explicitement sun ou moon dans son id/classe
       var estNommeSun = idCls.indexOf("sun") !== -1 || idCls.indexOf("soleil") !== -1;
       var estNommeMoon = idCls.indexOf("moon") !== -1 || idCls.indexOf("lune") !== -1;
 
@@ -4901,7 +4960,7 @@ html body .follow-word {
       if (estNommeSun || estNommeMoon || estRondVide) {
         var st = window.getComputedStyle(el);
         if (estNommeSun || estNommeMoon || st.borderRadius.indexOf("50%") !== -1 || parseFloat(st.borderRadius) >= r.width * 0.4) {
-          sphèresTrouvees.push({
+          spheresTrouvees.push({
             el: el,
             cx: r.left + r.width / 2,
             cy: r.top + r.height / 2,
@@ -4913,17 +4972,15 @@ html body .follow-word {
       }
     }
 
-    // Filtrer les disques noirs superposés au même endroit qu'une sphère principale
     var astresPrincipaux = [];
-    for (var j = 0; j < sphèresTrouvees.length; j++) {
-      var s = sphèresTrouvees[j];
+    for (var j = 0; j < spheresTrouvees.length; j++) {
+      var s = spheresTrouvees[j];
       var doublonSuperpose = false;
       for (var k = 0; k < astresPrincipaux.length; k++) {
         var p = astresPrincipaux[k];
         var dist = Math.hypot(s.cx - p.cx, s.cy - p.cy);
         if (dist < 45) {
           doublonSuperpose = true;
-          // Masquer le disque interne superposé qui crée le trou noir !
           s.el.style.setProperty("display", "none", "important");
           break;
         }
@@ -4933,28 +4990,26 @@ html body .follow-word {
       }
     }
 
-    // Appliquer le style Soleil Doré 150px et Lune Blanche 150px sur les astres principaux
     for (var m = 0; m < astresPrincipaux.length; m++) {
       var astre = astresPrincipaux[m];
       var node = astre.el;
 
-      // Vider tout enfant interne qui dessinerait un rond noir
       if (node.children && node.children.length > 0) {
         node.innerHTML = "";
       }
 
       var appliquerSoleil = astre.isSun || (!astre.isMoon && m === 0);
       if (appliquerSoleil) {
-        node.classList.remove("astre-lune-pure-v43");
-        node.classList.add("astre-soleil-pur-v43");
+        node.classList.remove("astre-lune-pure-v44");
+        node.classList.add("astre-soleil-pur-v44");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
         node.style.setProperty("background", "radial-gradient(circle at 50% 50%, #ffffff 0%, #fef9c3 24%, #fde047 48%, #facc15 68%, rgba(245, 158, 11, 0.38) 84%, rgba(234, 88, 12, 0) 100%)", "important");
         node.style.setProperty("box-shadow", "0 0 45px 12px rgba(250, 204, 21, 0.55), 0 0 95px 28px rgba(245, 158, 11, 0.30)", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v43");
-        node.classList.add("astre-lune-pure-v43");
+        node.classList.remove("astre-soleil-pur-v44");
+        node.classList.add("astre-lune-pure-v44");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -4964,9 +5019,7 @@ html body .follow-word {
     }
   }
 
-  // ==========================================================================
-  // 2. SUPPRESSION TOTALE DE MAHER AL-MUAIQLY (SELECT + MENU CUSTOM)
-  // ==========================================================================
+  // 2. SUPPRESSION TOTALE DE MAHER AL-MUAIQLY
   function retirerRecitateurMaher() {
     try {
       for (var i = 0; i < localStorage.length; i++) {
@@ -5013,7 +5066,7 @@ html body .follow-word {
             cible = el.parentElement;
           }
         }
-        cible.classList.add("maher-supprime-v43");
+        cible.classList.add("maher-supprime-v44");
         if (cible.parentNode) cible.parentNode.removeChild(cible);
       }
     }
@@ -5026,16 +5079,14 @@ html body .follow-word {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v43");
+          row.classList.add("maher-supprime-v44");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
     }
   }
 
-  // ==========================================================================
   // 3. DÉTECTION DE LA LANGUE ACTIVE & MENTIONS MULTILINGUES
-  // ==========================================================================
   function obtenirLangueActive() {
     var bodyTxt = document.body ? document.body.innerText : "";
     if (bodyTxt.indexOf("Escuchar aleya") !== -1 || bodyTxt.indexOf("EXPLICACIÓN DE LA ALEYA") !== -1 || bodyTxt.indexOf("Ruido Marrón") !== -1) {
@@ -5099,9 +5150,7 @@ html body .follow-word {
     }
   }
 
-  // ==========================================================================
   // 4. MOT-À-MOT AVEC ORDRE "1. ALLĀH -> 2. A SCELLÉ"
-  // ==========================================================================
   var DICO_MULTILINGUE = {
     fr: {
       "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn", "طه": "Tā-Hā", "طسم": "Tā-Sīn-Mīm", "حم": "Hā-Mīm", "كهيعص": "Kāf-Hā-Yā-‘Ayn-Sād",
@@ -5129,7 +5178,7 @@ html body .follow-word {
   var sensGrilleRtl = true;
 
   try {
-    var sauv = localStorage.getItem("cache_wbw_exact_v43");
+    var sauv = localStorage.getItem("cache_wbw_exact_v44");
     if (sauv) cacheVersetMotsExact = JSON.parse(sauv);
   } catch (e) {}
 
@@ -5219,7 +5268,7 @@ html body .follow-word {
 
         if (aTraduireTextes.length === 0) {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v43", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v44", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -5246,7 +5295,7 @@ html body .follow-word {
           .catch(function () {})
           .finally(function () {
             cacheVersetMotsExact[cleCache] = motsQdc;
-            try { localStorage.setItem("cache_wbw_exact_v43", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+            try { localStorage.setItem("cache_wbw_exact_v44", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
             appliquerVraiMotAMotSurDOM();
           });
       })
@@ -5338,8 +5387,8 @@ html body .follow-word {
         if (!cVerbe.children.length || !cSuiv.children.length) continue;
         var ar1 = normaliserArabeCle(cVerbe.children[0].textContent || "");
         var ar2 = normaliserArabeCle(cSuiv.children[0].textContent || "");
-        if (ar2 === "الله" && ar1 !== "ان" && ar1 !== "وان" && ar1 !== "باسم" && ar1 !== "بسم" && ar1 !== "سبحان" && ar1 !== "الحمد" && !cSuiv.getAttribute("data-swapped-v43")) {
-          cSuiv.setAttribute("data-swapped-v43", "1");
+        if (ar2 === "الله" && ar1 !== "ان" && ar1 !== "وان" && ar1 !== "باسم" && ar1 !== "بسم" && ar1 !== "سبحان" && ar1 !== "الحمد" && !cSuiv.getAttribute("data-swapped-v44")) {
+          cSuiv.setAttribute("data-swapped-v44", "1");
           grilleParente.insertBefore(cSuiv, cVerbe);
           break;
         }
@@ -5408,40 +5457,117 @@ html body .follow-word {
     }
   }
 
+  // ==========================================================================
+  // 5. PACK SEO COMPLET (META DESCRIPTION + OPENGRAPH + CANONICAL + 3 SCHEMAS)
+  // ==========================================================================
   var dernierVersetSeo = "";
-  function injecterSchemaSeoGoogle() {
+  function injecterPackSeoComplet() {
     var vk = obtenirCleVerset();
-    if (!vk || vk === dernierVersetSeo) return;
-    dernierVersetSeo = vk;
+    var lang = obtenirLangueActive();
+    var cleSeo = vk + "_" + lang;
+    if (!vk || cleSeo === dernierVersetSeo) return;
+    dernierVersetSeo = cleSeo;
+
+    var parts = vk.split(":");
+    var numS = parts[0];
+    var numV = parts[1];
+    var urlCanonique = "https://corantafsir.com/sourate-" + numS + "-verset-" + numV + ".html";
 
     var h1 = document.querySelector("h1, h2");
-    var titreVerset = h1 ? (h1.textContent || "").trim() : "Coran " + vk;
-    var blocTafsir = document.querySelector("#tafsirText, .tafsir-content, .tafsir-box");
-    var descTafsir = blocTafsir ? (blocTafsir.textContent || "").trim().slice(0, 320) : document.title;
+    var titreVerset = h1 ? (h1.textContent || "").trim() : "Sourate " + numS + " Verset " + numV;
 
-    var elJson = document.getElementById("seo-jsonld-v43");
+    // Extraire le texte du Tafsir pour la meta description et les Rich Snippets Google
+    var tousBlocs = document.querySelectorAll("div, p");
+    var texteTafsirPropre = "";
+    for (var i = 0; i < tousBlocs.length; i++) {
+      var t = (tousBlocs[i].textContent || "").trim();
+      if ((t.indexOf("TAFSĪR") !== -1 || t.indexOf("EXPLICATION") !== -1) && t.length > 80 && t.length < 4000) {
+        texteTafsirPropre = t.replace(/TAFSĪR\\s*&\\s*EXPLICATION DU VERSET/i, "").trim();
+        break;
+      }
+    }
+    if (!texteTafsirPropre) texteTafsirPropre = titreVerset + " — Traduction, Mot à mot, Audio et Exégèse (Tafsīr Ibn Kathīr & Al-Mukhtasar).";
+
+    var metaDescCourte = (titreVerset + " (" + vk + ") : " + texteTafsirPropre).replace(/\\s+/g, " ").slice(0, 158);
+    var nouveauTitle = titreVerset + " (" + vk + ") — Tafsīr, Cause de révélation & Mot à mot | CoranTafsir";
+    if (document.title !== nouveauTitle) {
+      document.title = nouveauTitle;
+    }
+
+    function definirMeta(attrName, attrVal, contentVal) {
+      var sel = "meta[" + attrName + "='" + attrVal + "']";
+      var m = document.querySelector(sel);
+      if (!m) {
+        m = document.createElement("meta");
+        m.setAttribute(attrName, attrVal);
+        document.head.appendChild(m);
+      }
+      m.setAttribute("content", contentVal);
+    }
+
+    definirMeta("name", "description", metaDescCourte);
+    definirMeta("name", "robots", "index, follow, max-snippet:-1, max-image-preview:large");
+    definirMeta("property", "og:title", nouveauTitle);
+    definirMeta("property", "og:description", metaDescCourte);
+    definirMeta("property", "og:url", urlCanonique);
+    definirMeta("property", "og:type", "article");
+    definirMeta("property", "og:site_name", "CoranTafsir");
+    definirMeta("name", "twitter:card", "summary_large_image");
+    definirMeta("name", "twitter:title", nouveauTitle);
+    definirMeta("name", "twitter:description", metaDescCourte);
+
+    var linkCan = document.querySelector("link[rel='canonical']");
+    if (!linkCan) {
+      linkCan = document.createElement("link");
+      linkCan.setAttribute("rel", "canonical");
+      document.head.appendChild(linkCan);
+    }
+    linkCan.setAttribute("href", urlCanonique);
+
+    var elJson = document.getElementById("seo-jsonld-v44");
     if (!elJson) {
       elJson = document.createElement("script");
-      elJson.id = "seo-jsonld-v43";
+      elJson.id = "seo-jsonld-v44";
       elJson.type = "application/ld+json";
       document.head.appendChild(elJson);
     }
 
-    var schema = {
+    var schemaGraph = {
       "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
+      "@graph": [
         {
-          "@type": "Question",
-          "name": "Quelle est l'explication (Tafsīr) et la cause de révélation de " + titreVerset + " (" + vk + ") ?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": descTafsir
-          }
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Accueil Coran (114 Sourates)", "item": "https://corantafsir.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Sourate " + numS, "item": "https://corantafsir.com/sourate-" + numS + "-verset-1.html" },
+            { "@type": "ListItem", "position": 3, "name": titreVerset + " (" + vk + ")", "item": urlCanonique }
+          ]
+        },
+        {
+          "@type": "Article",
+          "headline": nouveauTitle,
+          "description": metaDescCourte,
+          "mainEntityOfPage": urlCanonique,
+          "inLanguage": lang,
+          "author": { "@type": "Organization", "name": "CoranTafsir" },
+          "publisher": { "@type": "Organization", "name": "CoranTafsir", "url": "https://corantafsir.com/" }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Quelle est l'explication (Tafsīr) et la cause de révélation de " + titreVerset + " (" + vk + ") ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": texteTafsirPropre.slice(0, 800)
+              }
+            }
+          ]
         }
       ]
     };
-    elJson.textContent = JSON.stringify(schema);
+    elJson.textContent = JSON.stringify(schemaGraph);
   }
 
   var wbwScale = 1.0;
@@ -5501,9 +5627,9 @@ html body .follow-word {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV43")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV44")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV43";
+      nv.id = "btnSuiviUniverselV44";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.innerHTML = "✨ Suivi";
@@ -5601,7 +5727,7 @@ html body .follow-word {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV43) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV44) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       window.__lecteurAudioActuel = this;
@@ -5611,7 +5737,7 @@ html body .follow-word {
       lancerBoucleSuivi();
       return origPlay.apply(this, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV43 = true;
+    HTMLMediaElement.prototype.__hookedV44 = true;
   }
 
   function trouverAudioActif() {
@@ -5784,7 +5910,7 @@ html body .follow-word {
     appliquerVraiMotAMotSurDOM();
     assurerBoutonSuiviVisible();
     appliquerZoomMotAMot();
-    injecterSchemaSeoGoogle();
+    injecterPackSeoComplet();
     var cleRec = obtenirCleRecitateurSelectionne();
     var vk = obtenirCleVerset();
     if (cleRec && vk) chargerTimestampsQdc(cleRec, vk);
