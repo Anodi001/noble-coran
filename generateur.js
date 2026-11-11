@@ -2452,7 +2452,7 @@ async function lancerGeneration() {
 <link rel="preconnect" href="https://api.quran.com" crossorigin>
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
-<style id="patch-master-v47">
+<style id="patch-master-v48">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -2467,7 +2467,7 @@ html body .flat-earth-sun,
 html body [id*="sun" i]:not([id*="sound" i]),
 html body [class*="sun" i]:not([class*="sound" i]),
 html body [data-astre-role="sun"],
-html body .astre-soleil-pur-v47 {
+html body .astre-soleil-pur-v48 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -2493,12 +2493,12 @@ html body .flat-earth-sun::before,
 html body .flat-earth-sun::after,
 html body [data-astre-role="sun"]::before,
 html body [data-astre-role="sun"]::after,
-html body .astre-soleil-pur-v47::before,
-html body .astre-soleil-pur-v47::after,
+html body .astre-soleil-pur-v48::before,
+html body .astre-soleil-pur-v48::after,
 html body #flatEarthSun *,
 html body .flat-earth-sun *,
 html body [data-astre-role="sun"] *,
-html body .astre-soleil-pur-v47 * {
+html body .astre-soleil-pur-v48 * {
   display: none !important;
   content: none !important;
   background: none !important;
@@ -2514,7 +2514,7 @@ html body .flat-earth-moon,
 html body [id*="moon" i],
 html body [class*="moon" i],
 html body [data-astre-role="moon"],
-html body .astre-lune-pure-v47 {
+html body .astre-lune-pure-v48 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -2540,12 +2540,12 @@ html body .flat-earth-moon::before,
 html body .flat-earth-moon::after,
 html body [data-astre-role="moon"]::before,
 html body [data-astre-role="moon"]::after,
-html body .astre-lune-pure-v47::before,
-html body .astre-lune-pure-v47::after,
+html body .astre-lune-pure-v48::before,
+html body .astre-lune-pure-v48::after,
 html body #flatEarthMoon *,
 html body .flat-earth-moon *,
 html body [data-astre-role="moon"] *,
-html body .astre-lune-pure-v47 * {
+html body .astre-lune-pure-v48 * {
   display: none !important;
   content: none !important;
   background: none !important;
@@ -2559,7 +2559,7 @@ html body .astre-lune-pure-v47 * {
 html body img[src*="maher" i],
 html body [data-reciter*="maher" i],
 html body [data-value*="maher" i],
-html body .maher-supprime-v47 {
+html body .maher-supprime-v48 {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
@@ -2651,8 +2651,8 @@ html body .follow-word {
   text-shadow: 0 0 14px rgba(255, 255, 255, 0.48), 0 0 28px rgba(255, 255, 255, 0.20) !important;
 }
 </style>
-<script id="script-master-v47">(function codeClientV47() {
-  // 1. IDENTIFICATION INFAILLIBLE DU SOLEIL ET DE LA LUNE (MÊME QUAND ILS TOURNENT EN ORBITE !)
+<script id="script-master-v48">(function codeClientV48() {
+  // 1. IDENTIFICATION INFAILLIBLE DU SOLEIL ET DE LA LUNE EN ORBITE
   function reparerSoleilEtLuneEnOrbite() {
     var tousDivs = document.querySelectorAll("div, span, canvas");
     var spheresTrouvees = [];
@@ -2686,7 +2686,6 @@ html body .follow-word {
             (st.backgroundColor || "")
           ).toLowerCase();
 
-          // Le Soleil a une ombre jaune/ambre (rgb(250, 204, 21) / rgb(245, 158, 11) / #facc15 / #fde047 / 255, 200) ou ce fond cyan que le vieux script lui mettait
           var aCouleurSoleil =
             styleStr.indexOf("250, 204, 21") !== -1 ||
             styleStr.indexOf("245, 158, 11") !== -1 ||
@@ -2730,7 +2729,6 @@ html body .follow-word {
       }
     }
 
-    // S'il y a 2 astres et qu'aucun n'avait encore été marqué, marquer définitivement leur rôle dans le DOM
     var soleilDejaTrouve = false;
     for (var m = 0; m < astresPrincipaux.length; m++) {
       if (astresPrincipaux[m].isSun) soleilDejaTrouve = true;
@@ -2756,8 +2754,8 @@ html body .follow-word {
       }
 
       if (role === "sun") {
-        node.classList.remove("astre-lune-pure-v47");
-        node.classList.add("astre-soleil-pur-v47");
+        node.classList.remove("astre-lune-pure-v48");
+        node.classList.add("astre-soleil-pur-v48");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -2774,8 +2772,8 @@ html body .follow-word {
         );
         node.style.setProperty("filter", "none", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v47");
-        node.classList.add("astre-lune-pure-v47");
+        node.classList.remove("astre-soleil-pur-v48");
+        node.classList.add("astre-lune-pure-v48");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -2842,7 +2840,7 @@ html body .follow-word {
             cible = el.parentElement;
           }
         }
-        cible.classList.add("maher-supprime-v47");
+        cible.classList.add("maher-supprime-v48");
         if (cible.parentNode) cible.parentNode.removeChild(cible);
       }
     }
@@ -2855,7 +2853,7 @@ html body .follow-word {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v47");
+          row.classList.add("maher-supprime-v48");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
@@ -2926,13 +2924,13 @@ html body .follow-word {
     }
   }
 
-  // 4. MOT-À-MOT AVEC ORDRE "1. ALLĀH -> 2. A SCELLÉ" & BANDEAU MULTILINGUE
+  // 4. MOT-À-MOT AVEC TRADUCTION EXACTE DE "وَمَا" ("et ce qu'") ET ORDRE "ALLĀH -> A SCELLÉ"
   var DICO_MULTILINGUE = {
     fr: {
       "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn", "طه": "Tā-Hā", "طسم": "Tā-Sīn-Mīm", "حم": "Hā-Mīm", "كهيعص": "Kāf-Hā-Yā-‘Ayn-Sād",
       "ذلك": "Ce (C'est)", "الكتاب": "le Livre", "لا": "ne...pas / point de", "ريب": "doute", "فيه": "en lui", "هدى": "un guide", "للمتقين": "pour les pieux",
       "الذين": "ceux qui", "يؤمنون": "croient", "بالغيب": "à l'Inconnaissable", "ويقيمون": "et accomplissent", "الصلاة": "la Salāt (prière)", "الصلوة": "la Salāt (prière)", "ومما": "et de ce que", "رزقناهم": "Nous leur avons attribué", "ينفقون": "dépensent",
-      "والذين": "et ceux qui", "بما": "à ce qui", "أنزل": "a été descendu", "إليك": "vers toi", "وما": "et ce qui / et ils ne", "من": "de / avant", "قبلك": "avant toi", "وبالآخرة": "et en l'Au-delà", "وبالأخرة": "et en l'Au-delà", "هم": "ils / eux", "يوقنون": "ont la certitude",
+      "والذين": "et ceux qui", "بما": "à ce qui", "أنزل": "a été descendu", "إليك": "vers toi", "وما": "et ce qu'", "من": "de / avant", "قبلك": "avant toi", "وبالآخرة": "et en l'Au-delà", "وبالأخرة": "et en l'Au-delà", "هم": "ils / eux", "يوقنون": "ont la certitude",
       "أولئك": "Ceux-là", "على": "sur", "ربهم": "leur Seigneur", "وأولئك": "et ceux-là", "المفلحون": "les gagnants",
       "إن": "Certes", "كفروا": "ont mécru", "سواء": "il est égal", "عليهم": "pour eux", "أأنذرتهم": "que tu les avertisses", "ءأنذرتهم": "que tu les avertisses", "أم": "ou que", "لم": "ne...pas", "تنذرهم": "tu les avertisses",
       "ختم": "a scellé", "الله": "Allāh", "قلوبهم": "leurs cœurs", "وعلى": "et sur", "سمعهم": "leur ouïe", "وأبصارهم": "et sur leurs regards", "أبصارهم": "leurs regards", "غشاوة": "un voile", "غشوة": "un voile", "ولهم": "et pour eux", "عذاب": "un châtiment", "عظيم": "immense",
@@ -2941,12 +2939,14 @@ html body .follow-word {
       "في": "Dans / sur", "مرض": "une maladie", "فزادهم": "alors leur a accru", "مرضا": "en maladie", "أليم": "douloureux", "كانوا": "ils étaient", "يكذبون": "à mentir",
       "وإذا": "Et quand", "قيل": "on dit", "لهم": "à eux (leur)", "تفسدوا": "semez la corruption", "الأرض": "la terre", "قالوا": "ils disent", "إنما": "Certes, ne...que", "نحن": "nous (sommes)", "مصلحون": "des réformateurs",
       "ألا": "En vérité !", "إنهم": "ce sont eux", "المفسدون": "les corrupteurs", "ولكن": "mais", "يعلمون": "savent",
-      "بأيكم": "lequel d'entre vous", "المفتون": "est l'insensé (a perdu la raison)"
+      "والقلم": "Par la plume", "يسطرون": "ils écrivent !", "ما": "Tu n'es pas", "أنت": "toi", "بنعمة": "par la grâce de", "ربك": "ton Seigneur", "بمجنون": "un possédé",
+      "بأيكم": "lequel d'entre vous", "المفتون": "a perdu la raison (l'insensé)"
     },
     es: {
       "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn",
       "ذلك": "Ese (Este es)", "الكتاب": "el Libro", "لا": "no hay", "ريب": "duda", "فيه": "en él", "هدى": "una guía", "للمتقين": "para los piadosos",
-      "ختم": "ha sellado", "الله": "Allāh (Dios)", "على": "sobre", "قلوبهم": "sus corazones", "وعلى": "y sobre", "سمعهم": "su oído", "وأبصارهم": "y sus miradas", "أبصارهم": "sus miradas (ojos)", "غشاوة": "un velo", "غشوة": "un velo", "ولهم": "y para ellos", "عذاب": "un castigo", "عظيم": "inmenso"
+      "ختم": "ha sellado", "الله": "Allāh (Dios)", "على": "sobre", "قلوبهم": "sus corazones", "وعلى": "y sobre", "سمعهم": "su oído", "وأبصارهم": "y sus miradas", "أبصارهم": "sus miradas (ojos)", "غشاوة": "un velo", "غشوة": "un velo", "ولهم": "y para ellos", "عذاب": "un castigo", "عظيم": "inmenso",
+      "والقلم": "Por el cálamo (la pluma)", "وما": "y lo que", "يسطرون": "escriben"
     }
   };
 
@@ -2955,7 +2955,7 @@ html body .follow-word {
   var sensGrilleRtl = true;
 
   try {
-    var sauv = localStorage.getItem("cache_wbw_exact_v47");
+    var sauv = localStorage.getItem("cache_wbw_exact_v48");
     if (sauv) cacheVersetMotsExact = JSON.parse(sauv);
   } catch (e) {}
 
@@ -3045,7 +3045,7 @@ html body .follow-word {
 
         if (aTraduireTextes.length === 0) {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v47", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v48", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -3072,7 +3072,7 @@ html body .follow-word {
           .catch(function () {})
           .finally(function () {
             cacheVersetMotsExact[cleCache] = motsQdc;
-            try { localStorage.setItem("cache_wbw_exact_v47", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+            try { localStorage.setItem("cache_wbw_exact_v48", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
             appliquerVraiMotAMotSurDOM();
           });
       })
@@ -3139,6 +3139,14 @@ html body .follow-word {
 
       var tradFinale = chercherDansDicoCertifie(txtAr, lang);
 
+      // Si "وما" est suivi de "هم" ou "يخدعون" ou "يشعرون" ou "يعلمون", c'est la négation "et ils ne"
+      if (lang === "fr" && cleCarteAr === "وما" && i + 1 < cartes.length && cartes[i + 1].children.length) {
+        var suivAr = normaliserArabeCle(cartes[i + 1].children[0].textContent || "");
+        if (suivAr === "هم" || suivAr === "يخدعون" || suivAr === "يشعرون" || suivAr === "يعلمون" || suivAr === "كانوا") {
+          tradFinale = "et ils ne";
+        }
+      }
+
       if (!tradFinale && listeExacte && listeExacte.length > 0) {
         for (var m = 0; m < listeExacte.length; m++) {
           if (normaliserArabeCle(listeExacte[m].ar) === cleCarteAr) {
@@ -3164,8 +3172,8 @@ html body .follow-word {
         if (!cVerbe.children.length || !cSuiv.children.length) continue;
         var ar1 = normaliserArabeCle(cVerbe.children[0].textContent || "");
         var ar2 = normaliserArabeCle(cSuiv.children[0].textContent || "");
-        if (ar2 === "الله" && ar1 !== "ان" && ar1 !== "وان" && ar1 !== "باسم" && ar1 !== "بسم" && ar1 !== "سبحان" && ar1 !== "الحمد" && !cSuiv.getAttribute("data-swapped-v47")) {
-          cSuiv.setAttribute("data-swapped-v47", "1");
+        if (ar2 === "الله" && ar1 !== "ان" && ar1 !== "وان" && ar1 !== "باسم" && ar1 !== "بسم" && ar1 !== "سبحان" && ar1 !== "الحمد" && !cSuiv.getAttribute("data-swapped-v48")) {
+          cSuiv.setAttribute("data-swapped-v48", "1");
           grilleParente.insertBefore(cSuiv, cVerbe);
           break;
         }
@@ -3311,10 +3319,10 @@ html body .follow-word {
     }
     linkCan.setAttribute("href", urlCanonique);
 
-    var elJson = document.getElementById("seo-jsonld-v47");
+    var elJson = document.getElementById("seo-jsonld-v48");
     if (!elJson) {
       elJson = document.createElement("script");
-      elJson.id = "seo-jsonld-v47";
+      elJson.id = "seo-jsonld-v48";
       elJson.type = "application/ld+json";
       document.head.appendChild(elJson);
     }
@@ -3414,9 +3422,9 @@ html body .follow-word {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV47")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV48")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV47";
+      nv.id = "btnSuiviUniverselV48";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.innerHTML = "✨ Suivi";
@@ -3538,7 +3546,7 @@ html body .follow-word {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV47) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV48) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       window.__lecteurAudioActuel = this;
@@ -3551,7 +3559,7 @@ html body .follow-word {
       lancerBoucleSuivi();
       return origPlay.apply(this, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV47 = true;
+    HTMLMediaElement.prototype.__hookedV48 = true;
   }
 
   function trouverAudioActif() {
@@ -4926,7 +4934,7 @@ html body .follow-word {
 <link rel="preconnect" href="https://api.quran.com" crossorigin>
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
-<style id="patch-master-v47">
+<style id="patch-master-v48">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -4941,7 +4949,7 @@ html body .flat-earth-sun,
 html body [id*="sun" i]:not([id*="sound" i]),
 html body [class*="sun" i]:not([class*="sound" i]),
 html body [data-astre-role="sun"],
-html body .astre-soleil-pur-v47 {
+html body .astre-soleil-pur-v48 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -4967,12 +4975,12 @@ html body .flat-earth-sun::before,
 html body .flat-earth-sun::after,
 html body [data-astre-role="sun"]::before,
 html body [data-astre-role="sun"]::after,
-html body .astre-soleil-pur-v47::before,
-html body .astre-soleil-pur-v47::after,
+html body .astre-soleil-pur-v48::before,
+html body .astre-soleil-pur-v48::after,
 html body #flatEarthSun *,
 html body .flat-earth-sun *,
 html body [data-astre-role="sun"] *,
-html body .astre-soleil-pur-v47 * {
+html body .astre-soleil-pur-v48 * {
   display: none !important;
   content: none !important;
   background: none !important;
@@ -4988,7 +4996,7 @@ html body .flat-earth-moon,
 html body [id*="moon" i],
 html body [class*="moon" i],
 html body [data-astre-role="moon"],
-html body .astre-lune-pure-v47 {
+html body .astre-lune-pure-v48 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -5014,12 +5022,12 @@ html body .flat-earth-moon::before,
 html body .flat-earth-moon::after,
 html body [data-astre-role="moon"]::before,
 html body [data-astre-role="moon"]::after,
-html body .astre-lune-pure-v47::before,
-html body .astre-lune-pure-v47::after,
+html body .astre-lune-pure-v48::before,
+html body .astre-lune-pure-v48::after,
 html body #flatEarthMoon *,
 html body .flat-earth-moon *,
 html body [data-astre-role="moon"] *,
-html body .astre-lune-pure-v47 * {
+html body .astre-lune-pure-v48 * {
   display: none !important;
   content: none !important;
   background: none !important;
@@ -5033,7 +5041,7 @@ html body .astre-lune-pure-v47 * {
 html body img[src*="maher" i],
 html body [data-reciter*="maher" i],
 html body [data-value*="maher" i],
-html body .maher-supprime-v47 {
+html body .maher-supprime-v48 {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
@@ -5125,8 +5133,8 @@ html body .follow-word {
   text-shadow: 0 0 14px rgba(255, 255, 255, 0.48), 0 0 28px rgba(255, 255, 255, 0.20) !important;
 }
 </style>
-<script id="script-master-v47">(function codeClientV47() {
-  // 1. IDENTIFICATION INFAILLIBLE DU SOLEIL ET DE LA LUNE (MÊME QUAND ILS TOURNENT EN ORBITE !)
+<script id="script-master-v48">(function codeClientV48() {
+  // 1. IDENTIFICATION INFAILLIBLE DU SOLEIL ET DE LA LUNE EN ORBITE
   function reparerSoleilEtLuneEnOrbite() {
     var tousDivs = document.querySelectorAll("div, span, canvas");
     var spheresTrouvees = [];
@@ -5160,7 +5168,6 @@ html body .follow-word {
             (st.backgroundColor || "")
           ).toLowerCase();
 
-          // Le Soleil a une ombre jaune/ambre (rgb(250, 204, 21) / rgb(245, 158, 11) / #facc15 / #fde047 / 255, 200) ou ce fond cyan que le vieux script lui mettait
           var aCouleurSoleil =
             styleStr.indexOf("250, 204, 21") !== -1 ||
             styleStr.indexOf("245, 158, 11") !== -1 ||
@@ -5204,7 +5211,6 @@ html body .follow-word {
       }
     }
 
-    // S'il y a 2 astres et qu'aucun n'avait encore été marqué, marquer définitivement leur rôle dans le DOM
     var soleilDejaTrouve = false;
     for (var m = 0; m < astresPrincipaux.length; m++) {
       if (astresPrincipaux[m].isSun) soleilDejaTrouve = true;
@@ -5230,8 +5236,8 @@ html body .follow-word {
       }
 
       if (role === "sun") {
-        node.classList.remove("astre-lune-pure-v47");
-        node.classList.add("astre-soleil-pur-v47");
+        node.classList.remove("astre-lune-pure-v48");
+        node.classList.add("astre-soleil-pur-v48");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -5248,8 +5254,8 @@ html body .follow-word {
         );
         node.style.setProperty("filter", "none", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v47");
-        node.classList.add("astre-lune-pure-v47");
+        node.classList.remove("astre-soleil-pur-v48");
+        node.classList.add("astre-lune-pure-v48");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -5316,7 +5322,7 @@ html body .follow-word {
             cible = el.parentElement;
           }
         }
-        cible.classList.add("maher-supprime-v47");
+        cible.classList.add("maher-supprime-v48");
         if (cible.parentNode) cible.parentNode.removeChild(cible);
       }
     }
@@ -5329,7 +5335,7 @@ html body .follow-word {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v47");
+          row.classList.add("maher-supprime-v48");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
@@ -5400,13 +5406,13 @@ html body .follow-word {
     }
   }
 
-  // 4. MOT-À-MOT AVEC ORDRE "1. ALLĀH -> 2. A SCELLÉ" & BANDEAU MULTILINGUE
+  // 4. MOT-À-MOT AVEC TRADUCTION EXACTE DE "وَمَا" ("et ce qu'") ET ORDRE "ALLĀH -> A SCELLÉ"
   var DICO_MULTILINGUE = {
     fr: {
       "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn", "طه": "Tā-Hā", "طسم": "Tā-Sīn-Mīm", "حم": "Hā-Mīm", "كهيعص": "Kāf-Hā-Yā-‘Ayn-Sād",
       "ذلك": "Ce (C'est)", "الكتاب": "le Livre", "لا": "ne...pas / point de", "ريب": "doute", "فيه": "en lui", "هدى": "un guide", "للمتقين": "pour les pieux",
       "الذين": "ceux qui", "يؤمنون": "croient", "بالغيب": "à l'Inconnaissable", "ويقيمون": "et accomplissent", "الصلاة": "la Salāt (prière)", "الصلوة": "la Salāt (prière)", "ومما": "et de ce que", "رزقناهم": "Nous leur avons attribué", "ينفقون": "dépensent",
-      "والذين": "et ceux qui", "بما": "à ce qui", "أنزل": "a été descendu", "إليك": "vers toi", "وما": "et ce qui / et ils ne", "من": "de / avant", "قبلك": "avant toi", "وبالآخرة": "et en l'Au-delà", "وبالأخرة": "et en l'Au-delà", "هم": "ils / eux", "يوقنون": "ont la certitude",
+      "والذين": "et ceux qui", "بما": "à ce qui", "أنزل": "a été descendu", "إليك": "vers toi", "وما": "et ce qu'", "من": "de / avant", "قبلك": "avant toi", "وبالآخرة": "et en l'Au-delà", "وبالأخرة": "et en l'Au-delà", "هم": "ils / eux", "يوقنون": "ont la certitude",
       "أولئك": "Ceux-là", "على": "sur", "ربهم": "leur Seigneur", "وأولئك": "et ceux-là", "المفلحون": "les gagnants",
       "إن": "Certes", "كفروا": "ont mécru", "سواء": "il est égal", "عليهم": "pour eux", "أأنذرتهم": "que tu les avertisses", "ءأنذرتهم": "que tu les avertisses", "أم": "ou que", "لم": "ne...pas", "تنذرهم": "tu les avertisses",
       "ختم": "a scellé", "الله": "Allāh", "قلوبهم": "leurs cœurs", "وعلى": "et sur", "سمعهم": "leur ouïe", "وأبصارهم": "et sur leurs regards", "أبصارهم": "leurs regards", "غشاوة": "un voile", "غشوة": "un voile", "ولهم": "et pour eux", "عذاب": "un châtiment", "عظيم": "immense",
@@ -5415,12 +5421,14 @@ html body .follow-word {
       "في": "Dans / sur", "مرض": "une maladie", "فزادهم": "alors leur a accru", "مرضا": "en maladie", "أليم": "douloureux", "كانوا": "ils étaient", "يكذبون": "à mentir",
       "وإذا": "Et quand", "قيل": "on dit", "لهم": "à eux (leur)", "تفسدوا": "semez la corruption", "الأرض": "la terre", "قالوا": "ils disent", "إنما": "Certes, ne...que", "نحن": "nous (sommes)", "مصلحون": "des réformateurs",
       "ألا": "En vérité !", "إنهم": "ce sont eux", "المفسدون": "les corrupteurs", "ولكن": "mais", "يعلمون": "savent",
-      "بأيكم": "lequel d'entre vous", "المفتون": "est l'insensé (a perdu la raison)"
+      "والقلم": "Par la plume", "يسطرون": "ils écrivent !", "ما": "Tu n'es pas", "أنت": "toi", "بنعمة": "par la grâce de", "ربك": "ton Seigneur", "بمجنون": "un possédé",
+      "بأيكم": "lequel d'entre vous", "المفتون": "a perdu la raison (l'insensé)"
     },
     es: {
       "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn",
       "ذلك": "Ese (Este es)", "الكتاب": "el Libro", "لا": "no hay", "ريب": "duda", "فيه": "en él", "هدى": "una guía", "للمتقين": "para los piadosos",
-      "ختم": "ha sellado", "الله": "Allāh (Dios)", "على": "sobre", "قلوبهم": "sus corazones", "وعلى": "y sobre", "سمعهم": "su oído", "وأبصارهم": "y sus miradas", "أبصارهم": "sus miradas (ojos)", "غشاوة": "un velo", "غشوة": "un velo", "ولهم": "y para ellos", "عذاب": "un castigo", "عظيم": "inmenso"
+      "ختم": "ha sellado", "الله": "Allāh (Dios)", "على": "sobre", "قلوبهم": "sus corazones", "وعلى": "y sobre", "سمعهم": "su oído", "وأبصارهم": "y sus miradas", "أبصارهم": "sus miradas (ojos)", "غشاوة": "un velo", "غشوة": "un velo", "ولهم": "y para ellos", "عذاب": "un castigo", "عظيم": "inmenso",
+      "والقلم": "Por el cálamo (la pluma)", "وما": "y lo que", "يسطرون": "escriben"
     }
   };
 
@@ -5429,7 +5437,7 @@ html body .follow-word {
   var sensGrilleRtl = true;
 
   try {
-    var sauv = localStorage.getItem("cache_wbw_exact_v47");
+    var sauv = localStorage.getItem("cache_wbw_exact_v48");
     if (sauv) cacheVersetMotsExact = JSON.parse(sauv);
   } catch (e) {}
 
@@ -5519,7 +5527,7 @@ html body .follow-word {
 
         if (aTraduireTextes.length === 0) {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v47", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v48", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -5546,7 +5554,7 @@ html body .follow-word {
           .catch(function () {})
           .finally(function () {
             cacheVersetMotsExact[cleCache] = motsQdc;
-            try { localStorage.setItem("cache_wbw_exact_v47", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+            try { localStorage.setItem("cache_wbw_exact_v48", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
             appliquerVraiMotAMotSurDOM();
           });
       })
@@ -5613,6 +5621,14 @@ html body .follow-word {
 
       var tradFinale = chercherDansDicoCertifie(txtAr, lang);
 
+      // Si "وما" est suivi de "هم" ou "يخدعون" ou "يشعرون" ou "يعلمون", c'est la négation "et ils ne"
+      if (lang === "fr" && cleCarteAr === "وما" && i + 1 < cartes.length && cartes[i + 1].children.length) {
+        var suivAr = normaliserArabeCle(cartes[i + 1].children[0].textContent || "");
+        if (suivAr === "هم" || suivAr === "يخدعون" || suivAr === "يشعرون" || suivAr === "يعلمون" || suivAr === "كانوا") {
+          tradFinale = "et ils ne";
+        }
+      }
+
       if (!tradFinale && listeExacte && listeExacte.length > 0) {
         for (var m = 0; m < listeExacte.length; m++) {
           if (normaliserArabeCle(listeExacte[m].ar) === cleCarteAr) {
@@ -5638,8 +5654,8 @@ html body .follow-word {
         if (!cVerbe.children.length || !cSuiv.children.length) continue;
         var ar1 = normaliserArabeCle(cVerbe.children[0].textContent || "");
         var ar2 = normaliserArabeCle(cSuiv.children[0].textContent || "");
-        if (ar2 === "الله" && ar1 !== "ان" && ar1 !== "وان" && ar1 !== "باسم" && ar1 !== "بسم" && ar1 !== "سبحان" && ar1 !== "الحمد" && !cSuiv.getAttribute("data-swapped-v47")) {
-          cSuiv.setAttribute("data-swapped-v47", "1");
+        if (ar2 === "الله" && ar1 !== "ان" && ar1 !== "وان" && ar1 !== "باسم" && ar1 !== "بسم" && ar1 !== "سبحان" && ar1 !== "الحمد" && !cSuiv.getAttribute("data-swapped-v48")) {
+          cSuiv.setAttribute("data-swapped-v48", "1");
           grilleParente.insertBefore(cSuiv, cVerbe);
           break;
         }
@@ -5785,10 +5801,10 @@ html body .follow-word {
     }
     linkCan.setAttribute("href", urlCanonique);
 
-    var elJson = document.getElementById("seo-jsonld-v47");
+    var elJson = document.getElementById("seo-jsonld-v48");
     if (!elJson) {
       elJson = document.createElement("script");
-      elJson.id = "seo-jsonld-v47";
+      elJson.id = "seo-jsonld-v48";
       elJson.type = "application/ld+json";
       document.head.appendChild(elJson);
     }
@@ -5888,9 +5904,9 @@ html body .follow-word {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV47")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV48")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV47";
+      nv.id = "btnSuiviUniverselV48";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.innerHTML = "✨ Suivi";
@@ -6012,7 +6028,7 @@ html body .follow-word {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV47) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV48) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       window.__lecteurAudioActuel = this;
@@ -6025,7 +6041,7 @@ html body .follow-word {
       lancerBoucleSuivi();
       return origPlay.apply(this, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV47 = true;
+    HTMLMediaElement.prototype.__hookedV48 = true;
   }
 
   function trouverAudioActif() {
