@@ -9,7 +9,7 @@ if (!fs.existsSync(pGen)) {
 
 let g = fs.readFileSync(pGen, 'utf8');
 
-// Nettoyer tous les anciens patchs V26 à V48
+// Nettoyer tous les anciens patchs V26 à V49
 g = g.replace(/<style id="patch-master-v\d+">[\s\S]*?<\/script>/g, '');
 g = g.replace(/<style id="patch-hide-tr-wbw-v\d+">[\s\S]*?<\/script>/g, '');
 g = g.replace(/<link rel="preconnect" href="https:\/\/api\.quran\.com"[^>]*>\s*/g, '');
@@ -20,7 +20,7 @@ const preconnectTags = `<link rel="preconnect" href="https://api.quran.com" cros
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>`;
 
-const cssV48 = `<style id="patch-master-v48">
+const cssV49 = `<style id="patch-master-v49">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -29,13 +29,13 @@ const cssV48 = `<style id="patch-master-v48">
   --wbw-min-w: 92px;
 }
 
-/* 1. VERROUILLAGE ABSOLU DU SOLEIL DORÉ PUR (QUELLE QUE SOIT SA POSITION EN ORBITE) */
+/* 1. VERROUILLAGE ABSOLU DU SOLEIL DORÉ PUR */
 html body #flatEarthSun,
 html body .flat-earth-sun,
 html body [id*="sun" i]:not([id*="sound" i]),
 html body [class*="sun" i]:not([class*="sound" i]),
 html body [data-astre-role="sun"],
-html body .astre-soleil-pur-v48 {
+html body .astre-soleil-pur-v49 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -61,12 +61,12 @@ html body .flat-earth-sun::before,
 html body .flat-earth-sun::after,
 html body [data-astre-role="sun"]::before,
 html body [data-astre-role="sun"]::after,
-html body .astre-soleil-pur-v48::before,
-html body .astre-soleil-pur-v48::after,
+html body .astre-soleil-pur-v49::before,
+html body .astre-soleil-pur-v49::after,
 html body #flatEarthSun *,
 html body .flat-earth-sun *,
 html body [data-astre-role="sun"] *,
-html body .astre-soleil-pur-v48 * {
+html body .astre-soleil-pur-v49 * {
   display: none !important;
   content: none !important;
   background: none !important;
@@ -82,7 +82,7 @@ html body .flat-earth-moon,
 html body [id*="moon" i],
 html body [class*="moon" i],
 html body [data-astre-role="moon"],
-html body .astre-lune-pure-v48 {
+html body .astre-lune-pure-v49 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -108,12 +108,12 @@ html body .flat-earth-moon::before,
 html body .flat-earth-moon::after,
 html body [data-astre-role="moon"]::before,
 html body [data-astre-role="moon"]::after,
-html body .astre-lune-pure-v48::before,
-html body .astre-lune-pure-v48::after,
+html body .astre-lune-pure-v49::before,
+html body .astre-lune-pure-v49::after,
 html body #flatEarthMoon *,
 html body .flat-earth-moon *,
 html body [data-astre-role="moon"] *,
-html body .astre-lune-pure-v48 * {
+html body .astre-lune-pure-v49 * {
   display: none !important;
   content: none !important;
   background: none !important;
@@ -127,7 +127,7 @@ html body .astre-lune-pure-v48 * {
 html body img[src*="maher" i],
 html body [data-reciter*="maher" i],
 html body [data-value*="maher" i],
-html body .maher-supprime-v48 {
+html body .maher-supprime-v49 {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
@@ -220,7 +220,14 @@ html body .follow-word {
 }
 </style>`;
 
-function codeClientV48() {
+function codeClientV49() {
+  // Purger immédiatement tous les anciens caches Mot-à-mot (v38 à v48) pour effacer "et ce qui / et ils ne"
+  try {
+    for (var p = 38; p <= 48; p++) {
+      localStorage.removeItem("cache_wbw_exact_v" + p);
+    }
+  } catch (e) {}
+
   // 1. IDENTIFICATION INFAILLIBLE DU SOLEIL ET DE LA LUNE EN ORBITE
   function reparerSoleilEtLuneEnOrbite() {
     var tousDivs = document.querySelectorAll("div, span, canvas");
@@ -323,8 +330,8 @@ function codeClientV48() {
       }
 
       if (role === "sun") {
-        node.classList.remove("astre-lune-pure-v48");
-        node.classList.add("astre-soleil-pur-v48");
+        node.classList.remove("astre-lune-pure-v49");
+        node.classList.add("astre-soleil-pur-v49");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -341,8 +348,8 @@ function codeClientV48() {
         );
         node.style.setProperty("filter", "none", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v48");
-        node.classList.add("astre-lune-pure-v48");
+        node.classList.remove("astre-soleil-pur-v49");
+        node.classList.add("astre-lune-pure-v49");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -409,7 +416,7 @@ function codeClientV48() {
             cible = el.parentElement;
           }
         }
-        cible.classList.add("maher-supprime-v48");
+        cible.classList.add("maher-supprime-v49");
         if (cible.parentNode) cible.parentNode.removeChild(cible);
       }
     }
@@ -422,7 +429,7 @@ function codeClientV48() {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v48");
+          row.classList.add("maher-supprime-v49");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
@@ -493,7 +500,7 @@ function codeClientV48() {
     }
   }
 
-  // 4. MOT-À-MOT AVEC TRADUCTION EXACTE DE "وَمَا" ("et ce qu'") ET ORDRE "ALLĀH -> A SCELLÉ"
+  // 4. MOT-À-MOT EN ORDRE AUDIO STRICT (1. خَتَمَ = a scellé -> 2. اللَّهُ = Allāh) & "وَمَا" = "et ce qu'"
   var DICO_MULTILINGUE = {
     fr: {
       "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn", "طه": "Tā-Hā", "طسم": "Tā-Sīn-Mīm", "حم": "Hā-Mīm", "كهيعص": "Kāf-Hā-Yā-‘Ayn-Sād",
@@ -524,7 +531,7 @@ function codeClientV48() {
   var sensGrilleRtl = true;
 
   try {
-    var sauv = localStorage.getItem("cache_wbw_exact_v48");
+    var sauv = localStorage.getItem("cache_wbw_exact_v49");
     if (sauv) cacheVersetMotsExact = JSON.parse(sauv);
   } catch (e) {}
 
@@ -614,7 +621,7 @@ function codeClientV48() {
 
         if (aTraduireTextes.length === 0) {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v48", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v49", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -641,7 +648,7 @@ function codeClientV48() {
           .catch(function () {})
           .finally(function () {
             cacheVersetMotsExact[cleCache] = motsQdc;
-            try { localStorage.setItem("cache_wbw_exact_v48", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+            try { localStorage.setItem("cache_wbw_exact_v49", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
             appliquerVraiMotAMotSurDOM();
           });
       })
@@ -698,8 +705,10 @@ function codeClientV48() {
 
     var listeExacte = cacheVersetMotsExact[cleCache];
 
+    // Affecter chaque mot dans l'ordre exact de la récitation audio (1. خَتَمَ = a scellé, 2. اللَّهُ = Allāh)
     for (var i = 0; i < cartes.length; i++) {
       var c = cartes[i];
+      c.setAttribute("data-word-num", String(i + 1));
       if (!c.children || c.children.length < 2) continue;
       var elAr = c.children[0];
       var elTr = c.children[c.children.length - 1];
@@ -708,11 +717,13 @@ function codeClientV48() {
 
       var tradFinale = chercherDansDicoCertifie(txtAr, lang);
 
-      // Si "وما" est suivi de "هم" ou "يخدعون" ou "يشعرون" ou "يعلمون", c'est la négation "et ils ne"
+      // Si "وما" est suivi d'un pronom/verbe de négation (ex: 2:8 وما هم, 2:9 وما يخدعون), afficher "et ils ne" ; sinon "et ce qu'" (ex: 68:1 وما يسطرون)
       if (lang === "fr" && cleCarteAr === "وما" && i + 1 < cartes.length && cartes[i + 1].children.length) {
         var suivAr = normaliserArabeCle(cartes[i + 1].children[0].textContent || "");
         if (suivAr === "هم" || suivAr === "يخدعون" || suivAr === "يشعرون" || suivAr === "يعلمون" || suivAr === "كانوا") {
           tradFinale = "et ils ne";
+        } else {
+          tradFinale = "et ce qu'";
         }
       }
 
@@ -734,29 +745,9 @@ function codeClientV48() {
     }
 
     var grilleParente = cartes[0].parentElement;
-    if (grilleParente && lang !== "ar") {
-      for (var k = 0; k < cartes.length - 1; k++) {
-        var cVerbe = cartes[k];
-        var cSuiv = cartes[k + 1];
-        if (!cVerbe.children.length || !cSuiv.children.length) continue;
-        var ar1 = normaliserArabeCle(cVerbe.children[0].textContent || "");
-        var ar2 = normaliserArabeCle(cSuiv.children[0].textContent || "");
-        if (ar2 === "الله" && ar1 !== "ان" && ar1 !== "وان" && ar1 !== "باسم" && ar1 !== "بسم" && ar1 !== "سبحان" && ar1 !== "الحمد" && !cSuiv.getAttribute("data-swapped-v48")) {
-          cSuiv.setAttribute("data-swapped-v48", "1");
-          grilleParente.insertBefore(cSuiv, cVerbe);
-          break;
-        }
-      }
-    }
-
-    var cartesFinales = obtenirCartesMotAMotVisibles();
-    for (var n = 0; n < cartesFinales.length; n++) {
-      cartesFinales[n].setAttribute("data-word-num", String(n + 1));
-    }
-
     if (grilleParente) {
       grilleParente.style.setProperty("direction", sensGrilleRtl ? "rtl" : "ltr", "important");
-      var totalW = cartesFinales.length;
+      var totalW = cartes.length;
       var textesRtl = {
         fr: "⬅️ Sens de lecture : de droite à gauche (1 ➔ " + totalW + ") • Cliquer pour inverser",
         en: "⬅️ Reading order: Right to Left (1 ➔ " + totalW + ") • Click to reverse",
@@ -888,10 +879,10 @@ function codeClientV48() {
     }
     linkCan.setAttribute("href", urlCanonique);
 
-    var elJson = document.getElementById("seo-jsonld-v48");
+    var elJson = document.getElementById("seo-jsonld-v49");
     if (!elJson) {
       elJson = document.createElement("script");
-      elJson.id = "seo-jsonld-v48";
+      elJson.id = "seo-jsonld-v49";
       elJson.type = "application/ld+json";
       document.head.appendChild(elJson);
     }
@@ -991,9 +982,9 @@ function codeClientV48() {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV48")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV49")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV48";
+      nv.id = "btnSuiviUniverselV49";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.innerHTML = "✨ Suivi";
@@ -1115,7 +1106,7 @@ function codeClientV48() {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV48) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV49) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       window.__lecteurAudioActuel = this;
@@ -1128,7 +1119,7 @@ function codeClientV48() {
       lancerBoucleSuivi();
       return origPlay.apply(this, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV48 = true;
+    HTMLMediaElement.prototype.__hookedV49 = true;
   }
 
   function trouverAudioActif() {
@@ -1368,10 +1359,10 @@ function codeClientV48() {
   synchroniserTout();
 }
 
-const blocCompletV48 = preconnectTags + '\n' + cssV48 + '\n<script id="script-master-v48">(' + codeClientV48.toString() + ')();</script>';
-const blocEchappePourGenerateur = blocCompletV48.replace(/\\/g, '\\\\');
+const blocCompletV49 = preconnectTags + '\n' + cssV49 + '\n<script id="script-master-v49">(' + codeClientV49.toString() + ')();</script>';
+const blocEchappePourGenerateur = blocCompletV49.replace(/\\/g, '\\\\');
 
 g = g.replace(/<\/head>/g, () => blocEchappePourGenerateur + '\n</head>');
 fs.writeFileSync(pGen, g, 'utf8');
 
-console.log('✅ Version Finale V48 activée : Mot-à-mot affiné (et ce qu\' / et ils ne) + Soleil/Lune verrouillés + Suivi Blanc -> Bleu + SEO !');
+console.log('✅ Correctif V49 activé : Ordre audio exact (1. خَتَمَ = a scellé -> 2. اللَّهُ = Allāh) + Purge cache وما = et ce qu\' !');
