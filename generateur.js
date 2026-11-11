@@ -2452,7 +2452,7 @@ async function lancerGeneration() {
 <link rel="preconnect" href="https://api.quran.com" crossorigin>
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
-<style id="patch-master-v44">
+<style id="patch-master-v45">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -2461,82 +2461,11 @@ async function lancerGeneration() {
   --wbw-min-w: 92px;
 }
 
-/* 1. SOLEIL & LUNE 150px PURS (SANS ROND NOIR) */
-html body #flatEarthSun,
-html body .flat-earth-sun,
-html body .astre-soleil-pur-v44 {
-  width: 150px !important;
-  height: 150px !important;
-  min-width: 150px !important;
-  min-height: 150px !important;
-  max-width: 150px !important;
-  max-height: 150px !important;
-  border-radius: 50% !important;
-  border: none !important;
-  outline: none !important;
-  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #fef9c3 24%, #fde047 48%, #facc15 68%, rgba(245, 158, 11, 0.38) 84%, rgba(234, 88, 12, 0) 100%) !important;
-  background-color: transparent !important;
-  box-shadow: 0 0 45px 12px rgba(250, 204, 21, 0.55), 0 0 95px 28px rgba(245, 158, 11, 0.30) !important;
-  filter: none !important;
-  mix-blend-mode: normal !important;
-}
-
-html body #flatEarthSun::before,
-html body #flatEarthSun::after,
-html body .flat-earth-sun::before,
-html body .flat-earth-sun::after,
-html body .astre-soleil-pur-v44::before,
-html body .astre-soleil-pur-v44::after,
-html body #flatEarthSun *,
-html body .flat-earth-sun *,
-html body .astre-soleil-pur-v44 * {
-  display: none !important;
-  content: none !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  opacity: 0 !important;
-}
-
-html body #flatEarthMoon,
-html body .flat-earth-moon,
-html body .astre-lune-pure-v44 {
-  width: 150px !important;
-  height: 150px !important;
-  min-width: 150px !important;
-  min-height: 150px !important;
-  max-width: 150px !important;
-  max-height: 150px !important;
-  border-radius: 50% !important;
-  border: none !important;
-  outline: none !important;
-  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f8fafc 30%, #e2e8f0 56%, rgba(186, 230, 253, 0.44) 78%, rgba(56, 189, 248, 0) 100%) !important;
-  background-color: transparent !important;
-  box-shadow: 0 0 45px 12px rgba(255, 255, 255, 0.60), 0 0 95px 28px rgba(56, 189, 248, 0.34) !important;
-  filter: none !important;
-  mix-blend-mode: normal !important;
-}
-
-html body #flatEarthMoon::before,
-html body #flatEarthMoon::after,
-html body .flat-earth-moon::before,
-html body .flat-earth-moon::after,
-html body .astre-lune-pure-v44::before,
-html body .astre-lune-pure-v44::after,
-html body #flatEarthMoon *,
-html body .flat-earth-moon *,
-html body .astre-lune-pure-v44 * {
-  display: none !important;
-  content: none !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  opacity: 0 !important;
-}
-
-/* 2. MASQUAGE ABSOLU DE MAHER AL-MUAIQLY */
+/* 1. MASQUAGE ABSOLU DE MAHER AL-MUAIQLY */
 html body img[src*="maher" i],
 html body [data-reciter*="maher" i],
 html body [data-value*="maher" i],
-html body .maher-supprime-v44 {
+html body .maher-supprime-v45 {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
@@ -2546,12 +2475,12 @@ html body .maher-supprime-v44 {
   overflow: hidden !important;
 }
 
-/* 3. MASQUAGE DE LA TRADUCTION DU BAS EN MODE MOT-À-MOT */
+/* 2. MASQUAGE DE LA TRADUCTION DU BAS EN MODE MOT-À-MOT */
 html body .wbw-masquer-traduction-bas {
   display: none !important; visibility: hidden !important; height: 0 !important; max-height: 0 !important; margin: 0 !important; padding: 0 !important; border: none !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important;
 }
 
-/* 4. BANDEAU INTERACTIF DU SENS DE LECTURE */
+/* 3. BANDEAU INTERACTIF DU SENS DE LECTURE */
 html body #wbwSensLectureBanner {
   width: 100% !important;
   text-align: center !important;
@@ -2566,7 +2495,7 @@ html body #wbwSensLectureBanner {
   user-select: none !important;
 }
 
-/* 5. CARTES MOT-À-MOT AVEC BADGE NUMÉROTÉ */
+/* 4. CARTES MOT-À-MOT AVEC BADGE NUMÉROTÉ */
 html body .wbw-card-unit {
   position: relative !important;
   padding: var(--wbw-pad-v) var(--wbw-pad-h) !important;
@@ -2602,103 +2531,35 @@ html body .wbw-card-unit > *:last-child {
   text-align: center !important;
 }
 
-/* 6. MODE SUIVI VERSET NORMAL */
+/* 5. MODE SUIVI VERSET : BLANC PUR AU DÉBUT (SCREEN 1) -> HALO BLEU APRÈS (SCREEN 2) */
 html body #arabicVerse,
 html body .arabic-glow-verse {
   direction: rtl !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.45), 0 0 28px rgba(255, 255, 255, 0.18) !important;
 }
 
 html body .verse-stage .arabic-glow-verse span,
 html body .verse-stage #arabicVerse span,
 html body .ar-word-follow,
 html body .follow-word {
-  position: relative !important; background: transparent !important; border: none !important; box-shadow: none !important; color: #ffffff !important; padding: 0 7px !important; display: inline-block !important; transform-origin: 50% 85% !important; will-change: transform, opacity, filter, text-shadow !important; backface-visibility: hidden !important; -webkit-font-smoothing: antialiased !important;
+  position: relative !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #ffffff !important;
+  padding: 0 7px !important;
+  display: inline-block !important;
+  transform-origin: 50% 85% !important;
+  will-change: transform, opacity, filter, text-shadow, color !important;
+  backface-visibility: hidden !important;
+  -webkit-font-smoothing: antialiased !important;
+  /* État par défaut (Screen 1) : Blanc lumineux pur */
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.48), 0 0 28px rgba(255, 255, 255, 0.20) !important;
 }
 </style>
-<script id="script-master-v44">(function codeClientV44() {
-  // 1. DÉTECTION GÉOMÉTRIQUE & RÉPARATION DU SOLEIL ET DE LA LUNE
-  function reparerSoleilEtLuneSansRondNoir() {
-    var tousDivs = document.querySelectorAll("div, span, canvas");
-    var spheresTrouvees = [];
-
-    for (var i = 0; i < tousDivs.length; i++) {
-      var el = tousDivs[i];
-      var idCls = ((el.id || "") + " " + (el.className && typeof el.className === "string" ? el.className : "")).toLowerCase();
-
-      var estNommeSun = idCls.indexOf("sun") !== -1 || idCls.indexOf("soleil") !== -1;
-      var estNommeMoon = idCls.indexOf("moon") !== -1 || idCls.indexOf("lune") !== -1;
-
-      var r = el.getBoundingClientRect();
-      var estRondVide =
-        r.width >= 55 &&
-        r.width <= 320 &&
-        Math.abs(r.width - r.height) <= 8 &&
-        (el.textContent || "").trim() === "" &&
-        !el.querySelector("button, input, select, p, a, img");
-
-      if (estNommeSun || estNommeMoon || estRondVide) {
-        var st = window.getComputedStyle(el);
-        if (estNommeSun || estNommeMoon || st.borderRadius.indexOf("50%") !== -1 || parseFloat(st.borderRadius) >= r.width * 0.4) {
-          spheresTrouvees.push({
-            el: el,
-            cx: r.left + r.width / 2,
-            cy: r.top + r.height / 2,
-            w: r.width,
-            isSun: estNommeSun,
-            isMoon: estNommeMoon
-          });
-        }
-      }
-    }
-
-    var astresPrincipaux = [];
-    for (var j = 0; j < spheresTrouvees.length; j++) {
-      var s = spheresTrouvees[j];
-      var doublonSuperpose = false;
-      for (var k = 0; k < astresPrincipaux.length; k++) {
-        var p = astresPrincipaux[k];
-        var dist = Math.hypot(s.cx - p.cx, s.cy - p.cy);
-        if (dist < 45) {
-          doublonSuperpose = true;
-          s.el.style.setProperty("display", "none", "important");
-          break;
-        }
-      }
-      if (!doublonSuperpose) {
-        astresPrincipaux.push(s);
-      }
-    }
-
-    for (var m = 0; m < astresPrincipaux.length; m++) {
-      var astre = astresPrincipaux[m];
-      var node = astre.el;
-
-      if (node.children && node.children.length > 0) {
-        node.innerHTML = "";
-      }
-
-      var appliquerSoleil = astre.isSun || (!astre.isMoon && m === 0);
-      if (appliquerSoleil) {
-        node.classList.remove("astre-lune-pure-v44");
-        node.classList.add("astre-soleil-pur-v44");
-        node.style.setProperty("width", "150px", "important");
-        node.style.setProperty("height", "150px", "important");
-        node.style.setProperty("border-radius", "50%", "important");
-        node.style.setProperty("background", "radial-gradient(circle at 50% 50%, #ffffff 0%, #fef9c3 24%, #fde047 48%, #facc15 68%, rgba(245, 158, 11, 0.38) 84%, rgba(234, 88, 12, 0) 100%)", "important");
-        node.style.setProperty("box-shadow", "0 0 45px 12px rgba(250, 204, 21, 0.55), 0 0 95px 28px rgba(245, 158, 11, 0.30)", "important");
-      } else {
-        node.classList.remove("astre-soleil-pur-v44");
-        node.classList.add("astre-lune-pure-v44");
-        node.style.setProperty("width", "150px", "important");
-        node.style.setProperty("height", "150px", "important");
-        node.style.setProperty("border-radius", "50%", "important");
-        node.style.setProperty("background", "radial-gradient(circle at 50% 50%, #ffffff 0%, #f8fafc 30%, #e2e8f0 56%, rgba(186, 230, 253, 0.44) 78%, rgba(56, 189, 248, 0) 100%)", "important");
-        node.style.setProperty("box-shadow", "0 0 45px 12px rgba(255, 255, 255, 0.60), 0 0 95px 28px rgba(56, 189, 248, 0.34)", "important");
-      }
-    }
-  }
-
-  // 2. SUPPRESSION TOTALE DE MAHER AL-MUAIQLY
+<script id="script-master-v45">(function codeClientV45() {
+  // 1. SUPPRESSION TOTALE DE MAHER AL-MUAIQLY
   function retirerRecitateurMaher() {
     try {
       for (var i = 0; i < localStorage.length; i++) {
@@ -2745,7 +2606,7 @@ html body .follow-word {
             cible = el.parentElement;
           }
         }
-        cible.classList.add("maher-supprime-v44");
+        cible.classList.add("maher-supprime-v45");
         if (cible.parentNode) cible.parentNode.removeChild(cible);
       }
     }
@@ -2758,14 +2619,14 @@ html body .follow-word {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v44");
+          row.classList.add("maher-supprime-v45");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
     }
   }
 
-  // 3. DÉTECTION DE LA LANGUE ACTIVE & MENTIONS MULTILINGUES
+  // 2. DÉTECTION DE LA LANGUE ACTIVE & MENTIONS MULTILINGUES
   function obtenirLangueActive() {
     var bodyTxt = document.body ? document.body.innerText : "";
     if (bodyTxt.indexOf("Escuchar aleya") !== -1 || bodyTxt.indexOf("EXPLICACIÓN DE LA ALEYA") !== -1 || bodyTxt.indexOf("Ruido Marrón") !== -1) {
@@ -2829,7 +2690,7 @@ html body .follow-word {
     }
   }
 
-  // 4. MOT-À-MOT AVEC ORDRE "1. ALLĀH -> 2. A SCELLÉ"
+  // 3. MOT-À-MOT AVEC ORDRE "1. ALLĀH -> 2. A SCELLÉ"
   var DICO_MULTILINGUE = {
     fr: {
       "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn", "طه": "Tā-Hā", "طسم": "Tā-Sīn-Mīm", "حم": "Hā-Mīm", "كهيعص": "Kāf-Hā-Yā-‘Ayn-Sād",
@@ -2843,7 +2704,8 @@ html body .follow-word {
       "يخادعون": "Ils cherchent à tromper", "يخدعون": "ils trompent", "آمنوا": "ont cru", "ءامنوا": "ont cru", "إلا": "que", "أنفسهم": "eux-mêmes", "يشعرون": "s'en rendent compte",
       "في": "Dans / sur", "مرض": "une maladie", "فزادهم": "alors leur a accru", "مرضا": "en maladie", "أليم": "douloureux", "كانوا": "ils étaient", "يكذبون": "à mentir",
       "وإذا": "Et quand", "قيل": "on dit", "لهم": "à eux (leur)", "تفسدوا": "semez la corruption", "الأرض": "la terre", "قالوا": "ils disent", "إنما": "Certes, ne...que", "نحن": "nous (sommes)", "مصلحون": "des réformateurs",
-      "ألا": "En vérité !", "إنهم": "ce sont eux", "المفسدون": "les corrupteurs", "ولكن": "mais", "يعلمون": "savent"
+      "ألا": "En vérité !", "إنهم": "ce sont eux", "المفسدون": "les corrupteurs", "ولكن": "mais", "يعلمون": "savent",
+      "بأيكم": "lequel d'entre vous", "المفتون": "est l'insensé (a perdu la raison)"
     },
     es: {
       "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn",
@@ -2857,7 +2719,7 @@ html body .follow-word {
   var sensGrilleRtl = true;
 
   try {
-    var sauv = localStorage.getItem("cache_wbw_exact_v44");
+    var sauv = localStorage.getItem("cache_wbw_exact_v45");
     if (sauv) cacheVersetMotsExact = JSON.parse(sauv);
   } catch (e) {}
 
@@ -2947,7 +2809,7 @@ html body .follow-word {
 
         if (aTraduireTextes.length === 0) {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v44", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v45", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -2974,7 +2836,7 @@ html body .follow-word {
           .catch(function () {})
           .finally(function () {
             cacheVersetMotsExact[cleCache] = motsQdc;
-            try { localStorage.setItem("cache_wbw_exact_v44", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+            try { localStorage.setItem("cache_wbw_exact_v45", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
             appliquerVraiMotAMotSurDOM();
           });
       })
@@ -3066,8 +2928,8 @@ html body .follow-word {
         if (!cVerbe.children.length || !cSuiv.children.length) continue;
         var ar1 = normaliserArabeCle(cVerbe.children[0].textContent || "");
         var ar2 = normaliserArabeCle(cSuiv.children[0].textContent || "");
-        if (ar2 === "الله" && ar1 !== "ان" && ar1 !== "وان" && ar1 !== "باسم" && ar1 !== "بسم" && ar1 !== "سبحان" && ar1 !== "الحمد" && !cSuiv.getAttribute("data-swapped-v44")) {
-          cSuiv.setAttribute("data-swapped-v44", "1");
+        if (ar2 === "الله" && ar1 !== "ان" && ar1 !== "وان" && ar1 !== "باسم" && ar1 !== "بسم" && ar1 !== "سبحان" && ar1 !== "الحمد" && !cSuiv.getAttribute("data-swapped-v45")) {
+          cSuiv.setAttribute("data-swapped-v45", "1");
           grilleParente.insertBefore(cSuiv, cVerbe);
           break;
         }
@@ -3136,9 +2998,7 @@ html body .follow-word {
     }
   }
 
-  // ==========================================================================
-  // 5. PACK SEO COMPLET (META DESCRIPTION + OPENGRAPH + CANONICAL + 3 SCHEMAS)
-  // ==========================================================================
+  // 4. PACK SEO COMPLET
   var dernierVersetSeo = "";
   function injecterPackSeoComplet() {
     var vk = obtenirCleVerset();
@@ -3155,7 +3015,6 @@ html body .follow-word {
     var h1 = document.querySelector("h1, h2");
     var titreVerset = h1 ? (h1.textContent || "").trim() : "Sourate " + numS + " Verset " + numV;
 
-    // Extraire le texte du Tafsir pour la meta description et les Rich Snippets Google
     var tousBlocs = document.querySelectorAll("div, p");
     var texteTafsirPropre = "";
     for (var i = 0; i < tousBlocs.length; i++) {
@@ -3203,10 +3062,10 @@ html body .follow-word {
     }
     linkCan.setAttribute("href", urlCanonique);
 
-    var elJson = document.getElementById("seo-jsonld-v44");
+    var elJson = document.getElementById("seo-jsonld-v45");
     if (!elJson) {
       elJson = document.createElement("script");
-      elJson.id = "seo-jsonld-v44";
+      elJson.id = "seo-jsonld-v45";
       elJson.type = "application/ld+json";
       document.head.appendChild(elJson);
     }
@@ -3306,9 +3165,9 @@ html body .follow-word {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV44")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV45")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV44";
+      nv.id = "btnSuiviUniverselV45";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.innerHTML = "✨ Suivi";
@@ -3318,6 +3177,9 @@ html body .follow-word {
     }
   }
 
+  // ==========================================================================
+  // 5. ANIMATION MODE SUIVI : BLANC PUR (SCREEN 1) -> BLEU NÉON (SCREEN 2)
+  // ==========================================================================
   var MAP_NOMS_VERS_QDC = {
     dosari: [174, 168], dossari: [174, 168], yasser: [174, 168],
     afasy: [7], alafasy: [7], mishary: [7],
@@ -3332,7 +3194,9 @@ html body .follow-word {
   var requetesEnCours = {};
   window.__lecteurAudioActuel = null;
   var rafId = null;
-  var energiesMots = [];
+  var energiesMots = []; // Énergie d'élévation du mot en cours [0..1]
+  var bleusMots = [];    // Énergie de coloration bleue permanente [0 = Blanc (Screen 1) -> 1 = Bleu (Screen 2)]
+  var dernierVersetSuivi = "";
 
   function obtenirCleRecitateurSelectionne() {
     var selects = document.querySelectorAll("select");
@@ -3406,17 +3270,41 @@ html body .follow-word {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV44) {
+  function reinitialiserMotsEnBlancPur() {
+    energiesMots = [];
+    bleusMots = [];
+    var cibleObj = obtenirElementsMotsAAnimer();
+    var items = cibleObj.items;
+    var estCartes = cibleObj.type === "cartes";
+    for (var i = 0; i < items.length; i++) {
+      var el = items[i];
+      el.style.setProperty("opacity", "1", "important");
+      el.style.setProperty("transform", "translate3d(0, 0px, 0) scale(1)", "important");
+      el.style.setProperty("filter", "none", "important");
+      if (estCartes) {
+        el.style.setProperty("border-color", "rgba(255, 255, 255, 0.18)", "important");
+        el.style.setProperty("box-shadow", "none", "important");
+      } else {
+        el.style.setProperty("color", "#ffffff", "important");
+        el.style.setProperty("text-shadow", "0 0 14px rgba(255, 255, 255, 0.48), 0 0 28px rgba(255, 255, 255, 0.20)", "important");
+      }
+    }
+  }
+
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV45) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       window.__lecteurAudioActuel = this;
+      if (this.currentTime < 0.25) {
+        reinitialiserMotsEnBlancPur();
+      }
       var cleRec = obtenirCleRecitateurSelectionne();
       var vk = obtenirCleVerset();
       if (cleRec && vk) chargerTimestampsQdc(cleRec, vk);
       lancerBoucleSuivi();
       return origPlay.apply(this, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV44 = true;
+    HTMLMediaElement.prototype.__hookedV45 = true;
   }
 
   function trouverAudioActif() {
@@ -3466,6 +3354,13 @@ html body .follow-word {
   }
 
   function etapeSuiviAudioAfterEffects() {
+    var vkActuel = obtenirCleVerset();
+    if (vkActuel && vkActuel !== dernierVersetSuivi) {
+      dernierVersetSuivi = vkActuel;
+      energiesMots = [];
+      bleusMots = [];
+    }
+
     var cibleObj = obtenirElementsMotsAAnimer();
     var items = cibleObj.items;
     var estCartes = cibleObj.type === "cartes";
@@ -3475,6 +3370,7 @@ html body .follow-word {
     if (items && items.length && suiviEstActif) {
       if (energiesMots.length !== items.length) {
         energiesMots = new Array(items.length).fill(0);
+        bleusMots = new Array(items.length).fill(0);
       }
 
       for (var i = 0; i < items.length; i++) {
@@ -3489,8 +3385,8 @@ html body .follow-word {
         var vk = obtenirCleVerset();
         var t = aud.currentTime;
         var d = aud.duration;
-        var debutVoix = Math.min(0.20, d * 0.05);
-        var finVoix = Math.max(debutVoix + 0.3, d - Math.min(0.42, d * 0.08));
+        var debutVoix = Math.min(0.18, d * 0.04);
+        var finVoix = Math.max(debutVoix + 0.25, d - Math.min(0.35, d * 0.07));
         var ratioVoix = Math.max(0, Math.min(0.999, (t - debutVoix) / (finVoix - debutVoix)));
 
         var segsNorm = cacheTimingVerset[cleRec + "_" + vk];
@@ -3507,70 +3403,82 @@ html body .follow-word {
         if (activeIndexFloat === -1) {
           activeIndexFloat = ratioVoix * items.length;
         }
+      } else if (aud && aud.ended) {
+        // Quand le verset vient de se terminer, tous les mots sont passés au bleu (Screen 2)
+        activeIndexFloat = items.length;
       }
 
       var idxEntier = Math.floor(activeIndexFloat);
-      var encoreActif = activeIndexFloat >= 0;
+      var lectureEnCours = activeIndexFloat >= 0;
 
       for (var m = 0; m < items.length; m++) {
         var el = items[m];
-        var cibleEnergie = encoreActif && m === idxEntier ? 1.0 : 0.0;
-        energiesMots[m] += (cibleEnergie - energiesMots[m]) * 0.22;
+
+        // 1. Énergie d'élévation (uniquement sur le mot en train d'être prononcé)
+        var cibleElevation = lectureEnCours && m === idxEntier ? 1.0 : 0.0;
+        energiesMots[m] += (cibleElevation - energiesMots[m]) * 0.22;
         if (energiesMots[m] < 0.002) energiesMots[m] = 0;
         if (energiesMots[m] > 0.998) energiesMots[m] = 1;
 
+        // 2. Énergie de coloration bleue (0 = Blanc pur Screen 1 -> 1 = Bleu néon Screen 2 dès que le mot est atteint ou dépassé)
+        var cibleBleu = lectureEnCours && m <= idxEntier ? 1.0 : bleusMots[m];
+        bleusMots[m] += (cibleBleu - bleusMots[m]) * 0.18;
+        if (bleusMots[m] < 0.002) bleusMots[m] = 0;
+        if (bleusMots[m] > 0.998) bleusMots[m] = 1;
+
         var e = courbeAfterEffects(energiesMots[m]);
+        var b = courbeAfterEffects(bleusMots[m]);
 
-        if (!encoreActif && e === 0) {
-          el.style.removeProperty("opacity");
-          el.style.removeProperty("filter");
-          el.style.removeProperty("transform");
-          el.style.removeProperty("text-shadow");
-          el.style.removeProperty("box-shadow");
-          el.style.removeProperty("border-color");
-          continue;
-        }
-
-        var dejaLu = encoreActif && m < idxEntier;
-        var opBase = dejaLu ? 0.78 : 0.28;
-        var op = (opBase + (1.0 - opBase) * e).toFixed(3);
-        var yPx = ((dejaLu ? 0 : 2.5) * (1 - e) - 8.5 * e).toFixed(2);
-        var sc = ((dejaLu ? 1.0 : 0.95) * (1 - e) + 1.16 * e).toFixed(3);
+        var yPx = (-7.5 * e).toFixed(2);
+        var sc = (1.0 + 0.12 * e).toFixed(3);
 
         if (estCartes) {
-          el.style.setProperty("opacity", op, "important");
-          el.style.setProperty("transform", "translate3d(0, " + yPx + "px, 0) scale(" + (0.97 + 0.11 * e).toFixed(3) + ")", "important");
-          if (e > 0.05) {
-            el.style.setProperty("border-color", "rgba(56, 189, 248, " + (0.25 + 0.75 * e).toFixed(2) + ")", "important");
-            el.style.setProperty("box-shadow", "0 " + (10 * e).toFixed(1) + "px " + (28 * e).toFixed(1) + "px rgba(56, 189, 248, " + (0.62 * e).toFixed(2) + "), inset 0 0 " + (16 * e).toFixed(1) + "px rgba(56, 189, 248, " + (0.25 * e).toFixed(2) + ")", "important");
+          el.style.setProperty("opacity", "1", "important");
+          el.style.setProperty("transform", "translate3d(0, " + yPx + "px, 0) scale(" + (1.0 + 0.08 * e).toFixed(3) + ")", "important");
+          if (b > 0.02) {
+            el.style.setProperty("border-color", "rgba(56, 189, 248, " + (0.45 * b + 0.55 * e).toFixed(2) + ")", "important");
+            el.style.setProperty("box-shadow", "0 " + (6 * b + 6 * e).toFixed(1) + "px " + (18 * b + 14 * e).toFixed(1) + "px rgba(56, 189, 248, " + (0.35 * b + 0.35 * e).toFixed(2) + "), inset 0 0 " + (12 * b).toFixed(1) + "px rgba(56, 189, 248, " + (0.18 * b).toFixed(2) + ")", "important");
           } else {
-            el.style.setProperty("border-color", dejaLu ? "rgba(56, 189, 248, 0.35)" : "rgba(148, 163, 184, 0.14)", "important");
+            el.style.setProperty("border-color", "rgba(255, 255, 255, 0.18)", "important");
             el.style.setProperty("box-shadow", "none", "important");
           }
         } else {
           el.style.setProperty("background", "transparent", "important");
           el.style.setProperty("border", "none", "important");
-          el.style.setProperty("color", "#ffffff", "important");
-          el.style.setProperty("opacity", op, "important");
+          el.style.setProperty("opacity", "1", "important");
+          el.style.setProperty("filter", "none", "important");
           el.style.setProperty("transform", "translate3d(0, " + yPx + "px, 0) scale(" + sc + ")", "important");
-          var flou = !dejaLu && e < 0.2 ? (0.55 * (1 - e * 5)).toFixed(2) + "px" : "0px";
-          var lum = (0.82 + 0.56 * e).toFixed(2);
-          el.style.setProperty("filter", "blur(" + flou + ") brightness(" + lum + ")", "important");
-          if (e > 0.04) {
-            el.style.setProperty("text-shadow", "0 0 " + (14 * e).toFixed(1) + "px rgba(255,255,255," + e.toFixed(2) + "), 0 0 " + (32 * e).toFixed(1) + "px rgba(56,189,248," + (0.92 * e).toFixed(2) + ")", "important");
+
+          if (b < 0.03) {
+            // SCREEN 1 : Mot pas encore lu -> Blanc pur + Halo blanc doux
+            el.style.setProperty("color", "#ffffff", "important");
+            el.style.setProperty("text-shadow", "0 0 14px rgba(255, 255, 255, 0.48), 0 0 28px rgba(255, 255, 255, 0.20)", "important");
           } else {
-            el.style.setProperty("text-shadow", dejaLu ? "0 0 10px rgba(56, 189, 248, 0.42)" : "none", "important");
+            // SCREEN 2 : Mot prononcé -> Texte blanc-azur + Halo bleu néon intense (#38bdf8 / #0ea5e9)
+            el.style.setProperty("color", "#f0f9ff", "important");
+            var alphaBleu1 = (0.85 * b + 0.15 * e).toFixed(2);
+            var alphaBleu2 = (0.65 * b + 0.30 * e).toFixed(2);
+            var rayon1 = (14 + 8 * e).toFixed(1);
+            var rayon2 = (28 + 16 * e).toFixed(1);
+            el.style.setProperty(
+              "text-shadow",
+              "0 0 8px rgba(255, 255, 255, 0.90), 0 0 " + rayon1 + "px rgba(56, 189, 248, " + alphaBleu1 + "), 0 0 " + rayon2 + "px rgba(14, 165, 233, " + alphaBleu2 + ")",
+              "important"
+            );
           }
         }
       }
     }
 
-    var energieRestante = false;
+    var animEnCours = false;
     for (var z = 0; z < energiesMots.length; z++) {
-      if (energiesMots[z] > 0.005) { energieRestante = true; break; }
+      if (energiesMots[z] > 0.005 || (bleusMots[z] > 0.005 && bleusMots[z] < 0.995)) {
+        animEnCours = true;
+        break;
+      }
     }
 
-    if ((aud && !aud.paused) || energieRestante) {
+    if ((aud && !aud.paused) || animEnCours) {
       rafId = requestAnimationFrame(etapeSuiviAudioAfterEffects);
     } else {
       rafId = null;
@@ -3582,7 +3490,6 @@ html body .follow-word {
   }
 
   function synchroniserTout() {
-    reparerSoleilEtLuneSansRondNoir();
     retirerRecitateurMaher();
     mettreAJourMentionsTraducteurEtExegese();
     masquerTraductionBasSiMotAMot();
@@ -3597,7 +3504,6 @@ html body .follow-word {
   }
 
   var obs = new MutationObserver(function () {
-    reparerSoleilEtLuneSansRondNoir();
     retirerRecitateurMaher();
     mettreAJourMentionsTraducteurEtExegese();
     masquerTraductionBasSiMotAMot();
@@ -3606,6 +3512,7 @@ html body .follow-word {
 
   window.addEventListener("DOMContentLoaded", function () {
     synchroniserTout();
+    reinitialiserMotsEnBlancPur();
     if (document.body) {
       obs.observe(document.body, { childList: true, subtree: true });
     }
@@ -3621,6 +3528,8 @@ html body .follow-word {
       } else if (t === "A-" || t === "A -" || t === "A−") {
         wbwScale = Math.max(0.68, +(wbwScale - 0.16).toFixed(2));
         try { localStorage.setItem("wbw_zoom_scale_v10", String(wbwScale)); } catch (err) {}
+      } else if (t.indexOf("Rejouer") !== -1 || t.indexOf("Replay") !== -1 || t.indexOf("Repetir") !== -1) {
+        reinitialiserMotsEnBlancPur();
       } else if (t.indexOf("Suivi") !== -1 || t.indexOf("Follow") !== -1 || t.indexOf("Seguimiento") !== -1 || t.indexOf("تتبع") !== -1) {
         suiviEstActif = !suiviEstActif;
         lancerBoucleSuivi();
@@ -4773,7 +4682,7 @@ html body .follow-word {
 <link rel="preconnect" href="https://api.quran.com" crossorigin>
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
-<style id="patch-master-v44">
+<style id="patch-master-v45">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -4782,82 +4691,11 @@ html body .follow-word {
   --wbw-min-w: 92px;
 }
 
-/* 1. SOLEIL & LUNE 150px PURS (SANS ROND NOIR) */
-html body #flatEarthSun,
-html body .flat-earth-sun,
-html body .astre-soleil-pur-v44 {
-  width: 150px !important;
-  height: 150px !important;
-  min-width: 150px !important;
-  min-height: 150px !important;
-  max-width: 150px !important;
-  max-height: 150px !important;
-  border-radius: 50% !important;
-  border: none !important;
-  outline: none !important;
-  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #fef9c3 24%, #fde047 48%, #facc15 68%, rgba(245, 158, 11, 0.38) 84%, rgba(234, 88, 12, 0) 100%) !important;
-  background-color: transparent !important;
-  box-shadow: 0 0 45px 12px rgba(250, 204, 21, 0.55), 0 0 95px 28px rgba(245, 158, 11, 0.30) !important;
-  filter: none !important;
-  mix-blend-mode: normal !important;
-}
-
-html body #flatEarthSun::before,
-html body #flatEarthSun::after,
-html body .flat-earth-sun::before,
-html body .flat-earth-sun::after,
-html body .astre-soleil-pur-v44::before,
-html body .astre-soleil-pur-v44::after,
-html body #flatEarthSun *,
-html body .flat-earth-sun *,
-html body .astre-soleil-pur-v44 * {
-  display: none !important;
-  content: none !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  opacity: 0 !important;
-}
-
-html body #flatEarthMoon,
-html body .flat-earth-moon,
-html body .astre-lune-pure-v44 {
-  width: 150px !important;
-  height: 150px !important;
-  min-width: 150px !important;
-  min-height: 150px !important;
-  max-width: 150px !important;
-  max-height: 150px !important;
-  border-radius: 50% !important;
-  border: none !important;
-  outline: none !important;
-  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f8fafc 30%, #e2e8f0 56%, rgba(186, 230, 253, 0.44) 78%, rgba(56, 189, 248, 0) 100%) !important;
-  background-color: transparent !important;
-  box-shadow: 0 0 45px 12px rgba(255, 255, 255, 0.60), 0 0 95px 28px rgba(56, 189, 248, 0.34) !important;
-  filter: none !important;
-  mix-blend-mode: normal !important;
-}
-
-html body #flatEarthMoon::before,
-html body #flatEarthMoon::after,
-html body .flat-earth-moon::before,
-html body .flat-earth-moon::after,
-html body .astre-lune-pure-v44::before,
-html body .astre-lune-pure-v44::after,
-html body #flatEarthMoon *,
-html body .flat-earth-moon *,
-html body .astre-lune-pure-v44 * {
-  display: none !important;
-  content: none !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  opacity: 0 !important;
-}
-
-/* 2. MASQUAGE ABSOLU DE MAHER AL-MUAIQLY */
+/* 1. MASQUAGE ABSOLU DE MAHER AL-MUAIQLY */
 html body img[src*="maher" i],
 html body [data-reciter*="maher" i],
 html body [data-value*="maher" i],
-html body .maher-supprime-v44 {
+html body .maher-supprime-v45 {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
@@ -4867,12 +4705,12 @@ html body .maher-supprime-v44 {
   overflow: hidden !important;
 }
 
-/* 3. MASQUAGE DE LA TRADUCTION DU BAS EN MODE MOT-À-MOT */
+/* 2. MASQUAGE DE LA TRADUCTION DU BAS EN MODE MOT-À-MOT */
 html body .wbw-masquer-traduction-bas {
   display: none !important; visibility: hidden !important; height: 0 !important; max-height: 0 !important; margin: 0 !important; padding: 0 !important; border: none !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important;
 }
 
-/* 4. BANDEAU INTERACTIF DU SENS DE LECTURE */
+/* 3. BANDEAU INTERACTIF DU SENS DE LECTURE */
 html body #wbwSensLectureBanner {
   width: 100% !important;
   text-align: center !important;
@@ -4887,7 +4725,7 @@ html body #wbwSensLectureBanner {
   user-select: none !important;
 }
 
-/* 5. CARTES MOT-À-MOT AVEC BADGE NUMÉROTÉ */
+/* 4. CARTES MOT-À-MOT AVEC BADGE NUMÉROTÉ */
 html body .wbw-card-unit {
   position: relative !important;
   padding: var(--wbw-pad-v) var(--wbw-pad-h) !important;
@@ -4923,103 +4761,35 @@ html body .wbw-card-unit > *:last-child {
   text-align: center !important;
 }
 
-/* 6. MODE SUIVI VERSET NORMAL */
+/* 5. MODE SUIVI VERSET : BLANC PUR AU DÉBUT (SCREEN 1) -> HALO BLEU APRÈS (SCREEN 2) */
 html body #arabicVerse,
 html body .arabic-glow-verse {
   direction: rtl !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.45), 0 0 28px rgba(255, 255, 255, 0.18) !important;
 }
 
 html body .verse-stage .arabic-glow-verse span,
 html body .verse-stage #arabicVerse span,
 html body .ar-word-follow,
 html body .follow-word {
-  position: relative !important; background: transparent !important; border: none !important; box-shadow: none !important; color: #ffffff !important; padding: 0 7px !important; display: inline-block !important; transform-origin: 50% 85% !important; will-change: transform, opacity, filter, text-shadow !important; backface-visibility: hidden !important; -webkit-font-smoothing: antialiased !important;
+  position: relative !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #ffffff !important;
+  padding: 0 7px !important;
+  display: inline-block !important;
+  transform-origin: 50% 85% !important;
+  will-change: transform, opacity, filter, text-shadow, color !important;
+  backface-visibility: hidden !important;
+  -webkit-font-smoothing: antialiased !important;
+  /* État par défaut (Screen 1) : Blanc lumineux pur */
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.48), 0 0 28px rgba(255, 255, 255, 0.20) !important;
 }
 </style>
-<script id="script-master-v44">(function codeClientV44() {
-  // 1. DÉTECTION GÉOMÉTRIQUE & RÉPARATION DU SOLEIL ET DE LA LUNE
-  function reparerSoleilEtLuneSansRondNoir() {
-    var tousDivs = document.querySelectorAll("div, span, canvas");
-    var spheresTrouvees = [];
-
-    for (var i = 0; i < tousDivs.length; i++) {
-      var el = tousDivs[i];
-      var idCls = ((el.id || "") + " " + (el.className && typeof el.className === "string" ? el.className : "")).toLowerCase();
-
-      var estNommeSun = idCls.indexOf("sun") !== -1 || idCls.indexOf("soleil") !== -1;
-      var estNommeMoon = idCls.indexOf("moon") !== -1 || idCls.indexOf("lune") !== -1;
-
-      var r = el.getBoundingClientRect();
-      var estRondVide =
-        r.width >= 55 &&
-        r.width <= 320 &&
-        Math.abs(r.width - r.height) <= 8 &&
-        (el.textContent || "").trim() === "" &&
-        !el.querySelector("button, input, select, p, a, img");
-
-      if (estNommeSun || estNommeMoon || estRondVide) {
-        var st = window.getComputedStyle(el);
-        if (estNommeSun || estNommeMoon || st.borderRadius.indexOf("50%") !== -1 || parseFloat(st.borderRadius) >= r.width * 0.4) {
-          spheresTrouvees.push({
-            el: el,
-            cx: r.left + r.width / 2,
-            cy: r.top + r.height / 2,
-            w: r.width,
-            isSun: estNommeSun,
-            isMoon: estNommeMoon
-          });
-        }
-      }
-    }
-
-    var astresPrincipaux = [];
-    for (var j = 0; j < spheresTrouvees.length; j++) {
-      var s = spheresTrouvees[j];
-      var doublonSuperpose = false;
-      for (var k = 0; k < astresPrincipaux.length; k++) {
-        var p = astresPrincipaux[k];
-        var dist = Math.hypot(s.cx - p.cx, s.cy - p.cy);
-        if (dist < 45) {
-          doublonSuperpose = true;
-          s.el.style.setProperty("display", "none", "important");
-          break;
-        }
-      }
-      if (!doublonSuperpose) {
-        astresPrincipaux.push(s);
-      }
-    }
-
-    for (var m = 0; m < astresPrincipaux.length; m++) {
-      var astre = astresPrincipaux[m];
-      var node = astre.el;
-
-      if (node.children && node.children.length > 0) {
-        node.innerHTML = "";
-      }
-
-      var appliquerSoleil = astre.isSun || (!astre.isMoon && m === 0);
-      if (appliquerSoleil) {
-        node.classList.remove("astre-lune-pure-v44");
-        node.classList.add("astre-soleil-pur-v44");
-        node.style.setProperty("width", "150px", "important");
-        node.style.setProperty("height", "150px", "important");
-        node.style.setProperty("border-radius", "50%", "important");
-        node.style.setProperty("background", "radial-gradient(circle at 50% 50%, #ffffff 0%, #fef9c3 24%, #fde047 48%, #facc15 68%, rgba(245, 158, 11, 0.38) 84%, rgba(234, 88, 12, 0) 100%)", "important");
-        node.style.setProperty("box-shadow", "0 0 45px 12px rgba(250, 204, 21, 0.55), 0 0 95px 28px rgba(245, 158, 11, 0.30)", "important");
-      } else {
-        node.classList.remove("astre-soleil-pur-v44");
-        node.classList.add("astre-lune-pure-v44");
-        node.style.setProperty("width", "150px", "important");
-        node.style.setProperty("height", "150px", "important");
-        node.style.setProperty("border-radius", "50%", "important");
-        node.style.setProperty("background", "radial-gradient(circle at 50% 50%, #ffffff 0%, #f8fafc 30%, #e2e8f0 56%, rgba(186, 230, 253, 0.44) 78%, rgba(56, 189, 248, 0) 100%)", "important");
-        node.style.setProperty("box-shadow", "0 0 45px 12px rgba(255, 255, 255, 0.60), 0 0 95px 28px rgba(56, 189, 248, 0.34)", "important");
-      }
-    }
-  }
-
-  // 2. SUPPRESSION TOTALE DE MAHER AL-MUAIQLY
+<script id="script-master-v45">(function codeClientV45() {
+  // 1. SUPPRESSION TOTALE DE MAHER AL-MUAIQLY
   function retirerRecitateurMaher() {
     try {
       for (var i = 0; i < localStorage.length; i++) {
@@ -5066,7 +4836,7 @@ html body .follow-word {
             cible = el.parentElement;
           }
         }
-        cible.classList.add("maher-supprime-v44");
+        cible.classList.add("maher-supprime-v45");
         if (cible.parentNode) cible.parentNode.removeChild(cible);
       }
     }
@@ -5079,14 +4849,14 @@ html body .follow-word {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v44");
+          row.classList.add("maher-supprime-v45");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
     }
   }
 
-  // 3. DÉTECTION DE LA LANGUE ACTIVE & MENTIONS MULTILINGUES
+  // 2. DÉTECTION DE LA LANGUE ACTIVE & MENTIONS MULTILINGUES
   function obtenirLangueActive() {
     var bodyTxt = document.body ? document.body.innerText : "";
     if (bodyTxt.indexOf("Escuchar aleya") !== -1 || bodyTxt.indexOf("EXPLICACIÓN DE LA ALEYA") !== -1 || bodyTxt.indexOf("Ruido Marrón") !== -1) {
@@ -5150,7 +4920,7 @@ html body .follow-word {
     }
   }
 
-  // 4. MOT-À-MOT AVEC ORDRE "1. ALLĀH -> 2. A SCELLÉ"
+  // 3. MOT-À-MOT AVEC ORDRE "1. ALLĀH -> 2. A SCELLÉ"
   var DICO_MULTILINGUE = {
     fr: {
       "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn", "طه": "Tā-Hā", "طسم": "Tā-Sīn-Mīm", "حم": "Hā-Mīm", "كهيعص": "Kāf-Hā-Yā-‘Ayn-Sād",
@@ -5164,7 +4934,8 @@ html body .follow-word {
       "يخادعون": "Ils cherchent à tromper", "يخدعون": "ils trompent", "آمنوا": "ont cru", "ءامنوا": "ont cru", "إلا": "que", "أنفسهم": "eux-mêmes", "يشعرون": "s'en rendent compte",
       "في": "Dans / sur", "مرض": "une maladie", "فزادهم": "alors leur a accru", "مرضا": "en maladie", "أليم": "douloureux", "كانوا": "ils étaient", "يكذبون": "à mentir",
       "وإذا": "Et quand", "قيل": "on dit", "لهم": "à eux (leur)", "تفسدوا": "semez la corruption", "الأرض": "la terre", "قالوا": "ils disent", "إنما": "Certes, ne...que", "نحن": "nous (sommes)", "مصلحون": "des réformateurs",
-      "ألا": "En vérité !", "إنهم": "ce sont eux", "المفسدون": "les corrupteurs", "ولكن": "mais", "يعلمون": "savent"
+      "ألا": "En vérité !", "إنهم": "ce sont eux", "المفسدون": "les corrupteurs", "ولكن": "mais", "يعلمون": "savent",
+      "بأيكم": "lequel d'entre vous", "المفتون": "est l'insensé (a perdu la raison)"
     },
     es: {
       "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn",
@@ -5178,7 +4949,7 @@ html body .follow-word {
   var sensGrilleRtl = true;
 
   try {
-    var sauv = localStorage.getItem("cache_wbw_exact_v44");
+    var sauv = localStorage.getItem("cache_wbw_exact_v45");
     if (sauv) cacheVersetMotsExact = JSON.parse(sauv);
   } catch (e) {}
 
@@ -5268,7 +5039,7 @@ html body .follow-word {
 
         if (aTraduireTextes.length === 0) {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v44", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v45", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -5295,7 +5066,7 @@ html body .follow-word {
           .catch(function () {})
           .finally(function () {
             cacheVersetMotsExact[cleCache] = motsQdc;
-            try { localStorage.setItem("cache_wbw_exact_v44", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+            try { localStorage.setItem("cache_wbw_exact_v45", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
             appliquerVraiMotAMotSurDOM();
           });
       })
@@ -5387,8 +5158,8 @@ html body .follow-word {
         if (!cVerbe.children.length || !cSuiv.children.length) continue;
         var ar1 = normaliserArabeCle(cVerbe.children[0].textContent || "");
         var ar2 = normaliserArabeCle(cSuiv.children[0].textContent || "");
-        if (ar2 === "الله" && ar1 !== "ان" && ar1 !== "وان" && ar1 !== "باسم" && ar1 !== "بسم" && ar1 !== "سبحان" && ar1 !== "الحمد" && !cSuiv.getAttribute("data-swapped-v44")) {
-          cSuiv.setAttribute("data-swapped-v44", "1");
+        if (ar2 === "الله" && ar1 !== "ان" && ar1 !== "وان" && ar1 !== "باسم" && ar1 !== "بسم" && ar1 !== "سبحان" && ar1 !== "الحمد" && !cSuiv.getAttribute("data-swapped-v45")) {
+          cSuiv.setAttribute("data-swapped-v45", "1");
           grilleParente.insertBefore(cSuiv, cVerbe);
           break;
         }
@@ -5457,9 +5228,7 @@ html body .follow-word {
     }
   }
 
-  // ==========================================================================
-  // 5. PACK SEO COMPLET (META DESCRIPTION + OPENGRAPH + CANONICAL + 3 SCHEMAS)
-  // ==========================================================================
+  // 4. PACK SEO COMPLET
   var dernierVersetSeo = "";
   function injecterPackSeoComplet() {
     var vk = obtenirCleVerset();
@@ -5476,7 +5245,6 @@ html body .follow-word {
     var h1 = document.querySelector("h1, h2");
     var titreVerset = h1 ? (h1.textContent || "").trim() : "Sourate " + numS + " Verset " + numV;
 
-    // Extraire le texte du Tafsir pour la meta description et les Rich Snippets Google
     var tousBlocs = document.querySelectorAll("div, p");
     var texteTafsirPropre = "";
     for (var i = 0; i < tousBlocs.length; i++) {
@@ -5524,10 +5292,10 @@ html body .follow-word {
     }
     linkCan.setAttribute("href", urlCanonique);
 
-    var elJson = document.getElementById("seo-jsonld-v44");
+    var elJson = document.getElementById("seo-jsonld-v45");
     if (!elJson) {
       elJson = document.createElement("script");
-      elJson.id = "seo-jsonld-v44";
+      elJson.id = "seo-jsonld-v45";
       elJson.type = "application/ld+json";
       document.head.appendChild(elJson);
     }
@@ -5627,9 +5395,9 @@ html body .follow-word {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV44")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV45")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV44";
+      nv.id = "btnSuiviUniverselV45";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.innerHTML = "✨ Suivi";
@@ -5639,6 +5407,9 @@ html body .follow-word {
     }
   }
 
+  // ==========================================================================
+  // 5. ANIMATION MODE SUIVI : BLANC PUR (SCREEN 1) -> BLEU NÉON (SCREEN 2)
+  // ==========================================================================
   var MAP_NOMS_VERS_QDC = {
     dosari: [174, 168], dossari: [174, 168], yasser: [174, 168],
     afasy: [7], alafasy: [7], mishary: [7],
@@ -5653,7 +5424,9 @@ html body .follow-word {
   var requetesEnCours = {};
   window.__lecteurAudioActuel = null;
   var rafId = null;
-  var energiesMots = [];
+  var energiesMots = []; // Énergie d'élévation du mot en cours [0..1]
+  var bleusMots = [];    // Énergie de coloration bleue permanente [0 = Blanc (Screen 1) -> 1 = Bleu (Screen 2)]
+  var dernierVersetSuivi = "";
 
   function obtenirCleRecitateurSelectionne() {
     var selects = document.querySelectorAll("select");
@@ -5727,17 +5500,41 @@ html body .follow-word {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV44) {
+  function reinitialiserMotsEnBlancPur() {
+    energiesMots = [];
+    bleusMots = [];
+    var cibleObj = obtenirElementsMotsAAnimer();
+    var items = cibleObj.items;
+    var estCartes = cibleObj.type === "cartes";
+    for (var i = 0; i < items.length; i++) {
+      var el = items[i];
+      el.style.setProperty("opacity", "1", "important");
+      el.style.setProperty("transform", "translate3d(0, 0px, 0) scale(1)", "important");
+      el.style.setProperty("filter", "none", "important");
+      if (estCartes) {
+        el.style.setProperty("border-color", "rgba(255, 255, 255, 0.18)", "important");
+        el.style.setProperty("box-shadow", "none", "important");
+      } else {
+        el.style.setProperty("color", "#ffffff", "important");
+        el.style.setProperty("text-shadow", "0 0 14px rgba(255, 255, 255, 0.48), 0 0 28px rgba(255, 255, 255, 0.20)", "important");
+      }
+    }
+  }
+
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV45) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       window.__lecteurAudioActuel = this;
+      if (this.currentTime < 0.25) {
+        reinitialiserMotsEnBlancPur();
+      }
       var cleRec = obtenirCleRecitateurSelectionne();
       var vk = obtenirCleVerset();
       if (cleRec && vk) chargerTimestampsQdc(cleRec, vk);
       lancerBoucleSuivi();
       return origPlay.apply(this, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV44 = true;
+    HTMLMediaElement.prototype.__hookedV45 = true;
   }
 
   function trouverAudioActif() {
@@ -5787,6 +5584,13 @@ html body .follow-word {
   }
 
   function etapeSuiviAudioAfterEffects() {
+    var vkActuel = obtenirCleVerset();
+    if (vkActuel && vkActuel !== dernierVersetSuivi) {
+      dernierVersetSuivi = vkActuel;
+      energiesMots = [];
+      bleusMots = [];
+    }
+
     var cibleObj = obtenirElementsMotsAAnimer();
     var items = cibleObj.items;
     var estCartes = cibleObj.type === "cartes";
@@ -5796,6 +5600,7 @@ html body .follow-word {
     if (items && items.length && suiviEstActif) {
       if (energiesMots.length !== items.length) {
         energiesMots = new Array(items.length).fill(0);
+        bleusMots = new Array(items.length).fill(0);
       }
 
       for (var i = 0; i < items.length; i++) {
@@ -5810,8 +5615,8 @@ html body .follow-word {
         var vk = obtenirCleVerset();
         var t = aud.currentTime;
         var d = aud.duration;
-        var debutVoix = Math.min(0.20, d * 0.05);
-        var finVoix = Math.max(debutVoix + 0.3, d - Math.min(0.42, d * 0.08));
+        var debutVoix = Math.min(0.18, d * 0.04);
+        var finVoix = Math.max(debutVoix + 0.25, d - Math.min(0.35, d * 0.07));
         var ratioVoix = Math.max(0, Math.min(0.999, (t - debutVoix) / (finVoix - debutVoix)));
 
         var segsNorm = cacheTimingVerset[cleRec + "_" + vk];
@@ -5828,70 +5633,82 @@ html body .follow-word {
         if (activeIndexFloat === -1) {
           activeIndexFloat = ratioVoix * items.length;
         }
+      } else if (aud && aud.ended) {
+        // Quand le verset vient de se terminer, tous les mots sont passés au bleu (Screen 2)
+        activeIndexFloat = items.length;
       }
 
       var idxEntier = Math.floor(activeIndexFloat);
-      var encoreActif = activeIndexFloat >= 0;
+      var lectureEnCours = activeIndexFloat >= 0;
 
       for (var m = 0; m < items.length; m++) {
         var el = items[m];
-        var cibleEnergie = encoreActif && m === idxEntier ? 1.0 : 0.0;
-        energiesMots[m] += (cibleEnergie - energiesMots[m]) * 0.22;
+
+        // 1. Énergie d'élévation (uniquement sur le mot en train d'être prononcé)
+        var cibleElevation = lectureEnCours && m === idxEntier ? 1.0 : 0.0;
+        energiesMots[m] += (cibleElevation - energiesMots[m]) * 0.22;
         if (energiesMots[m] < 0.002) energiesMots[m] = 0;
         if (energiesMots[m] > 0.998) energiesMots[m] = 1;
 
+        // 2. Énergie de coloration bleue (0 = Blanc pur Screen 1 -> 1 = Bleu néon Screen 2 dès que le mot est atteint ou dépassé)
+        var cibleBleu = lectureEnCours && m <= idxEntier ? 1.0 : bleusMots[m];
+        bleusMots[m] += (cibleBleu - bleusMots[m]) * 0.18;
+        if (bleusMots[m] < 0.002) bleusMots[m] = 0;
+        if (bleusMots[m] > 0.998) bleusMots[m] = 1;
+
         var e = courbeAfterEffects(energiesMots[m]);
+        var b = courbeAfterEffects(bleusMots[m]);
 
-        if (!encoreActif && e === 0) {
-          el.style.removeProperty("opacity");
-          el.style.removeProperty("filter");
-          el.style.removeProperty("transform");
-          el.style.removeProperty("text-shadow");
-          el.style.removeProperty("box-shadow");
-          el.style.removeProperty("border-color");
-          continue;
-        }
-
-        var dejaLu = encoreActif && m < idxEntier;
-        var opBase = dejaLu ? 0.78 : 0.28;
-        var op = (opBase + (1.0 - opBase) * e).toFixed(3);
-        var yPx = ((dejaLu ? 0 : 2.5) * (1 - e) - 8.5 * e).toFixed(2);
-        var sc = ((dejaLu ? 1.0 : 0.95) * (1 - e) + 1.16 * e).toFixed(3);
+        var yPx = (-7.5 * e).toFixed(2);
+        var sc = (1.0 + 0.12 * e).toFixed(3);
 
         if (estCartes) {
-          el.style.setProperty("opacity", op, "important");
-          el.style.setProperty("transform", "translate3d(0, " + yPx + "px, 0) scale(" + (0.97 + 0.11 * e).toFixed(3) + ")", "important");
-          if (e > 0.05) {
-            el.style.setProperty("border-color", "rgba(56, 189, 248, " + (0.25 + 0.75 * e).toFixed(2) + ")", "important");
-            el.style.setProperty("box-shadow", "0 " + (10 * e).toFixed(1) + "px " + (28 * e).toFixed(1) + "px rgba(56, 189, 248, " + (0.62 * e).toFixed(2) + "), inset 0 0 " + (16 * e).toFixed(1) + "px rgba(56, 189, 248, " + (0.25 * e).toFixed(2) + ")", "important");
+          el.style.setProperty("opacity", "1", "important");
+          el.style.setProperty("transform", "translate3d(0, " + yPx + "px, 0) scale(" + (1.0 + 0.08 * e).toFixed(3) + ")", "important");
+          if (b > 0.02) {
+            el.style.setProperty("border-color", "rgba(56, 189, 248, " + (0.45 * b + 0.55 * e).toFixed(2) + ")", "important");
+            el.style.setProperty("box-shadow", "0 " + (6 * b + 6 * e).toFixed(1) + "px " + (18 * b + 14 * e).toFixed(1) + "px rgba(56, 189, 248, " + (0.35 * b + 0.35 * e).toFixed(2) + "), inset 0 0 " + (12 * b).toFixed(1) + "px rgba(56, 189, 248, " + (0.18 * b).toFixed(2) + ")", "important");
           } else {
-            el.style.setProperty("border-color", dejaLu ? "rgba(56, 189, 248, 0.35)" : "rgba(148, 163, 184, 0.14)", "important");
+            el.style.setProperty("border-color", "rgba(255, 255, 255, 0.18)", "important");
             el.style.setProperty("box-shadow", "none", "important");
           }
         } else {
           el.style.setProperty("background", "transparent", "important");
           el.style.setProperty("border", "none", "important");
-          el.style.setProperty("color", "#ffffff", "important");
-          el.style.setProperty("opacity", op, "important");
+          el.style.setProperty("opacity", "1", "important");
+          el.style.setProperty("filter", "none", "important");
           el.style.setProperty("transform", "translate3d(0, " + yPx + "px, 0) scale(" + sc + ")", "important");
-          var flou = !dejaLu && e < 0.2 ? (0.55 * (1 - e * 5)).toFixed(2) + "px" : "0px";
-          var lum = (0.82 + 0.56 * e).toFixed(2);
-          el.style.setProperty("filter", "blur(" + flou + ") brightness(" + lum + ")", "important");
-          if (e > 0.04) {
-            el.style.setProperty("text-shadow", "0 0 " + (14 * e).toFixed(1) + "px rgba(255,255,255," + e.toFixed(2) + "), 0 0 " + (32 * e).toFixed(1) + "px rgba(56,189,248," + (0.92 * e).toFixed(2) + ")", "important");
+
+          if (b < 0.03) {
+            // SCREEN 1 : Mot pas encore lu -> Blanc pur + Halo blanc doux
+            el.style.setProperty("color", "#ffffff", "important");
+            el.style.setProperty("text-shadow", "0 0 14px rgba(255, 255, 255, 0.48), 0 0 28px rgba(255, 255, 255, 0.20)", "important");
           } else {
-            el.style.setProperty("text-shadow", dejaLu ? "0 0 10px rgba(56, 189, 248, 0.42)" : "none", "important");
+            // SCREEN 2 : Mot prononcé -> Texte blanc-azur + Halo bleu néon intense (#38bdf8 / #0ea5e9)
+            el.style.setProperty("color", "#f0f9ff", "important");
+            var alphaBleu1 = (0.85 * b + 0.15 * e).toFixed(2);
+            var alphaBleu2 = (0.65 * b + 0.30 * e).toFixed(2);
+            var rayon1 = (14 + 8 * e).toFixed(1);
+            var rayon2 = (28 + 16 * e).toFixed(1);
+            el.style.setProperty(
+              "text-shadow",
+              "0 0 8px rgba(255, 255, 255, 0.90), 0 0 " + rayon1 + "px rgba(56, 189, 248, " + alphaBleu1 + "), 0 0 " + rayon2 + "px rgba(14, 165, 233, " + alphaBleu2 + ")",
+              "important"
+            );
           }
         }
       }
     }
 
-    var energieRestante = false;
+    var animEnCours = false;
     for (var z = 0; z < energiesMots.length; z++) {
-      if (energiesMots[z] > 0.005) { energieRestante = true; break; }
+      if (energiesMots[z] > 0.005 || (bleusMots[z] > 0.005 && bleusMots[z] < 0.995)) {
+        animEnCours = true;
+        break;
+      }
     }
 
-    if ((aud && !aud.paused) || energieRestante) {
+    if ((aud && !aud.paused) || animEnCours) {
       rafId = requestAnimationFrame(etapeSuiviAudioAfterEffects);
     } else {
       rafId = null;
@@ -5903,7 +5720,6 @@ html body .follow-word {
   }
 
   function synchroniserTout() {
-    reparerSoleilEtLuneSansRondNoir();
     retirerRecitateurMaher();
     mettreAJourMentionsTraducteurEtExegese();
     masquerTraductionBasSiMotAMot();
@@ -5918,7 +5734,6 @@ html body .follow-word {
   }
 
   var obs = new MutationObserver(function () {
-    reparerSoleilEtLuneSansRondNoir();
     retirerRecitateurMaher();
     mettreAJourMentionsTraducteurEtExegese();
     masquerTraductionBasSiMotAMot();
@@ -5927,6 +5742,7 @@ html body .follow-word {
 
   window.addEventListener("DOMContentLoaded", function () {
     synchroniserTout();
+    reinitialiserMotsEnBlancPur();
     if (document.body) {
       obs.observe(document.body, { childList: true, subtree: true });
     }
@@ -5942,6 +5758,8 @@ html body .follow-word {
       } else if (t === "A-" || t === "A -" || t === "A−") {
         wbwScale = Math.max(0.68, +(wbwScale - 0.16).toFixed(2));
         try { localStorage.setItem("wbw_zoom_scale_v10", String(wbwScale)); } catch (err) {}
+      } else if (t.indexOf("Rejouer") !== -1 || t.indexOf("Replay") !== -1 || t.indexOf("Repetir") !== -1) {
+        reinitialiserMotsEnBlancPur();
       } else if (t.indexOf("Suivi") !== -1 || t.indexOf("Follow") !== -1 || t.indexOf("Seguimiento") !== -1 || t.indexOf("تتبع") !== -1) {
         suiviEstActif = !suiviEstActif;
         lancerBoucleSuivi();
