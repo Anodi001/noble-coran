@@ -9,7 +9,7 @@ if (!fs.existsSync(pGen)) {
 
 let g = fs.readFileSync(pGen, 'utf8');
 
-// Nettoyer tous les anciens patchs V26 à V45
+// Nettoyer tous les anciens patchs V26 à V46
 g = g.replace(/<style id="patch-master-v\d+">[\s\S]*?<\/script>/g, '');
 g = g.replace(/<style id="patch-hide-tr-wbw-v\d+">[\s\S]*?<\/script>/g, '');
 g = g.replace(/<link rel="preconnect" href="https:\/\/api\.quran\.com"[^>]*>\s*/g, '');
@@ -20,7 +20,7 @@ const preconnectTags = `<link rel="preconnect" href="https://api.quran.com" cros
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>`;
 
-const cssV45 = `<style id="patch-master-v45">
+const cssV46 = `<style id="patch-master-v46">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -29,11 +29,82 @@ const cssV45 = `<style id="patch-master-v45">
   --wbw-min-w: 92px;
 }
 
-/* 1. MASQUAGE ABSOLU DE MAHER AL-MUAIQLY */
+/* 1. SOLEIL DORÉ PUR & LUNE BLANCHE PURE 150px (SANS BLEU NI NOIR AU CENTRE) */
+html body #flatEarthSun,
+html body .flat-earth-sun,
+html body .astre-soleil-pur-v46 {
+  width: 150px !important;
+  height: 150px !important;
+  min-width: 150px !important;
+  min-height: 150px !important;
+  max-width: 150px !important;
+  max-height: 150px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  outline: none !important;
+  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #fffbeb 28%, #fef08a 55%, #facc15 78%, rgba(245, 158, 11, 0) 100%) !important;
+  background-color: #fde047 !important;
+  box-shadow: 0 0 45px 15px rgba(253, 224, 71, 0.65), 0 0 95px 35px rgba(245, 158, 11, 0.38) !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+}
+
+html body #flatEarthSun::before,
+html body #flatEarthSun::after,
+html body .flat-earth-sun::before,
+html body .flat-earth-sun::after,
+html body .astre-soleil-pur-v46::before,
+html body .astre-soleil-pur-v46::after,
+html body #flatEarthSun *,
+html body .flat-earth-sun *,
+html body .astre-soleil-pur-v46 * {
+  display: none !important;
+  content: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+}
+
+html body #flatEarthMoon,
+html body .flat-earth-moon,
+html body .astre-lune-pure-v46 {
+  width: 150px !important;
+  height: 150px !important;
+  min-width: 150px !important;
+  min-height: 150px !important;
+  max-width: 150px !important;
+  max-height: 150px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  outline: none !important;
+  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f8fafc 35%, #e2e8f0 68%, rgba(186, 230, 253, 0) 100%) !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 0 45px 15px rgba(255, 255, 255, 0.65), 0 0 95px 35px rgba(148, 163, 184, 0.35) !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+}
+
+html body #flatEarthMoon::before,
+html body #flatEarthMoon::after,
+html body .flat-earth-moon::before,
+html body .flat-earth-moon::after,
+html body .astre-lune-pure-v46::before,
+html body .astre-lune-pure-v46::after,
+html body #flatEarthMoon *,
+html body .flat-earth-moon *,
+html body .astre-lune-pure-v46 * {
+  display: none !important;
+  content: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+}
+
+/* 2. MASQUAGE ABSOLU DE MAHER AL-MUAIQLY */
 html body img[src*="maher" i],
 html body [data-reciter*="maher" i],
 html body [data-value*="maher" i],
-html body .maher-supprime-v45 {
+html body .maher-supprime-v46 {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
@@ -43,12 +114,12 @@ html body .maher-supprime-v45 {
   overflow: hidden !important;
 }
 
-/* 2. MASQUAGE DE LA TRADUCTION DU BAS EN MODE MOT-À-MOT */
+/* 3. MASQUAGE DE LA TRADUCTION DU BAS EN MODE MOT-À-MOT */
 html body .wbw-masquer-traduction-bas {
   display: none !important; visibility: hidden !important; height: 0 !important; max-height: 0 !important; margin: 0 !important; padding: 0 !important; border: none !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important;
 }
 
-/* 3. BANDEAU INTERACTIF DU SENS DE LECTURE */
+/* 4. BANDEAU INTERACTIF DU SENS DE LECTURE */
 html body #wbwSensLectureBanner {
   width: 100% !important;
   text-align: center !important;
@@ -63,7 +134,7 @@ html body #wbwSensLectureBanner {
   user-select: none !important;
 }
 
-/* 4. CARTES MOT-À-MOT AVEC BADGE NUMÉROTÉ */
+/* 5. CARTES MOT-À-MOT AVEC BADGE NUMÉROTÉ */
 html body .wbw-card-unit {
   position: relative !important;
   padding: var(--wbw-pad-v) var(--wbw-pad-h) !important;
@@ -99,7 +170,7 @@ html body .wbw-card-unit > *:last-child {
   text-align: center !important;
 }
 
-/* 5. MODE SUIVI VERSET : BLANC PUR AU DÉBUT (SCREEN 1) -> HALO BLEU APRÈS (SCREEN 2) */
+/* 6. MODE SUIVI VERSET : BLANC PUR AU DÉBUT (SCREEN 1) -> HALO BLEU APRÈS (SCREEN 2) */
 html body #arabicVerse,
 html body .arabic-glow-verse {
   direction: rtl !important;
@@ -122,13 +193,100 @@ html body .follow-word {
   will-change: transform, opacity, filter, text-shadow, color !important;
   backface-visibility: hidden !important;
   -webkit-font-smoothing: antialiased !important;
-  /* État par défaut (Screen 1) : Blanc lumineux pur */
   text-shadow: 0 0 14px rgba(255, 255, 255, 0.48), 0 0 28px rgba(255, 255, 255, 0.20) !important;
 }
 </style>`;
 
-function codeClientV45() {
-  // 1. SUPPRESSION TOTALE DE MAHER AL-MUAIQLY
+function codeClientV46() {
+  // 1. RÉPARATION STRICTE DU SOLEIL (DORÉ PUR) ET DE LA LUNE (BLANCHE PURE)
+  function reparerSoleilEtLuneSansBleuNiNoir() {
+    var tousDivs = document.querySelectorAll("div, span, canvas");
+    var spheresTrouvees = [];
+
+    for (var i = 0; i < tousDivs.length; i++) {
+      var el = tousDivs[i];
+      var idCls = ((el.id || "") + " " + (el.className && typeof el.className === "string" ? el.className : "")).toLowerCase();
+
+      var estNommeSun = idCls.indexOf("sun") !== -1 || idCls.indexOf("soleil") !== -1;
+      var estNommeMoon = idCls.indexOf("moon") !== -1 || idCls.indexOf("lune") !== -1;
+
+      var r = el.getBoundingClientRect();
+      var estRondVide =
+        r.width >= 55 &&
+        r.width <= 320 &&
+        Math.abs(r.width - r.height) <= 8 &&
+        (el.textContent || "").trim() === "" &&
+        !el.querySelector("button, input, select, p, a, img");
+
+      if (estNommeSun || estNommeMoon || estRondVide) {
+        var st = window.getComputedStyle(el);
+        if (estNommeSun || estNommeMoon || st.borderRadius.indexOf("50%") !== -1 || parseFloat(st.borderRadius) >= r.width * 0.4) {
+          spheresTrouvees.push({
+            el: el,
+            cx: r.left + r.width / 2,
+            cy: r.top + r.height / 2,
+            w: r.width,
+            isSun: estNommeSun,
+            isMoon: estNommeMoon,
+            bg: (st.backgroundImage || "") + " " + (st.boxShadow || "")
+          });
+        }
+      }
+    }
+
+    var astresPrincipaux = [];
+    for (var j = 0; j < spheresTrouvees.length; j++) {
+      var s = spheresTrouvees[j];
+      var doublonSuperpose = false;
+      for (var k = 0; k < astresPrincipaux.length; k++) {
+        var p = astresPrincipaux[k];
+        var dist = Math.hypot(s.cx - p.cx, s.cy - p.cy);
+        if (dist < 45) {
+          doublonSuperpose = true;
+          s.el.style.setProperty("display", "none", "important");
+          break;
+        }
+      }
+      if (!doublonSuperpose) {
+        astresPrincipaux.push(s);
+      }
+    }
+
+    for (var m = 0; m < astresPrincipaux.length; m++) {
+      var astre = astresPrincipaux[m];
+      var node = astre.el;
+
+      if (node.children && node.children.length > 0) {
+        node.innerHTML = "";
+      }
+
+      // Identifier si c'est le Soleil (à gauche ou nommé Sun ou contenant du jaune/orange)
+      var appliquerSoleil = astre.isSun || (!astre.isMoon && astre.cx < window.innerWidth / 2);
+      if (appliquerSoleil) {
+        node.classList.remove("astre-lune-pure-v46");
+        node.classList.add("astre-soleil-pur-v46");
+        node.style.setProperty("width", "150px", "important");
+        node.style.setProperty("height", "150px", "important");
+        node.style.setProperty("border-radius", "50%", "important");
+        node.style.setProperty("background", "radial-gradient(circle at 50% 50%, #ffffff 0%, #fffbeb 28%, #fef08a 55%, #facc15 78%, rgba(245, 158, 11, 0) 100%)", "important");
+        node.style.setProperty("background-color", "#fde047", "important");
+        node.style.setProperty("box-shadow", "0 0 45px 15px rgba(253, 224, 71, 0.65), 0 0 95px 35px rgba(245, 158, 11, 0.38)", "important");
+        node.style.setProperty("filter", "none", "important");
+      } else {
+        node.classList.remove("astre-soleil-pur-v46");
+        node.classList.add("astre-lune-pure-v46");
+        node.style.setProperty("width", "150px", "important");
+        node.style.setProperty("height", "150px", "important");
+        node.style.setProperty("border-radius", "50%", "important");
+        node.style.setProperty("background", "radial-gradient(circle at 50% 50%, #ffffff 0%, #f8fafc 35%, #e2e8f0 68%, rgba(186, 230, 253, 0) 100%)", "important");
+        node.style.setProperty("background-color", "#ffffff", "important");
+        node.style.setProperty("box-shadow", "0 0 45px 15px rgba(255, 255, 255, 0.65), 0 0 95px 35px rgba(148, 163, 184, 0.35)", "important");
+        node.style.setProperty("filter", "none", "important");
+      }
+    }
+  }
+
+  // 2. SUPPRESSION TOTALE DE MAHER AL-MUAIQLY
   function retirerRecitateurMaher() {
     try {
       for (var i = 0; i < localStorage.length; i++) {
@@ -175,7 +333,7 @@ function codeClientV45() {
             cible = el.parentElement;
           }
         }
-        cible.classList.add("maher-supprime-v45");
+        cible.classList.add("maher-supprime-v46");
         if (cible.parentNode) cible.parentNode.removeChild(cible);
       }
     }
@@ -188,14 +346,14 @@ function codeClientV45() {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v45");
+          row.classList.add("maher-supprime-v46");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
     }
   }
 
-  // 2. DÉTECTION DE LA LANGUE ACTIVE & MENTIONS MULTILINGUES
+  // 3. DÉTECTION DE LA LANGUE ACTIVE & MENTIONS MULTILINGUES
   function obtenirLangueActive() {
     var bodyTxt = document.body ? document.body.innerText : "";
     if (bodyTxt.indexOf("Escuchar aleya") !== -1 || bodyTxt.indexOf("EXPLICACIÓN DE LA ALEYA") !== -1 || bodyTxt.indexOf("Ruido Marrón") !== -1) {
@@ -259,7 +417,7 @@ function codeClientV45() {
     }
   }
 
-  // 3. MOT-À-MOT AVEC ORDRE "1. ALLĀH -> 2. A SCELLÉ"
+  // 4. MOT-À-MOT AVEC ORDRE "1. ALLĀH -> 2. A SCELLÉ" & BANDEAU MULTILINGUE
   var DICO_MULTILINGUE = {
     fr: {
       "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn", "طه": "Tā-Hā", "طسم": "Tā-Sīn-Mīm", "حم": "Hā-Mīm", "كهيعص": "Kāf-Hā-Yā-‘Ayn-Sād",
@@ -288,7 +446,7 @@ function codeClientV45() {
   var sensGrilleRtl = true;
 
   try {
-    var sauv = localStorage.getItem("cache_wbw_exact_v45");
+    var sauv = localStorage.getItem("cache_wbw_exact_v46");
     if (sauv) cacheVersetMotsExact = JSON.parse(sauv);
   } catch (e) {}
 
@@ -378,7 +536,7 @@ function codeClientV45() {
 
         if (aTraduireTextes.length === 0) {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v45", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v46", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -405,7 +563,7 @@ function codeClientV45() {
           .catch(function () {})
           .finally(function () {
             cacheVersetMotsExact[cleCache] = motsQdc;
-            try { localStorage.setItem("cache_wbw_exact_v45", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+            try { localStorage.setItem("cache_wbw_exact_v46", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
             appliquerVraiMotAMotSurDOM();
           });
       })
@@ -497,8 +655,8 @@ function codeClientV45() {
         if (!cVerbe.children.length || !cSuiv.children.length) continue;
         var ar1 = normaliserArabeCle(cVerbe.children[0].textContent || "");
         var ar2 = normaliserArabeCle(cSuiv.children[0].textContent || "");
-        if (ar2 === "الله" && ar1 !== "ان" && ar1 !== "وان" && ar1 !== "باسم" && ar1 !== "بسم" && ar1 !== "سبحان" && ar1 !== "الحمد" && !cSuiv.getAttribute("data-swapped-v45")) {
-          cSuiv.setAttribute("data-swapped-v45", "1");
+        if (ar2 === "الله" && ar1 !== "ان" && ar1 !== "وان" && ar1 !== "باسم" && ar1 !== "بسم" && ar1 !== "سبحان" && ar1 !== "الحمد" && !cSuiv.getAttribute("data-swapped-v46")) {
+          cSuiv.setAttribute("data-swapped-v46", "1");
           grilleParente.insertBefore(cSuiv, cVerbe);
           break;
         }
@@ -512,7 +670,20 @@ function codeClientV45() {
 
     if (grilleParente) {
       grilleParente.style.setProperty("direction", sensGrilleRtl ? "rtl" : "ltr", "important");
-      var fleche = sensGrilleRtl ? "⬅️ Sens de lecture : de droite à gauche (1 ➔ " + cartesFinales.length + ") • Cliquer pour inverser" : "➡️ Sens de lecture : de gauche à droite (1 ➔ " + cartesFinales.length + ") • Cliquer pour inverser";
+      var totalW = cartesFinales.length;
+      var textesRtl = {
+        fr: "⬅️ Sens de lecture : de droite à gauche (1 ➔ " + totalW + ") • Cliquer pour inverser",
+        en: "⬅️ Reading order: Right to Left (1 ➔ " + totalW + ") • Click to reverse",
+        es: "⬅️ Orden de lectura: de derecha a izquierda (1 ➔ " + totalW + ") • Clic para invertir",
+        ar: "⬅️ ترتيب القراءة: من اليمين إلى اليسار (1 ➔ " + totalW + ")"
+      };
+      var textesLtr = {
+        fr: "➡️ Sens de lecture : de gauche à droite (1 ➔ " + totalW + ") • Cliquer pour inverser",
+        en: "➡️ Reading order: Left to Right (1 ➔ " + totalW + ") • Click to reverse",
+        es: "➡️ Orden de lectura: de izquierda a derecha (1 ➔ " + totalW + ") • Clic para invertir",
+        ar: "➡️ ترتيب القراءة: من اليسار إلى اليمين (1 ➔ " + totalW + ")"
+      };
+      var fleche = sensGrilleRtl ? (textesRtl[lang] || textesRtl.fr) : (textesLtr[lang] || textesLtr.fr);
       if (!oldBanner) {
         oldBanner = document.createElement("div");
         oldBanner.id = "wbwSensLectureBanner";
@@ -567,7 +738,7 @@ function codeClientV45() {
     }
   }
 
-  // 4. PACK SEO COMPLET
+  // 5. PACK SEO COMPLET
   var dernierVersetSeo = "";
   function injecterPackSeoComplet() {
     var vk = obtenirCleVerset();
@@ -631,10 +802,10 @@ function codeClientV45() {
     }
     linkCan.setAttribute("href", urlCanonique);
 
-    var elJson = document.getElementById("seo-jsonld-v45");
+    var elJson = document.getElementById("seo-jsonld-v46");
     if (!elJson) {
       elJson = document.createElement("script");
-      elJson.id = "seo-jsonld-v45";
+      elJson.id = "seo-jsonld-v46";
       elJson.type = "application/ld+json";
       document.head.appendChild(elJson);
     }
@@ -734,9 +905,9 @@ function codeClientV45() {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV45")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV46")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV45";
+      nv.id = "btnSuiviUniverselV46";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.innerHTML = "✨ Suivi";
@@ -746,9 +917,7 @@ function codeClientV45() {
     }
   }
 
-  // ==========================================================================
-  // 5. ANIMATION MODE SUIVI : BLANC PUR (SCREEN 1) -> BLEU NÉON (SCREEN 2)
-  // ==========================================================================
+  // 6. ANIMATION MODE SUIVI : BLANC PUR (SCREEN 1) -> BLEU NÉON (SCREEN 2)
   var MAP_NOMS_VERS_QDC = {
     dosari: [174, 168], dossari: [174, 168], yasser: [174, 168],
     afasy: [7], alafasy: [7], mishary: [7],
@@ -763,8 +932,8 @@ function codeClientV45() {
   var requetesEnCours = {};
   window.__lecteurAudioActuel = null;
   var rafId = null;
-  var energiesMots = []; // Énergie d'élévation du mot en cours [0..1]
-  var bleusMots = [];    // Énergie de coloration bleue permanente [0 = Blanc (Screen 1) -> 1 = Bleu (Screen 2)]
+  var energiesMots = [];
+  var bleusMots = [];
   var dernierVersetSuivi = "";
 
   function obtenirCleRecitateurSelectionne() {
@@ -860,7 +1029,7 @@ function codeClientV45() {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV45) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV46) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       window.__lecteurAudioActuel = this;
@@ -873,7 +1042,7 @@ function codeClientV45() {
       lancerBoucleSuivi();
       return origPlay.apply(this, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV45 = true;
+    HTMLMediaElement.prototype.__hookedV46 = true;
   }
 
   function trouverAudioActif() {
@@ -973,7 +1142,6 @@ function codeClientV45() {
           activeIndexFloat = ratioVoix * items.length;
         }
       } else if (aud && aud.ended) {
-        // Quand le verset vient de se terminer, tous les mots sont passés au bleu (Screen 2)
         activeIndexFloat = items.length;
       }
 
@@ -983,13 +1151,11 @@ function codeClientV45() {
       for (var m = 0; m < items.length; m++) {
         var el = items[m];
 
-        // 1. Énergie d'élévation (uniquement sur le mot en train d'être prononcé)
         var cibleElevation = lectureEnCours && m === idxEntier ? 1.0 : 0.0;
         energiesMots[m] += (cibleElevation - energiesMots[m]) * 0.22;
         if (energiesMots[m] < 0.002) energiesMots[m] = 0;
         if (energiesMots[m] > 0.998) energiesMots[m] = 1;
 
-        // 2. Énergie de coloration bleue (0 = Blanc pur Screen 1 -> 1 = Bleu néon Screen 2 dès que le mot est atteint ou dépassé)
         var cibleBleu = lectureEnCours && m <= idxEntier ? 1.0 : bleusMots[m];
         bleusMots[m] += (cibleBleu - bleusMots[m]) * 0.18;
         if (bleusMots[m] < 0.002) bleusMots[m] = 0;
@@ -1019,11 +1185,9 @@ function codeClientV45() {
           el.style.setProperty("transform", "translate3d(0, " + yPx + "px, 0) scale(" + sc + ")", "important");
 
           if (b < 0.03) {
-            // SCREEN 1 : Mot pas encore lu -> Blanc pur + Halo blanc doux
             el.style.setProperty("color", "#ffffff", "important");
             el.style.setProperty("text-shadow", "0 0 14px rgba(255, 255, 255, 0.48), 0 0 28px rgba(255, 255, 255, 0.20)", "important");
           } else {
-            // SCREEN 2 : Mot prononcé -> Texte blanc-azur + Halo bleu néon intense (#38bdf8 / #0ea5e9)
             el.style.setProperty("color", "#f0f9ff", "important");
             var alphaBleu1 = (0.85 * b + 0.15 * e).toFixed(2);
             var alphaBleu2 = (0.65 * b + 0.30 * e).toFixed(2);
@@ -1059,6 +1223,7 @@ function codeClientV45() {
   }
 
   function synchroniserTout() {
+    reparerSoleilEtLuneSansBleuNiNoir();
     retirerRecitateurMaher();
     mettreAJourMentionsTraducteurEtExegese();
     masquerTraductionBasSiMotAMot();
@@ -1073,6 +1238,7 @@ function codeClientV45() {
   }
 
   var obs = new MutationObserver(function () {
+    reparerSoleilEtLuneSansBleuNiNoir();
     retirerRecitateurMaher();
     mettreAJourMentionsTraducteurEtExegese();
     masquerTraductionBasSiMotAMot();
@@ -1116,10 +1282,10 @@ function codeClientV45() {
   synchroniserTout();
 }
 
-const blocCompletV45 = preconnectTags + '\n' + cssV45 + '\n<script id="script-master-v45">(' + codeClientV45.toString() + ')();</script>';
-const blocEchappePourGenerateur = blocCompletV45.replace(/\\/g, '\\\\');
+const blocCompletV46 = preconnectTags + '\n' + cssV46 + '\n<script id="script-master-v46">(' + codeClientV46.toString() + ')();</script>';
+const blocEchappePourGenerateur = blocCompletV46.replace(/\\/g, '\\\\');
 
 g = g.replace(/<\/head>/g, () => blocEchappePourGenerateur + '\n</head>');
 fs.writeFileSync(pGen, g, 'utf8');
 
-console.log('✅ Correctif V45 activé : Mode Suivi Blanc pur au début (Screen 1) -> Halo Bleu néon au fil de la lecture (Screen 2) !');
+console.log('✅ Correctif V46 activé : Soleil 100% doré pur (sans bleu) + Lune blanche + Suivi Blanc -> Bleu + Bandeau multilingue !');
