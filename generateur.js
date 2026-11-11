@@ -2452,7 +2452,8 @@ async function lancerGeneration() {
 <link rel="preconnect" href="https://api.quran.com" crossorigin>
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
-<style id="patch-master-v49">
+<link rel="preconnect" href="https://quranenc.com" crossorigin>
+<style id="patch-master-v50">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -2467,7 +2468,7 @@ html body .flat-earth-sun,
 html body [id*="sun" i]:not([id*="sound" i]),
 html body [class*="sun" i]:not([class*="sound" i]),
 html body [data-astre-role="sun"],
-html body .astre-soleil-pur-v49 {
+html body .astre-soleil-pur-v50 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -2493,12 +2494,12 @@ html body .flat-earth-sun::before,
 html body .flat-earth-sun::after,
 html body [data-astre-role="sun"]::before,
 html body [data-astre-role="sun"]::after,
-html body .astre-soleil-pur-v49::before,
-html body .astre-soleil-pur-v49::after,
+html body .astre-soleil-pur-v50::before,
+html body .astre-soleil-pur-v50::after,
 html body #flatEarthSun *,
 html body .flat-earth-sun *,
 html body [data-astre-role="sun"] *,
-html body .astre-soleil-pur-v49 * {
+html body .astre-soleil-pur-v50 * {
   display: none !important;
   content: none !important;
   background: none !important;
@@ -2514,7 +2515,7 @@ html body .flat-earth-moon,
 html body [id*="moon" i],
 html body [class*="moon" i],
 html body [data-astre-role="moon"],
-html body .astre-lune-pure-v49 {
+html body .astre-lune-pure-v50 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -2540,12 +2541,12 @@ html body .flat-earth-moon::before,
 html body .flat-earth-moon::after,
 html body [data-astre-role="moon"]::before,
 html body [data-astre-role="moon"]::after,
-html body .astre-lune-pure-v49::before,
-html body .astre-lune-pure-v49::after,
+html body .astre-lune-pure-v50::before,
+html body .astre-lune-pure-v50::after,
 html body #flatEarthMoon *,
 html body .flat-earth-moon *,
 html body [data-astre-role="moon"] *,
-html body .astre-lune-pure-v49 * {
+html body .astre-lune-pure-v50 * {
   display: none !important;
   content: none !important;
   background: none !important;
@@ -2559,7 +2560,7 @@ html body .astre-lune-pure-v49 * {
 html body img[src*="maher" i],
 html body [data-reciter*="maher" i],
 html body [data-value*="maher" i],
-html body .maher-supprime-v49 {
+html body .maher-supprime-v50 {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
@@ -2650,14 +2651,273 @@ html body .follow-word {
   -webkit-font-smoothing: antialiased !important;
   text-shadow: 0 0 14px rgba(255, 255, 255, 0.48), 0 0 28px rgba(255, 255, 255, 0.20) !important;
 }
+
+/* 8. BOUTON DE LANGUE TURC (TR TR) */
+html body #btnLangTrV50 {
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+html body #btnLangTrV50.active-tr-v50 {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(56, 189, 248, 0.18)) !important;
+  border: 1px solid #38bdf8 !important;
+  color: #ffffff !important;
+  border-radius: 999px !important;
+}
 </style>
-<script id="script-master-v49">(function codeClientV49() {
-  // Purger immédiatement tous les anciens caches Mot-à-mot (v38 à v48) pour effacer "et ce qui / et ils ne"
+<script id="script-master-v50">(function codeClientV50() {
   try {
-    for (var p = 38; p <= 48; p++) {
+    for (var p = 38; p <= 49; p++) {
       localStorage.removeItem("cache_wbw_exact_v" + p);
     }
   } catch (e) {}
+
+  // ==========================================================================
+  // 0. GESTION DU MODE TURC (TR) + BOUTON "TR TR" DANS LA BARRE DE LANGUES
+  // ==========================================================================
+  var modeTurcActif = false;
+  try {
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("lang") === "tr") {
+      modeTurcActif = true;
+      localStorage.setItem("corantafsir_lang_v50", "tr");
+    } else if (localStorage.getItem("corantafsir_lang_v50") === "tr") {
+      modeTurcActif = true;
+    }
+  } catch (e) {}
+
+  var NOMS_SOURATES_TR = {
+    1: "Fâtiha Suresi", 2: "Bakara Suresi", 3: "Âl-i İmrân Suresi", 4: "Nisâ Suresi", 5: "Mâide Suresi",
+    6: "En'âm Suresi", 7: "A'râf Suresi", 8: "Enfâl Suresi", 9: "Tevbe Suresi", 10: "Yûnus Suresi",
+    11: "Hûd Suresi", 12: "Yûsuf Suresi", 13: "Ra'd Suresi", 14: "İbrâhîm Suresi", 15: "Hicr Suresi",
+    16: "Nahl Suresi", 17: "İsrâ Suresi", 18: "Kehf Suresi", 19: "Meryem Suresi", 20: "Tâhâ Suresi",
+    21: "Enbiyâ Suresi", 22: "Hac Suresi", 23: "Mü'minûn Suresi", 24: "Nûr Suresi", 25: "Furkan Suresi",
+    26: "Şuarâ Suresi", 27: "Neml Suresi", 28: "Kasas Suresi", 29: "Ankebût Suresi", 30: "Rûm Suresi",
+    31: "Lokmân Suresi", 32: "Secde Suresi", 33: "Ahzâb Suresi", 34: "Sebe' Suresi", 35: "Fâtır Suresi",
+    36: "Yâsîn Suresi", 37: "Sâffât Suresi", 38: "Sâd Suresi", 39: "Zümer Suresi", 40: "Mü'min (Gâfir) Suresi",
+    41: "Fussilet Suresi", 42: "Şûrâ Suresi", 43: "Zuhruf Suresi", 44: "Duhân Suresi", 45: "Câsiye Suresi",
+    46: "Ahkâf Suresi", 47: "Muhammed Suresi", 48: "Fetih Suresi", 49: "Hucurât Suresi", 50: "Kâf Suresi",
+    51: "Zâriyât Suresi", 52: "Tûr Suresi", 53: "Necm Suresi", 54: "Kamer Suresi", 55: "Rahmân Suresi",
+    56: "Vâkıa Suresi", 57: "Hadîd Suresi", 58: "Mücâdele Suresi", 59: "Haşr Suresi", 60: "Mümtehine Suresi",
+    61: "Saf Suresi", 62: "Cuma Suresi", 63: "Münâfikûn Suresi", 64: "Tegâbün Suresi", 65: "Talâk Suresi",
+    66: "Tahrîm Suresi", 67: "Mülk Suresi", 68: "Kalem Suresi", 69: "Hâkka Suresi", 70: "Meâric Suresi",
+    71: "Nûh Suresi", 72: "Cin Suresi", 73: "Müzzemmil Suresi", 74: "Müddessir Suresi", 75: "Kıyâmet Suresi",
+    76: "İnsân Suresi", 77: "Mürselât Suresi", 78: "Nebe' Suresi", 79: "Nâziât Suresi", 80: "Abese Suresi",
+    81: "Tekvîr Suresi", 82: "İnfitâr Suresi", 83: "Mutaffifîn Suresi", 84: "İnşikâk Suresi", 85: "Burûc Suresi",
+    86: "Târık Suresi", 87: "A'lâ Suresi", 88: "Gâşiye Suresi", 89: "Fecr Suresi", 90: "Beled Suresi",
+    91: "Şems Suresi", 92: "Leyl Suresi", 93: "Duhâ Suresi", 94: "İnşirâh Suresi", 95: "Tîn Suresi",
+    96: "Alak Suresi", 97: "Kadir Suresi", 98: "Beyyine Suresi", 99: "Zilzâl Suresi", 100: "Âdiyât Suresi",
+    101: "Kâria Suresi", 102: "Tekâsür Suresi", 103: "Asr Suresi", 104: "Hümeze Suresi", 105: "Fîl Suresi",
+    106: "Kureyş Suresi", 107: "Mâûn Suresi", 108: "Kevser Suresi", 109: "Kâfirûn Suresi", 110: "Nasr Suresi",
+    111: "Tebbet (Mesed) Suresi", 112: "İhlâs Suresi", 113: "Felak Suresi", 114: "Nâs Suresi"
+  };
+
+  var cacheTurcChapitres = {}; // cle: "chap_2" -> { "2:7": { tr: "...", tafsir: "..." } }
+  var requetesTurcEnCours = {};
+
+  function assurerBoutonTurcDansBarre() {
+    if (document.getElementById("btnLangTrV50")) {
+      var btnExistant = document.getElementById("btnLangTrV50");
+      if (modeTurcActif) {
+        btnExistant.classList.add("active-tr-v50");
+      } else {
+        btnExistant.classList.remove("active-tr-v50");
+      }
+      return;
+    }
+
+    var els = document.querySelectorAll("button, a, span");
+    var btnSaAr = null;
+    for (var i = 0; i < els.length; i++) {
+      var t = (els[i].textContent || "").trim();
+      if (t === "SA AR" && els[i].parentElement) {
+        btnSaAr = els[i];
+        break;
+      }
+    }
+
+    if (btnSaAr && btnSaAr.parentElement) {
+      var btnTr = btnSaAr.cloneNode(true);
+      btnTr.id = "btnLangTrV50";
+      btnTr.classList.remove("active");
+      btnTr.innerHTML = '<span style="opacity:0.75;font-size:0.75em;margin-right:3px;">TR</span>TR';
+      if (modeTurcActif) btnTr.classList.add("active-tr-v50");
+
+      btnTr.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        modeTurcActif = true;
+        try { localStorage.setItem("corantafsir_lang_v50", "tr"); } catch (e) {}
+        var freres = btnSaAr.parentElement.querySelectorAll("button, a, span");
+        for (var f = 0; f < freres.length; f++) {
+          if (freres[f] !== btnTr) freres[f].classList.remove("active");
+        }
+        btnTr.classList.add("active-tr-v50");
+        dernierVersetSeo = "";
+        synchroniserTout();
+      });
+
+      // Si on clique sur FR FR, GB EN, ES ES ou SA AR, désactiver le mode Turc
+      var autresBtns = btnSaAr.parentElement.querySelectorAll("button, a, span");
+      for (var a = 0; a < autresBtns.length; a++) {
+        (function (autre) {
+          autre.addEventListener("click", function () {
+            modeTurcActif = false;
+            try { localStorage.setItem("corantafsir_lang_v50", "other"); } catch (e) {}
+            btnTr.classList.remove("active-tr-v50");
+            dernierVersetSeo = "";
+            setTimeout(synchroniserTout, 30);
+          });
+        })(autresBtns[a]);
+      }
+
+      btnSaAr.parentElement.appendChild(btnTr);
+    }
+  }
+
+  function chargerChapitreTurcComplet(chap) {
+    if (!chap) return;
+    var cle = "chap_" + chap;
+    if (cacheTurcChapitres[cle] || requetesTurcEnCours[cle]) return;
+    requetesTurcEnCours[cle] = true;
+    cacheTurcChapitres[cle] = {};
+
+    // 1. Récupérer le Meal (Traduction Diyanet) + Tafsir Al-Mukhtasar en Turc depuis l'API officielle QuranEnc
+    var urlMukhtasarTr = "https://quranenc.com/api/v1/translation/sura/turkish_mokhtasar/" + chap;
+    fetch(urlMukhtasarTr)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data && data.result && data.result.length > 0) {
+          for (var i = 0; i < data.result.length; i++) {
+            var item = data.result[i];
+            var vk = item.sura + ":" + item.aya;
+            cacheTurcChapitres[cle][vk] = {
+              tr: item.translation || "",
+              tafsir: item.footnotes || item.translation || ""
+            };
+          }
+          if (modeTurcActif) appliquerInterfaceEtContenuTurc();
+        }
+      })
+      .catch(function () {});
+
+    // 2. En parallèle, récupérer la traduction Diyanet İşleri officielle depuis Quran.com API v4 (ID 77)
+    var urlDiyanet = "https://api.quran.com/api/v4/quran/translations/77?chapter_number=" + chap;
+    fetch(urlDiyanet)
+      .then(function (r2) { return r2.json(); })
+      .then(function (d2) {
+        if (d2 && d2.translations && d2.translations.length > 0) {
+          for (var j = 0; j < d2.translations.length; j++) {
+            var vk = chap + ":" + (j + 1);
+            var cleanTr = (d2.translations[j].text || "").replace(/<[^>]+>/g, "").trim();
+            if (!cacheTurcChapitres[cle][vk]) cacheTurcChapitres[cle][vk] = { tr: "", tafsir: "" };
+            if (cleanTr) cacheTurcChapitres[cle][vk].tr = cleanTr;
+          }
+          if (modeTurcActif) appliquerInterfaceEtContenuTurc();
+        }
+      })
+      .catch(function () {})
+      .finally(function () {
+        requetesTurcEnCours[cle] = false;
+      });
+  }
+
+  function appliquerInterfaceEtContenuTurc() {
+    if (!modeTurcActif) return;
+
+    var vk = obtenirCleVerset();
+    if (!vk) return;
+    var parts = vk.split(":");
+    var numS = Number(parts[0]);
+    var numV = Number(parts[1]);
+    var cleChap = "chap_" + numS;
+
+    if (!cacheTurcChapitres[cleChap]) {
+      chargerChapitreTurcComplet(numS);
+    }
+
+    // A. Traduire les boutons de l'interface en Turc
+    var tousBtns = document.querySelectorAll("button, a, span, div");
+    for (var i = 0; i < tousBtns.length; i++) {
+      var b = tousBtns[i];
+      if (b.children.length > 1) continue;
+      var txt = (b.textContent || "").trim();
+
+      if (txt === "‹ Retour aux 114 Sourates" || txt === "‹ Back to 114 Surahs" || txt === "‹ Volver a las 114 Suras") {
+        b.textContent = "‹ 114 Sureye Dön";
+      } else if (txt === "SOURATE MÉDINOISE" || txt === "MEDINAN SURAH" || txt === "SURA MEDINENSE") {
+        b.textContent = "MEDİNE DÖNEMİ";
+      } else if (txt === "SOURATE MECQUOISE" || txt === "MAKKAN SURAH" || txt === "SURA MEQUÍ") {
+        b.textContent = "MEKKE DÖNEMİ";
+      } else if (txt.indexOf("Mot à mot") !== -1 || txt.indexOf("Word by Word") !== -1 || txt.indexOf("Palabra por palabra") !== -1) {
+        b.textContent = "📖 Kelime Kelime";
+      } else if (txt.indexOf("Bruit Brun") !== -1 || txt.indexOf("Brown Noise") !== -1 || txt.indexOf("Ruido Marrón") !== -1) {
+        b.textContent = "🌊 Kahverengi Gürültü";
+      } else if (txt.indexOf("Suivi") !== -1 || txt.indexOf("Follow") !== -1 || txt.indexOf("Seguimiento") !== -1) {
+        b.textContent = "✨ Takip";
+      } else if (txt === "Enchaîner automatiquement" || txt === "Auto-advance" || txt === "Avance automático") {
+        b.textContent = "Otomatik geçiş";
+      } else if (txt === "‹ Précédent" || txt === "‹ Previous" || txt === "‹ Anterior") {
+        b.textContent = "‹ Önceki";
+      } else if (txt === "Suivant ›" || txt === "Next ›" || txt === "Siguiente ›") {
+        b.textContent = "Sonraki ›";
+      } else if (txt.indexOf("Écouter le verset") !== -1 || txt.indexOf("Listen to verse") !== -1 || txt.indexOf("Escuchar aleya") !== -1) {
+        b.textContent = "▶ Ayeti Dinle";
+      } else if (txt.indexOf("Rejouer") !== -1 || txt.indexOf("Replay") !== -1 || txt.indexOf("Repetir") !== -1) {
+        b.textContent = "↺ Tekrar Oynat";
+      } else if (txt === "TAFSĪR & EXPLICATION DU VERSET" || txt === "TAFSĪR & VERSE EXPLANATION" || txt === "TAFSĪR Y EXPLICACIÓN DE LA ALEYA") {
+        b.textContent = "TEFSİR VE AYETİN AÇIKLAMASI (EL-MUHTASAR)";
+      }
+    }
+
+    // B. Traduire le titre H1 de la sourate
+    var h1 = document.querySelector("h1, h2");
+    if (h1 && NOMS_SOURATES_TR[numS]) {
+      var nvTitre = NOMS_SOURATES_TR[numS] + " — " + numV + ". Ayet";
+      if (h1.textContent !== nvTitre) h1.textContent = nvTitre;
+    }
+
+    // C. Injecter le Meal (Traduction Diyanet) et le Tafsir Al-Mukhtasar en Turc
+    var donneesVersetTr = cacheTurcChapitres[cleChap] ? cacheTurcChapitres[cleChap][vk] : null;
+    if (donneesVersetTr && donneesVersetTr.tr) {
+      // Trouver le paragraphe de traduction du verset (commençant par "7. ...")
+      var pEls = document.querySelectorAll("p, div");
+      for (var p = 0; p < pEls.length; p++) {
+        var el = pEls[p];
+        if (el.children.length > 0) continue;
+        var tP = (el.textContent || "").trim();
+        if (new RegExp("^" + numV + "\\\\s*[\\\\.-]\\\\s+").test(tP) && tP.length < 1200) {
+          var nvMeal = numV + ". " + donneesVersetTr.tr;
+          if (el.textContent !== nvMeal) el.textContent = nvMeal;
+          break;
+        }
+      }
+    }
+
+    if (donneesVersetTr && donneesVersetTr.tafsir) {
+      var headersTafsir = document.querySelectorAll("div, p, span, h3, h4");
+      for (var h = 0; h < headersTafsir.length; h++) {
+        var th = (headersTafsir[h].textContent || "").trim();
+        if (th === "TEFSİR VE AYETİN AÇIKLAMASI (EL-MUHTASAR)" || th.indexOf("TAFSĪR") !== -1) {
+          var parentBox = headersTafsir[h].parentElement;
+          if (parentBox) {
+            var enfants = parentBox.querySelectorAll("p, div");
+            for (var e = 0; e < enfants.length; e++) {
+              var enf = enfants[e];
+              var te = (enf.textContent || "").trim();
+              if (enf !== headersTafsir[h] && te.length > 45 && te.indexOf("Diyanet İşleri") === -1 && te.indexOf("Hamidullah") === -1) {
+                var nvTafsir = numV + ". " + donneesVersetTr.tafsir;
+                if (enf.textContent !== nvTafsir) {
+                  enf.textContent = nvTafsir;
+                }
+                break;
+              }
+            }
+          }
+          break;
+        }
+      }
+    }
+  }
 
   // 1. IDENTIFICATION INFAILLIBLE DU SOLEIL ET DE LA LUNE EN ORBITE
   function reparerSoleilEtLuneEnOrbite() {
@@ -2761,8 +3021,8 @@ html body .follow-word {
       }
 
       if (role === "sun") {
-        node.classList.remove("astre-lune-pure-v49");
-        node.classList.add("astre-soleil-pur-v49");
+        node.classList.remove("astre-lune-pure-v50");
+        node.classList.add("astre-soleil-pur-v50");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -2779,8 +3039,8 @@ html body .follow-word {
         );
         node.style.setProperty("filter", "none", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v49");
-        node.classList.add("astre-lune-pure-v49");
+        node.classList.remove("astre-soleil-pur-v50");
+        node.classList.add("astre-lune-pure-v50");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -2847,7 +3107,7 @@ html body .follow-word {
             cible = el.parentElement;
           }
         }
-        cible.classList.add("maher-supprime-v49");
+        cible.classList.add("maher-supprime-v50");
         if (cible.parentNode) cible.parentNode.removeChild(cible);
       }
     }
@@ -2860,15 +3120,16 @@ html body .follow-word {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v49");
+          row.classList.add("maher-supprime-v50");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
     }
   }
 
-  // 3. DÉTECTION DE LA LANGUE ACTIVE & MENTIONS MULTILINGUES
+  // 3. DÉTECTION DE LA LANGUE ACTIVE (FR / EN / ES / AR / TR) & MENTIONS MULTILINGUES
   function obtenirLangueActive() {
+    if (modeTurcActif) return "tr";
     var bodyTxt = document.body ? document.body.innerText : "";
     if (bodyTxt.indexOf("Escuchar aleya") !== -1 || bodyTxt.indexOf("EXPLICACIÓN DE LA ALEYA") !== -1 || bodyTxt.indexOf("Ruido Marrón") !== -1) {
       return "es";
@@ -2888,13 +3149,15 @@ html body .follow-word {
       fr: "Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
       en: "Translation by Saheeh International • Exegesis (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
       es: "Traducción de Abdel Ghani Melara Navio • Exégesis (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
-      ar: "النص القرآني بالرسم العثماني • التفسير المختصر وتفسير ابن كثير وأسباب النزول"
+      ar: "النص القرآني بالرسم العثماني • التفسير المختصر وتفسير ابن كثير وأسباب النزول",
+      tr: "Diyanet İşleri Başkanlığı Meali • Tefsir: El-Muhtasar, İbn Kesîr ve Nüzul Sebepleri"
     };
     var textesHaut = {
       fr: "Traduction Muhammad Hamidullah (1977) & Exégèse",
       en: "Saheeh International & Exegesis",
       es: "Traducción Abdel Ghani Melara Navio & Exégesis",
-      ar: "التفسير المختصر وتفسير ابن كثير وأسباب النزول"
+      ar: "التفسير المختصر وتفسير ابن كثير وأسباب النزول",
+      tr: "Diyanet İşleri Meali & El-Muhtasar Tefsiri"
     };
 
     var tous = document.querySelectorAll("p, div, span, small, footer");
@@ -2908,7 +3171,8 @@ html body .follow-word {
         txt.indexOf("Traduction originale de Muhammad Hamidullah") !== -1 ||
         txt.indexOf("Translation by Saheeh International") !== -1 ||
         txt.indexOf("Traducción de Abdel Ghani Melara") !== -1 ||
-        txt.indexOf("النص القرآني بالرسم العثماني") !== -1
+        txt.indexOf("النص القرآني بالرسم العثماني") !== -1 ||
+        txt.indexOf("Diyanet İşleri Başkanlığı Meali") !== -1
       ) {
         if (el.textContent !== textesBas[lang]) {
           el.textContent = textesBas[lang];
@@ -2920,18 +3184,24 @@ html body .follow-word {
         txt.indexOf("Traduction Muhammad Hamidullah") !== -1 ||
         txt.indexOf("Saheeh International & Exegesis") !== -1 ||
         txt.indexOf("Traducción Abdel Ghani Melara") !== -1 ||
-        txt.indexOf("التفسير المختصر وتفسير ابن كثير") !== -1
+        txt.indexOf("التفسير المختصر وتفسير ابن كثير") !== -1 ||
+        txt.indexOf("Diyanet İşleri Meali & El-Muhtasar") !== -1
       ) {
         var parts = txt.split("•");
         if (parts.length >= 2) {
-          var nv = parts[0].trim() + " • " + textesHaut[lang];
+          var lieu = parts[0].trim();
+          if (lang === "tr") {
+            lieu = lieu.replace(/Sourate Médinoise \\(Médine\\)|Madinan Surah \\(Madinah\\)|Sura Medinense \\(Medina\\)/i, "Medine Dönemi (Medenî Sure)")
+                       .replace(/Sourate Mecquoise \\(La Mecque\\)|Makkan Surah \\(Makkah\\)|Sura Mequí \\(La Meca\\)/i, "Mekke Dönemi (Mekkî Sure)");
+          }
+          var nv = lieu + " • " + textesHaut[lang];
           if (el.textContent !== nv) el.textContent = nv;
         }
       }
     }
   }
 
-  // 4. MOT-À-MOT EN ORDRE AUDIO STRICT (1. خَتَمَ = a scellé -> 2. اللَّهُ = Allāh) & "وَمَا" = "et ce qu'"
+  // 4. MOT-À-MOT EN ORDRE AUDIO STRICT (1. خَتَمَ -> 2. اللَّهُ) + DICTIONNAIRE TURC CERTIFIÉ
   var DICO_MULTILINGUE = {
     fr: {
       "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn", "طه": "Tā-Hā", "طسم": "Tā-Sīn-Mīm", "حم": "Hā-Mīm", "كهيعص": "Kāf-Hā-Yā-‘Ayn-Sād",
@@ -2954,6 +3224,19 @@ html body .follow-word {
       "ذلك": "Ese (Este es)", "الكتاب": "el Libro", "لا": "no hay", "ريب": "duda", "فيه": "en él", "هدى": "una guía", "للمتقين": "para los piadosos",
       "ختم": "ha sellado", "الله": "Allāh (Dios)", "على": "sobre", "قلوبهم": "sus corazones", "وعلى": "y sobre", "سمعهم": "su oído", "وأبصارهم": "y sus miradas", "أبصارهم": "sus miradas (ojos)", "غشاوة": "un velo", "غشوة": "un velo", "ولهم": "y para ellos", "عذاب": "un castigo", "عظيم": "inmenso",
       "والقلم": "Por el cálamo (la pluma)", "وما": "y lo que", "يسطرون": "escriben"
+    },
+    tr: {
+      "الم": "Elif, Lâm, Mîm", "ن": "Nûn", "ق": "Kâf", "ص": "Sâd", "يس": "Yâ-Sîn", "طه": "Tâ-Hâ", "طسم": "Tâ-Sîn-Mîm", "حم": "Hâ-Mîm",
+      "ذلك": "Bu (İşte o)", "الكتاب": "Kitap", "لا": "yoktur / değil", "ريب": "şüphe", "فيه": "onda", "هدى": "bir hidayettir (rehberdir)", "للمتقين": "muttakiler (takva sahipleri) için",
+      "الذين": "Onlar ki", "يؤمنون": "iman ederler", "بالغيب": "gayba", "ويقيمون": "ve kılarlar", "الصلاة": "namazı", "الصلوة": "namazı", "ومما": "ve şeylerden", "رزقناهم": "onlara rızık olarak verdiğimiz", "ينفقون": "infak ederler (harcarlar)",
+      "والذين": "Ve onlar ki", "بما": "indirilene", "أنزل": "indirilen", "إليك": "sana", "وما": "ve yazdıklarına / şeylere", "من": "-den / önce", "قبلك": "senden önce", "وبالآخرة": "ve ahirete", "وبالأخرة": "ve ahirete", "هم": "onlar", "يوقنون": "kesin olarak inanırlar",
+      "أولئك": "İşte onlar", "على": "üzerindedir", "ربهم": "Rablerinden", "وأولئك": "ve işte onlar", "المفلحون": "kurtuluşa erenlerdir",
+      "إن": "Şüphesiz", "كفروا": "inkâr edenler", "سواء": "birdir (fark etmez)", "عليهم": "onlar için", "أأنذرتهم": "onları uyarsan da", "ءأنذرتهم": "onları uyarsan da", "أم": "veya", "لم": "-medi / değil", "تنذرهم": "onları uyarmasan da",
+      "ختم": "mühürlemiştir", "الله": "Allâh", "قلوبهم": "kalplerini", "وعلى": "ve üzerine", "سمعهم": "kulaklarını (işitmelerini)", "وأبصارهم": "ve gözlerini", "أبصارهم": "gözlerinin (bakışlarının)", "غشاوة": "bir perde vardır", "غشوة": "bir perde vardır", "ولهم": "ve onlar için vardır", "عذاب": "bir azap", "عظيم": "büyük",
+      "في": "İçinde / vardır", "مرض": "bir hastalık", "فزادهم": "artırmıştır", "مرضا": "hastalıklarını", "أليم": "elem verici", "كانوا": "oldular", "يكذبون": "yalan söylüyorlar",
+      "وإذا": "Ve ne zaman", "قيل": "denilse", "لهم": "onlara", "تفسدوا": "bozgunculuk yapmayın", "الأرض": "yeryüzünde", "قالوا": "derler ki:", "إنما": "Ancak / sadece", "نحن": "biz", "مصلحون": "ıslah edicileriz (düzeltenleriz)",
+      "والقلم": "Kaleme andolsun", "يسطرون": "satır satır yazdıklarına!", "ما": "Sen değilsin", "أنت": "sen", "بنعمة": "nimetiyle", "ربك": "Rabbinin", "بمجنون": "bir mecnun (deli)",
+      "بأيكم": "hanginizin", "المفتون": "fitneye tutulmuş (delirmiş) olduğunu"
     }
   };
 
@@ -2962,7 +3245,7 @@ html body .follow-word {
   var sensGrilleRtl = true;
 
   try {
-    var sauv = localStorage.getItem("cache_wbw_exact_v49");
+    var sauv = localStorage.getItem("cache_wbw_exact_v50");
     if (sauv) cacheVersetMotsExact = JSON.parse(sauv);
   } catch (e) {}
 
@@ -3003,7 +3286,7 @@ html body .follow-word {
       var s = selects[i];
       if (s.options && s.selectedIndex >= 0) {
         var optTxt = s.options[s.selectedIndex].textContent || "";
-        var vm = optTxt.match(/(?:Verset|Verse|Aleya|آية)\\s*(\\d+)/i);
+        var vm = optTxt.match(/(?:Verset|Verse|Aleya|Ayet|آية)\\s*(\\d+)/i);
         if (vm) return numSourate + ":" + vm[1];
       }
     }
@@ -3016,7 +3299,9 @@ html body .follow-word {
     if (cacheVersetMotsExact[cleCache] || requetesVersetEnCours[cleCache]) return;
     requetesVersetEnCours[cleCache] = true;
 
-    var urlQdc = "https://api.quran.com/api/v4/verses/by_key/" + vk + "?language=en&words=true&word_fields=text_uthmani,translation";
+    // L'API Quran.com v4 possède nativement le Mot-à-mot en Turc (language=tr) et en Anglais (language=en) !
+    var apiLang = (lang === "tr" || lang === "en") ? lang : "en";
+    var urlQdc = "https://api.quran.com/api/v4/verses/by_key/" + vk + "?language=" + apiLang + "&words=true&word_fields=text_uthmani,translation";
     fetch(urlQdc)
       .then(function (r) { return r.json(); })
       .then(function (data) {
@@ -3026,13 +3311,18 @@ html body .follow-word {
           var w = data.verse.words[i];
           if (w.char_type_name === "word") {
             var arTxt = w.text_uthmani || "";
-            var enTxt = w.translation && w.translation.text ? w.translation.text : "";
-            motsQdc.push({ ar: arTxt, en: enTxt, tr: enTxt });
+            var trTxt = w.translation && w.translation.text ? w.translation.text : "";
+            motsQdc.push({ ar: arTxt, en: trTxt, tr: trTxt });
           }
         }
 
-        if (lang === "en" || lang === "ar") {
+        if (lang === "en" || lang === "ar" || lang === "tr") {
+          for (var t = 0; t < motsQdc.length; t++) {
+            var certTr = chercherDansDicoCertifie(motsQdc[t].ar, lang);
+            if (certTr) motsQdc[t].tr = certTr;
+          }
           cacheVersetMotsExact[cleCache] = motsQdc;
+          try { localStorage.setItem("cache_wbw_exact_v50", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -3052,7 +3342,7 @@ html body .follow-word {
 
         if (aTraduireTextes.length === 0) {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v49", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v50", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -3079,7 +3369,7 @@ html body .follow-word {
           .catch(function () {})
           .finally(function () {
             cacheVersetMotsExact[cleCache] = motsQdc;
-            try { localStorage.setItem("cache_wbw_exact_v49", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+            try { localStorage.setItem("cache_wbw_exact_v50", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
             appliquerVraiMotAMotSurDOM();
           });
       })
@@ -3148,11 +3438,14 @@ html body .follow-word {
 
       var tradFinale = chercherDansDicoCertifie(txtAr, lang);
 
-      // Si "وما" est suivi d'un pronom/verbe de négation (ex: 2:8 وما هم, 2:9 وما يخدعون), afficher "et ils ne" ; sinon "et ce qu'" (ex: 68:1 وما يسطرون)
-      if (lang === "fr" && cleCarteAr === "وما" && i + 1 < cartes.length && cartes[i + 1].children.length) {
-        var suivAr = normaliserArabeCle(cartes[i + 1].children[0].textContent || "");
-        if (suivAr === "هم" || suivAr === "يخدعون" || suivAr === "يشعرون" || suivAr === "يعلمون" || suivAr === "كانوا") {
-          tradFinale = "et ils ne";
+      if (lang === "fr" && cleCarteAr === "وما") {
+        if (i + 1 < cartes.length && cartes[i + 1].children.length) {
+          var suivAr = normaliserArabeCle(cartes[i + 1].children[0].textContent || "");
+          if (suivAr === "هم" || suivAr === "يخدعون" || suivAr === "يشعرون" || suivAr === "يعلمون" || suivAr === "كانوا") {
+            tradFinale = "et ils ne";
+          } else {
+            tradFinale = "et ce qu'";
+          }
         } else {
           tradFinale = "et ce qu'";
         }
@@ -3183,12 +3476,14 @@ html body .follow-word {
         fr: "⬅️ Sens de lecture : de droite à gauche (1 ➔ " + totalW + ") • Cliquer pour inverser",
         en: "⬅️ Reading order: Right to Left (1 ➔ " + totalW + ") • Click to reverse",
         es: "⬅️ Orden de lectura: de derecha a izquierda (1 ➔ " + totalW + ") • Clic para invertir",
+        tr: "⬅️ Okuma yönü: Sağdan Sola (1 ➔ " + totalW + ") • Ters çevirmek için tıklayın",
         ar: "⬅️ ترتيب القراءة: من اليمين إلى اليسار (1 ➔ " + totalW + ")"
       };
       var textesLtr = {
         fr: "➡️ Sens de lecture : de gauche à droite (1 ➔ " + totalW + ") • Cliquer pour inverser",
         en: "➡️ Reading order: Left to Right (1 ➔ " + totalW + ") • Click to reverse",
         es: "➡️ Orden de lectura: de izquierda a derecha (1 ➔ " + totalW + ") • Clic para invertir",
+        tr: "➡️ Okuma yönü: Soldan Sağa (1 ➔ " + totalW + ") • Ters çevirmek için tıklayın",
         ar: "➡️ ترتيب القراءة: من اليسار إلى اليمين (1 ➔ " + totalW + ")"
       };
       var fleche = sensGrilleRtl ? (textesRtl[lang] || textesRtl.fr) : (textesLtr[lang] || textesLtr.fr);
@@ -3239,14 +3534,14 @@ html body .follow-word {
 
       var r = el.getBoundingClientRect();
       if (r.top >= rectDerniereCarte.top + 10 || /^\\d+\\s*[\\.-]/.test(txt)) {
-        if (txt.indexOf("TAFSĪR") === -1 && txt.indexOf("EXPLICATION") === -1 && txt.indexOf("EXPLICACIÓN") === -1) {
+        if (txt.indexOf("TAFSĪR") === -1 && txt.indexOf("TEFSİR") === -1 && txt.indexOf("EXPLICATION") === -1 && txt.indexOf("EXPLICACIÓN") === -1) {
           el.classList.add("wbw-masquer-traduction-bas");
         }
       }
     }
   }
 
-  // 5. PACK SEO COMPLET
+  // 5. PACK SEO COMPLET + BALISES HREFLANG (POUR GOOGLE TURQUIE google.com.tr)
   var dernierVersetSeo = "";
   function injecterPackSeoComplet() {
     var vk = obtenirCleVerset();
@@ -3260,6 +3555,20 @@ html body .follow-word {
     var numV = parts[1];
     var urlCanonique = "https://corantafsir.com/sourate-" + numS + "-verset-" + numV + ".html";
 
+    // Ajouter les balises hreflang internationales (fr, en, es, ar, tr) pour Google Turquie
+    var languesSeo = ["fr", "en", "es", "ar", "tr"];
+    for (var l = 0; l < languesSeo.length; l++) {
+      var codeL = languesSeo[l];
+      var linkAlt = document.querySelector("link[hreflang='" + codeL + "']");
+      if (!linkAlt) {
+        linkAlt = document.createElement("link");
+        linkAlt.setAttribute("rel", "alternate");
+        linkAlt.setAttribute("hreflang", codeL);
+        document.head.appendChild(linkAlt);
+      }
+      linkAlt.setAttribute("href", codeL === "fr" ? urlCanonique : urlCanonique + "?lang=" + codeL);
+    }
+
     var h1 = document.querySelector("h1, h2");
     var titreVerset = h1 ? (h1.textContent || "").trim() : "Sourate " + numS + " Verset " + numV;
 
@@ -3267,15 +3576,18 @@ html body .follow-word {
     var texteTafsirPropre = "";
     for (var i = 0; i < tousBlocs.length; i++) {
       var t = (tousBlocs[i].textContent || "").trim();
-      if ((t.indexOf("TAFSĪR") !== -1 || t.indexOf("EXPLICATION") !== -1) && t.length > 80 && t.length < 4000) {
-        texteTafsirPropre = t.replace(/TAFSĪR\\s*&\\s*EXPLICATION DU VERSET/i, "").trim();
+      if ((t.indexOf("TAFSĪR") !== -1 || t.indexOf("TEFSİR") !== -1 || t.indexOf("EXPLICATION") !== -1) && t.length > 80 && t.length < 4000) {
+        texteTafsirPropre = t.replace(/TAFSĪR\\s*&\\s*EXPLICATION DU VERSET|TEFSİR VE AYETİN AÇIKLAMASI \\(EL-MUHTASAR\\)/i, "").trim();
         break;
       }
     }
-    if (!texteTafsirPropre) texteTafsirPropre = titreVerset + " — Traduction, Mot à mot, Audio et Exégèse (Tafsīr Ibn Kathīr & Al-Mukhtasar).";
+    if (!texteTafsirPropre) texteTafsirPropre = titreVerset + " — Diyanet Meali, Kelime Meali, Tefsir (El-Muhtasar & İbn Kesîr) ve Nüzul Sebebi.";
 
     var metaDescCourte = (titreVerset + " (" + vk + ") : " + texteTafsirPropre).replace(/\\s+/g, " ").slice(0, 158);
-    var nouveauTitle = titreVerset + " (" + vk + ") — Tafsīr, Cause de révélation & Mot à mot | CoranTafsir";
+    var nouveauTitle = lang === "tr"
+      ? (NOMS_SOURATES_TR[Number(numS)] || "Sure " + numS) + " " + numV + ". Ayet Tefsiri, Diyanet Meali, Kelime Meali ve Nüzul Sebebi | CoranTafsir"
+      : titreVerset + " (" + vk + ") — Tafsīr, Cause de révélation & Mot à mot | CoranTafsir";
+
     if (document.title !== nouveauTitle) {
       document.title = nouveauTitle;
     }
@@ -3298,25 +3610,18 @@ html body .follow-word {
     definirMeta("property", "og:url", urlCanonique);
     definirMeta("property", "og:type", "article");
     definirMeta("property", "og:site_name", "CoranTafsir");
-    definirMeta("name", "twitter:card", "summary_large_image");
-    definirMeta("name", "twitter:title", nouveauTitle);
-    definirMeta("name", "twitter:description", metaDescCourte);
 
-    var linkCan = document.querySelector("link[rel='canonical']");
-    if (!linkCan) {
-      linkCan = document.createElement("link");
-      linkCan.setAttribute("rel", "canonical");
-      document.head.appendChild(linkCan);
-    }
-    linkCan.setAttribute("href", urlCanonique);
-
-    var elJson = document.getElementById("seo-jsonld-v49");
+    var elJson = document.getElementById("seo-jsonld-v50");
     if (!elJson) {
       elJson = document.createElement("script");
-      elJson.id = "seo-jsonld-v49";
+      elJson.id = "seo-jsonld-v50";
       elJson.type = "application/ld+json";
       document.head.appendChild(elJson);
     }
+
+    var questionSeo = lang === "tr"
+      ? (NOMS_SOURATES_TR[Number(numS)] || "Sure " + numS) + " " + numV + ". Ayet Tefsiri, Meali ve Nüzul Sebebi nedir?"
+      : "Quelle est l'explication (Tafsīr) et la cause de révélation de " + titreVerset + " (" + vk + ") ?";
 
     var schemaGraph = {
       "@context": "https://schema.org",
@@ -3324,8 +3629,8 @@ html body .follow-word {
         {
           "@type": "BreadcrumbList",
           "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Accueil Coran (114 Sourates)", "item": "https://corantafsir.com/" },
-            { "@type": "ListItem", "position": 2, "name": "Sourate " + numS, "item": "https://corantafsir.com/sourate-" + numS + "-verset-1.html" },
+            { "@type": "ListItem", "position": 1, "name": "Kur'an-ı Kerim (114 Sure)", "item": "https://corantafsir.com/" },
+            { "@type": "ListItem", "position": 2, "name": NOMS_SOURATES_TR[Number(numS)] || "Sourate " + numS, "item": "https://corantafsir.com/sourate-" + numS + "-verset-1.html" },
             { "@type": "ListItem", "position": 3, "name": titreVerset + " (" + vk + ")", "item": urlCanonique }
           ]
         },
@@ -3334,7 +3639,7 @@ html body .follow-word {
           "headline": nouveauTitle,
           "description": metaDescCourte,
           "mainEntityOfPage": urlCanonique,
-          "inLanguage": lang,
+          "inLanguage": ["fr", "en", "es", "ar", "tr"],
           "author": { "@type": "Organization", "name": "CoranTafsir" },
           "publisher": { "@type": "Organization", "name": "CoranTafsir", "url": "https://corantafsir.com/" }
         },
@@ -3343,7 +3648,7 @@ html body .follow-word {
           "mainEntity": [
             {
               "@type": "Question",
-              "name": "Quelle est l'explication (Tafsīr) et la cause de révélation de " + titreVerset + " (" + vk + ") ?",
+              "name": questionSeo,
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": texteTafsirPropre.slice(0, 800)
@@ -3397,7 +3702,7 @@ html body .follow-word {
     for (var i = 0; i < tousBtns.length; i++) {
       var b = tousBtns[i];
       var t = (b.textContent || "").trim();
-      if (t.indexOf("Suivi") !== -1 || t.indexOf("Follow") !== -1 || t.indexOf("Seguimiento") !== -1 || t.indexOf("تتبع") !== -1) {
+      if (t.indexOf("Suivi") !== -1 || t.indexOf("Follow") !== -1 || t.indexOf("Seguimiento") !== -1 || t.indexOf("Takip") !== -1 || t.indexOf("تتبع") !== -1) {
         btnSuivi = b;
       } else if (t.indexOf("Tajw") !== -1 || t.indexOf("تجويد") !== -1) {
         btnTajwid = b;
@@ -3413,9 +3718,9 @@ html body .follow-word {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV49")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV50")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV49";
+      nv.id = "btnSuiviUniverselV50";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.innerHTML = "✨ Suivi";
@@ -3537,7 +3842,7 @@ html body .follow-word {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV49) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV50) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       window.__lecteurAudioActuel = this;
@@ -3550,7 +3855,7 @@ html body .follow-word {
       lancerBoucleSuivi();
       return origPlay.apply(this, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV49 = true;
+    HTMLMediaElement.prototype.__hookedV50 = true;
   }
 
   function trouverAudioActif() {
@@ -3731,8 +4036,12 @@ html body .follow-word {
   }
 
   function synchroniserTout() {
+    assurerBoutonTurcDansBarre();
     reparerSoleilEtLuneEnOrbite();
     retirerRecitateurMaher();
+    if (modeTurcActif) {
+      appliquerInterfaceEtContenuTurc();
+    }
     mettreAJourMentionsTraducteurEtExegese();
     masquerTraductionBasSiMotAMot();
     appliquerVraiMotAMotSurDOM();
@@ -3746,8 +4055,12 @@ html body .follow-word {
   }
 
   var obs = new MutationObserver(function () {
+    assurerBoutonTurcDansBarre();
     reparerSoleilEtLuneEnOrbite();
     retirerRecitateurMaher();
+    if (modeTurcActif) {
+      appliquerInterfaceEtContenuTurc();
+    }
     mettreAJourMentionsTraducteurEtExegese();
     masquerTraductionBasSiMotAMot();
     appliquerVraiMotAMotSurDOM();
@@ -3771,9 +4084,9 @@ html body .follow-word {
       } else if (t === "A-" || t === "A -" || t === "A−") {
         wbwScale = Math.max(0.68, +(wbwScale - 0.16).toFixed(2));
         try { localStorage.setItem("wbw_zoom_scale_v10", String(wbwScale)); } catch (err) {}
-      } else if (t.indexOf("Rejouer") !== -1 || t.indexOf("Replay") !== -1 || t.indexOf("Repetir") !== -1) {
+      } else if (t.indexOf("Rejouer") !== -1 || t.indexOf("Replay") !== -1 || t.indexOf("Repetir") !== -1 || t.indexOf("Tekrar") !== -1) {
         reinitialiserMotsEnBlancPur();
-      } else if (t.indexOf("Suivi") !== -1 || t.indexOf("Follow") !== -1 || t.indexOf("Seguimiento") !== -1 || t.indexOf("تتبع") !== -1) {
+      } else if (t.indexOf("Suivi") !== -1 || t.indexOf("Follow") !== -1 || t.indexOf("Seguimiento") !== -1 || t.indexOf("Takip") !== -1 || t.indexOf("تتبع") !== -1) {
         suiviEstActif = !suiviEstActif;
         lancerBoucleSuivi();
       }
@@ -4925,7 +5238,8 @@ html body .follow-word {
 <link rel="preconnect" href="https://api.quran.com" crossorigin>
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
-<style id="patch-master-v49">
+<link rel="preconnect" href="https://quranenc.com" crossorigin>
+<style id="patch-master-v50">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -4940,7 +5254,7 @@ html body .flat-earth-sun,
 html body [id*="sun" i]:not([id*="sound" i]),
 html body [class*="sun" i]:not([class*="sound" i]),
 html body [data-astre-role="sun"],
-html body .astre-soleil-pur-v49 {
+html body .astre-soleil-pur-v50 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -4966,12 +5280,12 @@ html body .flat-earth-sun::before,
 html body .flat-earth-sun::after,
 html body [data-astre-role="sun"]::before,
 html body [data-astre-role="sun"]::after,
-html body .astre-soleil-pur-v49::before,
-html body .astre-soleil-pur-v49::after,
+html body .astre-soleil-pur-v50::before,
+html body .astre-soleil-pur-v50::after,
 html body #flatEarthSun *,
 html body .flat-earth-sun *,
 html body [data-astre-role="sun"] *,
-html body .astre-soleil-pur-v49 * {
+html body .astre-soleil-pur-v50 * {
   display: none !important;
   content: none !important;
   background: none !important;
@@ -4987,7 +5301,7 @@ html body .flat-earth-moon,
 html body [id*="moon" i],
 html body [class*="moon" i],
 html body [data-astre-role="moon"],
-html body .astre-lune-pure-v49 {
+html body .astre-lune-pure-v50 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -5013,12 +5327,12 @@ html body .flat-earth-moon::before,
 html body .flat-earth-moon::after,
 html body [data-astre-role="moon"]::before,
 html body [data-astre-role="moon"]::after,
-html body .astre-lune-pure-v49::before,
-html body .astre-lune-pure-v49::after,
+html body .astre-lune-pure-v50::before,
+html body .astre-lune-pure-v50::after,
 html body #flatEarthMoon *,
 html body .flat-earth-moon *,
 html body [data-astre-role="moon"] *,
-html body .astre-lune-pure-v49 * {
+html body .astre-lune-pure-v50 * {
   display: none !important;
   content: none !important;
   background: none !important;
@@ -5032,7 +5346,7 @@ html body .astre-lune-pure-v49 * {
 html body img[src*="maher" i],
 html body [data-reciter*="maher" i],
 html body [data-value*="maher" i],
-html body .maher-supprime-v49 {
+html body .maher-supprime-v50 {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
@@ -5123,14 +5437,273 @@ html body .follow-word {
   -webkit-font-smoothing: antialiased !important;
   text-shadow: 0 0 14px rgba(255, 255, 255, 0.48), 0 0 28px rgba(255, 255, 255, 0.20) !important;
 }
+
+/* 8. BOUTON DE LANGUE TURC (TR TR) */
+html body #btnLangTrV50 {
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+html body #btnLangTrV50.active-tr-v50 {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(56, 189, 248, 0.18)) !important;
+  border: 1px solid #38bdf8 !important;
+  color: #ffffff !important;
+  border-radius: 999px !important;
+}
 </style>
-<script id="script-master-v49">(function codeClientV49() {
-  // Purger immédiatement tous les anciens caches Mot-à-mot (v38 à v48) pour effacer "et ce qui / et ils ne"
+<script id="script-master-v50">(function codeClientV50() {
   try {
-    for (var p = 38; p <= 48; p++) {
+    for (var p = 38; p <= 49; p++) {
       localStorage.removeItem("cache_wbw_exact_v" + p);
     }
   } catch (e) {}
+
+  // ==========================================================================
+  // 0. GESTION DU MODE TURC (TR) + BOUTON "TR TR" DANS LA BARRE DE LANGUES
+  // ==========================================================================
+  var modeTurcActif = false;
+  try {
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("lang") === "tr") {
+      modeTurcActif = true;
+      localStorage.setItem("corantafsir_lang_v50", "tr");
+    } else if (localStorage.getItem("corantafsir_lang_v50") === "tr") {
+      modeTurcActif = true;
+    }
+  } catch (e) {}
+
+  var NOMS_SOURATES_TR = {
+    1: "Fâtiha Suresi", 2: "Bakara Suresi", 3: "Âl-i İmrân Suresi", 4: "Nisâ Suresi", 5: "Mâide Suresi",
+    6: "En'âm Suresi", 7: "A'râf Suresi", 8: "Enfâl Suresi", 9: "Tevbe Suresi", 10: "Yûnus Suresi",
+    11: "Hûd Suresi", 12: "Yûsuf Suresi", 13: "Ra'd Suresi", 14: "İbrâhîm Suresi", 15: "Hicr Suresi",
+    16: "Nahl Suresi", 17: "İsrâ Suresi", 18: "Kehf Suresi", 19: "Meryem Suresi", 20: "Tâhâ Suresi",
+    21: "Enbiyâ Suresi", 22: "Hac Suresi", 23: "Mü'minûn Suresi", 24: "Nûr Suresi", 25: "Furkan Suresi",
+    26: "Şuarâ Suresi", 27: "Neml Suresi", 28: "Kasas Suresi", 29: "Ankebût Suresi", 30: "Rûm Suresi",
+    31: "Lokmân Suresi", 32: "Secde Suresi", 33: "Ahzâb Suresi", 34: "Sebe' Suresi", 35: "Fâtır Suresi",
+    36: "Yâsîn Suresi", 37: "Sâffât Suresi", 38: "Sâd Suresi", 39: "Zümer Suresi", 40: "Mü'min (Gâfir) Suresi",
+    41: "Fussilet Suresi", 42: "Şûrâ Suresi", 43: "Zuhruf Suresi", 44: "Duhân Suresi", 45: "Câsiye Suresi",
+    46: "Ahkâf Suresi", 47: "Muhammed Suresi", 48: "Fetih Suresi", 49: "Hucurât Suresi", 50: "Kâf Suresi",
+    51: "Zâriyât Suresi", 52: "Tûr Suresi", 53: "Necm Suresi", 54: "Kamer Suresi", 55: "Rahmân Suresi",
+    56: "Vâkıa Suresi", 57: "Hadîd Suresi", 58: "Mücâdele Suresi", 59: "Haşr Suresi", 60: "Mümtehine Suresi",
+    61: "Saf Suresi", 62: "Cuma Suresi", 63: "Münâfikûn Suresi", 64: "Tegâbün Suresi", 65: "Talâk Suresi",
+    66: "Tahrîm Suresi", 67: "Mülk Suresi", 68: "Kalem Suresi", 69: "Hâkka Suresi", 70: "Meâric Suresi",
+    71: "Nûh Suresi", 72: "Cin Suresi", 73: "Müzzemmil Suresi", 74: "Müddessir Suresi", 75: "Kıyâmet Suresi",
+    76: "İnsân Suresi", 77: "Mürselât Suresi", 78: "Nebe' Suresi", 79: "Nâziât Suresi", 80: "Abese Suresi",
+    81: "Tekvîr Suresi", 82: "İnfitâr Suresi", 83: "Mutaffifîn Suresi", 84: "İnşikâk Suresi", 85: "Burûc Suresi",
+    86: "Târık Suresi", 87: "A'lâ Suresi", 88: "Gâşiye Suresi", 89: "Fecr Suresi", 90: "Beled Suresi",
+    91: "Şems Suresi", 92: "Leyl Suresi", 93: "Duhâ Suresi", 94: "İnşirâh Suresi", 95: "Tîn Suresi",
+    96: "Alak Suresi", 97: "Kadir Suresi", 98: "Beyyine Suresi", 99: "Zilzâl Suresi", 100: "Âdiyât Suresi",
+    101: "Kâria Suresi", 102: "Tekâsür Suresi", 103: "Asr Suresi", 104: "Hümeze Suresi", 105: "Fîl Suresi",
+    106: "Kureyş Suresi", 107: "Mâûn Suresi", 108: "Kevser Suresi", 109: "Kâfirûn Suresi", 110: "Nasr Suresi",
+    111: "Tebbet (Mesed) Suresi", 112: "İhlâs Suresi", 113: "Felak Suresi", 114: "Nâs Suresi"
+  };
+
+  var cacheTurcChapitres = {}; // cle: "chap_2" -> { "2:7": { tr: "...", tafsir: "..." } }
+  var requetesTurcEnCours = {};
+
+  function assurerBoutonTurcDansBarre() {
+    if (document.getElementById("btnLangTrV50")) {
+      var btnExistant = document.getElementById("btnLangTrV50");
+      if (modeTurcActif) {
+        btnExistant.classList.add("active-tr-v50");
+      } else {
+        btnExistant.classList.remove("active-tr-v50");
+      }
+      return;
+    }
+
+    var els = document.querySelectorAll("button, a, span");
+    var btnSaAr = null;
+    for (var i = 0; i < els.length; i++) {
+      var t = (els[i].textContent || "").trim();
+      if (t === "SA AR" && els[i].parentElement) {
+        btnSaAr = els[i];
+        break;
+      }
+    }
+
+    if (btnSaAr && btnSaAr.parentElement) {
+      var btnTr = btnSaAr.cloneNode(true);
+      btnTr.id = "btnLangTrV50";
+      btnTr.classList.remove("active");
+      btnTr.innerHTML = '<span style="opacity:0.75;font-size:0.75em;margin-right:3px;">TR</span>TR';
+      if (modeTurcActif) btnTr.classList.add("active-tr-v50");
+
+      btnTr.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        modeTurcActif = true;
+        try { localStorage.setItem("corantafsir_lang_v50", "tr"); } catch (e) {}
+        var freres = btnSaAr.parentElement.querySelectorAll("button, a, span");
+        for (var f = 0; f < freres.length; f++) {
+          if (freres[f] !== btnTr) freres[f].classList.remove("active");
+        }
+        btnTr.classList.add("active-tr-v50");
+        dernierVersetSeo = "";
+        synchroniserTout();
+      });
+
+      // Si on clique sur FR FR, GB EN, ES ES ou SA AR, désactiver le mode Turc
+      var autresBtns = btnSaAr.parentElement.querySelectorAll("button, a, span");
+      for (var a = 0; a < autresBtns.length; a++) {
+        (function (autre) {
+          autre.addEventListener("click", function () {
+            modeTurcActif = false;
+            try { localStorage.setItem("corantafsir_lang_v50", "other"); } catch (e) {}
+            btnTr.classList.remove("active-tr-v50");
+            dernierVersetSeo = "";
+            setTimeout(synchroniserTout, 30);
+          });
+        })(autresBtns[a]);
+      }
+
+      btnSaAr.parentElement.appendChild(btnTr);
+    }
+  }
+
+  function chargerChapitreTurcComplet(chap) {
+    if (!chap) return;
+    var cle = "chap_" + chap;
+    if (cacheTurcChapitres[cle] || requetesTurcEnCours[cle]) return;
+    requetesTurcEnCours[cle] = true;
+    cacheTurcChapitres[cle] = {};
+
+    // 1. Récupérer le Meal (Traduction Diyanet) + Tafsir Al-Mukhtasar en Turc depuis l'API officielle QuranEnc
+    var urlMukhtasarTr = "https://quranenc.com/api/v1/translation/sura/turkish_mokhtasar/" + chap;
+    fetch(urlMukhtasarTr)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data && data.result && data.result.length > 0) {
+          for (var i = 0; i < data.result.length; i++) {
+            var item = data.result[i];
+            var vk = item.sura + ":" + item.aya;
+            cacheTurcChapitres[cle][vk] = {
+              tr: item.translation || "",
+              tafsir: item.footnotes || item.translation || ""
+            };
+          }
+          if (modeTurcActif) appliquerInterfaceEtContenuTurc();
+        }
+      })
+      .catch(function () {});
+
+    // 2. En parallèle, récupérer la traduction Diyanet İşleri officielle depuis Quran.com API v4 (ID 77)
+    var urlDiyanet = "https://api.quran.com/api/v4/quran/translations/77?chapter_number=" + chap;
+    fetch(urlDiyanet)
+      .then(function (r2) { return r2.json(); })
+      .then(function (d2) {
+        if (d2 && d2.translations && d2.translations.length > 0) {
+          for (var j = 0; j < d2.translations.length; j++) {
+            var vk = chap + ":" + (j + 1);
+            var cleanTr = (d2.translations[j].text || "").replace(/<[^>]+>/g, "").trim();
+            if (!cacheTurcChapitres[cle][vk]) cacheTurcChapitres[cle][vk] = { tr: "", tafsir: "" };
+            if (cleanTr) cacheTurcChapitres[cle][vk].tr = cleanTr;
+          }
+          if (modeTurcActif) appliquerInterfaceEtContenuTurc();
+        }
+      })
+      .catch(function () {})
+      .finally(function () {
+        requetesTurcEnCours[cle] = false;
+      });
+  }
+
+  function appliquerInterfaceEtContenuTurc() {
+    if (!modeTurcActif) return;
+
+    var vk = obtenirCleVerset();
+    if (!vk) return;
+    var parts = vk.split(":");
+    var numS = Number(parts[0]);
+    var numV = Number(parts[1]);
+    var cleChap = "chap_" + numS;
+
+    if (!cacheTurcChapitres[cleChap]) {
+      chargerChapitreTurcComplet(numS);
+    }
+
+    // A. Traduire les boutons de l'interface en Turc
+    var tousBtns = document.querySelectorAll("button, a, span, div");
+    for (var i = 0; i < tousBtns.length; i++) {
+      var b = tousBtns[i];
+      if (b.children.length > 1) continue;
+      var txt = (b.textContent || "").trim();
+
+      if (txt === "‹ Retour aux 114 Sourates" || txt === "‹ Back to 114 Surahs" || txt === "‹ Volver a las 114 Suras") {
+        b.textContent = "‹ 114 Sureye Dön";
+      } else if (txt === "SOURATE MÉDINOISE" || txt === "MEDINAN SURAH" || txt === "SURA MEDINENSE") {
+        b.textContent = "MEDİNE DÖNEMİ";
+      } else if (txt === "SOURATE MECQUOISE" || txt === "MAKKAN SURAH" || txt === "SURA MEQUÍ") {
+        b.textContent = "MEKKE DÖNEMİ";
+      } else if (txt.indexOf("Mot à mot") !== -1 || txt.indexOf("Word by Word") !== -1 || txt.indexOf("Palabra por palabra") !== -1) {
+        b.textContent = "📖 Kelime Kelime";
+      } else if (txt.indexOf("Bruit Brun") !== -1 || txt.indexOf("Brown Noise") !== -1 || txt.indexOf("Ruido Marrón") !== -1) {
+        b.textContent = "🌊 Kahverengi Gürültü";
+      } else if (txt.indexOf("Suivi") !== -1 || txt.indexOf("Follow") !== -1 || txt.indexOf("Seguimiento") !== -1) {
+        b.textContent = "✨ Takip";
+      } else if (txt === "Enchaîner automatiquement" || txt === "Auto-advance" || txt === "Avance automático") {
+        b.textContent = "Otomatik geçiş";
+      } else if (txt === "‹ Précédent" || txt === "‹ Previous" || txt === "‹ Anterior") {
+        b.textContent = "‹ Önceki";
+      } else if (txt === "Suivant ›" || txt === "Next ›" || txt === "Siguiente ›") {
+        b.textContent = "Sonraki ›";
+      } else if (txt.indexOf("Écouter le verset") !== -1 || txt.indexOf("Listen to verse") !== -1 || txt.indexOf("Escuchar aleya") !== -1) {
+        b.textContent = "▶ Ayeti Dinle";
+      } else if (txt.indexOf("Rejouer") !== -1 || txt.indexOf("Replay") !== -1 || txt.indexOf("Repetir") !== -1) {
+        b.textContent = "↺ Tekrar Oynat";
+      } else if (txt === "TAFSĪR & EXPLICATION DU VERSET" || txt === "TAFSĪR & VERSE EXPLANATION" || txt === "TAFSĪR Y EXPLICACIÓN DE LA ALEYA") {
+        b.textContent = "TEFSİR VE AYETİN AÇIKLAMASI (EL-MUHTASAR)";
+      }
+    }
+
+    // B. Traduire le titre H1 de la sourate
+    var h1 = document.querySelector("h1, h2");
+    if (h1 && NOMS_SOURATES_TR[numS]) {
+      var nvTitre = NOMS_SOURATES_TR[numS] + " — " + numV + ". Ayet";
+      if (h1.textContent !== nvTitre) h1.textContent = nvTitre;
+    }
+
+    // C. Injecter le Meal (Traduction Diyanet) et le Tafsir Al-Mukhtasar en Turc
+    var donneesVersetTr = cacheTurcChapitres[cleChap] ? cacheTurcChapitres[cleChap][vk] : null;
+    if (donneesVersetTr && donneesVersetTr.tr) {
+      // Trouver le paragraphe de traduction du verset (commençant par "7. ...")
+      var pEls = document.querySelectorAll("p, div");
+      for (var p = 0; p < pEls.length; p++) {
+        var el = pEls[p];
+        if (el.children.length > 0) continue;
+        var tP = (el.textContent || "").trim();
+        if (new RegExp("^" + numV + "\\\\s*[\\\\.-]\\\\s+").test(tP) && tP.length < 1200) {
+          var nvMeal = numV + ". " + donneesVersetTr.tr;
+          if (el.textContent !== nvMeal) el.textContent = nvMeal;
+          break;
+        }
+      }
+    }
+
+    if (donneesVersetTr && donneesVersetTr.tafsir) {
+      var headersTafsir = document.querySelectorAll("div, p, span, h3, h4");
+      for (var h = 0; h < headersTafsir.length; h++) {
+        var th = (headersTafsir[h].textContent || "").trim();
+        if (th === "TEFSİR VE AYETİN AÇIKLAMASI (EL-MUHTASAR)" || th.indexOf("TAFSĪR") !== -1) {
+          var parentBox = headersTafsir[h].parentElement;
+          if (parentBox) {
+            var enfants = parentBox.querySelectorAll("p, div");
+            for (var e = 0; e < enfants.length; e++) {
+              var enf = enfants[e];
+              var te = (enf.textContent || "").trim();
+              if (enf !== headersTafsir[h] && te.length > 45 && te.indexOf("Diyanet İşleri") === -1 && te.indexOf("Hamidullah") === -1) {
+                var nvTafsir = numV + ". " + donneesVersetTr.tafsir;
+                if (enf.textContent !== nvTafsir) {
+                  enf.textContent = nvTafsir;
+                }
+                break;
+              }
+            }
+          }
+          break;
+        }
+      }
+    }
+  }
 
   // 1. IDENTIFICATION INFAILLIBLE DU SOLEIL ET DE LA LUNE EN ORBITE
   function reparerSoleilEtLuneEnOrbite() {
@@ -5234,8 +5807,8 @@ html body .follow-word {
       }
 
       if (role === "sun") {
-        node.classList.remove("astre-lune-pure-v49");
-        node.classList.add("astre-soleil-pur-v49");
+        node.classList.remove("astre-lune-pure-v50");
+        node.classList.add("astre-soleil-pur-v50");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -5252,8 +5825,8 @@ html body .follow-word {
         );
         node.style.setProperty("filter", "none", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v49");
-        node.classList.add("astre-lune-pure-v49");
+        node.classList.remove("astre-soleil-pur-v50");
+        node.classList.add("astre-lune-pure-v50");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -5320,7 +5893,7 @@ html body .follow-word {
             cible = el.parentElement;
           }
         }
-        cible.classList.add("maher-supprime-v49");
+        cible.classList.add("maher-supprime-v50");
         if (cible.parentNode) cible.parentNode.removeChild(cible);
       }
     }
@@ -5333,15 +5906,16 @@ html body .follow-word {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v49");
+          row.classList.add("maher-supprime-v50");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
     }
   }
 
-  // 3. DÉTECTION DE LA LANGUE ACTIVE & MENTIONS MULTILINGUES
+  // 3. DÉTECTION DE LA LANGUE ACTIVE (FR / EN / ES / AR / TR) & MENTIONS MULTILINGUES
   function obtenirLangueActive() {
+    if (modeTurcActif) return "tr";
     var bodyTxt = document.body ? document.body.innerText : "";
     if (bodyTxt.indexOf("Escuchar aleya") !== -1 || bodyTxt.indexOf("EXPLICACIÓN DE LA ALEYA") !== -1 || bodyTxt.indexOf("Ruido Marrón") !== -1) {
       return "es";
@@ -5361,13 +5935,15 @@ html body .follow-word {
       fr: "Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
       en: "Translation by Saheeh International • Exegesis (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
       es: "Traducción de Abdel Ghani Melara Navio • Exégesis (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
-      ar: "النص القرآني بالرسم العثماني • التفسير المختصر وتفسير ابن كثير وأسباب النزول"
+      ar: "النص القرآني بالرسم العثماني • التفسير المختصر وتفسير ابن كثير وأسباب النزول",
+      tr: "Diyanet İşleri Başkanlığı Meali • Tefsir: El-Muhtasar, İbn Kesîr ve Nüzul Sebepleri"
     };
     var textesHaut = {
       fr: "Traduction Muhammad Hamidullah (1977) & Exégèse",
       en: "Saheeh International & Exegesis",
       es: "Traducción Abdel Ghani Melara Navio & Exégesis",
-      ar: "التفسير المختصر وتفسير ابن كثير وأسباب النزول"
+      ar: "التفسير المختصر وتفسير ابن كثير وأسباب النزول",
+      tr: "Diyanet İşleri Meali & El-Muhtasar Tefsiri"
     };
 
     var tous = document.querySelectorAll("p, div, span, small, footer");
@@ -5381,7 +5957,8 @@ html body .follow-word {
         txt.indexOf("Traduction originale de Muhammad Hamidullah") !== -1 ||
         txt.indexOf("Translation by Saheeh International") !== -1 ||
         txt.indexOf("Traducción de Abdel Ghani Melara") !== -1 ||
-        txt.indexOf("النص القرآني بالرسم العثماني") !== -1
+        txt.indexOf("النص القرآني بالرسم العثماني") !== -1 ||
+        txt.indexOf("Diyanet İşleri Başkanlığı Meali") !== -1
       ) {
         if (el.textContent !== textesBas[lang]) {
           el.textContent = textesBas[lang];
@@ -5393,18 +5970,24 @@ html body .follow-word {
         txt.indexOf("Traduction Muhammad Hamidullah") !== -1 ||
         txt.indexOf("Saheeh International & Exegesis") !== -1 ||
         txt.indexOf("Traducción Abdel Ghani Melara") !== -1 ||
-        txt.indexOf("التفسير المختصر وتفسير ابن كثير") !== -1
+        txt.indexOf("التفسير المختصر وتفسير ابن كثير") !== -1 ||
+        txt.indexOf("Diyanet İşleri Meali & El-Muhtasar") !== -1
       ) {
         var parts = txt.split("•");
         if (parts.length >= 2) {
-          var nv = parts[0].trim() + " • " + textesHaut[lang];
+          var lieu = parts[0].trim();
+          if (lang === "tr") {
+            lieu = lieu.replace(/Sourate Médinoise \\(Médine\\)|Madinan Surah \\(Madinah\\)|Sura Medinense \\(Medina\\)/i, "Medine Dönemi (Medenî Sure)")
+                       .replace(/Sourate Mecquoise \\(La Mecque\\)|Makkan Surah \\(Makkah\\)|Sura Mequí \\(La Meca\\)/i, "Mekke Dönemi (Mekkî Sure)");
+          }
+          var nv = lieu + " • " + textesHaut[lang];
           if (el.textContent !== nv) el.textContent = nv;
         }
       }
     }
   }
 
-  // 4. MOT-À-MOT EN ORDRE AUDIO STRICT (1. خَتَمَ = a scellé -> 2. اللَّهُ = Allāh) & "وَمَا" = "et ce qu'"
+  // 4. MOT-À-MOT EN ORDRE AUDIO STRICT (1. خَتَمَ -> 2. اللَّهُ) + DICTIONNAIRE TURC CERTIFIÉ
   var DICO_MULTILINGUE = {
     fr: {
       "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn", "طه": "Tā-Hā", "طسم": "Tā-Sīn-Mīm", "حم": "Hā-Mīm", "كهيعص": "Kāf-Hā-Yā-‘Ayn-Sād",
@@ -5427,6 +6010,19 @@ html body .follow-word {
       "ذلك": "Ese (Este es)", "الكتاب": "el Libro", "لا": "no hay", "ريب": "duda", "فيه": "en él", "هدى": "una guía", "للمتقين": "para los piadosos",
       "ختم": "ha sellado", "الله": "Allāh (Dios)", "على": "sobre", "قلوبهم": "sus corazones", "وعلى": "y sobre", "سمعهم": "su oído", "وأبصارهم": "y sus miradas", "أبصارهم": "sus miradas (ojos)", "غشاوة": "un velo", "غشوة": "un velo", "ولهم": "y para ellos", "عذاب": "un castigo", "عظيم": "inmenso",
       "والقلم": "Por el cálamo (la pluma)", "وما": "y lo que", "يسطرون": "escriben"
+    },
+    tr: {
+      "الم": "Elif, Lâm, Mîm", "ن": "Nûn", "ق": "Kâf", "ص": "Sâd", "يس": "Yâ-Sîn", "طه": "Tâ-Hâ", "طسم": "Tâ-Sîn-Mîm", "حم": "Hâ-Mîm",
+      "ذلك": "Bu (İşte o)", "الكتاب": "Kitap", "لا": "yoktur / değil", "ريب": "şüphe", "فيه": "onda", "هدى": "bir hidayettir (rehberdir)", "للمتقين": "muttakiler (takva sahipleri) için",
+      "الذين": "Onlar ki", "يؤمنون": "iman ederler", "بالغيب": "gayba", "ويقيمون": "ve kılarlar", "الصلاة": "namazı", "الصلوة": "namazı", "ومما": "ve şeylerden", "رزقناهم": "onlara rızık olarak verdiğimiz", "ينفقون": "infak ederler (harcarlar)",
+      "والذين": "Ve onlar ki", "بما": "indirilene", "أنزل": "indirilen", "إليك": "sana", "وما": "ve yazdıklarına / şeylere", "من": "-den / önce", "قبلك": "senden önce", "وبالآخرة": "ve ahirete", "وبالأخرة": "ve ahirete", "هم": "onlar", "يوقنون": "kesin olarak inanırlar",
+      "أولئك": "İşte onlar", "على": "üzerindedir", "ربهم": "Rablerinden", "وأولئك": "ve işte onlar", "المفلحون": "kurtuluşa erenlerdir",
+      "إن": "Şüphesiz", "كفروا": "inkâr edenler", "سواء": "birdir (fark etmez)", "عليهم": "onlar için", "أأنذرتهم": "onları uyarsan da", "ءأنذرتهم": "onları uyarsan da", "أم": "veya", "لم": "-medi / değil", "تنذرهم": "onları uyarmasan da",
+      "ختم": "mühürlemiştir", "الله": "Allâh", "قلوبهم": "kalplerini", "وعلى": "ve üzerine", "سمعهم": "kulaklarını (işitmelerini)", "وأبصارهم": "ve gözlerini", "أبصارهم": "gözlerinin (bakışlarının)", "غشاوة": "bir perde vardır", "غشوة": "bir perde vardır", "ولهم": "ve onlar için vardır", "عذاب": "bir azap", "عظيم": "büyük",
+      "في": "İçinde / vardır", "مرض": "bir hastalık", "فزادهم": "artırmıştır", "مرضا": "hastalıklarını", "أليم": "elem verici", "كانوا": "oldular", "يكذبون": "yalan söylüyorlar",
+      "وإذا": "Ve ne zaman", "قيل": "denilse", "لهم": "onlara", "تفسدوا": "bozgunculuk yapmayın", "الأرض": "yeryüzünde", "قالوا": "derler ki:", "إنما": "Ancak / sadece", "نحن": "biz", "مصلحون": "ıslah edicileriz (düzeltenleriz)",
+      "والقلم": "Kaleme andolsun", "يسطرون": "satır satır yazdıklarına!", "ما": "Sen değilsin", "أنت": "sen", "بنعمة": "nimetiyle", "ربك": "Rabbinin", "بمجنون": "bir mecnun (deli)",
+      "بأيكم": "hanginizin", "المفتون": "fitneye tutulmuş (delirmiş) olduğunu"
     }
   };
 
@@ -5435,7 +6031,7 @@ html body .follow-word {
   var sensGrilleRtl = true;
 
   try {
-    var sauv = localStorage.getItem("cache_wbw_exact_v49");
+    var sauv = localStorage.getItem("cache_wbw_exact_v50");
     if (sauv) cacheVersetMotsExact = JSON.parse(sauv);
   } catch (e) {}
 
@@ -5476,7 +6072,7 @@ html body .follow-word {
       var s = selects[i];
       if (s.options && s.selectedIndex >= 0) {
         var optTxt = s.options[s.selectedIndex].textContent || "";
-        var vm = optTxt.match(/(?:Verset|Verse|Aleya|آية)\\s*(\\d+)/i);
+        var vm = optTxt.match(/(?:Verset|Verse|Aleya|Ayet|آية)\\s*(\\d+)/i);
         if (vm) return numSourate + ":" + vm[1];
       }
     }
@@ -5489,7 +6085,9 @@ html body .follow-word {
     if (cacheVersetMotsExact[cleCache] || requetesVersetEnCours[cleCache]) return;
     requetesVersetEnCours[cleCache] = true;
 
-    var urlQdc = "https://api.quran.com/api/v4/verses/by_key/" + vk + "?language=en&words=true&word_fields=text_uthmani,translation";
+    // L'API Quran.com v4 possède nativement le Mot-à-mot en Turc (language=tr) et en Anglais (language=en) !
+    var apiLang = (lang === "tr" || lang === "en") ? lang : "en";
+    var urlQdc = "https://api.quran.com/api/v4/verses/by_key/" + vk + "?language=" + apiLang + "&words=true&word_fields=text_uthmani,translation";
     fetch(urlQdc)
       .then(function (r) { return r.json(); })
       .then(function (data) {
@@ -5499,13 +6097,18 @@ html body .follow-word {
           var w = data.verse.words[i];
           if (w.char_type_name === "word") {
             var arTxt = w.text_uthmani || "";
-            var enTxt = w.translation && w.translation.text ? w.translation.text : "";
-            motsQdc.push({ ar: arTxt, en: enTxt, tr: enTxt });
+            var trTxt = w.translation && w.translation.text ? w.translation.text : "";
+            motsQdc.push({ ar: arTxt, en: trTxt, tr: trTxt });
           }
         }
 
-        if (lang === "en" || lang === "ar") {
+        if (lang === "en" || lang === "ar" || lang === "tr") {
+          for (var t = 0; t < motsQdc.length; t++) {
+            var certTr = chercherDansDicoCertifie(motsQdc[t].ar, lang);
+            if (certTr) motsQdc[t].tr = certTr;
+          }
           cacheVersetMotsExact[cleCache] = motsQdc;
+          try { localStorage.setItem("cache_wbw_exact_v50", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -5525,7 +6128,7 @@ html body .follow-word {
 
         if (aTraduireTextes.length === 0) {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v49", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v50", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -5552,7 +6155,7 @@ html body .follow-word {
           .catch(function () {})
           .finally(function () {
             cacheVersetMotsExact[cleCache] = motsQdc;
-            try { localStorage.setItem("cache_wbw_exact_v49", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+            try { localStorage.setItem("cache_wbw_exact_v50", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
             appliquerVraiMotAMotSurDOM();
           });
       })
@@ -5621,11 +6224,14 @@ html body .follow-word {
 
       var tradFinale = chercherDansDicoCertifie(txtAr, lang);
 
-      // Si "وما" est suivi d'un pronom/verbe de négation (ex: 2:8 وما هم, 2:9 وما يخدعون), afficher "et ils ne" ; sinon "et ce qu'" (ex: 68:1 وما يسطرون)
-      if (lang === "fr" && cleCarteAr === "وما" && i + 1 < cartes.length && cartes[i + 1].children.length) {
-        var suivAr = normaliserArabeCle(cartes[i + 1].children[0].textContent || "");
-        if (suivAr === "هم" || suivAr === "يخدعون" || suivAr === "يشعرون" || suivAr === "يعلمون" || suivAr === "كانوا") {
-          tradFinale = "et ils ne";
+      if (lang === "fr" && cleCarteAr === "وما") {
+        if (i + 1 < cartes.length && cartes[i + 1].children.length) {
+          var suivAr = normaliserArabeCle(cartes[i + 1].children[0].textContent || "");
+          if (suivAr === "هم" || suivAr === "يخدعون" || suivAr === "يشعرون" || suivAr === "يعلمون" || suivAr === "كانوا") {
+            tradFinale = "et ils ne";
+          } else {
+            tradFinale = "et ce qu'";
+          }
         } else {
           tradFinale = "et ce qu'";
         }
@@ -5656,12 +6262,14 @@ html body .follow-word {
         fr: "⬅️ Sens de lecture : de droite à gauche (1 ➔ " + totalW + ") • Cliquer pour inverser",
         en: "⬅️ Reading order: Right to Left (1 ➔ " + totalW + ") • Click to reverse",
         es: "⬅️ Orden de lectura: de derecha a izquierda (1 ➔ " + totalW + ") • Clic para invertir",
+        tr: "⬅️ Okuma yönü: Sağdan Sola (1 ➔ " + totalW + ") • Ters çevirmek için tıklayın",
         ar: "⬅️ ترتيب القراءة: من اليمين إلى اليسار (1 ➔ " + totalW + ")"
       };
       var textesLtr = {
         fr: "➡️ Sens de lecture : de gauche à droite (1 ➔ " + totalW + ") • Cliquer pour inverser",
         en: "➡️ Reading order: Left to Right (1 ➔ " + totalW + ") • Click to reverse",
         es: "➡️ Orden de lectura: de izquierda a derecha (1 ➔ " + totalW + ") • Clic para invertir",
+        tr: "➡️ Okuma yönü: Soldan Sağa (1 ➔ " + totalW + ") • Ters çevirmek için tıklayın",
         ar: "➡️ ترتيب القراءة: من اليسار إلى اليمين (1 ➔ " + totalW + ")"
       };
       var fleche = sensGrilleRtl ? (textesRtl[lang] || textesRtl.fr) : (textesLtr[lang] || textesLtr.fr);
@@ -5712,14 +6320,14 @@ html body .follow-word {
 
       var r = el.getBoundingClientRect();
       if (r.top >= rectDerniereCarte.top + 10 || /^\\d+\\s*[\\.-]/.test(txt)) {
-        if (txt.indexOf("TAFSĪR") === -1 && txt.indexOf("EXPLICATION") === -1 && txt.indexOf("EXPLICACIÓN") === -1) {
+        if (txt.indexOf("TAFSĪR") === -1 && txt.indexOf("TEFSİR") === -1 && txt.indexOf("EXPLICATION") === -1 && txt.indexOf("EXPLICACIÓN") === -1) {
           el.classList.add("wbw-masquer-traduction-bas");
         }
       }
     }
   }
 
-  // 5. PACK SEO COMPLET
+  // 5. PACK SEO COMPLET + BALISES HREFLANG (POUR GOOGLE TURQUIE google.com.tr)
   var dernierVersetSeo = "";
   function injecterPackSeoComplet() {
     var vk = obtenirCleVerset();
@@ -5733,6 +6341,20 @@ html body .follow-word {
     var numV = parts[1];
     var urlCanonique = "https://corantafsir.com/sourate-" + numS + "-verset-" + numV + ".html";
 
+    // Ajouter les balises hreflang internationales (fr, en, es, ar, tr) pour Google Turquie
+    var languesSeo = ["fr", "en", "es", "ar", "tr"];
+    for (var l = 0; l < languesSeo.length; l++) {
+      var codeL = languesSeo[l];
+      var linkAlt = document.querySelector("link[hreflang='" + codeL + "']");
+      if (!linkAlt) {
+        linkAlt = document.createElement("link");
+        linkAlt.setAttribute("rel", "alternate");
+        linkAlt.setAttribute("hreflang", codeL);
+        document.head.appendChild(linkAlt);
+      }
+      linkAlt.setAttribute("href", codeL === "fr" ? urlCanonique : urlCanonique + "?lang=" + codeL);
+    }
+
     var h1 = document.querySelector("h1, h2");
     var titreVerset = h1 ? (h1.textContent || "").trim() : "Sourate " + numS + " Verset " + numV;
 
@@ -5740,15 +6362,18 @@ html body .follow-word {
     var texteTafsirPropre = "";
     for (var i = 0; i < tousBlocs.length; i++) {
       var t = (tousBlocs[i].textContent || "").trim();
-      if ((t.indexOf("TAFSĪR") !== -1 || t.indexOf("EXPLICATION") !== -1) && t.length > 80 && t.length < 4000) {
-        texteTafsirPropre = t.replace(/TAFSĪR\\s*&\\s*EXPLICATION DU VERSET/i, "").trim();
+      if ((t.indexOf("TAFSĪR") !== -1 || t.indexOf("TEFSİR") !== -1 || t.indexOf("EXPLICATION") !== -1) && t.length > 80 && t.length < 4000) {
+        texteTafsirPropre = t.replace(/TAFSĪR\\s*&\\s*EXPLICATION DU VERSET|TEFSİR VE AYETİN AÇIKLAMASI \\(EL-MUHTASAR\\)/i, "").trim();
         break;
       }
     }
-    if (!texteTafsirPropre) texteTafsirPropre = titreVerset + " — Traduction, Mot à mot, Audio et Exégèse (Tafsīr Ibn Kathīr & Al-Mukhtasar).";
+    if (!texteTafsirPropre) texteTafsirPropre = titreVerset + " — Diyanet Meali, Kelime Meali, Tefsir (El-Muhtasar & İbn Kesîr) ve Nüzul Sebebi.";
 
     var metaDescCourte = (titreVerset + " (" + vk + ") : " + texteTafsirPropre).replace(/\\s+/g, " ").slice(0, 158);
-    var nouveauTitle = titreVerset + " (" + vk + ") — Tafsīr, Cause de révélation & Mot à mot | CoranTafsir";
+    var nouveauTitle = lang === "tr"
+      ? (NOMS_SOURATES_TR[Number(numS)] || "Sure " + numS) + " " + numV + ". Ayet Tefsiri, Diyanet Meali, Kelime Meali ve Nüzul Sebebi | CoranTafsir"
+      : titreVerset + " (" + vk + ") — Tafsīr, Cause de révélation & Mot à mot | CoranTafsir";
+
     if (document.title !== nouveauTitle) {
       document.title = nouveauTitle;
     }
@@ -5771,25 +6396,18 @@ html body .follow-word {
     definirMeta("property", "og:url", urlCanonique);
     definirMeta("property", "og:type", "article");
     definirMeta("property", "og:site_name", "CoranTafsir");
-    definirMeta("name", "twitter:card", "summary_large_image");
-    definirMeta("name", "twitter:title", nouveauTitle);
-    definirMeta("name", "twitter:description", metaDescCourte);
 
-    var linkCan = document.querySelector("link[rel='canonical']");
-    if (!linkCan) {
-      linkCan = document.createElement("link");
-      linkCan.setAttribute("rel", "canonical");
-      document.head.appendChild(linkCan);
-    }
-    linkCan.setAttribute("href", urlCanonique);
-
-    var elJson = document.getElementById("seo-jsonld-v49");
+    var elJson = document.getElementById("seo-jsonld-v50");
     if (!elJson) {
       elJson = document.createElement("script");
-      elJson.id = "seo-jsonld-v49";
+      elJson.id = "seo-jsonld-v50";
       elJson.type = "application/ld+json";
       document.head.appendChild(elJson);
     }
+
+    var questionSeo = lang === "tr"
+      ? (NOMS_SOURATES_TR[Number(numS)] || "Sure " + numS) + " " + numV + ". Ayet Tefsiri, Meali ve Nüzul Sebebi nedir?"
+      : "Quelle est l'explication (Tafsīr) et la cause de révélation de " + titreVerset + " (" + vk + ") ?";
 
     var schemaGraph = {
       "@context": "https://schema.org",
@@ -5797,8 +6415,8 @@ html body .follow-word {
         {
           "@type": "BreadcrumbList",
           "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Accueil Coran (114 Sourates)", "item": "https://corantafsir.com/" },
-            { "@type": "ListItem", "position": 2, "name": "Sourate " + numS, "item": "https://corantafsir.com/sourate-" + numS + "-verset-1.html" },
+            { "@type": "ListItem", "position": 1, "name": "Kur'an-ı Kerim (114 Sure)", "item": "https://corantafsir.com/" },
+            { "@type": "ListItem", "position": 2, "name": NOMS_SOURATES_TR[Number(numS)] || "Sourate " + numS, "item": "https://corantafsir.com/sourate-" + numS + "-verset-1.html" },
             { "@type": "ListItem", "position": 3, "name": titreVerset + " (" + vk + ")", "item": urlCanonique }
           ]
         },
@@ -5807,7 +6425,7 @@ html body .follow-word {
           "headline": nouveauTitle,
           "description": metaDescCourte,
           "mainEntityOfPage": urlCanonique,
-          "inLanguage": lang,
+          "inLanguage": ["fr", "en", "es", "ar", "tr"],
           "author": { "@type": "Organization", "name": "CoranTafsir" },
           "publisher": { "@type": "Organization", "name": "CoranTafsir", "url": "https://corantafsir.com/" }
         },
@@ -5816,7 +6434,7 @@ html body .follow-word {
           "mainEntity": [
             {
               "@type": "Question",
-              "name": "Quelle est l'explication (Tafsīr) et la cause de révélation de " + titreVerset + " (" + vk + ") ?",
+              "name": questionSeo,
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": texteTafsirPropre.slice(0, 800)
@@ -5870,7 +6488,7 @@ html body .follow-word {
     for (var i = 0; i < tousBtns.length; i++) {
       var b = tousBtns[i];
       var t = (b.textContent || "").trim();
-      if (t.indexOf("Suivi") !== -1 || t.indexOf("Follow") !== -1 || t.indexOf("Seguimiento") !== -1 || t.indexOf("تتبع") !== -1) {
+      if (t.indexOf("Suivi") !== -1 || t.indexOf("Follow") !== -1 || t.indexOf("Seguimiento") !== -1 || t.indexOf("Takip") !== -1 || t.indexOf("تتبع") !== -1) {
         btnSuivi = b;
       } else if (t.indexOf("Tajw") !== -1 || t.indexOf("تجويد") !== -1) {
         btnTajwid = b;
@@ -5886,9 +6504,9 @@ html body .follow-word {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV49")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV50")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV49";
+      nv.id = "btnSuiviUniverselV50";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.innerHTML = "✨ Suivi";
@@ -6010,7 +6628,7 @@ html body .follow-word {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV49) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV50) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       window.__lecteurAudioActuel = this;
@@ -6023,7 +6641,7 @@ html body .follow-word {
       lancerBoucleSuivi();
       return origPlay.apply(this, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV49 = true;
+    HTMLMediaElement.prototype.__hookedV50 = true;
   }
 
   function trouverAudioActif() {
@@ -6204,8 +6822,12 @@ html body .follow-word {
   }
 
   function synchroniserTout() {
+    assurerBoutonTurcDansBarre();
     reparerSoleilEtLuneEnOrbite();
     retirerRecitateurMaher();
+    if (modeTurcActif) {
+      appliquerInterfaceEtContenuTurc();
+    }
     mettreAJourMentionsTraducteurEtExegese();
     masquerTraductionBasSiMotAMot();
     appliquerVraiMotAMotSurDOM();
@@ -6219,8 +6841,12 @@ html body .follow-word {
   }
 
   var obs = new MutationObserver(function () {
+    assurerBoutonTurcDansBarre();
     reparerSoleilEtLuneEnOrbite();
     retirerRecitateurMaher();
+    if (modeTurcActif) {
+      appliquerInterfaceEtContenuTurc();
+    }
     mettreAJourMentionsTraducteurEtExegese();
     masquerTraductionBasSiMotAMot();
     appliquerVraiMotAMotSurDOM();
@@ -6244,9 +6870,9 @@ html body .follow-word {
       } else if (t === "A-" || t === "A -" || t === "A−") {
         wbwScale = Math.max(0.68, +(wbwScale - 0.16).toFixed(2));
         try { localStorage.setItem("wbw_zoom_scale_v10", String(wbwScale)); } catch (err) {}
-      } else if (t.indexOf("Rejouer") !== -1 || t.indexOf("Replay") !== -1 || t.indexOf("Repetir") !== -1) {
+      } else if (t.indexOf("Rejouer") !== -1 || t.indexOf("Replay") !== -1 || t.indexOf("Repetir") !== -1 || t.indexOf("Tekrar") !== -1) {
         reinitialiserMotsEnBlancPur();
-      } else if (t.indexOf("Suivi") !== -1 || t.indexOf("Follow") !== -1 || t.indexOf("Seguimiento") !== -1 || t.indexOf("تتبع") !== -1) {
+      } else if (t.indexOf("Suivi") !== -1 || t.indexOf("Follow") !== -1 || t.indexOf("Seguimiento") !== -1 || t.indexOf("Takip") !== -1 || t.indexOf("تتبع") !== -1) {
         suiviEstActif = !suiviEstActif;
         lancerBoucleSuivi();
       }
