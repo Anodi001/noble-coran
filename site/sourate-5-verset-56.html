@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1794440802940">
-  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=1794440802940">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1794441459153">
+  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=1794441459153">
   <link rel="canonical" href="https://corantafsir.com/sourate-5-verset-56.html">
   <title>Sourate 5 verset 56 (Al-Ma'idah) - Coran & Tafsir</title>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -709,7 +709,7 @@ body.wbw-mode-on .fr-verse-text {
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
 <link rel="preconnect" href="https://quranenc.com" crossorigin>
-<style id="patch-master-v50">
+<style id="patch-master-v52">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -718,13 +718,13 @@ body.wbw-mode-on .fr-verse-text {
   --wbw-min-w: 92px;
 }
 
-/* 1. VERROUILLAGE ABSOLU DU SOLEIL DORÉ PUR */
+/* 1. VERROUILLAGE ABSOLU DU SOLEIL DORÉ PUR (ACCUEIL + VERSETS) */
 html body #flatEarthSun,
 html body .flat-earth-sun,
 html body [id*="sun" i]:not([id*="sound" i]),
 html body [class*="sun" i]:not([class*="sound" i]),
 html body [data-astre-role="sun"],
-html body .astre-soleil-pur-v50 {
+html body .astre-soleil-pur-v52 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -750,12 +750,12 @@ html body .flat-earth-sun::before,
 html body .flat-earth-sun::after,
 html body [data-astre-role="sun"]::before,
 html body [data-astre-role="sun"]::after,
-html body .astre-soleil-pur-v50::before,
-html body .astre-soleil-pur-v50::after,
+html body .astre-soleil-pur-v52::before,
+html body .astre-soleil-pur-v52::after,
 html body #flatEarthSun *,
 html body .flat-earth-sun *,
 html body [data-astre-role="sun"] *,
-html body .astre-soleil-pur-v50 * {
+html body .astre-soleil-pur-v52 * {
   display: none !important;
   content: none !important;
   background: none !important;
@@ -765,13 +765,13 @@ html body .astre-soleil-pur-v50 * {
   height: 0 !important;
 }
 
-/* 2. VERROUILLAGE ABSOLU DE LA LUNE BLANCHE PURE */
+/* 2. VERROUILLAGE ABSOLU DE LA LUNE BLANCHE PURE (ACCUEIL + VERSETS) */
 html body #flatEarthMoon,
 html body .flat-earth-moon,
 html body [id*="moon" i],
 html body [class*="moon" i],
 html body [data-astre-role="moon"],
-html body .astre-lune-pure-v50 {
+html body .astre-lune-pure-v52 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -797,12 +797,12 @@ html body .flat-earth-moon::before,
 html body .flat-earth-moon::after,
 html body [data-astre-role="moon"]::before,
 html body [data-astre-role="moon"]::after,
-html body .astre-lune-pure-v50::before,
-html body .astre-lune-pure-v50::after,
+html body .astre-lune-pure-v52::before,
+html body .astre-lune-pure-v52::after,
 html body #flatEarthMoon *,
 html body .flat-earth-moon *,
 html body [data-astre-role="moon"] *,
-html body .astre-lune-pure-v50 * {
+html body .astre-lune-pure-v52 * {
   display: none !important;
   content: none !important;
   background: none !important;
@@ -816,7 +816,7 @@ html body .astre-lune-pure-v50 * {
 html body img[src*="maher" i],
 html body [data-reciter*="maher" i],
 html body [data-value*="maher" i],
-html body .maher-supprime-v50 {
+html body .maher-supprime-v52 {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
@@ -846,7 +846,7 @@ html body #wbwSensLectureBanner {
   user-select: none !important;
 }
 
-/* 6. CARTES MOT-À-MOT AVEC BADGE NUMÉROTÉ */
+/* 6. CARTES MOT-À-MOT AVEC BADGE NUMÉROTÉ (SANS TOUCHER AUX SPANS TAJWID INTERNES) */
 html body .wbw-card-unit {
   position: relative !important;
   padding: var(--wbw-pad-v) var(--wbw-pad-h) !important;
@@ -874,6 +874,11 @@ html body .wbw-card-unit > *:first-child {
   line-height: 1.45 !important;
   direction: rtl !important;
   text-align: center !important;
+}
+
+html body .wbw-card-unit > *:first-child::before {
+  content: none !important;
+  display: none !important;
 }
 
 html body .wbw-card-unit > *:last-child {
@@ -909,34 +914,37 @@ html body .follow-word {
 }
 
 /* 8. BOUTON DE LANGUE TURC (TR TR) */
-html body #btnLangTrV50 {
+html body #btnLangTrV52 {
   cursor: pointer !important;
   transition: all 0.2s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
-html body #btnLangTrV50.active-tr-v50 {
+html body #btnLangTrV52.active-tr-v52 {
   background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(56, 189, 248, 0.18)) !important;
   border: 1px solid #38bdf8 !important;
   color: #ffffff !important;
   border-radius: 999px !important;
 }
 </style>
-<script id="script-master-v50">(function codeClientV50() {
+<script id="script-master-v52">(function codeClientV52() {
   try {
-    for (var p = 38; p <= 49; p++) {
+    for (var p = 38; p <= 51; p++) {
       localStorage.removeItem("cache_wbw_exact_v" + p);
     }
   } catch (e) {}
 
   // ==========================================================================
-  // 0. GESTION DU MODE TURC (TR) + BOUTON "TR TR" DANS LA BARRE DE LANGUES
+  // 0. DÉTECTION UNIVERSELLE DE LA BARRE DE LANGUES & AJOUT DU BOUTON "TR TR"
   // ==========================================================================
   var modeTurcActif = false;
   try {
     var urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get("lang") === "tr") {
       modeTurcActif = true;
-      localStorage.setItem("corantafsir_lang_v50", "tr");
-    } else if (localStorage.getItem("corantafsir_lang_v50") === "tr") {
+      localStorage.setItem("corantafsir_lang_v52", "tr");
+    } else if (localStorage.getItem("corantafsir_lang_v52") === "tr") {
       modeTurcActif = true;
     }
   } catch (e) {}
@@ -967,66 +975,101 @@ html body #btnLangTrV50.active-tr-v50 {
     111: "Tebbet (Mesed) Suresi", 112: "İhlâs Suresi", 113: "Felak Suresi", 114: "Nâs Suresi"
   };
 
-  var cacheTurcChapitres = {}; // cle: "chap_2" -> { "2:7": { tr: "...", tafsir: "..." } }
+  var cacheTurcChapitres = {};
   var requetesTurcEnCours = {};
 
   function assurerBoutonTurcDansBarre() {
-    if (document.getElementById("btnLangTrV50")) {
-      var btnExistant = document.getElementById("btnLangTrV50");
-      if (modeTurcActif) {
-        btnExistant.classList.add("active-tr-v50");
-      } else {
-        btnExistant.classList.remove("active-tr-v50");
-      }
+    var existant = document.getElementById("btnLangTrV52");
+    if (existant) {
+      if (modeTurcActif) existant.classList.add("active-tr-v52");
+      else existant.classList.remove("active-tr-v52");
       return;
     }
 
-    var els = document.querySelectorAll("button, a, span");
+    // Trouver n'importe quel élément (button, a, span, div) de la barre de langues (contenant FR, EN, ES, AR)
+    var tous = document.querySelectorAll("button, a, span, div, li");
     var btnSaAr = null;
-    for (var i = 0; i < els.length; i++) {
-      var t = (els[i].textContent || "").trim();
-      if (t === "SA AR" && els[i].parentElement) {
-        btnSaAr = els[i];
-        break;
+
+    for (var i = 0; i < tous.length; i++) {
+      var el = tous[i];
+      var rect = el.getBoundingClientRect();
+      if (rect.width < 18 || rect.width > 110 || rect.height < 14 || rect.height > 60) continue;
+
+      var tSansEspace = (el.textContent || "").replace(/\s+/g, "").toUpperCase();
+      // Détecte "SAAR", "🇸🇦AR", "AR" dont le parent contient aussi FR, EN et ES
+      if (tSansEspace === "SAAR" || tSansEspace === "🇸🇦AR" || /AR$/.test(tSansEspace)) {
+        var parent = el.parentElement;
+        if (parent) {
+          var pTxt = (parent.textContent || "").toUpperCase();
+          if (pTxt.indexOf("FR") !== -1 && pTxt.indexOf("EN") !== -1 && pTxt.indexOf("ES") !== -1) {
+            btnSaAr = el;
+            break;
+          }
+        }
       }
     }
 
     if (btnSaAr && btnSaAr.parentElement) {
+      var conteneurLang = btnSaAr.parentElement;
+      conteneurLang.style.setProperty("overflow", "visible", "important");
       var btnTr = btnSaAr.cloneNode(true);
-      btnTr.id = "btnLangTrV50";
+      btnTr.id = "btnLangTrV52";
       btnTr.classList.remove("active");
-      btnTr.innerHTML = '<span style="opacity:0.75;font-size:0.75em;margin-right:3px;">TR</span>TR';
-      if (modeTurcActif) btnTr.classList.add("active-tr-v50");
+      btnTr.removeAttribute("onclick");
+
+      // Reproduire exactement la typographie interne (ex: petit "TR" + grand "TR")
+      if (btnTr.children && btnTr.children.length >= 2) {
+        btnTr.children[0].textContent = "TR";
+        btnTr.children[btnTr.children.length - 1].textContent = "TR";
+      } else {
+        btnTr.innerHTML = '<span style="font-size:0.72em;opacity:0.75;margin-right:2px;">TR</span><span>TR</span>';
+      }
+
+      if (modeTurcActif) btnTr.classList.add("active-tr-v52");
 
       btnTr.addEventListener("click", function (ev) {
         ev.preventDefault();
         ev.stopPropagation();
         modeTurcActif = true;
-        try { localStorage.setItem("corantafsir_lang_v50", "tr"); } catch (e) {}
-        var freres = btnSaAr.parentElement.querySelectorAll("button, a, span");
+        try { localStorage.setItem("corantafsir_lang_v52", "tr"); } catch (e) {}
+        var freres = conteneurLang.children;
         for (var f = 0; f < freres.length; f++) {
           if (freres[f] !== btnTr) freres[f].classList.remove("active");
         }
-        btnTr.classList.add("active-tr-v50");
+        btnTr.classList.add("active-tr-v52");
         dernierVersetSeo = "";
         synchroniserTout();
       });
 
-      // Si on clique sur FR FR, GB EN, ES ES ou SA AR, désactiver le mode Turc
-      var autresBtns = btnSaAr.parentElement.querySelectorAll("button, a, span");
-      for (var a = 0; a < autresBtns.length; a++) {
+      var freresInit = conteneurLang.children;
+      for (var a = 0; a < freresInit.length; a++) {
         (function (autre) {
+          if (autre === btnTr) return;
           autre.addEventListener("click", function () {
             modeTurcActif = false;
-            try { localStorage.setItem("corantafsir_lang_v50", "other"); } catch (e) {}
-            btnTr.classList.remove("active-tr-v50");
+            try { localStorage.setItem("corantafsir_lang_v52", "other"); } catch (e) {}
+            btnTr.classList.remove("active-tr-v52");
             dernierVersetSeo = "";
             setTimeout(synchroniserTout, 30);
           });
-        })(autresBtns[a]);
+        })(freresInit[a]);
       }
 
-      btnSaAr.parentElement.appendChild(btnTr);
+      conteneurLang.appendChild(btnTr);
+    }
+  }
+
+  // Corriger les parenthèses inversées sur la page d'accueil en mode Arabe ("Al-) ('Alaq" -> "(Al-'Alaq)")
+  function reparerParenthesesAccueilArabe() {
+    var titresCartes = document.querySelectorAll("h2, h3, h4, div, span");
+    for (var i = 0; i < titresCartes.length; i++) {
+      var el = titresCartes[i];
+      if (el.children.length === 0) {
+        var txt = el.textContent || "";
+        if (txt.indexOf("سورة") !== -1 && txt.indexOf("(") !== -1 && txt.indexOf(")") !== -1) {
+          el.style.setProperty("unicode-bidi", "plaintext", "important");
+        }
+      }
     }
   }
 
@@ -1037,7 +1080,6 @@ html body #btnLangTrV50.active-tr-v50 {
     requetesTurcEnCours[cle] = true;
     cacheTurcChapitres[cle] = {};
 
-    // 1. Récupérer le Meal (Traduction Diyanet) + Tafsir Al-Mukhtasar en Turc depuis l'API officielle QuranEnc
     var urlMukhtasarTr = "https://quranenc.com/api/v1/translation/sura/turkish_mokhtasar/" + chap;
     fetch(urlMukhtasarTr)
       .then(function (r) { return r.json(); })
@@ -1056,7 +1098,6 @@ html body #btnLangTrV50.active-tr-v50 {
       })
       .catch(function () {});
 
-    // 2. En parallèle, récupérer la traduction Diyanet İşleri officielle depuis Quran.com API v4 (ID 77)
     var urlDiyanet = "https://api.quran.com/api/v4/quran/translations/77?chapter_number=" + chap;
     fetch(urlDiyanet)
       .then(function (r2) { return r2.json(); })
@@ -1080,25 +1121,30 @@ html body #btnLangTrV50.active-tr-v50 {
   function appliquerInterfaceEtContenuTurc() {
     if (!modeTurcActif) return;
 
-    var vk = obtenirCleVerset();
-    if (!vk) return;
-    var parts = vk.split(":");
-    var numS = Number(parts[0]);
-    var numV = Number(parts[1]);
-    var cleChap = "chap_" + numS;
-
-    if (!cacheTurcChapitres[cleChap]) {
-      chargerChapitreTurcComplet(numS);
-    }
-
-    // A. Traduire les boutons de l'interface en Turc
-    var tousBtns = document.querySelectorAll("button, a, span, div");
-    for (var i = 0; i < tousBtns.length; i++) {
-      var b = tousBtns[i];
+    // A. Traduire les éléments de la page d'accueil (index.html) ET des pages versets
+    var tousEls = document.querySelectorAll("h1, h2, h3, h4, p, button, a, span, div");
+    for (var i = 0; i < tousEls.length; i++) {
+      var b = tousEls[i];
       if (b.children.length > 1) continue;
       var txt = (b.textContent || "").trim();
+      if (!txt) continue;
 
-      if (txt === "‹ Retour aux 114 Sourates" || txt === "‹ Back to 114 Surahs" || txt === "‹ Volver a las 114 Suras") {
+      // Accueil
+      if (txt === "القرآن الكريم والتفسير المختصر" || txt === "Le Noble Coran & Tafsīr Al-Mukhtasar" || txt === "The Noble Quran & Tafsīr Al-Mukhtasar") {
+        b.textContent = "Kur'an-ı Kerim ve Muhtasar Tefsiri";
+      } else if (txt.indexOf("ترتيب النزول") !== -1 || txt.indexOf("Ordre de Révélation") !== -1 || txt.indexOf("Revelation Order") !== -1) {
+        b.textContent = "1. İniş Sırasına Göre (1 - 114)";
+      } else if (txt.indexOf("ترتيب المصحف") !== -1 || txt.indexOf("Ordre du Mushaf") !== -1 || txt.indexOf("Mushaf Order") !== -1) {
+        b.textContent = "2. Mushaf Sırasına Göre (1 - 114)";
+      } else if (txt.indexOf("آيات الإعجاز") !== -1 || txt.indexOf("Miracles Scientifiques") !== -1 || txt.indexOf("Scientific Miracles") !== -1) {
+        b.textContent = "⭐ 3. Kur'an Mucizeleri Ayetleri";
+      } else if (txt === "ما هي السورة المكية؟" || txt === "Qu'est-ce qu'une Sourate Mecquoise ?") {
+        b.textContent = "Mekkî Sure Nedir?";
+      } else if (txt === "ما هي السورة المدنية؟" || txt === "Qu'est-ce qu'une Sourate Médinoise ?") {
+        b.textContent = "Medenî Sure Nedir?";
+      }
+      // Pages Versets
+      else if (txt === "‹ Retour aux 114 Sourates" || txt === "‹ Back to 114 Surahs" || txt === "‹ Volver a las 114 Suras") {
         b.textContent = "‹ 114 Sureye Dön";
       } else if (txt === "SOURATE MÉDINOISE" || txt === "MEDINAN SURAH" || txt === "SURA MEDINENSE") {
         b.textContent = "MEDİNE DÖNEMİ";
@@ -1125,17 +1171,30 @@ html body #btnLangTrV50.active-tr-v50 {
       }
     }
 
-    // B. Traduire le titre H1 de la sourate
+    var inputs = document.querySelectorAll("input[type='text'], input[type='search'], input:not([type])");
+    for (var inp = 0; inp < inputs.length; inp++) {
+      inputs[inp].setAttribute("placeholder", "Bir sure veya ayet arayın (Örn: 2:255, 30:1, Kehf, Yasin...)");
+    }
+
+    var vk = obtenirCleVerset();
+    if (!vk) return;
+    var parts = vk.split(":");
+    var numS = Number(parts[0]);
+    var numV = Number(parts[1]);
+    var cleChap = "chap_" + numS;
+
+    if (!cacheTurcChapitres[cleChap]) {
+      chargerChapitreTurcComplet(numS);
+    }
+
     var h1 = document.querySelector("h1, h2");
     if (h1 && NOMS_SOURATES_TR[numS]) {
       var nvTitre = NOMS_SOURATES_TR[numS] + " — " + numV + ". Ayet";
       if (h1.textContent !== nvTitre) h1.textContent = nvTitre;
     }
 
-    // C. Injecter le Meal (Traduction Diyanet) et le Tafsir Al-Mukhtasar en Turc
     var donneesVersetTr = cacheTurcChapitres[cleChap] ? cacheTurcChapitres[cleChap][vk] : null;
     if (donneesVersetTr && donneesVersetTr.tr) {
-      // Trouver le paragraphe de traduction du verset (commençant par "7. ...")
       var pEls = document.querySelectorAll("p, div");
       for (var p = 0; p < pEls.length; p++) {
         var el = pEls[p];
@@ -1277,8 +1336,8 @@ html body #btnLangTrV50.active-tr-v50 {
       }
 
       if (role === "sun") {
-        node.classList.remove("astre-lune-pure-v50");
-        node.classList.add("astre-soleil-pur-v50");
+        node.classList.remove("astre-lune-pure-v52");
+        node.classList.add("astre-soleil-pur-v52");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -1295,8 +1354,8 @@ html body #btnLangTrV50.active-tr-v50 {
         );
         node.style.setProperty("filter", "none", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v50");
-        node.classList.add("astre-lune-pure-v50");
+        node.classList.remove("astre-soleil-pur-v52");
+        node.classList.add("astre-lune-pure-v52");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -1363,7 +1422,7 @@ html body #btnLangTrV50.active-tr-v50 {
             cible = el.parentElement;
           }
         }
-        cible.classList.add("maher-supprime-v50");
+        cible.classList.add("maher-supprime-v52");
         if (cible.parentNode) cible.parentNode.removeChild(cible);
       }
     }
@@ -1376,7 +1435,7 @@ html body #btnLangTrV50.active-tr-v50 {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v50");
+          row.classList.add("maher-supprime-v52");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
@@ -1457,17 +1516,17 @@ html body #btnLangTrV50.active-tr-v50 {
     }
   }
 
-  // 4. MOT-À-MOT EN ORDRE AUDIO STRICT (1. خَتَمَ -> 2. اللَّهُ) + DICTIONNAIRE TURC CERTIFIÉ
+  // 4. MOT-À-MOT EN ORDRE AUDIO STRICT + COMPATIBILITÉ 100% TAJWID
   var DICO_MULTILINGUE = {
     fr: {
       "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn", "طه": "Tā-Hā", "طسم": "Tā-Sīn-Mīm", "حم": "Hā-Mīm", "كهيعص": "Kāf-Hā-Yā-‘Ayn-Sād",
       "ذلك": "Ce (C'est)", "الكتاب": "le Livre", "لا": "ne...pas / point de", "ريب": "doute", "فيه": "en lui", "هدى": "un guide", "للمتقين": "pour les pieux",
       "الذين": "ceux qui", "يؤمنون": "croient", "بالغيب": "à l'Inconnaissable", "ويقيمون": "et accomplissent", "الصلاة": "la Salāt (prière)", "الصلوة": "la Salāt (prière)", "ومما": "et de ce que", "رزقناهم": "Nous leur avons attribué", "ينفقون": "dépensent",
-      "والذين": "et ceux qui", "بما": "à ce qui", "أنزل": "a été descendu", "إليك": "vers toi", "وما": "et ce qu'", "من": "de / avant", "قبلك": "avant toi", "وبالآخرة": "et en l'Au-delà", "وبالأخرة": "et en l'Au-delà", "هم": "ils / eux", "يوقنون": "ont la certitude",
+      "والذين": "et ceux qui", "بما": "à ce qui", "أنزل": "a été descendu", "إليك": "vers toi", "وما": "et ce qu'", "قبلك": "avant toi", "وبالآخرة": "et en l'Au-delà", "وبالأخرة": "et en l'Au-delà", "هم": "ils / eux", "يوقنون": "ont la certitude",
       "أولئك": "Ceux-là", "على": "sur", "ربهم": "leur Seigneur", "وأولئك": "et ceux-là", "المفلحون": "les gagnants",
       "إن": "Certes", "كفروا": "ont mécru", "سواء": "il est égal", "عليهم": "pour eux", "أأنذرتهم": "que tu les avertisses", "ءأنذرتهم": "que tu les avertisses", "أم": "ou que", "لم": "ne...pas", "تنذرهم": "tu les avertisses",
       "ختم": "a scellé", "الله": "Allāh", "قلوبهم": "leurs cœurs", "وعلى": "et sur", "سمعهم": "leur ouïe", "وأبصارهم": "et sur leurs regards", "أبصارهم": "leurs regards", "غشاوة": "un voile", "غشوة": "un voile", "ولهم": "et pour eux", "عذاب": "un châtiment", "عظيم": "immense",
-      "ومن": "Et parmi", "الناس": "les gens", "يقول": "il y a qui dit", "آمنا": "Nous croyons", "ءامنا": "Nous croyons", "بالله": "en Allāh", "وباليوم": "et au Jour", "الآخر": "dernier", "بمؤمنين": "croyants",
+      "ومن": "Et parmi", "الناس": "les gens", "يقول": "dit (disent)", "آمنا": "Nous croyons", "ءامنا": "Nous croyons", "بالله": "en Allāh", "وباليوم": "et au Jour", "الآخر": "dernier", "بمؤمنين": "croyants",
       "يخادعون": "Ils cherchent à tromper", "يخدعون": "ils trompent", "آمنوا": "ont cru", "ءامنوا": "ont cru", "إلا": "que", "أنفسهم": "eux-mêmes", "يشعرون": "s'en rendent compte",
       "في": "Dans / sur", "مرض": "une maladie", "فزادهم": "alors leur a accru", "مرضا": "en maladie", "أليم": "douloureux", "كانوا": "ils étaient", "يكذبون": "à mentir",
       "وإذا": "Et quand", "قيل": "on dit", "لهم": "à eux (leur)", "تفسدوا": "semez la corruption", "الأرض": "la terre", "قالوا": "ils disent", "إنما": "Certes, ne...que", "نحن": "nous (sommes)", "مصلحون": "des réformateurs",
@@ -1485,10 +1544,11 @@ html body #btnLangTrV50.active-tr-v50 {
       "الم": "Elif, Lâm, Mîm", "ن": "Nûn", "ق": "Kâf", "ص": "Sâd", "يس": "Yâ-Sîn", "طه": "Tâ-Hâ", "طسم": "Tâ-Sîn-Mîm", "حم": "Hâ-Mîm",
       "ذلك": "Bu (İşte o)", "الكتاب": "Kitap", "لا": "yoktur / değil", "ريب": "şüphe", "فيه": "onda", "هدى": "bir hidayettir (rehberdir)", "للمتقين": "muttakiler (takva sahipleri) için",
       "الذين": "Onlar ki", "يؤمنون": "iman ederler", "بالغيب": "gayba", "ويقيمون": "ve kılarlar", "الصلاة": "namazı", "الصلوة": "namazı", "ومما": "ve şeylerden", "رزقناهم": "onlara rızık olarak verdiğimiz", "ينفقون": "infak ederler (harcarlar)",
-      "والذين": "Ve onlar ki", "بما": "indirilene", "أنزل": "indirilen", "إليك": "sana", "وما": "ve yazdıklarına / şeylere", "من": "-den / önce", "قبلك": "senden önce", "وبالآخرة": "ve ahirete", "وبالأخرة": "ve ahirete", "هم": "onlar", "يوقنون": "kesin olarak inanırlar",
+      "والذين": "Ve onlar ki", "بما": "indirilene", "أنزل": "indirilen", "إليك": "sana", "وما": "ve yazdıklarına / değildirler", "قبلك": "senden önce", "وبالآخرة": "ve ahirete", "وبالأخرة": "ve ahirete", "هم": "onlar", "يوقنون": "kesin olarak inanırlar",
       "أولئك": "İşte onlar", "على": "üzerindedir", "ربهم": "Rablerinden", "وأولئك": "ve işte onlar", "المفلحون": "kurtuluşa erenlerdir",
       "إن": "Şüphesiz", "كفروا": "inkâr edenler", "سواء": "birdir (fark etmez)", "عليهم": "onlar için", "أأنذرتهم": "onları uyarsan da", "ءأنذرتهم": "onları uyarsan da", "أم": "veya", "لم": "-medi / değil", "تنذرهم": "onları uyarmasan da",
       "ختم": "mühürlemiştir", "الله": "Allâh", "قلوبهم": "kalplerini", "وعلى": "ve üzerine", "سمعهم": "kulaklarını (işitmelerini)", "وأبصارهم": "ve gözlerini", "أبصارهم": "gözlerinin (bakışlarının)", "غشاوة": "bir perde vardır", "غشوة": "bir perde vardır", "ولهم": "ve onlar için vardır", "عذاب": "bir azap", "عظيم": "büyük",
+      "ومن": "Ve insanlardan", "الناس": "insanlar", "يقول": "diyenler vardır", "آمنا": "İman ettik", "ءامنا": "İman ettik", "بالله": "Allâh'a", "وباليوم": "ve güne", "الآخر": "ahiret (son)", "بمؤمنين": "müminler",
       "في": "İçinde / vardır", "مرض": "bir hastalık", "فزادهم": "artırmıştır", "مرضا": "hastalıklarını", "أليم": "elem verici", "كانوا": "oldular", "يكذبون": "yalan söylüyorlar",
       "وإذا": "Ve ne zaman", "قيل": "denilse", "لهم": "onlara", "تفسدوا": "bozgunculuk yapmayın", "الأرض": "yeryüzünde", "قالوا": "derler ki:", "إنما": "Ancak / sadece", "نحن": "biz", "مصلحون": "ıslah edicileriz (düzeltenleriz)",
       "والقلم": "Kaleme andolsun", "يسطرون": "satır satır yazdıklarına!", "ما": "Sen değilsin", "أنت": "sen", "بنعمة": "nimetiyle", "ربك": "Rabbinin", "بمجنون": "bir mecnun (deli)",
@@ -1501,7 +1561,7 @@ html body #btnLangTrV50.active-tr-v50 {
   var sensGrilleRtl = true;
 
   try {
-    var sauv = localStorage.getItem("cache_wbw_exact_v50");
+    var sauv = localStorage.getItem("cache_wbw_exact_v52");
     if (sauv) cacheVersetMotsExact = JSON.parse(sauv);
   } catch (e) {}
 
@@ -1519,10 +1579,18 @@ html body #btnLangTrV50.active-tr-v50 {
   }
 
   function chercherDansDicoCertifie(motAr, lang) {
-    var dico = DICO_MULTILINGUE[lang];
-    if (!dico) return "";
     var cle = normaliserArabeCle(motAr);
     if (!cle) return "";
+
+    if (cle === "من") {
+      var aKasra = motAr.indexOf("\u0650") !== -1;
+      if (lang === "fr") return aKasra ? "de / avant" : "qui (quiconque)";
+      if (lang === "tr") return aKasra ? "-den / önce" : "kim / kimseler";
+      if (lang === "es") return aKasra ? "de / antes" : "quien";
+    }
+
+    var dico = DICO_MULTILINGUE[lang];
+    if (!dico) return "";
     for (var k in dico) {
       if (normaliserArabeCle(k) === cle) return dico[k];
     }
@@ -1533,9 +1601,10 @@ html body #btnLangTrV50.active-tr-v50 {
     var m = document.body ? document.body.innerText.match(/\b(\d{1,3})\s*:\s*(\d{1,3})\b/) : null;
     if (m) return m[1] + ":" + m[2];
 
-    var numSourate = "1";
+    var numSourate = "";
     var urlM = window.location.pathname.match(/sourate-(\d+)/i);
     if (urlM) numSourate = urlM[1];
+    if (!numSourate) return "";
 
     var selects = document.querySelectorAll("select");
     for (var i = 0; i < selects.length; i++) {
@@ -1555,7 +1624,6 @@ html body #btnLangTrV50.active-tr-v50 {
     if (cacheVersetMotsExact[cleCache] || requetesVersetEnCours[cleCache]) return;
     requetesVersetEnCours[cleCache] = true;
 
-    // L'API Quran.com v4 possède nativement le Mot-à-mot en Turc (language=tr) et en Anglais (language=en) !
     var apiLang = (lang === "tr" || lang === "en") ? lang : "en";
     var urlQdc = "https://api.quran.com/api/v4/verses/by_key/" + vk + "?language=" + apiLang + "&words=true&word_fields=text_uthmani,translation";
     fetch(urlQdc)
@@ -1578,7 +1646,7 @@ html body #btnLangTrV50.active-tr-v50 {
             if (certTr) motsQdc[t].tr = certTr;
           }
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v50", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v52", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -1598,7 +1666,7 @@ html body #btnLangTrV50.active-tr-v50 {
 
         if (aTraduireTextes.length === 0) {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v50", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v52", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -1625,7 +1693,7 @@ html body #btnLangTrV50.active-tr-v50 {
           .catch(function () {})
           .finally(function () {
             cacheVersetMotsExact[cleCache] = motsQdc;
-            try { localStorage.setItem("cache_wbw_exact_v50", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+            try { localStorage.setItem("cache_wbw_exact_v52", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
             appliquerVraiMotAMotSurDOM();
           });
       })
@@ -1648,17 +1716,42 @@ html body #btnLangTrV50.active-tr-v50 {
     if (cartes.length > 0) return cartes;
 
     var tousDivs = document.querySelectorAll("div");
+    var candidats = [];
     for (var d = 0; d < tousDivs.length; d++) {
       var el = tousDivs[d];
-      if (el.children && el.children.length >= 2 && el.children.length <= 3 && !el.querySelector("button")) {
+      if (
+        el.children &&
+        el.children.length >= 2 &&
+        el.children.length <= 3 &&
+        el.children[0].tagName === "DIV" &&
+        el.children[el.children.length - 1].tagName === "DIV" &&
+        !el.querySelector("button")
+      ) {
         var r = el.getBoundingClientRect();
-        if (r.width >= 48 && r.width <= 260 && r.height >= 48 && r.height <= 210) {
+        if (r.width >= 48 && r.width <= 280 && r.height >= 48 && r.height <= 220) {
           var txt0 = (el.children[0].textContent || "").trim();
-          if (/[\u0600-\u06FF]/.test(txt0) && txt0.length < 35) {
-            el.classList.add("wbw-card-unit");
-            cartes.push(el);
+          if (/[\u0600-\u06FF]/.test(txt0) && txt0.length < 40) {
+            candidats.push(el);
           }
         }
+      }
+    }
+
+    for (var c = 0; c < candidats.length; c++) {
+      var cand = candidats[c];
+      var estEnfant = false;
+      for (var p = 0; p < candidats.length; p++) {
+        if (c !== p && candidats[p].contains(cand)) {
+          estEnfant = true;
+          break;
+        }
+      }
+      if (!estEnfant) {
+        cand.classList.add("wbw-card-unit");
+        cartes.push(cand);
+      } else {
+        cand.classList.remove("wbw-card-unit");
+        cand.removeAttribute("data-word-num");
       }
     }
     return cartes;
@@ -1682,13 +1775,15 @@ html body #btnLangTrV50.active-tr-v50 {
 
     var listeExacte = cacheVersetMotsExact[cleCache];
 
-    // Affecter chaque mot dans l'ordre exact de la récitation audio (1. خَتَمَ = a scellé, 2. اللَّهُ = Allāh)
     for (var i = 0; i < cartes.length; i++) {
       var c = cartes[i];
       c.setAttribute("data-word-num", String(i + 1));
       if (!c.children || c.children.length < 2) continue;
       var elAr = c.children[0];
       var elTr = c.children[c.children.length - 1];
+      elAr.classList.remove("wbw-card-unit");
+      elAr.removeAttribute("data-word-num");
+
       var txtAr = (elAr.textContent || "").trim();
       var cleCarteAr = normaliserArabeCle(txtAr);
 
@@ -1708,14 +1803,18 @@ html body #btnLangTrV50.active-tr-v50 {
       }
 
       if (!tradFinale && listeExacte && listeExacte.length > 0) {
-        for (var m = 0; m < listeExacte.length; m++) {
-          if (normaliserArabeCle(listeExacte[m].ar) === cleCarteAr) {
-            tradFinale = listeExacte[m].tr;
-            break;
-          }
-        }
-        if (!tradFinale && listeExacte[i]) {
+        if (listeExacte[i] && normaliserArabeCle(listeExacte[i].ar) === cleCarteAr) {
           tradFinale = listeExacte[i].tr;
+        } else {
+          for (var m = 0; m < listeExacte.length; m++) {
+            if (normaliserArabeCle(listeExacte[m].ar) === cleCarteAr) {
+              tradFinale = listeExacte[m].tr;
+              break;
+            }
+          }
+          if (!tradFinale && listeExacte[i]) {
+            tradFinale = listeExacte[i].tr;
+          }
         }
       }
 
@@ -1790,28 +1889,26 @@ html body #btnLangTrV50.active-tr-v50 {
 
       var r = el.getBoundingClientRect();
       if (r.top >= rectDerniereCarte.top + 10 || /^\d+\s*[\.-]/.test(txt)) {
-        if (txt.indexOf("TAFSĪR") === -1 && txt.indexOf("TEFSİR") === -1 && txt.indexOf("EXPLICATION") === -1 && txt.indexOf("EXPLICACIÓN") === -1) {
+        if (txt.indexOf("TAFSĪR") === -1 && txt.indexOf("TEFSİR") === -1 && txt.indexOf("EXPLICATION") === -1 && txt.indexOf("EXPLICACIÓN") === -1 && txt.indexOf("Ghunnah") === -1) {
           el.classList.add("wbw-masquer-traduction-bas");
         }
       }
     }
   }
 
-  // 5. PACK SEO COMPLET + BALISES HREFLANG (POUR GOOGLE TURQUIE google.com.tr)
+  // 5. PACK SEO COMPLET + BALISES HREFLANG
   var dernierVersetSeo = "";
   function injecterPackSeoComplet() {
     var vk = obtenirCleVerset();
     var lang = obtenirLangueActive();
-    var cleSeo = vk + "_" + lang;
-    if (!vk || cleSeo === dernierVersetSeo) return;
+    var cleSeo = (vk || "home") + "_" + lang;
+    if (cleSeo === dernierVersetSeo) return;
     dernierVersetSeo = cleSeo;
 
-    var parts = vk.split(":");
-    var numS = parts[0];
-    var numV = parts[1];
-    var urlCanonique = "https://corantafsir.com/sourate-" + numS + "-verset-" + numV + ".html";
+    var urlCanonique = vk
+      ? "https://corantafsir.com/sourate-" + vk.split(":")[0] + "-verset-" + vk.split(":")[1] + ".html"
+      : "https://corantafsir.com/";
 
-    // Ajouter les balises hreflang internationales (fr, en, es, ar, tr) pour Google Turquie
     var languesSeo = ["fr", "en", "es", "ar", "tr"];
     for (var l = 0; l < languesSeo.length; l++) {
       var codeL = languesSeo[l];
@@ -1824,6 +1921,11 @@ html body #btnLangTrV50.active-tr-v50 {
       }
       linkAlt.setAttribute("href", codeL === "fr" ? urlCanonique : urlCanonique + "?lang=" + codeL);
     }
+
+    if (!vk) return;
+    var parts = vk.split(":");
+    var numS = parts[0];
+    var numV = parts[1];
 
     var h1 = document.querySelector("h1, h2");
     var titreVerset = h1 ? (h1.textContent || "").trim() : "Sourate " + numS + " Verset " + numV;
@@ -1848,29 +1950,10 @@ html body #btnLangTrV50.active-tr-v50 {
       document.title = nouveauTitle;
     }
 
-    function definirMeta(attrName, attrVal, contentVal) {
-      var sel = "meta[" + attrName + "='" + attrVal + "']";
-      var m = document.querySelector(sel);
-      if (!m) {
-        m = document.createElement("meta");
-        m.setAttribute(attrName, attrVal);
-        document.head.appendChild(m);
-      }
-      m.setAttribute("content", contentVal);
-    }
-
-    definirMeta("name", "description", metaDescCourte);
-    definirMeta("name", "robots", "index, follow, max-snippet:-1, max-image-preview:large");
-    definirMeta("property", "og:title", nouveauTitle);
-    definirMeta("property", "og:description", metaDescCourte);
-    definirMeta("property", "og:url", urlCanonique);
-    definirMeta("property", "og:type", "article");
-    definirMeta("property", "og:site_name", "CoranTafsir");
-
-    var elJson = document.getElementById("seo-jsonld-v50");
+    var elJson = document.getElementById("seo-jsonld-v52");
     if (!elJson) {
       elJson = document.createElement("script");
-      elJson.id = "seo-jsonld-v50";
+      elJson.id = "seo-jsonld-v52";
       elJson.type = "application/ld+json";
       document.head.appendChild(elJson);
     }
@@ -1974,9 +2057,9 @@ html body #btnLangTrV50.active-tr-v50 {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV50")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV52")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV50";
+      nv.id = "btnSuiviUniverselV52";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.innerHTML = "✨ Suivi";
@@ -2098,7 +2181,7 @@ html body #btnLangTrV50.active-tr-v50 {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV50) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV52) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       window.__lecteurAudioActuel = this;
@@ -2111,7 +2194,7 @@ html body #btnLangTrV50.active-tr-v50 {
       lancerBoucleSuivi();
       return origPlay.apply(this, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV50 = true;
+    HTMLMediaElement.prototype.__hookedV52 = true;
   }
 
   function trouverAudioActif() {
@@ -2293,6 +2376,7 @@ html body #btnLangTrV50.active-tr-v50 {
 
   function synchroniserTout() {
     assurerBoutonTurcDansBarre();
+    reparerParenthesesAccueilArabe();
     reparerSoleilEtLuneEnOrbite();
     retirerRecitateurMaher();
     if (modeTurcActif) {
@@ -2312,6 +2396,7 @@ html body #btnLangTrV50.active-tr-v50 {
 
   var obs = new MutationObserver(function () {
     assurerBoutonTurcDansBarre();
+    reparerParenthesesAccueilArabe();
     reparerSoleilEtLuneEnOrbite();
     retirerRecitateurMaher();
     if (modeTurcActif) {
@@ -2363,7 +2448,7 @@ html body #btnLangTrV50.active-tr-v50 {
   <div class="cosmos-exterior-wrapper"><canvas id="fullPageSkyCanvas"></canvas><div class="flat-earth-sun" id="flatEarthSun"><div class="sun-core"></div></div><div class="flat-earth-moon" id="flatEarthMoon"><div class="moon-white-core"></div></div></div>
   <div class="interface-layer">
     <header class="top-nav">
-      <a href="index.html?v=1794440802940" class="home-btn" onclick="sauvegarderConfigCiel()"><svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Logo Le Noble Coran & Tafsir">
+      <a href="index.html?v=1794441459153" class="home-btn" onclick="sauvegarderConfigCiel()"><svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Logo Le Noble Coran & Tafsir">
     <defs>
       <linearGradient id="bgGrad_nav-logo-svg" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stop-color="#07111a"/>
@@ -2529,7 +2614,7 @@ html body #btnLangTrV50.active-tr-v50 {
       </main>
     </div>
   </div>
-  <script src="data-sourate-5.js?v=1794440802940"></script>
+  <script src="data-sourate-5.js?v=1794441459153"></script>
   <script>
     const numSourateActuelle = 5; let numVersetActuel = 56; let codeAudio = "005056";
     
