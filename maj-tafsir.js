@@ -9,7 +9,7 @@ if (!fs.existsSync(pGen)) {
 
 let g = fs.readFileSync(pGen, 'utf8');
 
-// Nettoyer tous les anciens patchs V26 à V46
+// 1. Nettoyer tous les anciens patchs V26 à V47
 g = g.replace(/<style id="patch-master-v\d+">[\s\S]*?<\/script>/g, '');
 g = g.replace(/<style id="patch-hide-tr-wbw-v\d+">[\s\S]*?<\/script>/g, '');
 g = g.replace(/<link rel="preconnect" href="https:\/\/api\.quran\.com"[^>]*>\s*/g, '');
@@ -20,7 +20,7 @@ const preconnectTags = `<link rel="preconnect" href="https://api.quran.com" cros
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>`;
 
-const cssV46 = `<style id="patch-master-v46">
+const cssV47 = `<style id="patch-master-v47">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -29,10 +29,13 @@ const cssV46 = `<style id="patch-master-v46">
   --wbw-min-w: 92px;
 }
 
-/* 1. SOLEIL DORÉ PUR & LUNE BLANCHE PURE 150px (SANS BLEU NI NOIR AU CENTRE) */
+/* 1. VERROUILLAGE ABSOLU DU SOLEIL DORÉ PUR (QUELLE QUE SOIT SA POSITION EN ORBITE) */
 html body #flatEarthSun,
 html body .flat-earth-sun,
-html body .astre-soleil-pur-v46 {
+html body [id*="sun" i]:not([id*="sound" i]),
+html body [class*="sun" i]:not([class*="sound" i]),
+html body [data-astre-role="sun"],
+html body .astre-soleil-pur-v47 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -42,10 +45,13 @@ html body .astre-soleil-pur-v46 {
   border-radius: 50% !important;
   border: none !important;
   outline: none !important;
-  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #fffbeb 28%, #fef08a 55%, #facc15 78%, rgba(245, 158, 11, 0) 100%) !important;
+  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #fffef0 26%, #fef08a 52%, #facc15 76%, #f59e0b 94%, rgba(245, 158, 11, 0) 100%) !important;
+  background-image: radial-gradient(circle at 50% 50%, #ffffff 0%, #fffef0 26%, #fef08a 52%, #facc15 76%, #f59e0b 94%, rgba(245, 158, 11, 0) 100%) !important;
   background-color: #fde047 !important;
-  box-shadow: 0 0 45px 15px rgba(253, 224, 71, 0.65), 0 0 95px 35px rgba(245, 158, 11, 0.38) !important;
+  box-shadow: 0 0 50px 16px rgba(253, 224, 71, 0.72), 0 0 110px 38px rgba(245, 158, 11, 0.42) !important;
   filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   mix-blend-mode: normal !important;
 }
 
@@ -53,21 +59,30 @@ html body #flatEarthSun::before,
 html body #flatEarthSun::after,
 html body .flat-earth-sun::before,
 html body .flat-earth-sun::after,
-html body .astre-soleil-pur-v46::before,
-html body .astre-soleil-pur-v46::after,
+html body [data-astre-role="sun"]::before,
+html body [data-astre-role="sun"]::after,
+html body .astre-soleil-pur-v47::before,
+html body .astre-soleil-pur-v47::after,
 html body #flatEarthSun *,
 html body .flat-earth-sun *,
-html body .astre-soleil-pur-v46 * {
+html body [data-astre-role="sun"] *,
+html body .astre-soleil-pur-v47 * {
   display: none !important;
   content: none !important;
-  background: transparent !important;
+  background: none !important;
   box-shadow: none !important;
   opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
+/* 2. VERROUILLAGE ABSOLU DE LA LUNE BLANCHE PURE */
 html body #flatEarthMoon,
 html body .flat-earth-moon,
-html body .astre-lune-pure-v46 {
+html body [id*="moon" i],
+html body [class*="moon" i],
+html body [data-astre-role="moon"],
+html body .astre-lune-pure-v47 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -77,10 +92,13 @@ html body .astre-lune-pure-v46 {
   border-radius: 50% !important;
   border: none !important;
   outline: none !important;
-  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f8fafc 35%, #e2e8f0 68%, rgba(186, 230, 253, 0) 100%) !important;
+  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f8fafc 38%, #e2e8f0 70%, rgba(186, 230, 253, 0) 100%) !important;
+  background-image: radial-gradient(circle at 50% 50%, #ffffff 0%, #f8fafc 38%, #e2e8f0 70%, rgba(186, 230, 253, 0) 100%) !important;
   background-color: #ffffff !important;
   box-shadow: 0 0 45px 15px rgba(255, 255, 255, 0.65), 0 0 95px 35px rgba(148, 163, 184, 0.35) !important;
   filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   mix-blend-mode: normal !important;
 }
 
@@ -88,23 +106,28 @@ html body #flatEarthMoon::before,
 html body #flatEarthMoon::after,
 html body .flat-earth-moon::before,
 html body .flat-earth-moon::after,
-html body .astre-lune-pure-v46::before,
-html body .astre-lune-pure-v46::after,
+html body [data-astre-role="moon"]::before,
+html body [data-astre-role="moon"]::after,
+html body .astre-lune-pure-v47::before,
+html body .astre-lune-pure-v47::after,
 html body #flatEarthMoon *,
 html body .flat-earth-moon *,
-html body .astre-lune-pure-v46 * {
+html body [data-astre-role="moon"] *,
+html body .astre-lune-pure-v47 * {
   display: none !important;
   content: none !important;
-  background: transparent !important;
+  background: none !important;
   box-shadow: none !important;
   opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
-/* 2. MASQUAGE ABSOLU DE MAHER AL-MUAIQLY */
+/* 3. MASQUAGE ABSOLU DE MAHER AL-MUAIQLY */
 html body img[src*="maher" i],
 html body [data-reciter*="maher" i],
 html body [data-value*="maher" i],
-html body .maher-supprime-v46 {
+html body .maher-supprime-v47 {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
@@ -114,12 +137,12 @@ html body .maher-supprime-v46 {
   overflow: hidden !important;
 }
 
-/* 3. MASQUAGE DE LA TRADUCTION DU BAS EN MODE MOT-À-MOT */
+/* 4. MASQUAGE DE LA TRADUCTION DU BAS EN MODE MOT-À-MOT */
 html body .wbw-masquer-traduction-bas {
   display: none !important; visibility: hidden !important; height: 0 !important; max-height: 0 !important; margin: 0 !important; padding: 0 !important; border: none !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important;
 }
 
-/* 4. BANDEAU INTERACTIF DU SENS DE LECTURE */
+/* 5. BANDEAU INTERACTIF DU SENS DE LECTURE */
 html body #wbwSensLectureBanner {
   width: 100% !important;
   text-align: center !important;
@@ -134,7 +157,7 @@ html body #wbwSensLectureBanner {
   user-select: none !important;
 }
 
-/* 5. CARTES MOT-À-MOT AVEC BADGE NUMÉROTÉ */
+/* 6. CARTES MOT-À-MOT AVEC BADGE NUMÉROTÉ */
 html body .wbw-card-unit {
   position: relative !important;
   padding: var(--wbw-pad-v) var(--wbw-pad-h) !important;
@@ -170,7 +193,7 @@ html body .wbw-card-unit > *:last-child {
   text-align: center !important;
 }
 
-/* 6. MODE SUIVI VERSET : BLANC PUR AU DÉBUT (SCREEN 1) -> HALO BLEU APRÈS (SCREEN 2) */
+/* 7. MODE SUIVI VERSET : BLANC PUR AU DÉBUT (SCREEN 1) -> HALO BLEU APRÈS (SCREEN 2) */
 html body #arabicVerse,
 html body .arabic-glow-verse {
   direction: rtl !important;
@@ -197,9 +220,9 @@ html body .follow-word {
 }
 </style>`;
 
-function codeClientV46() {
-  // 1. RÉPARATION STRICTE DU SOLEIL (DORÉ PUR) ET DE LA LUNE (BLANCHE PURE)
-  function reparerSoleilEtLuneSansBleuNiNoir() {
+function codeClientV47() {
+  // 1. IDENTIFICATION INFAILLIBLE DU SOLEIL ET DE LA LUNE (MÊME QUAND ILS TOURNENT EN ORBITE !)
+  function reparerSoleilEtLuneEnOrbite() {
     var tousDivs = document.querySelectorAll("div, span, canvas");
     var spheresTrouvees = [];
 
@@ -207,28 +230,52 @@ function codeClientV46() {
       var el = tousDivs[i];
       var idCls = ((el.id || "") + " " + (el.className && typeof el.className === "string" ? el.className : "")).toLowerCase();
 
-      var estNommeSun = idCls.indexOf("sun") !== -1 || idCls.indexOf("soleil") !== -1;
-      var estNommeMoon = idCls.indexOf("moon") !== -1 || idCls.indexOf("lune") !== -1;
+      var estNommeSun = idCls.indexOf("sun") !== -1 || idCls.indexOf("soleil") !== -1 || el.getAttribute("data-astre-role") === "sun";
+      var estNommeMoon = idCls.indexOf("moon") !== -1 || idCls.indexOf("lune") !== -1 || el.getAttribute("data-astre-role") === "moon";
 
       var r = el.getBoundingClientRect();
       var estRondVide =
         r.width >= 55 &&
         r.width <= 320 &&
-        Math.abs(r.width - r.height) <= 8 &&
+        Math.abs(r.width - r.height) <= 10 &&
         (el.textContent || "").trim() === "" &&
         !el.querySelector("button, input, select, p, a, img");
 
       if (estNommeSun || estNommeMoon || estRondVide) {
         var st = window.getComputedStyle(el);
-        if (estNommeSun || estNommeMoon || st.borderRadius.indexOf("50%") !== -1 || parseFloat(st.borderRadius) >= r.width * 0.4) {
+        var br = st.borderRadius || "";
+        if (estNommeSun || estNommeMoon || br.indexOf("50%") !== -1 || parseFloat(br) >= r.width * 0.4) {
+          var styleStr = (
+            (el.getAttribute("style") || "") +
+            " " +
+            (st.boxShadow || "") +
+            " " +
+            (st.backgroundImage || "") +
+            " " +
+            (st.backgroundColor || "")
+          ).toLowerCase();
+
+          // Le Soleil a une ombre jaune/ambre (rgb(250, 204, 21) / rgb(245, 158, 11) / #facc15 / #fde047 / 255, 200) ou ce fond cyan que le vieux script lui mettait
+          var aCouleurSoleil =
+            styleStr.indexOf("250, 204, 21") !== -1 ||
+            styleStr.indexOf("245, 158, 11") !== -1 ||
+            styleStr.indexOf("253, 224, 71") !== -1 ||
+            styleStr.indexOf("234, 88, 12") !== -1 ||
+            styleStr.indexOf("255, 215") !== -1 ||
+            styleStr.indexOf("255, 180") !== -1 ||
+            styleStr.indexOf("facc15") !== -1 ||
+            styleStr.indexOf("fde047") !== -1 ||
+            styleStr.indexOf("f59e0b") !== -1 ||
+            styleStr.indexOf("0, 210, 255") !== -1 ||
+            styleStr.indexOf("56, 189, 248") !== -1;
+
           spheresTrouvees.push({
             el: el,
             cx: r.left + r.width / 2,
             cy: r.top + r.height / 2,
             w: r.width,
-            isSun: estNommeSun,
-            isMoon: estNommeMoon,
-            bg: (st.backgroundImage || "") + " " + (st.boxShadow || "")
+            isSun: estNommeSun || (!estNommeMoon && aCouleurSoleil),
+            isMoon: estNommeMoon
           });
         }
       }
@@ -241,7 +288,7 @@ function codeClientV46() {
       for (var k = 0; k < astresPrincipaux.length; k++) {
         var p = astresPrincipaux[k];
         var dist = Math.hypot(s.cx - p.cx, s.cy - p.cy);
-        if (dist < 45) {
+        if (dist < 48) {
           doublonSuperpose = true;
           s.el.style.setProperty("display", "none", "important");
           break;
@@ -252,35 +299,66 @@ function codeClientV46() {
       }
     }
 
+    // S'il y a 2 astres et qu'aucun n'avait encore été marqué, marquer définitivement leur rôle dans le DOM
+    var soleilDejaTrouve = false;
     for (var m = 0; m < astresPrincipaux.length; m++) {
-      var astre = astresPrincipaux[m];
+      if (astresPrincipaux[m].isSun) soleilDejaTrouve = true;
+    }
+
+    for (var n = 0; n < astresPrincipaux.length; n++) {
+      var astre = astresPrincipaux[n];
       var node = astre.el;
 
       if (node.children && node.children.length > 0) {
         node.innerHTML = "";
       }
 
-      // Identifier si c'est le Soleil (à gauche ou nommé Sun ou contenant du jaune/orange)
-      var appliquerSoleil = astre.isSun || (!astre.isMoon && astre.cx < window.innerWidth / 2);
-      if (appliquerSoleil) {
-        node.classList.remove("astre-lune-pure-v46");
-        node.classList.add("astre-soleil-pur-v46");
+      var role = node.getAttribute("data-astre-role");
+      if (!role) {
+        if (astre.isSun || (!soleilDejaTrouve && !astre.isMoon && n === 0)) {
+          role = "sun";
+          soleilDejaTrouve = true;
+        } else {
+          role = "moon";
+        }
+        node.setAttribute("data-astre-role", role);
+      }
+
+      if (role === "sun") {
+        node.classList.remove("astre-lune-pure-v47");
+        node.classList.add("astre-soleil-pur-v47");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
-        node.style.setProperty("background", "radial-gradient(circle at 50% 50%, #ffffff 0%, #fffbeb 28%, #fef08a 55%, #facc15 78%, rgba(245, 158, 11, 0) 100%)", "important");
+        node.style.setProperty(
+          "background",
+          "radial-gradient(circle at 50% 50%, #ffffff 0%, #fffef0 26%, #fef08a 52%, #facc15 76%, #f59e0b 94%, rgba(245, 158, 11, 0) 100%)",
+          "important"
+        );
         node.style.setProperty("background-color", "#fde047", "important");
-        node.style.setProperty("box-shadow", "0 0 45px 15px rgba(253, 224, 71, 0.65), 0 0 95px 35px rgba(245, 158, 11, 0.38)", "important");
+        node.style.setProperty(
+          "box-shadow",
+          "0 0 50px 16px rgba(253, 224, 71, 0.72), 0 0 110px 38px rgba(245, 158, 11, 0.42)",
+          "important"
+        );
         node.style.setProperty("filter", "none", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v46");
-        node.classList.add("astre-lune-pure-v46");
+        node.classList.remove("astre-soleil-pur-v47");
+        node.classList.add("astre-lune-pure-v47");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
-        node.style.setProperty("background", "radial-gradient(circle at 50% 50%, #ffffff 0%, #f8fafc 35%, #e2e8f0 68%, rgba(186, 230, 253, 0) 100%)", "important");
+        node.style.setProperty(
+          "background",
+          "radial-gradient(circle at 50% 50%, #ffffff 0%, #f8fafc 38%, #e2e8f0 70%, rgba(186, 230, 253, 0) 100%)",
+          "important"
+        );
         node.style.setProperty("background-color", "#ffffff", "important");
-        node.style.setProperty("box-shadow", "0 0 45px 15px rgba(255, 255, 255, 0.65), 0 0 95px 35px rgba(148, 163, 184, 0.35)", "important");
+        node.style.setProperty(
+          "box-shadow",
+          "0 0 45px 15px rgba(255, 255, 255, 0.65), 0 0 95px 35px rgba(148, 163, 184, 0.35)",
+          "important"
+        );
         node.style.setProperty("filter", "none", "important");
       }
     }
@@ -333,7 +411,7 @@ function codeClientV46() {
             cible = el.parentElement;
           }
         }
-        cible.classList.add("maher-supprime-v46");
+        cible.classList.add("maher-supprime-v47");
         if (cible.parentNode) cible.parentNode.removeChild(cible);
       }
     }
@@ -346,7 +424,7 @@ function codeClientV46() {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v46");
+          row.classList.add("maher-supprime-v47");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
@@ -446,7 +524,7 @@ function codeClientV46() {
   var sensGrilleRtl = true;
 
   try {
-    var sauv = localStorage.getItem("cache_wbw_exact_v46");
+    var sauv = localStorage.getItem("cache_wbw_exact_v47");
     if (sauv) cacheVersetMotsExact = JSON.parse(sauv);
   } catch (e) {}
 
@@ -536,7 +614,7 @@ function codeClientV46() {
 
         if (aTraduireTextes.length === 0) {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v46", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v47", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -563,7 +641,7 @@ function codeClientV46() {
           .catch(function () {})
           .finally(function () {
             cacheVersetMotsExact[cleCache] = motsQdc;
-            try { localStorage.setItem("cache_wbw_exact_v46", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+            try { localStorage.setItem("cache_wbw_exact_v47", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
             appliquerVraiMotAMotSurDOM();
           });
       })
@@ -655,8 +733,8 @@ function codeClientV46() {
         if (!cVerbe.children.length || !cSuiv.children.length) continue;
         var ar1 = normaliserArabeCle(cVerbe.children[0].textContent || "");
         var ar2 = normaliserArabeCle(cSuiv.children[0].textContent || "");
-        if (ar2 === "الله" && ar1 !== "ان" && ar1 !== "وان" && ar1 !== "باسم" && ar1 !== "بسم" && ar1 !== "سبحان" && ar1 !== "الحمد" && !cSuiv.getAttribute("data-swapped-v46")) {
-          cSuiv.setAttribute("data-swapped-v46", "1");
+        if (ar2 === "الله" && ar1 !== "ان" && ar1 !== "وان" && ar1 !== "باسم" && ar1 !== "بسم" && ar1 !== "سبحان" && ar1 !== "الحمد" && !cSuiv.getAttribute("data-swapped-v47")) {
+          cSuiv.setAttribute("data-swapped-v47", "1");
           grilleParente.insertBefore(cSuiv, cVerbe);
           break;
         }
@@ -802,10 +880,10 @@ function codeClientV46() {
     }
     linkCan.setAttribute("href", urlCanonique);
 
-    var elJson = document.getElementById("seo-jsonld-v46");
+    var elJson = document.getElementById("seo-jsonld-v47");
     if (!elJson) {
       elJson = document.createElement("script");
-      elJson.id = "seo-jsonld-v46";
+      elJson.id = "seo-jsonld-v47";
       elJson.type = "application/ld+json";
       document.head.appendChild(elJson);
     }
@@ -905,9 +983,9 @@ function codeClientV46() {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV46")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV47")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV46";
+      nv.id = "btnSuiviUniverselV47";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.innerHTML = "✨ Suivi";
@@ -1029,7 +1107,7 @@ function codeClientV46() {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV46) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV47) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       window.__lecteurAudioActuel = this;
@@ -1042,7 +1120,7 @@ function codeClientV46() {
       lancerBoucleSuivi();
       return origPlay.apply(this, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV46 = true;
+    HTMLMediaElement.prototype.__hookedV47 = true;
   }
 
   function trouverAudioActif() {
@@ -1223,7 +1301,7 @@ function codeClientV46() {
   }
 
   function synchroniserTout() {
-    reparerSoleilEtLuneSansBleuNiNoir();
+    reparerSoleilEtLuneEnOrbite();
     retirerRecitateurMaher();
     mettreAJourMentionsTraducteurEtExegese();
     masquerTraductionBasSiMotAMot();
@@ -1238,7 +1316,7 @@ function codeClientV46() {
   }
 
   var obs = new MutationObserver(function () {
-    reparerSoleilEtLuneSansBleuNiNoir();
+    reparerSoleilEtLuneEnOrbite();
     retirerRecitateurMaher();
     mettreAJourMentionsTraducteurEtExegese();
     masquerTraductionBasSiMotAMot();
@@ -1282,10 +1360,10 @@ function codeClientV46() {
   synchroniserTout();
 }
 
-const blocCompletV46 = preconnectTags + '\n' + cssV46 + '\n<script id="script-master-v46">(' + codeClientV46.toString() + ')();</script>';
-const blocEchappePourGenerateur = blocCompletV46.replace(/\\/g, '\\\\');
+const blocCompletV47 = preconnectTags + '\n' + cssV47 + '\n<script id="script-master-v47">(' + codeClientV47.toString() + ')();</script>';
+const blocEchappePourGenerateur = blocCompletV47.replace(/\\/g, '\\\\');
 
 g = g.replace(/<\/head>/g, () => blocEchappePourGenerateur + '\n</head>');
 fs.writeFileSync(pGen, g, 'utf8');
 
-console.log('✅ Correctif V46 activé : Soleil 100% doré pur (sans bleu) + Lune blanche + Suivi Blanc -> Bleu + Bandeau multilingue !');
+console.log('✅ Correctif V47 activé : Soleil doré pur verrouillé sur toute son orbite (gauche ET droite) + Lune blanche !');
