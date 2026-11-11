@@ -1,144 +1,1152 @@
 const fs = require('fs');
 const path = require('path');
 
-// ============================================================================
-// 1. COMPLÉTER MEMOIRE-SITE.JSON À 801 CLÉS (AJOUT DU BLOC 6 : SOURATES 58 À 66)
-// ============================================================================
-const pMem = path.join(__dirname, 'memoire-site.json');
-if (fs.existsSync(pMem)) {
-  const mem = JSON.parse(fs.readFileSync(pMem, 'utf8'));
-
-  const asbab6Fr = {
-    "58:1": "<strong style='color:#ffffff;'>Contexte des versets 1 à 4 : la plainte de Khawlah bint Tha‘labah entendue du haut des sept cieux.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith de ‘Ā'ishah (Sahīh Al-Bukhārī, Ibn Mājah n°2063 & Musnad Ahmad) :</strong> Khawlah bint Tha‘labah vint se plaindre à voix basse auprès du Prophète ﷺ après que son époux Aws ibn As-Sāmit eut prononcé contre elle la formule préislamique du Zihār. Allāh entendit sa complainte du haut des sept cieux et fit descendre ces versets instituant l'expiation pour préserver leur foyer.",
-    "58:11": "<strong style='color:#ffffff;'>Contexte du verset 11 : élargir l'assemblée pour les vétérans de Badr et l'élévation des gens de science.</strong><br><br>📜 <strong style='color:#ffffff;'>Récit de Muqātil et de Qatādah (At-Tabarī & Ibn Kathīr) :</strong> Révélé un vendredi lorsque des compagnons ayant combattu à Badr (dont Thābit ibn Qays) arrivèrent dans une assemblée dense autour du Prophète ﷺ, ordonnant de faire de la place fraternellement et proclamant qu'Allāh élève en degrés les croyants et les gens de science.",
-    "58:22": "<strong style='color:#ffffff;'>Contexte du verset 22 : l'allégeance pure à Allāh et à Son Messager ﷺ lors des grandes batailles.</strong><br><br>📜 <strong style='color:#ffffff;'>Récit d'Ibn ‘Abbās et d'Ibn Mas‘ūd (At-Tabarī & Al-Bayhaqī) :</strong> Révélé en l'honneur des compagnons qui placèrent le lien de la foi au-dessus de toute attache tribale face aux armées venues combattre l'Islam à Badr et Uhud.",
-    "59:5": "<strong style='color:#ffffff;'>Contexte du verset 5 : le siège des Banū An-Nadīr.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith d'Ibn ‘Umar (Sahīh Al-Bukhārī n°2326, n°4884 & Sahīh Muslim n°1746) :</strong> Révélé lors du siège des Banū An-Nadīr après la rupture de leur pacte, confirmant que le dégagement des abords de la forteresse avait eu lieu avec la permission d'Allāh.",
-    "59:9": "<strong style='color:#ffffff;'>Contexte du verset 9 : l'altruisme exemplaire (Al-Īthār) d'Abū Talhah et d'Umm Sulaym.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith d'Abū Hurayrah (Sahīh Al-Bukhārī n°3798, n°4889 & Sahīh Muslim n°2054) :</strong> Révélé au sujet d'Abū Talhah et de son épouse Umm Sulaym qui endormirent leurs enfants et éteignirent la lampe pour offrir leur unique repas à l'invité affamé du Prophète ﷺ tout en passant la nuit le ventre vide.",
-    "60:1": "<strong style='color:#ffffff;'>Contexte des versets 1 à 4 : la missive de Hātib ibn Abī Balta‘ah avant la conquête de La Mecque.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith de ‘Alī ibn Abī Tālib (Sahīh Al-Bukhārī n°3007, n°4890 & Sahīh Muslim n°2494) :</strong> Révélé lorsque Hātib ibn Abī Balta‘ah chercha à protéger ses proches restés sans clan à La Mecque ; le Prophète ﷺ fit intercepter la missive, accepta l'excuse sincère de Hātib en raison de sa présence à Badr et reçut le début de cette sourate.",
-    "60:8": "<strong style='color:#ffffff;'>Contexte des versets 8 et 9 : la bonté et l'équité envers la mère d'Asmā' bint Abī Bakr.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith d'Asmā' bint Abī Bakr (Sahīh Al-Bukhārī n°2620, n°3183 & Sahīh Muslim n°1003) :</strong> Révélé lorsque la mère d'Asmā' bint Abī Bakr vint lui rendre visite avec des cadeaux à Médine ; le Prophète ﷺ lui ordonna de maintenir les liens de parenté avec elle, et Allāh autorisa la bienveillance et l'équité envers tous ceux qui ne combattent pas les croyants.",
-    "60:10": "<strong style='color:#ffffff;'>Contexte du verset 10 : la protection des femmes croyantes émigrées (Umm Kulthūm bint ‘Uqbah).</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith d'Al-Miswar ibn Makhramah (Sahīh Al-Bukhārī n°2712 & n°4891) :</strong> Révélé lorsque Umm Kulthūm bint ‘Uqbah rejoignit Médine à pied après Al-Hudaybiyah, interdisant de renvoyer les femmes croyantes aux polythéistes.",
-    "61:2": "<strong style='color:#ffffff;'>Contexte des versets 2 à 4 : la cohérence entre la parole et l'action.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith de ‘Abdullāh ibn Salām (At-Tirmidhī n°3309 & Musnad Ahmad) :</strong> Révélé lorsque des compagnons demandèrent quelle était l'œuvre la plus aimée d'Allāh afin de s'y engager avec fermeté.",
-    "62:11": "<strong style='color:#ffffff;'>Contexte des versets 9 à 11 : l'arrivée de la caravane pendant le sermon du vendredi.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith de Jābir ibn ‘Abdillāh (Sahīh Al-Bukhārī n°936, n°4899 & Sahīh Muslim n°863) :</strong> Révélé lorsqu'une caravane de vivres arriva du Shām pendant le sermon du vendredi et qu'il ne resta que douze compagnons autour du Prophète ﷺ, rappelant que ce qui est auprès d'Allāh est meilleur que le divertissement et le commerce.",
-    "63:7": "<strong style='color:#ffffff;'>Contexte des versets 7 et 8 : la véracité du jeune Zayd ibn Arqam confirmée par la Révélation.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith de Zayd ibn Arqam (Sahīh Al-Bukhārī n°4900, n°4901 & Sahīh Muslim n°2772) :</strong> Révélé pour confirmer mot pour mot le témoignage du jeune Zayd ibn Arqam après que ‘Abdullāh ibn Ubayy eut nié ses paroles hostiles lors de l'expédition des Banū Al-Mustaliq.",
-    "64:14": "<strong style='color:#ffffff;'>Contexte des versets 14 à 16 : l'épreuve de l'attachement familial lors de l'Hégire et l'appel au pardon.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith d'Ibn ‘Abbās (At-Tirmidhī n°3317 & Al-Hākim) :</strong> Révélé au sujet de croyants qui avaient retardé leur émigration par attachement à leurs proches, les invitant à pardonner, à passer outre et à craindre Allāh autant qu'ils le peuvent.",
-    "65:2": "<strong style='color:#ffffff;'>Contexte des versets 2 et 3 : la promesse d'issue favorable et de subsistance pour celui qui craint Allāh.</strong><br><br>📜 <strong style='color:#ffffff;'>Exégèse d'Ibn ‘Abbās et de Jābir (At-Tabarī & Ibn Kathīr) :</strong> Établit la règle universelle que la piété (Taqwā) et la confiance en Allāh (Tawakkul) ouvrent une issue à toute détresse et apportent la subsistance d'où l'on ne s'y attend pas.",
-    "65:4": "<strong style='color:#ffffff;'>Contexte du verset 4 : la précision des délais de viduité suite à la question d'Ubayy ibn Ka‘b.</strong><br><br>📜 <strong style='color:#ffffff;'>Récit d'Ubayy ibn Ka‘b (Al-Hākim & At-Tabarī) :</strong> Révélé en réponse à la question d'Ubayy ibn Ka‘b afin de préciser les délais d'attente qui n'avaient pas été mentionnés dans la Sourate Al-Baqarah (2:228).",
-    "66:1": "<strong style='color:#ffffff;'>Contexte des versets 1 à 5 : le serment d'abstinence du miel et l'exhortation aux épouses du Prophète ﷺ.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadiths de ‘Ā'ishah et d'Ibn ‘Abbās (Sahīh Al-Bukhārī n°4912, n°4913 & Sahīh Muslim n°1474) :</strong> Révélé lorsque le Prophète ﷺ s'interdit de boire du miel pour plaire à ses épouses, lui rappelant avec douceur de ne pas s'interdire ce qu'Allāh a rendu licite et instituant l'expiation des serments.",
-    "66:11": "<strong style='color:#ffffff;'>Les deux modèles sublimes de la foi : Āsiyah et Maryam bint ‘Imrān (v.11-12).</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith d'Abū Mūsā Al-Ash‘arī (Sahīh Al-Bukhārī n°3411 & Sahīh Muslim n°2431) :</strong> Propose en conclusion de la sourate deux exemples suprêmes de foi pour tous les croyants : Āsiyah bint Muzāhim et Maryam bint ‘Imrān."
-  };
-
-  const asbab6En = {
-    "58:1": "<strong style='color:#ffffff;'>Context of Verses 1–4: The Plea of Khawlah bint Tha‘labah Heard from Above the Seven Heavens.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith of ‘Ā'ishah (Sahīh Al-Bukhārī, Ibn Mājah #2063 & Musnad Ahmad):</strong> Revealed when Khawlah bint Tha‘labah pleaded with the Prophet ﷺ after her husband Aws ibn As-Sāmit pronounced the pre-Islamic formula of Zihār; Allāh heard her plea from above the seven heavens and ordained the expiation to preserve their family.",
-    "58:11": "<strong style='color:#ffffff;'>Context of Verse 11: Making Room in Gatherings for the Veterans of Badr and Elevating People of Knowledge.</strong><br><br>📜 <strong style='color:#ffffff;'>Account of Muqātil & Qatādah (At-Tabarī & Ibn Kathīr):</strong> Revealed on a Friday when veterans of Badr arrived at a crowded gathering around the Prophet ﷺ, commanding believers to make room generously and declaring that Allāh raises in degrees those who believe and those given knowledge.",
-    "58:22": "<strong style='color:#ffffff;'>Context of Verse 22: Pure Allegiance to Allāh and His Messenger ﷺ Above Tribal Ties.</strong><br><br>📜 <strong style='color:#ffffff;'>Account of Ibn ‘Abbās & Ibn Mas‘ūd (At-Tabarī & Al-Bayhaqī):</strong> Revealed honoring the companions who placed faith above clan loyalty at Badr and Uhud.",
-    "59:5": "<strong style='color:#ffffff;'>Context of Verse 5: The Siege of Banū An-Nadīr.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith of Ibn ‘Umar (Sahīh Al-Bukhārī #2326, #4884 & Muslim #1746):</strong> Revealed during the siege of Banū An-Nadīr after they broke their treaty, affirming that clearing obstructing palms was done by Allāh's permission.",
-    "59:9": "<strong style='color:#ffffff;'>Context of Verse 9: The Supreme Selflessness (Al-Īthār) of Abū Talhah and Umm Sulaym.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith of Abū Hurayrah (Sahīh Al-Bukhārī #3798, #4889 & Muslim #2054):</strong> Revealed regarding Abū Talhah and Umm Sulaym, who put their children to sleep and dimmed the lamp so the Prophet's ﷺ hungry guest could eat their only meal while they spent the night hungry.",
-    "60:1": "<strong style='color:#ffffff;'>Context of Verses 1–4: The Letter of Hātib ibn Abī Balta‘ah Before the Conquest of Makkah.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith of ‘Alī ibn Abī Tālib (Sahīh Al-Bukhārī #3007, #4890 & Muslim #2494):</strong> Revealed when Hātib sent a letter seeking to protect his vulnerable relatives in Makkah; the Prophet ﷺ retrieved the letter, accepted Hātib's sincere excuse as a veteran of Badr, and received the opening of this surah.",
-    "60:8": "<strong style='color:#ffffff;'>Context of Verses 8–9: Kindness and Justice Toward Asmā' bint Abī Bakr's Mother.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith of Asmā' bint Abī Bakr (Sahīh Al-Bukhārī #2620, #3183 & Muslim #1003):</strong> Revealed when Asmā's mother visited her with gifts in Madinah; the Prophet ﷺ instructed Asmā' to maintain kinship ties with her, and Allāh permitted kindness and justice toward all who do not fight believers over religion.",
-    "60:10": "<strong style='color:#ffffff;'>Context of Verse 10: Protecting Believing Women Who Emigrated to Madinah (Umm Kulthūm bint ‘Uqbah).</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith of Al-Miswar ibn Makhramah (Sahīh Al-Bukhārī #2712 & #4891):</strong> Revealed after Al-Hudaybiyah when Umm Kulthūm bint ‘Uqbah escaped Makkah on foot to join Madinah, forbidding returning believing women to the polytheists.",
-    "61:2": "<strong style='color:#ffffff;'>Context of Verses 2–4: Matching Words with Steadfast Action.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith of ‘Abdullāh ibn Salām (At-Tirmidhī #3309 & Musnad Ahmad):</strong> Revealed calling believers to unite truthful speech with firm action in Allāh's cause.",
-    "62:11": "<strong style='color:#ffffff;'>Context of Verses 9–11: The Arrival of the Caravan During the Friday Sermon.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith of Jābir ibn ‘Abdillāh (Sahīh Al-Bukhārī #936, #4899 & Muslim #863):</strong> Revealed when a trade caravan arrived during the Friday sermon until twelve companions remained with the Prophet ﷺ, reminding believers that what is with Allāh is far better than amusement and trade.",
-    "63:7": "<strong style='color:#ffffff;'>Context of Verses 7–8: The Vindication of Young Zayd ibn Arqam by Revelation.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith of Zayd ibn Arqam (Sahīh Al-Bukhārī #4900, #4901 & Muslim #2772):</strong> Revealed confirming every word reported by young Zayd ibn Arqam after ‘Abdullāh ibn Ubayy falsely denied his hostile remarks.",
-    "64:14": "<strong style='color:#ffffff;'>Context of Verses 14–16: The Trial of Family Attachment During Migration and the Call to Pardon.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith of Ibn ‘Abbās (At-Tirmidhī #3317 & Al-Hākim):</strong> Revealed regarding believers who delayed migration out of attachment to their families, instructing them to pardon, overlook, and fear Allāh as much as they are able.",
-    "65:2": "<strong style='color:#ffffff;'>Context of Verses 2–3: The Promise of a Way Out and Provision for Whoever Fears Allāh.</strong><br><br>📜 <strong style='color:#ffffff;'>Exegesis of Ibn ‘Abbās & Jābir (At-Tabarī & Ibn Kathīr):</strong> Establishes the universal promise that Taqwā and reliance upon Allāh open a way out of every hardship.",
-    "65:4": "<strong style='color:#ffffff;'>Context of Verse 4: Clarifying Waiting Periods Following Ubayy ibn Ka‘b's Question.</strong><br><br>📜 <strong style='color:#ffffff;'>Account of Ubayy ibn Ka‘b (Al-Hākim & At-Tabarī):</strong> Revealed in response to Ubayy ibn Ka‘b's question regarding waiting periods not mentioned in Surah Al-Baqarah (2:228).",
-    "66:1": "<strong style='color:#ffffff;'>Context of Verses 1–5: The Vow to Abstain from Honey and the Admonition to the Prophet's ﷺ Wives.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith of ‘Ā'ishah & Ibn ‘Abbās (Sahīh Al-Bukhārī #4912, #4913 & Muslim #1474):</strong> Revealed when the Prophet ﷺ vowed to stop drinking honey to please his wives, gently reminding him not to forbid what Allāh made lawful and ordaining the expiation for oaths.",
-    "66:11": "<strong style='color:#ffffff;'>The Two Supreme Parables of Faith: Āsiyah and Maryam bint ‘Imrān (v.11–12).</strong><br><br>📜 <strong style='color:#ffffff;'>Hadith of Abū Mūsā Al-Ash‘arī (Sahīh Al-Bukhārī #3411 & Muslim #2431):</strong> Concludes the surah by setting forth Āsiyah bint Muzāhim and Maryam bint ‘Imrān as timeless models of faith for all believers."
-  };
-
-  const asbab6Es = {
-    "58:1": "<strong style='color:#ffffff;'>Contexto de las aleyas 1–4: La súplica de Khawlah bint Tha‘labah escuchada desde encima de los siete cielos.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadiz de ‘Ā'ishah (Sahīh Al-Bukhārī e Ibn Māyah n°2063):</strong> Reveladas cuando Khawlah bint Tha‘labah acudió al Profeta ﷺ tras el Zihār de su esposo; Allah escuchó su lamento desde los cielos e instituyó la expiación para salvar su hogar.",
-    "58:11": "<strong style='color:#ffffff;'>Contexto de la aleya 11: Hacer sitio en las asambleas a los veteranos de Badr y la elevación de los sabios.</strong><br><br>📜 <strong style='color:#ffffff;'>Relato de Muqātil y Qatādah (At-Tabarī):</strong> Ordena abrir espacio con fraternidad en las asambleas y proclama que Allah eleva en grados a los creyentes y a quienes han recibido el conocimiento.",
-    "58:22": "<strong style='color:#ffffff;'>Contexto de la aleya 22: La lealtad pura a Allah y a Su Mensajero ﷺ por encima de todo lazo tribal.</strong><br><br>📜 <strong style='color:#ffffff;'>Relato de Ibn ‘Abbās e Ibn Mas‘ūd (At-Tabarī):</strong> Elogia a los compañeros que antepusieron la fe en Badr y Uhud.",
-    "59:5": "<strong style='color:#ffffff;'>Contexto de la aleya 5: El asedio de Banū An-Nadīr.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadiz de Ibn ‘Umar (Sahīh Al-Bukhārī n°2326 y Muslim n°1746):</strong> Confirmó que despejar ciertas palmeras durante el asedio se hizo con permiso de Allah.",
-    "59:9": "<strong style='color:#ffffff;'>Contexto de la aleya 9: El altruismo ejemplar (Al-Īthār) de Abū Talhah y Umm Sulaym.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadiz de Abū Hurayrah (Sahīh Al-Bukhārī n°3798 y Muslim n°2054):</strong> Revelada sobre Abū Talhah y Umm Sulaym, quienes durmieron a sus hijos y apagaron la lámpara para que el huésped hambriento del Profeta ﷺ se saciara con su única cena.",
-    "60:1": "<strong style='color:#ffffff;'>Contexto de las aleyas 1–4: La carta de Hātib ibn Abī Balta‘ah antes de la Conquista de La Meca.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadiz de ‘Alī ibn Abī Tālib (Sahīh Al-Bukhārī n°3007 y Muslim n°2494):</strong> Reveladas cuando Hātib intentó proteger a su familia desamparada en La Meca; el Profeta ﷺ recuperó la carta y aceptó su sincera disculpa por haber combatido en Badr.",
-    "60:8": "<strong style='color:#ffffff;'>Contexto de las aleyas 8–9: La bondad y justicia hacia la madre de Asmā' bint Abī Bakr.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadiz de Asmā' bint Abī Bakr (Sahīh Al-Bukhārī n°2620 y Muslim n°1003):</strong> Reveladas cuando la madre de Asmā' la visitó en Medina con regalos; el Profeta ﷺ le ordenó tratarla con generosidad, autorizando Allah la bondad y justicia hacia quienes no combaten a los creyentes.",
-    "60:10": "<strong style='color:#ffffff;'>Contexto de la aleya 10: La protección de las creyentes emigradas a Medina (Umm Kulthūm bint ‘Uqbah).</strong><br><br>📜 <strong style='color:#ffffff;'>Hadiz de Al-Miswar ibn Makhramah (Sahīh Al-Bukhārī n°2712):</strong> Prohibió devolver a las mujeres creyentes emigradas a los politeístas.",
-    "61:2": "<strong style='color:#ffffff;'>Contexto de las aleyas 2–4: La coherencia entre la palabra y la acción.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadiz de ‘Abdullāh ibn Salām (At-Tirmidhī n°3309):</strong> Exhorta a los creyentes a respaldar siempre sus palabras con firmeza en los hechos.",
-    "62:11": "<strong style='color:#ffffff;'>Contexto de las aleyas 9–11: La llegada de la caravana durante el sermón del viernes.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadiz de Yābir ibn ‘Abdillāh (Sahīh Al-Bukhārī n°936 y Muslim n°863):</strong> Revelada cuando llegó una caravana comercial durante el sermón del viernes, recordando que lo que hay junto a Allah es mejor que el entretenimiento y el comercio.",
-    "63:7": "<strong style='color:#ffffff;'>Contexto de las aleyas 7–8: Confirmación de la veracidad de Zayd ibn Arqam por la Revelación.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadiz de Zayd ibn Arqam (Sahīh Al-Bukhārī n°4900 y Muslim n°2772):</strong> Confirmó palabra por palabra el testimonio del joven Zayd ibn Arqam frente a las negaciones de ‘Abdullāh ibn Ubayy.",
-    "64:14": "<strong style='color:#ffffff;'>Contexto de las aleyas 14–16: La prueba del apego familiar en la emigración y el llamado a perdonar.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadiz de Ibn ‘Abbās (At-Tirmidhī n°3317):</strong> Exhortó a quienes retrasaron su emigración por sus familias a perdonar, disculpar y temer a Allah en la medida de sus fuerzas.",
-    "65:2": "<strong style='color:#ffffff;'>Contexto de las aleyas 2–3: La promesa de una salida favorable y sustento para quien teme a Allah.</strong><br><br>📜 <strong style='color:#ffffff;'>Comentario de Ibn ‘Abbās (At-Tabarī):</strong> Promesa universal de que la piedad (Taqwā) y la confianza en Allah abren una salida ante toda dificultad.",
-    "65:4": "<strong style='color:#ffffff;'>Contexto de la aleya 4: Precisión de los plazos de espera tras la pregunta de Ubayy ibn Ka‘b.</strong><br><br>📜 <strong style='color:#ffffff;'>Relato de Ubayy ibn Ka‘b (Al-Hākim y At-Tabarī):</strong> Detalló los plazos de espera no mencionados en la Sura Al-Baqarah (2:228).",
-    "66:1": "<strong style='color:#ffffff;'>Contexto de las aleyas 1–5: La promesa de abstenerse de la miel y la exhortación a las esposas del Profeta ﷺ.</strong><br><br>📜 <strong style='color:#ffffff;'>Hadiz de ‘Ā'ishah e Ibn ‘Abbās (Sahīh Al-Bukhārī n°4912 y Muslim n°1474):</strong> Recordó suavemente al Profeta ﷺ no prohibirse lo que Allah hizo lícito e instituyó la expiación de los juramentos.",
-    "66:11": "<strong style='color:#ffffff;'>Los dos modelos sublimes de la fe: Āsiyah y Maryam bint ‘Imrān (v.11–12).</strong><br><br>📜 <strong style='color:#ffffff;'>Hadiz de Abū Mūsā Al-Ash‘arī (Sahīh Al-Bukhārī n°3411 y Muslim n°2431):</strong> Presenta a Āsiyah bint Muzāhim y a Maryam bint ‘Imrān como ejemplos supremos de fe para todos los creyentes."
-  };
-
-  const asbab6Ar = {
-    "58:1": "<strong style='color:#ffffff;'>سياق الآيات (1-4) : سماع الله لشكوى خولة بنت ثعلبة من فوق سبع سماوات.</strong><br><br>📜 <strong style='color:#ffffff;'>حديث عائشة رضي الله عنها (البخاري تعليقًا وابن ماجه 2063 ومسند أحمد) :</strong> جاءت خولة بنت ثعلبة تشتكي إلى النبي ﷺ بعد أن ظاهر منها زوجها أوس بن الصامت، فسمع الله محاورتها من فوق سبع سماوات وأنزل كفارة الظهار رحمةً بها وبأسرتها.",
-    "58:11": "<strong style='color:#ffffff;'>سياق نزول الآية 11 : التفاسح في المجالس لأهل بدر ورفع درجات أهل العلم.</strong><br><br>📜 <strong style='color:#ffffff;'>أثر مقاتل وقتادة (الطبري وابن كثير) :</strong> نزلت يوم جمعة حين أقبل نفرٌ من أهل بدر والمجلس غاصٌّ بأهله، فأمر الله بالتفسح في المجالس وبشّر برفع درجات المؤمنين وأهل العلم.",
-    "58:22": "<strong style='color:#ffffff;'>سياق نزول الآية 22 : تقديم ولاء الله ورسوله ﷺ على كل عصبية.</strong><br><br>📜 <strong style='color:#ffffff;'>أثر ابن عباس وابن مسعود (الطبري والبيهقي) :</strong> نزلت في الصحابة الصادقين الذين قدّموا رابطة الإيمان يوم بدر وأُحد فكتب الله في قلوبهم الإيمان.",
-    "59:5": "<strong style='color:#ffffff;'>سياق نزول الآية 5 : حصار بني النضير.</strong><br><br>📜 <strong style='color:#ffffff;'>حديث ابن عمر رضي الله عنهما (البخاري 2326 ومسلم 1746) :</strong> نزلت في شأن نخيل بني النضير أثناء الحصار بعد غدرهم بالعهد مبينةً أن ذلك كان بإذن الله.",
-    "59:9": "<strong style='color:#ffffff;'>سياق نزول الآية 9 : الإيثار العظيم لأبي طلحة وأم سليم مع ضيف رسول الله ﷺ.</strong><br><br>📜 <strong style='color:#ffffff;'>حديث أبي هريرة رضي الله عنه (البخاري 3798 ومسلم 2054) :</strong> نزلت في أبي طلحة الأنصاري وزوجته أم سليم حين نوّما الصبيان وأطفآ السراج ليؤثرا ضيف النبي ﷺ بقوتهما ويبيتا طاويين.",
-    "60:1": "<strong style='color:#ffffff;'>سياق الآيات (1-4) : قصة كتاب حاطب بن أبي بلتعة رضي الله عنه قبيل فتح مكة.</strong><br><br>📜 <strong style='color:#ffffff;'>حديث علي بن أبي طالب رضي الله عنه (البخاري 3007 ومسلم 2494) :</strong> نزلت حين أراد حاطب حماية أهله المستضعفين بمكة، فأطلع الله نبيه ﷺ وقبل عذر حاطب لشهوده بدرًا.",
-    "60:8": "<strong style='color:#ffffff;'>سياق الآيتين (8-9) : برّ أسماء بنت أبي بكر رضي الله عنهما بأمها وصلتها بالقسط.</strong><br><br>📜 <strong style='color:#ffffff;'>حديث أسماء بنت أبي بكر (البخاري 2620 ومسلم 1003) :</strong> نزلت حين قدمت قتيلة على ابنتها أسماء بالمدينة بهدايا، فأمرها النبي ﷺ بصلتها وأباح الله البر والقسط مع كل من لم يقاتل المؤمنين في الدين.",
-    "60:10": "<strong style='color:#ffffff;'>سياق نزول الآية 10 : هجرة أم كلثوم بنت عقبة رضي الله عنها ومنع ردّ المؤمنات.</strong><br><br>📜 <strong style='color:#ffffff;'>حديث المسور بن مخرمة (البخاري 2712 و4891) :</strong> نزلت حين هاجرت أم كلثوم بنت عقبة إلى المدينة عقب الحديبية فنهاهم الله عن ردّ المؤمنات إلى المشركين.",
-    "61:2": "<strong style='color:#ffffff;'>سياق الآيات (2-4) : مطابقة القول للعمل والثبات في سبيل الله.</strong><br><br>📜 <strong style='color:#ffffff;'>حديث عبد الله بن سلام رضي الله عنه (الترمذي 3309 ومسند أحمد) :</strong> نزلت تذكيرًا للمؤمنين بوجوب موافقة العمل للقول الصادق والثبات صفًّا واحدًا.",
-    "62:11": "<strong style='color:#ffffff;'>سياق الآيات (9-11) : قدوم العير والتجارة أثناء خطبة الجمعة.</strong><br><br>📜 <strong style='color:#ffffff;'>حديث جابر بن عبد الله رضي الله عنهما (البخاري 936 ومسلم 863) :</strong> نزلت حين قدمت عيرٌ من الشام أثناء خطبة الجمعة وبقي مع النبي ﷺ اثنا عشر رجلًا، مبينةً أن ما عند الله خيرٌ من اللهو ومن التجارة.",
-    "63:7": "<strong style='color:#ffffff;'>سياق الآيتين (7-8) : تصديق الوحي للغلام زيد بن أرقم رضي الله عنه.</strong><br><br>📜 <strong style='color:#ffffff;'>حديث زيد بن أرقم رضي الله عنه (البخاري 4900 ومسلم 2772) :</strong> نزلت مصدقةً لزيد بن أرقم حرفًا بحرف فيما نقله من مقالة عبد الله بن أبيّ في غزوة بني المصطلق.",
-    "64:14": "<strong style='color:#ffffff;'>سياق الآيات (14-16) : فتنة الأهل والمال عند الهجرة والأمر بالعفو والصفح.</strong><br><br>📜 <strong style='color:#ffffff;'>حديث ابن عباس رضي الله عنهما (الترمذي 3317 والحاكم) :</strong> نزلت فيمن ثبّطهم أهلهم عن الهجرة، فأمرهم الله بالعفو والصفح وتقوى الله ما استطاعوا.",
-    "65:2": "<strong style='color:#ffffff;'>سياق الآيتين (2-3) : آية الفرج والرزق لمن اتقى الله وتوكل عليه.</strong><br><br>📜 <strong style='color:#ffffff;'>تفسير ابن عباس وجابر (الطبري وابن كثير) :</strong> قاعدة إيمانية خالدة بأن تقوى الله والتوكل عليه يفتحان للمؤمن مخرجًا من كل ضيق ورزقًا من حيث لا يحتسب.",
-    "65:4": "<strong style='color:#ffffff;'>سياق نزول الآية 4 : بيان العدد جوابًا لسؤال أُبيّ بن كعب رضي الله عنه.</strong><br><br>📜 <strong style='color:#ffffff;'>أثر أُبيّ بن كعب (الحاكم والطبري) :</strong> نزلت جوابًا لسؤال أُبيّ بن كعب لبيان عدد النساء اللاتي لم يُذكرن في آية سورة البقرة (2:228).",
-    "66:1": "<strong style='color:#ffffff;'>سياق الآيات (1-5) : قصة شرب العسل وكفارة اليمين.</strong><br><br>📜 <strong style='color:#ffffff;'>حديث عائشة وابن عباس (البخاري 4912 ومسلم 1474) :</strong> نزلت حين امتنع النبي ﷺ عن شرب العسل مرضاةً لأزواجه، فعاتبه الله بلطف وشرع كفارة اليمين.",
-    "66:11": "<strong style='color:#ffffff;'>المثلان الأعليان لأهل الإيمان : آسية امرأة فرعون ومريم ابنة عمران (آية 11-12).</strong><br><br>📜 <strong style='color:#ffffff;'>حديث أبي موسى الأشعري (البخاري 3411 ومسلم 2431) :</strong> خُتمت السورة بضرب أعظم مثلين للثبات على الإيمان: آسية بنت مزاحم ومريم ابنة عمران."
-  };
-
-  Object.assign(mem.tafsirFr, asbab6Fr);
-  Object.assign(mem.tafsirEn, asbab6En);
-  Object.assign(mem.tafsirEs, asbab6Es);
-  Object.assign(mem.tafsirAr, asbab6Ar);
-
-  fs.writeFileSync(pMem, JSON.stringify(mem, null, 2), 'utf8');
-  console.log(`✅ Base memoire-site.json complétée : FR=${Object.keys(mem.tafsirFr).length} | EN=${Object.keys(mem.tafsirEn).length} | ES=${Object.keys(mem.tafsirEs).length} | AR=${Object.keys(mem.tafsirAr).length}`);
-}
-
-// ============================================================================
-// 2. NETTOYER LES DOUBLONS DANS GENERATEUR.JS (DIVISE LE POIDS DU PATCH PAR 2)
-// ============================================================================
 const pGen = path.join(__dirname, 'generateur.js');
-if (fs.existsSync(pGen)) {
-  let g = fs.readFileSync(pGen, 'utf8');
-
-  // Extraire le bloc patch-master-v35 existant une seule fois et supprimer les doublons
-  const matchStyle = g.match(/<style id="patch-master-v35">[\s\S]*?<\/script>/);
-  if (matchStyle) {
-    const blocUnique = matchStyle[0];
-    g = g.replace(/<style id="patch-master-v35">[\s\S]*?<\/script>\s*/g, '');
-    g = g.replace(/<\/head>/g, blocUnique + '\n</head>');
-  }
-
-  // Supprimer aussi le doublon de style-refs-cliquables s'il apparaît deux fois de suite
-  const matchRefs = g.match(/<style id="style-refs-cliquables">[\s\S]*?<\/script>/);
-  if (matchRefs) {
-    const blocRefsUnique = matchRefs[0];
-    g = g.replace(/<style id="style-refs-cliquables">[\s\S]*?<\/script>\s*/g, '');
-    g = g.replace(/<\/head>/g, blocRefsUnique + '\n</head>');
-  }
-
-  fs.writeFileSync(pGen, g, 'utf8');
-  console.log('✅ Doublons de patchs nettoyés dans generateur.js !');
+if (!fs.existsSync(pGen)) {
+  console.error('❌ generateur.js introuvable !');
+  process.exit(1);
 }
 
-// ============================================================================
-// 3. CRÉER LE FICHIER _headers POUR CLOUDFLARE PAGES (CACHE 100% RAPIDE < 25ms)
-// ============================================================================
-const dirSite = path.join(__dirname, 'site');
-if (fs.existsSync(dirSite)) {
-  const headersContent = `/*
-  X-Frame-Options: SAMEORIGIN
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
+let g = fs.readFileSync(pGen, 'utf8');
 
-/*.html
-  Cache-Control: public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800
+// 1. Nettoyer tous les anciens patchs V26 à V43
+g = g.replace(/<style id="patch-master-v\d+">[\s\S]*?<\/script>/g, '');
+g = g.replace(/<style id="patch-hide-tr-wbw-v\d+">[\s\S]*?<\/script>/g, '');
+g = g.replace(/<link rel="preconnect" href="https:\/\/api\.quran\.com"[^>]*>\s*/g, '');
+g = g.replace(/<link rel="preconnect" href="https:\/\/api\.qurancdn\.com"[^>]*>\s*/g, '');
 
-/index.html
-  Cache-Control: public, max-age=1800, s-maxage=86400, stale-while-revalidate=604800
+const preconnectTags = `<link rel="preconnect" href="https://api.quran.com" crossorigin>
+<link rel="preconnect" href="https://api.qurancdn.com" crossorigin>`;
 
-/sitemap.xml
-  Cache-Control: public, max-age=86400
-`;
-  fs.writeFileSync(path.join(dirSite, '_headers'), headersContent, 'utf8');
-  console.log('✅ Fichier site/_headers créé pour accélérer Cloudflare Pages !');
+const cssV43 = `<style id="patch-master-v43">
+:root {
+  --wbw-ar-size: 2.15rem;
+  --wbw-tr-size: 0.92rem;
+  --wbw-pad-v: 14px;
+  --wbw-pad-h: 18px;
+  --wbw-min-w: 92px;
 }
+
+/* 1. SOLEIL & LUNE 150px PURS (DESTRUCTION TOTALE DU ROND NOIR INTERNE) */
+html body #flatEarthSun,
+html body .flat-earth-sun,
+html body .astre-soleil-pur-v43 {
+  width: 150px !important;
+  height: 150px !important;
+  min-width: 150px !important;
+  min-height: 150px !important;
+  max-width: 150px !important;
+  max-height: 150px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  outline: none !important;
+  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #fef9c3 24%, #fde047 48%, #facc15 68%, rgba(245, 158, 11, 0.38) 84%, rgba(234, 88, 12, 0) 100%) !important;
+  background-color: transparent !important;
+  box-shadow: 0 0 45px 12px rgba(250, 204, 21, 0.55), 0 0 95px 28px rgba(245, 158, 11, 0.30) !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+}
+
+html body #flatEarthSun::before,
+html body #flatEarthSun::after,
+html body .flat-earth-sun::before,
+html body .flat-earth-sun::after,
+html body .astre-soleil-pur-v43::before,
+html body .astre-soleil-pur-v43::after,
+html body #flatEarthSun *,
+html body .flat-earth-sun *,
+html body .astre-soleil-pur-v43 * {
+  display: none !important;
+  content: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+}
+
+html body #flatEarthMoon,
+html body .flat-earth-moon,
+html body .astre-lune-pure-v43 {
+  width: 150px !important;
+  height: 150px !important;
+  min-width: 150px !important;
+  min-height: 150px !important;
+  max-width: 150px !important;
+  max-height: 150px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  outline: none !important;
+  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f8fafc 30%, #e2e8f0 56%, rgba(186, 230, 253, 0.44) 78%, rgba(56, 189, 248, 0) 100%) !important;
+  background-color: transparent !important;
+  box-shadow: 0 0 45px 12px rgba(255, 255, 255, 0.60), 0 0 95px 28px rgba(56, 189, 248, 0.34) !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+}
+
+html body #flatEarthMoon::before,
+html body #flatEarthMoon::after,
+html body .flat-earth-moon::before,
+html body .flat-earth-moon::after,
+html body .astre-lune-pure-v43::before,
+html body .astre-lune-pure-v43::after,
+html body #flatEarthMoon *,
+html body .flat-earth-moon *,
+html body .astre-lune-pure-v43 * {
+  display: none !important;
+  content: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+}
+
+/* 2. MASQUAGE ABSOLU DE MAHER AL-MUAIQLY */
+html body img[src*="maher" i],
+html body [data-reciter*="maher" i],
+html body [data-value*="maher" i],
+html body .maher-supprime-v43 {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  overflow: hidden !important;
+}
+
+/* 3. MASQUAGE DE LA TRADUCTION DU BAS EN MODE MOT-À-MOT */
+html body .wbw-masquer-traduction-bas {
+  display: none !important; visibility: hidden !important; height: 0 !important; max-height: 0 !important; margin: 0 !important; padding: 0 !important; border: none !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important;
+}
+
+/* 4. BANDEAU INTERACTIF DU SENS DE LECTURE */
+html body #wbwSensLectureBanner {
+  width: 100% !important;
+  text-align: center !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.04em !important;
+  color: #38bdf8 !important;
+  margin-bottom: 10px !important;
+  opacity: 0.92 !important;
+  font-weight: 500 !important;
+  direction: ltr !important;
+  cursor: pointer !important;
+  user-select: none !important;
+}
+
+/* 5. CARTES MOT-À-MOT AVEC BADGE NUMÉROTÉ */
+html body .wbw-card-unit {
+  position: relative !important;
+  padding: var(--wbw-pad-v) var(--wbw-pad-h) !important;
+  min-width: var(--wbw-min-w) !important;
+  border-radius: 18px !important;
+  transform-origin: 50% 80% !important;
+  will-change: transform, opacity, box-shadow, border-color !important;
+  backface-visibility: hidden !important;
+}
+
+html body .wbw-card-unit::before {
+  content: attr(data-word-num);
+  position: absolute !important;
+  top: 5px !important;
+  right: 8px !important;
+  font-size: 0.65rem !important;
+  font-weight: 700 !important;
+  color: rgba(56, 189, 248, 0.75) !important;
+  line-height: 1 !important;
+  pointer-events: none !important;
+}
+
+html body .wbw-card-unit > *:first-child {
+  font-size: var(--wbw-ar-size) !important;
+  line-height: 1.45 !important;
+  direction: rtl !important;
+  text-align: center !important;
+}
+
+html body .wbw-card-unit > *:last-child {
+  font-size: var(--wbw-tr-size) !important;
+  direction: ltr !important;
+  text-align: center !important;
+}
+
+/* 6. MODE SUIVI VERSET NORMAL */
+html body #arabicVerse,
+html body .arabic-glow-verse {
+  direction: rtl !important;
+}
+
+html body .verse-stage .arabic-glow-verse span,
+html body .verse-stage #arabicVerse span,
+html body .ar-word-follow,
+html body .follow-word {
+  position: relative !important; background: transparent !important; border: none !important; box-shadow: none !important; color: #ffffff !important; padding: 0 7px !important; display: inline-block !important; transform-origin: 50% 85% !important; will-change: transform, opacity, filter, text-shadow !important; backface-visibility: hidden !important; -webkit-font-smoothing: antialiased !important;
+}
+</style>`;
+
+function codeClientV43() {
+  // ==========================================================================
+  // 1. DÉTECTION GÉOMÉTRIQUE & RÉPARATION TOTALE DU SOLEIL ET DE LA LUNE
+  //    Trouve les 2 sphères célestes même si leur ID/classe a changé et
+  //    supprime tout disque noir interne ou ombre inset !
+  // ==========================================================================
+  function reparerSoleilEtLuneSansRondNoir() {
+    var tousDivs = document.querySelectorAll("div, span, canvas");
+    var sphèresTrouvees = [];
+
+    for (var i = 0; i < tousDivs.length; i++) {
+      var el = tousDivs[i];
+      var idCls = ((el.id || "") + " " + (el.className && typeof el.className === "string" ? el.className : "")).toLowerCase();
+
+      // Si l'élément porte explicitement sun ou moon dans son id/classe
+      var estNommeSun = idCls.indexOf("sun") !== -1 || idCls.indexOf("soleil") !== -1;
+      var estNommeMoon = idCls.indexOf("moon") !== -1 || idCls.indexOf("lune") !== -1;
+
+      var r = el.getBoundingClientRect();
+      var estRondVide =
+        r.width >= 55 &&
+        r.width <= 320 &&
+        Math.abs(r.width - r.height) <= 8 &&
+        (el.textContent || "").trim() === "" &&
+        !el.querySelector("button, input, select, p, a, img");
+
+      if (estNommeSun || estNommeMoon || estRondVide) {
+        var st = window.getComputedStyle(el);
+        if (estNommeSun || estNommeMoon || st.borderRadius.indexOf("50%") !== -1 || parseFloat(st.borderRadius) >= r.width * 0.4) {
+          sphèresTrouvees.push({
+            el: el,
+            cx: r.left + r.width / 2,
+            cy: r.top + r.height / 2,
+            w: r.width,
+            isSun: estNommeSun,
+            isMoon: estNommeMoon
+          });
+        }
+      }
+    }
+
+    // Filtrer les disques noirs superposés au même endroit qu'une sphère principale
+    var astresPrincipaux = [];
+    for (var j = 0; j < sphèresTrouvees.length; j++) {
+      var s = sphèresTrouvees[j];
+      var doublonSuperpose = false;
+      for (var k = 0; k < astresPrincipaux.length; k++) {
+        var p = astresPrincipaux[k];
+        var dist = Math.hypot(s.cx - p.cx, s.cy - p.cy);
+        if (dist < 45) {
+          doublonSuperpose = true;
+          // Masquer le disque interne superposé qui crée le trou noir !
+          s.el.style.setProperty("display", "none", "important");
+          break;
+        }
+      }
+      if (!doublonSuperpose) {
+        astresPrincipaux.push(s);
+      }
+    }
+
+    // Appliquer le style Soleil Doré 150px et Lune Blanche 150px sur les astres principaux
+    for (var m = 0; m < astresPrincipaux.length; m++) {
+      var astre = astresPrincipaux[m];
+      var node = astre.el;
+
+      // Vider tout enfant interne qui dessinerait un rond noir
+      if (node.children && node.children.length > 0) {
+        node.innerHTML = "";
+      }
+
+      var appliquerSoleil = astre.isSun || (!astre.isMoon && m === 0);
+      if (appliquerSoleil) {
+        node.classList.remove("astre-lune-pure-v43");
+        node.classList.add("astre-soleil-pur-v43");
+        node.style.setProperty("width", "150px", "important");
+        node.style.setProperty("height", "150px", "important");
+        node.style.setProperty("border-radius", "50%", "important");
+        node.style.setProperty("background", "radial-gradient(circle at 50% 50%, #ffffff 0%, #fef9c3 24%, #fde047 48%, #facc15 68%, rgba(245, 158, 11, 0.38) 84%, rgba(234, 88, 12, 0) 100%)", "important");
+        node.style.setProperty("box-shadow", "0 0 45px 12px rgba(250, 204, 21, 0.55), 0 0 95px 28px rgba(245, 158, 11, 0.30)", "important");
+      } else {
+        node.classList.remove("astre-soleil-pur-v43");
+        node.classList.add("astre-lune-pure-v43");
+        node.style.setProperty("width", "150px", "important");
+        node.style.setProperty("height", "150px", "important");
+        node.style.setProperty("border-radius", "50%", "important");
+        node.style.setProperty("background", "radial-gradient(circle at 50% 50%, #ffffff 0%, #f8fafc 30%, #e2e8f0 56%, rgba(186, 230, 253, 0.44) 78%, rgba(56, 189, 248, 0) 100%)", "important");
+        node.style.setProperty("box-shadow", "0 0 45px 12px rgba(255, 255, 255, 0.60), 0 0 95px 28px rgba(56, 189, 248, 0.34)", "important");
+      }
+    }
+  }
+
+  // ==========================================================================
+  // 2. SUPPRESSION TOTALE DE MAHER AL-MUAIQLY (SELECT + MENU CUSTOM)
+  // ==========================================================================
+  function retirerRecitateurMaher() {
+    try {
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        var val = localStorage.getItem(k) || "";
+        if (/maher|muaiqly|muaqli/i.test(val)) {
+          localStorage.setItem(k, "Yasser_Ad-Dussary_128kbps");
+        }
+      }
+    } catch (e) {}
+
+    var selects = document.querySelectorAll("select");
+    for (var s = 0; s < selects.length; s++) {
+      var sel = selects[s];
+      for (var o = sel.options.length - 1; o >= 0; o--) {
+        var opt = sel.options[o];
+        var txt = ((opt.value || "") + " " + (opt.textContent || "")).toLowerCase();
+        if (txt.indexOf("maher") !== -1 || txt.indexOf("muaiqly") !== -1 || txt.indexOf("muaqli") !== -1) {
+          var etaitSelectionne = opt.selected;
+          sel.remove(o);
+          if (etaitSelectionne && sel.options.length > 0) {
+            sel.selectedIndex = 0;
+            sel.dispatchEvent(new Event("change", { bubbles: true }));
+          }
+        }
+      }
+    }
+
+    var candidats = document.querySelectorAll("div, button, li, a, span");
+    for (var c = 0; c < candidats.length; c++) {
+      var el = candidats[c];
+      var t = (el.textContent || "").trim().toLowerCase();
+      if (
+        (t === "maher al-muaiqly" || t.indexOf("maher al-muaiqly") !== -1 || t.indexOf("maher al muaiqly") !== -1) &&
+        t.indexOf("yasser") === -1 &&
+        t.indexOf("hussary") === -1 &&
+        t.indexOf("sudais") === -1 &&
+        t.indexOf("afasy") === -1
+      ) {
+        var cible = el;
+        if (el.parentElement) {
+          var pTxt = (el.parentElement.textContent || "").trim().toLowerCase();
+          if (pTxt.indexOf("yasser") === -1 && pTxt.indexOf("hussary") === -1 && el.parentElement.getBoundingClientRect().height < 110) {
+            cible = el.parentElement;
+          }
+        }
+        cible.classList.add("maher-supprime-v43");
+        if (cible.parentNode) cible.parentNode.removeChild(cible);
+      }
+    }
+
+    var imgs = document.querySelectorAll("img");
+    for (var im = 0; im < imgs.length; im++) {
+      var src = (imgs[im].getAttribute("src") || "").toLowerCase();
+      imgs[im].setAttribute("loading", "lazy");
+      imgs[im].setAttribute("decoding", "async");
+      if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
+        var row = imgs[im].parentElement;
+        if (row && row.getBoundingClientRect().height < 110) {
+          row.classList.add("maher-supprime-v43");
+          if (row.parentNode) row.parentNode.removeChild(row);
+        }
+      }
+    }
+  }
+
+  // ==========================================================================
+  // 3. DÉTECTION DE LA LANGUE ACTIVE & MENTIONS MULTILINGUES
+  // ==========================================================================
+  function obtenirLangueActive() {
+    var bodyTxt = document.body ? document.body.innerText : "";
+    if (bodyTxt.indexOf("Escuchar aleya") !== -1 || bodyTxt.indexOf("EXPLICACIÓN DE LA ALEYA") !== -1 || bodyTxt.indexOf("Ruido Marrón") !== -1) {
+      return "es";
+    }
+    if (bodyTxt.indexOf("Listen to verse") !== -1 || bodyTxt.indexOf("VERSE EXPLANATION") !== -1 || bodyTxt.indexOf("Brown Noise") !== -1) {
+      return "en";
+    }
+    if (bodyTxt.indexOf("استمع للآية") !== -1 || bodyTxt.indexOf("تفسير الآية") !== -1 || bodyTxt.indexOf("ضوضاء بنية") !== -1) {
+      return "ar";
+    }
+    return "fr";
+  }
+
+  function mettreAJourMentionsTraducteurEtExegese() {
+    var lang = obtenirLangueActive();
+    var textesBas = {
+      fr: "Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
+      en: "Translation by Saheeh International • Exegesis (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
+      es: "Traducción de Abdel Ghani Melara Navio • Exégesis (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
+      ar: "النص القرآني بالرسم العثماني • التفسير المختصر وتفسير ابن كثير وأسباب النزول"
+    };
+    var textesHaut = {
+      fr: "Traduction Muhammad Hamidullah (1977) & Exégèse",
+      en: "Saheeh International & Exegesis",
+      es: "Traducción Abdel Ghani Melara Navio & Exégesis",
+      ar: "التفسير المختصر وتفسير ابن كثير وأسباب النزول"
+    };
+
+    var tous = document.querySelectorAll("p, div, span, small, footer");
+    for (var i = 0; i < tous.length; i++) {
+      var el = tous[i];
+      if (el.children.length > 0) continue;
+      var txt = (el.textContent || "").trim();
+      if (!txt) continue;
+
+      if (
+        txt.indexOf("Traduction originale de Muhammad Hamidullah") !== -1 ||
+        txt.indexOf("Translation by Saheeh International") !== -1 ||
+        txt.indexOf("Traducción de Abdel Ghani Melara") !== -1 ||
+        txt.indexOf("النص القرآني بالرسم العثماني") !== -1
+      ) {
+        if (el.textContent !== textesBas[lang]) {
+          el.textContent = textesBas[lang];
+          el.style.setProperty("direction", lang === "ar" ? "rtl" : "ltr", "important");
+        }
+      }
+
+      if (
+        txt.indexOf("Traduction Muhammad Hamidullah") !== -1 ||
+        txt.indexOf("Saheeh International & Exegesis") !== -1 ||
+        txt.indexOf("Traducción Abdel Ghani Melara") !== -1 ||
+        txt.indexOf("التفسير المختصر وتفسير ابن كثير") !== -1
+      ) {
+        var parts = txt.split("•");
+        if (parts.length >= 2) {
+          var nv = parts[0].trim() + " • " + textesHaut[lang];
+          if (el.textContent !== nv) el.textContent = nv;
+        }
+      }
+    }
+  }
+
+  // ==========================================================================
+  // 4. MOT-À-MOT AVEC ORDRE "1. ALLĀH -> 2. A SCELLÉ"
+  // ==========================================================================
+  var DICO_MULTILINGUE = {
+    fr: {
+      "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn", "طه": "Tā-Hā", "طسم": "Tā-Sīn-Mīm", "حم": "Hā-Mīm", "كهيعص": "Kāf-Hā-Yā-‘Ayn-Sād",
+      "ذلك": "Ce (C'est)", "الكتاب": "le Livre", "لا": "ne...pas / point de", "ريب": "doute", "فيه": "en lui", "هدى": "un guide", "للمتقين": "pour les pieux",
+      "الذين": "ceux qui", "يؤمنون": "croient", "بالغيب": "à l'Inconnaissable", "ويقيمون": "et accomplissent", "الصلاة": "la Salāt (prière)", "الصلوة": "la Salāt (prière)", "ومما": "et de ce que", "رزقناهم": "Nous leur avons attribué", "ينفقون": "dépensent",
+      "والذين": "et ceux qui", "بما": "à ce qui", "أنزل": "a été descendu", "إليك": "vers toi", "وما": "et ce qui / et ils ne", "من": "de / avant", "قبلك": "avant toi", "وبالآخرة": "et en l'Au-delà", "وبالأخرة": "et en l'Au-delà", "هم": "ils / eux", "يوقنون": "ont la certitude",
+      "أولئك": "Ceux-là", "على": "sur", "ربهم": "leur Seigneur", "وأولئك": "et ceux-là", "المفلحون": "les gagnants",
+      "إن": "Certes", "كفروا": "ont mécru", "سواء": "il est égal", "عليهم": "pour eux", "أأنذرتهم": "que tu les avertisses", "ءأنذرتهم": "que tu les avertisses", "أم": "ou que", "لم": "ne...pas", "تنذرهم": "tu les avertisses",
+      "ختم": "a scellé", "الله": "Allāh", "قلوبهم": "leurs cœurs", "وعلى": "et sur", "سمعهم": "leur ouïe", "وأبصارهم": "et sur leurs regards", "أبصارهم": "leurs regards", "غشاوة": "un voile", "غشوة": "un voile", "ولهم": "et pour eux", "عذاب": "un châtiment", "عظيم": "immense",
+      "ومن": "Et parmi", "الناس": "les gens", "يقول": "il y a qui dit", "آمنا": "Nous croyons", "ءامنا": "Nous croyons", "بالله": "en Allāh", "وباليوم": "et au Jour", "الآخر": "dernier", "بمؤمنين": "croyants",
+      "يخادعون": "Ils cherchent à tromper", "يخدعون": "ils trompent", "آمنوا": "ont cru", "ءامنوا": "ont cru", "إلا": "que", "أنفسهم": "eux-mêmes", "يشعرون": "s'en rendent compte",
+      "في": "Dans / sur", "مرض": "une maladie", "فزادهم": "alors leur a accru", "مرضا": "en maladie", "أليم": "douloureux", "كانوا": "ils étaient", "يكذبون": "à mentir",
+      "وإذا": "Et quand", "قيل": "on dit", "لهم": "à eux (leur)", "تفسدوا": "semez la corruption", "الأرض": "la terre", "قالوا": "ils disent", "إنما": "Certes, ne...que", "نحن": "nous (sommes)", "مصلحون": "des réformateurs",
+      "ألا": "En vérité !", "إنهم": "ce sont eux", "المفسدون": "les corrupteurs", "ولكن": "mais", "يعلمون": "savent"
+    },
+    es: {
+      "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn",
+      "ذلك": "Ese (Este es)", "الكتاب": "el Libro", "لا": "no hay", "ريب": "duda", "فيه": "en él", "هدى": "una guía", "للمتقين": "para los piadosos",
+      "ختم": "ha sellado", "الله": "Allāh (Dios)", "على": "sobre", "قلوبهم": "sus corazones", "وعلى": "y sobre", "سمعهم": "su oído", "وأبصارهم": "y sus miradas", "أبصارهم": "sus miradas (ojos)", "غشاوة": "un velo", "غشوة": "un velo", "ولهم": "y para ellos", "عذاب": "un castigo", "عظيم": "inmenso"
+    }
+  };
+
+  var cacheVersetMotsExact = {};
+  var requetesVersetEnCours = {};
+  var sensGrilleRtl = true;
+
+  try {
+    var sauv = localStorage.getItem("cache_wbw_exact_v43");
+    if (sauv) cacheVersetMotsExact = JSON.parse(sauv);
+  } catch (e) {}
+
+  function normaliserArabeCle(str) {
+    if (!str) return "";
+    return str
+      .replace(/[\u06D6-\u06ED\u064B-\u065F\u0670\u0640\u0653\u0654\u0655]/g, "")
+      .replace(/[إأآٱ]/g, "ا")
+      .replace(/ؤ/g, "و")
+      .replace(/ئ/g, "ي")
+      .replace(/ة/g, "ه")
+      .replace(/ى/g, "ي")
+      .replace(/\s+/g, "")
+      .trim();
+  }
+
+  function chercherDansDicoCertifie(motAr, lang) {
+    var dico = DICO_MULTILINGUE[lang];
+    if (!dico) return "";
+    var cle = normaliserArabeCle(motAr);
+    if (!cle) return "";
+    for (var k in dico) {
+      if (normaliserArabeCle(k) === cle) return dico[k];
+    }
+    return "";
+  }
+
+  function obtenirCleVerset() {
+    var m = document.body ? document.body.innerText.match(/\b(\d{1,3})\s*:\s*(\d{1,3})\b/) : null;
+    if (m) return m[1] + ":" + m[2];
+
+    var numSourate = "1";
+    var urlM = window.location.pathname.match(/sourate-(\d+)/i);
+    if (urlM) numSourate = urlM[1];
+
+    var selects = document.querySelectorAll("select");
+    for (var i = 0; i < selects.length; i++) {
+      var s = selects[i];
+      if (s.options && s.selectedIndex >= 0) {
+        var optTxt = s.options[s.selectedIndex].textContent || "";
+        var vm = optTxt.match(/(?:Verset|Verse|Aleya|آية)\s*(\d+)/i);
+        if (vm) return numSourate + ":" + vm[1];
+      }
+    }
+    return "";
+  }
+
+  function chargerVraiMotAMotVerset(vk, lang) {
+    if (!vk) return;
+    var cleCache = vk + "_" + lang;
+    if (cacheVersetMotsExact[cleCache] || requetesVersetEnCours[cleCache]) return;
+    requetesVersetEnCours[cleCache] = true;
+
+    var urlQdc = "https://api.quran.com/api/v4/verses/by_key/" + vk + "?language=en&words=true&word_fields=text_uthmani,translation";
+    fetch(urlQdc)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data || !data.verse || !data.verse.words) return;
+        var motsQdc = [];
+        for (var i = 0; i < data.verse.words.length; i++) {
+          var w = data.verse.words[i];
+          if (w.char_type_name === "word") {
+            var arTxt = w.text_uthmani || "";
+            var enTxt = w.translation && w.translation.text ? w.translation.text : "";
+            motsQdc.push({ ar: arTxt, en: enTxt, tr: enTxt });
+          }
+        }
+
+        if (lang === "en" || lang === "ar") {
+          cacheVersetMotsExact[cleCache] = motsQdc;
+          appliquerVraiMotAMotSurDOM();
+          return;
+        }
+
+        var aTraduireIdx = [];
+        var aTraduireTextes = [];
+        for (var j = 0; j < motsQdc.length; j++) {
+          var cert = chercherDansDicoCertifie(motsQdc[j].ar, lang);
+          if (cert) {
+            motsQdc[j].tr = cert;
+          } else {
+            var propreEn = motsQdc[j].en.replace(/[\(\)\[\]]/g, "").trim();
+            aTraduireIdx.push(j);
+            aTraduireTextes.push(propreEn || motsQdc[j].ar);
+          }
+        }
+
+        if (aTraduireTextes.length === 0) {
+          cacheVersetMotsExact[cleCache] = motsQdc;
+          try { localStorage.setItem("cache_wbw_exact_v43", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          appliquerVraiMotAMotSurDOM();
+          return;
+        }
+
+        var sep = String.fromCharCode(10);
+        var blocTexte = aTraduireTextes.join(" " + sep + " ");
+        var gtxUrl = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=" + lang + "&dt=t&q=" + encodeURIComponent(blocTexte);
+        fetch(gtxUrl)
+          .then(function (r2) { return r2.json(); })
+          .then(function (resGtx) {
+            if (resGtx && resGtx[0]) {
+              var texteCompletTraduit = "";
+              for (var s = 0; s < resGtx[0].length; s++) {
+                if (resGtx[0][s][0]) texteCompletTraduit += resGtx[0][s][0];
+              }
+              var lignes = texteCompletTraduit.split(sep);
+              for (var k = 0; k < aTraduireIdx.length; k++) {
+                var idxMot = aTraduireIdx[k];
+                var trMot = lignes[k] ? lignes[k].trim() : "";
+                if (trMot) motsQdc[idxMot].tr = trMot;
+              }
+            }
+          })
+          .catch(function () {})
+          .finally(function () {
+            cacheVersetMotsExact[cleCache] = motsQdc;
+            try { localStorage.setItem("cache_wbw_exact_v43", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+            appliquerVraiMotAMotSurDOM();
+          });
+      })
+      .catch(function () {})
+      .finally(function () {
+        requetesVersetEnCours[cleCache] = false;
+      });
+  }
+
+  function obtenirCartesMotAMotVisibles() {
+    var cartes = [];
+    var c1 = document.querySelectorAll(".wbw-card, .wbw-word, .wbw-item");
+    for (var i = 0; i < c1.length; i++) {
+      var r1 = c1[i].getBoundingClientRect();
+      if (r1.width > 25 && r1.height > 25) {
+        c1[i].classList.add("wbw-card-unit");
+        cartes.push(c1[i]);
+      }
+    }
+    if (cartes.length > 0) return cartes;
+
+    var tousDivs = document.querySelectorAll("div");
+    for (var d = 0; d < tousDivs.length; d++) {
+      var el = tousDivs[d];
+      if (el.children && el.children.length >= 2 && el.children.length <= 3 && !el.querySelector("button")) {
+        var r = el.getBoundingClientRect();
+        if (r.width >= 48 && r.width <= 260 && r.height >= 48 && r.height <= 210) {
+          var txt0 = (el.children[0].textContent || "").trim();
+          if (/[\u0600-\u06FF]/.test(txt0) && txt0.length < 35) {
+            el.classList.add("wbw-card-unit");
+            cartes.push(el);
+          }
+        }
+      }
+    }
+    return cartes;
+  }
+
+  function appliquerVraiMotAMotSurDOM() {
+    var cartes = obtenirCartesMotAMotVisibles();
+    var oldBanner = document.getElementById("wbwSensLectureBanner");
+    if (cartes.length === 0) {
+      if (oldBanner) oldBanner.style.display = "none";
+      return;
+    }
+
+    var lang = obtenirLangueActive();
+    var vk = obtenirCleVerset();
+    var cleCache = vk + "_" + lang;
+
+    if (!cacheVersetMotsExact[cleCache]) {
+      chargerVraiMotAMotVerset(vk, lang);
+    }
+
+    var listeExacte = cacheVersetMotsExact[cleCache];
+
+    for (var i = 0; i < cartes.length; i++) {
+      var c = cartes[i];
+      if (!c.children || c.children.length < 2) continue;
+      var elAr = c.children[0];
+      var elTr = c.children[c.children.length - 1];
+      var txtAr = (elAr.textContent || "").trim();
+      var cleCarteAr = normaliserArabeCle(txtAr);
+
+      var tradFinale = chercherDansDicoCertifie(txtAr, lang);
+
+      if (!tradFinale && listeExacte && listeExacte.length > 0) {
+        for (var m = 0; m < listeExacte.length; m++) {
+          if (normaliserArabeCle(listeExacte[m].ar) === cleCarteAr) {
+            tradFinale = listeExacte[m].tr;
+            break;
+          }
+        }
+        if (!tradFinale && listeExacte[i]) {
+          tradFinale = listeExacte[i].tr;
+        }
+      }
+
+      if (tradFinale && elTr.textContent !== tradFinale) {
+        elTr.textContent = tradFinale;
+      }
+    }
+
+    var grilleParente = cartes[0].parentElement;
+    if (grilleParente && lang !== "ar") {
+      for (var k = 0; k < cartes.length - 1; k++) {
+        var cVerbe = cartes[k];
+        var cSuiv = cartes[k + 1];
+        if (!cVerbe.children.length || !cSuiv.children.length) continue;
+        var ar1 = normaliserArabeCle(cVerbe.children[0].textContent || "");
+        var ar2 = normaliserArabeCle(cSuiv.children[0].textContent || "");
+        if (ar2 === "الله" && ar1 !== "ان" && ar1 !== "وان" && ar1 !== "باسم" && ar1 !== "بسم" && ar1 !== "سبحان" && ar1 !== "الحمد" && !cSuiv.getAttribute("data-swapped-v43")) {
+          cSuiv.setAttribute("data-swapped-v43", "1");
+          grilleParente.insertBefore(cSuiv, cVerbe);
+          break;
+        }
+      }
+    }
+
+    var cartesFinales = obtenirCartesMotAMotVisibles();
+    for (var n = 0; n < cartesFinales.length; n++) {
+      cartesFinales[n].setAttribute("data-word-num", String(n + 1));
+    }
+
+    if (grilleParente) {
+      grilleParente.style.setProperty("direction", sensGrilleRtl ? "rtl" : "ltr", "important");
+      var fleche = sensGrilleRtl ? "⬅️ Sens de lecture : de droite à gauche (1 ➔ " + cartesFinales.length + ") • Cliquer pour inverser" : "➡️ Sens de lecture : de gauche à droite (1 ➔ " + cartesFinales.length + ") • Cliquer pour inverser";
+      if (!oldBanner) {
+        oldBanner = document.createElement("div");
+        oldBanner.id = "wbwSensLectureBanner";
+        oldBanner.addEventListener("click", function () {
+          sensGrilleRtl = !sensGrilleRtl;
+          appliquerVraiMotAMotSurDOM();
+        });
+        grilleParente.parentElement.insertBefore(oldBanner, grilleParente);
+      }
+      oldBanner.style.display = "block";
+      if (oldBanner.textContent !== fleche) {
+        oldBanner.textContent = fleche;
+      }
+    }
+  }
+
+  function masquerTraductionBasSiMotAMot() {
+    var cartes = obtenirCartesMotAMotVisibles();
+    var wbwActif = cartes.length >= 2;
+
+    if (!wbwActif) {
+      var caches = document.querySelectorAll(".wbw-masquer-traduction-bas");
+      for (var c = 0; c < caches.length; c++) {
+        caches[c].classList.remove("wbw-masquer-traduction-bas");
+      }
+      return;
+    }
+
+    var premiereCarte = cartes[0];
+    var grilleParente = premiereCarte.parentElement;
+    var boiteVerset = grilleParente ? grilleParente.parentElement : null;
+    if (!boiteVerset) return;
+
+    var rectDerniereCarte = cartes[cartes.length - 1].getBoundingClientRect();
+    var candidats = boiteVerset.querySelectorAll("p, div, h1, h2, h3, h4, span");
+
+    for (var i = 0; i < candidats.length; i++) {
+      var el = candidats[i];
+      if (el.id === "wbwSensLectureBanner") continue;
+      if (el === grilleParente || el.contains(premiereCarte) || grilleParente.contains(el)) continue;
+      if (el.querySelector("button") || el.tagName === "BUTTON") continue;
+
+      var txt = (el.textContent || "").trim();
+      if (!txt || /[\u0600-\u06FF]/.test(txt)) continue;
+
+      var r = el.getBoundingClientRect();
+      if (r.top >= rectDerniereCarte.top + 10 || /^\d+\s*[\.-]/.test(txt)) {
+        if (txt.indexOf("TAFSĪR") === -1 && txt.indexOf("EXPLICATION") === -1 && txt.indexOf("EXPLICACIÓN") === -1) {
+          el.classList.add("wbw-masquer-traduction-bas");
+        }
+      }
+    }
+  }
+
+  var dernierVersetSeo = "";
+  function injecterSchemaSeoGoogle() {
+    var vk = obtenirCleVerset();
+    if (!vk || vk === dernierVersetSeo) return;
+    dernierVersetSeo = vk;
+
+    var h1 = document.querySelector("h1, h2");
+    var titreVerset = h1 ? (h1.textContent || "").trim() : "Coran " + vk;
+    var blocTafsir = document.querySelector("#tafsirText, .tafsir-content, .tafsir-box");
+    var descTafsir = blocTafsir ? (blocTafsir.textContent || "").trim().slice(0, 320) : document.title;
+
+    var elJson = document.getElementById("seo-jsonld-v43");
+    if (!elJson) {
+      elJson = document.createElement("script");
+      elJson.id = "seo-jsonld-v43";
+      elJson.type = "application/ld+json";
+      document.head.appendChild(elJson);
+    }
+
+    var schema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quelle est l'explication (Tafsīr) et la cause de révélation de " + titreVerset + " (" + vk + ") ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": descTafsir
+          }
+        }
+      ]
+    };
+    elJson.textContent = JSON.stringify(schema);
+  }
+
+  var wbwScale = 1.0;
+  try {
+    var saved = localStorage.getItem("wbw_zoom_scale_v10");
+    if (saved && !isNaN(Number(saved))) wbwScale = Math.max(0.68, Math.min(2.5, Number(saved)));
+  } catch (e) {}
+
+  function appliquerZoomMotAMot() {
+    var root = document.documentElement;
+    var arRem = (2.15 * wbwScale).toFixed(2) + "rem";
+    var trRem = (0.92 * Math.pow(wbwScale, 0.82)).toFixed(2) + "rem";
+    var padV = Math.round(14 * Math.pow(wbwScale, 0.75)) + "px";
+    var padH = Math.round(18 * Math.pow(wbwScale, 0.78)) + "px";
+    var minW = Math.round(92 * wbwScale) + "px";
+
+    root.style.setProperty("--wbw-ar-size", arRem);
+    root.style.setProperty("--wbw-tr-size", trRem);
+    root.style.setProperty("--wbw-pad-v", padV);
+    root.style.setProperty("--wbw-pad-h", padH);
+    root.style.setProperty("--wbw-min-w", minW);
+
+    var cartes = obtenirCartesMotAMotVisibles();
+    for (var i = 0; i < cartes.length; i++) {
+      var box = cartes[i];
+      box.style.setProperty("padding", padV + " " + padH, "important");
+      box.style.setProperty("min-width", minW, "important");
+      if (box.children && box.children.length >= 2) {
+        box.children[0].style.setProperty("font-size", arRem, "important");
+        box.children[box.children.length - 1].style.setProperty("font-size", trRem, "important");
+      }
+    }
+  }
+
+  var suiviEstActif = true;
+
+  function assurerBoutonSuiviVisible() {
+    var tousBtns = document.querySelectorAll("button, .btn, span[role='button']");
+    var btnSuivi = null;
+    var btnTajwid = null;
+    for (var i = 0; i < tousBtns.length; i++) {
+      var b = tousBtns[i];
+      var t = (b.textContent || "").trim();
+      if (t.indexOf("Suivi") !== -1 || t.indexOf("Follow") !== -1 || t.indexOf("Seguimiento") !== -1 || t.indexOf("تتبع") !== -1) {
+        btnSuivi = b;
+      } else if (t.indexOf("Tajw") !== -1 || t.indexOf("تجويد") !== -1) {
+        btnTajwid = b;
+      }
+    }
+    if (btnSuivi) {
+      btnSuivi.style.setProperty("display", "inline-flex", "important");
+      btnSuivi.style.setProperty("visibility", "visible", "important");
+      btnSuivi.style.setProperty("opacity", "1", "important");
+      if (suiviEstActif) {
+        btnSuivi.style.setProperty("background", "linear-gradient(135deg, #0ea5e9, #38bdf8)", "important");
+        btnSuivi.style.setProperty("color", "#ffffff", "important");
+      } else {
+        btnSuivi.style.removeProperty("background");
+      }
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV43")) {
+      var nv = document.createElement("button");
+      nv.id = "btnSuiviUniverselV43";
+      nv.type = "button";
+      nv.className = btnTajwid.className;
+      nv.innerHTML = "✨ Suivi";
+      nv.style.setProperty("background", "linear-gradient(135deg, #0ea5e9, #38bdf8)", "important");
+      nv.style.setProperty("color", "#ffffff", "important");
+      btnTajwid.parentElement.insertBefore(nv, btnTajwid.nextSibling);
+    }
+  }
+
+  var MAP_NOMS_VERS_QDC = {
+    dosari: [174, 168], dossari: [174, 168], yasser: [174, 168],
+    afasy: [7], alafasy: [7], mishary: [7],
+    sudais: [3], soudais: [3],
+    shuraim: [10, 4], shuraym: [10, 4],
+    hussary: [6], husary: [6],
+    abdulbaset: [2, 1], abdulbasit: [2, 1],
+    minshawi: [9]
+  };
+
+  var cacheTimingVerset = {};
+  var requetesEnCours = {};
+  window.__lecteurAudioActuel = null;
+  var rafId = null;
+  var energiesMots = [];
+
+  function obtenirCleRecitateurSelectionne() {
+    var selects = document.querySelectorAll("select");
+    for (var i = 0; i < selects.length; i++) {
+      var s = selects[i];
+      if (s.options && s.selectedIndex >= 0) {
+        var txt = ((s.value || "") + " " + (s.options[s.selectedIndex].textContent || "")).toLowerCase();
+        if (txt.indexOf("verset") === -1 && txt.indexOf("verse") === -1 && txt.indexOf("aleya") === -1) {
+          for (var k in MAP_NOMS_VERS_QDC) {
+            if (txt.indexOf(k) !== -1) return k;
+          }
+        }
+      }
+    }
+    return "dosari";
+  }
+
+  function chargerTimestampsQdc(cleRec, vk) {
+    if (!cleRec || !vk) return;
+    var chap = vk.split(":")[0];
+    var cleChap = cleRec + "_chap_" + chap;
+    if (requetesEnCours[cleChap]) return;
+    requetesEnCours[cleChap] = true;
+
+    var idPrincipal = (MAP_NOMS_VERS_QDC[cleRec] || [7])[0];
+    var urlQdc = "https://api.qurancdn.com/api/qdc/audio/reciters/" + idPrincipal + "/audio_files?chapter=" + chap + "&segments=true";
+    fetch(urlQdc)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data && data.audio_files && data.audio_files[0] && data.audio_files[0].verse_timings) {
+          var vts = data.audio_files[0].verse_timings;
+          for (var i = 0; i < vts.length; i++) {
+            var vt = vts[i];
+            if (vt.verse_key && vt.segments && vt.segments.length > 0) {
+              enregistrerSegmentsNormalises(cleRec, vt.verse_key, vt.segments);
+            }
+          }
+        }
+      })
+      .catch(function () {});
+  }
+
+  function enregistrerSegmentsNormalises(cleRec, verseKey, segmentsBruts) {
+    var valides = [];
+    var minMs = Infinity;
+    var maxMs = -Infinity;
+    for (var i = 0; i < segmentsBruts.length; i++) {
+      var s = segmentsBruts[i];
+      if (s && s.length >= 3 && s[0] != null && s[1] != null && s[2] != null) {
+        var wIdx = Number(s[0]) - 1;
+        var t1 = Number(s[1]);
+        var t2 = Number(s[2]);
+        if (!isNaN(wIdx) && !isNaN(t1) && !isNaN(t2) && t2 >= t1) {
+          if (t1 < minMs) minMs = t1;
+          if (t2 > maxMs) maxMs = t2;
+          valides.push({ wordIndex: wIdx, t1: t1, t2: t2 });
+        }
+      }
+    }
+    if (valides.length > 0 && maxMs > minMs) {
+      var spanTotal = maxMs - minMs;
+      var norm = [];
+      for (var k = 0; k < valides.length; k++) {
+        norm.push({
+          wordIndex: valides[k].wordIndex,
+          rStart: (valides[k].t1 - minMs) / spanTotal,
+          rEnd: (valides[k].t2 - minMs) / spanTotal
+        });
+      }
+      cacheTimingVerset[cleRec + "_" + verseKey] = norm;
+    }
+  }
+
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV43) {
+    var origPlay = HTMLMediaElement.prototype.play;
+    HTMLMediaElement.prototype.play = function () {
+      window.__lecteurAudioActuel = this;
+      var cleRec = obtenirCleRecitateurSelectionne();
+      var vk = obtenirCleVerset();
+      if (cleRec && vk) chargerTimestampsQdc(cleRec, vk);
+      lancerBoucleSuivi();
+      return origPlay.apply(this, arguments);
+    };
+    HTMLMediaElement.prototype.__hookedV43 = true;
+  }
+
+  function trouverAudioActif() {
+    if (window.__lecteurAudioActuel && !window.__lecteurAudioActuel.paused && window.__lecteurAudioActuel.currentTime > 0) {
+      return window.__lecteurAudioActuel;
+    }
+    var audios = document.querySelectorAll("audio");
+    for (var i = 0; i < audios.length; i++) {
+      if (!audios[i].paused && audios[i].currentTime > 0) return audios[i];
+    }
+    return null;
+  }
+
+  function courbeAfterEffects(x) {
+    var t = Math.max(0, Math.min(1, x));
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  function obtenirElementsMotsAAnimer() {
+    var cartes = obtenirCartesMotAMotVisibles();
+    if (cartes.length >= 2) return { type: "cartes", items: cartes };
+
+    var conteneur = document.querySelector("#arabicVerse, .arabic-glow-verse");
+    if (!conteneur) return { type: "spans", items: [] };
+    conteneur.setAttribute("dir", "rtl");
+    var spans = conteneur.querySelectorAll("span");
+    if (spans.length > 1) return { type: "spans", items: spans };
+
+    var texte = (conteneur.textContent || "").trim();
+    if (!texte) return { type: "spans", items: [] };
+    var bruts = texte.split(/\s+/).filter(Boolean);
+    var motsPropres = [];
+    for (var i = 0; i < bruts.length; i++) {
+      var w = bruts[i];
+      var sansMarques = w.replace(/[\u06D6-\u06ED\u064B-\u065F\u0670]/g, "");
+      if (sansMarques.length === 0 && motsPropres.length > 0) {
+        motsPropres[motsPropres.length - 1] += " " + w;
+      } else {
+        motsPropres.push(w);
+      }
+    }
+    if (motsPropres.length <= 1) return { type: "spans", items: spans };
+    conteneur.innerHTML = motsPropres.map(function (m, idx) {
+      return '<span class="ar-word-follow" data-widx="' + idx + '">' + m + "</span>";
+    }).join(" ");
+    return { type: "spans", items: conteneur.querySelectorAll("span") };
+  }
+
+  function etapeSuiviAudioAfterEffects() {
+    var cibleObj = obtenirElementsMotsAAnimer();
+    var items = cibleObj.items;
+    var estCartes = cibleObj.type === "cartes";
+    var aud = trouverAudioActif();
+    var activeIndexFloat = -1;
+
+    if (items && items.length && suiviEstActif) {
+      if (energiesMots.length !== items.length) {
+        energiesMots = new Array(items.length).fill(0);
+      }
+
+      for (var i = 0; i < items.length; i++) {
+        if (items[i].classList.contains("active") || items[i].classList.contains("speaking") || items[i].classList.contains("current")) {
+          activeIndexFloat = i;
+          break;
+        }
+      }
+
+      if (activeIndexFloat === -1 && aud && aud.duration > 0.2) {
+        var cleRec = obtenirCleRecitateurSelectionne();
+        var vk = obtenirCleVerset();
+        var t = aud.currentTime;
+        var d = aud.duration;
+        var debutVoix = Math.min(0.20, d * 0.05);
+        var finVoix = Math.max(debutVoix + 0.3, d - Math.min(0.42, d * 0.08));
+        var ratioVoix = Math.max(0, Math.min(0.999, (t - debutVoix) / (finVoix - debutVoix)));
+
+        var segsNorm = cacheTimingVerset[cleRec + "_" + vk];
+        if (segsNorm && segsNorm.length > 0) {
+          for (var s = 0; s < segsNorm.length; s++) {
+            var sg = segsNorm[s];
+            if (ratioVoix >= sg.rStart && ratioVoix <= sg.rEnd) {
+              var progInterne = sg.rEnd > sg.rStart ? (ratioVoix - sg.rStart) / (sg.rEnd - sg.rStart) : 0.5;
+              activeIndexFloat = sg.wordIndex + progInterne * 0.35;
+              break;
+            }
+          }
+        }
+        if (activeIndexFloat === -1) {
+          activeIndexFloat = ratioVoix * items.length;
+        }
+      }
+
+      var idxEntier = Math.floor(activeIndexFloat);
+      var encoreActif = activeIndexFloat >= 0;
+
+      for (var m = 0; m < items.length; m++) {
+        var el = items[m];
+        var cibleEnergie = encoreActif && m === idxEntier ? 1.0 : 0.0;
+        energiesMots[m] += (cibleEnergie - energiesMots[m]) * 0.22;
+        if (energiesMots[m] < 0.002) energiesMots[m] = 0;
+        if (energiesMots[m] > 0.998) energiesMots[m] = 1;
+
+        var e = courbeAfterEffects(energiesMots[m]);
+
+        if (!encoreActif && e === 0) {
+          el.style.removeProperty("opacity");
+          el.style.removeProperty("filter");
+          el.style.removeProperty("transform");
+          el.style.removeProperty("text-shadow");
+          el.style.removeProperty("box-shadow");
+          el.style.removeProperty("border-color");
+          continue;
+        }
+
+        var dejaLu = encoreActif && m < idxEntier;
+        var opBase = dejaLu ? 0.78 : 0.28;
+        var op = (opBase + (1.0 - opBase) * e).toFixed(3);
+        var yPx = ((dejaLu ? 0 : 2.5) * (1 - e) - 8.5 * e).toFixed(2);
+        var sc = ((dejaLu ? 1.0 : 0.95) * (1 - e) + 1.16 * e).toFixed(3);
+
+        if (estCartes) {
+          el.style.setProperty("opacity", op, "important");
+          el.style.setProperty("transform", "translate3d(0, " + yPx + "px, 0) scale(" + (0.97 + 0.11 * e).toFixed(3) + ")", "important");
+          if (e > 0.05) {
+            el.style.setProperty("border-color", "rgba(56, 189, 248, " + (0.25 + 0.75 * e).toFixed(2) + ")", "important");
+            el.style.setProperty("box-shadow", "0 " + (10 * e).toFixed(1) + "px " + (28 * e).toFixed(1) + "px rgba(56, 189, 248, " + (0.62 * e).toFixed(2) + "), inset 0 0 " + (16 * e).toFixed(1) + "px rgba(56, 189, 248, " + (0.25 * e).toFixed(2) + ")", "important");
+          } else {
+            el.style.setProperty("border-color", dejaLu ? "rgba(56, 189, 248, 0.35)" : "rgba(148, 163, 184, 0.14)", "important");
+            el.style.setProperty("box-shadow", "none", "important");
+          }
+        } else {
+          el.style.setProperty("background", "transparent", "important");
+          el.style.setProperty("border", "none", "important");
+          el.style.setProperty("color", "#ffffff", "important");
+          el.style.setProperty("opacity", op, "important");
+          el.style.setProperty("transform", "translate3d(0, " + yPx + "px, 0) scale(" + sc + ")", "important");
+          var flou = !dejaLu && e < 0.2 ? (0.55 * (1 - e * 5)).toFixed(2) + "px" : "0px";
+          var lum = (0.82 + 0.56 * e).toFixed(2);
+          el.style.setProperty("filter", "blur(" + flou + ") brightness(" + lum + ")", "important");
+          if (e > 0.04) {
+            el.style.setProperty("text-shadow", "0 0 " + (14 * e).toFixed(1) + "px rgba(255,255,255," + e.toFixed(2) + "), 0 0 " + (32 * e).toFixed(1) + "px rgba(56,189,248," + (0.92 * e).toFixed(2) + ")", "important");
+          } else {
+            el.style.setProperty("text-shadow", dejaLu ? "0 0 10px rgba(56, 189, 248, 0.42)" : "none", "important");
+          }
+        }
+      }
+    }
+
+    var energieRestante = false;
+    for (var z = 0; z < energiesMots.length; z++) {
+      if (energiesMots[z] > 0.005) { energieRestante = true; break; }
+    }
+
+    if ((aud && !aud.paused) || energieRestante) {
+      rafId = requestAnimationFrame(etapeSuiviAudioAfterEffects);
+    } else {
+      rafId = null;
+    }
+  }
+
+  function lancerBoucleSuivi() {
+    if (!rafId) rafId = requestAnimationFrame(etapeSuiviAudioAfterEffects);
+  }
+
+  function synchroniserTout() {
+    reparerSoleilEtLuneSansRondNoir();
+    retirerRecitateurMaher();
+    mettreAJourMentionsTraducteurEtExegese();
+    masquerTraductionBasSiMotAMot();
+    appliquerVraiMotAMotSurDOM();
+    assurerBoutonSuiviVisible();
+    appliquerZoomMotAMot();
+    injecterSchemaSeoGoogle();
+    var cleRec = obtenirCleRecitateurSelectionne();
+    var vk = obtenirCleVerset();
+    if (cleRec && vk) chargerTimestampsQdc(cleRec, vk);
+    if (vk) chargerVraiMotAMotVerset(vk, obtenirLangueActive());
+  }
+
+  var obs = new MutationObserver(function () {
+    reparerSoleilEtLuneSansRondNoir();
+    retirerRecitateurMaher();
+    mettreAJourMentionsTraducteurEtExegese();
+    masquerTraductionBasSiMotAMot();
+    appliquerVraiMotAMotSurDOM();
+  });
+
+  window.addEventListener("DOMContentLoaded", function () {
+    synchroniserTout();
+    if (document.body) {
+      obs.observe(document.body, { childList: true, subtree: true });
+    }
+  });
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest("button, .btn, span, a, div");
+    if (btn) {
+      var t = (btn.textContent || "").trim();
+      if (t === "A+" || t === "A +") {
+        wbwScale = Math.min(2.5, +(wbwScale + 0.16).toFixed(2));
+        try { localStorage.setItem("wbw_zoom_scale_v10", String(wbwScale)); } catch (err) {}
+      } else if (t === "A-" || t === "A -" || t === "A−") {
+        wbwScale = Math.max(0.68, +(wbwScale - 0.16).toFixed(2));
+        try { localStorage.setItem("wbw_zoom_scale_v10", String(wbwScale)); } catch (err) {}
+      } else if (t.indexOf("Suivi") !== -1 || t.indexOf("Follow") !== -1 || t.indexOf("Seguimiento") !== -1 || t.indexOf("تتبع") !== -1) {
+        suiviEstActif = !suiviEstActif;
+        lancerBoucleSuivi();
+      }
+    }
+    setTimeout(synchroniserTout, 15);
+    setTimeout(synchroniserTout, 80);
+  });
+
+  setInterval(function () {
+    synchroniserTout();
+    var aud = trouverAudioActif();
+    if (aud && !aud.paused && !rafId) lancerBoucleSuivi();
+  }, 250);
+  synchroniserTout();
+}
+
+const blocCompletV43 = preconnectTags + '\n' + cssV43 + '\n<script id="script-master-v43">(' + codeClientV43.toString() + ')();</script>';
+const blocEchappePourGenerateur = blocCompletV43.replace(/\\/g, '\\\\');
+
+g = g.replace(/<\/head>/g, () => blocEchappePourGenerateur + '\n</head>');
+fs.writeFileSync(pGen, g, 'utf8');
+
+console.log('✅ Correctif V43 activé : Soleil doré & Lune blanche 150px sans rond noir + Mot-à-mot Allāh -> a scellé + Maher retiré !');
