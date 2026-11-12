@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1794446094901">
-  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=1794446094901">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1794447235448">
+  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=1794447235448">
   <link rel="canonical" href="https://corantafsir.com/sourate-26-verset-18.html">
   <title>Sourate 26 verset 18 (Ash-Shu'ara) - Coran & Tafsir</title>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -716,7 +716,8 @@ body.wbw-mode-on .fr-verse-text {
 <link rel="preconnect" href="https://api.quran.com" crossorigin>
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
-<style id="patch-master-v57">
+<link rel="preconnect" href="https://translate.googleapis.com" crossorigin>
+<style id="patch-master-v59">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -725,13 +726,22 @@ body.wbw-mode-on .fr-verse-text {
   --wbw-min-w: 92px;
 }
 
+/* 0. ANTI-FLASH FRANÇAIS -> ALLEMAND */
+html.lang-de-pending-v59 h1,
+html.lang-de-pending-v59 h2,
+html.lang-de-pending-v59 p,
+html.lang-de-pending-v59 .tafsir-content {
+  opacity: 0 !important;
+  transition: opacity 0.12s ease !important;
+}
+
 /* 1. SOLEIL DORÉ PUR 150px */
 html body #flatEarthSun,
 html body .flat-earth-sun,
 html body [id*="sun" i]:not([id*="sound" i]),
 html body [class*="sun" i]:not([class*="sound" i]),
 html body [data-astre-role="sun"],
-html body .astre-soleil-pur-v57 {
+html body .astre-soleil-pur-v59 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -751,8 +761,8 @@ html body .astre-soleil-pur-v57 {
 }
 html body #flatEarthSun::before, html body #flatEarthSun::after,
 html body .flat-earth-sun::before, html body .flat-earth-sun::after,
-html body .astre-soleil-pur-v57::before, html body .astre-soleil-pur-v57::after,
-html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v57 * {
+html body .astre-soleil-pur-v59::before, html body .astre-soleil-pur-v59::after,
+html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v59 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
@@ -762,7 +772,7 @@ html body .flat-earth-moon,
 html body [id*="moon" i],
 html body [class*="moon" i],
 html body [data-astre-role="moon"],
-html body .astre-lune-pure-v57 {
+html body .astre-lune-pure-v59 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -782,13 +792,13 @@ html body .astre-lune-pure-v57 {
 }
 html body #flatEarthMoon::before, html body #flatEarthMoon::after,
 html body .flat-earth-moon::before, html body .flat-earth-moon::after,
-html body .astre-lune-pure-v57::before, html body .astre-lune-pure-v57::after,
-html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v57 * {
+html body .astre-lune-pure-v59::before, html body .astre-lune-pure-v59::after,
+html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v59 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
 /* 3. MASQUAGE DE MAHER AL-MUAIQLY & TRADUCTION DU BAS EN MOT-À-MOT */
-html body img[src*="maher" i], html body [data-reciter*="maher" i], html body .maher-supprime-v57,
+html body img[src*="maher" i], html body [data-reciter*="maher" i], html body .maher-supprime-v59,
 html body .wbw-masquer-traduction-bas {
   display: none !important; visibility: hidden !important; height: 0 !important; max-height: 0 !important; margin: 0 !important; padding: 0 !important; border: none !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important;
 }
@@ -820,38 +830,37 @@ html body .verse-stage .arabic-glow-verse span, html body .verse-stage #arabicVe
 }
 
 /* 6. BOUTON DE LANGUE ALLEMAND (DE DE) */
-html body #btnLangDeV57 {
+html body #btnLangDeV59 {
   cursor: pointer !important; transition: all 0.2s ease !important; display: inline-flex !important; align-items: center !important; justify-content: center !important;
 }
-html body #btnLangDeV57.active-de-v57 {
+html body #btnLangDeV59.active-de-v59 {
   background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(56, 189, 248, 0.18)) !important;
   border: 1px solid #38bdf8 !important; color: #ffffff !important; border-radius: 999px !important;
 }
 </style>
-<script id="script-master-v57">(function codeClientV57() {
-  try {
-    for (var p = 38; p <= 56; p++) {
-      localStorage.removeItem("cache_wbw_exact_v" + p);
-      localStorage.removeItem("corantafsir_lang_v" + p);
-    }
-    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], #btnLangDeV54, #btnLangDeV55, #btnLangDeV56");
-    for (var b = 0; b < oldBtns.length; b++) {
-      if (oldBtns[b].parentNode) oldBtns[b].parentNode.removeChild(oldBtns[b]);
-    }
-  } catch (e) {}
-
+<script id="script-master-v59">(function codeClientV59() {
   var modeAllemandActif = false;
   var IgnoreClicInterneFr = false;
   try {
     var urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get("lang") === "de") {
       modeAllemandActif = true;
-      localStorage.setItem("corantafsir_lang_de_v57", "de");
-    } else if (localStorage.getItem("corantafsir_lang_de_v57") === "de" || localStorage.getItem("corantafsir_lang_de_v56") === "de") {
+      localStorage.setItem("corantafsir_lang_de_v59", "de");
+    } else if (
+      localStorage.getItem("corantafsir_lang_de_v59") === "de" ||
+      localStorage.getItem("corantafsir_lang_de_v58") === "de"
+    ) {
       modeAllemandActif = true;
-      localStorage.setItem("corantafsir_lang_de_v57", "de");
+      localStorage.setItem("corantafsir_lang_de_v59", "de");
     }
   } catch (e) {}
+
+  if (modeAllemandActif && document.documentElement) {
+    document.documentElement.classList.add("lang-de-pending-v59");
+    setTimeout(function () {
+      document.documentElement.classList.remove("lang-de-pending-v59");
+    }, 320);
+  }
 
   var NOMS_SOURATES_COMPLETS_DE = {
     1: "Sure Al-Fātihah (Die Eröffnende)", 2: "Sure Al-Baqarah (Die Kuh)", 3: "Sure Āl 'Imrān (Die Sippe 'Imrāns)",
@@ -899,6 +908,8 @@ html body #btnLangDeV57.active-de-v57 {
   var noeudsTextesModifies = [];
 
   try {
+    var sauvChapDe = localStorage.getItem("cache_bubenheim_chap_v58");
+    if (sauvChapDe) cacheAllemandChapitres = JSON.parse(sauvChapDe);
     var sauvTxtDe = localStorage.getItem("cache_txt_unit_de_v56");
     if (sauvTxtDe) cacheTexteUnitaireDe = JSON.parse(sauvTxtDe);
   } catch (e) {}
@@ -915,9 +926,9 @@ html body #btnLangDeV57.active-de-v57 {
 
   function modifierNoeudTexteSeul(textNode, nouveauTexte) {
     if (!textNode || textNode.nodeType !== 3) return;
-    if (textNode.__origDeV57 === undefined) {
-      textNode.__origDeV57 = textNode.nodeValue;
-      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origDeV57 });
+    if (textNode.__origDeV59 === undefined) {
+      textNode.__origDeV59 = textNode.nodeValue;
+      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origDeV59 });
     }
     if (textNode.nodeValue !== nouveauTexte) {
       textNode.nodeValue = nouveauTexte;
@@ -952,14 +963,19 @@ html body #btnLangDeV57.active-de-v57 {
         conteneurLang.children[f].classList.remove("active");
       }
     }
-    btnDe.classList.add("active-de-v57");
+    btnDe.classList.add("active-de-v59");
   }
 
   function assurerBoutonAllemandDansBarre() {
-    var existant = document.getElementById("btnLangDeV57");
+    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], #btnLangDeV54, #btnLangDeV55, #btnLangDeV56, #btnLangDeV57, #btnLangDeV58");
+    for (var b = 0; b < oldBtns.length; b++) {
+      if (oldBtns[b].parentNode) oldBtns[b].parentNode.removeChild(oldBtns[b]);
+    }
+
+    var existant = document.getElementById("btnLangDeV59");
     if (existant) {
       if (modeAllemandActif) {
-        existant.classList.add("active-de-v57");
+        existant.classList.add("active-de-v59");
         if (existant.parentElement) {
           for (var k = 0; k < existant.parentElement.children.length; k++) {
             if (existant.parentElement.children[k] !== existant) {
@@ -968,7 +984,7 @@ html body #btnLangDeV57.active-de-v57 {
           }
         }
       } else {
-        existant.classList.remove("active-de-v57");
+        existant.classList.remove("active-de-v59");
       }
       return;
     }
@@ -1004,7 +1020,7 @@ html body #btnLangDeV57.active-de-v57 {
       conteneurLang.style.setProperty("overflow", "visible", "important");
       var modeleBtn = btnFrFr || btnSaAr;
       var btnDe = modeleBtn.cloneNode(true);
-      btnDe.id = "btnLangDeV57";
+      btnDe.id = "btnLangDeV59";
       btnDe.classList.remove("active");
       btnDe.removeAttribute("onclick");
       btnDe.removeAttribute("data-lang");
@@ -1016,13 +1032,13 @@ html body #btnLangDeV57.active-de-v57 {
         btnDe.innerHTML = '<span style="font-size:0.72em;opacity:0.75;margin-right:2px;">DE</span><span>DE</span>';
       }
 
-      if (modeAllemandActif) btnDe.classList.add("active-de-v57");
+      if (modeAllemandActif) btnDe.classList.add("active-de-v59");
 
       btnDe.addEventListener("click", function (ev) {
         ev.preventDefault();
         ev.stopPropagation();
         modeAllemandActif = true;
-        try { localStorage.setItem("corantafsir_lang_de_v57", "de"); } catch (e) {}
+        try { localStorage.setItem("corantafsir_lang_de_v59", "de"); } catch (e) {}
         assurerBaseLatinePourAllemand(conteneurLang, btnDe);
         dernierVersetSeo = "";
         synchroniserTout();
@@ -1035,11 +1051,11 @@ html body #btnLangDeV57.active-de-v57 {
           autre.addEventListener("click", function () {
             if (IgnoreClicInterneFr) return;
             modeAllemandActif = false;
-            try { localStorage.setItem("corantafsir_lang_de_v57", "other"); } catch (e) {}
-            btnDe.classList.remove("active-de-v57");
+            try { localStorage.setItem("corantafsir_lang_de_v59", "other"); } catch (e) {}
+            btnDe.classList.remove("active-de-v59");
             restaurerTextesOriginauxDepuisAllemand();
             dernierVersetSeo = "";
-            setTimeout(synchroniserTout, 30);
+            setTimeout(synchroniserTout, 20);
           });
         })(freresInit[a]);
       }
@@ -1068,6 +1084,7 @@ html body #btnLangDeV57.active-de-v57 {
             var cleanDe = (d.translations[j].text || "").replace(/<[^>]+>/g, "").trim();
             cacheAllemandChapitres[cle][vk] = cleanDe;
           }
+          try { localStorage.setItem("cache_bubenheim_chap_v58", JSON.stringify(cacheAllemandChapitres)); } catch (e) {}
           if (modeAllemandActif) appliquerInterfaceEtContenuAllemand();
         }
       })
@@ -1080,13 +1097,20 @@ html body #btnLangDeV57.active-de-v57 {
   function traduireNoeudVersAllemandAsync(textNode, origTxt) {
     if (!origTxt || origTxt.length < 4) return;
     var cle = origTxt.slice(0, 140) + "_" + origTxt.length;
-    var esp1 = (textNode.__origDeV57 || textNode.nodeValue).match(/^\s*/)[0];
-    var esp2 = (textNode.__origDeV57 || textNode.nodeValue).match(/\s*$/)[0];
+    var esp1 = (textNode.__origDeV59 || textNode.nodeValue).match(/^\s*/)[0];
+    var esp2 = (textNode.__origDeV59 || textNode.nodeValue).match(/\s*$/)[0];
 
     if (cacheTexteUnitaireDe[cle]) {
       modifierNoeudTexteSeul(textNode, esp1 + cacheTexteUnitaireDe[cle] + esp2);
       return;
     }
+
+    var pEl = textNode.parentElement;
+    if (pEl && !requeteTexteDeEnCours[cle]) {
+      pEl.style.transition = "opacity 0.12s ease";
+      pEl.style.opacity = "0.02";
+    }
+
     if (requeteTexteDeEnCours[cle]) return;
     requeteTexteDeEnCours[cle] = true;
 
@@ -1112,13 +1136,14 @@ html body #btnLangDeV57.active-de-v57 {
       .catch(function () {})
       .finally(function () {
         requeteTexteDeEnCours[cle] = false;
+        if (pEl) pEl.style.opacity = "1";
       });
   }
 
   function appliquerInterfaceEtContenuAllemand() {
     if (!modeAllemandActif || !document.body) return;
 
-    var btnDe = document.getElementById("btnLangDeV57");
+    var btnDe = document.getElementById("btnLangDeV59");
     if (btnDe && btnDe.parentElement) {
       assurerBaseLatinePourAllemand(btnDe.parentElement, btnDe);
     }
@@ -1133,65 +1158,69 @@ html body #btnLangDeV57.active-de-v57 {
     }
     var texteBubenheim = (numS && cacheAllemandChapitres["chap_" + numS]) ? cacheAllemandChapitres["chap_" + numS][vk] : null;
 
-    var DICO_UI_DE = {
-      // Navigation & Lecteur
-      "‹ Retour aux 114 Sourates": "‹ Zurück zu den 114 Suren",
-      "‹ Back to 114 Surahs": "‹ Zurück zu den 114 Suren",
-      "‹ Volver a las 114 Suras": "‹ Zurück zu den 114 Suren",
-      "SOURATE MÉDINOISE": "MEDINENSISCHE SURE",
-      "MEDINAN SURAH": "MEDINENSISCHE SURE",
-      "SURA MEDINENSE": "MEDINENSISCHE SURE",
-      "SOURATE MECQUOISE": "MEKKANISCHE SURE",
-      "MAKKAN SURAH": "MEKKANISCHE SURE",
-      "SURA MEQUÍ": "MEKKANISCHE SURE",
-      "📖 Mot à mot": "📖 Wort für Wort",
-      "Mot à mot": "Wort für Wort",
-      "📖 Word by Word": "📖 Wort für Wort",
-      "🌊 Bruit Brun": "🌊 Braunes Rauschen",
-      "Bruit Brun": "Braunes Rauschen",
-      "🌊 Brown Noise": "🌊 Braunes Rauschen",
-      "✨ Suivi": "✨ Verfolgung",
-      "Suivi": "Verfolgung",
-      "✨ Follow": "✨ Verfolgung",
-      "Enchaîner automatiquement": "Automatisch weiter",
-      "Auto-advance": "Automatisch weiter",
-      "‹ Précédent": "‹ Zurück",
-      "‹ Previous": "‹ Zurück",
-      "Suivant ›": "Weiter ›",
-      "Next ›": "Weiter ›",
-      "▶ Écouter le verset": "▶ Vers anhören",
-      "▶ Listen to verse": "▶ Vers anhören",
-      "↺ Rejouer": "↺ Wiederholen",
-      "↺ Replay": "↺ Wiederholen",
-      "TAFSĪR & EXPLICATION DU VERSET": "TAFSĪR & ERKLÄRUNG DES VERSES",
-      "TAFSĪR & VERSE EXPLANATION": "TAFSĪR & ERKLÄRUNG DES VERSES",
-      "TAFSĪR Y EXPLICACIÓN DE LA ALEYA": "TAFSĪR & ERKLÄRUNG DES VERSES",
-      "⭐ Développer l'explication complète, le Hadīth & les preuves historiques": "⭐ Vollständige Erklärung, Hadīth & historische Beweise ausklappen",
-      // Page d'accueil (index.html)
-      "Le Noble Coran & Tafsīr Al-Mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
-      "The Noble Quran & Tafsīr Al-Mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
-      "El Noble Corán y Tafsīr Al-Mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
+    var DICO_UI_EXACT_INSENSIBLE = {
+      "‹ retour aux 114 sourates": "‹ Zurück zu den 114 Suren",
+      "‹ back to 114 surahs": "‹ Zurück zu den 114 Suren",
+      "‹ volver a las 114 suras": "‹ Zurück zu den 114 Suren",
+      "sourate médinoise": "MEDINENSISCHE SURE",
+      "medinan surah": "MEDINENSISCHE SURE",
+      "sura medinense": "MEDINENSISCHE SURE",
+      "sourate mecquoise": "MEKKANISCHE SURE",
+      "makkan surah": "MEKKANISCHE SURE",
+      "sura mequí": "MEKKANISCHE SURE",
+      "📖 mot à mot": "📖 Wort für Wort",
+      "mot à mot": "Wort für Wort",
+      "📖 word by word": "📖 Wort für Wort",
+      "word by word": "Wort für Wort",
+      "🌊 bruit brun": "🌊 Braunes Rauschen",
+      "bruit brun": "Braunes Rauschen",
+      "🌊 brown noise": "🌊 Braunes Rauschen",
+      "brown noise": "Braunes Rauschen",
+      "✨ suivi": "✨ Verfolgung",
+      "suivi": "Verfolgung",
+      "✨ follow": "✨ Verfolgung",
+      "follow": "Verfolgung",
+      "enchaîner automatiquement": "Automatisch weiter",
+      "auto-advance": "Automatisch weiter",
+      "‹ précédent": "‹ Zurück",
+      "‹ previous": "‹ Zurück",
+      "suivant ›": "Weiter ›",
+      "next ›": "Weiter ›",
+      "▶ écouter le verset": "▶ Vers anhören",
+      "▶ listen to verse": "▶ Vers anhören",
+      "↺ rejouer": "↺ Wiederholen",
+      "↺ replay": "↺ Wiederholen",
+      "tafsīr & explication du verset": "TAFSĪR & ERKLÄRUNG DES VERSES",
+      "tafsīr & verse explanation": "TAFSĪR & ERKLÄRUNG DES VERSES",
+      "tafsīr y explicación de la aleya": "TAFSĪR & ERKLÄRUNG DES VERSES",
+      "madd (prolongation)": "Madd (Dehnung)",
+      "lettre muette": "Stummer Buchstabe",
+      "silent letter": "Stummer Buchstabe",
+      "⭐ développer l'explication complète, le hadīth & les preuves historiques": "⭐ Vollständige Erklärung, Hadīth & historische Beweise ausklappen",
+      "le noble coran & tafsīr al-mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
+      "the noble quran & tafsīr al-mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
+      "el noble corán y tafsīr al-mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
       "القرآن الكريم والتفسير المختصر": "Der Edle Koran & Tafsīr Al-Mukhtasar",
-      "📲 Installer le site en App sur votre téléphone (iPhone / Android)": "📲 Website als App auf Ihrem Telefon installieren (iPhone / Android)",
-      "📲 Install the site as an App on your phone (iPhone / Android)": "📲 Website als App auf Ihrem Telefon installieren (iPhone / Android)",
-      "Qu'est-ce qu'une Sourate Mecquoise ?": "Was ist eine mekkanische Sure?",
-      "What is a Makkan Surah?": "Was ist eine mekkanische Sure?",
-      "Qu'est-ce qu'une Sourate Médinoise ?": "Was ist eine medinensische Sure?",
-      "What is a Madinan Surah?": "Was ist eine medinensische Sure?",
-      "Mecquoise • 86 Sourates": "Mekkanisch • 86 Suren",
-      "Makkan • 86 Surahs": "Mekkanisch • 86 Suren",
-      "Médinoise • 28 Sourates": "Medinensisch • 28 Suren",
-      "Madinan • 28 Surahs": "Medinensisch • 28 Suren",
-      "1. Ordre de Révélation (1 à 114)": "1. Offenbarungsreihenfolge (1 bis 114)",
-      "1. Revelation Order (1 to 114)": "1. Offenbarungsreihenfolge (1 bis 114)",
-      "2. Ordre du Mushaf (1 à 114)": "2. Mushaf-Reihenfolge (1 bis 114)",
-      "2. Mushaf Order (1 to 114)": "2. Mushaf-Reihenfolge (1 bis 114)",
-      "⭐ 3. Versets des Miracles Scientifiques": "⭐ 3. Verse der wissenschaftlichen Wunder",
-      "⭐ 3. Scientific Miracles Verses": "⭐ 3. Verse der wissenschaftlichen Wunder",
-      "Mecquoise": "Mekkanisch",
-      "Makkan": "Mekkanisch",
-      "Médinoise": "Medinensisch",
-      "Madinan": "Medinensisch"
+      "📲 installer le site en app sur votre téléphone (iphone / android)": "📲 Website als App auf Ihrem Telefon installieren (iPhone / Android)",
+      "📲 install the site as an app on your phone (iphone / android)": "📲 Website als App auf Ihrem Telefon installieren (iPhone / Android)",
+      "qu'est-ce qu'une sourate mecquoise ?": "Was ist eine mekkanische Sure?",
+      "what is a makkan surah?": "Was ist eine mekkanische Sure?",
+      "qu'est-ce qu'une sourate médinoise ?": "Was ist eine medinensische Sure?",
+      "what is a madinan surah?": "Was ist eine medinensische Sure?",
+      "mecquoise • 86 sourates": "Mekkanisch • 86 Suren",
+      "makkan • 86 surahs": "Mekkanisch • 86 Suren",
+      "médinoise • 28 sourates": "Medinensisch • 28 Suren",
+      "madinan • 28 surahs": "Medinensisch • 28 Suren",
+      "1. ordre de révélation (1 à 114)": "1. Offenbarungsreihenfolge (1 bis 114)",
+      "1. revelation order (1 to 114)": "1. Offenbarungsreihenfolge (1 bis 114)",
+      "2. ordre du mushaf (1 à 114)": "2. Mushaf-Reihenfolge (1 bis 114)",
+      "2. mushaf order (1 to 114)": "2. Mushaf-Reihenfolge (1 bis 114)",
+      "⭐ 3. versets des miracles scientifiques": "⭐ 3. Verse der wissenschaftlichen Wunder",
+      "⭐ 3. scientific miracles verses": "⭐ 3. Verse der wissenschaftlichen Wunder",
+      "mecquoise": "Mekkanisch",
+      "makkan": "Mekkanisch",
+      "médinoise": "Medinensisch",
+      "madinan": "Medinensisch"
     };
 
     var inputs = document.querySelectorAll("input[type='text'], input[type='search'], input:not([type])");
@@ -1212,28 +1241,27 @@ html body #btnLangDeV57.active-de-v57 {
       if (tag === "SCRIPT" || tag === "STYLE") continue;
       if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner") continue;
 
-      var val = (node.__origDeV57 !== undefined ? node.__origDeV57 : node.nodeValue || "").replace(/\u00A0/g, " ").trim();
+      var val = (node.__origDeV59 !== undefined ? node.__origDeV59 : node.nodeValue || "").replace(/\u00A0/g, " ").trim();
       if (!val || /[\u0600-\u06FF]/.test(val)) continue;
+      var valLower = val.toLowerCase();
 
-      // 1. Dictionnaire exact UI (Accueil + Versets)
-      if (DICO_UI_DE[val]) {
-        modifierNoeudTexteSeul(node, DICO_UI_DE[val]);
+      if (DICO_UI_EXACT_INSENSIBLE[valLower]) {
+        modifierNoeudTexteSeul(node, DICO_UI_EXACT_INSENSIBLE[valLower]);
         continue;
       }
 
-      // 2. Options du menu déroulant "Verset 2 / 286" -> "Vers 2 / 286"
-      if (/^(?:⭐\s*)?(?:Verset|Verse|Aleya)\s+(\d+)\s*\/\s*(\d+)(.*)$/i.test(val)) {
-        modifierNoeudTexteSeul(node, val.replace(/Verset|Verse|Aleya/i, "Vers").replace(/Miracle/i, "Wunder"));
+      if (/(?:Verset|Verse|Aleya)\s+\d+\s*\/\s*\d+/i.test(val)) {
+        modifierNoeudTexteSeul(node, val.replace(/Verset|Verse|Aleya/gi, "Vers").replace(/Miracle/gi, "Wunder"));
         continue;
       }
 
-      // 3. Badges de la page d'accueil : "96 versets", "⭐ Miracle (V.2)", "📖 Reprendre : Al-Baqarah (Verset 12)"
-      if (/^(\d+)\s+(?:versets|verses|aleyas)$/i.test(val)) {
+      if (/Miracle\s*[:\(]\s*V\.?\s*\d+/i.test(val)) {
+        modifierNoeudTexteSeul(node, val.replace(/Miracle/gi, "Wunder").replace(/V\./i, "Vers "));
+        continue;
+      }
+
+      if (/^\d+\s+(?:versets|verses|aleyas)$/i.test(val)) {
         modifierNoeudTexteSeul(node, val.replace(/versets|verses|aleyas/i, "Verse"));
-        continue;
-      }
-      if (/^⭐\s*Miracle\s*\(V\.(\d+)\)$/i.test(val)) {
-        modifierNoeudTexteSeul(node, val.replace(/Miracle\s*\(V\./i, "Wunder (Vers "));
         continue;
       }
       if (val.indexOf("Reprendre") !== -1 || val.indexOf("Resume") !== -1) {
@@ -1241,7 +1269,6 @@ html body #btnLangDeV57.active-de-v57 {
         continue;
       }
 
-      // 4. Titre H1 sur la page de verset
       if ((val.indexOf("Sourate ") === 0 || val.indexOf("Surah ") === 0 || val.indexOf("Sure ") === 0) && (val.indexOf(" — Verset ") !== -1 || val.indexOf(" — Verse ") !== -1 || val.indexOf(" — Vers ") !== -1)) {
         if (numS && NOMS_SOURATES_COMPLETS_DE[numS]) {
           modifierNoeudTexteSeul(node, NOMS_SOURATES_COMPLETS_DE[numS] + " — Vers " + numV);
@@ -1256,7 +1283,6 @@ html body #btnLangDeV57.active-de-v57 {
         continue;
       }
 
-      // 5. Traduction principale du verset juste sous l'arabe
       var rectP = pEl.getBoundingClientRect();
       if (
         !versetHautDejaRemplace &&
@@ -1269,13 +1295,13 @@ html body #btnLangDeV57.active-de-v57 {
         versetHautDejaRemplace = true;
         if (texteBubenheim) {
           modifierNoeudTexteSeul(node, numV + ". " + texteBubenheim);
+          pEl.style.opacity = "1";
         } else {
           traduireNoeudVersAllemandAsync(node, val);
         }
         continue;
       }
 
-      // 6. Paragraphes explicatifs (sur l'Accueil index.html OU dans le Tafsir/Miracle en bas des versets)
       var estSurAccueil = !rectArabe;
       var estSousVerset = rectArabe && rectP.top > rectArabe.bottom + 80;
       if ((estSurAccueil || estSousVerset) && val.length >= 18) {
@@ -1289,9 +1315,15 @@ html body #btnLangDeV57.active-de-v57 {
         }
       }
     }
+
+    if (document.documentElement) {
+      document.documentElement.classList.remove("lang-de-pending-v59");
+    }
   }
 
+  // ==========================================================================
   // 2. BOUTON "✨ SUIVI" (✨ VERFOLGUNG)
+  // ==========================================================================
   var suiviEstActif = true;
 
   function assurerBoutonSuiviVisible() {
@@ -1315,7 +1347,7 @@ html body #btnLangDeV57.active-de-v57 {
       btnSuivi.style.setProperty("display", "inline-flex", "important");
       btnSuivi.style.setProperty("visibility", "visible", "important");
       btnSuivi.style.setProperty("opacity", "1", "important");
-      if (btnSuivi.id === "btnSuiviUniverselV57" && btnSuivi.textContent !== labelSuivi) {
+      if (btnSuivi.id === "btnSuiviUniverselV59" && btnSuivi.textContent !== labelSuivi) {
         btnSuivi.textContent = labelSuivi;
       }
       if (suiviEstActif) {
@@ -1324,9 +1356,9 @@ html body #btnLangDeV57.active-de-v57 {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV57")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV59")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV57";
+      nv.id = "btnSuiviUniverselV59";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.textContent = labelSuivi;
@@ -1415,8 +1447,8 @@ html body #btnLangDeV57.active-de-v57 {
       }
 
       if (role === "sun") {
-        node.classList.remove("astre-lune-pure-v57");
-        node.classList.add("astre-soleil-pur-v57");
+        node.classList.remove("astre-lune-pure-v59");
+        node.classList.add("astre-soleil-pur-v59");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -1425,8 +1457,8 @@ html body #btnLangDeV57.active-de-v57 {
         node.style.setProperty("box-shadow", "0 0 50px 16px rgba(253, 224, 71, 0.72), 0 0 110px 38px rgba(245, 158, 11, 0.42)", "important");
         node.style.setProperty("filter", "none", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v57");
-        node.classList.add("astre-lune-pure-v57");
+        node.classList.remove("astre-soleil-pur-v59");
+        node.classList.add("astre-lune-pure-v59");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -1446,7 +1478,7 @@ html body #btnLangDeV57.active-de-v57 {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v57");
+          row.classList.add("maher-supprime-v59");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
@@ -1558,7 +1590,7 @@ html body #btnLangDeV57.active-de-v57 {
   var sensGrilleRtl = true;
 
   try {
-    var sauv = localStorage.getItem("cache_wbw_exact_v57");
+    var sauv = localStorage.getItem("cache_wbw_exact_v58");
     if (sauv) cacheVersetMotsExact = JSON.parse(sauv);
   } catch (e) {}
 
@@ -1644,7 +1676,7 @@ html body #btnLangDeV57.active-de-v57 {
 
         if (aTraduireTextes.length === 0) {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v57", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v58", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -1671,7 +1703,7 @@ html body #btnLangDeV57.active-de-v57 {
           .catch(function () {})
           .finally(function () {
             cacheVersetMotsExact[cleCache] = motsQdc;
-            try { localStorage.setItem("cache_wbw_exact_v57", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+            try { localStorage.setItem("cache_wbw_exact_v58", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
             appliquerVraiMotAMotSurDOM();
           });
       })
@@ -1888,8 +1920,19 @@ html body #btnLangDeV57.active-de-v57 {
     root.style.setProperty("--wbw-min-w", minW);
   }
 
-  // 6. ANIMATION MODE SUIVI : BLANC PUR -> BLEU NÉON
-  var MAP_NOMS_VERS_QDC = { dosari: [174, 168], dossari: [174, 168], yasser: [174, 168], afasy: [7], alafasy: [7], sudais: [3], shuraim: [10, 4], hussary: [6], abdulbaset: [2, 1], minshawi: [9] };
+  // ==========================================================================
+  // 6. ANIMATION MODE SUIVI 100% INFAILLIBLE (BLANC PUR -> BLEU NÉON)
+  // ==========================================================================
+  var MAP_NOMS_VERS_QDC = {
+    dosari: [174, 168], dossari: [174, 168], yasser: [174, 168],
+    afasy: [7], alafasy: [7], mishary: [7],
+    sudais: [3], soudais: [3],
+    shuraim: [10, 4], shuraym: [10, 4],
+    hussary: [6], husary: [6],
+    abdulbaset: [2, 1], abdulbasit: [2, 1],
+    minshawi: [9]
+  };
+
   var cacheTimingVerset = {};
   var requetesEnCours = {};
   window.__lecteurAudioActuel = null;
@@ -1898,12 +1941,29 @@ html body #btnLangDeV57.active-de-v57 {
   var bleusMots = [];
   var dernierVersetSuivi = "";
 
+  function obtenirCleRecitateurSelectionne() {
+    var selects = document.querySelectorAll("select");
+    for (var i = 0; i < selects.length; i++) {
+      var s = selects[i];
+      if (s.options && s.selectedIndex >= 0) {
+        var txt = ((s.value || "") + " " + (s.options[s.selectedIndex].textContent || "")).toLowerCase();
+        if (txt.indexOf("verset") === -1 && txt.indexOf("verse") === -1 && txt.indexOf("aleya") === -1 && txt.indexOf("vers ") === -1) {
+          for (var k in MAP_NOMS_VERS_QDC) {
+            if (txt.indexOf(k) !== -1) return k;
+          }
+        }
+      }
+    }
+    return "dosari";
+  }
+
   function chargerTimestampsQdc(cleRec, vk) {
     if (!cleRec || !vk) return;
     var chap = vk.split(":")[0];
     var cleChap = cleRec + "_chap_" + chap;
     if (requetesEnCours[cleChap]) return;
     requetesEnCours[cleChap] = true;
+
     var idPrincipal = (MAP_NOMS_VERS_QDC[cleRec] || [174])[0];
     fetch("https://api.qurancdn.com/api/qdc/audio/reciters/" + idPrincipal + "/audio_files?chapter=" + chap + "&segments=true")
       .then(function (r) { return r.json(); })
@@ -1916,9 +1976,9 @@ html body #btnLangDeV57.active-de-v57 {
               var valides = [], minMs = Infinity, maxMs = -Infinity;
               for (var j = 0; j < vt.segments.length; j++) {
                 var s = vt.segments[j];
-                if (s && s.length >= 3) {
+                if (s && s.length >= 3 && s[0] != null && s[1] != null && s[2] != null) {
                   var wIdx = Number(s[0]) - 1, t1 = Number(s[1]), t2 = Number(s[2]);
-                  if (!isNaN(wIdx) && t2 >= t1) {
+                  if (!isNaN(wIdx) && !isNaN(t1) && !isNaN(t2) && t2 >= t1) {
                     if (t1 < minMs) minMs = t1;
                     if (t2 > maxMs) maxMs = t2;
                     valides.push({ wordIndex: wIdx, t1: t1, t2: t2 });
@@ -1941,11 +2001,13 @@ html body #btnLangDeV57.active-de-v57 {
   function obtenirElementsMotsAAnimer() {
     var cartes = obtenirCartesMotAMotVisibles();
     if (cartes.length >= 2) return { type: "cartes", items: cartes };
+
     var conteneur = document.querySelector("#arabicVerse, .arabic-glow-verse");
     if (!conteneur) return { type: "spans", items: [] };
     conteneur.setAttribute("dir", "rtl");
     var spans = conteneur.querySelectorAll("span");
     if (spans.length > 1) return { type: "spans", items: spans };
+
     var texte = (conteneur.textContent || "").trim();
     if (!texte) return { type: "spans", items: [] };
     var bruts = texte.split(/\s+/).filter(Boolean);
@@ -1975,6 +2037,7 @@ html body #btnLangDeV57.active-de-v57 {
       var el = items[i];
       el.style.setProperty("opacity", "1", "important");
       el.style.setProperty("transform", "translate3d(0, 0px, 0) scale(1)", "important");
+      el.style.setProperty("filter", "none", "important");
       if (estCartes) {
         el.style.setProperty("border-color", "rgba(255, 255, 255, 0.18)", "important");
         el.style.setProperty("box-shadow", "none", "important");
@@ -1985,24 +2048,42 @@ html body #btnLangDeV57.active-de-v57 {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV57) {
-    var origPlay = HTMLMediaElement.prototype.play;
-    HTMLMediaElement.prototype.play = function () {
-      window.__lecteurAudioActuel = this;
-      if (this.currentTime < 0.25) reinitialiserMotsEnBlancPur();
-      var vk = obtenirCleVerset();
-      if (vk) chargerTimestampsQdc("dosari", vk);
-      if (!rafId) rafId = requestAnimationFrame(etapeSuiviAudioAfterEffects);
-      return origPlay.apply(this, arguments);
-    };
-    HTMLMediaElement.prototype.__hookedV57 = true;
+  function lancerBoucleSuivi() {
+    if (!rafId) {
+      rafId = requestAnimationFrame(etapeSuiviAudioAfterEffects);
+    }
   }
 
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV59) {
+    var origPlay = HTMLMediaElement.prototype.play;
+    HTMLMediaElement.prototype.play = function () {
+      var self = this;
+      window.__lecteurAudioActuel = self;
+      if (self.currentTime < 0.25) {
+        reinitialiserMotsEnBlancPur();
+      }
+      if (!self.__listenersV59) {
+        self.__listenersV59 = true;
+        self.addEventListener("playing", lancerBoucleSuivi);
+        self.addEventListener("timeupdate", lancerBoucleSuivi);
+      }
+      var cleRec = obtenirCleRecitateurSelectionne();
+      var vk = obtenirCleVerset();
+      if (cleRec && vk) chargerTimestampsQdc(cleRec, vk);
+      lancerBoucleSuivi();
+      return origPlay.apply(self, arguments);
+    };
+    HTMLMediaElement.prototype.__hookedV59 = true;
+  }
+
+  // NE PLUS EXIGER currentTime > 0 POUR ÉVITER DE COUPER LA BOUCLE AU LANCEMENT !
   function trouverAudioActif() {
-    if (window.__lecteurAudioActuel && !window.__lecteurAudioActuel.paused && window.__lecteurAudioActuel.currentTime > 0) return window.__lecteurAudioActuel;
+    if (window.__lecteurAudioActuel && !window.__lecteurAudioActuel.paused && !window.__lecteurAudioActuel.ended) {
+      return window.__lecteurAudioActuel;
+    }
     var audios = document.querySelectorAll("audio");
     for (var i = 0; i < audios.length; i++) {
-      if (!audios[i].paused && audios[i].currentTime > 0) return audios[i];
+      if (!audios[i].paused && !audios[i].ended) return audios[i];
     }
     return null;
   }
@@ -2019,6 +2100,7 @@ html body #btnLangDeV57.active-de-v57 {
       energiesMots = [];
       bleusMots = [];
     }
+
     var cibleObj = obtenirElementsMotsAAnimer();
     var items = cibleObj.items;
     var estCartes = cibleObj.type === "cartes";
@@ -2030,22 +2112,37 @@ html body #btnLangDeV57.active-de-v57 {
         energiesMots = new Array(items.length).fill(0);
         bleusMots = new Array(items.length).fill(0);
       }
-      if (aud && aud.duration > 0.2) {
-        var t = aud.currentTime, d = aud.duration;
+
+      for (var i = 0; i < items.length; i++) {
+        if (items[i].classList.contains("active") || items[i].classList.contains("speaking") || items[i].classList.contains("current")) {
+          activeIndexFloat = i;
+          break;
+        }
+      }
+
+      if (activeIndexFloat === -1 && aud && aud.duration > 0.2 && aud.currentTime > 0.02) {
+        var cleRec = obtenirCleRecitateurSelectionne();
+        var vk = obtenirCleVerset();
+        var t = aud.currentTime;
+        var d = aud.duration;
         var debutVoix = Math.min(0.18, d * 0.04);
         var finVoix = Math.max(debutVoix + 0.25, d - Math.min(0.35, d * 0.07));
         var ratioVoix = Math.max(0, Math.min(0.999, (t - debutVoix) / (finVoix - debutVoix)));
-        var segsNorm = cacheTimingVerset["dosari_" + vkActuel];
+
+        var segsNorm = cacheTimingVerset[cleRec + "_" + vk];
         if (segsNorm && segsNorm.length > 0) {
           for (var s = 0; s < segsNorm.length; s++) {
             var sg = segsNorm[s];
             if (ratioVoix >= sg.rStart && ratioVoix <= sg.rEnd) {
-              activeIndexFloat = sg.wordIndex + 0.2;
+              var progInterne = sg.rEnd > sg.rStart ? (ratioVoix - sg.rStart) / (sg.rEnd - sg.rStart) : 0.5;
+              activeIndexFloat = sg.wordIndex + progInterne * 0.35;
               break;
             }
           }
         }
-        if (activeIndexFloat === -1) activeIndexFloat = ratioVoix * items.length;
+        if (activeIndexFloat === -1) {
+          activeIndexFloat = ratioVoix * items.length;
+        }
       } else if (aud && aud.ended) {
         activeIndexFloat = items.length;
       }
@@ -2055,62 +2152,110 @@ html body #btnLangDeV57.active-de-v57 {
 
       for (var m = 0; m < items.length; m++) {
         var el = items[m];
+
         var cibleElevation = lectureEnCours && m === idxEntier ? 1.0 : 0.0;
         energiesMots[m] += (cibleElevation - energiesMots[m]) * 0.22;
         if (energiesMots[m] < 0.002) energiesMots[m] = 0;
+        if (energiesMots[m] > 0.998) energiesMots[m] = 1;
+
         var cibleBleu = lectureEnCours && m <= idxEntier ? 1.0 : bleusMots[m];
         bleusMots[m] += (cibleBleu - bleusMots[m]) * 0.18;
         if (bleusMots[m] < 0.002) bleusMots[m] = 0;
+        if (bleusMots[m] > 0.998) bleusMots[m] = 1;
 
         var e = courbeAfterEffects(energiesMots[m]);
         var b = courbeAfterEffects(bleusMots[m]);
+
         var yPx = (-7.5 * e).toFixed(2);
         var sc = (1.0 + 0.12 * e).toFixed(3);
 
         if (estCartes) {
+          el.style.setProperty("opacity", "1", "important");
           el.style.setProperty("transform", "translate3d(0, " + yPx + "px, 0) scale(" + (1.0 + 0.08 * e).toFixed(3) + ")", "important");
           if (b > 0.02) {
             el.style.setProperty("border-color", "rgba(56, 189, 248, " + (0.45 * b + 0.55 * e).toFixed(2) + ")", "important");
-            el.style.setProperty("box-shadow", "0 8px 22px rgba(56, 189, 248, " + (0.35 * b + 0.35 * e).toFixed(2) + ")", "important");
+            el.style.setProperty("box-shadow", "0 " + (6 * b + 6 * e).toFixed(1) + "px " + (18 * b + 14 * e).toFixed(1) + "px rgba(56, 189, 248, " + (0.35 * b + 0.35 * e).toFixed(2) + "), inset 0 0 " + (12 * b).toFixed(1) + "px rgba(56, 189, 248, " + (0.18 * b).toFixed(2) + ")", "important");
+          } else {
+            el.style.setProperty("border-color", "rgba(255, 255, 255, 0.18)", "important");
+            el.style.setProperty("box-shadow", "none", "important");
           }
         } else {
+          el.style.setProperty("background", "transparent", "important");
+          el.style.setProperty("border", "none", "important");
+          el.style.setProperty("opacity", "1", "important");
+          el.style.setProperty("filter", "none", "important");
           el.style.setProperty("transform", "translate3d(0, " + yPx + "px, 0) scale(" + sc + ")", "important");
+
           if (b < 0.03) {
             el.style.setProperty("color", "#ffffff", "important");
             el.style.setProperty("text-shadow", "0 0 14px rgba(255, 255, 255, 0.48), 0 0 28px rgba(255, 255, 255, 0.20)", "important");
           } else {
             el.style.setProperty("color", "#f0f9ff", "important");
-            el.style.setProperty("text-shadow", "0 0 8px rgba(255, 255, 255, 0.90), 0 0 18px rgba(56, 189, 248, 0.92), 0 0 34px rgba(14, 165, 233, 0.78)", "important");
+            var alphaBleu1 = (0.85 * b + 0.15 * e).toFixed(2);
+            var alphaBleu2 = (0.65 * b + 0.30 * e).toFixed(2);
+            var rayon1 = (14 + 8 * e).toFixed(1);
+            var rayon2 = (28 + 16 * e).toFixed(1);
+            el.style.setProperty(
+              "text-shadow",
+              "0 0 8px rgba(255, 255, 255, 0.90), 0 0 " + rayon1 + "px rgba(56, 189, 248, " + alphaBleu1 + "), 0 0 " + rayon2 + "px rgba(14, 165, 233, " + alphaBleu2 + ")",
+              "important"
+            );
           }
         }
       }
     }
 
-    if (aud && !aud.paused) {
+    var animEnCours = false;
+    for (var z = 0; z < energiesMots.length; z++) {
+      if (energiesMots[z] > 0.005 || (bleusMots[z] > 0.005 && bleusMots[z] < 0.995)) {
+        animEnCours = true;
+        break;
+      }
+    }
+
+    if ((aud && !aud.paused) || animEnCours) {
       rafId = requestAnimationFrame(etapeSuiviAudioAfterEffects);
     } else {
       rafId = null;
     }
   }
 
+  var enCoursDeSync = false;
   function synchroniserTout() {
-    assurerBoutonAllemandDansBarre();
-    assurerBoutonSuiviVisible();
-    reparerSoleilEtLuneEnOrbite();
-    retirerRecitateurMaher();
-    if (modeAllemandActif) appliquerInterfaceEtContenuAllemand();
-    mettreAJourMentionsTraducteurEtExegese();
-    masquerTraductionBasSiMotAMot();
-    appliquerVraiMotAMotSurDOM();
-    appliquerZoomMotAMot();
-    injecterPackSeoComplet();
-    var vk = obtenirCleVerset();
-    if (vk) chargerVraiMotAMotVerset(vk, obtenirLangueActive());
+    if (enCoursDeSync) return;
+    enCoursDeSync = true;
+    try {
+      assurerBoutonAllemandDansBarre();
+      assurerBoutonSuiviVisible();
+      reparerSoleilEtLuneEnOrbite();
+      retirerRecitateurMaher();
+      if (modeAllemandActif) appliquerInterfaceEtContenuAllemand();
+      mettreAJourMentionsTraducteurEtExegese();
+      masquerTraductionBasSiMotAMot();
+      appliquerVraiMotAMotSurDOM();
+      appliquerZoomMotAMot();
+      injecterPackSeoComplet();
+      var cleRec = obtenirCleRecitateurSelectionne();
+      var vk = obtenirCleVerset();
+      if (cleRec && vk) chargerTimestampsQdc(cleRec, vk);
+      if (vk) chargerVraiMotAMotVerset(vk, obtenirLangueActive());
+    } finally {
+      enCoursDeSync = false;
+    }
   }
+
+  var obs = new MutationObserver(function () {
+    if (modeAllemandActif && !enCoursDeSync) {
+      synchroniserTout();
+    }
+  });
 
   window.addEventListener("DOMContentLoaded", function () {
     synchroniserTout();
     reinitialiserMotsEnBlancPur();
+    if (document.body) {
+      obs.observe(document.body, { childList: true, subtree: true });
+    }
   });
 
   document.addEventListener("click", function (e) {
@@ -2125,13 +2270,22 @@ html body #btnLangDeV57.active-de-v57 {
         reinitialiserMotsEnBlancPur();
       } else if (t.indexOf("Suivi") !== -1 || t.indexOf("Follow") !== -1 || t.indexOf("Seguimiento") !== -1 || t.indexOf("Verfolgung") !== -1 || t.indexOf("تتبع") !== -1) {
         suiviEstActif = !suiviEstActif;
+        lancerBoucleSuivi();
       }
     }
-    setTimeout(synchroniserTout, 20);
-    setTimeout(synchroniserTout, 90);
+    setTimeout(synchroniserTout, 15);
+    setTimeout(synchroniserTout, 80);
   });
 
-  setInterval(synchroniserTout, 280);
+  // RELANCEUR PERMANENT DU SUIVI AUDIO TOUTES LES 200ms
+  setInterval(function () {
+    synchroniserTout();
+    var aud = trouverAudioActif();
+    if (aud && !aud.paused && !rafId) {
+      lancerBoucleSuivi();
+    }
+  }, 200);
+
   synchroniserTout();
 })();</script>
 </head>
@@ -2139,7 +2293,7 @@ html body #btnLangDeV57.active-de-v57 {
   <div class="cosmos-exterior-wrapper"><canvas id="fullPageSkyCanvas"></canvas><div class="flat-earth-sun" id="flatEarthSun"><div class="sun-core"></div></div><div class="flat-earth-moon" id="flatEarthMoon"><div class="moon-white-core"></div></div></div>
   <div class="interface-layer">
     <header class="top-nav">
-      <a href="index.html?v=1794446094901" class="home-btn" onclick="sauvegarderConfigCiel()"><svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Logo Le Noble Coran & Tafsir">
+      <a href="index.html?v=1794447235448" class="home-btn" onclick="sauvegarderConfigCiel()"><svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Logo Le Noble Coran & Tafsir">
     <defs>
       <linearGradient id="bgGrad_nav-logo-svg" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stop-color="#07111a"/>
@@ -2305,7 +2459,7 @@ html body #btnLangDeV57.active-de-v57 {
       </main>
     </div>
   </div>
-  <script src="data-sourate-26.js?v=1794446094901"></script>
+  <script src="data-sourate-26.js?v=1794447235448"></script>
   <script>
     const numSourateActuelle = 26; let numVersetActuel = 18; let codeAudio = "026018";
     
