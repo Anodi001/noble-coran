@@ -2457,6 +2457,8 @@ async function lancerGeneration() {
 <link rel="preconnect" href="[https://api.qurancdn.com](https://api.qurancdn.com)" crossorigin>
 <link rel="preconnect" href="[https://everyayah.com](https://everyayah.com)" crossorigin>
 
+<meta name="yandex-verification" content="9ed8551291c4ae1e">
+<meta name="yandex-verification" content="9ed8551291c4ae1e">
 <link rel="preconnect" href="https://api.quran.com" crossorigin>
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
@@ -6319,6 +6321,8 @@ html body #btnLangRuV70.active-ext-v70 {
 <link rel="preconnect" href="[https://api.qurancdn.com](https://api.qurancdn.com)" crossorigin>
 <link rel="preconnect" href="[https://everyayah.com](https://everyayah.com)" crossorigin>
 
+<meta name="yandex-verification" content="9ed8551291c4ae1e">
+<meta name="yandex-verification" content="9ed8551291c4ae1e">
 <link rel="preconnect" href="https://api.quran.com" crossorigin>
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>

@@ -7,7 +7,8 @@ if (!fs.existsSync(pGen)) {
   process.exit(1);
 }
 
-const preconnectTags = `<link rel="preconnect" href="https://api.quran.com" crossorigin>
+const preconnectTags = `<meta name="yandex-verification" content="9ed8551291c4ae1e">
+<link rel="preconnect" href="https://api.quran.com" crossorigin>
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
 <link rel="preconnect" href="https://translate.googleapis.com" crossorigin>`;
