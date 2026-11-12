@@ -2459,6 +2459,8 @@ async function lancerGeneration() {
 
 <meta name="yandex-verification" content="9ed8551291c4ae1e">
 <meta name="yandex-verification" content="9ed8551291c4ae1e">
+<meta name="yandex-verification" content="9ed8551291c4ae1e">
+<meta name="yandex-verification" content="9ed8551291c4ae1e">
 <link rel="preconnect" href="https://api.quran.com" crossorigin>
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
@@ -2754,6 +2756,7 @@ html body #btnLangRuV70.active-ext-v70 {
       localStorage.setItem("corantafsir_lang_ext_v70", pLang);
     } else {
       var savedExt = localStorage.getItem("corantafsir_lang_ext_v70") || localStorage.getItem("corantafsir_lang_ext_v69") || localStorage.getItem("corantafsir_lang_ext_v68");
+      if (!savedExt && !localStorage.getItem("corantafsir_first_lang_v72")) { localStorage.setItem("corantafsir_first_lang_v72", "1"); var navL = ((navigator.language || "").slice(0, 2)).toLowerCase(); if (LANGUES_EXT_SUPPORTEES[navL]) { langExtActive = navL; localStorage.setItem("corantafsir_lang_ext_v70", navL); } }
       if (savedExt && LANGUES_EXT_SUPPORTEES[savedExt]) {
         langExtActive = savedExt;
       }
@@ -4723,7 +4726,7 @@ html body #btnLangRuV70.active-ext-v70 {
       ? "https://corantafsir.com/sourate-" + vk.split(":")[0] + "-verset-" + vk.split(":")[1] + ".html"
       : "https://corantafsir.com/";
 
-    var languesSeo = ["fr", "en", "es", "ar", "de", "it", "id", "ru"];
+    var languesSeo = ["fr", "en", "en-US", "en-GB", "es", "ar", "de", "de-DE", "it", "id", "ru"];
     for (var l = 0; l < languesSeo.length; l++) {
       var codeL = languesSeo[l];
       var linkAlt = document.querySelector("link[hreflang='" + codeL + "']");
@@ -4733,7 +4736,7 @@ html body #btnLangRuV70.active-ext-v70 {
         linkAlt.setAttribute("hreflang", codeL);
         document.head.appendChild(linkAlt);
       }
-      linkAlt.setAttribute("href", codeL === "fr" ? urlCanonique : urlCanonique + "?lang=" + codeL);
+      linkAlt.setAttribute("href", codeL === "fr" ? urlCanonique : urlCanonique + "?lang=" + codeL.split("-")[0]);
     }
   }
 
@@ -6323,6 +6326,8 @@ html body #btnLangRuV70.active-ext-v70 {
 
 <meta name="yandex-verification" content="9ed8551291c4ae1e">
 <meta name="yandex-verification" content="9ed8551291c4ae1e">
+<meta name="yandex-verification" content="9ed8551291c4ae1e">
+<meta name="yandex-verification" content="9ed8551291c4ae1e">
 <link rel="preconnect" href="https://api.quran.com" crossorigin>
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
@@ -6618,6 +6623,7 @@ html body #btnLangRuV70.active-ext-v70 {
       localStorage.setItem("corantafsir_lang_ext_v70", pLang);
     } else {
       var savedExt = localStorage.getItem("corantafsir_lang_ext_v70") || localStorage.getItem("corantafsir_lang_ext_v69") || localStorage.getItem("corantafsir_lang_ext_v68");
+      if (!savedExt && !localStorage.getItem("corantafsir_first_lang_v72")) { localStorage.setItem("corantafsir_first_lang_v72", "1"); var navL = ((navigator.language || "").slice(0, 2)).toLowerCase(); if (LANGUES_EXT_SUPPORTEES[navL]) { langExtActive = navL; localStorage.setItem("corantafsir_lang_ext_v70", navL); } }
       if (savedExt && LANGUES_EXT_SUPPORTEES[savedExt]) {
         langExtActive = savedExt;
       }
@@ -8587,7 +8593,7 @@ html body #btnLangRuV70.active-ext-v70 {
       ? "https://corantafsir.com/sourate-" + vk.split(":")[0] + "-verset-" + vk.split(":")[1] + ".html"
       : "https://corantafsir.com/";
 
-    var languesSeo = ["fr", "en", "es", "ar", "de", "it", "id", "ru"];
+    var languesSeo = ["fr", "en", "en-US", "en-GB", "es", "ar", "de", "de-DE", "it", "id", "ru"];
     for (var l = 0; l < languesSeo.length; l++) {
       var codeL = languesSeo[l];
       var linkAlt = document.querySelector("link[hreflang='" + codeL + "']");
@@ -8597,7 +8603,7 @@ html body #btnLangRuV70.active-ext-v70 {
         linkAlt.setAttribute("hreflang", codeL);
         document.head.appendChild(linkAlt);
       }
-      linkAlt.setAttribute("href", codeL === "fr" ? urlCanonique : urlCanonique + "?lang=" + codeL);
+      linkAlt.setAttribute("href", codeL === "fr" ? urlCanonique : urlCanonique + "?lang=" + codeL.split("-")[0]);
     }
   }
 

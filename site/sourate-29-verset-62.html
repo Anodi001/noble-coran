@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1794519511172">
-  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=1794519511172">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1794520350798">
+  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=1794520350798">
   <link rel="canonical" href="https://corantafsir.com/sourate-29-verset-62.html">
   <title>Sourate 29 verset 62 (Al-'Ankabut) - Coran & Tafsir</title>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -714,6 +714,8 @@ body.wbw-mode-on .fr-verse-text {
 <link rel="preconnect" href="[https://everyayah.com](https://everyayah.com)" crossorigin>
 
 <meta name="yandex-verification" content="9ed8551291c4ae1e">
+<meta name="yandex-verification" content="9ed8551291c4ae1e">
+<meta name="yandex-verification" content="9ed8551291c4ae1e">
 <link rel="preconnect" href="https://api.quran.com" crossorigin>
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
@@ -1009,6 +1011,7 @@ html body #btnLangRuV70.active-ext-v70 {
       localStorage.setItem("corantafsir_lang_ext_v70", pLang);
     } else {
       var savedExt = localStorage.getItem("corantafsir_lang_ext_v70") || localStorage.getItem("corantafsir_lang_ext_v69") || localStorage.getItem("corantafsir_lang_ext_v68");
+      if (!savedExt && !localStorage.getItem("corantafsir_first_lang_v72")) { localStorage.setItem("corantafsir_first_lang_v72", "1"); var navL = ((navigator.language || "").slice(0, 2)).toLowerCase(); if (LANGUES_EXT_SUPPORTEES[navL]) { langExtActive = navL; localStorage.setItem("corantafsir_lang_ext_v70", navL); } }
       if (savedExt && LANGUES_EXT_SUPPORTEES[savedExt]) {
         langExtActive = savedExt;
       }
@@ -2978,7 +2981,7 @@ html body #btnLangRuV70.active-ext-v70 {
       ? "https://corantafsir.com/sourate-" + vk.split(":")[0] + "-verset-" + vk.split(":")[1] + ".html"
       : "https://corantafsir.com/";
 
-    var languesSeo = ["fr", "en", "es", "ar", "de", "it", "id", "ru"];
+    var languesSeo = ["fr", "en", "en-US", "en-GB", "es", "ar", "de", "de-DE", "it", "id", "ru"];
     for (var l = 0; l < languesSeo.length; l++) {
       var codeL = languesSeo[l];
       var linkAlt = document.querySelector("link[hreflang='" + codeL + "']");
@@ -2988,7 +2991,7 @@ html body #btnLangRuV70.active-ext-v70 {
         linkAlt.setAttribute("hreflang", codeL);
         document.head.appendChild(linkAlt);
       }
-      linkAlt.setAttribute("href", codeL === "fr" ? urlCanonique : urlCanonique + "?lang=" + codeL);
+      linkAlt.setAttribute("href", codeL === "fr" ? urlCanonique : urlCanonique + "?lang=" + codeL.split("-")[0]);
     }
   }
 
@@ -3440,7 +3443,7 @@ html body #btnLangRuV70.active-ext-v70 {
   <div class="cosmos-exterior-wrapper"><canvas id="fullPageSkyCanvas"></canvas><div class="flat-earth-sun" id="flatEarthSun"><div class="sun-core"></div></div><div class="flat-earth-moon" id="flatEarthMoon"><div class="moon-white-core"></div></div></div>
   <div class="interface-layer">
     <header class="top-nav">
-      <a href="index.html?v=1794519511172" class="home-btn" onclick="sauvegarderConfigCiel()"><svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Logo Le Noble Coran & Tafsir">
+      <a href="index.html?v=1794520350798" class="home-btn" onclick="sauvegarderConfigCiel()"><svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Logo Le Noble Coran & Tafsir">
     <defs>
       <linearGradient id="bgGrad_nav-logo-svg" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stop-color="#07111a"/>
@@ -3606,7 +3609,7 @@ html body #btnLangRuV70.active-ext-v70 {
       </main>
     </div>
   </div>
-  <script src="data-sourate-29.js?v=1794519511172"></script>
+  <script src="data-sourate-29.js?v=1794520350798"></script>
   <script>
     const numSourateActuelle = 29; let numVersetActuel = 62; let codeAudio = "029062";
     
