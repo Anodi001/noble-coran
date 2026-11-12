@@ -2461,7 +2461,7 @@ async function lancerGeneration() {
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
 <link rel="preconnect" href="https://translate.googleapis.com" crossorigin>
-<style id="patch-master-v66">
+<style id="patch-master-v67">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -2476,7 +2476,7 @@ html body .flat-earth-sun,
 html body [id*="sun" i]:not([id*="sound" i]),
 html body [class*="sun" i]:not([class*="sound" i]),
 html body [data-astre-role="sun"],
-html body .astre-soleil-pur-v66 {
+html body .astre-soleil-pur-v67 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -2496,8 +2496,8 @@ html body .astre-soleil-pur-v66 {
 }
 html body #flatEarthSun::before, html body #flatEarthSun::after,
 html body .flat-earth-sun::before, html body .flat-earth-sun::after,
-html body .astre-soleil-pur-v66::before, html body .astre-soleil-pur-v66::after,
-html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v66 * {
+html body .astre-soleil-pur-v67::before, html body .astre-soleil-pur-v67::after,
+html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v67 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
@@ -2507,7 +2507,7 @@ html body .flat-earth-moon,
 html body [id*="moon" i],
 html body [class*="moon" i],
 html body [data-astre-role="moon"],
-html body .astre-lune-pure-v66 {
+html body .astre-lune-pure-v67 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -2527,13 +2527,13 @@ html body .astre-lune-pure-v66 {
 }
 html body #flatEarthMoon::before, html body #flatEarthMoon::after,
 html body .flat-earth-moon::before, html body .flat-earth-moon::after,
-html body .astre-lune-pure-v66::before, html body .astre-lune-pure-v66::after,
-html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v66 * {
+html body .astre-lune-pure-v67::before, html body .astre-lune-pure-v67::after,
+html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v67 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
 /* 3. MASQUAGE DE MAHER AL-MUAIQLY & TRADUCTION DU BAS EN MOT-À-MOT */
-html body img[src*="maher" i], html body [data-reciter*="maher" i], html body .maher-supprime-v66,
+html body img[src*="maher" i], html body [data-reciter*="maher" i], html body .maher-supprime-v67,
 html body .wbw-masquer-traduction-bas {
   display: none !important; visibility: hidden !important; height: 0 !important; max-height: 0 !important; margin: 0 !important; padding: 0 !important; border: none !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important;
 }
@@ -2582,49 +2582,45 @@ html body .follow-word {
 }
 
 /* 6. BOUTONS DE LANGUE ÉTENDUS (DE, IT, ID, RU) */
-html body #btnLangDeV66,
-html body #btnLangItV66,
-html body #btnLangIdV66,
-html body #btnLangRuV66 {
+html body #btnLangDeV67,
+html body #btnLangItV67,
+html body #btnLangIdV67,
+html body #btnLangRuV67 {
   cursor: pointer !important; transition: all 0.2s ease !important; display: inline-flex !important; align-items: center !important; justify-content: center !important;
 }
-html body #btnLangDeV66.active-ext-v66,
-html body #btnLangItV66.active-ext-v66,
-html body #btnLangIdV66.active-ext-v66,
-html body #btnLangRuV66.active-ext-v66 {
+html body #btnLangDeV67.active-ext-v67,
+html body #btnLangItV67.active-ext-v67,
+html body #btnLangIdV67.active-ext-v67,
+html body #btnLangRuV67.active-ext-v67 {
   background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(56, 189, 248, 0.18)) !important;
   border: 1px solid #38bdf8 !important; color: #ffffff !important; border-radius: 999px !important;
 }
 
-/* 7. PLANIFICATEUR DE KHATM (1 / 4 / 6 / 12 MOIS & 3 ORDRES) */
-#khatmPlannerWidgetV66 {
-  max-width: 980px;
-  margin: 18px auto 24px auto;
-  padding: 20px 24px;
-  border-radius: 22px;
-  background: linear-gradient(145deg, rgba(8, 20, 38, 0.88), rgba(4, 12, 24, 0.94));
-  border: 1px solid rgba(56, 189, 248, 0.28);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55), inset 0 0 24px rgba(56, 189, 248, 0.06);
-  color: #f8fafc;
-  font-family: system-ui, -apple-system, sans-serif;
-  position: relative;
-  z-index: 10;
-}
-#khatmPlannerWidgetV66.khatm-compact-verse {
-  max-width: 820px;
-  margin: 12px auto 14px auto;
-  padding: 14px 18px;
+/* 7. PLANIFICATEUR DE KHATM ALIGNÉ À 100% SUR LA LONGUEUR DES BLOCS DU SITE */
+#khatmPlannerWidgetV67 {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0 auto 20px auto !important;
+  padding: 20px 26px !important;
+  border-radius: 22px !important;
+  background: linear-gradient(145deg, rgba(8, 20, 38, 0.90), rgba(4, 12, 24, 0.95)) !important;
+  border: 1px solid rgba(56, 189, 248, 0.28) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55), inset 0 0 24px rgba(56, 189, 248, 0.06) !important;
+  color: #f8fafc !important;
+  font-family: system-ui, -apple-system, sans-serif !important;
+  position: relative !important;
+  z-index: 10 !important;
 }
 .khatm-header-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 12px;
   margin-bottom: 14px;
 }
 .khatm-title-main {
-  font-size: 1.05rem;
+  font-size: 1.06rem;
   font-weight: 700;
   color: #38bdf8;
   display: flex;
@@ -2632,8 +2628,8 @@ html body #btnLangRuV66.active-ext-v66 {
   gap: 8px;
 }
 .khatm-badge-rythme {
-  font-size: 0.78rem;
-  padding: 4px 12px;
+  font-size: 0.79rem;
+  padding: 5px 14px;
   border-radius: 999px;
   background: rgba(16, 185, 129, 0.16);
   border: 1px solid rgba(16, 185, 129, 0.45);
@@ -2645,6 +2641,7 @@ html body #btnLangRuV66.active-ext-v66 {
   flex-wrap: wrap;
   gap: 14px;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 14px;
 }
 .khatm-group {
@@ -2662,12 +2659,12 @@ html body #btnLangRuV66.active-ext-v66 {
   letter-spacing: 0.04em;
 }
 .khatm-pill-btn {
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(15, 23, 42, 0.78);
   border: 1px solid rgba(148, 163, 184, 0.25);
   color: #cbd5e1;
-  padding: 6px 12px;
+  padding: 6px 13px;
   border-radius: 999px;
-  font-size: 0.78rem;
+  font-size: 0.79rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.18s ease;
@@ -2685,11 +2682,11 @@ html body #btnLangRuV66.active-ext-v66 {
 .khatm-progress-wrap {
   width: 100%;
   height: 10px;
-  background: rgba(15, 23, 42, 0.9);
+  background: rgba(15, 23, 42, 0.92);
   border-radius: 999px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  margin-bottom: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  margin-bottom: 14px;
 }
 .khatm-progress-fill {
   height: 100%;
@@ -2703,7 +2700,7 @@ html body #btnLangRuV66.active-ext-v66 {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  font-size: 0.85rem;
+  font-size: 0.86rem;
   color: #e2e8f0;
 }
 .khatm-actions-row {
@@ -2716,7 +2713,7 @@ html body #btnLangRuV66.active-ext-v66 {
   background: linear-gradient(135deg, #0ea5e9, #2563eb);
   border: 1px solid #60a5fa;
   color: #ffffff;
-  padding: 7px 15px;
+  padding: 7px 16px;
   border-radius: 999px;
   font-size: 0.82rem;
   font-weight: 700;
@@ -2731,35 +2728,52 @@ html body #btnLangRuV66.active-ext-v66 {
   background: rgba(16, 185, 129, 0.15);
   border: 1px solid rgba(16, 185, 129, 0.5);
   color: #6ee7b7;
-  padding: 7px 13px;
+  padding: 7px 14px;
   border-radius: 999px;
   font-size: 0.79rem;
   font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.khatm-select-pos {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #e2e8f0;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.77rem;
+  outline: none;
   cursor: pointer;
 }
 .khatm-action-reset {
   background: transparent;
   border: 1px solid rgba(248, 113, 113, 0.35);
   color: #fca5a5;
-  padding: 6px 10px;
+  padding: 6px 11px;
   border-radius: 999px;
-  font-size: 0.74rem;
+  font-size: 0.75rem;
   cursor: pointer;
 }
 </style>
-<script id="script-master-v66">(function codeClientV66() {
+<script id="script-master-v67">(function codeClientV67() {
   var LANGUES_EXT_SUPPORTEES = { de: 27, it: 153, id: 33, ru: 45 };
   var langExtActive = "";
   var IgnoreClicInterneFr = false;
 
   try {
+    var oldW = document.getElementById("khatmPlannerWidgetV66");
+    if (oldW && oldW.parentNode) oldW.parentNode.removeChild(oldW);
+
     var urlParams = new URLSearchParams(window.location.search);
     var pLang = urlParams.get("lang");
     if (pLang && LANGUES_EXT_SUPPORTEES[pLang]) {
       langExtActive = pLang;
-      localStorage.setItem("corantafsir_lang_ext_v66", pLang);
+      localStorage.setItem("corantafsir_lang_ext_v67", pLang);
     } else {
-      var savedExt = localStorage.getItem("corantafsir_lang_ext_v66") || localStorage.getItem("corantafsir_lang_ext_v65");
+      var savedExt = localStorage.getItem("corantafsir_lang_ext_v67") || localStorage.getItem("corantafsir_lang_ext_v66") || localStorage.getItem("corantafsir_lang_ext_v65");
       if (savedExt && LANGUES_EXT_SUPPORTEES[savedExt]) {
         langExtActive = savedExt;
       }
@@ -2767,7 +2781,7 @@ html body #btnLangRuV66.active-ext-v66 {
   } catch (e) {}
 
   // ==========================================================================
-  // 0. BASE DE DONNÉES ET MOTEUR DU PLANIFICATEUR DE KHATM (6 236 VERSETS)
+  // 0. MOTEUR DU PLANIFICATEUR DE KHATM (6 236 VERSETS — 3 ORDRES & 4 DURÉES)
   // ==========================================================================
   var NB_VERSETS_PAR_SOURATE = [
     0,
@@ -2806,8 +2820,8 @@ html body #btnLangRuV66.active-ext-v66 {
 
   var TOTAL_VERSETS_CORAN = 6236;
   var etatKhatm = {
-    months: 1, // 1, 4, 6, 12
-    order: "revelation", // "revelation", "croissant", "decroissant"
+    months: 1,
+    order: "revelation",
     idxByOrder: {
       revelation: 0,
       croissant: 0,
@@ -2816,7 +2830,7 @@ html body #btnLangRuV66.active-ext-v66 {
   };
 
   try {
-    var sauvKhatm = localStorage.getItem("corantafsir_khatm_v66");
+    var sauvKhatm = localStorage.getItem("corantafsir_khatm_v67") || localStorage.getItem("corantafsir_khatm_v66");
     if (sauvKhatm) {
       var parsedK = JSON.parse(sauvKhatm);
       if (parsedK && parsedK.idxByOrder) {
@@ -2829,7 +2843,7 @@ html body #btnLangRuV66.active-ext-v66 {
 
   function sauvegarderEtatKhatm() {
     try {
-      localStorage.setItem("corantafsir_khatm_v66", JSON.stringify(etatKhatm));
+      localStorage.setItem("corantafsir_khatm_v67", JSON.stringify(etatKhatm));
     } catch (e) {}
   }
 
@@ -2842,6 +2856,15 @@ html body #btnLangRuV66.active-ext-v66 {
       for (var c = 1; c <= 114; c++) arr.push(c);
     }
     return arr;
+  }
+
+  function obtenirSourateSuivanteSelonOrdre(ord, numSActuel) {
+    var liste = obtenirListeSouratesSelonOrdre(ord);
+    var idx = liste.indexOf(Number(numSActuel));
+    if (idx !== -1 && idx + 1 < liste.length) {
+      return liste[idx + 1];
+    }
+    return null;
   }
 
   function convertirIndexGlobalVersSourateVerset(ord, globalIdx) {
@@ -2880,29 +2903,65 @@ html body #btnLangRuV66.active-ext-v66 {
     return Math.ceil(TOTAL_VERSETS_CORAN / j);
   }
 
-  // Si l'URL contient ?khatm_verse=Y, sélectionner automatiquement ce verset à l'ouverture de la page !
-  var khatmVerseDejaApplique = false;
+  // DÉTECTION STRICTE D'UNE VRAIE PAGE VERSET (JAMAIS DE FAUX POSITIF SUR INDEX.HTML !)
+  function obtenirCleVerset() {
+    var urlFull = window.location.pathname.match(/sourate-(\\d+)-verset-(\\d+)/i);
+    var aVersetArabe = Boolean(document.querySelector("#arabicVerse, .arabic-glow-verse"));
+    if (!urlFull && !aVersetArabe) {
+      return "";
+    }
+    var numS = urlFull ? urlFull[1] : "";
+    var selects = document.querySelectorAll("select");
+    for (var i = 0; i < selects.length; i++) {
+      var s = selects[i];
+      if (s.classList.contains("khatm-select-pos")) continue;
+      if (s.options && s.selectedIndex >= 0) {
+        var optTxt = s.options[s.selectedIndex].textContent || "";
+        var vm = optTxt.match(/(?:Verset|Verse|Aleya|Vers|Versetto|Ayat|Аят|آية)\\s*(\\d+)/i);
+        if (vm && numS) return numS + ":" + vm[1];
+      }
+    }
+    // Chercher le badge "68 : 1" hors du planificateur
+    var badges = document.querySelectorAll("span, div");
+    for (var b = 0; b < badges.length; b++) {
+      var el = badges[b];
+      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV67")) continue;
+      var txt = (el.textContent || "").trim();
+      var bm = txt.match(/^(\\d{1,3})\\s*:\\s*(\\d{1,3})$/);
+      if (bm) return bm[1] + ":" + bm[2];
+    }
+    if (urlFull) return urlFull[1] + ":" + urlFull[2];
+    return "";
+  }
+
+  function allerAuVersetSurMemePage(numV) {
+    var selects = document.querySelectorAll("select");
+    for (var i = 0; i < selects.length; i++) {
+      var sel = selects[i];
+      if (sel.classList.contains("khatm-select-pos")) continue;
+      if (sel.options && sel.options.length >= numV) {
+        var opt0 = (sel.options[0].textContent || "").toLowerCase();
+        if (opt0.indexOf("vers") !== -1 || opt0.indexOf("aleya") !== -1 || opt0.indexOf("ayat") !== -1 || opt0.indexOf("аят") !== -1 || opt0.indexOf("آية") !== -1 || /\\d+\\s*\\/\\s*\\d+/.test(opt0)) {
+          if (sel.selectedIndex !== numV - 1) {
+            sel.selectedIndex = numV - 1;
+            sel.dispatchEvent(new Event("change", { bubbles: true }));
+          }
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  var tentativesKhatmVerse = 0;
   function verifierSautDirectVersetKhatm() {
-    if (khatmVerseDejaApplique) return;
+    if (tentativesKhatmVerse > 8) return;
     try {
       var up = new URLSearchParams(window.location.search);
       var kv = Number(up.get("khatm_verse"));
-      if (kv && kv >= 1) {
-        var selects = document.querySelectorAll("select");
-        for (var i = 0; i < selects.length; i++) {
-          var sel = selects[i];
-          if (sel.options && sel.options.length >= kv) {
-            var opt0 = (sel.options[0].textContent || "").toLowerCase();
-            if (opt0.indexOf("vers") !== -1 || opt0.indexOf("aleya") !== -1 || opt0.indexOf("ayat") !== -1 || opt0.indexOf("аят") !== -1 || opt0.indexOf("آية") !== -1 || /\\d+\\s*\\/\\s*\\d+/.test(opt0)) {
-              khatmVerseDejaApplique = true;
-              if (sel.selectedIndex !== kv - 1) {
-                sel.selectedIndex = kv - 1;
-                sel.dispatchEvent(new Event("change", { bubbles: true }));
-              }
-              break;
-            }
-          }
-        }
+      if (kv && kv >= 1 && obtenirCleVerset()) {
+        tentativesKhatmVerse++;
+        allerAuVersetSurMemePage(kv);
       }
     } catch (e) {}
   }
@@ -2920,7 +2979,6 @@ html body #btnLangRuV66.active-ext-v66 {
     var ord = etatKhatm.order;
     var idxActuel = etatKhatm.idxByOrder[ord] || 0;
     var idxPage = convertirSourateVersetVersIndexGlobal(ord, sAct, vAct);
-    // Si le lecteur avance dans sa sourate en cours (entre +1 et +220 versets), mémoriser automatiquement !
     if (idxPage > idxActuel && idxPage - idxActuel <= 220) {
       etatKhatm.idxByOrder[ord] = idxPage;
       sauvegarderEtatKhatm();
@@ -2942,7 +3000,8 @@ html body #btnLangRuV66.active-ext-v66 {
       objJour: "🎯 Fin de l'étape du jour :",
       reprendre: "▶ Reprendre ma lecture",
       validerEtape: "✅ Valider l'étape du jour",
-      memoriserIci: "📍 Mémoriser le verset affiché",
+      memoriserIci: "📍 Mémoriser ce verset",
+      sourateSuiv: "⏭️ Sourate suivante :",
       reset: "↺ Réinitialiser"
     },
     en: {
@@ -2959,7 +3018,8 @@ html body #btnLangRuV66.active-ext-v66 {
       objJour: "🎯 Today's target:",
       reprendre: "▶ Resume reading",
       validerEtape: "✅ Complete today's goal",
-      memoriserIci: "📍 Save current verse here",
+      memoriserIci: "📍 Save this verse",
+      sourateSuiv: "⏭️ Next Surah:",
       reset: "↺ Reset"
     },
     es: {
@@ -2977,6 +3037,7 @@ html body #btnLangRuV66.active-ext-v66 {
       reprendre: "▶ Reanudar lectura",
       validerEtape: "✅ Validar meta de hoy",
       memoriserIci: "📍 Guardar esta aleya",
+      sourateSuiv: "⏭️ Siguiente Sura:",
       reset: "↺ Reiniciar"
     },
     ar: {
@@ -2994,6 +3055,7 @@ html body #btnLangRuV66.active-ext-v66 {
       reprendre: "▶ متابعة القراءة",
       validerEtape: "✅ إتمام ورد اليوم",
       memoriserIci: "📍 حفظ موضعي هنا",
+      sourateSuiv: "⏭️ السورة التالية:",
       reset: "↺ إعادة ضبط"
     },
     de: {
@@ -3010,7 +3072,8 @@ html body #btnLangRuV66.active-ext-v66 {
       objJour: "🎯 Tagesziel:",
       reprendre: "▶ Weiterlesen",
       validerEtape: "✅ Tagesziel abhaken",
-      memoriserIci: "📍 Aktuellen Vers speichern",
+      memoriserIci: "📍 Diesen Vers speichern",
+      sourateSuiv: "⏭️ Nächste Sure:",
       reset: "↺ Reset"
     },
     it: {
@@ -3028,6 +3091,7 @@ html body #btnLangRuV66.active-ext-v66 {
       reprendre: "▶ Riprendi lettura",
       validerEtape: "✅ Convalida tappa di oggi",
       memoriserIci: "📍 Salva questo versetto",
+      sourateSuiv: "⏭️ Sura successiva:",
       reset: "↺ Reset"
     },
     id: {
@@ -3045,6 +3109,7 @@ html body #btnLangRuV66.active-ext-v66 {
       reprendre: "▶ Lanjutkan membaca",
       validerEtape: "✅ Selesaikan target hari ini",
       memoriserIci: "📍 Simpan ayat ini",
+      sourateSuiv: "⏭️ Surah berikutnya:",
       reset: "↺ Reset"
     },
     ru: {
@@ -3062,9 +3127,45 @@ html body #btnLangRuV66.active-ext-v66 {
       reprendre: "▶ Продолжить чтение",
       validerEtape: "✅ Завершить норму дня",
       memoriserIci: "📍 Сохранить этот аят",
+      sourateSuiv: "⏭️ Следующая сура:",
       reset: "↺ Сброс"
     }
   };
+
+  // Trouver la boîte principale de référence (Bannière Hero sur l'accueil ou Carte du verset) pour aligner la longueur au pixel près !
+  function trouverBoiteReferenceLargeur() {
+    var tousDivs = document.querySelectorAll("div, header, section");
+    var meilleur = null;
+    var maxW = 0;
+    for (var i = 0; i < tousDivs.length; i++) {
+      var el = tousDivs[i];
+      if (el.id === "khatmPlannerWidgetV67") continue;
+      var st = window.getComputedStyle(el);
+      if (st.borderRadius && parseFloat(st.borderRadius) >= 12 && st.borderWidth && parseFloat(st.borderWidth) > 0) {
+        var r = el.getBoundingClientRect();
+        if (r.width >= 600 && r.width <= 1350 && r.height >= 110 && r.top < 550) {
+          if (r.width > maxW) {
+            maxW = r.width;
+            meilleur = el;
+          }
+        }
+      }
+    }
+    return meilleur;
+  }
+
+  function ajusterLargeurExactePlanificateur() {
+    var widget = document.getElementById("khatmPlannerWidgetV67");
+    if (!widget) return;
+    var refBox = trouverBoiteReferenceLargeur();
+    if (refBox) {
+      var r = refBox.getBoundingClientRect();
+      if (r.width > 300) {
+        widget.style.setProperty("max-width", Math.round(r.width) + "px", "important");
+        widget.style.setProperty("width", Math.round(r.width) + "px", "important");
+      }
+    }
+  }
 
   function afficherOuMettreAJourPlanificateurKhatm() {
     if (!document.body) return;
@@ -3073,33 +3174,22 @@ html body #btnLangRuV66.active-ext-v66 {
     var vkPage = obtenirCleVerset();
     var estSurPageVerset = Boolean(vkPage);
 
-    var widget = document.getElementById("khatmPlannerWidgetV66");
+    var widget = document.getElementById("khatmPlannerWidgetV67");
     if (!widget) {
       widget = document.createElement("div");
-      widget.id = "khatmPlannerWidgetV66";
+      widget.id = "khatmPlannerWidgetV67";
       widget.setAttribute("translate", "no");
-      widget.className = "notranslate" + (estSurPageVerset ? " khatm-compact-verse" : "");
+      widget.className = "notranslate";
 
-      // Insérer le planificateur au bon endroit (sous la bannière sur l'accueil, ou au-dessus de la carte sur une page verset)
-      var cibleInsertion = null;
-      if (!estSurPageVerset) {
-        var inpSearch = document.querySelector("input[type='text'], input[type='search'], input:not([type])");
-        if (inpSearch && inpSearch.parentElement && inpSearch.parentElement.parentElement) {
-          cibleInsertion = inpSearch.parentElement;
-        }
-      } else {
-        var h1V = document.querySelector("h1, h2");
-        if (h1V && h1V.parentElement && h1V.parentElement.parentElement) {
-          cibleInsertion = h1V.parentElement.parentElement;
-        }
-      }
-
-      if (cibleInsertion && cibleInsertion.parentElement) {
-        cibleInsertion.parentElement.insertBefore(widget, cibleInsertion);
+      var refBox = trouverBoiteReferenceLargeur();
+      if (refBox && refBox.parentElement) {
+        refBox.parentElement.insertBefore(widget, refBox);
       } else {
         document.body.insertBefore(widget, document.body.firstChild);
       }
     }
+
+    ajusterLargeurExactePlanificateur();
 
     var ord = etatKhatm.order;
     var m = etatKhatm.months;
@@ -3116,14 +3206,47 @@ html body #btnLangRuV66.active-ext-v66 {
     var nomSourateCible = NOMS_SOURATES_COURT[cibleInfo.s] || ("Sourate " + cibleInfo.s);
     var urlReprise = "sourate-" + posInfo.s + "-verset-1.html?khatm_verse=" + posInfo.v + (langExtActive ? "&lang=" + langExtActive : "");
 
+    // Synchroniser aussi le bouton vert natif "📖 Reprendre : ..." sur la page d'accueil pour une cohérence à 100% !
+    if (!estSurPageVerset) {
+      var liens = document.querySelectorAll("a, button");
+      for (var l = 0; l < liens.length; l++) {
+        var elL = liens[l];
+        if (elL.closest("#khatmPlannerWidgetV67")) continue;
+        var txtL = (elL.textContent || "").trim();
+        if (txtL.indexOf("📖") !== -1 && (txtL.indexOf("Reprendre") !== -1 || txtL.indexOf("Resume") !== -1 || txtL.indexOf("Weiterlesen") !== -1 || txtL.indexOf("Riprendi") !== -1 || txtL.indexOf("Lanjutkan") !== -1 || txtL.indexOf("Продолжить") !== -1 || txtL.indexOf("متابعة") !== -1)) {
+          if (elL.tagName === "A") elL.setAttribute("href", urlReprise);
+        }
+      }
+    }
+
     var cleSignatureRendu = [lang, m, ord, idxActuel, vkPage].join("|");
     if (widget.getAttribute("data-render-sig") === cleSignatureRendu) return;
     widget.setAttribute("data-render-sig", cleSignatureRendu);
     widget.style.direction = lang === "ar" ? "rtl" : "ltr";
 
-    var btnMemoriserHtml = "";
+    var controlesContextuelsHtml = "";
     if (estSurPageVerset) {
-      btnMemoriserHtml = '<button type="button" class="khatm-action-secondary" data-khatm-act="save-here">' + t.memoriserIci + " (" + vkPage + ")</button>";
+      var partsVk = vkPage.split(":");
+      var sPage = Number(partsVk[0]);
+      var sSuiv = obtenirSourateSuivanteSelonOrdre(ord, sPage);
+      var btnSuivHtml = "";
+      if (sSuiv) {
+        var urlSuiv = "sourate-" + sSuiv + "-verset-1.html?khatm_verse=1" + (langExtActive ? "&lang=" + langExtActive : "");
+        btnSuivHtml = '<a href="' + urlSuiv + '" class="khatm-action-secondary">' + t.sourateSuiv + ' ' + NOMS_SOURATES_COURT[sSuiv] + ' (' + sSuiv + ':1)</a>';
+      }
+      controlesContextuelsHtml =
+        '<button type="button" class="khatm-action-secondary" data-khatm-act="save-here">' + t.memoriserIci + " (" + vkPage + ")</button>" +
+        btnSuivHtml;
+    } else {
+      // Sur la page d'accueil : sélecteur rapide de Sourate pour choisir où on en est sans ouvrir de page verset
+      var listeSOrd = obtenirListeSouratesSelonOrdre(ord);
+      var optsHtml = "";
+      for (var idxS = 0; idxS < listeSOrd.length; idxS++) {
+        var numSOpt = listeSOrd[idxS];
+        var selAttr = numSOpt === posInfo.s ? ' selected="selected"' : "";
+        optsHtml += '<option value="' + numSOpt + '"' + selAttr + '>' + (idxS + 1) + '. ' + NOMS_SOURATES_COURT[numSOpt] + ' (' + numSOpt + ':1)</option>';
+      }
+      controlesContextuelsHtml = '<select class="khatm-select-pos" title="Choisir la sourate actuelle">' + optsHtml + '</select>';
     }
 
     widget.innerHTML =
@@ -3156,13 +3279,25 @@ html body #btnLangRuV66.active-ext-v66 {
           '<strong>' + t.objJour + '</strong> <span style="color:#fde047;font-weight:600;">' + nomSourateCible + ' (' + cibleInfo.s + ':' + cibleInfo.v + ')</span>' +
         '</div>' +
         '<div class="khatm-actions-row">' +
-          '<a href="' + urlReprise + '" class="khatm-action-primary" data-khatm-act="resume">' + t.reprendre + ' (' + posInfo.s + ':' + posInfo.v + ')</a>' +
+          '<a href="' + urlReprise + '" class="khatm-action-primary" data-khatm-act="resume" data-target-s="' + posInfo.s + '" data-target-v="' + posInfo.v + '">' + t.reprendre + ' (' + posInfo.s + ':' + posInfo.v + ')</a>' +
           '<button type="button" class="khatm-action-secondary" data-khatm-act="step-day">' + t.validerEtape + ' (+' + vParJour + ')</button>' +
-          btnMemoriserHtml +
+          controlesContextuelsHtml +
           '<button type="button" class="khatm-action-reset" data-khatm-act="reset">' + t.reset + '</button>' +
         '</div>' +
       '</div>';
+
+    var selPos = widget.querySelector(".khatm-select-pos");
+    if (selPos) {
+      selPos.addEventListener("change", function () {
+        var sChoisi = Number(this.value) || 1;
+        etatKhatm.idxByOrder[etatKhatm.order] = convertirSourateVersetVersIndexGlobal(etatKhatm.order, sChoisi, 1);
+        sauvegarderEtatKhatm();
+        afficherOuMettreAJourPlanificateurKhatm();
+      });
+    }
   }
+
+  window.addEventListener("resize", ajusterLargeurExactePlanificateur);
 
   var NOMS_114_ACCUEIL = {
     de: {
@@ -3230,9 +3365,9 @@ html body #btnLangRuV66.active-ext-v66 {
 
   function modifierNoeudTexteSeul(textNode, nouveauTexte) {
     if (!textNode || textNode.nodeType !== 3) return;
-    if (textNode.__origExtV66 === undefined) {
-      textNode.__origExtV66 = textNode.nodeValue;
-      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV66 });
+    if (textNode.__origExtV67 === undefined) {
+      textNode.__origExtV67 = textNode.nodeValue;
+      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV67 });
     }
     if (textNode.nodeValue !== nouveauTexte) {
       textNode.nodeValue = nouveauTexte;
@@ -3287,21 +3422,21 @@ html body #btnLangRuV66.active-ext-v66 {
     for (var f = 0; f < conteneurLang.children.length; f++) {
       if (conteneurLang.children[f] !== btnActif) {
         conteneurLang.children[f].classList.remove("active");
-        conteneurLang.children[f].classList.remove("active-ext-v66");
+        conteneurLang.children[f].classList.remove("active-ext-v67");
       }
     }
-    if (btnActif) btnActif.classList.add("active-ext-v66");
+    if (btnActif) btnActif.classList.add("active-ext-v67");
   }
 
   function assurerBoutonsLanguesEtendues() {
-    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV66), [id^='btnLangItV']:not(#btnLangItV66), [id^='btnLangIdV']:not(#btnLangIdV66), [id^='btnLangRuV']:not(#btnLangRuV66)");
+    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV67), [id^='btnLangItV']:not(#btnLangItV67), [id^='btnLangIdV']:not(#btnLangIdV67), [id^='btnLangRuV']:not(#btnLangRuV67)");
     for (var b = 0; b < oldBtns.length; b++) {
       if (oldBtns[b].parentNode) oldBtns[b].parentNode.removeChild(oldBtns[b]);
     }
 
-    var mapIds = { de: "btnLangDeV66", it: "btnLangItV66", id: "btnLangIdV66", ru: "btnLangRuV66" };
-    if (document.getElementById("btnLangDeV66") && document.getElementById("btnLangIdV66") && document.getElementById("btnLangRuV66")) {
-      var parentBar = document.getElementById("btnLangDeV66").parentElement;
+    var mapIds = { de: "btnLangDeV67", it: "btnLangItV67", id: "btnLangIdV67", ru: "btnLangRuV67" };
+    if (document.getElementById("btnLangDeV67") && document.getElementById("btnLangIdV67") && document.getElementById("btnLangRuV67")) {
+      var parentBar = document.getElementById("btnLangDeV67").parentElement;
       if (parentBar) {
         parentBar.setAttribute("translate", "no");
         parentBar.classList.add("notranslate");
@@ -3310,14 +3445,14 @@ html body #btnLangRuV66.active-ext-v66 {
         var bEl = document.getElementById(mapIds[code]);
         if (!bEl) continue;
         if (langExtActive === code) {
-          bEl.classList.add("active-ext-v66");
+          bEl.classList.add("active-ext-v67");
           if (parentBar) {
             for (var k = 0; k < parentBar.children.length; k++) {
               if (parentBar.children[k] !== bEl) parentBar.children[k].classList.remove("active");
             }
           }
         } else {
-          bEl.classList.remove("active-ext-v66");
+          bEl.classList.remove("active-ext-v67");
         }
       }
       return;
@@ -3371,14 +3506,14 @@ html body #btnLangRuV66.active-ext-v66 {
         } else {
           nvBtn.innerHTML = '<span style="font-size:0.72em;opacity:0.75;margin-right:2px;">' + labelCourt + "</span><span>" + labelCourt + "</span>";
         }
-        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v66");
+        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v67");
 
         nvBtn.addEventListener("click", function (ev) {
           ev.preventDefault();
           ev.stopPropagation();
           restaurerTextesOriginauxDepuisExt();
           langExtActive = codeIso;
-          try { localStorage.setItem("corantafsir_lang_ext_v66", codeIso); } catch (e) {}
+          try { localStorage.setItem("corantafsir_lang_ext_v67", codeIso); } catch (e) {}
           basculerDepuisArabeSurClicUtilisateur(conteneurLang, nvBtn);
           dernierVersetSeo = "";
           setTimeout(synchroniserTout, 15);
@@ -3386,10 +3521,10 @@ html body #btnLangRuV66.active-ext-v66 {
         return nvBtn;
       }
 
-      var btnDe = creerBoutonLangExt("btnLangDeV66", "de", "DE");
-      var btnIt = creerBoutonLangExt("btnLangItV66", "it", "IT");
-      var btnId = creerBoutonLangExt("btnLangIdV66", "id", "ID");
-      var btnRu = creerBoutonLangExt("btnLangRuV66", "ru", "RU");
+      var btnDe = creerBoutonLangExt("btnLangDeV67", "de", "DE");
+      var btnIt = creerBoutonLangExt("btnLangItV67", "it", "IT");
+      var btnId = creerBoutonLangExt("btnLangIdV67", "id", "ID");
+      var btnRu = creerBoutonLangExt("btnLangRuV67", "ru", "RU");
 
       var freresInit = Array.prototype.slice.call(conteneurLang.children);
       for (var a = 0; a < freresInit.length; a++) {
@@ -3400,11 +3535,11 @@ html body #btnLangRuV66.active-ext-v66 {
             if (IgnoreClicInterneFr) return;
             var etaitEnWbw = obtenirCartesMotAMotVisibles().length >= 2;
             langExtActive = "";
-            try { localStorage.setItem("corantafsir_lang_ext_v66", "native"); } catch (e) {}
-            btnDe.classList.remove("active-ext-v66");
-            btnIt.classList.remove("active-ext-v66");
-            btnId.classList.remove("active-ext-v66");
-            btnRu.classList.remove("active-ext-v66");
+            try { localStorage.setItem("corantafsir_lang_ext_v67", "native"); } catch (e) {}
+            btnDe.classList.remove("active-ext-v67");
+            btnIt.classList.remove("active-ext-v67");
+            btnId.classList.remove("active-ext-v67");
+            btnRu.classList.remove("active-ext-v67");
             restaurerTextesOriginauxDepuisExt();
             dernierVersetSeo = "";
 
@@ -3466,8 +3601,8 @@ html body #btnLangRuV66.active-ext-v66 {
   function traduireNoeudVersExtAsync(textNode, origTxt, codeLang) {
     if (!origTxt || origTxt.length < 3 || !LANGUES_EXT_SUPPORTEES[codeLang]) return;
     var cle = codeLang + "_" + origTxt.slice(0, 140) + "_" + origTxt.length;
-    var esp1 = (textNode.__origExtV66 || textNode.nodeValue).match(/^\\s*/)[0];
-    var esp2 = (textNode.__origExtV66 || textNode.nodeValue).match(/\\s*$/)[0];
+    var esp1 = (textNode.__origExtV67 || textNode.nodeValue).match(/^\\s*/)[0];
+    var esp2 = (textNode.__origExtV67 || textNode.nodeValue).match(/\\s*$/)[0];
 
     if (cacheTexteUnitaireExt[cle]) {
       modifierNoeudTexteSeul(textNode, esp1 + cacheTexteUnitaireExt[cle] + esp2);
@@ -3556,6 +3691,7 @@ html body #btnLangRuV66.active-ext-v66 {
       "2. ordre classique (1 à 114)": "2. Klassische Reihenfolge (1–114)",
       "⭐ 3. versets des miracles scientifiques": "3. ⭐ Wunder des Korans",
       "3. ⭐ miracles du coran": "3. ⭐ Wunder des Korans",
+      "3. ⭐ les miracles du coran": "3. ⭐ Wunder des Korans",
       "mecquoise": "MEKKANISCH",
       "médinoise": "MEDINENSISCH"
     },
@@ -3612,6 +3748,7 @@ html body #btnLangRuV66.active-ext-v66 {
       "2. ordre classique (1 à 114)": "2. Ordine Classico (1–114)",
       "⭐ 3. versets des miracles scientifiques": "3. ⭐ I Miracoli del Corano",
       "3. ⭐ miracles du coran": "3. ⭐ I Miracoli del Corano",
+      "3. ⭐ les miracles du coran": "3. ⭐ I Miracoli del Corano",
       "mecquoise": "MECCANA",
       "médinoise": "MEDINESE"
     },
@@ -3668,6 +3805,7 @@ html body #btnLangRuV66.active-ext-v66 {
       "2. ordre classique (1 à 114)": "2. Urutan Mushaf (1–114)",
       "⭐ 3. versets des miracles scientifiques": "3. ⭐ Mukjizat Al-Qur'an",
       "3. ⭐ miracles du coran": "3. ⭐ Mukjizat Al-Qur'an",
+      "3. ⭐ les miracles du coran": "3. ⭐ Mukjizat Al-Qur'an",
       "mecquoise": "MAKKIYAH",
       "médinoise": "MADANIYAH"
     },
@@ -3724,6 +3862,7 @@ html body #btnLangRuV66.active-ext-v66 {
       "2. ordre classique (1 à 114)": "2. По порядку Мусхафа (1–114)",
       "⭐ 3. versets des miracles scientifiques": "3. ⭐ Чудеса Корана",
       "3. ⭐ miracles du coran": "3. ⭐ Чудеса Корана",
+      "3. ⭐ les miracles du coran": "3. ⭐ Чудеса Корана",
       "mecquoise": "МЕККАНСКАЯ",
       "médinoise": "МЕДИНСКАЯ"
     }
@@ -3773,6 +3912,7 @@ html body #btnLangRuV66.active-ext-v66 {
     var cartesAccueil = document.querySelectorAll("a[href*='sourate-']");
     for (var ca = 0; ca < cartesAccueil.length; ca++) {
       var lienCarte = cartesAccueil[ca];
+      if (lienCarte.closest("#khatmPlannerWidgetV67")) continue;
       var mHref = (lienCarte.getAttribute("href") || "").match(/sourate-(\\d+)/i);
       if (mHref) {
         var sId = Number(mHref[1]);
@@ -3781,9 +3921,9 @@ html body #btnLangRuV66.active-ext-v66 {
           for (var te = 0; te < titresEl.length; te++) {
             var candT = titresEl[te];
             if (candT.children.length === 0) {
-              var origT = (candT.__origTitreV66 || candT.textContent || "").trim();
+              var origT = (candT.__origTitreV67 || candT.textContent || "").trim();
               if (origT.indexOf("(") !== -1 && origT.indexOf(")") !== -1 && origT.indexOf("Miracle") === -1 && origT.indexOf("Wunder") === -1) {
-                if (!candT.__origTitreV66) candT.__origTitreV66 = origT;
+                if (!candT.__origTitreV67) candT.__origTitreV67 = origT;
                 if (candT.firstChild && candT.firstChild.nodeType === 3) {
                   modifierNoeudTexteSeul(candT.firstChild, noms114[sId]);
                 }
@@ -3807,9 +3947,9 @@ html body #btnLangRuV66.active-ext-v66 {
       if (!pEl) continue;
       var tag = pEl.tagName;
       if (tag === "SCRIPT" || tag === "STYLE") continue;
-      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate")) continue;
+      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate") || pEl.closest("#khatmPlannerWidgetV67")) continue;
 
-      var val = (node.__origExtV66 !== undefined ? node.__origExtV66 : node.nodeValue || "").replace(/\\u00A0/g, " ").trim();
+      var val = (node.__origExtV67 !== undefined ? node.__origExtV67 : node.nodeValue || "").replace(/\\u00A0/g, " ").trim();
       if (!val || /[\\u0600-\\u06FF]/.test(val)) continue;
       var valLower = val.toLowerCase();
 
@@ -3838,9 +3978,9 @@ html body #btnLangRuV66.active-ext-v66 {
       }
 
       if (valLower.indexOf("reprendre") !== -1 || valLower.indexOf("resume") !== -1 || valLower.indexOf("continuar") !== -1) {
-        var mRep = val.match(/:\\s*([^\\(]+)\\(\\s*(?:v\\.?|verset|verse|aleya)\\s*(\\d+)\\s*\\)/i);
-        var nomSRep = mRep ? mRep[1].trim() : "Al-Baqarah";
-        var numVRep = mRep ? mRep[2] : "1";
+        var posK = convertirIndexGlobalVersSourateVerset(etatKhatm.order, etatKhatm.idxByOrder[etatKhatm.order] || 0);
+        var nomSRep = NOMS_SOURATES_COURT[posK.s] || "Al-Baqarah";
+        var numVRep = String(posK.v);
         var txtRep = {
           de: "📖 Weiterlesen: " + nomSRep + " (Vers " + numVRep + ")",
           it: "📖 Riprendi lettura: " + nomSRep + " (Versetto " + numVRep + ")",
@@ -3923,16 +4063,27 @@ html body #btnLangRuV66.active-ext-v66 {
 
   function corrigerCoquillesNativesEtTafsir() {
     var lang = obtenirLangueActive();
-    var pEls = document.querySelectorAll("p, button, strong, b, span");
+    var pEls = document.querySelectorAll("p, button, strong, b, span, a");
+    var posK = convertirIndexGlobalVersSourateVerset(etatKhatm.order, etatKhatm.idxByOrder[etatKhatm.order] || 0);
+    var nomSRep = NOMS_SOURATES_COURT[posK.s] || "Al-Baqarah";
+
     for (var i = 0; i < pEls.length; i++) {
       var el = pEls[i];
-      if (el.children.length > 0) continue;
+      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV67")) continue;
       var t = el.textContent || "";
       if (t.indexOf("y e temen") !== -1) {
         el.textContent = t.replace("y e temen", "y le temen");
       }
       if ((lang === "es" || lang === "it") && t.trim() === "⏸ Pause") {
         el.textContent = "⏸ Pausa";
+      }
+      // Mettre à jour le texte du bouton vert natif "📖 Reprendre : ..." sur l'accueil avec la vraie position du Planificateur
+      if (!langExtActive && t.indexOf("📖") !== -1 && (t.indexOf("Reprendre :") !== -1 || t.indexOf("Resume:") !== -1 || t.indexOf("Continuar:") !== -1)) {
+        var nvBtnTxt = lang === "en"
+          ? "📖 Resume: " + nomSRep + " (v." + posK.v + ")"
+          : (lang === "es" ? "📖 Continuar: " + nomSRep + " (v." + posK.v + ")" : "📖 Reprendre : " + nomSRep + " (v." + posK.v + ")");
+        if (el.textContent !== nvBtnTxt) el.textContent = nvBtnTxt;
+        if (el.tagName === "A") el.setAttribute("href", "sourate-" + posK.s + "-verset-1.html?khatm_verse=" + posK.v);
       }
       if (/^\\d+\\s*\\.\\s+(?:Le Livre par excellence|This is the Qur'ān|El Libro por excelencia|Das Buch schlechthin|Il Libro per eccellenza|Kitab yang paling|Лучшей книгой)/i.test(t.trim())) {
         el.textContent = t.trim().replace(/^\\d+\\s*\\.\\s+/, "");
@@ -3965,7 +4116,7 @@ html body #btnLangRuV66.active-ext-v66 {
       btnSuivi.style.setProperty("display", "inline-flex", "important");
       btnSuivi.style.setProperty("visibility", "visible", "important");
       btnSuivi.style.setProperty("opacity", "1", "important");
-      if (btnSuivi.id === "btnSuiviUniverselV66" && btnSuivi.textContent !== labelSuivi) {
+      if (btnSuivi.id === "btnSuiviUniverselV67" && btnSuivi.textContent !== labelSuivi) {
         btnSuivi.textContent = labelSuivi;
       }
       if (suiviEstActif) {
@@ -3974,9 +4125,9 @@ html body #btnLangRuV66.active-ext-v66 {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV66")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV67")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV66";
+      nv.id = "btnSuiviUniverselV67";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.textContent = labelSuivi;
@@ -4065,8 +4216,8 @@ html body #btnLangRuV66.active-ext-v66 {
       }
 
       if (role === "sun") {
-        node.classList.remove("astre-lune-pure-v66");
-        node.classList.add("astre-soleil-pur-v66");
+        node.classList.remove("astre-lune-pure-v67");
+        node.classList.add("astre-soleil-pur-v67");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -4075,8 +4226,8 @@ html body #btnLangRuV66.active-ext-v66 {
         node.style.setProperty("box-shadow", "0 0 50px 16px rgba(253, 224, 71, 0.72), 0 0 110px 38px rgba(245, 158, 11, 0.42)", "important");
         node.style.setProperty("filter", "none", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v66");
-        node.classList.add("astre-lune-pure-v66");
+        node.classList.remove("astre-soleil-pur-v67");
+        node.classList.add("astre-lune-pure-v67");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -4096,7 +4247,7 @@ html body #btnLangRuV66.active-ext-v66 {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v66");
+          row.classList.add("maher-supprime-v67");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
@@ -4260,14 +4411,6 @@ html body #btnLangRuV66.active-ext-v66 {
     for (var k in dico) {
       if (normaliserArabeCle(k) === cle) return dico[k];
     }
-    return "";
-  }
-
-  function obtenirCleVerset() {
-    var m = document.body ? document.body.innerText.match(/\\b(\\d{1,3})\\s*:\\s*(\\d{1,3})\\b/) : null;
-    if (m) return m[1] + ":" + m[2];
-    var urlFull = window.location.pathname.match(/sourate-(\\d+)-verset-(\\d+)/i);
-    if (urlFull) return urlFull[1] + ":" + urlFull[2];
     return "";
   }
 
@@ -4589,6 +4732,7 @@ html body #btnLangRuV66.active-ext-v66 {
     var selects = document.querySelectorAll("select");
     for (var i = 0; i < selects.length; i++) {
       var s = selects[i];
+      if (s.classList.contains("khatm-select-pos")) continue;
       if (s.options && s.selectedIndex >= 0) {
         var txt = ((s.value || "") + " " + (s.options[s.selectedIndex].textContent || "")).toLowerCase();
         if (txt.indexOf("verset") === -1 && txt.indexOf("verse") === -1 && txt.indexOf("aleya") === -1 && txt.indexOf("vers ") === -1 && txt.indexOf("ayat") === -1 && txt.indexOf("аят") === -1) {
@@ -4711,7 +4855,7 @@ html body #btnLangRuV66.active-ext-v66 {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV66) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV67) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       var self = this;
@@ -4719,8 +4863,8 @@ html body #btnLangRuV66.active-ext-v66 {
       if (self.currentTime < 0.25) {
         reinitialiserMotsEnBlancTamise();
       }
-      if (!self.__listenersV66) {
-        self.__listenersV66 = true;
+      if (!self.__listenersV67) {
+        self.__listenersV67 = true;
         self.addEventListener("playing", lancerBoucleSuivi);
         self.addEventListener("timeupdate", lancerBoucleSuivi);
       }
@@ -4730,7 +4874,7 @@ html body #btnLangRuV66.active-ext-v66 {
       lancerBoucleSuivi();
       return origPlay.apply(self, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV66 = true;
+    HTMLMediaElement.prototype.__hookedV67 = true;
   }
 
   function trouverAudioActif() {
@@ -4913,7 +5057,6 @@ html body #btnLangRuV66.active-ext-v66 {
   });
 
   document.addEventListener("click", function (e) {
-    // Gestion des clics sur le Planificateur de Khatm
     var btnKhatmMonths = e.target.closest("[data-khatm-months]");
     if (btnKhatmMonths) {
       etatKhatm.months = Number(btnKhatmMonths.getAttribute("data-khatm-months")) || 1;
@@ -4934,7 +5077,17 @@ html body #btnLangRuV66.active-ext-v66 {
     if (btnKhatmAct) {
       var act = btnKhatmAct.getAttribute("data-khatm-act");
       var ord = etatKhatm.order;
-      if (act === "step-day") {
+      if (act === "resume") {
+        // Si on est déjà sur la même sourate, sauter directement au verset sans recharger !
+        var vkCurr = obtenirCleVerset();
+        var tS = Number(btnKhatmAct.getAttribute("data-target-s"));
+        var tV = Number(btnKhatmAct.getAttribute("data-target-v"));
+        if (vkCurr && Number(vkCurr.split(":")[0]) === tS && tV) {
+          e.preventDefault();
+          allerAuVersetSurMemePage(tV);
+          return;
+        }
+      } else if (act === "step-day") {
         var vJour = obtenirVersetsParJour(etatKhatm.months);
         etatKhatm.idxByOrder[ord] = Math.min(TOTAL_VERSETS_CORAN - 1, (etatKhatm.idxByOrder[ord] || 0) + vJour);
         sauvegarderEtatKhatm();
@@ -4969,6 +5122,23 @@ html body #btnLangRuV66.active-ext-v66 {
       } else if (t.indexOf("Suivi") !== -1 || t.indexOf("Follow") !== -1 || t.indexOf("Seguimiento") !== -1 || t.indexOf("Verfolgung") !== -1 || t.indexOf("Seguito") !== -1 || t.indexOf("Ikuti") !== -1 || t.indexOf("Слежение") !== -1 || t.indexOf("تتبع") !== -1) {
         suiviEstActif = !suiviEstActif;
         lancerBoucleSuivi();
+      } else if (t.indexOf("Suivant") !== -1 || t.indexOf("Next") !== -1 || t.indexOf("Siguiente") !== -1 || t.indexOf("Weiter") !== -1 || t.indexOf("Successivo") !== -1 || t.indexOf("Berikutnya") !== -1 || t.indexOf("Далее") !== -1) {
+        // Si on clique sur "Suivant ›" au tout dernier verset d'une sourate, basculer vers la sourate suivante selon l'ordre choisi !
+        var vkNow = obtenirCleVerset();
+        if (vkNow) {
+          var pNow = vkNow.split(":");
+          var sNow = Number(pNow[0]);
+          var vNow = Number(pNow[1]);
+          if (sNow && vNow && vNow >= NB_VERSETS_PAR_SOURATE[sNow]) {
+            var sNext = obtenirSourateSuivanteSelonOrdre(etatKhatm.order, sNow);
+            if (sNext) {
+              etatKhatm.idxByOrder[etatKhatm.order] = convertirSourateVersetVersIndexGlobal(etatKhatm.order, sNext, 1);
+              sauvegarderEtatKhatm();
+              window.location.href = "sourate-" + sNext + "-verset-1.html?khatm_verse=1" + (langExtActive ? "&lang=" + langExtActive : "");
+              return;
+            }
+          }
+        }
       }
     }
     setTimeout(synchroniserTout, 15);
@@ -6130,7 +6300,7 @@ html body #btnLangRuV66.active-ext-v66 {
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
 <link rel="preconnect" href="https://translate.googleapis.com" crossorigin>
-<style id="patch-master-v66">
+<style id="patch-master-v67">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -6145,7 +6315,7 @@ html body .flat-earth-sun,
 html body [id*="sun" i]:not([id*="sound" i]),
 html body [class*="sun" i]:not([class*="sound" i]),
 html body [data-astre-role="sun"],
-html body .astre-soleil-pur-v66 {
+html body .astre-soleil-pur-v67 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -6165,8 +6335,8 @@ html body .astre-soleil-pur-v66 {
 }
 html body #flatEarthSun::before, html body #flatEarthSun::after,
 html body .flat-earth-sun::before, html body .flat-earth-sun::after,
-html body .astre-soleil-pur-v66::before, html body .astre-soleil-pur-v66::after,
-html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v66 * {
+html body .astre-soleil-pur-v67::before, html body .astre-soleil-pur-v67::after,
+html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v67 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
@@ -6176,7 +6346,7 @@ html body .flat-earth-moon,
 html body [id*="moon" i],
 html body [class*="moon" i],
 html body [data-astre-role="moon"],
-html body .astre-lune-pure-v66 {
+html body .astre-lune-pure-v67 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -6196,13 +6366,13 @@ html body .astre-lune-pure-v66 {
 }
 html body #flatEarthMoon::before, html body #flatEarthMoon::after,
 html body .flat-earth-moon::before, html body .flat-earth-moon::after,
-html body .astre-lune-pure-v66::before, html body .astre-lune-pure-v66::after,
-html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v66 * {
+html body .astre-lune-pure-v67::before, html body .astre-lune-pure-v67::after,
+html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v67 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
 /* 3. MASQUAGE DE MAHER AL-MUAIQLY & TRADUCTION DU BAS EN MOT-À-MOT */
-html body img[src*="maher" i], html body [data-reciter*="maher" i], html body .maher-supprime-v66,
+html body img[src*="maher" i], html body [data-reciter*="maher" i], html body .maher-supprime-v67,
 html body .wbw-masquer-traduction-bas {
   display: none !important; visibility: hidden !important; height: 0 !important; max-height: 0 !important; margin: 0 !important; padding: 0 !important; border: none !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important;
 }
@@ -6251,49 +6421,45 @@ html body .follow-word {
 }
 
 /* 6. BOUTONS DE LANGUE ÉTENDUS (DE, IT, ID, RU) */
-html body #btnLangDeV66,
-html body #btnLangItV66,
-html body #btnLangIdV66,
-html body #btnLangRuV66 {
+html body #btnLangDeV67,
+html body #btnLangItV67,
+html body #btnLangIdV67,
+html body #btnLangRuV67 {
   cursor: pointer !important; transition: all 0.2s ease !important; display: inline-flex !important; align-items: center !important; justify-content: center !important;
 }
-html body #btnLangDeV66.active-ext-v66,
-html body #btnLangItV66.active-ext-v66,
-html body #btnLangIdV66.active-ext-v66,
-html body #btnLangRuV66.active-ext-v66 {
+html body #btnLangDeV67.active-ext-v67,
+html body #btnLangItV67.active-ext-v67,
+html body #btnLangIdV67.active-ext-v67,
+html body #btnLangRuV67.active-ext-v67 {
   background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(56, 189, 248, 0.18)) !important;
   border: 1px solid #38bdf8 !important; color: #ffffff !important; border-radius: 999px !important;
 }
 
-/* 7. PLANIFICATEUR DE KHATM (1 / 4 / 6 / 12 MOIS & 3 ORDRES) */
-#khatmPlannerWidgetV66 {
-  max-width: 980px;
-  margin: 18px auto 24px auto;
-  padding: 20px 24px;
-  border-radius: 22px;
-  background: linear-gradient(145deg, rgba(8, 20, 38, 0.88), rgba(4, 12, 24, 0.94));
-  border: 1px solid rgba(56, 189, 248, 0.28);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55), inset 0 0 24px rgba(56, 189, 248, 0.06);
-  color: #f8fafc;
-  font-family: system-ui, -apple-system, sans-serif;
-  position: relative;
-  z-index: 10;
-}
-#khatmPlannerWidgetV66.khatm-compact-verse {
-  max-width: 820px;
-  margin: 12px auto 14px auto;
-  padding: 14px 18px;
+/* 7. PLANIFICATEUR DE KHATM ALIGNÉ À 100% SUR LA LONGUEUR DES BLOCS DU SITE */
+#khatmPlannerWidgetV67 {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0 auto 20px auto !important;
+  padding: 20px 26px !important;
+  border-radius: 22px !important;
+  background: linear-gradient(145deg, rgba(8, 20, 38, 0.90), rgba(4, 12, 24, 0.95)) !important;
+  border: 1px solid rgba(56, 189, 248, 0.28) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55), inset 0 0 24px rgba(56, 189, 248, 0.06) !important;
+  color: #f8fafc !important;
+  font-family: system-ui, -apple-system, sans-serif !important;
+  position: relative !important;
+  z-index: 10 !important;
 }
 .khatm-header-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 12px;
   margin-bottom: 14px;
 }
 .khatm-title-main {
-  font-size: 1.05rem;
+  font-size: 1.06rem;
   font-weight: 700;
   color: #38bdf8;
   display: flex;
@@ -6301,8 +6467,8 @@ html body #btnLangRuV66.active-ext-v66 {
   gap: 8px;
 }
 .khatm-badge-rythme {
-  font-size: 0.78rem;
-  padding: 4px 12px;
+  font-size: 0.79rem;
+  padding: 5px 14px;
   border-radius: 999px;
   background: rgba(16, 185, 129, 0.16);
   border: 1px solid rgba(16, 185, 129, 0.45);
@@ -6314,6 +6480,7 @@ html body #btnLangRuV66.active-ext-v66 {
   flex-wrap: wrap;
   gap: 14px;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 14px;
 }
 .khatm-group {
@@ -6331,12 +6498,12 @@ html body #btnLangRuV66.active-ext-v66 {
   letter-spacing: 0.04em;
 }
 .khatm-pill-btn {
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(15, 23, 42, 0.78);
   border: 1px solid rgba(148, 163, 184, 0.25);
   color: #cbd5e1;
-  padding: 6px 12px;
+  padding: 6px 13px;
   border-radius: 999px;
-  font-size: 0.78rem;
+  font-size: 0.79rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.18s ease;
@@ -6354,11 +6521,11 @@ html body #btnLangRuV66.active-ext-v66 {
 .khatm-progress-wrap {
   width: 100%;
   height: 10px;
-  background: rgba(15, 23, 42, 0.9);
+  background: rgba(15, 23, 42, 0.92);
   border-radius: 999px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  margin-bottom: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  margin-bottom: 14px;
 }
 .khatm-progress-fill {
   height: 100%;
@@ -6372,7 +6539,7 @@ html body #btnLangRuV66.active-ext-v66 {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  font-size: 0.85rem;
+  font-size: 0.86rem;
   color: #e2e8f0;
 }
 .khatm-actions-row {
@@ -6385,7 +6552,7 @@ html body #btnLangRuV66.active-ext-v66 {
   background: linear-gradient(135deg, #0ea5e9, #2563eb);
   border: 1px solid #60a5fa;
   color: #ffffff;
-  padding: 7px 15px;
+  padding: 7px 16px;
   border-radius: 999px;
   font-size: 0.82rem;
   font-weight: 700;
@@ -6400,35 +6567,52 @@ html body #btnLangRuV66.active-ext-v66 {
   background: rgba(16, 185, 129, 0.15);
   border: 1px solid rgba(16, 185, 129, 0.5);
   color: #6ee7b7;
-  padding: 7px 13px;
+  padding: 7px 14px;
   border-radius: 999px;
   font-size: 0.79rem;
   font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.khatm-select-pos {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #e2e8f0;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.77rem;
+  outline: none;
   cursor: pointer;
 }
 .khatm-action-reset {
   background: transparent;
   border: 1px solid rgba(248, 113, 113, 0.35);
   color: #fca5a5;
-  padding: 6px 10px;
+  padding: 6px 11px;
   border-radius: 999px;
-  font-size: 0.74rem;
+  font-size: 0.75rem;
   cursor: pointer;
 }
 </style>
-<script id="script-master-v66">(function codeClientV66() {
+<script id="script-master-v67">(function codeClientV67() {
   var LANGUES_EXT_SUPPORTEES = { de: 27, it: 153, id: 33, ru: 45 };
   var langExtActive = "";
   var IgnoreClicInterneFr = false;
 
   try {
+    var oldW = document.getElementById("khatmPlannerWidgetV66");
+    if (oldW && oldW.parentNode) oldW.parentNode.removeChild(oldW);
+
     var urlParams = new URLSearchParams(window.location.search);
     var pLang = urlParams.get("lang");
     if (pLang && LANGUES_EXT_SUPPORTEES[pLang]) {
       langExtActive = pLang;
-      localStorage.setItem("corantafsir_lang_ext_v66", pLang);
+      localStorage.setItem("corantafsir_lang_ext_v67", pLang);
     } else {
-      var savedExt = localStorage.getItem("corantafsir_lang_ext_v66") || localStorage.getItem("corantafsir_lang_ext_v65");
+      var savedExt = localStorage.getItem("corantafsir_lang_ext_v67") || localStorage.getItem("corantafsir_lang_ext_v66") || localStorage.getItem("corantafsir_lang_ext_v65");
       if (savedExt && LANGUES_EXT_SUPPORTEES[savedExt]) {
         langExtActive = savedExt;
       }
@@ -6436,7 +6620,7 @@ html body #btnLangRuV66.active-ext-v66 {
   } catch (e) {}
 
   // ==========================================================================
-  // 0. BASE DE DONNÉES ET MOTEUR DU PLANIFICATEUR DE KHATM (6 236 VERSETS)
+  // 0. MOTEUR DU PLANIFICATEUR DE KHATM (6 236 VERSETS — 3 ORDRES & 4 DURÉES)
   // ==========================================================================
   var NB_VERSETS_PAR_SOURATE = [
     0,
@@ -6475,8 +6659,8 @@ html body #btnLangRuV66.active-ext-v66 {
 
   var TOTAL_VERSETS_CORAN = 6236;
   var etatKhatm = {
-    months: 1, // 1, 4, 6, 12
-    order: "revelation", // "revelation", "croissant", "decroissant"
+    months: 1,
+    order: "revelation",
     idxByOrder: {
       revelation: 0,
       croissant: 0,
@@ -6485,7 +6669,7 @@ html body #btnLangRuV66.active-ext-v66 {
   };
 
   try {
-    var sauvKhatm = localStorage.getItem("corantafsir_khatm_v66");
+    var sauvKhatm = localStorage.getItem("corantafsir_khatm_v67") || localStorage.getItem("corantafsir_khatm_v66");
     if (sauvKhatm) {
       var parsedK = JSON.parse(sauvKhatm);
       if (parsedK && parsedK.idxByOrder) {
@@ -6498,7 +6682,7 @@ html body #btnLangRuV66.active-ext-v66 {
 
   function sauvegarderEtatKhatm() {
     try {
-      localStorage.setItem("corantafsir_khatm_v66", JSON.stringify(etatKhatm));
+      localStorage.setItem("corantafsir_khatm_v67", JSON.stringify(etatKhatm));
     } catch (e) {}
   }
 
@@ -6511,6 +6695,15 @@ html body #btnLangRuV66.active-ext-v66 {
       for (var c = 1; c <= 114; c++) arr.push(c);
     }
     return arr;
+  }
+
+  function obtenirSourateSuivanteSelonOrdre(ord, numSActuel) {
+    var liste = obtenirListeSouratesSelonOrdre(ord);
+    var idx = liste.indexOf(Number(numSActuel));
+    if (idx !== -1 && idx + 1 < liste.length) {
+      return liste[idx + 1];
+    }
+    return null;
   }
 
   function convertirIndexGlobalVersSourateVerset(ord, globalIdx) {
@@ -6549,29 +6742,65 @@ html body #btnLangRuV66.active-ext-v66 {
     return Math.ceil(TOTAL_VERSETS_CORAN / j);
   }
 
-  // Si l'URL contient ?khatm_verse=Y, sélectionner automatiquement ce verset à l'ouverture de la page !
-  var khatmVerseDejaApplique = false;
+  // DÉTECTION STRICTE D'UNE VRAIE PAGE VERSET (JAMAIS DE FAUX POSITIF SUR INDEX.HTML !)
+  function obtenirCleVerset() {
+    var urlFull = window.location.pathname.match(/sourate-(\\d+)-verset-(\\d+)/i);
+    var aVersetArabe = Boolean(document.querySelector("#arabicVerse, .arabic-glow-verse"));
+    if (!urlFull && !aVersetArabe) {
+      return "";
+    }
+    var numS = urlFull ? urlFull[1] : "";
+    var selects = document.querySelectorAll("select");
+    for (var i = 0; i < selects.length; i++) {
+      var s = selects[i];
+      if (s.classList.contains("khatm-select-pos")) continue;
+      if (s.options && s.selectedIndex >= 0) {
+        var optTxt = s.options[s.selectedIndex].textContent || "";
+        var vm = optTxt.match(/(?:Verset|Verse|Aleya|Vers|Versetto|Ayat|Аят|آية)\\s*(\\d+)/i);
+        if (vm && numS) return numS + ":" + vm[1];
+      }
+    }
+    // Chercher le badge "68 : 1" hors du planificateur
+    var badges = document.querySelectorAll("span, div");
+    for (var b = 0; b < badges.length; b++) {
+      var el = badges[b];
+      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV67")) continue;
+      var txt = (el.textContent || "").trim();
+      var bm = txt.match(/^(\\d{1,3})\\s*:\\s*(\\d{1,3})$/);
+      if (bm) return bm[1] + ":" + bm[2];
+    }
+    if (urlFull) return urlFull[1] + ":" + urlFull[2];
+    return "";
+  }
+
+  function allerAuVersetSurMemePage(numV) {
+    var selects = document.querySelectorAll("select");
+    for (var i = 0; i < selects.length; i++) {
+      var sel = selects[i];
+      if (sel.classList.contains("khatm-select-pos")) continue;
+      if (sel.options && sel.options.length >= numV) {
+        var opt0 = (sel.options[0].textContent || "").toLowerCase();
+        if (opt0.indexOf("vers") !== -1 || opt0.indexOf("aleya") !== -1 || opt0.indexOf("ayat") !== -1 || opt0.indexOf("аят") !== -1 || opt0.indexOf("آية") !== -1 || /\\d+\\s*\\/\\s*\\d+/.test(opt0)) {
+          if (sel.selectedIndex !== numV - 1) {
+            sel.selectedIndex = numV - 1;
+            sel.dispatchEvent(new Event("change", { bubbles: true }));
+          }
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  var tentativesKhatmVerse = 0;
   function verifierSautDirectVersetKhatm() {
-    if (khatmVerseDejaApplique) return;
+    if (tentativesKhatmVerse > 8) return;
     try {
       var up = new URLSearchParams(window.location.search);
       var kv = Number(up.get("khatm_verse"));
-      if (kv && kv >= 1) {
-        var selects = document.querySelectorAll("select");
-        for (var i = 0; i < selects.length; i++) {
-          var sel = selects[i];
-          if (sel.options && sel.options.length >= kv) {
-            var opt0 = (sel.options[0].textContent || "").toLowerCase();
-            if (opt0.indexOf("vers") !== -1 || opt0.indexOf("aleya") !== -1 || opt0.indexOf("ayat") !== -1 || opt0.indexOf("аят") !== -1 || opt0.indexOf("آية") !== -1 || /\\d+\\s*\\/\\s*\\d+/.test(opt0)) {
-              khatmVerseDejaApplique = true;
-              if (sel.selectedIndex !== kv - 1) {
-                sel.selectedIndex = kv - 1;
-                sel.dispatchEvent(new Event("change", { bubbles: true }));
-              }
-              break;
-            }
-          }
-        }
+      if (kv && kv >= 1 && obtenirCleVerset()) {
+        tentativesKhatmVerse++;
+        allerAuVersetSurMemePage(kv);
       }
     } catch (e) {}
   }
@@ -6589,7 +6818,6 @@ html body #btnLangRuV66.active-ext-v66 {
     var ord = etatKhatm.order;
     var idxActuel = etatKhatm.idxByOrder[ord] || 0;
     var idxPage = convertirSourateVersetVersIndexGlobal(ord, sAct, vAct);
-    // Si le lecteur avance dans sa sourate en cours (entre +1 et +220 versets), mémoriser automatiquement !
     if (idxPage > idxActuel && idxPage - idxActuel <= 220) {
       etatKhatm.idxByOrder[ord] = idxPage;
       sauvegarderEtatKhatm();
@@ -6611,7 +6839,8 @@ html body #btnLangRuV66.active-ext-v66 {
       objJour: "🎯 Fin de l'étape du jour :",
       reprendre: "▶ Reprendre ma lecture",
       validerEtape: "✅ Valider l'étape du jour",
-      memoriserIci: "📍 Mémoriser le verset affiché",
+      memoriserIci: "📍 Mémoriser ce verset",
+      sourateSuiv: "⏭️ Sourate suivante :",
       reset: "↺ Réinitialiser"
     },
     en: {
@@ -6628,7 +6857,8 @@ html body #btnLangRuV66.active-ext-v66 {
       objJour: "🎯 Today's target:",
       reprendre: "▶ Resume reading",
       validerEtape: "✅ Complete today's goal",
-      memoriserIci: "📍 Save current verse here",
+      memoriserIci: "📍 Save this verse",
+      sourateSuiv: "⏭️ Next Surah:",
       reset: "↺ Reset"
     },
     es: {
@@ -6646,6 +6876,7 @@ html body #btnLangRuV66.active-ext-v66 {
       reprendre: "▶ Reanudar lectura",
       validerEtape: "✅ Validar meta de hoy",
       memoriserIci: "📍 Guardar esta aleya",
+      sourateSuiv: "⏭️ Siguiente Sura:",
       reset: "↺ Reiniciar"
     },
     ar: {
@@ -6663,6 +6894,7 @@ html body #btnLangRuV66.active-ext-v66 {
       reprendre: "▶ متابعة القراءة",
       validerEtape: "✅ إتمام ورد اليوم",
       memoriserIci: "📍 حفظ موضعي هنا",
+      sourateSuiv: "⏭️ السورة التالية:",
       reset: "↺ إعادة ضبط"
     },
     de: {
@@ -6679,7 +6911,8 @@ html body #btnLangRuV66.active-ext-v66 {
       objJour: "🎯 Tagesziel:",
       reprendre: "▶ Weiterlesen",
       validerEtape: "✅ Tagesziel abhaken",
-      memoriserIci: "📍 Aktuellen Vers speichern",
+      memoriserIci: "📍 Diesen Vers speichern",
+      sourateSuiv: "⏭️ Nächste Sure:",
       reset: "↺ Reset"
     },
     it: {
@@ -6697,6 +6930,7 @@ html body #btnLangRuV66.active-ext-v66 {
       reprendre: "▶ Riprendi lettura",
       validerEtape: "✅ Convalida tappa di oggi",
       memoriserIci: "📍 Salva questo versetto",
+      sourateSuiv: "⏭️ Sura successiva:",
       reset: "↺ Reset"
     },
     id: {
@@ -6714,6 +6948,7 @@ html body #btnLangRuV66.active-ext-v66 {
       reprendre: "▶ Lanjutkan membaca",
       validerEtape: "✅ Selesaikan target hari ini",
       memoriserIci: "📍 Simpan ayat ini",
+      sourateSuiv: "⏭️ Surah berikutnya:",
       reset: "↺ Reset"
     },
     ru: {
@@ -6731,9 +6966,45 @@ html body #btnLangRuV66.active-ext-v66 {
       reprendre: "▶ Продолжить чтение",
       validerEtape: "✅ Завершить норму дня",
       memoriserIci: "📍 Сохранить этот аят",
+      sourateSuiv: "⏭️ Следующая сура:",
       reset: "↺ Сброс"
     }
   };
+
+  // Trouver la boîte principale de référence (Bannière Hero sur l'accueil ou Carte du verset) pour aligner la longueur au pixel près !
+  function trouverBoiteReferenceLargeur() {
+    var tousDivs = document.querySelectorAll("div, header, section");
+    var meilleur = null;
+    var maxW = 0;
+    for (var i = 0; i < tousDivs.length; i++) {
+      var el = tousDivs[i];
+      if (el.id === "khatmPlannerWidgetV67") continue;
+      var st = window.getComputedStyle(el);
+      if (st.borderRadius && parseFloat(st.borderRadius) >= 12 && st.borderWidth && parseFloat(st.borderWidth) > 0) {
+        var r = el.getBoundingClientRect();
+        if (r.width >= 600 && r.width <= 1350 && r.height >= 110 && r.top < 550) {
+          if (r.width > maxW) {
+            maxW = r.width;
+            meilleur = el;
+          }
+        }
+      }
+    }
+    return meilleur;
+  }
+
+  function ajusterLargeurExactePlanificateur() {
+    var widget = document.getElementById("khatmPlannerWidgetV67");
+    if (!widget) return;
+    var refBox = trouverBoiteReferenceLargeur();
+    if (refBox) {
+      var r = refBox.getBoundingClientRect();
+      if (r.width > 300) {
+        widget.style.setProperty("max-width", Math.round(r.width) + "px", "important");
+        widget.style.setProperty("width", Math.round(r.width) + "px", "important");
+      }
+    }
+  }
 
   function afficherOuMettreAJourPlanificateurKhatm() {
     if (!document.body) return;
@@ -6742,33 +7013,22 @@ html body #btnLangRuV66.active-ext-v66 {
     var vkPage = obtenirCleVerset();
     var estSurPageVerset = Boolean(vkPage);
 
-    var widget = document.getElementById("khatmPlannerWidgetV66");
+    var widget = document.getElementById("khatmPlannerWidgetV67");
     if (!widget) {
       widget = document.createElement("div");
-      widget.id = "khatmPlannerWidgetV66";
+      widget.id = "khatmPlannerWidgetV67";
       widget.setAttribute("translate", "no");
-      widget.className = "notranslate" + (estSurPageVerset ? " khatm-compact-verse" : "");
+      widget.className = "notranslate";
 
-      // Insérer le planificateur au bon endroit (sous la bannière sur l'accueil, ou au-dessus de la carte sur une page verset)
-      var cibleInsertion = null;
-      if (!estSurPageVerset) {
-        var inpSearch = document.querySelector("input[type='text'], input[type='search'], input:not([type])");
-        if (inpSearch && inpSearch.parentElement && inpSearch.parentElement.parentElement) {
-          cibleInsertion = inpSearch.parentElement;
-        }
-      } else {
-        var h1V = document.querySelector("h1, h2");
-        if (h1V && h1V.parentElement && h1V.parentElement.parentElement) {
-          cibleInsertion = h1V.parentElement.parentElement;
-        }
-      }
-
-      if (cibleInsertion && cibleInsertion.parentElement) {
-        cibleInsertion.parentElement.insertBefore(widget, cibleInsertion);
+      var refBox = trouverBoiteReferenceLargeur();
+      if (refBox && refBox.parentElement) {
+        refBox.parentElement.insertBefore(widget, refBox);
       } else {
         document.body.insertBefore(widget, document.body.firstChild);
       }
     }
+
+    ajusterLargeurExactePlanificateur();
 
     var ord = etatKhatm.order;
     var m = etatKhatm.months;
@@ -6785,14 +7045,47 @@ html body #btnLangRuV66.active-ext-v66 {
     var nomSourateCible = NOMS_SOURATES_COURT[cibleInfo.s] || ("Sourate " + cibleInfo.s);
     var urlReprise = "sourate-" + posInfo.s + "-verset-1.html?khatm_verse=" + posInfo.v + (langExtActive ? "&lang=" + langExtActive : "");
 
+    // Synchroniser aussi le bouton vert natif "📖 Reprendre : ..." sur la page d'accueil pour une cohérence à 100% !
+    if (!estSurPageVerset) {
+      var liens = document.querySelectorAll("a, button");
+      for (var l = 0; l < liens.length; l++) {
+        var elL = liens[l];
+        if (elL.closest("#khatmPlannerWidgetV67")) continue;
+        var txtL = (elL.textContent || "").trim();
+        if (txtL.indexOf("📖") !== -1 && (txtL.indexOf("Reprendre") !== -1 || txtL.indexOf("Resume") !== -1 || txtL.indexOf("Weiterlesen") !== -1 || txtL.indexOf("Riprendi") !== -1 || txtL.indexOf("Lanjutkan") !== -1 || txtL.indexOf("Продолжить") !== -1 || txtL.indexOf("متابعة") !== -1)) {
+          if (elL.tagName === "A") elL.setAttribute("href", urlReprise);
+        }
+      }
+    }
+
     var cleSignatureRendu = [lang, m, ord, idxActuel, vkPage].join("|");
     if (widget.getAttribute("data-render-sig") === cleSignatureRendu) return;
     widget.setAttribute("data-render-sig", cleSignatureRendu);
     widget.style.direction = lang === "ar" ? "rtl" : "ltr";
 
-    var btnMemoriserHtml = "";
+    var controlesContextuelsHtml = "";
     if (estSurPageVerset) {
-      btnMemoriserHtml = '<button type="button" class="khatm-action-secondary" data-khatm-act="save-here">' + t.memoriserIci + " (" + vkPage + ")</button>";
+      var partsVk = vkPage.split(":");
+      var sPage = Number(partsVk[0]);
+      var sSuiv = obtenirSourateSuivanteSelonOrdre(ord, sPage);
+      var btnSuivHtml = "";
+      if (sSuiv) {
+        var urlSuiv = "sourate-" + sSuiv + "-verset-1.html?khatm_verse=1" + (langExtActive ? "&lang=" + langExtActive : "");
+        btnSuivHtml = '<a href="' + urlSuiv + '" class="khatm-action-secondary">' + t.sourateSuiv + ' ' + NOMS_SOURATES_COURT[sSuiv] + ' (' + sSuiv + ':1)</a>';
+      }
+      controlesContextuelsHtml =
+        '<button type="button" class="khatm-action-secondary" data-khatm-act="save-here">' + t.memoriserIci + " (" + vkPage + ")</button>" +
+        btnSuivHtml;
+    } else {
+      // Sur la page d'accueil : sélecteur rapide de Sourate pour choisir où on en est sans ouvrir de page verset
+      var listeSOrd = obtenirListeSouratesSelonOrdre(ord);
+      var optsHtml = "";
+      for (var idxS = 0; idxS < listeSOrd.length; idxS++) {
+        var numSOpt = listeSOrd[idxS];
+        var selAttr = numSOpt === posInfo.s ? ' selected="selected"' : "";
+        optsHtml += '<option value="' + numSOpt + '"' + selAttr + '>' + (idxS + 1) + '. ' + NOMS_SOURATES_COURT[numSOpt] + ' (' + numSOpt + ':1)</option>';
+      }
+      controlesContextuelsHtml = '<select class="khatm-select-pos" title="Choisir la sourate actuelle">' + optsHtml + '</select>';
     }
 
     widget.innerHTML =
@@ -6825,13 +7118,25 @@ html body #btnLangRuV66.active-ext-v66 {
           '<strong>' + t.objJour + '</strong> <span style="color:#fde047;font-weight:600;">' + nomSourateCible + ' (' + cibleInfo.s + ':' + cibleInfo.v + ')</span>' +
         '</div>' +
         '<div class="khatm-actions-row">' +
-          '<a href="' + urlReprise + '" class="khatm-action-primary" data-khatm-act="resume">' + t.reprendre + ' (' + posInfo.s + ':' + posInfo.v + ')</a>' +
+          '<a href="' + urlReprise + '" class="khatm-action-primary" data-khatm-act="resume" data-target-s="' + posInfo.s + '" data-target-v="' + posInfo.v + '">' + t.reprendre + ' (' + posInfo.s + ':' + posInfo.v + ')</a>' +
           '<button type="button" class="khatm-action-secondary" data-khatm-act="step-day">' + t.validerEtape + ' (+' + vParJour + ')</button>' +
-          btnMemoriserHtml +
+          controlesContextuelsHtml +
           '<button type="button" class="khatm-action-reset" data-khatm-act="reset">' + t.reset + '</button>' +
         '</div>' +
       '</div>';
+
+    var selPos = widget.querySelector(".khatm-select-pos");
+    if (selPos) {
+      selPos.addEventListener("change", function () {
+        var sChoisi = Number(this.value) || 1;
+        etatKhatm.idxByOrder[etatKhatm.order] = convertirSourateVersetVersIndexGlobal(etatKhatm.order, sChoisi, 1);
+        sauvegarderEtatKhatm();
+        afficherOuMettreAJourPlanificateurKhatm();
+      });
+    }
   }
+
+  window.addEventListener("resize", ajusterLargeurExactePlanificateur);
 
   var NOMS_114_ACCUEIL = {
     de: {
@@ -6899,9 +7204,9 @@ html body #btnLangRuV66.active-ext-v66 {
 
   function modifierNoeudTexteSeul(textNode, nouveauTexte) {
     if (!textNode || textNode.nodeType !== 3) return;
-    if (textNode.__origExtV66 === undefined) {
-      textNode.__origExtV66 = textNode.nodeValue;
-      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV66 });
+    if (textNode.__origExtV67 === undefined) {
+      textNode.__origExtV67 = textNode.nodeValue;
+      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV67 });
     }
     if (textNode.nodeValue !== nouveauTexte) {
       textNode.nodeValue = nouveauTexte;
@@ -6956,21 +7261,21 @@ html body #btnLangRuV66.active-ext-v66 {
     for (var f = 0; f < conteneurLang.children.length; f++) {
       if (conteneurLang.children[f] !== btnActif) {
         conteneurLang.children[f].classList.remove("active");
-        conteneurLang.children[f].classList.remove("active-ext-v66");
+        conteneurLang.children[f].classList.remove("active-ext-v67");
       }
     }
-    if (btnActif) btnActif.classList.add("active-ext-v66");
+    if (btnActif) btnActif.classList.add("active-ext-v67");
   }
 
   function assurerBoutonsLanguesEtendues() {
-    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV66), [id^='btnLangItV']:not(#btnLangItV66), [id^='btnLangIdV']:not(#btnLangIdV66), [id^='btnLangRuV']:not(#btnLangRuV66)");
+    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV67), [id^='btnLangItV']:not(#btnLangItV67), [id^='btnLangIdV']:not(#btnLangIdV67), [id^='btnLangRuV']:not(#btnLangRuV67)");
     for (var b = 0; b < oldBtns.length; b++) {
       if (oldBtns[b].parentNode) oldBtns[b].parentNode.removeChild(oldBtns[b]);
     }
 
-    var mapIds = { de: "btnLangDeV66", it: "btnLangItV66", id: "btnLangIdV66", ru: "btnLangRuV66" };
-    if (document.getElementById("btnLangDeV66") && document.getElementById("btnLangIdV66") && document.getElementById("btnLangRuV66")) {
-      var parentBar = document.getElementById("btnLangDeV66").parentElement;
+    var mapIds = { de: "btnLangDeV67", it: "btnLangItV67", id: "btnLangIdV67", ru: "btnLangRuV67" };
+    if (document.getElementById("btnLangDeV67") && document.getElementById("btnLangIdV67") && document.getElementById("btnLangRuV67")) {
+      var parentBar = document.getElementById("btnLangDeV67").parentElement;
       if (parentBar) {
         parentBar.setAttribute("translate", "no");
         parentBar.classList.add("notranslate");
@@ -6979,14 +7284,14 @@ html body #btnLangRuV66.active-ext-v66 {
         var bEl = document.getElementById(mapIds[code]);
         if (!bEl) continue;
         if (langExtActive === code) {
-          bEl.classList.add("active-ext-v66");
+          bEl.classList.add("active-ext-v67");
           if (parentBar) {
             for (var k = 0; k < parentBar.children.length; k++) {
               if (parentBar.children[k] !== bEl) parentBar.children[k].classList.remove("active");
             }
           }
         } else {
-          bEl.classList.remove("active-ext-v66");
+          bEl.classList.remove("active-ext-v67");
         }
       }
       return;
@@ -7040,14 +7345,14 @@ html body #btnLangRuV66.active-ext-v66 {
         } else {
           nvBtn.innerHTML = '<span style="font-size:0.72em;opacity:0.75;margin-right:2px;">' + labelCourt + "</span><span>" + labelCourt + "</span>";
         }
-        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v66");
+        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v67");
 
         nvBtn.addEventListener("click", function (ev) {
           ev.preventDefault();
           ev.stopPropagation();
           restaurerTextesOriginauxDepuisExt();
           langExtActive = codeIso;
-          try { localStorage.setItem("corantafsir_lang_ext_v66", codeIso); } catch (e) {}
+          try { localStorage.setItem("corantafsir_lang_ext_v67", codeIso); } catch (e) {}
           basculerDepuisArabeSurClicUtilisateur(conteneurLang, nvBtn);
           dernierVersetSeo = "";
           setTimeout(synchroniserTout, 15);
@@ -7055,10 +7360,10 @@ html body #btnLangRuV66.active-ext-v66 {
         return nvBtn;
       }
 
-      var btnDe = creerBoutonLangExt("btnLangDeV66", "de", "DE");
-      var btnIt = creerBoutonLangExt("btnLangItV66", "it", "IT");
-      var btnId = creerBoutonLangExt("btnLangIdV66", "id", "ID");
-      var btnRu = creerBoutonLangExt("btnLangRuV66", "ru", "RU");
+      var btnDe = creerBoutonLangExt("btnLangDeV67", "de", "DE");
+      var btnIt = creerBoutonLangExt("btnLangItV67", "it", "IT");
+      var btnId = creerBoutonLangExt("btnLangIdV67", "id", "ID");
+      var btnRu = creerBoutonLangExt("btnLangRuV67", "ru", "RU");
 
       var freresInit = Array.prototype.slice.call(conteneurLang.children);
       for (var a = 0; a < freresInit.length; a++) {
@@ -7069,11 +7374,11 @@ html body #btnLangRuV66.active-ext-v66 {
             if (IgnoreClicInterneFr) return;
             var etaitEnWbw = obtenirCartesMotAMotVisibles().length >= 2;
             langExtActive = "";
-            try { localStorage.setItem("corantafsir_lang_ext_v66", "native"); } catch (e) {}
-            btnDe.classList.remove("active-ext-v66");
-            btnIt.classList.remove("active-ext-v66");
-            btnId.classList.remove("active-ext-v66");
-            btnRu.classList.remove("active-ext-v66");
+            try { localStorage.setItem("corantafsir_lang_ext_v67", "native"); } catch (e) {}
+            btnDe.classList.remove("active-ext-v67");
+            btnIt.classList.remove("active-ext-v67");
+            btnId.classList.remove("active-ext-v67");
+            btnRu.classList.remove("active-ext-v67");
             restaurerTextesOriginauxDepuisExt();
             dernierVersetSeo = "";
 
@@ -7135,8 +7440,8 @@ html body #btnLangRuV66.active-ext-v66 {
   function traduireNoeudVersExtAsync(textNode, origTxt, codeLang) {
     if (!origTxt || origTxt.length < 3 || !LANGUES_EXT_SUPPORTEES[codeLang]) return;
     var cle = codeLang + "_" + origTxt.slice(0, 140) + "_" + origTxt.length;
-    var esp1 = (textNode.__origExtV66 || textNode.nodeValue).match(/^\\s*/)[0];
-    var esp2 = (textNode.__origExtV66 || textNode.nodeValue).match(/\\s*$/)[0];
+    var esp1 = (textNode.__origExtV67 || textNode.nodeValue).match(/^\\s*/)[0];
+    var esp2 = (textNode.__origExtV67 || textNode.nodeValue).match(/\\s*$/)[0];
 
     if (cacheTexteUnitaireExt[cle]) {
       modifierNoeudTexteSeul(textNode, esp1 + cacheTexteUnitaireExt[cle] + esp2);
@@ -7225,6 +7530,7 @@ html body #btnLangRuV66.active-ext-v66 {
       "2. ordre classique (1 à 114)": "2. Klassische Reihenfolge (1–114)",
       "⭐ 3. versets des miracles scientifiques": "3. ⭐ Wunder des Korans",
       "3. ⭐ miracles du coran": "3. ⭐ Wunder des Korans",
+      "3. ⭐ les miracles du coran": "3. ⭐ Wunder des Korans",
       "mecquoise": "MEKKANISCH",
       "médinoise": "MEDINENSISCH"
     },
@@ -7281,6 +7587,7 @@ html body #btnLangRuV66.active-ext-v66 {
       "2. ordre classique (1 à 114)": "2. Ordine Classico (1–114)",
       "⭐ 3. versets des miracles scientifiques": "3. ⭐ I Miracoli del Corano",
       "3. ⭐ miracles du coran": "3. ⭐ I Miracoli del Corano",
+      "3. ⭐ les miracles du coran": "3. ⭐ I Miracoli del Corano",
       "mecquoise": "MECCANA",
       "médinoise": "MEDINESE"
     },
@@ -7337,6 +7644,7 @@ html body #btnLangRuV66.active-ext-v66 {
       "2. ordre classique (1 à 114)": "2. Urutan Mushaf (1–114)",
       "⭐ 3. versets des miracles scientifiques": "3. ⭐ Mukjizat Al-Qur'an",
       "3. ⭐ miracles du coran": "3. ⭐ Mukjizat Al-Qur'an",
+      "3. ⭐ les miracles du coran": "3. ⭐ Mukjizat Al-Qur'an",
       "mecquoise": "MAKKIYAH",
       "médinoise": "MADANIYAH"
     },
@@ -7393,6 +7701,7 @@ html body #btnLangRuV66.active-ext-v66 {
       "2. ordre classique (1 à 114)": "2. По порядку Мусхафа (1–114)",
       "⭐ 3. versets des miracles scientifiques": "3. ⭐ Чудеса Корана",
       "3. ⭐ miracles du coran": "3. ⭐ Чудеса Корана",
+      "3. ⭐ les miracles du coran": "3. ⭐ Чудеса Корана",
       "mecquoise": "МЕККАНСКАЯ",
       "médinoise": "МЕДИНСКАЯ"
     }
@@ -7442,6 +7751,7 @@ html body #btnLangRuV66.active-ext-v66 {
     var cartesAccueil = document.querySelectorAll("a[href*='sourate-']");
     for (var ca = 0; ca < cartesAccueil.length; ca++) {
       var lienCarte = cartesAccueil[ca];
+      if (lienCarte.closest("#khatmPlannerWidgetV67")) continue;
       var mHref = (lienCarte.getAttribute("href") || "").match(/sourate-(\\d+)/i);
       if (mHref) {
         var sId = Number(mHref[1]);
@@ -7450,9 +7760,9 @@ html body #btnLangRuV66.active-ext-v66 {
           for (var te = 0; te < titresEl.length; te++) {
             var candT = titresEl[te];
             if (candT.children.length === 0) {
-              var origT = (candT.__origTitreV66 || candT.textContent || "").trim();
+              var origT = (candT.__origTitreV67 || candT.textContent || "").trim();
               if (origT.indexOf("(") !== -1 && origT.indexOf(")") !== -1 && origT.indexOf("Miracle") === -1 && origT.indexOf("Wunder") === -1) {
-                if (!candT.__origTitreV66) candT.__origTitreV66 = origT;
+                if (!candT.__origTitreV67) candT.__origTitreV67 = origT;
                 if (candT.firstChild && candT.firstChild.nodeType === 3) {
                   modifierNoeudTexteSeul(candT.firstChild, noms114[sId]);
                 }
@@ -7476,9 +7786,9 @@ html body #btnLangRuV66.active-ext-v66 {
       if (!pEl) continue;
       var tag = pEl.tagName;
       if (tag === "SCRIPT" || tag === "STYLE") continue;
-      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate")) continue;
+      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate") || pEl.closest("#khatmPlannerWidgetV67")) continue;
 
-      var val = (node.__origExtV66 !== undefined ? node.__origExtV66 : node.nodeValue || "").replace(/\\u00A0/g, " ").trim();
+      var val = (node.__origExtV67 !== undefined ? node.__origExtV67 : node.nodeValue || "").replace(/\\u00A0/g, " ").trim();
       if (!val || /[\\u0600-\\u06FF]/.test(val)) continue;
       var valLower = val.toLowerCase();
 
@@ -7507,9 +7817,9 @@ html body #btnLangRuV66.active-ext-v66 {
       }
 
       if (valLower.indexOf("reprendre") !== -1 || valLower.indexOf("resume") !== -1 || valLower.indexOf("continuar") !== -1) {
-        var mRep = val.match(/:\\s*([^\\(]+)\\(\\s*(?:v\\.?|verset|verse|aleya)\\s*(\\d+)\\s*\\)/i);
-        var nomSRep = mRep ? mRep[1].trim() : "Al-Baqarah";
-        var numVRep = mRep ? mRep[2] : "1";
+        var posK = convertirIndexGlobalVersSourateVerset(etatKhatm.order, etatKhatm.idxByOrder[etatKhatm.order] || 0);
+        var nomSRep = NOMS_SOURATES_COURT[posK.s] || "Al-Baqarah";
+        var numVRep = String(posK.v);
         var txtRep = {
           de: "📖 Weiterlesen: " + nomSRep + " (Vers " + numVRep + ")",
           it: "📖 Riprendi lettura: " + nomSRep + " (Versetto " + numVRep + ")",
@@ -7592,16 +7902,27 @@ html body #btnLangRuV66.active-ext-v66 {
 
   function corrigerCoquillesNativesEtTafsir() {
     var lang = obtenirLangueActive();
-    var pEls = document.querySelectorAll("p, button, strong, b, span");
+    var pEls = document.querySelectorAll("p, button, strong, b, span, a");
+    var posK = convertirIndexGlobalVersSourateVerset(etatKhatm.order, etatKhatm.idxByOrder[etatKhatm.order] || 0);
+    var nomSRep = NOMS_SOURATES_COURT[posK.s] || "Al-Baqarah";
+
     for (var i = 0; i < pEls.length; i++) {
       var el = pEls[i];
-      if (el.children.length > 0) continue;
+      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV67")) continue;
       var t = el.textContent || "";
       if (t.indexOf("y e temen") !== -1) {
         el.textContent = t.replace("y e temen", "y le temen");
       }
       if ((lang === "es" || lang === "it") && t.trim() === "⏸ Pause") {
         el.textContent = "⏸ Pausa";
+      }
+      // Mettre à jour le texte du bouton vert natif "📖 Reprendre : ..." sur l'accueil avec la vraie position du Planificateur
+      if (!langExtActive && t.indexOf("📖") !== -1 && (t.indexOf("Reprendre :") !== -1 || t.indexOf("Resume:") !== -1 || t.indexOf("Continuar:") !== -1)) {
+        var nvBtnTxt = lang === "en"
+          ? "📖 Resume: " + nomSRep + " (v." + posK.v + ")"
+          : (lang === "es" ? "📖 Continuar: " + nomSRep + " (v." + posK.v + ")" : "📖 Reprendre : " + nomSRep + " (v." + posK.v + ")");
+        if (el.textContent !== nvBtnTxt) el.textContent = nvBtnTxt;
+        if (el.tagName === "A") el.setAttribute("href", "sourate-" + posK.s + "-verset-1.html?khatm_verse=" + posK.v);
       }
       if (/^\\d+\\s*\\.\\s+(?:Le Livre par excellence|This is the Qur'ān|El Libro por excelencia|Das Buch schlechthin|Il Libro per eccellenza|Kitab yang paling|Лучшей книгой)/i.test(t.trim())) {
         el.textContent = t.trim().replace(/^\\d+\\s*\\.\\s+/, "");
@@ -7634,7 +7955,7 @@ html body #btnLangRuV66.active-ext-v66 {
       btnSuivi.style.setProperty("display", "inline-flex", "important");
       btnSuivi.style.setProperty("visibility", "visible", "important");
       btnSuivi.style.setProperty("opacity", "1", "important");
-      if (btnSuivi.id === "btnSuiviUniverselV66" && btnSuivi.textContent !== labelSuivi) {
+      if (btnSuivi.id === "btnSuiviUniverselV67" && btnSuivi.textContent !== labelSuivi) {
         btnSuivi.textContent = labelSuivi;
       }
       if (suiviEstActif) {
@@ -7643,9 +7964,9 @@ html body #btnLangRuV66.active-ext-v66 {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV66")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV67")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV66";
+      nv.id = "btnSuiviUniverselV67";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.textContent = labelSuivi;
@@ -7734,8 +8055,8 @@ html body #btnLangRuV66.active-ext-v66 {
       }
 
       if (role === "sun") {
-        node.classList.remove("astre-lune-pure-v66");
-        node.classList.add("astre-soleil-pur-v66");
+        node.classList.remove("astre-lune-pure-v67");
+        node.classList.add("astre-soleil-pur-v67");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -7744,8 +8065,8 @@ html body #btnLangRuV66.active-ext-v66 {
         node.style.setProperty("box-shadow", "0 0 50px 16px rgba(253, 224, 71, 0.72), 0 0 110px 38px rgba(245, 158, 11, 0.42)", "important");
         node.style.setProperty("filter", "none", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v66");
-        node.classList.add("astre-lune-pure-v66");
+        node.classList.remove("astre-soleil-pur-v67");
+        node.classList.add("astre-lune-pure-v67");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -7765,7 +8086,7 @@ html body #btnLangRuV66.active-ext-v66 {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v66");
+          row.classList.add("maher-supprime-v67");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
@@ -7929,14 +8250,6 @@ html body #btnLangRuV66.active-ext-v66 {
     for (var k in dico) {
       if (normaliserArabeCle(k) === cle) return dico[k];
     }
-    return "";
-  }
-
-  function obtenirCleVerset() {
-    var m = document.body ? document.body.innerText.match(/\\b(\\d{1,3})\\s*:\\s*(\\d{1,3})\\b/) : null;
-    if (m) return m[1] + ":" + m[2];
-    var urlFull = window.location.pathname.match(/sourate-(\\d+)-verset-(\\d+)/i);
-    if (urlFull) return urlFull[1] + ":" + urlFull[2];
     return "";
   }
 
@@ -8258,6 +8571,7 @@ html body #btnLangRuV66.active-ext-v66 {
     var selects = document.querySelectorAll("select");
     for (var i = 0; i < selects.length; i++) {
       var s = selects[i];
+      if (s.classList.contains("khatm-select-pos")) continue;
       if (s.options && s.selectedIndex >= 0) {
         var txt = ((s.value || "") + " " + (s.options[s.selectedIndex].textContent || "")).toLowerCase();
         if (txt.indexOf("verset") === -1 && txt.indexOf("verse") === -1 && txt.indexOf("aleya") === -1 && txt.indexOf("vers ") === -1 && txt.indexOf("ayat") === -1 && txt.indexOf("аят") === -1) {
@@ -8380,7 +8694,7 @@ html body #btnLangRuV66.active-ext-v66 {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV66) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV67) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       var self = this;
@@ -8388,8 +8702,8 @@ html body #btnLangRuV66.active-ext-v66 {
       if (self.currentTime < 0.25) {
         reinitialiserMotsEnBlancTamise();
       }
-      if (!self.__listenersV66) {
-        self.__listenersV66 = true;
+      if (!self.__listenersV67) {
+        self.__listenersV67 = true;
         self.addEventListener("playing", lancerBoucleSuivi);
         self.addEventListener("timeupdate", lancerBoucleSuivi);
       }
@@ -8399,7 +8713,7 @@ html body #btnLangRuV66.active-ext-v66 {
       lancerBoucleSuivi();
       return origPlay.apply(self, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV66 = true;
+    HTMLMediaElement.prototype.__hookedV67 = true;
   }
 
   function trouverAudioActif() {
@@ -8582,7 +8896,6 @@ html body #btnLangRuV66.active-ext-v66 {
   });
 
   document.addEventListener("click", function (e) {
-    // Gestion des clics sur le Planificateur de Khatm
     var btnKhatmMonths = e.target.closest("[data-khatm-months]");
     if (btnKhatmMonths) {
       etatKhatm.months = Number(btnKhatmMonths.getAttribute("data-khatm-months")) || 1;
@@ -8603,7 +8916,17 @@ html body #btnLangRuV66.active-ext-v66 {
     if (btnKhatmAct) {
       var act = btnKhatmAct.getAttribute("data-khatm-act");
       var ord = etatKhatm.order;
-      if (act === "step-day") {
+      if (act === "resume") {
+        // Si on est déjà sur la même sourate, sauter directement au verset sans recharger !
+        var vkCurr = obtenirCleVerset();
+        var tS = Number(btnKhatmAct.getAttribute("data-target-s"));
+        var tV = Number(btnKhatmAct.getAttribute("data-target-v"));
+        if (vkCurr && Number(vkCurr.split(":")[0]) === tS && tV) {
+          e.preventDefault();
+          allerAuVersetSurMemePage(tV);
+          return;
+        }
+      } else if (act === "step-day") {
         var vJour = obtenirVersetsParJour(etatKhatm.months);
         etatKhatm.idxByOrder[ord] = Math.min(TOTAL_VERSETS_CORAN - 1, (etatKhatm.idxByOrder[ord] || 0) + vJour);
         sauvegarderEtatKhatm();
@@ -8638,6 +8961,23 @@ html body #btnLangRuV66.active-ext-v66 {
       } else if (t.indexOf("Suivi") !== -1 || t.indexOf("Follow") !== -1 || t.indexOf("Seguimiento") !== -1 || t.indexOf("Verfolgung") !== -1 || t.indexOf("Seguito") !== -1 || t.indexOf("Ikuti") !== -1 || t.indexOf("Слежение") !== -1 || t.indexOf("تتبع") !== -1) {
         suiviEstActif = !suiviEstActif;
         lancerBoucleSuivi();
+      } else if (t.indexOf("Suivant") !== -1 || t.indexOf("Next") !== -1 || t.indexOf("Siguiente") !== -1 || t.indexOf("Weiter") !== -1 || t.indexOf("Successivo") !== -1 || t.indexOf("Berikutnya") !== -1 || t.indexOf("Далее") !== -1) {
+        // Si on clique sur "Suivant ›" au tout dernier verset d'une sourate, basculer vers la sourate suivante selon l'ordre choisi !
+        var vkNow = obtenirCleVerset();
+        if (vkNow) {
+          var pNow = vkNow.split(":");
+          var sNow = Number(pNow[0]);
+          var vNow = Number(pNow[1]);
+          if (sNow && vNow && vNow >= NB_VERSETS_PAR_SOURATE[sNow]) {
+            var sNext = obtenirSourateSuivanteSelonOrdre(etatKhatm.order, sNow);
+            if (sNext) {
+              etatKhatm.idxByOrder[etatKhatm.order] = convertirSourateVersetVersIndexGlobal(etatKhatm.order, sNext, 1);
+              sauvegarderEtatKhatm();
+              window.location.href = "sourate-" + sNext + "-verset-1.html?khatm_verse=1" + (langExtActive ? "&lang=" + langExtActive : "");
+              return;
+            }
+          }
+        }
       }
     }
     setTimeout(synchroniserTout, 15);
