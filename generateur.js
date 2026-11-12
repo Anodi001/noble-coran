@@ -2461,7 +2461,7 @@ async function lancerGeneration() {
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
 <link rel="preconnect" href="https://translate.googleapis.com" crossorigin>
-<style id="patch-master-v69">
+<style id="patch-master-v70">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -2476,7 +2476,7 @@ html body .flat-earth-sun,
 html body [id*="sun" i]:not([id*="sound" i]),
 html body [class*="sun" i]:not([class*="sound" i]),
 html body [data-astre-role="sun"],
-html body .astre-soleil-pur-v69 {
+html body .astre-soleil-pur-v70 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -2497,8 +2497,8 @@ html body .astre-soleil-pur-v69 {
 }
 html body #flatEarthSun::before, html body #flatEarthSun::after,
 html body .flat-earth-sun::before, html body .flat-earth-sun::after,
-html body .astre-soleil-pur-v69::before, html body .astre-soleil-pur-v69::after,
-html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v69 * {
+html body .astre-soleil-pur-v70::before, html body .astre-soleil-pur-v70::after,
+html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v70 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
@@ -2508,7 +2508,7 @@ html body .flat-earth-moon,
 html body [id*="moon" i],
 html body [class*="moon" i],
 html body [data-astre-role="moon"],
-html body .astre-lune-pure-v69 {
+html body .astre-lune-pure-v70 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -2529,15 +2529,15 @@ html body .astre-lune-pure-v69 {
 }
 html body #flatEarthMoon::before, html body #flatEarthMoon::after,
 html body .flat-earth-moon::before, html body .flat-earth-moon::after,
-html body .astre-lune-pure-v69::before, html body .astre-lune-pure-v69::after,
-html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v69 * {
+html body .astre-lune-pure-v70::before, html body .astre-lune-pure-v70::after,
+html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v70 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
 /* 3. MASQUAGE DE MAHER AL-MUAIQLY, BOUTON REPRENDRE DOUBLON & TRADUCTION DU BAS EN MOT-À-MOT */
 html body img[src*="maher" i],
 html body [data-reciter*="maher" i],
-html body .maher-supprime-v69,
+html body .maher-supprime-v70,
 html body .wbw-masquer-traduction-bas,
 html body .khatm-doublon-reprendre-masque {
   display: none !important; visibility: hidden !important; height: 0 !important; max-height: 0 !important; margin: 0 !important; padding: 0 !important; border: none !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important;
@@ -2587,227 +2587,158 @@ html body .follow-word {
 }
 
 /* 6. BOUTONS DE LANGUE ÉTENDUS (DE, IT, ID, RU) AVEC DRAPEAUX IPHONE EXACTS */
-html body #btnLangDeV69,
-html body #btnLangItV69,
-html body #btnLangIdV69,
-html body #btnLangRuV69 {
+html body #btnLangDeV70,
+html body #btnLangItV70,
+html body #btnLangIdV70,
+html body #btnLangRuV70 {
   cursor: pointer !important; transition: all 0.2s ease !important; display: inline-flex !important; align-items: center !important; justify-content: center !important;
 }
-html body #btnLangDeV69.active-ext-v69,
-html body #btnLangItV69.active-ext-v69,
-html body #btnLangIdV69.active-ext-v69,
-html body #btnLangRuV69.active-ext-v69 {
+html body #btnLangDeV70.active-ext-v70,
+html body #btnLangItV70.active-ext-v70,
+html body #btnLangIdV70.active-ext-v70,
+html body #btnLangRuV70.active-ext-v70 {
   background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(56, 189, 248, 0.18)) !important;
   border: 1px solid #38bdf8 !important; color: #ffffff !important; border-radius: 999px !important;
 }
 
-/* 7. PLANIFICATEUR DE KHATM INTÉGRÉ À L'INTÉRIEUR DU CADRE "LE NOBLE CORAN & TAFSĪR" */
-#khatmPlannerWidgetV69 {
+/* 7. PLANIFICATEUR KHATM ULTRA-COMPACT (STYLE SÉLECTEUR RÉCITATEUR) */
+#khatmPlannerWidgetV70 {
   width: 100% !important;
   box-sizing: border-box !important;
-  margin: 18px auto 2px auto !important;
-  padding: 18px 18px 8px 18px !important;
-  background: rgba(4, 12, 24, 0.45) !important;
-  border: 1px solid rgba(56, 189, 248, 0.18) !important;
-  border-radius: 18px !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  margin: 12px auto 0 auto !important;
+  padding: 12px 10px 4px 10px !important;
+  border-top: 1px solid rgba(56, 189, 248, 0.16) !important;
+  background: transparent !important;
   color: #f8fafc !important;
   font-family: system-ui, -apple-system, sans-serif !important;
   position: relative !important;
   z-index: 10 !important;
   text-align: center !important;
 }
-#khatmPlannerWidgetV69.khatm-inside-verse {
-  margin: 14px auto 4px auto !important;
-  padding: 14px 16px 10px 16px !important;
-}
-.khatm-top-divider-glow {
-  width: 55%;
-  max-width: 420px;
-  height: 1px;
-  margin: -18px auto 14px auto;
-  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.75), rgba(253, 224, 71, 0.65), rgba(56, 189, 248, 0.75), transparent);
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.55);
-}
-.khatm-header-inline {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-.khatm-title-hero {
-  font-family: 'Cinzel', 'Times New Roman', Georgia, serif !important;
-  font-size: 1.02rem !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.05em !important;
-  text-transform: uppercase !important;
-  background: linear-gradient(180deg, #67e8f9 0%, #2dd4bf 55%, #0d9488 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  filter: drop-shadow(0 0 10px rgba(45, 212, 191, 0.22)) !important;
-  margin: 0 !important;
-}
-.khatm-badge-rythme {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.75rem;
-  padding: 3px 12px;
-  border-radius: 999px;
-  background: rgba(6, 78, 59, 0.32);
-  border: 1px solid rgba(16, 185, 129, 0.45);
-  color: #6ee7b7;
-  font-weight: 600;
-}
-.khatm-selectors-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 11px;
-}
-.khatm-capsule-group {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 3px;
-  padding: 3px 5px;
-  border-radius: 999px;
-  background: rgba(6, 13, 25, 0.88);
-  border: 1px solid rgba(56, 189, 248, 0.22);
-}
-.khatm-group-label {
-  font-size: 0.70rem;
-  color: #94a3b8;
-  padding: 0 7px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.khatm-pill-btn {
-  background: transparent;
-  border: 1px solid transparent;
-  color: #cbd5e1;
-  padding: 4px 11px;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.16s ease;
-}
-.khatm-pill-btn:hover {
-  color: #ffffff;
-  border-color: rgba(56, 189, 248, 0.35);
-}
-.khatm-pill-btn.active-khatm-pill {
-  background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(56, 189, 248, 0.16));
-  border: 1px solid #38bdf8;
-  color: #ffffff;
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
-}
-.khatm-progress-track {
-  width: 82%;
-  max-width: 640px;
-  height: 5px;
-  margin: 0 auto 10px auto;
-  background: rgba(15, 23, 42, 0.9);
-  border-radius: 999px;
-  overflow: hidden;
-  border: 1px solid rgba(56, 189, 248, 0.18);
-}
-.khatm-progress-fill-bar {
-  height: 100%;
-  background: linear-gradient(90deg, #38bdf8, #2dd4bf, #fde047);
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.65);
-  border-radius: 999px;
-  transition: width 0.35s ease;
-}
-.khatm-status-info {
-  font-size: 0.82rem;
-  color: #cbd5e1;
-  margin-bottom: 11px;
-}
-.khatm-actions-center {
+.khatm-compact-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 8px;
 }
-.khatm-btn-cyan-hero {
-  background: rgba(8, 25, 48, 0.68);
-  border: 1px solid rgba(56, 189, 248, 0.55);
-  color: #38bdf8;
-  padding: 6px 15px;
-  border-radius: 999px;
-  font-size: 0.79rem;
-  font-weight: 700;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-flex;
+/* Menus déroulants stylisés exactement comme le sélecteur de Récitateur */
+.khatm-reciter-select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  background-color: rgba(8, 22, 42, 0.85) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%2338bdf8' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 11px center !important;
+  background-size: 9px 6px !important;
+  border: 1px solid rgba(56, 189, 248, 0.38) !important;
+  color: #f1f5f9 !important;
+  padding: 6px 28px 6px 13px !important;
+  border-radius: 999px !important;
+  font-size: 0.77rem !important;
+  font-weight: 600 !important;
+  outline: none !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35), inset 0 0 8px rgba(56, 189, 248, 0.06) !important;
+  transition: all 0.18s ease !important;
+}
+.khatm-reciter-select:hover {
+  border-color: #38bdf8 !important;
+  background-color: rgba(14, 34, 64, 0.92) !important;
+  color: #ffffff !important;
+}
+.khatm-reciter-select option {
+  background-color: #06101e !important;
+  color: #f8fafc !important;
+}
+.khatm-btn-green-compact {
+  background: rgba(6, 46, 36, 0.62) !important;
+  border: 1px solid rgba(16, 185, 129, 0.55) !important;
+  color: #34d399 !important;
+  padding: 6px 14px !important;
+  border-radius: 999px !important;
+  font-size: 0.77rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.12) !important;
+  transition: all 0.18s ease !important;
+}
+.khatm-btn-green-compact:hover {
+  background: rgba(16, 185, 129, 0.24) !important;
+  color: #ffffff !important;
+  border-color: #6ee7b7 !important;
+}
+.khatm-btn-cyan-compact {
+  background: rgba(8, 25, 48, 0.72) !important;
+  border: 1px solid rgba(56, 189, 248, 0.48) !important;
+  color: #38bdf8 !important;
+  padding: 6px 13px !important;
+  border-radius: 999px !important;
+  font-size: 0.76rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  transition: all 0.18s ease !important;
+}
+.khatm-btn-cyan-compact:hover {
+  background: rgba(14, 165, 233, 0.22) !important;
+  color: #ffffff !important;
+  border-color: #7dd3fc !important;
+}
+.khatm-btn-reset-mini {
+  background: rgba(30, 10, 18, 0.55) !important;
+  border: 1px solid rgba(248, 113, 113, 0.35) !important;
+  color: #fca5a5 !important;
+  padding: 5px 10px !important;
+  border-radius: 999px !important;
+  font-size: 0.74rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+}
+.khatm-btn-reset-mini:hover {
+  background: rgba(239, 68, 68, 0.25) !important;
+  color: #ffffff !important;
+}
+.khatm-mini-footer {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
-  box-shadow: 0 0 14px rgba(56, 189, 248, 0.12), inset 0 0 10px rgba(56, 189, 248, 0.06);
-  transition: all 0.18s ease;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 7px;
+  font-size: 0.73rem;
+  color: #94a3b8;
 }
-.khatm-btn-cyan-hero:hover {
-  background: rgba(14, 165, 233, 0.22);
-  color: #ffffff;
-  border-color: #7dd3fc;
-}
-.khatm-btn-green-hero {
-  background: rgba(6, 46, 36, 0.58);
-  border: 1px solid rgba(16, 185, 129, 0.55);
-  color: #34d399;
-  padding: 6px 16px;
+.khatm-mini-bar-wrap {
+  width: 140px;
+  height: 4px;
+  background: rgba(15, 23, 42, 0.95);
   border-radius: 999px;
-  font-size: 0.79rem;
-  font-weight: 700;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: 0 0 14px rgba(16, 185, 129, 0.12), inset 0 0 10px rgba(16, 185, 129, 0.06);
-  transition: all 0.18s ease;
+  overflow: hidden;
+  border: 1px solid rgba(56, 189, 248, 0.2);
 }
-.khatm-btn-green-hero:hover {
-  background: rgba(16, 185, 129, 0.22);
-  color: #ffffff;
-  border-color: #6ee7b7;
-}
-.khatm-select-pos {
-  background: rgba(6, 13, 25, 0.9);
-  border: 1px solid rgba(56, 189, 248, 0.38);
-  color: #e2e8f0;
-  padding: 5px 12px;
+.khatm-mini-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8, #2dd4bf, #fde047);
   border-radius: 999px;
-  font-size: 0.76rem;
-  font-weight: 600;
-  outline: none;
-  cursor: pointer;
-}
-.khatm-action-reset {
-  background: rgba(30, 10, 18, 0.55);
-  border: 1px solid rgba(248, 113, 113, 0.38);
-  color: #fca5a5;
-  padding: 5px 11px;
-  border-radius: 999px;
-  font-size: 0.74rem;
-  font-weight: 600;
-  cursor: pointer;
+  transition: width 0.3s ease;
 }
 </style>
-<script id="script-master-v69">(function codeClientV69() {
+<script id="script-master-v70">(function codeClientV70() {
   var LANGUES_EXT_SUPPORTEES = { de: 27, it: 153, id: 33, ru: 45 };
   var langExtActive = "";
   var IgnoreClicInterneFr = false;
 
   try {
-    var oldIds = ["khatmPlannerWidgetV66", "khatmPlannerWidgetV67", "khatmPlannerWidgetV68"];
+    var oldIds = ["khatmPlannerWidgetV66", "khatmPlannerWidgetV67", "khatmPlannerWidgetV68", "khatmPlannerWidgetV69"];
     for (var w = 0; w < oldIds.length; w++) {
       var elOld = document.getElementById(oldIds[w]);
       if (elOld && elOld.parentNode) elOld.parentNode.removeChild(elOld);
@@ -2817,9 +2748,9 @@ html body #btnLangRuV69.active-ext-v69 {
     var pLang = urlParams.get("lang");
     if (pLang && LANGUES_EXT_SUPPORTEES[pLang]) {
       langExtActive = pLang;
-      localStorage.setItem("corantafsir_lang_ext_v69", pLang);
+      localStorage.setItem("corantafsir_lang_ext_v70", pLang);
     } else {
-      var savedExt = localStorage.getItem("corantafsir_lang_ext_v69") || localStorage.getItem("corantafsir_lang_ext_v68") || localStorage.getItem("corantafsir_lang_ext_v67");
+      var savedExt = localStorage.getItem("corantafsir_lang_ext_v70") || localStorage.getItem("corantafsir_lang_ext_v69") || localStorage.getItem("corantafsir_lang_ext_v68");
       if (savedExt && LANGUES_EXT_SUPPORTEES[savedExt]) {
         langExtActive = savedExt;
       }
@@ -2827,7 +2758,7 @@ html body #btnLangRuV69.active-ext-v69 {
   } catch (e) {}
 
   // ==========================================================================
-  // 0. MOTEUR DU PLANIFICATEUR DE KHATM INTÉGRÉ DANS LA CARTE HERO
+  // 0. MOTEUR DU PLANIFICATEUR KHATM COMPACT (SÉLECTEURS STYLE RÉCITATEUR)
   // ==========================================================================
   var NB_VERSETS_PAR_SOURATE = [
     0,
@@ -2876,7 +2807,7 @@ html body #btnLangRuV69.active-ext-v69 {
   };
 
   try {
-    var sauvKhatm = localStorage.getItem("corantafsir_khatm_v69") || localStorage.getItem("corantafsir_khatm_v68") || localStorage.getItem("corantafsir_khatm_v67");
+    var sauvKhatm = localStorage.getItem("corantafsir_khatm_v70") || localStorage.getItem("corantafsir_khatm_v69") || localStorage.getItem("corantafsir_khatm_v68");
     if (sauvKhatm) {
       var parsedK = JSON.parse(sauvKhatm);
       if (parsedK && parsedK.idxByOrder) {
@@ -2889,7 +2820,7 @@ html body #btnLangRuV69.active-ext-v69 {
 
   function sauvegarderEtatKhatm() {
     try {
-      localStorage.setItem("corantafsir_khatm_v69", JSON.stringify(etatKhatm));
+      localStorage.setItem("corantafsir_khatm_v70", JSON.stringify(etatKhatm));
     } catch (e) {}
   }
 
@@ -2959,7 +2890,7 @@ html body #btnLangRuV69.active-ext-v69 {
     var selects = document.querySelectorAll("select");
     for (var i = 0; i < selects.length; i++) {
       var s = selects[i];
-      if (s.classList.contains("khatm-select-pos")) continue;
+      if (s.classList.contains("khatm-reciter-select")) continue;
       if (s.options && s.selectedIndex >= 0) {
         var optTxt = s.options[s.selectedIndex].textContent || "";
         var vm = optTxt.match(/(?:Verset|Verse|Aleya|Vers|Versetto|Ayat|Аят|آية)\\s*(\\d+)/i);
@@ -2969,7 +2900,7 @@ html body #btnLangRuV69.active-ext-v69 {
     var badges = document.querySelectorAll("span, div");
     for (var b = 0; b < badges.length; b++) {
       var el = badges[b];
-      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV69")) continue;
+      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV70")) continue;
       var txt = (el.textContent || "").trim();
       var bm = txt.match(/^(\\d{1,3})\\s*:\\s*(\\d{1,3})$/);
       if (bm) return bm[1] + ":" + bm[2];
@@ -2982,7 +2913,7 @@ html body #btnLangRuV69.active-ext-v69 {
     var selects = document.querySelectorAll("select");
     for (var i = 0; i < selects.length; i++) {
       var sel = selects[i];
-      if (sel.classList.contains("khatm-select-pos")) continue;
+      if (sel.classList.contains("khatm-reciter-select")) continue;
       if (sel.options && sel.options.length >= numV) {
         var opt0 = (sel.options[0].textContent || "").toLowerCase();
         if (opt0.indexOf("vers") !== -1 || opt0.indexOf("aleya") !== -1 || opt0.indexOf("ayat") !== -1 || opt0.indexOf("аят") !== -1 || opt0.indexOf("آية") !== -1 || /\\d+\\s*\\/\\s*\\d+/.test(opt0)) {
@@ -3031,152 +2962,119 @@ html body #btnLangRuV69.active-ext-v69 {
 
   var TEXTES_KHATM_I18N = {
     fr: {
-      titre: "PLANIFICATEUR KHATM AL-QUR'ĀN (6 236 VERSETS)",
-      duree: "Durée",
-      ordre: "Ordre",
-      m1: "1 Mois", m4: "4 Mois", m6: "6 Mois", m12: "12 Mois",
-      ordRev: "Révélation (96➔110)",
-      ordAsc: "Croissant (1➔114)",
-      ordDesc: "Décroissant (114➔1)",
-      vParJour: "versets / jour",
-      jours: "jours",
-      posActuelle: "📍 Où vous en étiez :",
-      objJour: "🎯 Fin de l'étape du jour :",
+      m1: "🗓️ 1 Mois (208 v./j)", m4: "🗓️ 4 Mois (52 v./j)", m6: "🗓️ 6 Mois (35 v./j)", m12: "🗓️ 12 Mois (18 v./j)",
+      ordRev: "📜 Ordre : Révélation (96➔110)",
+      ordAsc: "⬆️ Ordre : Croissant (1➔114)",
+      ordDesc: "⬇️ Ordre : Décroissant (114➔1)",
+      jours: "j. restants",
+      posActuelle: "Position :",
+      objJour: "Objectif du jour :",
       reprendre: "📖 Reprendre :",
-      validerEtape: "✅ Valider l'étape du jour",
-      memoriserIci: "📍 Mémoriser ce verset",
-      sourateSuiv: "⏭️ Sourate suivante :",
-      reset: "↺ Réinitialiser"
+      validerEtape: "✅ Valider étape",
+      memoriserIci: "📍 Mémoriser",
+      sourateSuiv: "⏭️ Suiv. :",
+      reset: "↺"
     },
     en: {
-      titre: "QURAN KHATM PLANNER (6,236 VERSES)",
-      duree: "Duration",
-      ordre: "Order",
-      m1: "1 Month", m4: "4 Months", m6: "6 Months", m12: "12 Months",
-      ordRev: "Revelation (96➔110)",
-      ordAsc: "Ascending (1➔114)",
-      ordDesc: "Descending (114➔1)",
-      vParJour: "verses / day",
-      jours: "days",
-      posActuelle: "📍 Where you left off:",
-      objJour: "🎯 Today's target:",
+      m1: "🗓️ 1 Month (208 v./d)", m4: "🗓️ 4 Months (52 v./d)", m6: "🗓️ 6 Months (35 v./d)", m12: "🗓️ 12 Months (18 v./d)",
+      ordRev: "📜 Order: Revelation (96➔110)",
+      ordAsc: "⬆️ Order: Ascending (1➔114)",
+      ordDesc: "⬇️ Order: Descending (114➔1)",
+      jours: "d. left",
+      posActuelle: "Position:",
+      objJour: "Today's goal:",
       reprendre: "📖 Resume:",
-      validerEtape: "✅ Complete today's goal",
-      memoriserIci: "📍 Save this verse",
-      sourateSuiv: "⏭️ Next Surah:",
-      reset: "↺ Reset"
+      validerEtape: "✅ Complete step",
+      memoriserIci: "📍 Save here",
+      sourateSuiv: "⏭️ Next:",
+      reset: "↺"
     },
     es: {
-      titre: "PLANIFICADOR KHATM DEL CORÁN (6.236 ALEYAS)",
-      duree: "Duración",
-      ordre: "Orden",
-      m1: "1 Mes", m4: "4 Meses", m6: "6 Meses", m12: "12 Meses",
-      ordRev: "Revelación (96➔110)",
-      ordAsc: "Creciente (1➔114)",
-      ordDesc: "Decreciente (114➔1)",
-      vParJour: "aleyas / día",
-      jours: "días",
-      posActuelle: "📍 Dónde te quedaste:",
-      objJour: "🎯 Meta de hoy:",
+      m1: "🗓️ 1 Mes (208 a./d)", m4: "🗓️ 4 Meses (52 a./d)", m6: "🗓️ 6 Meses (35 a./d)", m12: "🗓️ 12 Meses (18 a./d)",
+      ordRev: "📜 Orden: Revelación (96➔110)",
+      ordAsc: "⬆️ Orden: Creciente (1➔114)",
+      ordDesc: "⬇️ Orden: Decreciente (114➔1)",
+      jours: "d. restantes",
+      posActuelle: "Posición:",
+      objJour: "Meta de hoy:",
       reprendre: "📖 Continuar:",
-      validerEtape: "✅ Validar meta de hoy",
-      memoriserIci: "📍 Guardar esta aleya",
-      sourateSuiv: "⏭️ Siguiente Sura:",
-      reset: "↺ Reiniciar"
+      validerEtape: "✅ Validar meta",
+      memoriserIci: "📍 Guardar",
+      sourateSuiv: "⏭️ Sig.:",
+      reset: "↺"
     },
     ar: {
-      titre: "برنامج ختم القرآن الكريم (6236 آية)",
-      duree: "المدة",
-      ordre: "الترتيب",
-      m1: "شهر", m4: "4 أشهر", m6: "6 أشهر", m12: "12 شهراً",
-      ordRev: "النزول (96⬅110)",
-      ordAsc: "تصاعدي (1⬅114)",
-      ordDesc: "تنازلي (114⬅1)",
-      vParJour: "آية / يوم",
-      jours: "يوماً",
-      posActuelle: "📍 توقفت عند:",
-      objJour: "🎯 هدف اليوم:",
+      m1: "🗓️ شهر واحد (208 آية/ي)", m4: "🗓️ 4 أشهر (52 آية/ي)", m6: "🗓️ 6 أشهر (35 آية/ي)", m12: "🗓️ 12 شهراً (18 آية/ي)",
+      ordRev: "📜 الترتيب: النزول (96⬅110)",
+      ordAsc: "⬆️ الترتيب: تصاعدي (1⬅114)",
+      ordDesc: "⬇️ الترتيب: تنازلي (114⬅1)",
+      jours: "يوم متبقي",
+      posActuelle: "الموضع:",
+      objJour: "ورد اليوم:",
       reprendre: "📖 متابعة:",
-      validerEtape: "✅ إتمام ورد اليوم",
-      memoriserIci: "📍 حفظ موضعي هنا",
-      sourateSuiv: "⏭️ السورة التالية:",
-      reset: "↺ إعادة ضبط"
+      validerEtape: "✅ إتمام الورد",
+      memoriserIci: "📍 حفظ هنا",
+      sourateSuiv: "⏭️ التالية:",
+      reset: "↺"
     },
     de: {
-      titre: "KORAN-LESEPLANER & KHATM (6.236 VERSE)",
-      duree: "Dauer",
-      ordre: "Reihenfolge",
-      m1: "1 Monat", m4: "4 Monate", m6: "6 Monate", m12: "12 Monate",
-      ordRev: "Offenbarung (96➔110)",
-      ordAsc: "Aufsteigend (1➔114)",
-      ordDesc: "Absteigend (114➔1)",
-      vParJour: "Verse / Tag",
-      jours: "Tage",
-      posActuelle: "📍 Letzte Position:",
-      objJour: "🎯 Tagesziel:",
+      m1: "🗓️ 1 Monat (208 V./T)", m4: "🗓️ 4 Monate (52 V./T)", m6: "🗓️ 6 Monate (35 V./T)", m12: "🗓️ 12 Monate (18 V./T)",
+      ordRev: "📜 Reihenfolge: Offenbarung (96➔110)",
+      ordAsc: "⬆️ Reihenfolge: Aufsteigend (1➔114)",
+      ordDesc: "⬇️ Reihenfolge: Absteigend (114➔1)",
+      jours: "T. übrig",
+      posActuelle: "Position:",
+      objJour: "Tagesziel:",
       reprendre: "📖 Weiterlesen:",
-      validerEtape: "✅ Tagesziel abhaken",
-      memoriserIci: "📍 Diesen Vers speichern",
-      sourateSuiv: "⏭️ Nächste Sure:",
-      reset: "↺ Reset"
+      validerEtape: "✅ Tagesziel",
+      memoriserIci: "📍 Speichern",
+      sourateSuiv: "⏭️ Nächste:",
+      reset: "↺"
     },
     it: {
-      titre: "PIANIFICATORE KHATM DEL CORANO (6.236 VERSETTI)",
-      duree: "Durata",
-      ordre: "Ordine",
-      m1: "1 Mese", m4: "4 Mesi", m6: "6 Mesi", m12: "12 Mesi",
-      ordRev: "Rivelazione (96➔110)",
-      ordAsc: "Crescente (1➔114)",
-      ordDesc: "Decrescente (114➔1)",
-      vParJour: "versetti / giorno",
-      jours: "giorni",
-      posActuelle: "📍 Dove eri rimasto:",
-      objJour: "🎯 Obiettivo di oggi:",
+      m1: "🗓️ 1 Mese (208 v./g)", m4: "🗓️ 4 Mesi (52 v./g)", m6: "🗓️ 6 Mesi (35 v./g)", m12: "🗓️ 12 Mesi (18 v./g)",
+      ordRev: "📜 Ordine: Rivelazione (96➔110)",
+      ordAsc: "⬆️ Ordine: Crescente (1➔114)",
+      ordDesc: "⬇️ Ordine: Decrescente (114➔1)",
+      jours: "g. rimasti",
+      posActuelle: "Posizione:",
+      objJour: "Obiettivo:",
       reprendre: "📖 Riprendi:",
-      validerEtape: "✅ Convalida tappa di oggi",
-      memoriserIci: "📍 Salva questo versetto",
-      sourateSuiv: "⏭️ Sura successiva:",
-      reset: "↺ Reset"
+      validerEtape: "✅ Convalida",
+      memoriserIci: "📍 Salva qui",
+      sourateSuiv: "⏭️ Succ.:",
+      reset: "↺"
     },
     id: {
-      titre: "PERENCANA KHATAM AL-QUR'AN (6.236 AYAT)",
-      duree: "Durasi",
-      ordre: "Urutan",
-      m1: "1 Bulan", m4: "4 Bulan", m6: "6 Bulan", m12: "12 Bulan",
-      ordRev: "Wahyu (96➔110)",
-      ordAsc: "Menaik (1➔114)",
-      ordDesc: "Menurun (114➔1)",
-      vParJour: "ayat / hari",
-      jours: "hari",
-      posActuelle: "📍 Posisi terakhir:",
-      objJour: "🎯 Target hari ini:",
+      m1: "🗓️ 1 Bulan (208 a./h)", m4: "🗓️ 4 Bulan (52 a./h)", m6: "🗓️ 6 Bulan (35 a./h)", m12: "🗓️ 12 Bulan (18 a./h)",
+      ordRev: "📜 Urutan: Wahyu (96➔110)",
+      ordAsc: "⬆️ Urutan: Menaik (1➔114)",
+      ordDesc: "⬇️ Urutan: Menurun (114➔1)",
+      jours: "h. tersisa",
+      posActuelle: "Posisi:",
+      objJour: "Target hari ini:",
       reprendre: "📖 Lanjutkan:",
-      validerEtape: "✅ Selesaikan target hari ini",
-      memoriserIci: "📍 Simpan ayat ini",
-      sourateSuiv: "⏭️ Surah berikutnya:",
-      reset: "↺ Reset"
+      validerEtape: "✅ Selesai",
+      memoriserIci: "📍 Simpan",
+      sourateSuiv: "⏭️ Berikut:",
+      reset: "↺"
     },
     ru: {
-      titre: "ПЛАН ЧТЕНИЯ КОРАНА — ХАТМ (6 236 АЯТОВ)",
-      duree: "Срок",
-      ordre: "Порядок",
-      m1: "1 мес.", m4: "4 мес.", m6: "6 мес.", m12: "12 мес.",
-      ordRev: "Ниспослание (96➔110)",
-      ordAsc: "Возрастание (1➔114)",
-      ordDesc: "Убывание (114➔1)",
-      vParJour: "аятов / день",
-      jours: "дн.",
-      posActuelle: "📍 Вы остановились на:",
-      objJour: "🎯 Цель на сегодня:",
+      m1: "🗓️ 1 мес. (208 а./д)", m4: "🗓️ 4 мес. (52 а./д)", m6: "🗓️ 6 мес. (35 а./д)", m12: "🗓️ 12 мес. (18 а./д)",
+      ordRev: "📜 Порядок: Ниспослание (96➔110)",
+      ordAsc: "⬆️ Порядок: Возрастание (1➔114)",
+      ordDesc: "⬇️ Порядок: Убывание (114➔1)",
+      jours: "дн. ост.",
+      posActuelle: "Позиция:",
+      objJour: "Цель дня:",
       reprendre: "📖 Продолжить:",
-      validerEtape: "✅ Завершить норму дня",
-      memoriserIci: "📍 Сохранить этот аят",
-      sourateSuiv: "⏭️ Следующая сура:",
-      reset: "↺ Сброс"
+      validerEtape: "✅ Завершить",
+      memoriserIci: "📍 Сохранить",
+      sourateSuiv: "⏭️ След.:",
+      reset: "↺"
     }
   };
 
-  // Trouver la boîte Hero principale ("LE NOBLE CORAN & TAFSĪR" sur l'accueil, ou l'en-tête sur une page verset) pour insérer le Planificateur DEDANS !
   function trouverBoiteHeroPourInsertionInterne() {
     var h1 = document.querySelector("h1, h2");
     if (h1) {
@@ -3204,32 +3102,32 @@ html body #btnLangRuV69.active-ext-v69 {
     var boiteHero = trouverBoiteHeroPourInsertionInterne();
     if (!boiteHero) return;
 
-    // Masquer le bouton vert natif en doublon ("📖 Reprendre : Al-Baqarah (v.23)") à l'intérieur de la boîte Hero puisque le Planificateur est maintenant DEDANS !
+    // Masquer le bouton vert natif en doublon dans la bannière Hero
     var liensInternes = boiteHero.querySelectorAll("a, button");
     for (var l = 0; l < liensInternes.length; l++) {
       var elL = liensInternes[l];
-      if (elL.closest("#khatmPlannerWidgetV69")) continue;
+      if (elL.closest("#khatmPlannerWidgetV70")) continue;
       var txtL = (elL.textContent || "").trim();
       if (
         txtL.indexOf("Reprendre :") !== -1 ||
         txtL.indexOf("Resume:") !== -1 ||
         txtL.indexOf("Continuar:") !== -1 ||
         txtL.indexOf("Weiterlesen:") !== -1 ||
-        txtL.indexOf("Riprendi lettura:") !== -1 ||
-        txtL.indexOf("Lanjutkan membaca:") !== -1 ||
-        txtL.indexOf("Продолжить чтение:") !== -1 ||
-        txtL.indexOf("متابعة القراءة") !== -1
+        txtL.indexOf("Riprendi") !== -1 ||
+        txtL.indexOf("Lanjutkan") !== -1 ||
+        txtL.indexOf("Продолжить") !== -1 ||
+        txtL.indexOf("متابعة") !== -1
       ) {
         elL.classList.add("khatm-doublon-reprendre-masque");
       }
     }
 
-    var widget = document.getElementById("khatmPlannerWidgetV69");
+    var widget = document.getElementById("khatmPlannerWidgetV70");
     if (!widget) {
       widget = document.createElement("div");
-      widget.id = "khatmPlannerWidgetV69";
+      widget.id = "khatmPlannerWidgetV70";
       widget.setAttribute("translate", "no");
-      widget.className = "notranslate" + (estSurPageVerset ? " khatm-inside-verse" : "");
+      widget.className = "notranslate";
       boiteHero.appendChild(widget);
     } else if (widget.parentElement !== boiteHero) {
       boiteHero.appendChild(widget);
@@ -3255,7 +3153,8 @@ html body #btnLangRuV69.active-ext-v69 {
     widget.setAttribute("data-render-sig", cleSignatureRendu);
     widget.style.direction = lang === "ar" ? "rtl" : "ltr";
 
-    var controlesContextuelsHtml = "";
+    // Sélecteur déroulant de Sourate (ou bouton Mémoriser sur une page verset)
+    var controlePositionHtml = "";
     if (estSurPageVerset) {
       var partsVk = vkPage.split(":");
       var sPage = Number(partsVk[0]);
@@ -3263,10 +3162,10 @@ html body #btnLangRuV69.active-ext-v69 {
       var btnSuivHtml = "";
       if (sSuiv) {
         var urlSuiv = "sourate-" + sSuiv + "-verset-1.html?khatm_verse=1" + (langExtActive ? "&lang=" + langExtActive : "");
-        btnSuivHtml = '<a href="' + urlSuiv + '" class="khatm-btn-cyan-hero">' + t.sourateSuiv + ' ' + NOMS_SOURATES_COURT[sSuiv] + ' (' + sSuiv + ':1)</a>';
+        btnSuivHtml = '<a href="' + urlSuiv + '" class="khatm-btn-cyan-compact">' + t.sourateSuiv + ' ' + NOMS_SOURATES_COURT[sSuiv] + ' (' + sSuiv + ':1)</a>';
       }
-      controlesContextuelsHtml =
-        '<button type="button" class="khatm-btn-cyan-hero" data-khatm-act="save-here">' + t.memoriserIci + " (" + vkPage + ")</button>" +
+      controlePositionHtml =
+        '<button type="button" class="khatm-btn-cyan-compact" data-khatm-act="save-here">' + t.memoriserIci + " (" + vkPage + ")</button>" +
         btnSuivHtml;
     } else {
       var listeSOrd = obtenirListeSouratesSelonOrdre(ord);
@@ -3274,48 +3173,62 @@ html body #btnLangRuV69.active-ext-v69 {
       for (var idxS = 0; idxS < listeSOrd.length; idxS++) {
         var numSOpt = listeSOrd[idxS];
         var selAttr = numSOpt === posInfo.s ? ' selected="selected"' : "";
-        optsHtml += '<option value="' + numSOpt + '"' + selAttr + '>' + (idxS + 1) + '. ' + NOMS_SOURATES_COURT[numSOpt] + ' (' + numSOpt + ':1)</option>';
+        var vAffiche = numSOpt === posInfo.s ? posInfo.v : 1;
+        optsHtml += '<option value="' + numSOpt + '"' + selAttr + '>📍 ' + (idxS + 1) + '. ' + NOMS_SOURATES_COURT[numSOpt] + ' (' + numSOpt + ':' + vAffiche + ')</option>';
       }
-      controlesContextuelsHtml = '<select class="khatm-select-pos" title="Choisir la sourate actuelle">' + optsHtml + '</select>';
+      controlePositionHtml = '<select class="khatm-reciter-select" data-khatm-sel="pos">' + optsHtml + '</select>';
     }
 
     widget.innerHTML =
-      '<div class="khatm-top-divider-glow"></div>' +
-      '<div class="khatm-header-inline">' +
-        '<h3 class="khatm-title-hero">' + t.titre + '</h3>' +
-        '<div class="khatm-badge-rythme">⚡ ' + vParJour + ' ' + t.vParJour + ' &nbsp;•&nbsp; ' + idxActuel + ' / 6 236 (' + pct + '%) &nbsp;•&nbsp; ~' + joursRestants + ' ' + t.jours + '</div>' +
+      '<div class="khatm-compact-row">' +
+        '<select class="khatm-reciter-select" data-khatm-sel="months">' +
+          '<option value="1"' + (m === 1 ? ' selected="selected"' : '') + '>' + t.m1 + '</option>' +
+          '<option value="4"' + (m === 4 ? ' selected="selected"' : '') + '>' + t.m4 + '</option>' +
+          '<option value="6"' + (m === 6 ? ' selected="selected"' : '') + '>' + t.m6 + '</option>' +
+          '<option value="12"' + (m === 12 ? ' selected="selected"' : '') + '>' + t.m12 + '</option>' +
+        '</select>' +
+        '<select class="khatm-reciter-select" data-khatm-sel="order">' +
+          '<option value="revelation"' + (ord === "revelation" ? ' selected="selected"' : '') + '>' + t.ordRev + '</option>' +
+          '<option value="croissant"' + (ord === "croissant" ? ' selected="selected"' : '') + '>' + t.ordAsc + '</option>' +
+          '<option value="decroissant"' + (ord === "decroissant" ? ' selected="selected"' : '') + '>' + t.ordDesc + '</option>' +
+        '</select>' +
+        controlePositionHtml +
+        '<a href="' + urlReprise + '" class="khatm-btn-green-compact" data-khatm-act="resume" data-target-s="' + posInfo.s + '" data-target-v="' + posInfo.v + '">' +
+          t.reprendre + ' ' + nomSourateAct + ' (v.' + posInfo.v + ')' +
+        '</a>' +
+        '<button type="button" class="khatm-btn-cyan-compact" data-khatm-act="step-day">' +
+          t.validerEtape + ' (+' + vParJour + ')' +
+        '</button>' +
+        '<button type="button" class="khatm-btn-reset-mini" data-khatm-act="reset" title="Reset">' + t.reset + '</button>' +
       '</div>' +
-      '<div class="khatm-selectors-bar">' +
-        '<div class="khatm-capsule-group">' +
-          '<span class="khatm-group-label">' + t.duree + '</span>' +
-          '<button type="button" class="khatm-pill-btn ' + (m === 1 ? "active-khatm-pill" : "") + '" data-khatm-months="1">' + t.m1 + ' (208/j)</button>' +
-          '<button type="button" class="khatm-pill-btn ' + (m === 4 ? "active-khatm-pill" : "") + '" data-khatm-months="4">' + t.m4 + ' (52/j)</button>' +
-          '<button type="button" class="khatm-pill-btn ' + (m === 6 ? "active-khatm-pill" : "") + '" data-khatm-months="6">' + t.m6 + ' (35/j)</button>' +
-          '<button type="button" class="khatm-pill-btn ' + (m === 12 ? "active-khatm-pill" : "") + '" data-khatm-months="12">' + t.m12 + ' (18/j)</button>' +
-        '</div>' +
-        '<div class="khatm-capsule-group">' +
-          '<span class="khatm-group-label">' + t.ordre + '</span>' +
-          '<button type="button" class="khatm-pill-btn ' + (ord === "revelation" ? "active-khatm-pill" : "") + '" data-khatm-order="revelation">' + t.ordRev + '</button>' +
-          '<button type="button" class="khatm-pill-btn ' + (ord === "croissant" ? "active-khatm-pill" : "") + '" data-khatm-order="croissant">' + t.ordAsc + '</button>' +
-          '<button type="button" class="khatm-pill-btn ' + (ord === "decroissant" ? "active-khatm-pill" : "") + '" data-khatm-order="decroissant">' + t.ordDesc + '</button>' +
-        '</div>' +
-      '</div>' +
-      '<div class="khatm-progress-track">' +
-        '<div class="khatm-progress-fill-bar" style="width:' + Math.max(1.5, Number(pct)) + '%;"></div>' +
-      '</div>' +
-      '<div class="khatm-status-info">' +
-        '<strong>' + t.posActuelle + '</strong> <span style="color:#38bdf8;font-weight:700;">' + nomSourateAct + ' (' + posInfo.s + ':' + posInfo.v + ')</span>' +
-        ' &nbsp;•&nbsp; ' +
-        '<strong>' + t.objJour + '</strong> <span style="color:#fde047;font-weight:600;">' + nomSourateCible + ' (' + cibleInfo.s + ':' + cibleInfo.v + ')</span>' +
-      '</div>' +
-      '<div class="khatm-actions-center">' +
-        '<a href="' + urlReprise + '" class="khatm-btn-green-hero" data-khatm-act="resume" data-target-s="' + posInfo.s + '" data-target-v="' + posInfo.v + '">' + t.reprendre + ' ' + nomSourateAct + ' (v.' + posInfo.v + ')</a>' +
-        '<button type="button" class="khatm-btn-cyan-hero" data-khatm-act="step-day">' + t.validerEtape + ' (+' + vParJour + ')</button>' +
-        controlesContextuelsHtml +
-        '<button type="button" class="khatm-action-reset" data-khatm-act="reset">' + t.reset + '</button>' +
+      '<div class="khatm-mini-footer">' +
+        '<span>' + t.posActuelle + ' <strong style="color:#38bdf8;">' + nomSourateAct + ' (' + posInfo.s + ':' + posInfo.v + ')</strong></span>' +
+        '<span>•</span>' +
+        '<span>' + t.objJour + ' <strong style="color:#fde047;">' + nomSourateCible + ' (' + cibleInfo.s + ':' + cibleInfo.v + ')</strong></span>' +
+        '<span>•</span>' +
+        '<div class="khatm-mini-bar-wrap"><div class="khatm-mini-bar-fill" style="width:' + Math.max(2, Number(pct)) + '%;"></div></div>' +
+        '<span style="color:#6ee7b7;font-weight:600;">' + idxActuel + ' / 6 236 (' + pct + '%) • ~' + joursRestants + ' ' + t.jours + '</span>' +
       '</div>';
 
-    var selPos = widget.querySelector(".khatm-select-pos");
+    var selMonths = widget.querySelector("select[data-khatm-sel='months']");
+    if (selMonths) {
+      selMonths.addEventListener("change", function () {
+        etatKhatm.months = Number(this.value) || 1;
+        sauvegarderEtatKhatm();
+        afficherOuMettreAJourPlanificateurKhatm();
+      });
+    }
+
+    var selOrder = widget.querySelector("select[data-khatm-sel='order']");
+    if (selOrder) {
+      selOrder.addEventListener("change", function () {
+        etatKhatm.order = this.value || "revelation";
+        sauvegarderEtatKhatm();
+        afficherOuMettreAJourPlanificateurKhatm();
+      });
+    }
+
+    var selPos = widget.querySelector("select[data-khatm-sel='pos']");
     if (selPos) {
       selPos.addEventListener("change", function () {
         var sChoisi = Number(this.value) || 1;
@@ -3392,9 +3305,9 @@ html body #btnLangRuV69.active-ext-v69 {
 
   function modifierNoeudTexteSeul(textNode, nouveauTexte) {
     if (!textNode || textNode.nodeType !== 3) return;
-    if (textNode.__origExtV69 === undefined) {
-      textNode.__origExtV69 = textNode.nodeValue;
-      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV69 });
+    if (textNode.__origExtV70 === undefined) {
+      textNode.__origExtV70 = textNode.nodeValue;
+      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV70 });
     }
     if (textNode.nodeValue !== nouveauTexte) {
       textNode.nodeValue = nouveauTexte;
@@ -3449,22 +3362,21 @@ html body #btnLangRuV69.active-ext-v69 {
     for (var f = 0; f < conteneurLang.children.length; f++) {
       if (conteneurLang.children[f] !== btnActif) {
         conteneurLang.children[f].classList.remove("active");
-        conteneurLang.children[f].classList.remove("active-ext-v69");
+        conteneurLang.children[f].classList.remove("active-ext-v70");
       }
     }
-    if (btnActif) btnActif.classList.add("active-ext-v69");
+    if (btnActif) btnActif.classList.add("active-ext-v70");
   }
 
-  // CORRECTION DU DRAPEAU INDONÉSIEN : \\uD83C\\uDDEE\\uD83C\\uDDE9 (🇮🇩 ID) ET NON \\uDDFA (IU) !
   function assurerBoutonsLanguesEtendues() {
-    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV69), [id^='btnLangItV']:not(#btnLangItV69), [id^='btnLangIdV']:not(#btnLangIdV69), [id^='btnLangRuV']:not(#btnLangRuV69)");
+    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV70), [id^='btnLangItV']:not(#btnLangItV70), [id^='btnLangIdV']:not(#btnLangIdV70), [id^='btnLangRuV']:not(#btnLangRuV70)");
     for (var b = 0; b < oldBtns.length; b++) {
       if (oldBtns[b].parentNode) oldBtns[b].parentNode.removeChild(oldBtns[b]);
     }
 
-    var mapIds = { de: "btnLangDeV69", it: "btnLangItV69", id: "btnLangIdV69", ru: "btnLangRuV69" };
-    if (document.getElementById("btnLangDeV69") && document.getElementById("btnLangIdV69") && document.getElementById("btnLangRuV69")) {
-      var parentBar = document.getElementById("btnLangDeV69").parentElement;
+    var mapIds = { de: "btnLangDeV70", it: "btnLangItV70", id: "btnLangIdV70", ru: "btnLangRuV70" };
+    if (document.getElementById("btnLangDeV70") && document.getElementById("btnLangIdV70") && document.getElementById("btnLangRuV70")) {
+      var parentBar = document.getElementById("btnLangDeV70").parentElement;
       if (parentBar) {
         parentBar.setAttribute("translate", "no");
         parentBar.classList.add("notranslate");
@@ -3473,14 +3385,14 @@ html body #btnLangRuV69.active-ext-v69 {
         var bEl = document.getElementById(mapIds[code]);
         if (!bEl) continue;
         if (langExtActive === code) {
-          bEl.classList.add("active-ext-v69");
+          bEl.classList.add("active-ext-v70");
           if (parentBar) {
             for (var k = 0; k < parentBar.children.length; k++) {
               if (parentBar.children[k] !== bEl) parentBar.children[k].classList.remove("active");
             }
           }
         } else {
-          bEl.classList.remove("active-ext-v69");
+          bEl.classList.remove("active-ext-v70");
         }
       }
       return;
@@ -3558,14 +3470,14 @@ html body #btnLangRuV69.active-ext-v69 {
         } else {
           nvBtn.innerHTML = '<span style="margin-right:3px;">' + emojiDrapeau + "</span><span>" + labelCourt + "</span>";
         }
-        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v69");
+        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v70");
 
         nvBtn.addEventListener("click", function (ev) {
           ev.preventDefault();
           ev.stopPropagation();
           restaurerTextesOriginauxDepuisExt();
           langExtActive = codeIso;
-          try { localStorage.setItem("corantafsir_lang_ext_v69", codeIso); } catch (e) {}
+          try { localStorage.setItem("corantafsir_lang_ext_v70", codeIso); } catch (e) {}
           basculerDepuisArabeSurClicUtilisateur(conteneurLang, nvBtn);
           dernierVersetSeo = "";
           setTimeout(synchroniserTout, 15);
@@ -3573,11 +3485,10 @@ html body #btnLangRuV69.active-ext-v69 {
         return nvBtn;
       }
 
-      // Drapeaux exacts : DE (\\uDDE9\\uDDEA), IT (\\uDDEE\\uDDF9), ID (\\uDDEE\\uDDE9), RU (\\uDDF7\\uDDFA)
-      var btnDe = creerBoutonLangExt("btnLangDeV69", "de", "\\uD83C\\uDDE9\\uD83C\\uDDEA", "DE");
-      var btnIt = creerBoutonLangExt("btnLangItV69", "it", "\\uD83C\\uDDEE\\uD83C\\uDDF9", "IT");
-      var btnId = creerBoutonLangExt("btnLangIdV69", "id", "\\uD83C\\uDDEE\\uD83C\\uDDE9", "ID");
-      var btnRu = creerBoutonLangExt("btnLangRuV69", "ru", "\\uD83C\\uDDF7\\uD83C\\uDDFA", "RU");
+      var btnDe = creerBoutonLangExt("btnLangDeV70", "de", "\\uD83C\\uDDE9\\uD83C\\uDDEA", "DE");
+      var btnIt = creerBoutonLangExt("btnLangItV70", "it", "\\uD83C\\uDDEE\\uD83C\\uDDF9", "IT");
+      var btnId = creerBoutonLangExt("btnLangIdV70", "id", "\\uD83C\\uDDEE\\uD83C\\uDDE9", "ID");
+      var btnRu = creerBoutonLangExt("btnLangRuV70", "ru", "\\uD83C\\uDDF7\\uD83C\\uDDFA", "RU");
 
       for (var a = 0; a < freresInit.length; a++) {
         (function (autre) {
@@ -3587,11 +3498,11 @@ html body #btnLangRuV69.active-ext-v69 {
             if (IgnoreClicInterneFr) return;
             var etaitEnWbw = obtenirCartesMotAMotVisibles().length >= 2;
             langExtActive = "";
-            try { localStorage.setItem("corantafsir_lang_ext_v69", "native"); } catch (e) {}
-            btnDe.classList.remove("active-ext-v69");
-            btnIt.classList.remove("active-ext-v69");
-            btnId.classList.remove("active-ext-v69");
-            btnRu.classList.remove("active-ext-v69");
+            try { localStorage.setItem("corantafsir_lang_ext_v70", "native"); } catch (e) {}
+            btnDe.classList.remove("active-ext-v70");
+            btnIt.classList.remove("active-ext-v70");
+            btnId.classList.remove("active-ext-v70");
+            btnRu.classList.remove("active-ext-v70");
             restaurerTextesOriginauxDepuisExt();
             dernierVersetSeo = "";
 
@@ -3653,8 +3564,8 @@ html body #btnLangRuV69.active-ext-v69 {
   function traduireNoeudVersExtAsync(textNode, origTxt, codeLang) {
     if (!origTxt || origTxt.length < 3 || !LANGUES_EXT_SUPPORTEES[codeLang]) return;
     var cle = codeLang + "_" + origTxt.slice(0, 140) + "_" + origTxt.length;
-    var esp1 = (textNode.__origExtV69 || textNode.nodeValue).match(/^\\s*/)[0];
-    var esp2 = (textNode.__origExtV69 || textNode.nodeValue).match(/\\s*$/)[0];
+    var esp1 = (textNode.__origExtV70 || textNode.nodeValue).match(/^\\s*/)[0];
+    var esp2 = (textNode.__origExtV70 || textNode.nodeValue).match(/\\s*$/)[0];
 
     if (cacheTexteUnitaireExt[cle]) {
       modifierNoeudTexteSeul(textNode, esp1 + cacheTexteUnitaireExt[cle] + esp2);
@@ -3694,6 +3605,7 @@ html body #btnLangRuV69.active-ext-v69 {
       "le noble coran & tafsīr": "DER EDLE KORAN & TAFSĪR",
       "le noble coran & tafsir": "DER EDLE KORAN & TAFSĪR",
       "the noble quran & tafsīr": "DER EDLE KORAN & TAFSĪR",
+      "el noble corán y tafsīr": "DER EDLE KORAN & TAFSĪR",
       "le noble coran & tafsīr al-mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
       "the noble quran & tafsīr al-mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
       "‹ retour aux 114 sourates": "‹ Zurück zu den 114 Suren",
@@ -3735,22 +3647,41 @@ html body #btnLangRuV69.active-ext-v69 {
       "lettre muette": "Stummer Buchstabe",
       "silent letter": "Stummer Buchstabe",
       "qu'est-ce qu'une sourate mecquoise ?": "Was ist eine mekkanische Sure?",
+      "what is a meccan surah?": "Was ist eine mekkanische Sure?",
+      "¿qué es una sura mequí?": "Was ist eine mekkanische Sure?",
       "qu'est-ce qu'une sourate médinoise ?": "Was ist eine medinensische Sure?",
+      "what is a medinan surah?": "Was ist eine medinensische Sure?",
+      "¿qué es una sura medinense?": "Was ist eine medinensische Sure?",
       "mecquoise • 86 sourates": "MEKKANISCH • 86 SUREN",
+      "meccan • 86 surahs": "MEKKANISCH • 86 SUREN",
+      "mequí • 86 suras": "MEKKANISCH • 86 SUREN",
       "médinoise • 28 sourates": "MEDINENSISCH • 28 SUREN",
+      "medinan • 28 surahs": "MEDINENSISCH • 28 SUREN",
+      "medinense • 28 suras": "MEDINENSISCH • 28 SUREN",
       "1. ordre de révélation (1 à 114)": "1. Offenbarungsreihenfolge (1–114)",
+      "1. revelation order (1 to 114)": "1. Offenbarungsreihenfolge (1–114)",
+      "1. orden de revelación (1 a 114)": "1. Offenbarungsreihenfolge (1–114)",
       "2. ordre du mushaf (1 à 114)": "2. Klassische Reihenfolge (1–114)",
       "2. ordre classique (1 à 114)": "2. Klassische Reihenfolge (1–114)",
+      "2. traditional order (1 to 114)": "2. Klassische Reihenfolge (1–114)",
+      "2. orden tradicional (1 a 114)": "2. Klassische Reihenfolge (1–114)",
       "⭐ 3. versets des miracles scientifiques": "3. ⭐ Wunder des Korans",
       "3. ⭐ miracles du coran": "3. ⭐ Wunder des Korans",
       "3. ⭐ les miracles du coran": "3. ⭐ Wunder des Korans",
+      "3. ⭐ miracles of the quran": "3. ⭐ Wunder des Korans",
+      "3. ⭐ milagros del corán": "3. ⭐ Wunder des Korans",
       "mecquoise": "MEKKANISCH",
-      "médinoise": "MEDINENSISCH"
+      "meccan": "MEKKANISCH",
+      "mequí": "MEKKANISCH",
+      "médinoise": "MEDINENSISCH",
+      "medinan": "MEDINENSISCH",
+      "medinense": "MEDINENSISCH"
     },
     it: {
       "le noble coran & tafsīr": "IL NOBILE CORANO E TAFSĪR",
       "le noble coran & tafsir": "IL NOBILE CORANO E TAFSĪR",
       "the noble quran & tafsīr": "IL NOBILE CORANO E TAFSĪR",
+      "el noble corán y tafsīr": "IL NOBILE CORANO E TAFSĪR",
       "le noble coran & tafsīr al-mukhtasar": "Il Nobile Corano e Tafsīr Al-Mukhtasar",
       "the noble quran & tafsīr al-mukhtasar": "Il Nobile Corano e Tafsīr Al-Mukhtasar",
       "‹ retour aux 114 sourates": "‹ Torna alle 114 Sure",
@@ -3792,22 +3723,41 @@ html body #btnLangRuV69.active-ext-v69 {
       "lettre muette": "Lettera muta",
       "silent letter": "Lettera muta",
       "qu'est-ce qu'une sourate mecquoise ?": "Cos'è una Sura Meccana?",
+      "what is a meccan surah?": "Cos'è una Sura Meccana?",
+      "¿qué es una sura mequí?": "Cos'è una Sura Meccana?",
       "qu'est-ce qu'une sourate médinoise ?": "Cos'è una Sura Medinese?",
+      "what is a medinan surah?": "Cos'è una Sura Medinese?",
+      "¿qué es una sura medinense?": "Cos'è una Sura Medinese?",
       "mecquoise • 86 sourates": "MECCANA • 86 SURE",
+      "meccan • 86 surahs": "MECCANA • 86 SURE",
+      "mequí • 86 suras": "MECCANA • 86 SURE",
       "médinoise • 28 sourates": "MEDINESE • 28 SURE",
+      "medinan • 28 surahs": "MEDINESE • 28 SURE",
+      "medinense • 28 suras": "MEDINESE • 28 SURE",
       "1. ordre de révélation (1 à 114)": "1. Ordine di Rivelazione (1–114)",
+      "1. revelation order (1 to 114)": "1. Ordine di Rivelazione (1–114)",
+      "1. orden de revelación (1 a 114)": "1. Ordine di Rivelazione (1–114)",
       "2. ordre du mushaf (1 à 114)": "2. Ordine Classico (1–114)",
       "2. ordre classique (1 à 114)": "2. Ordine Classico (1–114)",
+      "2. traditional order (1 to 114)": "2. Ordine Classico (1–114)",
+      "2. orden tradicional (1 a 114)": "2. Ordine Classico (1–114)",
       "⭐ 3. versets des miracles scientifiques": "3. ⭐ I Miracoli del Corano",
       "3. ⭐ miracles du coran": "3. ⭐ I Miracoli del Corano",
       "3. ⭐ les miracles du coran": "3. ⭐ I Miracoli del Corano",
+      "3. ⭐ miracles of the quran": "3. ⭐ I Miracoli del Corano",
+      "3. ⭐ milagros del corán": "3. ⭐ I Miracoli del Corano",
       "mecquoise": "MECCANA",
-      "médinoise": "MEDINESE"
+      "meccan": "MECCANA",
+      "mequí": "MECCANA",
+      "médinoise": "MEDINESE",
+      "medinan": "MEDINESE",
+      "medinense": "MEDINESE"
     },
     id: {
       "le noble coran & tafsīr": "AL-QUR'AN MULIA & TAFSĪR",
       "le noble coran & tafsir": "AL-QUR'AN MULIA & TAFSĪR",
       "the noble quran & tafsīr": "AL-QUR'AN MULIA & TAFSĪR",
+      "el noble corán y tafsīr": "AL-QUR'AN MULIA & TAFSĪR",
       "le noble coran & tafsīr al-mukhtasar": "Al-Qur'an Mulia & Tafsīr Al-Mukhtasar",
       "the noble quran & tafsīr al-mukhtasar": "Al-Qur'an Mulia & Tafsīr Al-Mukhtasar",
       "‹ retour aux 114 sourates": "‹ Kembali ke 114 Surah",
@@ -3849,22 +3799,41 @@ html body #btnLangRuV69.active-ext-v69 {
       "lettre muette": "Huruf Bisu",
       "silent letter": "Huruf Bisu",
       "qu'est-ce qu'une sourate mecquoise ?": "Apa itu Surah Makkiyah?",
+      "what is a meccan surah?": "Apa itu Surah Makkiyah?",
+      "¿qué es una sura mequí?": "Apa itu Surah Makkiyah?",
       "qu'est-ce qu'une sourate médinoise ?": "Apa itu Surah Madaniyah?",
+      "what is a medinan surah?": "Apa itu Surah Madaniyah?",
+      "¿qué es una sura medinense?": "Apa itu Surah Madaniyah?",
       "mecquoise • 86 sourates": "MAKKIYAH • 86 SURAH",
+      "meccan • 86 surahs": "MAKKIYAH • 86 SURAH",
+      "mequí • 86 suras": "MAKKIYAH • 86 SURAH",
       "médinoise • 28 sourates": "MADANIYAH • 28 SURAH",
+      "medinan • 28 surahs": "MADANIYAH • 28 SURAH",
+      "medinense • 28 suras": "MADANIYAH • 28 SURAH",
       "1. ordre de révélation (1 à 114)": "1. Urutan Turunnya Wahyu (1–114)",
+      "1. revelation order (1 to 114)": "1. Urutan Turunnya Wahyu (1–114)",
+      "1. orden de revelación (1 a 114)": "1. Urutan Turunnya Wahyu (1–114)",
       "2. ordre du mushaf (1 à 114)": "2. Urutan Mushaf (1–114)",
       "2. ordre classique (1 à 114)": "2. Urutan Mushaf (1–114)",
+      "2. traditional order (1 to 114)": "2. Urutan Mushaf (1–114)",
+      "2. orden tradicional (1 a 114)": "2. Urutan Mushaf (1–114)",
       "⭐ 3. versets des miracles scientifiques": "3. ⭐ Mukjizat Al-Qur'an",
       "3. ⭐ miracles du coran": "3. ⭐ Mukjizat Al-Qur'an",
       "3. ⭐ les miracles du coran": "3. ⭐ Mukjizat Al-Qur'an",
+      "3. ⭐ miracles of the quran": "3. ⭐ Mukjizat Al-Qur'an",
+      "3. ⭐ milagros del corán": "3. ⭐ Mukjizat Al-Qur'an",
       "mecquoise": "MAKKIYAH",
-      "médinoise": "MADANIYAH"
+      "meccan": "MAKKIYAH",
+      "mequí": "MAKKIYAH",
+      "médinoise": "MADANIYAH",
+      "medinan": "MADANIYAH",
+      "medinense": "MADANIYAH"
     },
     ru: {
       "le noble coran & tafsīr": "СВЯЩЕННЫЙ КОРАН И ТАФСИР",
       "le noble coran & tafsir": "СВЯЩЕННЫЙ КОРАН И ТАФСИР",
       "the noble quran & tafsīr": "СВЯЩЕННЫЙ КОРАН И ТАФСИР",
+      "el noble corán y tafsīr": "СВЯЩЕННЫЙ КОРАН И ТАФСИР",
       "le noble coran & tafsīr al-mukhtasar": "Священный Коран и Тафсир аль-Мухтасар",
       "the noble quran & tafsīr al-mukhtasar": "Священный Коран и Тафсир аль-Мухтасар",
       "‹ retour aux 114 sourates": "‹ Назад к 114 сурам",
@@ -3906,17 +3875,35 @@ html body #btnLangRuV69.active-ext-v69 {
       "lettre muette": "Немая буква",
       "silent letter": "Немая буква",
       "qu'est-ce qu'une sourate mecquoise ?": "Что такое мекканская сура?",
+      "what is a meccan surah?": "Что такое мекканская сура?",
+      "¿qué es una sura mequí?": "Что такое мекканская сура?",
       "qu'est-ce qu'une sourate médinoise ?": "Что такое мединская сура?",
+      "what is a medinan surah?": "Что такое мединская сура?",
+      "¿qué es una sura medinense?": "Что такое мединская сура?",
       "mecquoise • 86 sourates": "МЕККАНСКАЯ • 86 СУР",
+      "meccan • 86 surahs": "МЕККАНСКАЯ • 86 СУР",
+      "mequí • 86 suras": "МЕККАНСКАЯ • 86 СУР",
       "médinoise • 28 sourates": "МЕДИНСКАЯ • 28 СУР",
+      "medinan • 28 surahs": "МЕДИНСКАЯ • 28 СУР",
+      "medinense • 28 suras": "МЕДИНСКАЯ • 28 СУР",
       "1. ordre de révélation (1 à 114)": "1. По порядку ниспослания (1–114)",
+      "1. revelation order (1 to 114)": "1. По порядку ниспослания (1–114)",
+      "1. orden de revelación (1 a 114)": "1. По порядку ниспослания (1–114)",
       "2. ordre du mushaf (1 à 114)": "2. По порядку Мусхафа (1–114)",
       "2. ordre classique (1 à 114)": "2. По порядку Мусхафа (1–114)",
+      "2. traditional order (1 to 114)": "2. По порядку Мусхафа (1–114)",
+      "2. orden tradicional (1 a 114)": "2. По порядку Мусхафа (1–114)",
       "⭐ 3. versets des miracles scientifiques": "3. ⭐ Чудеса Корана",
       "3. ⭐ miracles du coran": "3. ⭐ Чудеса Корана",
       "3. ⭐ les miracles du coran": "3. ⭐ Чудеса Корана",
+      "3. ⭐ miracles of the quran": "3. ⭐ Чудеса Корана",
+      "3. ⭐ milagros del corán": "3. ⭐ Чудеса Корана",
       "mecquoise": "МЕККАНСКАЯ",
-      "médinoise": "МЕДИНСКАЯ"
+      "meccan": "МЕККАНСКАЯ",
+      "mequí": "МЕККАНСКАЯ",
+      "médinoise": "МЕДИНСКАЯ",
+      "medinan": "МЕДИНСКАЯ",
+      "medinense": "МЕДИНСКАЯ"
     }
   };
 
@@ -3964,7 +3951,7 @@ html body #btnLangRuV69.active-ext-v69 {
     var cartesAccueil = document.querySelectorAll("a[href*='sourate-']");
     for (var ca = 0; ca < cartesAccueil.length; ca++) {
       var lienCarte = cartesAccueil[ca];
-      if (lienCarte.closest("#khatmPlannerWidgetV69")) continue;
+      if (lienCarte.closest("#khatmPlannerWidgetV70")) continue;
       var mHref = (lienCarte.getAttribute("href") || "").match(/sourate-(\\d+)/i);
       if (mHref) {
         var sId = Number(mHref[1]);
@@ -3973,9 +3960,9 @@ html body #btnLangRuV69.active-ext-v69 {
           for (var te = 0; te < titresEl.length; te++) {
             var candT = titresEl[te];
             if (candT.children.length === 0) {
-              var origT = (candT.__origTitreV69 || candT.textContent || "").trim();
-              if (origT.indexOf("(") !== -1 && origT.indexOf(")") !== -1 && origT.indexOf("Miracle") === -1 && origT.indexOf("Wunder") === -1) {
-                if (!candT.__origTitreV69) candT.__origTitreV69 = origT;
+              var origT = (candT.__origTitreV70 || candT.textContent || "").trim();
+              if (origT.indexOf("(") !== -1 && origT.indexOf(")") !== -1 && origT.indexOf("Miracle") === -1 && origT.indexOf("Wunder") === -1 && origT.indexOf("Milagro") === -1) {
+                if (!candT.__origTitreV70) candT.__origTitreV70 = origT;
                 if (candT.firstChild && candT.firstChild.nodeType === 3) {
                   modifierNoeudTexteSeul(candT.firstChild, noms114[sId]);
                 }
@@ -3999,9 +3986,9 @@ html body #btnLangRuV69.active-ext-v69 {
       if (!pEl) continue;
       var tag = pEl.tagName;
       if (tag === "SCRIPT" || tag === "STYLE") continue;
-      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate") || pEl.closest("#khatmPlannerWidgetV69")) continue;
+      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate") || pEl.closest("#khatmPlannerWidgetV70")) continue;
 
-      var val = (node.__origExtV69 !== undefined ? node.__origExtV69 : node.nodeValue || "").replace(/\\u00A0/g, " ").trim();
+      var val = (node.__origExtV70 !== undefined ? node.__origExtV70 : node.nodeValue || "").replace(/\\u00A0/g, " ").trim();
       if (!val || /[\\u0600-\\u06FF]/.test(val)) continue;
       var valLower = val.toLowerCase();
 
@@ -4010,7 +3997,7 @@ html body #btnLangRuV69.active-ext-v69 {
         continue;
       }
 
-      var matchVersetsCourt = val.match(/^(\\d+)\\s*(?:v\\.|versets|verses|aleyas)$/i);
+      var matchVersetsCourt = val.match(/^(\\d+)\\s*(?:v\\.|a\\.|versets|verses|aleyas)$/i);
       if (matchVersetsCourt) {
         var nbV = matchVersetsCourt[1];
         var unitV = { de: nbV + " Verse", it: nbV + " versetti", id: nbV + " ayat", ru: nbV + " аятов" }[codeL];
@@ -4036,7 +4023,7 @@ html body #btnLangRuV69.active-ext-v69 {
         continue;
       }
 
-      var mMirBadge = val.match(/Miracle\\s*[:\\(]\\s*(?:V\\.?|Verset|Verse)\\s*(\\d+)\\)?/i);
+      var mMirBadge = val.match(/(?:Miracle|Milagro)\\s*[:\\(]\\s*(?:V\\.?|A\\.?|Verset|Verse)\\s*(\\d+)\\)?/i);
       if (mMirBadge) {
         var vNumMir = mMirBadge[1];
         var txtMir = {
@@ -4049,13 +4036,13 @@ html body #btnLangRuV69.active-ext-v69 {
         continue;
       }
 
-      if ((val.indexOf("Sourate ") === 0 || val.indexOf("Surah ") === 0 || val.indexOf("Sure ") === 0 || val.indexOf("Sura ") === 0) && (val.indexOf(" — Verset ") !== -1 || val.indexOf(" — Verse ") !== -1)) {
+      if ((val.indexOf("Sourate ") === 0 || val.indexOf("Surah ") === 0 || val.indexOf("Sure ") === 0 || val.indexOf("Sura ") === 0) && (val.indexOf(" — Verset ") !== -1 || val.indexOf(" — Verse ") !== -1 || val.indexOf(" — Aleya ") !== -1)) {
         var prefS = { de: "Sure ", it: "Sura ", id: "Surah ", ru: "Сура " }[codeL];
         var prefV = { de: " — Vers ", it: " — Versetto ", id: " — Ayat ", ru: " — Аят " }[codeL];
         if (numS && noms114[numS]) {
           modifierNoeudTexteSeul(node, prefS + noms114[numS] + prefV + numV);
         } else {
-          modifierNoeudTexteSeul(node, val.replace(/^Sourate |^Surah /, prefS).replace(/ — Verset | — Verse /, prefV));
+          modifierNoeudTexteSeul(node, val.replace(/^Sourate |^Surah |^Sura /, prefS).replace(/ — Verset | — Verse | — Aleya /, prefV));
         }
         continue;
       }
@@ -4104,7 +4091,7 @@ html body #btnLangRuV69.active-ext-v69 {
     var pEls = document.querySelectorAll("p, button, strong, b, span");
     for (var i = 0; i < pEls.length; i++) {
       var el = pEls[i];
-      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV69")) continue;
+      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV70")) continue;
       var t = el.textContent || "";
       if (t.indexOf("y e temen") !== -1) {
         el.textContent = t.replace("y e temen", "y le temen");
@@ -4143,7 +4130,7 @@ html body #btnLangRuV69.active-ext-v69 {
       btnSuivi.style.setProperty("display", "inline-flex", "important");
       btnSuivi.style.setProperty("visibility", "visible", "important");
       btnSuivi.style.setProperty("opacity", "1", "important");
-      if (btnSuivi.id === "btnSuiviUniverselV69" && btnSuivi.textContent !== labelSuivi) {
+      if (btnSuivi.id === "btnSuiviUniverselV70" && btnSuivi.textContent !== labelSuivi) {
         btnSuivi.textContent = labelSuivi;
       }
       if (suiviEstActif) {
@@ -4152,9 +4139,9 @@ html body #btnLangRuV69.active-ext-v69 {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV69")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV70")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV69";
+      nv.id = "btnSuiviUniverselV70";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.textContent = labelSuivi;
@@ -4165,10 +4152,10 @@ html body #btnLangRuV69.active-ext-v69 {
     }
   }
 
-  // 3. SOLEIL ET LUNE EN ORBITE (AVEC CACHE ULTRA-RAPIDE POUR ZÉRO SURCHARGE CPU)
+  // 3. SOLEIL ET LUNE EN ORBITE (AVEC CACHE ULTRA-RAPIDE)
   var astresDejaVerrouilles = false;
   function reparerSoleilEtLuneEnOrbite() {
-    if (astresDejaVerrouilles && document.querySelector(".astre-soleil-pur-v69") && document.querySelector(".astre-lune-pure-v69")) {
+    if (astresDejaVerrouilles && document.querySelector(".astre-soleil-pur-v70") && document.querySelector(".astre-lune-pure-v70")) {
       return;
     }
 
@@ -4248,8 +4235,8 @@ html body #btnLangRuV69.active-ext-v69 {
       }
 
       if (role === "sun") {
-        node.classList.remove("astre-lune-pure-v69");
-        node.classList.add("astre-soleil-pur-v69");
+        node.classList.remove("astre-lune-pure-v70");
+        node.classList.add("astre-soleil-pur-v70");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -4258,8 +4245,8 @@ html body #btnLangRuV69.active-ext-v69 {
         node.style.setProperty("box-shadow", "0 0 50px 16px rgba(253, 224, 71, 0.72), 0 0 110px 38px rgba(245, 158, 11, 0.42)", "important");
         node.style.setProperty("filter", "none", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v69");
-        node.classList.add("astre-lune-pure-v69");
+        node.classList.remove("astre-soleil-pur-v70");
+        node.classList.add("astre-lune-pure-v70");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -4282,19 +4269,37 @@ html body #btnLangRuV69.active-ext-v69 {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v69");
+          row.classList.add("maher-supprime-v70");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
     }
   }
 
+  // DÉTECTION EXACTE DE LA LANGUE ACTIVE SUR L'ACCUEIL COMME SUR LES PAGES VERSETS !
   function obtenirLangueActive() {
     if (langExtActive && LANGUES_EXT_SUPPORTEES[langExtActive]) return langExtActive;
+
+    // 1. Lire directement le bouton .active dans la barre de langues
+    var btnDeRef = document.getElementById("btnLangDeV70");
+    if (btnDeRef && btnDeRef.parentElement) {
+      var ch = btnDeRef.parentElement.children;
+      for (var i = 0; i < ch.length; i++) {
+        if (ch[i].classList.contains("active")) {
+          var t = (ch[i].textContent || "").toUpperCase();
+          if (t.indexOf("EN") !== -1) return "en";
+          if (t.indexOf("ES") !== -1) return "es";
+          if (t.indexOf("AR") !== -1) return "ar";
+          if (t.indexOf("FR") !== -1) return "fr";
+        }
+      }
+    }
+
+    // 2. Fallback sur le texte de la page (Accueil + Pages Versets)
     var bodyTxt = document.body ? document.body.innerText : "";
-    if (bodyTxt.indexOf("Escuchar aleya") !== -1 || bodyTxt.indexOf("EXPLICACIÓN DE LA ALEYA") !== -1 || bodyTxt.indexOf("Ruido Marrón") !== -1) return "es";
-    if (bodyTxt.indexOf("Listen to verse") !== -1 || bodyTxt.indexOf("VERSE EXPLANATION") !== -1 || bodyTxt.indexOf("Brown Noise") !== -1) return "en";
-    if (bodyTxt.indexOf("استمع للآية") !== -1 || bodyTxt.indexOf("تفسير الآية") !== -1 || bodyTxt.indexOf("ترتيب النزول") !== -1) return "ar";
+    if (bodyTxt.indexOf("Escuchar aleya") !== -1 || bodyTxt.indexOf("EXPLICACIÓN DE LA ALEYA") !== -1 || bodyTxt.indexOf("EL NOBLE CORÁN") !== -1 || bodyTxt.indexOf("¿Qué es una Sura") !== -1) return "es";
+    if (bodyTxt.indexOf("Listen to verse") !== -1 || bodyTxt.indexOf("VERSE EXPLANATION") !== -1 || bodyTxt.indexOf("THE NOBLE QURAN") !== -1 || bodyTxt.indexOf("What is a Meccan") !== -1) return "en";
+    if (bodyTxt.indexOf("استمع للآية") !== -1 || bodyTxt.indexOf("تفسير الآية") !== -1 || bodyTxt.indexOf("ترتيب النزول") !== -1 || bodyTxt.indexOf("ما هي السورة المكية") !== -1) return "ar";
     return "fr";
   }
 
@@ -4767,7 +4772,7 @@ html body #btnLangRuV69.active-ext-v69 {
     var selects = document.querySelectorAll("select");
     for (var i = 0; i < selects.length; i++) {
       var s = selects[i];
-      if (s.classList.contains("khatm-select-pos")) continue;
+      if (s.classList.contains("khatm-reciter-select")) continue;
       if (s.options && s.selectedIndex >= 0) {
         var txt = ((s.value || "") + " " + (s.options[s.selectedIndex].textContent || "")).toLowerCase();
         if (txt.indexOf("verset") === -1 && txt.indexOf("verse") === -1 && txt.indexOf("aleya") === -1 && txt.indexOf("vers ") === -1 && txt.indexOf("ayat") === -1 && txt.indexOf("аят") === -1) {
@@ -4890,7 +4895,7 @@ html body #btnLangRuV69.active-ext-v69 {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV69) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV70) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       var self = this;
@@ -4898,8 +4903,8 @@ html body #btnLangRuV69.active-ext-v69 {
       if (self.currentTime < 0.25) {
         reinitialiserMotsEnBlancTamise();
       }
-      if (!self.__listenersV69) {
-        self.__listenersV69 = true;
+      if (!self.__listenersV70) {
+        self.__listenersV70 = true;
         self.addEventListener("playing", lancerBoucleSuivi);
         self.addEventListener("timeupdate", lancerBoucleSuivi);
       }
@@ -4909,7 +4914,7 @@ html body #btnLangRuV69.active-ext-v69 {
       lancerBoucleSuivi();
       return origPlay.apply(self, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV69 = true;
+    HTMLMediaElement.prototype.__hookedV70 = true;
   }
 
   function trouverAudioActif() {
@@ -5092,22 +5097,6 @@ html body #btnLangRuV69.active-ext-v69 {
   });
 
   document.addEventListener("click", function (e) {
-    var btnKhatmMonths = e.target.closest("[data-khatm-months]");
-    if (btnKhatmMonths) {
-      etatKhatm.months = Number(btnKhatmMonths.getAttribute("data-khatm-months")) || 1;
-      sauvegarderEtatKhatm();
-      afficherOuMettreAJourPlanificateurKhatm();
-      return;
-    }
-
-    var btnKhatmOrder = e.target.closest("[data-khatm-order]");
-    if (btnKhatmOrder) {
-      etatKhatm.order = btnKhatmOrder.getAttribute("data-khatm-order") || "revelation";
-      sauvegarderEtatKhatm();
-      afficherOuMettreAJourPlanificateurKhatm();
-      return;
-    }
-
     var btnKhatmAct = e.target.closest("[data-khatm-act]");
     if (btnKhatmAct) {
       var act = btnKhatmAct.getAttribute("data-khatm-act");
@@ -6333,7 +6322,7 @@ html body #btnLangRuV69.active-ext-v69 {
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
 <link rel="preconnect" href="https://translate.googleapis.com" crossorigin>
-<style id="patch-master-v69">
+<style id="patch-master-v70">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -6348,7 +6337,7 @@ html body .flat-earth-sun,
 html body [id*="sun" i]:not([id*="sound" i]),
 html body [class*="sun" i]:not([class*="sound" i]),
 html body [data-astre-role="sun"],
-html body .astre-soleil-pur-v69 {
+html body .astre-soleil-pur-v70 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -6369,8 +6358,8 @@ html body .astre-soleil-pur-v69 {
 }
 html body #flatEarthSun::before, html body #flatEarthSun::after,
 html body .flat-earth-sun::before, html body .flat-earth-sun::after,
-html body .astre-soleil-pur-v69::before, html body .astre-soleil-pur-v69::after,
-html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v69 * {
+html body .astre-soleil-pur-v70::before, html body .astre-soleil-pur-v70::after,
+html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v70 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
@@ -6380,7 +6369,7 @@ html body .flat-earth-moon,
 html body [id*="moon" i],
 html body [class*="moon" i],
 html body [data-astre-role="moon"],
-html body .astre-lune-pure-v69 {
+html body .astre-lune-pure-v70 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -6401,15 +6390,15 @@ html body .astre-lune-pure-v69 {
 }
 html body #flatEarthMoon::before, html body #flatEarthMoon::after,
 html body .flat-earth-moon::before, html body .flat-earth-moon::after,
-html body .astre-lune-pure-v69::before, html body .astre-lune-pure-v69::after,
-html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v69 * {
+html body .astre-lune-pure-v70::before, html body .astre-lune-pure-v70::after,
+html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v70 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
 /* 3. MASQUAGE DE MAHER AL-MUAIQLY, BOUTON REPRENDRE DOUBLON & TRADUCTION DU BAS EN MOT-À-MOT */
 html body img[src*="maher" i],
 html body [data-reciter*="maher" i],
-html body .maher-supprime-v69,
+html body .maher-supprime-v70,
 html body .wbw-masquer-traduction-bas,
 html body .khatm-doublon-reprendre-masque {
   display: none !important; visibility: hidden !important; height: 0 !important; max-height: 0 !important; margin: 0 !important; padding: 0 !important; border: none !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important;
@@ -6459,227 +6448,158 @@ html body .follow-word {
 }
 
 /* 6. BOUTONS DE LANGUE ÉTENDUS (DE, IT, ID, RU) AVEC DRAPEAUX IPHONE EXACTS */
-html body #btnLangDeV69,
-html body #btnLangItV69,
-html body #btnLangIdV69,
-html body #btnLangRuV69 {
+html body #btnLangDeV70,
+html body #btnLangItV70,
+html body #btnLangIdV70,
+html body #btnLangRuV70 {
   cursor: pointer !important; transition: all 0.2s ease !important; display: inline-flex !important; align-items: center !important; justify-content: center !important;
 }
-html body #btnLangDeV69.active-ext-v69,
-html body #btnLangItV69.active-ext-v69,
-html body #btnLangIdV69.active-ext-v69,
-html body #btnLangRuV69.active-ext-v69 {
+html body #btnLangDeV70.active-ext-v70,
+html body #btnLangItV70.active-ext-v70,
+html body #btnLangIdV70.active-ext-v70,
+html body #btnLangRuV70.active-ext-v70 {
   background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(56, 189, 248, 0.18)) !important;
   border: 1px solid #38bdf8 !important; color: #ffffff !important; border-radius: 999px !important;
 }
 
-/* 7. PLANIFICATEUR DE KHATM INTÉGRÉ À L'INTÉRIEUR DU CADRE "LE NOBLE CORAN & TAFSĪR" */
-#khatmPlannerWidgetV69 {
+/* 7. PLANIFICATEUR KHATM ULTRA-COMPACT (STYLE SÉLECTEUR RÉCITATEUR) */
+#khatmPlannerWidgetV70 {
   width: 100% !important;
   box-sizing: border-box !important;
-  margin: 18px auto 2px auto !important;
-  padding: 18px 18px 8px 18px !important;
-  background: rgba(4, 12, 24, 0.45) !important;
-  border: 1px solid rgba(56, 189, 248, 0.18) !important;
-  border-radius: 18px !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  margin: 12px auto 0 auto !important;
+  padding: 12px 10px 4px 10px !important;
+  border-top: 1px solid rgba(56, 189, 248, 0.16) !important;
+  background: transparent !important;
   color: #f8fafc !important;
   font-family: system-ui, -apple-system, sans-serif !important;
   position: relative !important;
   z-index: 10 !important;
   text-align: center !important;
 }
-#khatmPlannerWidgetV69.khatm-inside-verse {
-  margin: 14px auto 4px auto !important;
-  padding: 14px 16px 10px 16px !important;
-}
-.khatm-top-divider-glow {
-  width: 55%;
-  max-width: 420px;
-  height: 1px;
-  margin: -18px auto 14px auto;
-  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.75), rgba(253, 224, 71, 0.65), rgba(56, 189, 248, 0.75), transparent);
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.55);
-}
-.khatm-header-inline {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-.khatm-title-hero {
-  font-family: 'Cinzel', 'Times New Roman', Georgia, serif !important;
-  font-size: 1.02rem !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.05em !important;
-  text-transform: uppercase !important;
-  background: linear-gradient(180deg, #67e8f9 0%, #2dd4bf 55%, #0d9488 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  filter: drop-shadow(0 0 10px rgba(45, 212, 191, 0.22)) !important;
-  margin: 0 !important;
-}
-.khatm-badge-rythme {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.75rem;
-  padding: 3px 12px;
-  border-radius: 999px;
-  background: rgba(6, 78, 59, 0.32);
-  border: 1px solid rgba(16, 185, 129, 0.45);
-  color: #6ee7b7;
-  font-weight: 600;
-}
-.khatm-selectors-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 11px;
-}
-.khatm-capsule-group {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 3px;
-  padding: 3px 5px;
-  border-radius: 999px;
-  background: rgba(6, 13, 25, 0.88);
-  border: 1px solid rgba(56, 189, 248, 0.22);
-}
-.khatm-group-label {
-  font-size: 0.70rem;
-  color: #94a3b8;
-  padding: 0 7px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.khatm-pill-btn {
-  background: transparent;
-  border: 1px solid transparent;
-  color: #cbd5e1;
-  padding: 4px 11px;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.16s ease;
-}
-.khatm-pill-btn:hover {
-  color: #ffffff;
-  border-color: rgba(56, 189, 248, 0.35);
-}
-.khatm-pill-btn.active-khatm-pill {
-  background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(56, 189, 248, 0.16));
-  border: 1px solid #38bdf8;
-  color: #ffffff;
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
-}
-.khatm-progress-track {
-  width: 82%;
-  max-width: 640px;
-  height: 5px;
-  margin: 0 auto 10px auto;
-  background: rgba(15, 23, 42, 0.9);
-  border-radius: 999px;
-  overflow: hidden;
-  border: 1px solid rgba(56, 189, 248, 0.18);
-}
-.khatm-progress-fill-bar {
-  height: 100%;
-  background: linear-gradient(90deg, #38bdf8, #2dd4bf, #fde047);
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.65);
-  border-radius: 999px;
-  transition: width 0.35s ease;
-}
-.khatm-status-info {
-  font-size: 0.82rem;
-  color: #cbd5e1;
-  margin-bottom: 11px;
-}
-.khatm-actions-center {
+.khatm-compact-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 8px;
 }
-.khatm-btn-cyan-hero {
-  background: rgba(8, 25, 48, 0.68);
-  border: 1px solid rgba(56, 189, 248, 0.55);
-  color: #38bdf8;
-  padding: 6px 15px;
-  border-radius: 999px;
-  font-size: 0.79rem;
-  font-weight: 700;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-flex;
+/* Menus déroulants stylisés exactement comme le sélecteur de Récitateur */
+.khatm-reciter-select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  background-color: rgba(8, 22, 42, 0.85) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%2338bdf8' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 11px center !important;
+  background-size: 9px 6px !important;
+  border: 1px solid rgba(56, 189, 248, 0.38) !important;
+  color: #f1f5f9 !important;
+  padding: 6px 28px 6px 13px !important;
+  border-radius: 999px !important;
+  font-size: 0.77rem !important;
+  font-weight: 600 !important;
+  outline: none !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35), inset 0 0 8px rgba(56, 189, 248, 0.06) !important;
+  transition: all 0.18s ease !important;
+}
+.khatm-reciter-select:hover {
+  border-color: #38bdf8 !important;
+  background-color: rgba(14, 34, 64, 0.92) !important;
+  color: #ffffff !important;
+}
+.khatm-reciter-select option {
+  background-color: #06101e !important;
+  color: #f8fafc !important;
+}
+.khatm-btn-green-compact {
+  background: rgba(6, 46, 36, 0.62) !important;
+  border: 1px solid rgba(16, 185, 129, 0.55) !important;
+  color: #34d399 !important;
+  padding: 6px 14px !important;
+  border-radius: 999px !important;
+  font-size: 0.77rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.12) !important;
+  transition: all 0.18s ease !important;
+}
+.khatm-btn-green-compact:hover {
+  background: rgba(16, 185, 129, 0.24) !important;
+  color: #ffffff !important;
+  border-color: #6ee7b7 !important;
+}
+.khatm-btn-cyan-compact {
+  background: rgba(8, 25, 48, 0.72) !important;
+  border: 1px solid rgba(56, 189, 248, 0.48) !important;
+  color: #38bdf8 !important;
+  padding: 6px 13px !important;
+  border-radius: 999px !important;
+  font-size: 0.76rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  transition: all 0.18s ease !important;
+}
+.khatm-btn-cyan-compact:hover {
+  background: rgba(14, 165, 233, 0.22) !important;
+  color: #ffffff !important;
+  border-color: #7dd3fc !important;
+}
+.khatm-btn-reset-mini {
+  background: rgba(30, 10, 18, 0.55) !important;
+  border: 1px solid rgba(248, 113, 113, 0.35) !important;
+  color: #fca5a5 !important;
+  padding: 5px 10px !important;
+  border-radius: 999px !important;
+  font-size: 0.74rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+}
+.khatm-btn-reset-mini:hover {
+  background: rgba(239, 68, 68, 0.25) !important;
+  color: #ffffff !important;
+}
+.khatm-mini-footer {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
-  box-shadow: 0 0 14px rgba(56, 189, 248, 0.12), inset 0 0 10px rgba(56, 189, 248, 0.06);
-  transition: all 0.18s ease;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 7px;
+  font-size: 0.73rem;
+  color: #94a3b8;
 }
-.khatm-btn-cyan-hero:hover {
-  background: rgba(14, 165, 233, 0.22);
-  color: #ffffff;
-  border-color: #7dd3fc;
-}
-.khatm-btn-green-hero {
-  background: rgba(6, 46, 36, 0.58);
-  border: 1px solid rgba(16, 185, 129, 0.55);
-  color: #34d399;
-  padding: 6px 16px;
+.khatm-mini-bar-wrap {
+  width: 140px;
+  height: 4px;
+  background: rgba(15, 23, 42, 0.95);
   border-radius: 999px;
-  font-size: 0.79rem;
-  font-weight: 700;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: 0 0 14px rgba(16, 185, 129, 0.12), inset 0 0 10px rgba(16, 185, 129, 0.06);
-  transition: all 0.18s ease;
+  overflow: hidden;
+  border: 1px solid rgba(56, 189, 248, 0.2);
 }
-.khatm-btn-green-hero:hover {
-  background: rgba(16, 185, 129, 0.22);
-  color: #ffffff;
-  border-color: #6ee7b7;
-}
-.khatm-select-pos {
-  background: rgba(6, 13, 25, 0.9);
-  border: 1px solid rgba(56, 189, 248, 0.38);
-  color: #e2e8f0;
-  padding: 5px 12px;
+.khatm-mini-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8, #2dd4bf, #fde047);
   border-radius: 999px;
-  font-size: 0.76rem;
-  font-weight: 600;
-  outline: none;
-  cursor: pointer;
-}
-.khatm-action-reset {
-  background: rgba(30, 10, 18, 0.55);
-  border: 1px solid rgba(248, 113, 113, 0.38);
-  color: #fca5a5;
-  padding: 5px 11px;
-  border-radius: 999px;
-  font-size: 0.74rem;
-  font-weight: 600;
-  cursor: pointer;
+  transition: width 0.3s ease;
 }
 </style>
-<script id="script-master-v69">(function codeClientV69() {
+<script id="script-master-v70">(function codeClientV70() {
   var LANGUES_EXT_SUPPORTEES = { de: 27, it: 153, id: 33, ru: 45 };
   var langExtActive = "";
   var IgnoreClicInterneFr = false;
 
   try {
-    var oldIds = ["khatmPlannerWidgetV66", "khatmPlannerWidgetV67", "khatmPlannerWidgetV68"];
+    var oldIds = ["khatmPlannerWidgetV66", "khatmPlannerWidgetV67", "khatmPlannerWidgetV68", "khatmPlannerWidgetV69"];
     for (var w = 0; w < oldIds.length; w++) {
       var elOld = document.getElementById(oldIds[w]);
       if (elOld && elOld.parentNode) elOld.parentNode.removeChild(elOld);
@@ -6689,9 +6609,9 @@ html body #btnLangRuV69.active-ext-v69 {
     var pLang = urlParams.get("lang");
     if (pLang && LANGUES_EXT_SUPPORTEES[pLang]) {
       langExtActive = pLang;
-      localStorage.setItem("corantafsir_lang_ext_v69", pLang);
+      localStorage.setItem("corantafsir_lang_ext_v70", pLang);
     } else {
-      var savedExt = localStorage.getItem("corantafsir_lang_ext_v69") || localStorage.getItem("corantafsir_lang_ext_v68") || localStorage.getItem("corantafsir_lang_ext_v67");
+      var savedExt = localStorage.getItem("corantafsir_lang_ext_v70") || localStorage.getItem("corantafsir_lang_ext_v69") || localStorage.getItem("corantafsir_lang_ext_v68");
       if (savedExt && LANGUES_EXT_SUPPORTEES[savedExt]) {
         langExtActive = savedExt;
       }
@@ -6699,7 +6619,7 @@ html body #btnLangRuV69.active-ext-v69 {
   } catch (e) {}
 
   // ==========================================================================
-  // 0. MOTEUR DU PLANIFICATEUR DE KHATM INTÉGRÉ DANS LA CARTE HERO
+  // 0. MOTEUR DU PLANIFICATEUR KHATM COMPACT (SÉLECTEURS STYLE RÉCITATEUR)
   // ==========================================================================
   var NB_VERSETS_PAR_SOURATE = [
     0,
@@ -6748,7 +6668,7 @@ html body #btnLangRuV69.active-ext-v69 {
   };
 
   try {
-    var sauvKhatm = localStorage.getItem("corantafsir_khatm_v69") || localStorage.getItem("corantafsir_khatm_v68") || localStorage.getItem("corantafsir_khatm_v67");
+    var sauvKhatm = localStorage.getItem("corantafsir_khatm_v70") || localStorage.getItem("corantafsir_khatm_v69") || localStorage.getItem("corantafsir_khatm_v68");
     if (sauvKhatm) {
       var parsedK = JSON.parse(sauvKhatm);
       if (parsedK && parsedK.idxByOrder) {
@@ -6761,7 +6681,7 @@ html body #btnLangRuV69.active-ext-v69 {
 
   function sauvegarderEtatKhatm() {
     try {
-      localStorage.setItem("corantafsir_khatm_v69", JSON.stringify(etatKhatm));
+      localStorage.setItem("corantafsir_khatm_v70", JSON.stringify(etatKhatm));
     } catch (e) {}
   }
 
@@ -6831,7 +6751,7 @@ html body #btnLangRuV69.active-ext-v69 {
     var selects = document.querySelectorAll("select");
     for (var i = 0; i < selects.length; i++) {
       var s = selects[i];
-      if (s.classList.contains("khatm-select-pos")) continue;
+      if (s.classList.contains("khatm-reciter-select")) continue;
       if (s.options && s.selectedIndex >= 0) {
         var optTxt = s.options[s.selectedIndex].textContent || "";
         var vm = optTxt.match(/(?:Verset|Verse|Aleya|Vers|Versetto|Ayat|Аят|آية)\\s*(\\d+)/i);
@@ -6841,7 +6761,7 @@ html body #btnLangRuV69.active-ext-v69 {
     var badges = document.querySelectorAll("span, div");
     for (var b = 0; b < badges.length; b++) {
       var el = badges[b];
-      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV69")) continue;
+      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV70")) continue;
       var txt = (el.textContent || "").trim();
       var bm = txt.match(/^(\\d{1,3})\\s*:\\s*(\\d{1,3})$/);
       if (bm) return bm[1] + ":" + bm[2];
@@ -6854,7 +6774,7 @@ html body #btnLangRuV69.active-ext-v69 {
     var selects = document.querySelectorAll("select");
     for (var i = 0; i < selects.length; i++) {
       var sel = selects[i];
-      if (sel.classList.contains("khatm-select-pos")) continue;
+      if (sel.classList.contains("khatm-reciter-select")) continue;
       if (sel.options && sel.options.length >= numV) {
         var opt0 = (sel.options[0].textContent || "").toLowerCase();
         if (opt0.indexOf("vers") !== -1 || opt0.indexOf("aleya") !== -1 || opt0.indexOf("ayat") !== -1 || opt0.indexOf("аят") !== -1 || opt0.indexOf("آية") !== -1 || /\\d+\\s*\\/\\s*\\d+/.test(opt0)) {
@@ -6903,152 +6823,119 @@ html body #btnLangRuV69.active-ext-v69 {
 
   var TEXTES_KHATM_I18N = {
     fr: {
-      titre: "PLANIFICATEUR KHATM AL-QUR'ĀN (6 236 VERSETS)",
-      duree: "Durée",
-      ordre: "Ordre",
-      m1: "1 Mois", m4: "4 Mois", m6: "6 Mois", m12: "12 Mois",
-      ordRev: "Révélation (96➔110)",
-      ordAsc: "Croissant (1➔114)",
-      ordDesc: "Décroissant (114➔1)",
-      vParJour: "versets / jour",
-      jours: "jours",
-      posActuelle: "📍 Où vous en étiez :",
-      objJour: "🎯 Fin de l'étape du jour :",
+      m1: "🗓️ 1 Mois (208 v./j)", m4: "🗓️ 4 Mois (52 v./j)", m6: "🗓️ 6 Mois (35 v./j)", m12: "🗓️ 12 Mois (18 v./j)",
+      ordRev: "📜 Ordre : Révélation (96➔110)",
+      ordAsc: "⬆️ Ordre : Croissant (1➔114)",
+      ordDesc: "⬇️ Ordre : Décroissant (114➔1)",
+      jours: "j. restants",
+      posActuelle: "Position :",
+      objJour: "Objectif du jour :",
       reprendre: "📖 Reprendre :",
-      validerEtape: "✅ Valider l'étape du jour",
-      memoriserIci: "📍 Mémoriser ce verset",
-      sourateSuiv: "⏭️ Sourate suivante :",
-      reset: "↺ Réinitialiser"
+      validerEtape: "✅ Valider étape",
+      memoriserIci: "📍 Mémoriser",
+      sourateSuiv: "⏭️ Suiv. :",
+      reset: "↺"
     },
     en: {
-      titre: "QURAN KHATM PLANNER (6,236 VERSES)",
-      duree: "Duration",
-      ordre: "Order",
-      m1: "1 Month", m4: "4 Months", m6: "6 Months", m12: "12 Months",
-      ordRev: "Revelation (96➔110)",
-      ordAsc: "Ascending (1➔114)",
-      ordDesc: "Descending (114➔1)",
-      vParJour: "verses / day",
-      jours: "days",
-      posActuelle: "📍 Where you left off:",
-      objJour: "🎯 Today's target:",
+      m1: "🗓️ 1 Month (208 v./d)", m4: "🗓️ 4 Months (52 v./d)", m6: "🗓️ 6 Months (35 v./d)", m12: "🗓️ 12 Months (18 v./d)",
+      ordRev: "📜 Order: Revelation (96➔110)",
+      ordAsc: "⬆️ Order: Ascending (1➔114)",
+      ordDesc: "⬇️ Order: Descending (114➔1)",
+      jours: "d. left",
+      posActuelle: "Position:",
+      objJour: "Today's goal:",
       reprendre: "📖 Resume:",
-      validerEtape: "✅ Complete today's goal",
-      memoriserIci: "📍 Save this verse",
-      sourateSuiv: "⏭️ Next Surah:",
-      reset: "↺ Reset"
+      validerEtape: "✅ Complete step",
+      memoriserIci: "📍 Save here",
+      sourateSuiv: "⏭️ Next:",
+      reset: "↺"
     },
     es: {
-      titre: "PLANIFICADOR KHATM DEL CORÁN (6.236 ALEYAS)",
-      duree: "Duración",
-      ordre: "Orden",
-      m1: "1 Mes", m4: "4 Meses", m6: "6 Meses", m12: "12 Meses",
-      ordRev: "Revelación (96➔110)",
-      ordAsc: "Creciente (1➔114)",
-      ordDesc: "Decreciente (114➔1)",
-      vParJour: "aleyas / día",
-      jours: "días",
-      posActuelle: "📍 Dónde te quedaste:",
-      objJour: "🎯 Meta de hoy:",
+      m1: "🗓️ 1 Mes (208 a./d)", m4: "🗓️ 4 Meses (52 a./d)", m6: "🗓️ 6 Meses (35 a./d)", m12: "🗓️ 12 Meses (18 a./d)",
+      ordRev: "📜 Orden: Revelación (96➔110)",
+      ordAsc: "⬆️ Orden: Creciente (1➔114)",
+      ordDesc: "⬇️ Orden: Decreciente (114➔1)",
+      jours: "d. restantes",
+      posActuelle: "Posición:",
+      objJour: "Meta de hoy:",
       reprendre: "📖 Continuar:",
-      validerEtape: "✅ Validar meta de hoy",
-      memoriserIci: "📍 Guardar esta aleya",
-      sourateSuiv: "⏭️ Siguiente Sura:",
-      reset: "↺ Reiniciar"
+      validerEtape: "✅ Validar meta",
+      memoriserIci: "📍 Guardar",
+      sourateSuiv: "⏭️ Sig.:",
+      reset: "↺"
     },
     ar: {
-      titre: "برنامج ختم القرآن الكريم (6236 آية)",
-      duree: "المدة",
-      ordre: "الترتيب",
-      m1: "شهر", m4: "4 أشهر", m6: "6 أشهر", m12: "12 شهراً",
-      ordRev: "النزول (96⬅110)",
-      ordAsc: "تصاعدي (1⬅114)",
-      ordDesc: "تنازلي (114⬅1)",
-      vParJour: "آية / يوم",
-      jours: "يوماً",
-      posActuelle: "📍 توقفت عند:",
-      objJour: "🎯 هدف اليوم:",
+      m1: "🗓️ شهر واحد (208 آية/ي)", m4: "🗓️ 4 أشهر (52 آية/ي)", m6: "🗓️ 6 أشهر (35 آية/ي)", m12: "🗓️ 12 شهراً (18 آية/ي)",
+      ordRev: "📜 الترتيب: النزول (96⬅110)",
+      ordAsc: "⬆️ الترتيب: تصاعدي (1⬅114)",
+      ordDesc: "⬇️ الترتيب: تنازلي (114⬅1)",
+      jours: "يوم متبقي",
+      posActuelle: "الموضع:",
+      objJour: "ورد اليوم:",
       reprendre: "📖 متابعة:",
-      validerEtape: "✅ إتمام ورد اليوم",
-      memoriserIci: "📍 حفظ موضعي هنا",
-      sourateSuiv: "⏭️ السورة التالية:",
-      reset: "↺ إعادة ضبط"
+      validerEtape: "✅ إتمام الورد",
+      memoriserIci: "📍 حفظ هنا",
+      sourateSuiv: "⏭️ التالية:",
+      reset: "↺"
     },
     de: {
-      titre: "KORAN-LESEPLANER & KHATM (6.236 VERSE)",
-      duree: "Dauer",
-      ordre: "Reihenfolge",
-      m1: "1 Monat", m4: "4 Monate", m6: "6 Monate", m12: "12 Monate",
-      ordRev: "Offenbarung (96➔110)",
-      ordAsc: "Aufsteigend (1➔114)",
-      ordDesc: "Absteigend (114➔1)",
-      vParJour: "Verse / Tag",
-      jours: "Tage",
-      posActuelle: "📍 Letzte Position:",
-      objJour: "🎯 Tagesziel:",
+      m1: "🗓️ 1 Monat (208 V./T)", m4: "🗓️ 4 Monate (52 V./T)", m6: "🗓️ 6 Monate (35 V./T)", m12: "🗓️ 12 Monate (18 V./T)",
+      ordRev: "📜 Reihenfolge: Offenbarung (96➔110)",
+      ordAsc: "⬆️ Reihenfolge: Aufsteigend (1➔114)",
+      ordDesc: "⬇️ Reihenfolge: Absteigend (114➔1)",
+      jours: "T. übrig",
+      posActuelle: "Position:",
+      objJour: "Tagesziel:",
       reprendre: "📖 Weiterlesen:",
-      validerEtape: "✅ Tagesziel abhaken",
-      memoriserIci: "📍 Diesen Vers speichern",
-      sourateSuiv: "⏭️ Nächste Sure:",
-      reset: "↺ Reset"
+      validerEtape: "✅ Tagesziel",
+      memoriserIci: "📍 Speichern",
+      sourateSuiv: "⏭️ Nächste:",
+      reset: "↺"
     },
     it: {
-      titre: "PIANIFICATORE KHATM DEL CORANO (6.236 VERSETTI)",
-      duree: "Durata",
-      ordre: "Ordine",
-      m1: "1 Mese", m4: "4 Mesi", m6: "6 Mesi", m12: "12 Mesi",
-      ordRev: "Rivelazione (96➔110)",
-      ordAsc: "Crescente (1➔114)",
-      ordDesc: "Decrescente (114➔1)",
-      vParJour: "versetti / giorno",
-      jours: "giorni",
-      posActuelle: "📍 Dove eri rimasto:",
-      objJour: "🎯 Obiettivo di oggi:",
+      m1: "🗓️ 1 Mese (208 v./g)", m4: "🗓️ 4 Mesi (52 v./g)", m6: "🗓️ 6 Mesi (35 v./g)", m12: "🗓️ 12 Mesi (18 v./g)",
+      ordRev: "📜 Ordine: Rivelazione (96➔110)",
+      ordAsc: "⬆️ Ordine: Crescente (1➔114)",
+      ordDesc: "⬇️ Ordine: Decrescente (114➔1)",
+      jours: "g. rimasti",
+      posActuelle: "Posizione:",
+      objJour: "Obiettivo:",
       reprendre: "📖 Riprendi:",
-      validerEtape: "✅ Convalida tappa di oggi",
-      memoriserIci: "📍 Salva questo versetto",
-      sourateSuiv: "⏭️ Sura successiva:",
-      reset: "↺ Reset"
+      validerEtape: "✅ Convalida",
+      memoriserIci: "📍 Salva qui",
+      sourateSuiv: "⏭️ Succ.:",
+      reset: "↺"
     },
     id: {
-      titre: "PERENCANA KHATAM AL-QUR'AN (6.236 AYAT)",
-      duree: "Durasi",
-      ordre: "Urutan",
-      m1: "1 Bulan", m4: "4 Bulan", m6: "6 Bulan", m12: "12 Bulan",
-      ordRev: "Wahyu (96➔110)",
-      ordAsc: "Menaik (1➔114)",
-      ordDesc: "Menurun (114➔1)",
-      vParJour: "ayat / hari",
-      jours: "hari",
-      posActuelle: "📍 Posisi terakhir:",
-      objJour: "🎯 Target hari ini:",
+      m1: "🗓️ 1 Bulan (208 a./h)", m4: "🗓️ 4 Bulan (52 a./h)", m6: "🗓️ 6 Bulan (35 a./h)", m12: "🗓️ 12 Bulan (18 a./h)",
+      ordRev: "📜 Urutan: Wahyu (96➔110)",
+      ordAsc: "⬆️ Urutan: Menaik (1➔114)",
+      ordDesc: "⬇️ Urutan: Menurun (114➔1)",
+      jours: "h. tersisa",
+      posActuelle: "Posisi:",
+      objJour: "Target hari ini:",
       reprendre: "📖 Lanjutkan:",
-      validerEtape: "✅ Selesaikan target hari ini",
-      memoriserIci: "📍 Simpan ayat ini",
-      sourateSuiv: "⏭️ Surah berikutnya:",
-      reset: "↺ Reset"
+      validerEtape: "✅ Selesai",
+      memoriserIci: "📍 Simpan",
+      sourateSuiv: "⏭️ Berikut:",
+      reset: "↺"
     },
     ru: {
-      titre: "ПЛАН ЧТЕНИЯ КОРАНА — ХАТМ (6 236 АЯТОВ)",
-      duree: "Срок",
-      ordre: "Порядок",
-      m1: "1 мес.", m4: "4 мес.", m6: "6 мес.", m12: "12 мес.",
-      ordRev: "Ниспослание (96➔110)",
-      ordAsc: "Возрастание (1➔114)",
-      ordDesc: "Убывание (114➔1)",
-      vParJour: "аятов / день",
-      jours: "дн.",
-      posActuelle: "📍 Вы остановились на:",
-      objJour: "🎯 Цель на сегодня:",
+      m1: "🗓️ 1 мес. (208 а./д)", m4: "🗓️ 4 мес. (52 а./д)", m6: "🗓️ 6 мес. (35 а./д)", m12: "🗓️ 12 мес. (18 а./д)",
+      ordRev: "📜 Порядок: Ниспослание (96➔110)",
+      ordAsc: "⬆️ Порядок: Возрастание (1➔114)",
+      ordDesc: "⬇️ Порядок: Убывание (114➔1)",
+      jours: "дн. ост.",
+      posActuelle: "Позиция:",
+      objJour: "Цель дня:",
       reprendre: "📖 Продолжить:",
-      validerEtape: "✅ Завершить норму дня",
-      memoriserIci: "📍 Сохранить этот аят",
-      sourateSuiv: "⏭️ Следующая сура:",
-      reset: "↺ Сброс"
+      validerEtape: "✅ Завершить",
+      memoriserIci: "📍 Сохранить",
+      sourateSuiv: "⏭️ След.:",
+      reset: "↺"
     }
   };
 
-  // Trouver la boîte Hero principale ("LE NOBLE CORAN & TAFSĪR" sur l'accueil, ou l'en-tête sur une page verset) pour insérer le Planificateur DEDANS !
   function trouverBoiteHeroPourInsertionInterne() {
     var h1 = document.querySelector("h1, h2");
     if (h1) {
@@ -7076,32 +6963,32 @@ html body #btnLangRuV69.active-ext-v69 {
     var boiteHero = trouverBoiteHeroPourInsertionInterne();
     if (!boiteHero) return;
 
-    // Masquer le bouton vert natif en doublon ("📖 Reprendre : Al-Baqarah (v.23)") à l'intérieur de la boîte Hero puisque le Planificateur est maintenant DEDANS !
+    // Masquer le bouton vert natif en doublon dans la bannière Hero
     var liensInternes = boiteHero.querySelectorAll("a, button");
     for (var l = 0; l < liensInternes.length; l++) {
       var elL = liensInternes[l];
-      if (elL.closest("#khatmPlannerWidgetV69")) continue;
+      if (elL.closest("#khatmPlannerWidgetV70")) continue;
       var txtL = (elL.textContent || "").trim();
       if (
         txtL.indexOf("Reprendre :") !== -1 ||
         txtL.indexOf("Resume:") !== -1 ||
         txtL.indexOf("Continuar:") !== -1 ||
         txtL.indexOf("Weiterlesen:") !== -1 ||
-        txtL.indexOf("Riprendi lettura:") !== -1 ||
-        txtL.indexOf("Lanjutkan membaca:") !== -1 ||
-        txtL.indexOf("Продолжить чтение:") !== -1 ||
-        txtL.indexOf("متابعة القراءة") !== -1
+        txtL.indexOf("Riprendi") !== -1 ||
+        txtL.indexOf("Lanjutkan") !== -1 ||
+        txtL.indexOf("Продолжить") !== -1 ||
+        txtL.indexOf("متابعة") !== -1
       ) {
         elL.classList.add("khatm-doublon-reprendre-masque");
       }
     }
 
-    var widget = document.getElementById("khatmPlannerWidgetV69");
+    var widget = document.getElementById("khatmPlannerWidgetV70");
     if (!widget) {
       widget = document.createElement("div");
-      widget.id = "khatmPlannerWidgetV69";
+      widget.id = "khatmPlannerWidgetV70";
       widget.setAttribute("translate", "no");
-      widget.className = "notranslate" + (estSurPageVerset ? " khatm-inside-verse" : "");
+      widget.className = "notranslate";
       boiteHero.appendChild(widget);
     } else if (widget.parentElement !== boiteHero) {
       boiteHero.appendChild(widget);
@@ -7127,7 +7014,8 @@ html body #btnLangRuV69.active-ext-v69 {
     widget.setAttribute("data-render-sig", cleSignatureRendu);
     widget.style.direction = lang === "ar" ? "rtl" : "ltr";
 
-    var controlesContextuelsHtml = "";
+    // Sélecteur déroulant de Sourate (ou bouton Mémoriser sur une page verset)
+    var controlePositionHtml = "";
     if (estSurPageVerset) {
       var partsVk = vkPage.split(":");
       var sPage = Number(partsVk[0]);
@@ -7135,10 +7023,10 @@ html body #btnLangRuV69.active-ext-v69 {
       var btnSuivHtml = "";
       if (sSuiv) {
         var urlSuiv = "sourate-" + sSuiv + "-verset-1.html?khatm_verse=1" + (langExtActive ? "&lang=" + langExtActive : "");
-        btnSuivHtml = '<a href="' + urlSuiv + '" class="khatm-btn-cyan-hero">' + t.sourateSuiv + ' ' + NOMS_SOURATES_COURT[sSuiv] + ' (' + sSuiv + ':1)</a>';
+        btnSuivHtml = '<a href="' + urlSuiv + '" class="khatm-btn-cyan-compact">' + t.sourateSuiv + ' ' + NOMS_SOURATES_COURT[sSuiv] + ' (' + sSuiv + ':1)</a>';
       }
-      controlesContextuelsHtml =
-        '<button type="button" class="khatm-btn-cyan-hero" data-khatm-act="save-here">' + t.memoriserIci + " (" + vkPage + ")</button>" +
+      controlePositionHtml =
+        '<button type="button" class="khatm-btn-cyan-compact" data-khatm-act="save-here">' + t.memoriserIci + " (" + vkPage + ")</button>" +
         btnSuivHtml;
     } else {
       var listeSOrd = obtenirListeSouratesSelonOrdre(ord);
@@ -7146,48 +7034,62 @@ html body #btnLangRuV69.active-ext-v69 {
       for (var idxS = 0; idxS < listeSOrd.length; idxS++) {
         var numSOpt = listeSOrd[idxS];
         var selAttr = numSOpt === posInfo.s ? ' selected="selected"' : "";
-        optsHtml += '<option value="' + numSOpt + '"' + selAttr + '>' + (idxS + 1) + '. ' + NOMS_SOURATES_COURT[numSOpt] + ' (' + numSOpt + ':1)</option>';
+        var vAffiche = numSOpt === posInfo.s ? posInfo.v : 1;
+        optsHtml += '<option value="' + numSOpt + '"' + selAttr + '>📍 ' + (idxS + 1) + '. ' + NOMS_SOURATES_COURT[numSOpt] + ' (' + numSOpt + ':' + vAffiche + ')</option>';
       }
-      controlesContextuelsHtml = '<select class="khatm-select-pos" title="Choisir la sourate actuelle">' + optsHtml + '</select>';
+      controlePositionHtml = '<select class="khatm-reciter-select" data-khatm-sel="pos">' + optsHtml + '</select>';
     }
 
     widget.innerHTML =
-      '<div class="khatm-top-divider-glow"></div>' +
-      '<div class="khatm-header-inline">' +
-        '<h3 class="khatm-title-hero">' + t.titre + '</h3>' +
-        '<div class="khatm-badge-rythme">⚡ ' + vParJour + ' ' + t.vParJour + ' &nbsp;•&nbsp; ' + idxActuel + ' / 6 236 (' + pct + '%) &nbsp;•&nbsp; ~' + joursRestants + ' ' + t.jours + '</div>' +
+      '<div class="khatm-compact-row">' +
+        '<select class="khatm-reciter-select" data-khatm-sel="months">' +
+          '<option value="1"' + (m === 1 ? ' selected="selected"' : '') + '>' + t.m1 + '</option>' +
+          '<option value="4"' + (m === 4 ? ' selected="selected"' : '') + '>' + t.m4 + '</option>' +
+          '<option value="6"' + (m === 6 ? ' selected="selected"' : '') + '>' + t.m6 + '</option>' +
+          '<option value="12"' + (m === 12 ? ' selected="selected"' : '') + '>' + t.m12 + '</option>' +
+        '</select>' +
+        '<select class="khatm-reciter-select" data-khatm-sel="order">' +
+          '<option value="revelation"' + (ord === "revelation" ? ' selected="selected"' : '') + '>' + t.ordRev + '</option>' +
+          '<option value="croissant"' + (ord === "croissant" ? ' selected="selected"' : '') + '>' + t.ordAsc + '</option>' +
+          '<option value="decroissant"' + (ord === "decroissant" ? ' selected="selected"' : '') + '>' + t.ordDesc + '</option>' +
+        '</select>' +
+        controlePositionHtml +
+        '<a href="' + urlReprise + '" class="khatm-btn-green-compact" data-khatm-act="resume" data-target-s="' + posInfo.s + '" data-target-v="' + posInfo.v + '">' +
+          t.reprendre + ' ' + nomSourateAct + ' (v.' + posInfo.v + ')' +
+        '</a>' +
+        '<button type="button" class="khatm-btn-cyan-compact" data-khatm-act="step-day">' +
+          t.validerEtape + ' (+' + vParJour + ')' +
+        '</button>' +
+        '<button type="button" class="khatm-btn-reset-mini" data-khatm-act="reset" title="Reset">' + t.reset + '</button>' +
       '</div>' +
-      '<div class="khatm-selectors-bar">' +
-        '<div class="khatm-capsule-group">' +
-          '<span class="khatm-group-label">' + t.duree + '</span>' +
-          '<button type="button" class="khatm-pill-btn ' + (m === 1 ? "active-khatm-pill" : "") + '" data-khatm-months="1">' + t.m1 + ' (208/j)</button>' +
-          '<button type="button" class="khatm-pill-btn ' + (m === 4 ? "active-khatm-pill" : "") + '" data-khatm-months="4">' + t.m4 + ' (52/j)</button>' +
-          '<button type="button" class="khatm-pill-btn ' + (m === 6 ? "active-khatm-pill" : "") + '" data-khatm-months="6">' + t.m6 + ' (35/j)</button>' +
-          '<button type="button" class="khatm-pill-btn ' + (m === 12 ? "active-khatm-pill" : "") + '" data-khatm-months="12">' + t.m12 + ' (18/j)</button>' +
-        '</div>' +
-        '<div class="khatm-capsule-group">' +
-          '<span class="khatm-group-label">' + t.ordre + '</span>' +
-          '<button type="button" class="khatm-pill-btn ' + (ord === "revelation" ? "active-khatm-pill" : "") + '" data-khatm-order="revelation">' + t.ordRev + '</button>' +
-          '<button type="button" class="khatm-pill-btn ' + (ord === "croissant" ? "active-khatm-pill" : "") + '" data-khatm-order="croissant">' + t.ordAsc + '</button>' +
-          '<button type="button" class="khatm-pill-btn ' + (ord === "decroissant" ? "active-khatm-pill" : "") + '" data-khatm-order="decroissant">' + t.ordDesc + '</button>' +
-        '</div>' +
-      '</div>' +
-      '<div class="khatm-progress-track">' +
-        '<div class="khatm-progress-fill-bar" style="width:' + Math.max(1.5, Number(pct)) + '%;"></div>' +
-      '</div>' +
-      '<div class="khatm-status-info">' +
-        '<strong>' + t.posActuelle + '</strong> <span style="color:#38bdf8;font-weight:700;">' + nomSourateAct + ' (' + posInfo.s + ':' + posInfo.v + ')</span>' +
-        ' &nbsp;•&nbsp; ' +
-        '<strong>' + t.objJour + '</strong> <span style="color:#fde047;font-weight:600;">' + nomSourateCible + ' (' + cibleInfo.s + ':' + cibleInfo.v + ')</span>' +
-      '</div>' +
-      '<div class="khatm-actions-center">' +
-        '<a href="' + urlReprise + '" class="khatm-btn-green-hero" data-khatm-act="resume" data-target-s="' + posInfo.s + '" data-target-v="' + posInfo.v + '">' + t.reprendre + ' ' + nomSourateAct + ' (v.' + posInfo.v + ')</a>' +
-        '<button type="button" class="khatm-btn-cyan-hero" data-khatm-act="step-day">' + t.validerEtape + ' (+' + vParJour + ')</button>' +
-        controlesContextuelsHtml +
-        '<button type="button" class="khatm-action-reset" data-khatm-act="reset">' + t.reset + '</button>' +
+      '<div class="khatm-mini-footer">' +
+        '<span>' + t.posActuelle + ' <strong style="color:#38bdf8;">' + nomSourateAct + ' (' + posInfo.s + ':' + posInfo.v + ')</strong></span>' +
+        '<span>•</span>' +
+        '<span>' + t.objJour + ' <strong style="color:#fde047;">' + nomSourateCible + ' (' + cibleInfo.s + ':' + cibleInfo.v + ')</strong></span>' +
+        '<span>•</span>' +
+        '<div class="khatm-mini-bar-wrap"><div class="khatm-mini-bar-fill" style="width:' + Math.max(2, Number(pct)) + '%;"></div></div>' +
+        '<span style="color:#6ee7b7;font-weight:600;">' + idxActuel + ' / 6 236 (' + pct + '%) • ~' + joursRestants + ' ' + t.jours + '</span>' +
       '</div>';
 
-    var selPos = widget.querySelector(".khatm-select-pos");
+    var selMonths = widget.querySelector("select[data-khatm-sel='months']");
+    if (selMonths) {
+      selMonths.addEventListener("change", function () {
+        etatKhatm.months = Number(this.value) || 1;
+        sauvegarderEtatKhatm();
+        afficherOuMettreAJourPlanificateurKhatm();
+      });
+    }
+
+    var selOrder = widget.querySelector("select[data-khatm-sel='order']");
+    if (selOrder) {
+      selOrder.addEventListener("change", function () {
+        etatKhatm.order = this.value || "revelation";
+        sauvegarderEtatKhatm();
+        afficherOuMettreAJourPlanificateurKhatm();
+      });
+    }
+
+    var selPos = widget.querySelector("select[data-khatm-sel='pos']");
     if (selPos) {
       selPos.addEventListener("change", function () {
         var sChoisi = Number(this.value) || 1;
@@ -7264,9 +7166,9 @@ html body #btnLangRuV69.active-ext-v69 {
 
   function modifierNoeudTexteSeul(textNode, nouveauTexte) {
     if (!textNode || textNode.nodeType !== 3) return;
-    if (textNode.__origExtV69 === undefined) {
-      textNode.__origExtV69 = textNode.nodeValue;
-      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV69 });
+    if (textNode.__origExtV70 === undefined) {
+      textNode.__origExtV70 = textNode.nodeValue;
+      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV70 });
     }
     if (textNode.nodeValue !== nouveauTexte) {
       textNode.nodeValue = nouveauTexte;
@@ -7321,22 +7223,21 @@ html body #btnLangRuV69.active-ext-v69 {
     for (var f = 0; f < conteneurLang.children.length; f++) {
       if (conteneurLang.children[f] !== btnActif) {
         conteneurLang.children[f].classList.remove("active");
-        conteneurLang.children[f].classList.remove("active-ext-v69");
+        conteneurLang.children[f].classList.remove("active-ext-v70");
       }
     }
-    if (btnActif) btnActif.classList.add("active-ext-v69");
+    if (btnActif) btnActif.classList.add("active-ext-v70");
   }
 
-  // CORRECTION DU DRAPEAU INDONÉSIEN : \\uD83C\\uDDEE\\uD83C\\uDDE9 (🇮🇩 ID) ET NON \\uDDFA (IU) !
   function assurerBoutonsLanguesEtendues() {
-    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV69), [id^='btnLangItV']:not(#btnLangItV69), [id^='btnLangIdV']:not(#btnLangIdV69), [id^='btnLangRuV']:not(#btnLangRuV69)");
+    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV70), [id^='btnLangItV']:not(#btnLangItV70), [id^='btnLangIdV']:not(#btnLangIdV70), [id^='btnLangRuV']:not(#btnLangRuV70)");
     for (var b = 0; b < oldBtns.length; b++) {
       if (oldBtns[b].parentNode) oldBtns[b].parentNode.removeChild(oldBtns[b]);
     }
 
-    var mapIds = { de: "btnLangDeV69", it: "btnLangItV69", id: "btnLangIdV69", ru: "btnLangRuV69" };
-    if (document.getElementById("btnLangDeV69") && document.getElementById("btnLangIdV69") && document.getElementById("btnLangRuV69")) {
-      var parentBar = document.getElementById("btnLangDeV69").parentElement;
+    var mapIds = { de: "btnLangDeV70", it: "btnLangItV70", id: "btnLangIdV70", ru: "btnLangRuV70" };
+    if (document.getElementById("btnLangDeV70") && document.getElementById("btnLangIdV70") && document.getElementById("btnLangRuV70")) {
+      var parentBar = document.getElementById("btnLangDeV70").parentElement;
       if (parentBar) {
         parentBar.setAttribute("translate", "no");
         parentBar.classList.add("notranslate");
@@ -7345,14 +7246,14 @@ html body #btnLangRuV69.active-ext-v69 {
         var bEl = document.getElementById(mapIds[code]);
         if (!bEl) continue;
         if (langExtActive === code) {
-          bEl.classList.add("active-ext-v69");
+          bEl.classList.add("active-ext-v70");
           if (parentBar) {
             for (var k = 0; k < parentBar.children.length; k++) {
               if (parentBar.children[k] !== bEl) parentBar.children[k].classList.remove("active");
             }
           }
         } else {
-          bEl.classList.remove("active-ext-v69");
+          bEl.classList.remove("active-ext-v70");
         }
       }
       return;
@@ -7430,14 +7331,14 @@ html body #btnLangRuV69.active-ext-v69 {
         } else {
           nvBtn.innerHTML = '<span style="margin-right:3px;">' + emojiDrapeau + "</span><span>" + labelCourt + "</span>";
         }
-        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v69");
+        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v70");
 
         nvBtn.addEventListener("click", function (ev) {
           ev.preventDefault();
           ev.stopPropagation();
           restaurerTextesOriginauxDepuisExt();
           langExtActive = codeIso;
-          try { localStorage.setItem("corantafsir_lang_ext_v69", codeIso); } catch (e) {}
+          try { localStorage.setItem("corantafsir_lang_ext_v70", codeIso); } catch (e) {}
           basculerDepuisArabeSurClicUtilisateur(conteneurLang, nvBtn);
           dernierVersetSeo = "";
           setTimeout(synchroniserTout, 15);
@@ -7445,11 +7346,10 @@ html body #btnLangRuV69.active-ext-v69 {
         return nvBtn;
       }
 
-      // Drapeaux exacts : DE (\\uDDE9\\uDDEA), IT (\\uDDEE\\uDDF9), ID (\\uDDEE\\uDDE9), RU (\\uDDF7\\uDDFA)
-      var btnDe = creerBoutonLangExt("btnLangDeV69", "de", "\\uD83C\\uDDE9\\uD83C\\uDDEA", "DE");
-      var btnIt = creerBoutonLangExt("btnLangItV69", "it", "\\uD83C\\uDDEE\\uD83C\\uDDF9", "IT");
-      var btnId = creerBoutonLangExt("btnLangIdV69", "id", "\\uD83C\\uDDEE\\uD83C\\uDDE9", "ID");
-      var btnRu = creerBoutonLangExt("btnLangRuV69", "ru", "\\uD83C\\uDDF7\\uD83C\\uDDFA", "RU");
+      var btnDe = creerBoutonLangExt("btnLangDeV70", "de", "\\uD83C\\uDDE9\\uD83C\\uDDEA", "DE");
+      var btnIt = creerBoutonLangExt("btnLangItV70", "it", "\\uD83C\\uDDEE\\uD83C\\uDDF9", "IT");
+      var btnId = creerBoutonLangExt("btnLangIdV70", "id", "\\uD83C\\uDDEE\\uD83C\\uDDE9", "ID");
+      var btnRu = creerBoutonLangExt("btnLangRuV70", "ru", "\\uD83C\\uDDF7\\uD83C\\uDDFA", "RU");
 
       for (var a = 0; a < freresInit.length; a++) {
         (function (autre) {
@@ -7459,11 +7359,11 @@ html body #btnLangRuV69.active-ext-v69 {
             if (IgnoreClicInterneFr) return;
             var etaitEnWbw = obtenirCartesMotAMotVisibles().length >= 2;
             langExtActive = "";
-            try { localStorage.setItem("corantafsir_lang_ext_v69", "native"); } catch (e) {}
-            btnDe.classList.remove("active-ext-v69");
-            btnIt.classList.remove("active-ext-v69");
-            btnId.classList.remove("active-ext-v69");
-            btnRu.classList.remove("active-ext-v69");
+            try { localStorage.setItem("corantafsir_lang_ext_v70", "native"); } catch (e) {}
+            btnDe.classList.remove("active-ext-v70");
+            btnIt.classList.remove("active-ext-v70");
+            btnId.classList.remove("active-ext-v70");
+            btnRu.classList.remove("active-ext-v70");
             restaurerTextesOriginauxDepuisExt();
             dernierVersetSeo = "";
 
@@ -7525,8 +7425,8 @@ html body #btnLangRuV69.active-ext-v69 {
   function traduireNoeudVersExtAsync(textNode, origTxt, codeLang) {
     if (!origTxt || origTxt.length < 3 || !LANGUES_EXT_SUPPORTEES[codeLang]) return;
     var cle = codeLang + "_" + origTxt.slice(0, 140) + "_" + origTxt.length;
-    var esp1 = (textNode.__origExtV69 || textNode.nodeValue).match(/^\\s*/)[0];
-    var esp2 = (textNode.__origExtV69 || textNode.nodeValue).match(/\\s*$/)[0];
+    var esp1 = (textNode.__origExtV70 || textNode.nodeValue).match(/^\\s*/)[0];
+    var esp2 = (textNode.__origExtV70 || textNode.nodeValue).match(/\\s*$/)[0];
 
     if (cacheTexteUnitaireExt[cle]) {
       modifierNoeudTexteSeul(textNode, esp1 + cacheTexteUnitaireExt[cle] + esp2);
@@ -7566,6 +7466,7 @@ html body #btnLangRuV69.active-ext-v69 {
       "le noble coran & tafsīr": "DER EDLE KORAN & TAFSĪR",
       "le noble coran & tafsir": "DER EDLE KORAN & TAFSĪR",
       "the noble quran & tafsīr": "DER EDLE KORAN & TAFSĪR",
+      "el noble corán y tafsīr": "DER EDLE KORAN & TAFSĪR",
       "le noble coran & tafsīr al-mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
       "the noble quran & tafsīr al-mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
       "‹ retour aux 114 sourates": "‹ Zurück zu den 114 Suren",
@@ -7607,22 +7508,41 @@ html body #btnLangRuV69.active-ext-v69 {
       "lettre muette": "Stummer Buchstabe",
       "silent letter": "Stummer Buchstabe",
       "qu'est-ce qu'une sourate mecquoise ?": "Was ist eine mekkanische Sure?",
+      "what is a meccan surah?": "Was ist eine mekkanische Sure?",
+      "¿qué es una sura mequí?": "Was ist eine mekkanische Sure?",
       "qu'est-ce qu'une sourate médinoise ?": "Was ist eine medinensische Sure?",
+      "what is a medinan surah?": "Was ist eine medinensische Sure?",
+      "¿qué es una sura medinense?": "Was ist eine medinensische Sure?",
       "mecquoise • 86 sourates": "MEKKANISCH • 86 SUREN",
+      "meccan • 86 surahs": "MEKKANISCH • 86 SUREN",
+      "mequí • 86 suras": "MEKKANISCH • 86 SUREN",
       "médinoise • 28 sourates": "MEDINENSISCH • 28 SUREN",
+      "medinan • 28 surahs": "MEDINENSISCH • 28 SUREN",
+      "medinense • 28 suras": "MEDINENSISCH • 28 SUREN",
       "1. ordre de révélation (1 à 114)": "1. Offenbarungsreihenfolge (1–114)",
+      "1. revelation order (1 to 114)": "1. Offenbarungsreihenfolge (1–114)",
+      "1. orden de revelación (1 a 114)": "1. Offenbarungsreihenfolge (1–114)",
       "2. ordre du mushaf (1 à 114)": "2. Klassische Reihenfolge (1–114)",
       "2. ordre classique (1 à 114)": "2. Klassische Reihenfolge (1–114)",
+      "2. traditional order (1 to 114)": "2. Klassische Reihenfolge (1–114)",
+      "2. orden tradicional (1 a 114)": "2. Klassische Reihenfolge (1–114)",
       "⭐ 3. versets des miracles scientifiques": "3. ⭐ Wunder des Korans",
       "3. ⭐ miracles du coran": "3. ⭐ Wunder des Korans",
       "3. ⭐ les miracles du coran": "3. ⭐ Wunder des Korans",
+      "3. ⭐ miracles of the quran": "3. ⭐ Wunder des Korans",
+      "3. ⭐ milagros del corán": "3. ⭐ Wunder des Korans",
       "mecquoise": "MEKKANISCH",
-      "médinoise": "MEDINENSISCH"
+      "meccan": "MEKKANISCH",
+      "mequí": "MEKKANISCH",
+      "médinoise": "MEDINENSISCH",
+      "medinan": "MEDINENSISCH",
+      "medinense": "MEDINENSISCH"
     },
     it: {
       "le noble coran & tafsīr": "IL NOBILE CORANO E TAFSĪR",
       "le noble coran & tafsir": "IL NOBILE CORANO E TAFSĪR",
       "the noble quran & tafsīr": "IL NOBILE CORANO E TAFSĪR",
+      "el noble corán y tafsīr": "IL NOBILE CORANO E TAFSĪR",
       "le noble coran & tafsīr al-mukhtasar": "Il Nobile Corano e Tafsīr Al-Mukhtasar",
       "the noble quran & tafsīr al-mukhtasar": "Il Nobile Corano e Tafsīr Al-Mukhtasar",
       "‹ retour aux 114 sourates": "‹ Torna alle 114 Sure",
@@ -7664,22 +7584,41 @@ html body #btnLangRuV69.active-ext-v69 {
       "lettre muette": "Lettera muta",
       "silent letter": "Lettera muta",
       "qu'est-ce qu'une sourate mecquoise ?": "Cos'è una Sura Meccana?",
+      "what is a meccan surah?": "Cos'è una Sura Meccana?",
+      "¿qué es una sura mequí?": "Cos'è una Sura Meccana?",
       "qu'est-ce qu'une sourate médinoise ?": "Cos'è una Sura Medinese?",
+      "what is a medinan surah?": "Cos'è una Sura Medinese?",
+      "¿qué es una sura medinense?": "Cos'è una Sura Medinese?",
       "mecquoise • 86 sourates": "MECCANA • 86 SURE",
+      "meccan • 86 surahs": "MECCANA • 86 SURE",
+      "mequí • 86 suras": "MECCANA • 86 SURE",
       "médinoise • 28 sourates": "MEDINESE • 28 SURE",
+      "medinan • 28 surahs": "MEDINESE • 28 SURE",
+      "medinense • 28 suras": "MEDINESE • 28 SURE",
       "1. ordre de révélation (1 à 114)": "1. Ordine di Rivelazione (1–114)",
+      "1. revelation order (1 to 114)": "1. Ordine di Rivelazione (1–114)",
+      "1. orden de revelación (1 a 114)": "1. Ordine di Rivelazione (1–114)",
       "2. ordre du mushaf (1 à 114)": "2. Ordine Classico (1–114)",
       "2. ordre classique (1 à 114)": "2. Ordine Classico (1–114)",
+      "2. traditional order (1 to 114)": "2. Ordine Classico (1–114)",
+      "2. orden tradicional (1 a 114)": "2. Ordine Classico (1–114)",
       "⭐ 3. versets des miracles scientifiques": "3. ⭐ I Miracoli del Corano",
       "3. ⭐ miracles du coran": "3. ⭐ I Miracoli del Corano",
       "3. ⭐ les miracles du coran": "3. ⭐ I Miracoli del Corano",
+      "3. ⭐ miracles of the quran": "3. ⭐ I Miracoli del Corano",
+      "3. ⭐ milagros del corán": "3. ⭐ I Miracoli del Corano",
       "mecquoise": "MECCANA",
-      "médinoise": "MEDINESE"
+      "meccan": "MECCANA",
+      "mequí": "MECCANA",
+      "médinoise": "MEDINESE",
+      "medinan": "MEDINESE",
+      "medinense": "MEDINESE"
     },
     id: {
       "le noble coran & tafsīr": "AL-QUR'AN MULIA & TAFSĪR",
       "le noble coran & tafsir": "AL-QUR'AN MULIA & TAFSĪR",
       "the noble quran & tafsīr": "AL-QUR'AN MULIA & TAFSĪR",
+      "el noble corán y tafsīr": "AL-QUR'AN MULIA & TAFSĪR",
       "le noble coran & tafsīr al-mukhtasar": "Al-Qur'an Mulia & Tafsīr Al-Mukhtasar",
       "the noble quran & tafsīr al-mukhtasar": "Al-Qur'an Mulia & Tafsīr Al-Mukhtasar",
       "‹ retour aux 114 sourates": "‹ Kembali ke 114 Surah",
@@ -7721,22 +7660,41 @@ html body #btnLangRuV69.active-ext-v69 {
       "lettre muette": "Huruf Bisu",
       "silent letter": "Huruf Bisu",
       "qu'est-ce qu'une sourate mecquoise ?": "Apa itu Surah Makkiyah?",
+      "what is a meccan surah?": "Apa itu Surah Makkiyah?",
+      "¿qué es una sura mequí?": "Apa itu Surah Makkiyah?",
       "qu'est-ce qu'une sourate médinoise ?": "Apa itu Surah Madaniyah?",
+      "what is a medinan surah?": "Apa itu Surah Madaniyah?",
+      "¿qué es una sura medinense?": "Apa itu Surah Madaniyah?",
       "mecquoise • 86 sourates": "MAKKIYAH • 86 SURAH",
+      "meccan • 86 surahs": "MAKKIYAH • 86 SURAH",
+      "mequí • 86 suras": "MAKKIYAH • 86 SURAH",
       "médinoise • 28 sourates": "MADANIYAH • 28 SURAH",
+      "medinan • 28 surahs": "MADANIYAH • 28 SURAH",
+      "medinense • 28 suras": "MADANIYAH • 28 SURAH",
       "1. ordre de révélation (1 à 114)": "1. Urutan Turunnya Wahyu (1–114)",
+      "1. revelation order (1 to 114)": "1. Urutan Turunnya Wahyu (1–114)",
+      "1. orden de revelación (1 a 114)": "1. Urutan Turunnya Wahyu (1–114)",
       "2. ordre du mushaf (1 à 114)": "2. Urutan Mushaf (1–114)",
       "2. ordre classique (1 à 114)": "2. Urutan Mushaf (1–114)",
+      "2. traditional order (1 to 114)": "2. Urutan Mushaf (1–114)",
+      "2. orden tradicional (1 a 114)": "2. Urutan Mushaf (1–114)",
       "⭐ 3. versets des miracles scientifiques": "3. ⭐ Mukjizat Al-Qur'an",
       "3. ⭐ miracles du coran": "3. ⭐ Mukjizat Al-Qur'an",
       "3. ⭐ les miracles du coran": "3. ⭐ Mukjizat Al-Qur'an",
+      "3. ⭐ miracles of the quran": "3. ⭐ Mukjizat Al-Qur'an",
+      "3. ⭐ milagros del corán": "3. ⭐ Mukjizat Al-Qur'an",
       "mecquoise": "MAKKIYAH",
-      "médinoise": "MADANIYAH"
+      "meccan": "MAKKIYAH",
+      "mequí": "MAKKIYAH",
+      "médinoise": "MADANIYAH",
+      "medinan": "MADANIYAH",
+      "medinense": "MADANIYAH"
     },
     ru: {
       "le noble coran & tafsīr": "СВЯЩЕННЫЙ КОРАН И ТАФСИР",
       "le noble coran & tafsir": "СВЯЩЕННЫЙ КОРАН И ТАФСИР",
       "the noble quran & tafsīr": "СВЯЩЕННЫЙ КОРАН И ТАФСИР",
+      "el noble corán y tafsīr": "СВЯЩЕННЫЙ КОРАН И ТАФСИР",
       "le noble coran & tafsīr al-mukhtasar": "Священный Коран и Тафсир аль-Мухтасар",
       "the noble quran & tafsīr al-mukhtasar": "Священный Коран и Тафсир аль-Мухтасар",
       "‹ retour aux 114 sourates": "‹ Назад к 114 сурам",
@@ -7778,17 +7736,35 @@ html body #btnLangRuV69.active-ext-v69 {
       "lettre muette": "Немая буква",
       "silent letter": "Немая буква",
       "qu'est-ce qu'une sourate mecquoise ?": "Что такое мекканская сура?",
+      "what is a meccan surah?": "Что такое мекканская сура?",
+      "¿qué es una sura mequí?": "Что такое мекканская сура?",
       "qu'est-ce qu'une sourate médinoise ?": "Что такое мединская сура?",
+      "what is a medinan surah?": "Что такое мединская сура?",
+      "¿qué es una sura medinense?": "Что такое мединская сура?",
       "mecquoise • 86 sourates": "МЕККАНСКАЯ • 86 СУР",
+      "meccan • 86 surahs": "МЕККАНСКАЯ • 86 СУР",
+      "mequí • 86 suras": "МЕККАНСКАЯ • 86 СУР",
       "médinoise • 28 sourates": "МЕДИНСКАЯ • 28 СУР",
+      "medinan • 28 surahs": "МЕДИНСКАЯ • 28 СУР",
+      "medinense • 28 suras": "МЕДИНСКАЯ • 28 СУР",
       "1. ordre de révélation (1 à 114)": "1. По порядку ниспослания (1–114)",
+      "1. revelation order (1 to 114)": "1. По порядку ниспослания (1–114)",
+      "1. orden de revelación (1 a 114)": "1. По порядку ниспослания (1–114)",
       "2. ordre du mushaf (1 à 114)": "2. По порядку Мусхафа (1–114)",
       "2. ordre classique (1 à 114)": "2. По порядку Мусхафа (1–114)",
+      "2. traditional order (1 to 114)": "2. По порядку Мусхафа (1–114)",
+      "2. orden tradicional (1 a 114)": "2. По порядку Мусхафа (1–114)",
       "⭐ 3. versets des miracles scientifiques": "3. ⭐ Чудеса Корана",
       "3. ⭐ miracles du coran": "3. ⭐ Чудеса Корана",
       "3. ⭐ les miracles du coran": "3. ⭐ Чудеса Корана",
+      "3. ⭐ miracles of the quran": "3. ⭐ Чудеса Корана",
+      "3. ⭐ milagros del corán": "3. ⭐ Чудеса Корана",
       "mecquoise": "МЕККАНСКАЯ",
-      "médinoise": "МЕДИНСКАЯ"
+      "meccan": "МЕККАНСКАЯ",
+      "mequí": "МЕККАНСКАЯ",
+      "médinoise": "МЕДИНСКАЯ",
+      "medinan": "МЕДИНСКАЯ",
+      "medinense": "МЕДИНСКАЯ"
     }
   };
 
@@ -7836,7 +7812,7 @@ html body #btnLangRuV69.active-ext-v69 {
     var cartesAccueil = document.querySelectorAll("a[href*='sourate-']");
     for (var ca = 0; ca < cartesAccueil.length; ca++) {
       var lienCarte = cartesAccueil[ca];
-      if (lienCarte.closest("#khatmPlannerWidgetV69")) continue;
+      if (lienCarte.closest("#khatmPlannerWidgetV70")) continue;
       var mHref = (lienCarte.getAttribute("href") || "").match(/sourate-(\\d+)/i);
       if (mHref) {
         var sId = Number(mHref[1]);
@@ -7845,9 +7821,9 @@ html body #btnLangRuV69.active-ext-v69 {
           for (var te = 0; te < titresEl.length; te++) {
             var candT = titresEl[te];
             if (candT.children.length === 0) {
-              var origT = (candT.__origTitreV69 || candT.textContent || "").trim();
-              if (origT.indexOf("(") !== -1 && origT.indexOf(")") !== -1 && origT.indexOf("Miracle") === -1 && origT.indexOf("Wunder") === -1) {
-                if (!candT.__origTitreV69) candT.__origTitreV69 = origT;
+              var origT = (candT.__origTitreV70 || candT.textContent || "").trim();
+              if (origT.indexOf("(") !== -1 && origT.indexOf(")") !== -1 && origT.indexOf("Miracle") === -1 && origT.indexOf("Wunder") === -1 && origT.indexOf("Milagro") === -1) {
+                if (!candT.__origTitreV70) candT.__origTitreV70 = origT;
                 if (candT.firstChild && candT.firstChild.nodeType === 3) {
                   modifierNoeudTexteSeul(candT.firstChild, noms114[sId]);
                 }
@@ -7871,9 +7847,9 @@ html body #btnLangRuV69.active-ext-v69 {
       if (!pEl) continue;
       var tag = pEl.tagName;
       if (tag === "SCRIPT" || tag === "STYLE") continue;
-      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate") || pEl.closest("#khatmPlannerWidgetV69")) continue;
+      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate") || pEl.closest("#khatmPlannerWidgetV70")) continue;
 
-      var val = (node.__origExtV69 !== undefined ? node.__origExtV69 : node.nodeValue || "").replace(/\\u00A0/g, " ").trim();
+      var val = (node.__origExtV70 !== undefined ? node.__origExtV70 : node.nodeValue || "").replace(/\\u00A0/g, " ").trim();
       if (!val || /[\\u0600-\\u06FF]/.test(val)) continue;
       var valLower = val.toLowerCase();
 
@@ -7882,7 +7858,7 @@ html body #btnLangRuV69.active-ext-v69 {
         continue;
       }
 
-      var matchVersetsCourt = val.match(/^(\\d+)\\s*(?:v\\.|versets|verses|aleyas)$/i);
+      var matchVersetsCourt = val.match(/^(\\d+)\\s*(?:v\\.|a\\.|versets|verses|aleyas)$/i);
       if (matchVersetsCourt) {
         var nbV = matchVersetsCourt[1];
         var unitV = { de: nbV + " Verse", it: nbV + " versetti", id: nbV + " ayat", ru: nbV + " аятов" }[codeL];
@@ -7908,7 +7884,7 @@ html body #btnLangRuV69.active-ext-v69 {
         continue;
       }
 
-      var mMirBadge = val.match(/Miracle\\s*[:\\(]\\s*(?:V\\.?|Verset|Verse)\\s*(\\d+)\\)?/i);
+      var mMirBadge = val.match(/(?:Miracle|Milagro)\\s*[:\\(]\\s*(?:V\\.?|A\\.?|Verset|Verse)\\s*(\\d+)\\)?/i);
       if (mMirBadge) {
         var vNumMir = mMirBadge[1];
         var txtMir = {
@@ -7921,13 +7897,13 @@ html body #btnLangRuV69.active-ext-v69 {
         continue;
       }
 
-      if ((val.indexOf("Sourate ") === 0 || val.indexOf("Surah ") === 0 || val.indexOf("Sure ") === 0 || val.indexOf("Sura ") === 0) && (val.indexOf(" — Verset ") !== -1 || val.indexOf(" — Verse ") !== -1)) {
+      if ((val.indexOf("Sourate ") === 0 || val.indexOf("Surah ") === 0 || val.indexOf("Sure ") === 0 || val.indexOf("Sura ") === 0) && (val.indexOf(" — Verset ") !== -1 || val.indexOf(" — Verse ") !== -1 || val.indexOf(" — Aleya ") !== -1)) {
         var prefS = { de: "Sure ", it: "Sura ", id: "Surah ", ru: "Сура " }[codeL];
         var prefV = { de: " — Vers ", it: " — Versetto ", id: " — Ayat ", ru: " — Аят " }[codeL];
         if (numS && noms114[numS]) {
           modifierNoeudTexteSeul(node, prefS + noms114[numS] + prefV + numV);
         } else {
-          modifierNoeudTexteSeul(node, val.replace(/^Sourate |^Surah /, prefS).replace(/ — Verset | — Verse /, prefV));
+          modifierNoeudTexteSeul(node, val.replace(/^Sourate |^Surah |^Sura /, prefS).replace(/ — Verset | — Verse | — Aleya /, prefV));
         }
         continue;
       }
@@ -7976,7 +7952,7 @@ html body #btnLangRuV69.active-ext-v69 {
     var pEls = document.querySelectorAll("p, button, strong, b, span");
     for (var i = 0; i < pEls.length; i++) {
       var el = pEls[i];
-      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV69")) continue;
+      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV70")) continue;
       var t = el.textContent || "";
       if (t.indexOf("y e temen") !== -1) {
         el.textContent = t.replace("y e temen", "y le temen");
@@ -8015,7 +7991,7 @@ html body #btnLangRuV69.active-ext-v69 {
       btnSuivi.style.setProperty("display", "inline-flex", "important");
       btnSuivi.style.setProperty("visibility", "visible", "important");
       btnSuivi.style.setProperty("opacity", "1", "important");
-      if (btnSuivi.id === "btnSuiviUniverselV69" && btnSuivi.textContent !== labelSuivi) {
+      if (btnSuivi.id === "btnSuiviUniverselV70" && btnSuivi.textContent !== labelSuivi) {
         btnSuivi.textContent = labelSuivi;
       }
       if (suiviEstActif) {
@@ -8024,9 +8000,9 @@ html body #btnLangRuV69.active-ext-v69 {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV69")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV70")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV69";
+      nv.id = "btnSuiviUniverselV70";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.textContent = labelSuivi;
@@ -8037,10 +8013,10 @@ html body #btnLangRuV69.active-ext-v69 {
     }
   }
 
-  // 3. SOLEIL ET LUNE EN ORBITE (AVEC CACHE ULTRA-RAPIDE POUR ZÉRO SURCHARGE CPU)
+  // 3. SOLEIL ET LUNE EN ORBITE (AVEC CACHE ULTRA-RAPIDE)
   var astresDejaVerrouilles = false;
   function reparerSoleilEtLuneEnOrbite() {
-    if (astresDejaVerrouilles && document.querySelector(".astre-soleil-pur-v69") && document.querySelector(".astre-lune-pure-v69")) {
+    if (astresDejaVerrouilles && document.querySelector(".astre-soleil-pur-v70") && document.querySelector(".astre-lune-pure-v70")) {
       return;
     }
 
@@ -8120,8 +8096,8 @@ html body #btnLangRuV69.active-ext-v69 {
       }
 
       if (role === "sun") {
-        node.classList.remove("astre-lune-pure-v69");
-        node.classList.add("astre-soleil-pur-v69");
+        node.classList.remove("astre-lune-pure-v70");
+        node.classList.add("astre-soleil-pur-v70");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -8130,8 +8106,8 @@ html body #btnLangRuV69.active-ext-v69 {
         node.style.setProperty("box-shadow", "0 0 50px 16px rgba(253, 224, 71, 0.72), 0 0 110px 38px rgba(245, 158, 11, 0.42)", "important");
         node.style.setProperty("filter", "none", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v69");
-        node.classList.add("astre-lune-pure-v69");
+        node.classList.remove("astre-soleil-pur-v70");
+        node.classList.add("astre-lune-pure-v70");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -8154,19 +8130,37 @@ html body #btnLangRuV69.active-ext-v69 {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v69");
+          row.classList.add("maher-supprime-v70");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
     }
   }
 
+  // DÉTECTION EXACTE DE LA LANGUE ACTIVE SUR L'ACCUEIL COMME SUR LES PAGES VERSETS !
   function obtenirLangueActive() {
     if (langExtActive && LANGUES_EXT_SUPPORTEES[langExtActive]) return langExtActive;
+
+    // 1. Lire directement le bouton .active dans la barre de langues
+    var btnDeRef = document.getElementById("btnLangDeV70");
+    if (btnDeRef && btnDeRef.parentElement) {
+      var ch = btnDeRef.parentElement.children;
+      for (var i = 0; i < ch.length; i++) {
+        if (ch[i].classList.contains("active")) {
+          var t = (ch[i].textContent || "").toUpperCase();
+          if (t.indexOf("EN") !== -1) return "en";
+          if (t.indexOf("ES") !== -1) return "es";
+          if (t.indexOf("AR") !== -1) return "ar";
+          if (t.indexOf("FR") !== -1) return "fr";
+        }
+      }
+    }
+
+    // 2. Fallback sur le texte de la page (Accueil + Pages Versets)
     var bodyTxt = document.body ? document.body.innerText : "";
-    if (bodyTxt.indexOf("Escuchar aleya") !== -1 || bodyTxt.indexOf("EXPLICACIÓN DE LA ALEYA") !== -1 || bodyTxt.indexOf("Ruido Marrón") !== -1) return "es";
-    if (bodyTxt.indexOf("Listen to verse") !== -1 || bodyTxt.indexOf("VERSE EXPLANATION") !== -1 || bodyTxt.indexOf("Brown Noise") !== -1) return "en";
-    if (bodyTxt.indexOf("استمع للآية") !== -1 || bodyTxt.indexOf("تفسير الآية") !== -1 || bodyTxt.indexOf("ترتيب النزول") !== -1) return "ar";
+    if (bodyTxt.indexOf("Escuchar aleya") !== -1 || bodyTxt.indexOf("EXPLICACIÓN DE LA ALEYA") !== -1 || bodyTxt.indexOf("EL NOBLE CORÁN") !== -1 || bodyTxt.indexOf("¿Qué es una Sura") !== -1) return "es";
+    if (bodyTxt.indexOf("Listen to verse") !== -1 || bodyTxt.indexOf("VERSE EXPLANATION") !== -1 || bodyTxt.indexOf("THE NOBLE QURAN") !== -1 || bodyTxt.indexOf("What is a Meccan") !== -1) return "en";
+    if (bodyTxt.indexOf("استمع للآية") !== -1 || bodyTxt.indexOf("تفسير الآية") !== -1 || bodyTxt.indexOf("ترتيب النزول") !== -1 || bodyTxt.indexOf("ما هي السورة المكية") !== -1) return "ar";
     return "fr";
   }
 
@@ -8639,7 +8633,7 @@ html body #btnLangRuV69.active-ext-v69 {
     var selects = document.querySelectorAll("select");
     for (var i = 0; i < selects.length; i++) {
       var s = selects[i];
-      if (s.classList.contains("khatm-select-pos")) continue;
+      if (s.classList.contains("khatm-reciter-select")) continue;
       if (s.options && s.selectedIndex >= 0) {
         var txt = ((s.value || "") + " " + (s.options[s.selectedIndex].textContent || "")).toLowerCase();
         if (txt.indexOf("verset") === -1 && txt.indexOf("verse") === -1 && txt.indexOf("aleya") === -1 && txt.indexOf("vers ") === -1 && txt.indexOf("ayat") === -1 && txt.indexOf("аят") === -1) {
@@ -8762,7 +8756,7 @@ html body #btnLangRuV69.active-ext-v69 {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV69) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV70) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       var self = this;
@@ -8770,8 +8764,8 @@ html body #btnLangRuV69.active-ext-v69 {
       if (self.currentTime < 0.25) {
         reinitialiserMotsEnBlancTamise();
       }
-      if (!self.__listenersV69) {
-        self.__listenersV69 = true;
+      if (!self.__listenersV70) {
+        self.__listenersV70 = true;
         self.addEventListener("playing", lancerBoucleSuivi);
         self.addEventListener("timeupdate", lancerBoucleSuivi);
       }
@@ -8781,7 +8775,7 @@ html body #btnLangRuV69.active-ext-v69 {
       lancerBoucleSuivi();
       return origPlay.apply(self, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV69 = true;
+    HTMLMediaElement.prototype.__hookedV70 = true;
   }
 
   function trouverAudioActif() {
@@ -8964,22 +8958,6 @@ html body #btnLangRuV69.active-ext-v69 {
   });
 
   document.addEventListener("click", function (e) {
-    var btnKhatmMonths = e.target.closest("[data-khatm-months]");
-    if (btnKhatmMonths) {
-      etatKhatm.months = Number(btnKhatmMonths.getAttribute("data-khatm-months")) || 1;
-      sauvegarderEtatKhatm();
-      afficherOuMettreAJourPlanificateurKhatm();
-      return;
-    }
-
-    var btnKhatmOrder = e.target.closest("[data-khatm-order]");
-    if (btnKhatmOrder) {
-      etatKhatm.order = btnKhatmOrder.getAttribute("data-khatm-order") || "revelation";
-      sauvegarderEtatKhatm();
-      afficherOuMettreAJourPlanificateurKhatm();
-      return;
-    }
-
     var btnKhatmAct = e.target.closest("[data-khatm-act]");
     if (btnKhatmAct) {
       var act = btnKhatmAct.getAttribute("data-khatm-act");
