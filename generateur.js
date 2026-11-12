@@ -2461,7 +2461,7 @@ async function lancerGeneration() {
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
 <link rel="preconnect" href="https://translate.googleapis.com" crossorigin>
-<style id="patch-master-v64">
+<style id="patch-master-v65">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -2476,7 +2476,7 @@ html body .flat-earth-sun,
 html body [id*="sun" i]:not([id*="sound" i]),
 html body [class*="sun" i]:not([class*="sound" i]),
 html body [data-astre-role="sun"],
-html body .astre-soleil-pur-v64 {
+html body .astre-soleil-pur-v65 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -2496,8 +2496,8 @@ html body .astre-soleil-pur-v64 {
 }
 html body #flatEarthSun::before, html body #flatEarthSun::after,
 html body .flat-earth-sun::before, html body .flat-earth-sun::after,
-html body .astre-soleil-pur-v64::before, html body .astre-soleil-pur-v64::after,
-html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v64 * {
+html body .astre-soleil-pur-v65::before, html body .astre-soleil-pur-v65::after,
+html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v65 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
@@ -2507,7 +2507,7 @@ html body .flat-earth-moon,
 html body [id*="moon" i],
 html body [class*="moon" i],
 html body [data-astre-role="moon"],
-html body .astre-lune-pure-v64 {
+html body .astre-lune-pure-v65 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -2527,13 +2527,13 @@ html body .astre-lune-pure-v64 {
 }
 html body #flatEarthMoon::before, html body #flatEarthMoon::after,
 html body .flat-earth-moon::before, html body .flat-earth-moon::after,
-html body .astre-lune-pure-v64::before, html body .astre-lune-pure-v64::after,
-html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v64 * {
+html body .astre-lune-pure-v65::before, html body .astre-lune-pure-v65::after,
+html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v65 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
 /* 3. MASQUAGE DE MAHER AL-MUAIQLY & TRADUCTION DU BAS EN MOT-À-MOT */
-html body img[src*="maher" i], html body [data-reciter*="maher" i], html body .maher-supprime-v64,
+html body img[src*="maher" i], html body [data-reciter*="maher" i], html body .maher-supprime-v65,
 html body .wbw-masquer-traduction-bas {
   display: none !important; visibility: hidden !important; height: 0 !important; max-height: 0 !important; margin: 0 !important; padding: 0 !important; border: none !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important;
 }
@@ -2556,46 +2556,59 @@ html body .wbw-card-unit > *:last-child {
   font-size: var(--wbw-tr-size) !important; direction: ltr !important; text-align: center !important;
 }
 
-/* 5. MODE SUIVI VERSET : BLANC PUR -> BLEU NÉON */
+/* 5. MODE SUIVI VERSET : BLANC TAMISÉ (78%) AU REPOS -> 100% LUMINEUX + BLEU NÉON À LA LECTURE */
 html body #arabicVerse, html body .arabic-glow-verse {
-  direction: rtl !important; color: #ffffff !important; text-shadow: 0 0 14px rgba(255, 255, 255, 0.45), 0 0 28px rgba(255, 255, 255, 0.18) !important;
+  direction: rtl !important;
+  color: rgba(255, 255, 255, 0.78) !important;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.14) !important;
 }
-html body .verse-stage .arabic-glow-verse span, html body .verse-stage #arabicVerse span, html body .ar-word-follow, html body .follow-word {
-  position: relative !important; background: transparent !important; border: none !important; box-shadow: none !important; color: #ffffff !important; padding: 0 7px !important; display: inline-block !important; transform-origin: 50% 85% !important; will-change: transform, opacity, filter, text-shadow, color !important; backface-visibility: hidden !important; -webkit-font-smoothing: antialiased !important; text-shadow: 0 0 14px rgba(255, 255, 255, 0.48), 0 0 28px rgba(255, 255, 255, 0.20) !important;
+html body .verse-stage .arabic-glow-verse span,
+html body .verse-stage #arabicVerse span,
+html body .ar-word-follow,
+html body .follow-word {
+  position: relative !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: rgba(255, 255, 255, 0.78) !important;
+  opacity: 0.78 !important;
+  padding: 0 7px !important;
+  display: inline-block !important;
+  transform-origin: 50% 85% !important;
+  will-change: transform, opacity, filter, text-shadow, color !important;
+  backface-visibility: hidden !important;
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.14) !important;
 }
 
 /* 6. BOUTONS DE LANGUE ÉTENDUS (DE, IT, ID, RU) */
-html body #btnLangDeV64,
-html body #btnLangItV64,
-html body #btnLangIdV64,
-html body #btnLangRuV64 {
+html body #btnLangDeV65,
+html body #btnLangItV65,
+html body #btnLangIdV65,
+html body #btnLangRuV65 {
   cursor: pointer !important; transition: all 0.2s ease !important; display: inline-flex !important; align-items: center !important; justify-content: center !important;
 }
-html body #btnLangDeV64.active-ext-v64,
-html body #btnLangItV64.active-ext-v64,
-html body #btnLangIdV64.active-ext-v64,
-html body #btnLangRuV64.active-ext-v64 {
+html body #btnLangDeV65.active-ext-v65,
+html body #btnLangItV65.active-ext-v65,
+html body #btnLangIdV65.active-ext-v65,
+html body #btnLangRuV65.active-ext-v65 {
   background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(56, 189, 248, 0.18)) !important;
   border: 1px solid #38bdf8 !important; color: #ffffff !important; border-radius: 999px !important;
 }
 </style>
-<script id="script-master-v64">(function codeClientV64() {
+<script id="script-master-v65">(function codeClientV65() {
   var LANGUES_EXT_SUPPORTEES = { de: 27, it: 153, id: 33, ru: 45 };
   var langExtActive = "";
   var IgnoreClicInterneFr = false;
 
   try {
-    // Purger les caches Mot-à-mot corrompus où RU et DE avaient stocké de l'anglais
-    localStorage.removeItem("cache_wbw_exact_v63");
-    localStorage.removeItem("cache_wbw_exact_v62");
-    localStorage.removeItem("cache_wbw_exact_v58");
     var urlParams = new URLSearchParams(window.location.search);
     var pLang = urlParams.get("lang");
     if (pLang && LANGUES_EXT_SUPPORTEES[pLang]) {
       langExtActive = pLang;
-      localStorage.setItem("corantafsir_lang_ext_v64", pLang);
+      localStorage.setItem("corantafsir_lang_ext_v65", pLang);
     } else {
-      var savedExt = localStorage.getItem("corantafsir_lang_ext_v64") || localStorage.getItem("corantafsir_lang_ext_v63");
+      var savedExt = localStorage.getItem("corantafsir_lang_ext_v65") || localStorage.getItem("corantafsir_lang_ext_v64");
       if (savedExt && LANGUES_EXT_SUPPORTEES[savedExt]) {
         langExtActive = savedExt;
       }
@@ -2650,9 +2663,9 @@ html body #btnLangRuV64.active-ext-v64 {
   var noeudsTextesModifies = [];
 
   try {
-    var sauvChapExt = localStorage.getItem("cache_ext_chap_v64") || localStorage.getItem("cache_ext_chap_v63");
+    var sauvChapExt = localStorage.getItem("cache_ext_chap_v64");
     if (sauvChapExt) cacheChapitresExt = JSON.parse(sauvChapExt);
-    var sauvTxtExt = localStorage.getItem("cache_txt_unit_ext_v64") || localStorage.getItem("cache_txt_unit_ext_v63");
+    var sauvTxtExt = localStorage.getItem("cache_txt_unit_ext_v64");
     if (sauvTxtExt) cacheTexteUnitaireExt = JSON.parse(sauvTxtExt);
   } catch (e) {}
 
@@ -2668,9 +2681,9 @@ html body #btnLangRuV64.active-ext-v64 {
 
   function modifierNoeudTexteSeul(textNode, nouveauTexte) {
     if (!textNode || textNode.nodeType !== 3) return;
-    if (textNode.__origExtV64 === undefined) {
-      textNode.__origExtV64 = textNode.nodeValue;
-      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV64 });
+    if (textNode.__origExtV65 === undefined) {
+      textNode.__origExtV65 = textNode.nodeValue;
+      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV65 });
     }
     if (textNode.nodeValue !== nouveauTexte) {
       textNode.nodeValue = nouveauTexte;
@@ -2704,7 +2717,6 @@ html body #btnLangRuV64.active-ext-v64 {
     return out;
   }
 
-  // SÉCURITÉ ANTI-FREEZE : Appelée UNIQUEMENT lors d'un vrai clic utilisateur (jamais dans une boucle automatique !)
   function basculerDepuisArabeSurClicUtilisateur(conteneurLang, btnActif) {
     if (!conteneurLang) return;
     var btnSaAr = null;
@@ -2726,21 +2738,21 @@ html body #btnLangRuV64.active-ext-v64 {
     for (var f = 0; f < conteneurLang.children.length; f++) {
       if (conteneurLang.children[f] !== btnActif) {
         conteneurLang.children[f].classList.remove("active");
-        conteneurLang.children[f].classList.remove("active-ext-v64");
+        conteneurLang.children[f].classList.remove("active-ext-v65");
       }
     }
-    if (btnActif) btnActif.classList.add("active-ext-v64");
+    if (btnActif) btnActif.classList.add("active-ext-v65");
   }
 
   function assurerBoutonsLanguesEtendues() {
-    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV64), [id^='btnLangItV']:not(#btnLangItV64), [id^='btnLangIdV']:not(#btnLangIdV64), [id^='btnLangRuV']:not(#btnLangRuV64)");
+    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV65), [id^='btnLangItV']:not(#btnLangItV65), [id^='btnLangIdV']:not(#btnLangIdV65), [id^='btnLangRuV']:not(#btnLangRuV65)");
     for (var b = 0; b < oldBtns.length; b++) {
       if (oldBtns[b].parentNode) oldBtns[b].parentNode.removeChild(oldBtns[b]);
     }
 
-    var mapIds = { de: "btnLangDeV64", it: "btnLangItV64", id: "btnLangIdV64", ru: "btnLangRuV64" };
-    if (document.getElementById("btnLangDeV64") && document.getElementById("btnLangIdV64") && document.getElementById("btnLangRuV64")) {
-      var parentBar = document.getElementById("btnLangDeV64").parentElement;
+    var mapIds = { de: "btnLangDeV65", it: "btnLangItV65", id: "btnLangIdV65", ru: "btnLangRuV65" };
+    if (document.getElementById("btnLangDeV65") && document.getElementById("btnLangIdV65") && document.getElementById("btnLangRuV65")) {
+      var parentBar = document.getElementById("btnLangDeV65").parentElement;
       if (parentBar) {
         parentBar.setAttribute("translate", "no");
         parentBar.classList.add("notranslate");
@@ -2749,14 +2761,14 @@ html body #btnLangRuV64.active-ext-v64 {
         var bEl = document.getElementById(mapIds[code]);
         if (!bEl) continue;
         if (langExtActive === code) {
-          bEl.classList.add("active-ext-v64");
+          bEl.classList.add("active-ext-v65");
           if (parentBar) {
             for (var k = 0; k < parentBar.children.length; k++) {
               if (parentBar.children[k] !== bEl) parentBar.children[k].classList.remove("active");
             }
           }
         } else {
-          bEl.classList.remove("active-ext-v64");
+          bEl.classList.remove("active-ext-v65");
         }
       }
       return;
@@ -2810,14 +2822,14 @@ html body #btnLangRuV64.active-ext-v64 {
         } else {
           nvBtn.innerHTML = '<span style="font-size:0.72em;opacity:0.75;margin-right:2px;">' + labelCourt + "</span><span>" + labelCourt + "</span>";
         }
-        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v64");
+        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v65");
 
         nvBtn.addEventListener("click", function (ev) {
           ev.preventDefault();
           ev.stopPropagation();
           restaurerTextesOriginauxDepuisExt();
           langExtActive = codeIso;
-          try { localStorage.setItem("corantafsir_lang_ext_v64", codeIso); } catch (e) {}
+          try { localStorage.setItem("corantafsir_lang_ext_v65", codeIso); } catch (e) {}
           basculerDepuisArabeSurClicUtilisateur(conteneurLang, nvBtn);
           dernierVersetSeo = "";
           setTimeout(synchroniserTout, 15);
@@ -2825,10 +2837,10 @@ html body #btnLangRuV64.active-ext-v64 {
         return nvBtn;
       }
 
-      var btnDe = creerBoutonLangExt("btnLangDeV64", "de", "DE");
-      var btnIt = creerBoutonLangExt("btnLangItV64", "it", "IT");
-      var btnId = creerBoutonLangExt("btnLangIdV64", "id", "ID");
-      var btnRu = creerBoutonLangExt("btnLangRuV64", "ru", "RU");
+      var btnDe = creerBoutonLangExt("btnLangDeV65", "de", "DE");
+      var btnIt = creerBoutonLangExt("btnLangItV65", "it", "IT");
+      var btnId = creerBoutonLangExt("btnLangIdV65", "id", "ID");
+      var btnRu = creerBoutonLangExt("btnLangRuV65", "ru", "RU");
 
       var freresInit = Array.prototype.slice.call(conteneurLang.children);
       for (var a = 0; a < freresInit.length; a++) {
@@ -2839,15 +2851,14 @@ html body #btnLangRuV64.active-ext-v64 {
             if (IgnoreClicInterneFr) return;
             var etaitEnWbw = obtenirCartesMotAMotVisibles().length >= 2;
             langExtActive = "";
-            try { localStorage.setItem("corantafsir_lang_ext_v64", "native"); } catch (e) {}
-            btnDe.classList.remove("active-ext-v64");
-            btnIt.classList.remove("active-ext-v64");
-            btnId.classList.remove("active-ext-v64");
-            btnRu.classList.remove("active-ext-v64");
+            try { localStorage.setItem("corantafsir_lang_ext_v65", "native"); } catch (e) {}
+            btnDe.classList.remove("active-ext-v65");
+            btnIt.classList.remove("active-ext-v65");
+            btnId.classList.remove("active-ext-v65");
+            btnRu.classList.remove("active-ext-v65");
             restaurerTextesOriginauxDepuisExt();
             dernierVersetSeo = "";
 
-            // Si l'utilisateur était en Mot-à-mot et clique sur SA AR, maintenir le Mot-à-mot ouvert !
             setTimeout(function () {
               if (etaitEnWbw && obtenirCartesMotAMotVisibles().length === 0) {
                 var btns = document.querySelectorAll("button, .btn");
@@ -2906,8 +2917,8 @@ html body #btnLangRuV64.active-ext-v64 {
   function traduireNoeudVersExtAsync(textNode, origTxt, codeLang) {
     if (!origTxt || origTxt.length < 3 || !LANGUES_EXT_SUPPORTEES[codeLang]) return;
     var cle = codeLang + "_" + origTxt.slice(0, 140) + "_" + origTxt.length;
-    var esp1 = (textNode.__origExtV64 || textNode.nodeValue).match(/^\\s*/)[0];
-    var esp2 = (textNode.__origExtV64 || textNode.nodeValue).match(/\\s*$/)[0];
+    var esp1 = (textNode.__origExtV65 || textNode.nodeValue).match(/^\\s*/)[0];
+    var esp2 = (textNode.__origExtV65 || textNode.nodeValue).match(/\\s*$/)[0];
 
     if (cacheTexteUnitaireExt[cle]) {
       modifierNoeudTexteSeul(textNode, esp1 + cacheTexteUnitaireExt[cle] + esp2);
@@ -2978,6 +2989,7 @@ html body #btnLangRuV64.active-ext-v64 {
       "next ›": "Weiter ›",
       "▶ écouter le verset": "▶ Vers anhören",
       "▶ listen to verse": "▶ Vers anhören",
+      "⏸ pause": "⏸ Pause",
       "↺ rejouer": "↺ Wiederholen",
       "↺ replay": "↺ Wiederholen",
       "tafsīr & explication du verset": "TAFSĪR & ERKLÄRUNG DES VERSES",
@@ -3033,6 +3045,7 @@ html body #btnLangRuV64.active-ext-v64 {
       "next ›": "Successivo ›",
       "▶ écouter le verset": "▶ Ascolta il versetto",
       "▶ listen to verse": "▶ Ascolta il versetto",
+      "⏸ pause": "⏸ Pausa",
       "↺ rejouer": "↺ Riascolta",
       "↺ replay": "↺ Riascolta",
       "tafsīr & explication du verset": "TAFSĪR E SPIEGAZIONE DEL VERSETTO",
@@ -3088,6 +3101,7 @@ html body #btnLangRuV64.active-ext-v64 {
       "next ›": "Berikutnya ›",
       "▶ écouter le verset": "▶ Dengarkan Ayat",
       "▶ listen to verse": "▶ Dengarkan Ayat",
+      "⏸ pause": "⏸ Jeda",
       "↺ rejouer": "↺ Ulangi",
       "↺ replay": "↺ Ulangi",
       "tafsīr & explication du verset": "TAFSĪR & PENJELASAN AYAT",
@@ -3143,10 +3157,11 @@ html body #btnLangRuV64.active-ext-v64 {
       "next ›": "Далее ›",
       "▶ écouter le verset": "▶ Слушать аят",
       "▶ listen to verse": "▶ Слушать аят",
+      "⏸ pause": "⏸ Пауза",
       "↺ rejouer": "↺ Повторить",
       "↺ replay": "↺ Повторить",
       "tafsīr & explication du verset": "ТАФСИР И ТОЛКОВАНИЕ АЯТА",
-      "tafsīr & verse explanation": "ТАFSĪR И ТОЛКОВАНИЕ АЯТА",
+      "tafsīr & verse explanation": "ТАФСИР И ТОЛКОВАНИЕ АЯТА",
       "tafsīr y explicación de la aleya": "ТАФСИР И ТОЛКОВАНИЕ АЯТА",
       "madd (prolongation)": "Мадд (Удлинение)",
       "lettre muette": "Немая буква",
@@ -3217,9 +3232,9 @@ html body #btnLangRuV64.active-ext-v64 {
           for (var te = 0; te < titresEl.length; te++) {
             var candT = titresEl[te];
             if (candT.children.length === 0) {
-              var origT = (candT.__origTitreV64 || candT.textContent || "").trim();
+              var origT = (candT.__origTitreV65 || candT.textContent || "").trim();
               if (origT.indexOf("(") !== -1 && origT.indexOf(")") !== -1 && origT.indexOf("Miracle") === -1 && origT.indexOf("Wunder") === -1) {
-                if (!candT.__origTitreV64) candT.__origTitreV64 = origT;
+                if (!candT.__origTitreV65) candT.__origTitreV65 = origT;
                 if (candT.firstChild && candT.firstChild.nodeType === 3) {
                   modifierNoeudTexteSeul(candT.firstChild, noms114[sId]);
                 }
@@ -3245,7 +3260,7 @@ html body #btnLangRuV64.active-ext-v64 {
       if (tag === "SCRIPT" || tag === "STYLE") continue;
       if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate")) continue;
 
-      var val = (node.__origExtV64 !== undefined ? node.__origExtV64 : node.nodeValue || "").replace(/\\u00A0/g, " ").trim();
+      var val = (node.__origExtV65 !== undefined ? node.__origExtV65 : node.nodeValue || "").replace(/\\u00A0/g, " ").trim();
       if (!val || /[\\u0600-\\u06FF]/.test(val)) continue;
       var valLower = val.toLowerCase();
 
@@ -3318,7 +3333,6 @@ html body #btnLangRuV64.active-ext-v64 {
         continue;
       }
 
-      // SÉCURITÉ CRITIQUE : Ne remplacer la phrase du verset que si elle n'est PAS dans la boîte du Tafsīr !
       var rectP = pEl.getBoundingClientRect();
       var estDansTafsir = boiteTafsir && boiteTafsir.contains(pEl);
       if (
@@ -3349,6 +3363,7 @@ html body #btnLangRuV64.active-ext-v64 {
           val.indexOf("Terjemahan Kementerian") === -1 &&
           val.indexOf("Смысловой перевод") === -1 &&
           val.indexOf("Translation by Saheeh") === -1 &&
+          val.indexOf("Traducción de Sheikh Isa García") === -1 &&
           val.indexOf("TAFSĪR") === -1
         ) {
           traduireNoeudVersExtAsync(node, val, codeL);
@@ -3357,18 +3372,22 @@ html body #btnLangRuV64.active-ext-v64 {
     }
   }
 
-  // Nettoyer tout préfixe "2. " qui aurait glissé au début du premier paragraphe du Tafsīr en EN/ES/FR
-  function nettoyerNumeroParasiteDebutTafsir() {
-    var boiteTafsir = trouverBoiteTafsirBas();
-    if (!boiteTafsir) return;
-    var pEls = boiteTafsir.querySelectorAll("p, strong, b, span");
+  // Nettoyer les coquilles natives ("y e temen" -> "y le temen" en Espagnol, "⏸ Pause" -> "⏸ Pausa", et numéro parasite dans le Tafsir)
+  function corrigerCoquillesNativesEtTafsir() {
+    var lang = obtenirLangueActive();
+    var pEls = document.querySelectorAll("p, button, strong, b, span");
     for (var i = 0; i < pEls.length; i++) {
       var el = pEls[i];
-      if (el.children.length === 0) {
-        var t = (el.textContent || "").trim();
-        if (/^\\d+\\s*\\.\\s+(?:Le Livre par excellence|This is the Qur'ān|El Libro por excelencia|Das Buch schlechthin|Il Libro per eccellenza|Kitab yang paling|Лучшей книгой)/i.test(t)) {
-          el.textContent = t.replace(/^\\d+\\s*\\.\\s+/, "");
-        }
+      if (el.children.length > 0) continue;
+      var t = el.textContent || "";
+      if (t.indexOf("y e temen") !== -1) {
+        el.textContent = t.replace("y e temen", "y le temen");
+      }
+      if ((lang === "es" || lang === "it") && t.trim() === "⏸ Pause") {
+        el.textContent = "⏸ Pausa";
+      }
+      if (/^\\d+\\s*\\.\\s+(?:Le Livre par excellence|This is the Qur'ān|El Libro por excelencia|Das Buch schlechthin|Il Libro per eccellenza|Kitab yang paling|Лучшей книгой)/i.test(t.trim())) {
+        el.textContent = t.trim().replace(/^\\d+\\s*\\.\\s+/, "");
       }
     }
   }
@@ -3398,7 +3417,7 @@ html body #btnLangRuV64.active-ext-v64 {
       btnSuivi.style.setProperty("display", "inline-flex", "important");
       btnSuivi.style.setProperty("visibility", "visible", "important");
       btnSuivi.style.setProperty("opacity", "1", "important");
-      if (btnSuivi.id === "btnSuiviUniverselV64" && btnSuivi.textContent !== labelSuivi) {
+      if (btnSuivi.id === "btnSuiviUniverselV65" && btnSuivi.textContent !== labelSuivi) {
         btnSuivi.textContent = labelSuivi;
       }
       if (suiviEstActif) {
@@ -3407,9 +3426,9 @@ html body #btnLangRuV64.active-ext-v64 {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV64")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV65")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV64";
+      nv.id = "btnSuiviUniverselV65";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.textContent = labelSuivi;
@@ -3498,8 +3517,8 @@ html body #btnLangRuV64.active-ext-v64 {
       }
 
       if (role === "sun") {
-        node.classList.remove("astre-lune-pure-v64");
-        node.classList.add("astre-soleil-pur-v64");
+        node.classList.remove("astre-lune-pure-v65");
+        node.classList.add("astre-soleil-pur-v65");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -3508,8 +3527,8 @@ html body #btnLangRuV64.active-ext-v64 {
         node.style.setProperty("box-shadow", "0 0 50px 16px rgba(253, 224, 71, 0.72), 0 0 110px 38px rgba(245, 158, 11, 0.42)", "important");
         node.style.setProperty("filter", "none", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v64");
-        node.classList.add("astre-lune-pure-v64");
+        node.classList.remove("astre-soleil-pur-v65");
+        node.classList.add("astre-lune-pure-v65");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -3529,7 +3548,7 @@ html body #btnLangRuV64.active-ext-v64 {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v64");
+          row.classList.add("maher-supprime-v65");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
@@ -3539,8 +3558,8 @@ html body #btnLangRuV64.active-ext-v64 {
   function obtenirLangueActive() {
     if (langExtActive && LANGUES_EXT_SUPPORTEES[langExtActive]) return langExtActive;
     var bodyTxt = document.body ? document.body.innerText : "";
-    if (bodyTxt.indexOf("Escuchar aleya") !== -1 || bodyTxt.indexOf("EXPLICACIÓN DE LA ALEYA") !== -1) return "es";
-    if (bodyTxt.indexOf("Listen to verse") !== -1 || bodyTxt.indexOf("VERSE EXPLANATION") !== -1) return "en";
+    if (bodyTxt.indexOf("Escuchar aleya") !== -1 || bodyTxt.indexOf("EXPLICACIÓN DE LA ALEYA") !== -1 || bodyTxt.indexOf("Ruido Marrón") !== -1) return "es";
+    if (bodyTxt.indexOf("Listen to verse") !== -1 || bodyTxt.indexOf("VERSE EXPLANATION") !== -1 || bodyTxt.indexOf("Brown Noise") !== -1) return "en";
     if (bodyTxt.indexOf("استمع للآية") !== -1 || bodyTxt.indexOf("تفسير الآية") !== -1) return "ar";
     return "fr";
   }
@@ -3550,7 +3569,7 @@ html body #btnLangRuV64.active-ext-v64 {
     var textesBas = {
       fr: "Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
       en: "Translation by Saheeh International • Exegesis (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
-      es: "Traducción de Abdel Ghani Melara Navio • Exégesis (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
+      es: "Traducción de Sheikh Isa García • Exégesis (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
       de: "Deutsche Übersetzung von Frank Bubenheim & Nadeem Elyas • Exegese (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
       it: "Traduzione italiana di Hamza Roberto Piccardo • Esegesi (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
       id: "Terjemahan Kementerian Agama RI (Kemenag) • Tafsir Al-Mukhtasar & Ibnu Katsir",
@@ -3560,7 +3579,7 @@ html body #btnLangRuV64.active-ext-v64 {
     var textesHaut = {
       fr: "Traduction Muhammad Hamidullah (1977) & Exégèse",
       en: "Saheeh International & Exegesis",
-      es: "Traducción Abdel Ghani Melara Navio & Exégesis",
+      es: "Traducción Sheikh Isa García y Exégesis",
       de: "Übersetzung Bubenheim & Elyas & Exegese (Tafsīr)",
       it: "Traduzione Hamza Roberto Piccardo & Esegesi (Tafsīr)",
       id: "Terjemahan Kemenag RI & Tafsir Al-Mukhtasar",
@@ -3579,6 +3598,7 @@ html body #btnLangRuV64.active-ext-v64 {
         txt.indexOf("Traduction originale de Muhammad Hamidullah") !== -1 ||
         txt.indexOf("Translation by Saheeh International") !== -1 ||
         txt.indexOf("Traducción de Abdel Ghani Melara") !== -1 ||
+        txt.indexOf("Traducción de Sheikh Isa García") !== -1 ||
         txt.indexOf("Deutsche Übersetzung von Frank Bubenheim") !== -1 ||
         txt.indexOf("Traduzione italiana di Hamza Roberto Piccardo") !== -1 ||
         txt.indexOf("Terjemahan Kementerian Agama RI") !== -1 ||
@@ -3595,6 +3615,7 @@ html body #btnLangRuV64.active-ext-v64 {
         txt.indexOf("Traduction Muhammad Hamidullah") !== -1 ||
         txt.indexOf("Saheeh International & Exegesis") !== -1 ||
         txt.indexOf("Traducción Abdel Ghani Melara") !== -1 ||
+        txt.indexOf("Traducción Sheikh Isa García") !== -1 ||
         txt.indexOf("Übersetzung Bubenheim & Elyas") !== -1 ||
         txt.indexOf("Traduzione Hamza Roberto Piccardo") !== -1 ||
         txt.indexOf("Terjemahan Kemenag RI") !== -1 ||
@@ -3611,7 +3632,7 @@ html body #btnLangRuV64.active-ext-v64 {
     }
   }
 
-  // 4. MOT-À-MOT EN ORDRE AUDIO STRICT + TRADUCTION COMPLÈTE DANS LES 8 LANGUES (RU, DE, IT, ID, FR, ES, EN, AR)
+  // 4. MOT-À-MOT EN ORDRE AUDIO STRICT + 8 LANGUES
   var DICO_MULTILINGUE = {
     fr: {
       "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn", "طه": "Tā-Hā",
@@ -3642,6 +3663,11 @@ html body #btnLangRuV64.active-ext-v64 {
       "ذلك": "Это", "الكتاب": "Писание (Книга)", "لا": "нет", "ريب": "сомнения", "فيه": "в нём", "هدى": "верное руководство", "للمتقين": "для богобоязненных",
       "ختم": "Запечатал", "الله": "Аллах", "على": "на", "قلوبهم": "их сердца", "وعلى": "и на", "سمعهم": "их слух", "أبصارهم": "их взорах", "غشاوة": "пелена (завеса)", "غشوة": "пелена (завеса)", "ولهم": "и для них", "عذاب": "наказание", "عظيم": "великое",
       "والقلم": "Клянусь письменной тростью", "وما": "и тем, что", "يسطرون": "они пишут!"
+    },
+    es: {
+      "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn",
+      "ذلك": "Ese (Este es)", "الكتاب": "el Libro", "لا": "no hay", "ريب": "duda", "فيه": "en él", "هدى": "una guía", "للمتقين": "para los piadosos",
+      "ختم": "ha sellado", "الله": "Allāh (Dios)", "على": "sobre", "قلوبهم": "sus corazones", "وعلى": "y sobre", "سمعهم": "su oído", "وأبصارهم": "y sus miradas", "أبصارهم": "sus miradas (ojos)", "غشاوة": "un velo", "غشوة": "un velo", "ولهم": "y para ellos", "عذاب": "un castigo", "عظيم": "inmenso"
     }
   };
 
@@ -3650,7 +3676,7 @@ html body #btnLangRuV64.active-ext-v64 {
   var sensGrilleRtl = true;
 
   try {
-    var sauv = localStorage.getItem("cache_wbw_exact_v64");
+    var sauv = localStorage.getItem("cache_wbw_exact_v65") || localStorage.getItem("cache_wbw_exact_v64");
     if (sauv) cacheVersetMotsExact = JSON.parse(sauv);
   } catch (e) {}
 
@@ -3703,7 +3729,6 @@ html body #btnLangRuV64.active-ext-v64 {
     if (cacheVersetMotsExact[cleCache] || requetesVersetEnCours[cleCache]) return;
     requetesVersetEnCours[cleCache] = true;
 
-    // Charger la base anglaise certifiée de Quran.com puis traduire TOUS les mots en FR, ES, DE, IT, ID, RU !
     var urlQdc = "https://api.quran.com/api/v4/verses/by_key/" + vk + "?language=en&words=true&word_fields=text_uthmani,translation";
     fetch(urlQdc)
       .then(function (r) { return r.json(); })
@@ -3721,7 +3746,7 @@ html body #btnLangRuV64.active-ext-v64 {
 
         if (lang === "en" || lang === "ar") {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v64", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v65", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -3741,7 +3766,7 @@ html body #btnLangRuV64.active-ext-v64 {
 
         if (aTraduireTextes.length === 0) {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v64", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v65", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -3768,7 +3793,7 @@ html body #btnLangRuV64.active-ext-v64 {
           .catch(function () {})
           .finally(function () {
             cacheVersetMotsExact[cleCache] = motsQdc;
-            try { localStorage.setItem("cache_wbw_exact_v64", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+            try { localStorage.setItem("cache_wbw_exact_v65", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
             appliquerVraiMotAMotSurDOM();
           });
       })
@@ -3993,7 +4018,9 @@ html body #btnLangRuV64.active-ext-v64 {
     root.style.setProperty("--wbw-min-w", minW);
   }
 
-  // 6. ANIMATION MODE SUIVI
+  // ==========================================================================
+  // 6. ANIMATION MODE SUIVI : BLANC TAMISÉ (78%) -> 100% LUMINEUX + BLEU NÉON
+  // ==========================================================================
   var MAP_NOMS_VERS_QDC = {
     dosari: [174, 168], dossari: [174, 168], yasser: [174, 168],
     afasy: [7], alafasy: [7], mishary: [7],
@@ -4069,6 +4096,7 @@ html body #btnLangRuV64.active-ext-v64 {
       .catch(function () {});
   }
 
+  // FUSION AUTOMATIQUE DES SIGNES DE PAUSE CORANIQUES (ex: ۛ sur رَيْبَ ۛ فِيهِ ۛ) POUR NE JAMAIS DÉCALER LES MOTS
   function obtenirElementsMotsAAnimer() {
     var cartes = obtenirCartesMotAMotVisibles();
     if (cartes.length >= 2) return { type: "cartes", items: cartes };
@@ -4076,8 +4104,20 @@ html body #btnLangRuV64.active-ext-v64 {
     var conteneur = document.querySelector("#arabicVerse, .arabic-glow-verse");
     if (!conteneur) return { type: "spans", items: [] };
     conteneur.setAttribute("dir", "rtl");
-    var spans = conteneur.querySelectorAll("span");
-    if (spans.length > 1) return { type: "spans", items: spans };
+
+    var spansExistants = conteneur.querySelectorAll("span");
+    // Si des spans existent déjà mais que certains sont des signes de waqf isolés (ex: ۛ), on reconstruit proprement
+    var aSigneIsole = false;
+    for (var s = 0; s < spansExistants.length; s++) {
+      var stxt = (spansExistants[s].textContent || "").replace(/[\\u06D6-\\u06ED\\u064B-\\u065F\\u0670\\u06DD\\u06DE\\u06E9\\s]/g, "");
+      if (stxt.length === 0) {
+        aSigneIsole = true;
+        break;
+      }
+    }
+    if (spansExistants.length > 1 && !aSigneIsole) {
+      return { type: "spans", items: spansExistants };
+    }
 
     var texte = (conteneur.textContent || "").trim();
     if (!texte) return { type: "spans", items: [] };
@@ -4085,20 +4125,21 @@ html body #btnLangRuV64.active-ext-v64 {
     var motsPropres = [];
     for (var i = 0; i < bruts.length; i++) {
       var w = bruts[i];
-      if (w.replace(/[\\u06D6-\\u06ED\\u064B-\\u065F\\u0670]/g, "").length === 0 && motsPropres.length > 0) {
+      var sansMarques = w.replace(/[\\u06D6-\\u06ED\\u064B-\\u065F\\u0670\\u06DD\\u06DE\\u06E9]/g, "");
+      if (sansMarques.length === 0 && motsPropres.length > 0) {
         motsPropres[motsPropres.length - 1] += " " + w;
       } else {
         motsPropres.push(w);
       }
     }
-    if (motsPropres.length <= 1) return { type: "spans", items: spans };
+    if (motsPropres.length <= 1) return { type: "spans", items: spansExistants };
     conteneur.innerHTML = motsPropres.map(function (m, idx) {
       return '<span class="ar-word-follow" data-widx="' + idx + '">' + m + "</span>";
     }).join(" ");
     return { type: "spans", items: conteneur.querySelectorAll("span") };
   }
 
-  function reinitialiserMotsEnBlancPur() {
+  function reinitialiserMotsEnBlancTamise() {
     energiesMots = [];
     bleusMots = [];
     var cibleObj = obtenirElementsMotsAAnimer();
@@ -4106,15 +4147,16 @@ html body #btnLangRuV64.active-ext-v64 {
     var estCartes = cibleObj.type === "cartes";
     for (var i = 0; i < items.length; i++) {
       var el = items[i];
-      el.style.setProperty("opacity", "1", "important");
       el.style.setProperty("transform", "translate3d(0, 0px, 0) scale(1)", "important");
       el.style.setProperty("filter", "none", "important");
       if (estCartes) {
-        el.style.setProperty("border-color", "rgba(255, 255, 255, 0.18)", "important");
+        el.style.setProperty("opacity", "0.82", "important");
+        el.style.setProperty("border-color", "rgba(255, 255, 255, 0.15)", "important");
         el.style.setProperty("box-shadow", "none", "important");
       } else {
-        el.style.setProperty("color", "#ffffff", "important");
-        el.style.setProperty("text-shadow", "0 0 14px rgba(255, 255, 255, 0.48), 0 0 28px rgba(255, 255, 255, 0.20)", "important");
+        el.style.setProperty("opacity", "0.78", "important");
+        el.style.setProperty("color", "rgba(255, 255, 255, 0.78)", "important");
+        el.style.setProperty("text-shadow", "0 0 8px rgba(255, 255, 255, 0.14)", "important");
       }
     }
   }
@@ -4125,16 +4167,16 @@ html body #btnLangRuV64.active-ext-v64 {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV64) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV65) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       var self = this;
       window.__lecteurAudioActuel = self;
       if (self.currentTime < 0.25) {
-        reinitialiserMotsEnBlancPur();
+        reinitialiserMotsEnBlancTamise();
       }
-      if (!self.__listenersV64) {
-        self.__listenersV64 = true;
+      if (!self.__listenersV65) {
+        self.__listenersV65 = true;
         self.addEventListener("playing", lancerBoucleSuivi);
         self.addEventListener("timeupdate", lancerBoucleSuivi);
       }
@@ -4144,7 +4186,7 @@ html body #btnLangRuV64.active-ext-v64 {
       lancerBoucleSuivi();
       return origPlay.apply(self, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV64 = true;
+    HTMLMediaElement.prototype.__hookedV65 = true;
   }
 
   function trouverAudioActif() {
@@ -4240,34 +4282,39 @@ html body #btnLangRuV64.active-ext-v64 {
         var sc = (1.0 + 0.12 * e).toFixed(3);
 
         if (estCartes) {
-          el.style.setProperty("opacity", "1", "important");
+          var opCarte = (0.82 + 0.18 * b).toFixed(2);
+          el.style.setProperty("opacity", opCarte, "important");
           el.style.setProperty("transform", "translate3d(0, " + yPx + "px, 0) scale(" + (1.0 + 0.08 * e).toFixed(3) + ")", "important");
           if (b > 0.02) {
             el.style.setProperty("border-color", "rgba(56, 189, 248, " + (0.45 * b + 0.55 * e).toFixed(2) + ")", "important");
             el.style.setProperty("box-shadow", "0 " + (6 * b + 6 * e).toFixed(1) + "px " + (18 * b + 14 * e).toFixed(1) + "px rgba(56, 189, 248, " + (0.35 * b + 0.35 * e).toFixed(2) + "), inset 0 0 " + (12 * b).toFixed(1) + "px rgba(56, 189, 248, " + (0.18 * b).toFixed(2) + ")", "important");
           } else {
-            el.style.setProperty("border-color", "rgba(255, 255, 255, 0.18)", "important");
+            el.style.setProperty("border-color", "rgba(255, 255, 255, 0.15)", "important");
             el.style.setProperty("box-shadow", "none", "important");
           }
         } else {
           el.style.setProperty("background", "transparent", "important");
           el.style.setProperty("border", "none", "important");
-          el.style.setProperty("opacity", "1", "important");
           el.style.setProperty("filter", "none", "important");
           el.style.setProperty("transform", "translate3d(0, " + yPx + "px, 0) scale(" + sc + ")", "important");
 
           if (b < 0.03) {
-            el.style.setProperty("color", "#ffffff", "important");
-            el.style.setProperty("text-shadow", "0 0 14px rgba(255, 255, 255, 0.48), 0 0 28px rgba(255, 255, 255, 0.20)", "important");
+            // MOT NON ENCORE LU : BLANC TAMISÉ (78% LUMINOSITÉ)
+            el.style.setProperty("opacity", "0.78", "important");
+            el.style.setProperty("color", "rgba(255, 255, 255, 0.78)", "important");
+            el.style.setProperty("text-shadow", "0 0 8px rgba(255, 255, 255, 0.14)", "important");
           } else {
-            el.style.setProperty("color", "#f0f9ff", "important");
-            var alphaBleu1 = (0.85 * b + 0.15 * e).toFixed(2);
-            var alphaBleu2 = (0.65 * b + 0.30 * e).toFixed(2);
-            var rayon1 = (14 + 8 * e).toFixed(1);
-            var rayon2 = (28 + 16 * e).toFixed(1);
+            // MOT ATTEINT PAR LE RÉCITATEUR : 100% LUMINOSITÉ + HALO BLEU NÉON !
+            var opMot = (0.78 + 0.22 * b).toFixed(2);
+            el.style.setProperty("opacity", opMot, "important");
+            el.style.setProperty("color", "#ffffff", "important");
+            var alphaBleu1 = (0.88 * b + 0.12 * e).toFixed(2);
+            var alphaBleu2 = (0.68 * b + 0.32 * e).toFixed(2);
+            var rayon1 = (15 + 9 * e).toFixed(1);
+            var rayon2 = (30 + 18 * e).toFixed(1);
             el.style.setProperty(
               "text-shadow",
-              "0 0 8px rgba(255, 255, 255, 0.90), 0 0 " + rayon1 + "px rgba(56, 189, 248, " + alphaBleu1 + "), 0 0 " + rayon2 + "px rgba(14, 165, 233, " + alphaBleu2 + ")",
+              "0 0 10px rgba(255, 255, 255, 0.98), 0 0 " + rayon1 + "px rgba(56, 189, 248, " + alphaBleu1 + "), 0 0 " + rayon2 + "px rgba(14, 165, 233, " + alphaBleu2 + ")",
               "important"
             );
           }
@@ -4300,7 +4347,7 @@ html body #btnLangRuV64.active-ext-v64 {
       reparerSoleilEtLuneEnOrbite();
       retirerRecitateurMaher();
       if (langExtActive && LANGUES_EXT_SUPPORTEES[langExtActive]) appliquerInterfaceEtContenuExt();
-      nettoyerNumeroParasiteDebutTafsir();
+      corrigerCoquillesNativesEtTafsir();
       mettreAJourMentionsTraducteurEtExegese();
       masquerTraductionBasSiMotAMot();
       appliquerVraiMotAMotSurDOM();
@@ -4317,7 +4364,7 @@ html body #btnLangRuV64.active-ext-v64 {
 
   window.addEventListener("DOMContentLoaded", function () {
     synchroniserTout();
-    reinitialiserMotsEnBlancPur();
+    reinitialiserMotsEnBlancTamise();
   });
 
   document.addEventListener("click", function (e) {
@@ -4329,7 +4376,7 @@ html body #btnLangRuV64.active-ext-v64 {
       } else if (t === "A-" || t === "A -" || t === "A−") {
         wbwScale = Math.max(0.68, +(wbwScale - 0.16).toFixed(2));
       } else if (t.indexOf("Rejouer") !== -1 || t.indexOf("Replay") !== -1 || t.indexOf("Repetir") !== -1 || t.indexOf("Wiederholen") !== -1 || t.indexOf("Riascolta") !== -1 || t.indexOf("Ulangi") !== -1 || t.indexOf("Повторить") !== -1) {
-        reinitialiserMotsEnBlancPur();
+        reinitialiserMotsEnBlancTamise();
       } else if (t.indexOf("Suivi") !== -1 || t.indexOf("Follow") !== -1 || t.indexOf("Seguimiento") !== -1 || t.indexOf("Verfolgung") !== -1 || t.indexOf("Seguito") !== -1 || t.indexOf("Ikuti") !== -1 || t.indexOf("Слежение") !== -1 || t.indexOf("تتبع") !== -1) {
         suiviEstActif = !suiviEstActif;
         lancerBoucleSuivi();
@@ -5494,7 +5541,7 @@ html body #btnLangRuV64.active-ext-v64 {
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
 <link rel="preconnect" href="https://translate.googleapis.com" crossorigin>
-<style id="patch-master-v64">
+<style id="patch-master-v65">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -5509,7 +5556,7 @@ html body .flat-earth-sun,
 html body [id*="sun" i]:not([id*="sound" i]),
 html body [class*="sun" i]:not([class*="sound" i]),
 html body [data-astre-role="sun"],
-html body .astre-soleil-pur-v64 {
+html body .astre-soleil-pur-v65 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -5529,8 +5576,8 @@ html body .astre-soleil-pur-v64 {
 }
 html body #flatEarthSun::before, html body #flatEarthSun::after,
 html body .flat-earth-sun::before, html body .flat-earth-sun::after,
-html body .astre-soleil-pur-v64::before, html body .astre-soleil-pur-v64::after,
-html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v64 * {
+html body .astre-soleil-pur-v65::before, html body .astre-soleil-pur-v65::after,
+html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v65 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
@@ -5540,7 +5587,7 @@ html body .flat-earth-moon,
 html body [id*="moon" i],
 html body [class*="moon" i],
 html body [data-astre-role="moon"],
-html body .astre-lune-pure-v64 {
+html body .astre-lune-pure-v65 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -5560,13 +5607,13 @@ html body .astre-lune-pure-v64 {
 }
 html body #flatEarthMoon::before, html body #flatEarthMoon::after,
 html body .flat-earth-moon::before, html body .flat-earth-moon::after,
-html body .astre-lune-pure-v64::before, html body .astre-lune-pure-v64::after,
-html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v64 * {
+html body .astre-lune-pure-v65::before, html body .astre-lune-pure-v65::after,
+html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v65 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
 /* 3. MASQUAGE DE MAHER AL-MUAIQLY & TRADUCTION DU BAS EN MOT-À-MOT */
-html body img[src*="maher" i], html body [data-reciter*="maher" i], html body .maher-supprime-v64,
+html body img[src*="maher" i], html body [data-reciter*="maher" i], html body .maher-supprime-v65,
 html body .wbw-masquer-traduction-bas {
   display: none !important; visibility: hidden !important; height: 0 !important; max-height: 0 !important; margin: 0 !important; padding: 0 !important; border: none !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important;
 }
@@ -5589,46 +5636,59 @@ html body .wbw-card-unit > *:last-child {
   font-size: var(--wbw-tr-size) !important; direction: ltr !important; text-align: center !important;
 }
 
-/* 5. MODE SUIVI VERSET : BLANC PUR -> BLEU NÉON */
+/* 5. MODE SUIVI VERSET : BLANC TAMISÉ (78%) AU REPOS -> 100% LUMINEUX + BLEU NÉON À LA LECTURE */
 html body #arabicVerse, html body .arabic-glow-verse {
-  direction: rtl !important; color: #ffffff !important; text-shadow: 0 0 14px rgba(255, 255, 255, 0.45), 0 0 28px rgba(255, 255, 255, 0.18) !important;
+  direction: rtl !important;
+  color: rgba(255, 255, 255, 0.78) !important;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.14) !important;
 }
-html body .verse-stage .arabic-glow-verse span, html body .verse-stage #arabicVerse span, html body .ar-word-follow, html body .follow-word {
-  position: relative !important; background: transparent !important; border: none !important; box-shadow: none !important; color: #ffffff !important; padding: 0 7px !important; display: inline-block !important; transform-origin: 50% 85% !important; will-change: transform, opacity, filter, text-shadow, color !important; backface-visibility: hidden !important; -webkit-font-smoothing: antialiased !important; text-shadow: 0 0 14px rgba(255, 255, 255, 0.48), 0 0 28px rgba(255, 255, 255, 0.20) !important;
+html body .verse-stage .arabic-glow-verse span,
+html body .verse-stage #arabicVerse span,
+html body .ar-word-follow,
+html body .follow-word {
+  position: relative !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: rgba(255, 255, 255, 0.78) !important;
+  opacity: 0.78 !important;
+  padding: 0 7px !important;
+  display: inline-block !important;
+  transform-origin: 50% 85% !important;
+  will-change: transform, opacity, filter, text-shadow, color !important;
+  backface-visibility: hidden !important;
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.14) !important;
 }
 
 /* 6. BOUTONS DE LANGUE ÉTENDUS (DE, IT, ID, RU) */
-html body #btnLangDeV64,
-html body #btnLangItV64,
-html body #btnLangIdV64,
-html body #btnLangRuV64 {
+html body #btnLangDeV65,
+html body #btnLangItV65,
+html body #btnLangIdV65,
+html body #btnLangRuV65 {
   cursor: pointer !important; transition: all 0.2s ease !important; display: inline-flex !important; align-items: center !important; justify-content: center !important;
 }
-html body #btnLangDeV64.active-ext-v64,
-html body #btnLangItV64.active-ext-v64,
-html body #btnLangIdV64.active-ext-v64,
-html body #btnLangRuV64.active-ext-v64 {
+html body #btnLangDeV65.active-ext-v65,
+html body #btnLangItV65.active-ext-v65,
+html body #btnLangIdV65.active-ext-v65,
+html body #btnLangRuV65.active-ext-v65 {
   background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(56, 189, 248, 0.18)) !important;
   border: 1px solid #38bdf8 !important; color: #ffffff !important; border-radius: 999px !important;
 }
 </style>
-<script id="script-master-v64">(function codeClientV64() {
+<script id="script-master-v65">(function codeClientV65() {
   var LANGUES_EXT_SUPPORTEES = { de: 27, it: 153, id: 33, ru: 45 };
   var langExtActive = "";
   var IgnoreClicInterneFr = false;
 
   try {
-    // Purger les caches Mot-à-mot corrompus où RU et DE avaient stocké de l'anglais
-    localStorage.removeItem("cache_wbw_exact_v63");
-    localStorage.removeItem("cache_wbw_exact_v62");
-    localStorage.removeItem("cache_wbw_exact_v58");
     var urlParams = new URLSearchParams(window.location.search);
     var pLang = urlParams.get("lang");
     if (pLang && LANGUES_EXT_SUPPORTEES[pLang]) {
       langExtActive = pLang;
-      localStorage.setItem("corantafsir_lang_ext_v64", pLang);
+      localStorage.setItem("corantafsir_lang_ext_v65", pLang);
     } else {
-      var savedExt = localStorage.getItem("corantafsir_lang_ext_v64") || localStorage.getItem("corantafsir_lang_ext_v63");
+      var savedExt = localStorage.getItem("corantafsir_lang_ext_v65") || localStorage.getItem("corantafsir_lang_ext_v64");
       if (savedExt && LANGUES_EXT_SUPPORTEES[savedExt]) {
         langExtActive = savedExt;
       }
@@ -5683,9 +5743,9 @@ html body #btnLangRuV64.active-ext-v64 {
   var noeudsTextesModifies = [];
 
   try {
-    var sauvChapExt = localStorage.getItem("cache_ext_chap_v64") || localStorage.getItem("cache_ext_chap_v63");
+    var sauvChapExt = localStorage.getItem("cache_ext_chap_v64");
     if (sauvChapExt) cacheChapitresExt = JSON.parse(sauvChapExt);
-    var sauvTxtExt = localStorage.getItem("cache_txt_unit_ext_v64") || localStorage.getItem("cache_txt_unit_ext_v63");
+    var sauvTxtExt = localStorage.getItem("cache_txt_unit_ext_v64");
     if (sauvTxtExt) cacheTexteUnitaireExt = JSON.parse(sauvTxtExt);
   } catch (e) {}
 
@@ -5701,9 +5761,9 @@ html body #btnLangRuV64.active-ext-v64 {
 
   function modifierNoeudTexteSeul(textNode, nouveauTexte) {
     if (!textNode || textNode.nodeType !== 3) return;
-    if (textNode.__origExtV64 === undefined) {
-      textNode.__origExtV64 = textNode.nodeValue;
-      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV64 });
+    if (textNode.__origExtV65 === undefined) {
+      textNode.__origExtV65 = textNode.nodeValue;
+      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV65 });
     }
     if (textNode.nodeValue !== nouveauTexte) {
       textNode.nodeValue = nouveauTexte;
@@ -5737,7 +5797,6 @@ html body #btnLangRuV64.active-ext-v64 {
     return out;
   }
 
-  // SÉCURITÉ ANTI-FREEZE : Appelée UNIQUEMENT lors d'un vrai clic utilisateur (jamais dans une boucle automatique !)
   function basculerDepuisArabeSurClicUtilisateur(conteneurLang, btnActif) {
     if (!conteneurLang) return;
     var btnSaAr = null;
@@ -5759,21 +5818,21 @@ html body #btnLangRuV64.active-ext-v64 {
     for (var f = 0; f < conteneurLang.children.length; f++) {
       if (conteneurLang.children[f] !== btnActif) {
         conteneurLang.children[f].classList.remove("active");
-        conteneurLang.children[f].classList.remove("active-ext-v64");
+        conteneurLang.children[f].classList.remove("active-ext-v65");
       }
     }
-    if (btnActif) btnActif.classList.add("active-ext-v64");
+    if (btnActif) btnActif.classList.add("active-ext-v65");
   }
 
   function assurerBoutonsLanguesEtendues() {
-    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV64), [id^='btnLangItV']:not(#btnLangItV64), [id^='btnLangIdV']:not(#btnLangIdV64), [id^='btnLangRuV']:not(#btnLangRuV64)");
+    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV65), [id^='btnLangItV']:not(#btnLangItV65), [id^='btnLangIdV']:not(#btnLangIdV65), [id^='btnLangRuV']:not(#btnLangRuV65)");
     for (var b = 0; b < oldBtns.length; b++) {
       if (oldBtns[b].parentNode) oldBtns[b].parentNode.removeChild(oldBtns[b]);
     }
 
-    var mapIds = { de: "btnLangDeV64", it: "btnLangItV64", id: "btnLangIdV64", ru: "btnLangRuV64" };
-    if (document.getElementById("btnLangDeV64") && document.getElementById("btnLangIdV64") && document.getElementById("btnLangRuV64")) {
-      var parentBar = document.getElementById("btnLangDeV64").parentElement;
+    var mapIds = { de: "btnLangDeV65", it: "btnLangItV65", id: "btnLangIdV65", ru: "btnLangRuV65" };
+    if (document.getElementById("btnLangDeV65") && document.getElementById("btnLangIdV65") && document.getElementById("btnLangRuV65")) {
+      var parentBar = document.getElementById("btnLangDeV65").parentElement;
       if (parentBar) {
         parentBar.setAttribute("translate", "no");
         parentBar.classList.add("notranslate");
@@ -5782,14 +5841,14 @@ html body #btnLangRuV64.active-ext-v64 {
         var bEl = document.getElementById(mapIds[code]);
         if (!bEl) continue;
         if (langExtActive === code) {
-          bEl.classList.add("active-ext-v64");
+          bEl.classList.add("active-ext-v65");
           if (parentBar) {
             for (var k = 0; k < parentBar.children.length; k++) {
               if (parentBar.children[k] !== bEl) parentBar.children[k].classList.remove("active");
             }
           }
         } else {
-          bEl.classList.remove("active-ext-v64");
+          bEl.classList.remove("active-ext-v65");
         }
       }
       return;
@@ -5843,14 +5902,14 @@ html body #btnLangRuV64.active-ext-v64 {
         } else {
           nvBtn.innerHTML = '<span style="font-size:0.72em;opacity:0.75;margin-right:2px;">' + labelCourt + "</span><span>" + labelCourt + "</span>";
         }
-        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v64");
+        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v65");
 
         nvBtn.addEventListener("click", function (ev) {
           ev.preventDefault();
           ev.stopPropagation();
           restaurerTextesOriginauxDepuisExt();
           langExtActive = codeIso;
-          try { localStorage.setItem("corantafsir_lang_ext_v64", codeIso); } catch (e) {}
+          try { localStorage.setItem("corantafsir_lang_ext_v65", codeIso); } catch (e) {}
           basculerDepuisArabeSurClicUtilisateur(conteneurLang, nvBtn);
           dernierVersetSeo = "";
           setTimeout(synchroniserTout, 15);
@@ -5858,10 +5917,10 @@ html body #btnLangRuV64.active-ext-v64 {
         return nvBtn;
       }
 
-      var btnDe = creerBoutonLangExt("btnLangDeV64", "de", "DE");
-      var btnIt = creerBoutonLangExt("btnLangItV64", "it", "IT");
-      var btnId = creerBoutonLangExt("btnLangIdV64", "id", "ID");
-      var btnRu = creerBoutonLangExt("btnLangRuV64", "ru", "RU");
+      var btnDe = creerBoutonLangExt("btnLangDeV65", "de", "DE");
+      var btnIt = creerBoutonLangExt("btnLangItV65", "it", "IT");
+      var btnId = creerBoutonLangExt("btnLangIdV65", "id", "ID");
+      var btnRu = creerBoutonLangExt("btnLangRuV65", "ru", "RU");
 
       var freresInit = Array.prototype.slice.call(conteneurLang.children);
       for (var a = 0; a < freresInit.length; a++) {
@@ -5872,15 +5931,14 @@ html body #btnLangRuV64.active-ext-v64 {
             if (IgnoreClicInterneFr) return;
             var etaitEnWbw = obtenirCartesMotAMotVisibles().length >= 2;
             langExtActive = "";
-            try { localStorage.setItem("corantafsir_lang_ext_v64", "native"); } catch (e) {}
-            btnDe.classList.remove("active-ext-v64");
-            btnIt.classList.remove("active-ext-v64");
-            btnId.classList.remove("active-ext-v64");
-            btnRu.classList.remove("active-ext-v64");
+            try { localStorage.setItem("corantafsir_lang_ext_v65", "native"); } catch (e) {}
+            btnDe.classList.remove("active-ext-v65");
+            btnIt.classList.remove("active-ext-v65");
+            btnId.classList.remove("active-ext-v65");
+            btnRu.classList.remove("active-ext-v65");
             restaurerTextesOriginauxDepuisExt();
             dernierVersetSeo = "";
 
-            // Si l'utilisateur était en Mot-à-mot et clique sur SA AR, maintenir le Mot-à-mot ouvert !
             setTimeout(function () {
               if (etaitEnWbw && obtenirCartesMotAMotVisibles().length === 0) {
                 var btns = document.querySelectorAll("button, .btn");
@@ -5939,8 +5997,8 @@ html body #btnLangRuV64.active-ext-v64 {
   function traduireNoeudVersExtAsync(textNode, origTxt, codeLang) {
     if (!origTxt || origTxt.length < 3 || !LANGUES_EXT_SUPPORTEES[codeLang]) return;
     var cle = codeLang + "_" + origTxt.slice(0, 140) + "_" + origTxt.length;
-    var esp1 = (textNode.__origExtV64 || textNode.nodeValue).match(/^\\s*/)[0];
-    var esp2 = (textNode.__origExtV64 || textNode.nodeValue).match(/\\s*$/)[0];
+    var esp1 = (textNode.__origExtV65 || textNode.nodeValue).match(/^\\s*/)[0];
+    var esp2 = (textNode.__origExtV65 || textNode.nodeValue).match(/\\s*$/)[0];
 
     if (cacheTexteUnitaireExt[cle]) {
       modifierNoeudTexteSeul(textNode, esp1 + cacheTexteUnitaireExt[cle] + esp2);
@@ -6011,6 +6069,7 @@ html body #btnLangRuV64.active-ext-v64 {
       "next ›": "Weiter ›",
       "▶ écouter le verset": "▶ Vers anhören",
       "▶ listen to verse": "▶ Vers anhören",
+      "⏸ pause": "⏸ Pause",
       "↺ rejouer": "↺ Wiederholen",
       "↺ replay": "↺ Wiederholen",
       "tafsīr & explication du verset": "TAFSĪR & ERKLÄRUNG DES VERSES",
@@ -6066,6 +6125,7 @@ html body #btnLangRuV64.active-ext-v64 {
       "next ›": "Successivo ›",
       "▶ écouter le verset": "▶ Ascolta il versetto",
       "▶ listen to verse": "▶ Ascolta il versetto",
+      "⏸ pause": "⏸ Pausa",
       "↺ rejouer": "↺ Riascolta",
       "↺ replay": "↺ Riascolta",
       "tafsīr & explication du verset": "TAFSĪR E SPIEGAZIONE DEL VERSETTO",
@@ -6121,6 +6181,7 @@ html body #btnLangRuV64.active-ext-v64 {
       "next ›": "Berikutnya ›",
       "▶ écouter le verset": "▶ Dengarkan Ayat",
       "▶ listen to verse": "▶ Dengarkan Ayat",
+      "⏸ pause": "⏸ Jeda",
       "↺ rejouer": "↺ Ulangi",
       "↺ replay": "↺ Ulangi",
       "tafsīr & explication du verset": "TAFSĪR & PENJELASAN AYAT",
@@ -6176,10 +6237,11 @@ html body #btnLangRuV64.active-ext-v64 {
       "next ›": "Далее ›",
       "▶ écouter le verset": "▶ Слушать аят",
       "▶ listen to verse": "▶ Слушать аят",
+      "⏸ pause": "⏸ Пауза",
       "↺ rejouer": "↺ Повторить",
       "↺ replay": "↺ Повторить",
       "tafsīr & explication du verset": "ТАФСИР И ТОЛКОВАНИЕ АЯТА",
-      "tafsīr & verse explanation": "ТАFSĪR И ТОЛКОВАНИЕ АЯТА",
+      "tafsīr & verse explanation": "ТАФСИР И ТОЛКОВАНИЕ АЯТА",
       "tafsīr y explicación de la aleya": "ТАФСИР И ТОЛКОВАНИЕ АЯТА",
       "madd (prolongation)": "Мадд (Удлинение)",
       "lettre muette": "Немая буква",
@@ -6250,9 +6312,9 @@ html body #btnLangRuV64.active-ext-v64 {
           for (var te = 0; te < titresEl.length; te++) {
             var candT = titresEl[te];
             if (candT.children.length === 0) {
-              var origT = (candT.__origTitreV64 || candT.textContent || "").trim();
+              var origT = (candT.__origTitreV65 || candT.textContent || "").trim();
               if (origT.indexOf("(") !== -1 && origT.indexOf(")") !== -1 && origT.indexOf("Miracle") === -1 && origT.indexOf("Wunder") === -1) {
-                if (!candT.__origTitreV64) candT.__origTitreV64 = origT;
+                if (!candT.__origTitreV65) candT.__origTitreV65 = origT;
                 if (candT.firstChild && candT.firstChild.nodeType === 3) {
                   modifierNoeudTexteSeul(candT.firstChild, noms114[sId]);
                 }
@@ -6278,7 +6340,7 @@ html body #btnLangRuV64.active-ext-v64 {
       if (tag === "SCRIPT" || tag === "STYLE") continue;
       if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate")) continue;
 
-      var val = (node.__origExtV64 !== undefined ? node.__origExtV64 : node.nodeValue || "").replace(/\\u00A0/g, " ").trim();
+      var val = (node.__origExtV65 !== undefined ? node.__origExtV65 : node.nodeValue || "").replace(/\\u00A0/g, " ").trim();
       if (!val || /[\\u0600-\\u06FF]/.test(val)) continue;
       var valLower = val.toLowerCase();
 
@@ -6351,7 +6413,6 @@ html body #btnLangRuV64.active-ext-v64 {
         continue;
       }
 
-      // SÉCURITÉ CRITIQUE : Ne remplacer la phrase du verset que si elle n'est PAS dans la boîte du Tafsīr !
       var rectP = pEl.getBoundingClientRect();
       var estDansTafsir = boiteTafsir && boiteTafsir.contains(pEl);
       if (
@@ -6382,6 +6443,7 @@ html body #btnLangRuV64.active-ext-v64 {
           val.indexOf("Terjemahan Kementerian") === -1 &&
           val.indexOf("Смысловой перевод") === -1 &&
           val.indexOf("Translation by Saheeh") === -1 &&
+          val.indexOf("Traducción de Sheikh Isa García") === -1 &&
           val.indexOf("TAFSĪR") === -1
         ) {
           traduireNoeudVersExtAsync(node, val, codeL);
@@ -6390,18 +6452,22 @@ html body #btnLangRuV64.active-ext-v64 {
     }
   }
 
-  // Nettoyer tout préfixe "2. " qui aurait glissé au début du premier paragraphe du Tafsīr en EN/ES/FR
-  function nettoyerNumeroParasiteDebutTafsir() {
-    var boiteTafsir = trouverBoiteTafsirBas();
-    if (!boiteTafsir) return;
-    var pEls = boiteTafsir.querySelectorAll("p, strong, b, span");
+  // Nettoyer les coquilles natives ("y e temen" -> "y le temen" en Espagnol, "⏸ Pause" -> "⏸ Pausa", et numéro parasite dans le Tafsir)
+  function corrigerCoquillesNativesEtTafsir() {
+    var lang = obtenirLangueActive();
+    var pEls = document.querySelectorAll("p, button, strong, b, span");
     for (var i = 0; i < pEls.length; i++) {
       var el = pEls[i];
-      if (el.children.length === 0) {
-        var t = (el.textContent || "").trim();
-        if (/^\\d+\\s*\\.\\s+(?:Le Livre par excellence|This is the Qur'ān|El Libro por excelencia|Das Buch schlechthin|Il Libro per eccellenza|Kitab yang paling|Лучшей книгой)/i.test(t)) {
-          el.textContent = t.replace(/^\\d+\\s*\\.\\s+/, "");
-        }
+      if (el.children.length > 0) continue;
+      var t = el.textContent || "";
+      if (t.indexOf("y e temen") !== -1) {
+        el.textContent = t.replace("y e temen", "y le temen");
+      }
+      if ((lang === "es" || lang === "it") && t.trim() === "⏸ Pause") {
+        el.textContent = "⏸ Pausa";
+      }
+      if (/^\\d+\\s*\\.\\s+(?:Le Livre par excellence|This is the Qur'ān|El Libro por excelencia|Das Buch schlechthin|Il Libro per eccellenza|Kitab yang paling|Лучшей книгой)/i.test(t.trim())) {
+        el.textContent = t.trim().replace(/^\\d+\\s*\\.\\s+/, "");
       }
     }
   }
@@ -6431,7 +6497,7 @@ html body #btnLangRuV64.active-ext-v64 {
       btnSuivi.style.setProperty("display", "inline-flex", "important");
       btnSuivi.style.setProperty("visibility", "visible", "important");
       btnSuivi.style.setProperty("opacity", "1", "important");
-      if (btnSuivi.id === "btnSuiviUniverselV64" && btnSuivi.textContent !== labelSuivi) {
+      if (btnSuivi.id === "btnSuiviUniverselV65" && btnSuivi.textContent !== labelSuivi) {
         btnSuivi.textContent = labelSuivi;
       }
       if (suiviEstActif) {
@@ -6440,9 +6506,9 @@ html body #btnLangRuV64.active-ext-v64 {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV64")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV65")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV64";
+      nv.id = "btnSuiviUniverselV65";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.textContent = labelSuivi;
@@ -6531,8 +6597,8 @@ html body #btnLangRuV64.active-ext-v64 {
       }
 
       if (role === "sun") {
-        node.classList.remove("astre-lune-pure-v64");
-        node.classList.add("astre-soleil-pur-v64");
+        node.classList.remove("astre-lune-pure-v65");
+        node.classList.add("astre-soleil-pur-v65");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -6541,8 +6607,8 @@ html body #btnLangRuV64.active-ext-v64 {
         node.style.setProperty("box-shadow", "0 0 50px 16px rgba(253, 224, 71, 0.72), 0 0 110px 38px rgba(245, 158, 11, 0.42)", "important");
         node.style.setProperty("filter", "none", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v64");
-        node.classList.add("astre-lune-pure-v64");
+        node.classList.remove("astre-soleil-pur-v65");
+        node.classList.add("astre-lune-pure-v65");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -6562,7 +6628,7 @@ html body #btnLangRuV64.active-ext-v64 {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v64");
+          row.classList.add("maher-supprime-v65");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
@@ -6572,8 +6638,8 @@ html body #btnLangRuV64.active-ext-v64 {
   function obtenirLangueActive() {
     if (langExtActive && LANGUES_EXT_SUPPORTEES[langExtActive]) return langExtActive;
     var bodyTxt = document.body ? document.body.innerText : "";
-    if (bodyTxt.indexOf("Escuchar aleya") !== -1 || bodyTxt.indexOf("EXPLICACIÓN DE LA ALEYA") !== -1) return "es";
-    if (bodyTxt.indexOf("Listen to verse") !== -1 || bodyTxt.indexOf("VERSE EXPLANATION") !== -1) return "en";
+    if (bodyTxt.indexOf("Escuchar aleya") !== -1 || bodyTxt.indexOf("EXPLICACIÓN DE LA ALEYA") !== -1 || bodyTxt.indexOf("Ruido Marrón") !== -1) return "es";
+    if (bodyTxt.indexOf("Listen to verse") !== -1 || bodyTxt.indexOf("VERSE EXPLANATION") !== -1 || bodyTxt.indexOf("Brown Noise") !== -1) return "en";
     if (bodyTxt.indexOf("استمع للآية") !== -1 || bodyTxt.indexOf("تفسير الآية") !== -1) return "ar";
     return "fr";
   }
@@ -6583,7 +6649,7 @@ html body #btnLangRuV64.active-ext-v64 {
     var textesBas = {
       fr: "Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
       en: "Translation by Saheeh International • Exegesis (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
-      es: "Traducción de Abdel Ghani Melara Navio • Exégesis (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
+      es: "Traducción de Sheikh Isa García • Exégesis (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
       de: "Deutsche Übersetzung von Frank Bubenheim & Nadeem Elyas • Exegese (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
       it: "Traduzione italiana di Hamza Roberto Piccardo • Esegesi (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
       id: "Terjemahan Kementerian Agama RI (Kemenag) • Tafsir Al-Mukhtasar & Ibnu Katsir",
@@ -6593,7 +6659,7 @@ html body #btnLangRuV64.active-ext-v64 {
     var textesHaut = {
       fr: "Traduction Muhammad Hamidullah (1977) & Exégèse",
       en: "Saheeh International & Exegesis",
-      es: "Traducción Abdel Ghani Melara Navio & Exégesis",
+      es: "Traducción Sheikh Isa García y Exégesis",
       de: "Übersetzung Bubenheim & Elyas & Exegese (Tafsīr)",
       it: "Traduzione Hamza Roberto Piccardo & Esegesi (Tafsīr)",
       id: "Terjemahan Kemenag RI & Tafsir Al-Mukhtasar",
@@ -6612,6 +6678,7 @@ html body #btnLangRuV64.active-ext-v64 {
         txt.indexOf("Traduction originale de Muhammad Hamidullah") !== -1 ||
         txt.indexOf("Translation by Saheeh International") !== -1 ||
         txt.indexOf("Traducción de Abdel Ghani Melara") !== -1 ||
+        txt.indexOf("Traducción de Sheikh Isa García") !== -1 ||
         txt.indexOf("Deutsche Übersetzung von Frank Bubenheim") !== -1 ||
         txt.indexOf("Traduzione italiana di Hamza Roberto Piccardo") !== -1 ||
         txt.indexOf("Terjemahan Kementerian Agama RI") !== -1 ||
@@ -6628,6 +6695,7 @@ html body #btnLangRuV64.active-ext-v64 {
         txt.indexOf("Traduction Muhammad Hamidullah") !== -1 ||
         txt.indexOf("Saheeh International & Exegesis") !== -1 ||
         txt.indexOf("Traducción Abdel Ghani Melara") !== -1 ||
+        txt.indexOf("Traducción Sheikh Isa García") !== -1 ||
         txt.indexOf("Übersetzung Bubenheim & Elyas") !== -1 ||
         txt.indexOf("Traduzione Hamza Roberto Piccardo") !== -1 ||
         txt.indexOf("Terjemahan Kemenag RI") !== -1 ||
@@ -6644,7 +6712,7 @@ html body #btnLangRuV64.active-ext-v64 {
     }
   }
 
-  // 4. MOT-À-MOT EN ORDRE AUDIO STRICT + TRADUCTION COMPLÈTE DANS LES 8 LANGUES (RU, DE, IT, ID, FR, ES, EN, AR)
+  // 4. MOT-À-MOT EN ORDRE AUDIO STRICT + 8 LANGUES
   var DICO_MULTILINGUE = {
     fr: {
       "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn", "طه": "Tā-Hā",
@@ -6675,6 +6743,11 @@ html body #btnLangRuV64.active-ext-v64 {
       "ذلك": "Это", "الكتاب": "Писание (Книга)", "لا": "нет", "ريب": "сомнения", "فيه": "в нём", "هدى": "верное руководство", "للمتقين": "для богобоязненных",
       "ختم": "Запечатал", "الله": "Аллах", "على": "на", "قلوبهم": "их сердца", "وعلى": "и на", "سمعهم": "их слух", "أبصارهم": "их взорах", "غشاوة": "пелена (завеса)", "غشوة": "пелена (завеса)", "ولهم": "и для них", "عذاب": "наказание", "عظيم": "великое",
       "والقلم": "Клянусь письменной тростью", "وما": "и тем, что", "يسطرون": "они пишут!"
+    },
+    es: {
+      "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn",
+      "ذلك": "Ese (Este es)", "الكتاب": "el Libro", "لا": "no hay", "ريب": "duda", "فيه": "en él", "هدى": "una guía", "للمتقين": "para los piadosos",
+      "ختم": "ha sellado", "الله": "Allāh (Dios)", "على": "sobre", "قلوبهم": "sus corazones", "وعلى": "y sobre", "سمعهم": "su oído", "وأبصارهم": "y sus miradas", "أبصارهم": "sus miradas (ojos)", "غشاوة": "un velo", "غشوة": "un velo", "ولهم": "y para ellos", "عذاب": "un castigo", "عظيم": "inmenso"
     }
   };
 
@@ -6683,7 +6756,7 @@ html body #btnLangRuV64.active-ext-v64 {
   var sensGrilleRtl = true;
 
   try {
-    var sauv = localStorage.getItem("cache_wbw_exact_v64");
+    var sauv = localStorage.getItem("cache_wbw_exact_v65") || localStorage.getItem("cache_wbw_exact_v64");
     if (sauv) cacheVersetMotsExact = JSON.parse(sauv);
   } catch (e) {}
 
@@ -6736,7 +6809,6 @@ html body #btnLangRuV64.active-ext-v64 {
     if (cacheVersetMotsExact[cleCache] || requetesVersetEnCours[cleCache]) return;
     requetesVersetEnCours[cleCache] = true;
 
-    // Charger la base anglaise certifiée de Quran.com puis traduire TOUS les mots en FR, ES, DE, IT, ID, RU !
     var urlQdc = "https://api.quran.com/api/v4/verses/by_key/" + vk + "?language=en&words=true&word_fields=text_uthmani,translation";
     fetch(urlQdc)
       .then(function (r) { return r.json(); })
@@ -6754,7 +6826,7 @@ html body #btnLangRuV64.active-ext-v64 {
 
         if (lang === "en" || lang === "ar") {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v64", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v65", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -6774,7 +6846,7 @@ html body #btnLangRuV64.active-ext-v64 {
 
         if (aTraduireTextes.length === 0) {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v64", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v65", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -6801,7 +6873,7 @@ html body #btnLangRuV64.active-ext-v64 {
           .catch(function () {})
           .finally(function () {
             cacheVersetMotsExact[cleCache] = motsQdc;
-            try { localStorage.setItem("cache_wbw_exact_v64", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+            try { localStorage.setItem("cache_wbw_exact_v65", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
             appliquerVraiMotAMotSurDOM();
           });
       })
@@ -7026,7 +7098,9 @@ html body #btnLangRuV64.active-ext-v64 {
     root.style.setProperty("--wbw-min-w", minW);
   }
 
-  // 6. ANIMATION MODE SUIVI
+  // ==========================================================================
+  // 6. ANIMATION MODE SUIVI : BLANC TAMISÉ (78%) -> 100% LUMINEUX + BLEU NÉON
+  // ==========================================================================
   var MAP_NOMS_VERS_QDC = {
     dosari: [174, 168], dossari: [174, 168], yasser: [174, 168],
     afasy: [7], alafasy: [7], mishary: [7],
@@ -7102,6 +7176,7 @@ html body #btnLangRuV64.active-ext-v64 {
       .catch(function () {});
   }
 
+  // FUSION AUTOMATIQUE DES SIGNES DE PAUSE CORANIQUES (ex: ۛ sur رَيْبَ ۛ فِيهِ ۛ) POUR NE JAMAIS DÉCALER LES MOTS
   function obtenirElementsMotsAAnimer() {
     var cartes = obtenirCartesMotAMotVisibles();
     if (cartes.length >= 2) return { type: "cartes", items: cartes };
@@ -7109,8 +7184,20 @@ html body #btnLangRuV64.active-ext-v64 {
     var conteneur = document.querySelector("#arabicVerse, .arabic-glow-verse");
     if (!conteneur) return { type: "spans", items: [] };
     conteneur.setAttribute("dir", "rtl");
-    var spans = conteneur.querySelectorAll("span");
-    if (spans.length > 1) return { type: "spans", items: spans };
+
+    var spansExistants = conteneur.querySelectorAll("span");
+    // Si des spans existent déjà mais que certains sont des signes de waqf isolés (ex: ۛ), on reconstruit proprement
+    var aSigneIsole = false;
+    for (var s = 0; s < spansExistants.length; s++) {
+      var stxt = (spansExistants[s].textContent || "").replace(/[\\u06D6-\\u06ED\\u064B-\\u065F\\u0670\\u06DD\\u06DE\\u06E9\\s]/g, "");
+      if (stxt.length === 0) {
+        aSigneIsole = true;
+        break;
+      }
+    }
+    if (spansExistants.length > 1 && !aSigneIsole) {
+      return { type: "spans", items: spansExistants };
+    }
 
     var texte = (conteneur.textContent || "").trim();
     if (!texte) return { type: "spans", items: [] };
@@ -7118,20 +7205,21 @@ html body #btnLangRuV64.active-ext-v64 {
     var motsPropres = [];
     for (var i = 0; i < bruts.length; i++) {
       var w = bruts[i];
-      if (w.replace(/[\\u06D6-\\u06ED\\u064B-\\u065F\\u0670]/g, "").length === 0 && motsPropres.length > 0) {
+      var sansMarques = w.replace(/[\\u06D6-\\u06ED\\u064B-\\u065F\\u0670\\u06DD\\u06DE\\u06E9]/g, "");
+      if (sansMarques.length === 0 && motsPropres.length > 0) {
         motsPropres[motsPropres.length - 1] += " " + w;
       } else {
         motsPropres.push(w);
       }
     }
-    if (motsPropres.length <= 1) return { type: "spans", items: spans };
+    if (motsPropres.length <= 1) return { type: "spans", items: spansExistants };
     conteneur.innerHTML = motsPropres.map(function (m, idx) {
       return '<span class="ar-word-follow" data-widx="' + idx + '">' + m + "</span>";
     }).join(" ");
     return { type: "spans", items: conteneur.querySelectorAll("span") };
   }
 
-  function reinitialiserMotsEnBlancPur() {
+  function reinitialiserMotsEnBlancTamise() {
     energiesMots = [];
     bleusMots = [];
     var cibleObj = obtenirElementsMotsAAnimer();
@@ -7139,15 +7227,16 @@ html body #btnLangRuV64.active-ext-v64 {
     var estCartes = cibleObj.type === "cartes";
     for (var i = 0; i < items.length; i++) {
       var el = items[i];
-      el.style.setProperty("opacity", "1", "important");
       el.style.setProperty("transform", "translate3d(0, 0px, 0) scale(1)", "important");
       el.style.setProperty("filter", "none", "important");
       if (estCartes) {
-        el.style.setProperty("border-color", "rgba(255, 255, 255, 0.18)", "important");
+        el.style.setProperty("opacity", "0.82", "important");
+        el.style.setProperty("border-color", "rgba(255, 255, 255, 0.15)", "important");
         el.style.setProperty("box-shadow", "none", "important");
       } else {
-        el.style.setProperty("color", "#ffffff", "important");
-        el.style.setProperty("text-shadow", "0 0 14px rgba(255, 255, 255, 0.48), 0 0 28px rgba(255, 255, 255, 0.20)", "important");
+        el.style.setProperty("opacity", "0.78", "important");
+        el.style.setProperty("color", "rgba(255, 255, 255, 0.78)", "important");
+        el.style.setProperty("text-shadow", "0 0 8px rgba(255, 255, 255, 0.14)", "important");
       }
     }
   }
@@ -7158,16 +7247,16 @@ html body #btnLangRuV64.active-ext-v64 {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV64) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV65) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       var self = this;
       window.__lecteurAudioActuel = self;
       if (self.currentTime < 0.25) {
-        reinitialiserMotsEnBlancPur();
+        reinitialiserMotsEnBlancTamise();
       }
-      if (!self.__listenersV64) {
-        self.__listenersV64 = true;
+      if (!self.__listenersV65) {
+        self.__listenersV65 = true;
         self.addEventListener("playing", lancerBoucleSuivi);
         self.addEventListener("timeupdate", lancerBoucleSuivi);
       }
@@ -7177,7 +7266,7 @@ html body #btnLangRuV64.active-ext-v64 {
       lancerBoucleSuivi();
       return origPlay.apply(self, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV64 = true;
+    HTMLMediaElement.prototype.__hookedV65 = true;
   }
 
   function trouverAudioActif() {
@@ -7273,34 +7362,39 @@ html body #btnLangRuV64.active-ext-v64 {
         var sc = (1.0 + 0.12 * e).toFixed(3);
 
         if (estCartes) {
-          el.style.setProperty("opacity", "1", "important");
+          var opCarte = (0.82 + 0.18 * b).toFixed(2);
+          el.style.setProperty("opacity", opCarte, "important");
           el.style.setProperty("transform", "translate3d(0, " + yPx + "px, 0) scale(" + (1.0 + 0.08 * e).toFixed(3) + ")", "important");
           if (b > 0.02) {
             el.style.setProperty("border-color", "rgba(56, 189, 248, " + (0.45 * b + 0.55 * e).toFixed(2) + ")", "important");
             el.style.setProperty("box-shadow", "0 " + (6 * b + 6 * e).toFixed(1) + "px " + (18 * b + 14 * e).toFixed(1) + "px rgba(56, 189, 248, " + (0.35 * b + 0.35 * e).toFixed(2) + "), inset 0 0 " + (12 * b).toFixed(1) + "px rgba(56, 189, 248, " + (0.18 * b).toFixed(2) + ")", "important");
           } else {
-            el.style.setProperty("border-color", "rgba(255, 255, 255, 0.18)", "important");
+            el.style.setProperty("border-color", "rgba(255, 255, 255, 0.15)", "important");
             el.style.setProperty("box-shadow", "none", "important");
           }
         } else {
           el.style.setProperty("background", "transparent", "important");
           el.style.setProperty("border", "none", "important");
-          el.style.setProperty("opacity", "1", "important");
           el.style.setProperty("filter", "none", "important");
           el.style.setProperty("transform", "translate3d(0, " + yPx + "px, 0) scale(" + sc + ")", "important");
 
           if (b < 0.03) {
-            el.style.setProperty("color", "#ffffff", "important");
-            el.style.setProperty("text-shadow", "0 0 14px rgba(255, 255, 255, 0.48), 0 0 28px rgba(255, 255, 255, 0.20)", "important");
+            // MOT NON ENCORE LU : BLANC TAMISÉ (78% LUMINOSITÉ)
+            el.style.setProperty("opacity", "0.78", "important");
+            el.style.setProperty("color", "rgba(255, 255, 255, 0.78)", "important");
+            el.style.setProperty("text-shadow", "0 0 8px rgba(255, 255, 255, 0.14)", "important");
           } else {
-            el.style.setProperty("color", "#f0f9ff", "important");
-            var alphaBleu1 = (0.85 * b + 0.15 * e).toFixed(2);
-            var alphaBleu2 = (0.65 * b + 0.30 * e).toFixed(2);
-            var rayon1 = (14 + 8 * e).toFixed(1);
-            var rayon2 = (28 + 16 * e).toFixed(1);
+            // MOT ATTEINT PAR LE RÉCITATEUR : 100% LUMINOSITÉ + HALO BLEU NÉON !
+            var opMot = (0.78 + 0.22 * b).toFixed(2);
+            el.style.setProperty("opacity", opMot, "important");
+            el.style.setProperty("color", "#ffffff", "important");
+            var alphaBleu1 = (0.88 * b + 0.12 * e).toFixed(2);
+            var alphaBleu2 = (0.68 * b + 0.32 * e).toFixed(2);
+            var rayon1 = (15 + 9 * e).toFixed(1);
+            var rayon2 = (30 + 18 * e).toFixed(1);
             el.style.setProperty(
               "text-shadow",
-              "0 0 8px rgba(255, 255, 255, 0.90), 0 0 " + rayon1 + "px rgba(56, 189, 248, " + alphaBleu1 + "), 0 0 " + rayon2 + "px rgba(14, 165, 233, " + alphaBleu2 + ")",
+              "0 0 10px rgba(255, 255, 255, 0.98), 0 0 " + rayon1 + "px rgba(56, 189, 248, " + alphaBleu1 + "), 0 0 " + rayon2 + "px rgba(14, 165, 233, " + alphaBleu2 + ")",
               "important"
             );
           }
@@ -7333,7 +7427,7 @@ html body #btnLangRuV64.active-ext-v64 {
       reparerSoleilEtLuneEnOrbite();
       retirerRecitateurMaher();
       if (langExtActive && LANGUES_EXT_SUPPORTEES[langExtActive]) appliquerInterfaceEtContenuExt();
-      nettoyerNumeroParasiteDebutTafsir();
+      corrigerCoquillesNativesEtTafsir();
       mettreAJourMentionsTraducteurEtExegese();
       masquerTraductionBasSiMotAMot();
       appliquerVraiMotAMotSurDOM();
@@ -7350,7 +7444,7 @@ html body #btnLangRuV64.active-ext-v64 {
 
   window.addEventListener("DOMContentLoaded", function () {
     synchroniserTout();
-    reinitialiserMotsEnBlancPur();
+    reinitialiserMotsEnBlancTamise();
   });
 
   document.addEventListener("click", function (e) {
@@ -7362,7 +7456,7 @@ html body #btnLangRuV64.active-ext-v64 {
       } else if (t === "A-" || t === "A -" || t === "A−") {
         wbwScale = Math.max(0.68, +(wbwScale - 0.16).toFixed(2));
       } else if (t.indexOf("Rejouer") !== -1 || t.indexOf("Replay") !== -1 || t.indexOf("Repetir") !== -1 || t.indexOf("Wiederholen") !== -1 || t.indexOf("Riascolta") !== -1 || t.indexOf("Ulangi") !== -1 || t.indexOf("Повторить") !== -1) {
-        reinitialiserMotsEnBlancPur();
+        reinitialiserMotsEnBlancTamise();
       } else if (t.indexOf("Suivi") !== -1 || t.indexOf("Follow") !== -1 || t.indexOf("Seguimiento") !== -1 || t.indexOf("Verfolgung") !== -1 || t.indexOf("Seguito") !== -1 || t.indexOf("Ikuti") !== -1 || t.indexOf("Слежение") !== -1 || t.indexOf("تتبع") !== -1) {
         suiviEstActif = !suiviEstActif;
         lancerBoucleSuivi();
