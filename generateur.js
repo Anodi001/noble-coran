@@ -2458,14 +2458,11 @@ async function lancerGeneration() {
 <link rel="preconnect" href="[https://everyayah.com](https://everyayah.com)" crossorigin>
 
 <meta name="yandex-verification" content="9ed8551291c4ae1e">
-<meta name="yandex-verification" content="9ed8551291c4ae1e">
-<meta name="yandex-verification" content="9ed8551291c4ae1e">
-<meta name="yandex-verification" content="9ed8551291c4ae1e">
 <link rel="preconnect" href="https://api.quran.com" crossorigin>
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
 <link rel="preconnect" href="https://translate.googleapis.com" crossorigin>
-<style id="patch-master-v70">
+<style id="patch-master-v73">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -2480,7 +2477,7 @@ html body .flat-earth-sun,
 html body [id*="sun" i]:not([id*="sound" i]),
 html body [class*="sun" i]:not([class*="sound" i]),
 html body [data-astre-role="sun"],
-html body .astre-soleil-pur-v70 {
+html body .astre-soleil-pur-v73 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -2501,8 +2498,8 @@ html body .astre-soleil-pur-v70 {
 }
 html body #flatEarthSun::before, html body #flatEarthSun::after,
 html body .flat-earth-sun::before, html body .flat-earth-sun::after,
-html body .astre-soleil-pur-v70::before, html body .astre-soleil-pur-v70::after,
-html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v70 * {
+html body .astre-soleil-pur-v73::before, html body .astre-soleil-pur-v73::after,
+html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v73 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
@@ -2512,7 +2509,7 @@ html body .flat-earth-moon,
 html body [id*="moon" i],
 html body [class*="moon" i],
 html body [data-astre-role="moon"],
-html body .astre-lune-pure-v70 {
+html body .astre-lune-pure-v73 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -2533,15 +2530,15 @@ html body .astre-lune-pure-v70 {
 }
 html body #flatEarthMoon::before, html body #flatEarthMoon::after,
 html body .flat-earth-moon::before, html body .flat-earth-moon::after,
-html body .astre-lune-pure-v70::before, html body .astre-lune-pure-v70::after,
-html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v70 * {
+html body .astre-lune-pure-v73::before, html body .astre-lune-pure-v73::after,
+html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v73 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
 /* 3. MASQUAGE DE MAHER AL-MUAIQLY, BOUTON REPRENDRE DOUBLON & TRADUCTION DU BAS EN MOT-À-MOT */
 html body img[src*="maher" i],
 html body [data-reciter*="maher" i],
-html body .maher-supprime-v70,
+html body .maher-supprime-v73,
 html body .wbw-masquer-traduction-bas,
 html body .khatm-doublon-reprendre-masque {
   display: none !important; visibility: hidden !important; height: 0 !important; max-height: 0 !important; margin: 0 !important; padding: 0 !important; border: none !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important;
@@ -2591,22 +2588,22 @@ html body .follow-word {
 }
 
 /* 6. BOUTONS DE LANGUE ÉTENDUS (DE, IT, ID, RU) AVEC DRAPEAUX IPHONE EXACTS */
-html body #btnLangDeV70,
-html body #btnLangItV70,
-html body #btnLangIdV70,
-html body #btnLangRuV70 {
+html body #btnLangDeV73,
+html body #btnLangItV73,
+html body #btnLangIdV73,
+html body #btnLangRuV73 {
   cursor: pointer !important; transition: all 0.2s ease !important; display: inline-flex !important; align-items: center !important; justify-content: center !important;
 }
-html body #btnLangDeV70.active-ext-v70,
-html body #btnLangItV70.active-ext-v70,
-html body #btnLangIdV70.active-ext-v70,
-html body #btnLangRuV70.active-ext-v70 {
+html body #btnLangDeV73.active-ext-v73,
+html body #btnLangItV73.active-ext-v73,
+html body #btnLangIdV73.active-ext-v73,
+html body #btnLangRuV73.active-ext-v73 {
   background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(56, 189, 248, 0.18)) !important;
   border: 1px solid #38bdf8 !important; color: #ffffff !important; border-radius: 999px !important;
 }
 
 /* 7. PLANIFICATEUR KHATM ULTRA-COMPACT (STYLE SÉLECTEUR RÉCITATEUR) */
-#khatmPlannerWidgetV70 {
+#khatmPlannerWidgetV73 {
   width: 100% !important;
   box-sizing: border-box !important;
   margin: 12px auto 0 auto !important;
@@ -2626,7 +2623,6 @@ html body #btnLangRuV70.active-ext-v70 {
   justify-content: center;
   gap: 8px;
 }
-/* Menus déroulants stylisés exactement comme le sélecteur de Récitateur */
 .khatm-reciter-select {
   appearance: none !important;
   -webkit-appearance: none !important;
@@ -2647,12 +2643,16 @@ html body #btnLangRuV70.active-ext-v70 {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35), inset 0 0 8px rgba(56, 189, 248, 0.06) !important;
   transition: all 0.18s ease !important;
 }
+[dir="rtl"] .khatm-reciter-select,
+#khatmPlannerWidgetV73[style*="rtl"] .khatm-reciter-select {
+  background-position: left 11px center !important;
+  padding: 6px 13px 6px 28px !important;
+}
 .khatm-reciter-select:hover {
   border-color: #38bdf8 !important;
   background-color: rgba(14, 34, 64, 0.92) !important;
   color: #ffffff !important;
 }
-[dir="rtl"] .khatm-reciter-select, #khatmPlannerWidgetV70[style*="rtl"] .khatm-reciter-select { background-position: left 11px center !important; padding: 6px 13px 6px 28px !important; }
 .khatm-reciter-select option {
   background-color: #06101e !important;
   color: #f8fafc !important;
@@ -2737,31 +2737,169 @@ html body #btnLangRuV70.active-ext-v70 {
   transition: width 0.3s ease;
 }
 </style>
-<script id="script-master-v70">(function codeClientV70() {
+<script id="script-master-v73">(function codeClientV73() {
   var LANGUES_EXT_SUPPORTEES = { de: 27, it: 153, id: 33, ru: 45 };
+  var TOUTES_LANGUES_8 = { fr: true, en: true, es: true, ar: true, de: true, it: true, id: true, ru: true };
   var langExtActive = "";
+  var langueNativeCible = "";
   var IgnoreClicInterneFr = false;
 
+  // Table de correspondance Pays ISO (Cloudflare /cdn-cgi/trace) -> Langue du site (8 langues)
+  var PAYS_VERS_LANGUE = {
+    // Allemand (DE)
+    DE: "de", AT: "de", LI: "de",
+    // Italien (IT)
+    IT: "it", SM: "it", VA: "it",
+    // Indonésien / Malais (ID)
+    ID: "id", MY: "id", BN: "id",
+    // Russe & Espace post-soviétique (RU)
+    RU: "ru", BY: "ru", KZ: "ru", KG: "ru", UZ: "ru", TJ: "ru", AZ: "ru", AM: "ru", MD: "ru", UA: "ru",
+    // Espagnol : Espagne & Amérique Latine (ES)
+    ES: "es", MX: "es", AR: "es", CO: "es", CL: "es", PE: "es", VE: "es", EC: "es",
+    GT: "es", CU: "es", BO: "es", DO: "es", HN: "es", PY: "es", SV: "es", NI: "es",
+    CR: "es", PA: "es", UY: "es", PR: "es", GQ: "es",
+    // Monde Arabe (AR)
+    SA: "ar", AE: "ar", QA: "ar", KW: "ar", BH: "ar", OM: "ar", YE: "ar", EG: "ar",
+    JO: "ar", LB: "ar", SY: "ar", IQ: "ar", PS: "ar", SD: "ar", LY: "ar", MR: "ar",
+    // Francophonie (FR)
+    FR: "fr", BE: "fr", MC: "fr", SN: "fr", CI: "fr", ML: "fr", NE: "fr", BF: "fr",
+    TG: "fr", BJ: "fr", GN: "fr", CM: "fr", CD: "fr", CG: "fr", GA: "fr", MG: "fr", DJ: "fr",
+    // Anglophonie & International (EN : USA, UK, Canada, Australie, Europe du Nord, Asie...)
+    US: "en", GB: "en", AU: "en", NZ: "en", IE: "en", ZA: "en", NG: "en", GH: "en",
+    KE: "en", PK: "en", IN: "en", BD: "en", PH: "en", SG: "en", NL: "en", SE: "en",
+    NO: "en", DK: "en", FI: "en", PL: "en", TR: "en", BR: "en", JP: "en", KR: "en"
+  };
+
+  function detecterLangueLocaleNavigateurEtFuseau() {
+    try {
+      var navLangs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""];
+      for (var i = 0; i < navLangs.length; i++) {
+        var code2 = (navLangs[i] || "").slice(0, 2).toLowerCase();
+        if ( code2 === "ms" ) code2 = "id";
+        if (TOUTES_LANGUES_8[code2]) return code2;
+      }
+      var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").toLowerCase();
+      if (tz.indexOf("berlin") !== -1 || tz.indexOf("vienna") !== -1 || tz.indexOf("zurich") !== -1) return "de";
+      if (tz.indexOf("rome") !== -1) return "it";
+      if (tz.indexOf("jakarta") !== -1 || tz.indexOf("makassar") !== -1 || tz.indexOf("jayapura") !== -1 || tz.indexOf("kuala_lumpur") !== -1) return "id";
+      if (tz.indexOf("moscow") !== -1 || tz.indexOf("almaty") !== -1 || tz.indexOf("minsk") !== -1 || tz.indexOf("tashkent") !== -1 || tz.indexOf("baku") !== -1) return "ru";
+      if (tz.indexOf("madrid") !== -1 || tz.indexOf("mexico") !== -1 || tz.indexOf("buenos_aires") !== -1 || tz.indexOf("bogota") !== -1 || tz.indexOf("santiago") !== -1 || tz.indexOf("lima") !== -1) return "es";
+      if (tz.indexOf("riyadh") !== -1 || tz.indexOf("dubai") !== -1 || tz.indexOf("cairo") !== -1 || tz.indexOf("baghdad") !== -1 || tz.indexOf("amman") !== -1 || tz.indexOf("kuwait") !== -1 || tz.indexOf("qatar") !== -1) return "ar";
+      if (tz.indexOf("paris") !== -1 || tz.indexOf("brussels") !== -1 || tz.indexOf("abidjan") !== -1 || tz.indexOf("dakar") !== -1) return "fr";
+      if (tz.indexOf("new_york") !== -1 || tz.indexOf("chicago") !== -1 || tz.indexOf("los_angeles") !== -1 || tz.indexOf("london") !== -1 || tz.indexOf("sydney") !== -1 || tz.indexOf("toronto") !== -1) return "en";
+    } catch (e) {}
+    return "fr";
+  }
+
   try {
-    var oldIds = ["khatmPlannerWidgetV66", "khatmPlannerWidgetV67", "khatmPlannerWidgetV68", "khatmPlannerWidgetV69"];
+    var oldIds = ["khatmPlannerWidgetV66", "khatmPlannerWidgetV67", "khatmPlannerWidgetV68", "khatmPlannerWidgetV69", "khatmPlannerWidgetV70"];
     for (var w = 0; w < oldIds.length; w++) {
       var elOld = document.getElementById(oldIds[w]);
       if (elOld && elOld.parentNode) elOld.parentNode.removeChild(elOld);
     }
 
     var urlParams = new URLSearchParams(window.location.search);
-    var pLang = urlParams.get("lang");
-    if (pLang && LANGUES_EXT_SUPPORTEES[pLang]) {
-      langExtActive = pLang;
-      localStorage.setItem("corantafsir_lang_ext_v70", pLang);
+    var pLang = (urlParams.get("lang") || "").split("-")[0].toLowerCase();
+
+    if (pLang && TOUTES_LANGUES_8[pLang]) {
+      // 1. Priorité absolue au paramètre ?lang=xx (liens Google Allemagne, USA, UK, Italie, Russie, Indonésie, Espagne, Monde Arabe)
+      localStorage.setItem("corantafsir_user_lang_v73", pLang);
+      if (LANGUES_EXT_SUPPORTEES[pLang]) {
+        langExtActive = pLang;
+        localStorage.setItem("corantafsir_lang_ext_v73", pLang);
+      } else {
+        langExtActive = "";
+        langueNativeCible = pLang;
+        localStorage.setItem("corantafsir_lang_ext_v73", "native");
+      }
     } else {
-      var savedExt = localStorage.getItem("corantafsir_lang_ext_v70") || localStorage.getItem("corantafsir_lang_ext_v69") || localStorage.getItem("corantafsir_lang_ext_v68");
-      if (!savedExt && !localStorage.getItem("corantafsir_first_lang_v72")) { localStorage.setItem("corantafsir_first_lang_v72", "1"); var navL = ((navigator.language || "").slice(0, 2)).toLowerCase(); if (LANGUES_EXT_SUPPORTEES[navL]) { langExtActive = navL; localStorage.setItem("corantafsir_lang_ext_v70", navL); } }
-      if (savedExt && LANGUES_EXT_SUPPORTEES[savedExt]) {
-        langExtActive = savedExt;
+      // 2. Sinon vérifier si une langue a déjà été choisie ou détectée
+      var savedUserLang = localStorage.getItem("corantafsir_user_lang_v73");
+      if (!savedUserLang) {
+        // Première visite : détection immédiate via Fuseau horaire & Navigateur
+        savedUserLang = detecterLangueLocaleNavigateurEtFuseau();
+        localStorage.setItem("corantafsir_user_lang_v73", savedUserLang);
+
+        // Affinage automatique par Pays IP via Cloudflare (/cdn-cgi/trace)
+        fetch("/cdn-cgi/trace")
+          .then(function (r) { return r.text(); })
+          .then(function (txt) {
+            if (localStorage.getItem("corantafsir_manual_click_v73") === "1") return;
+            var mLoc = txt.match(/loc=([A-Z]{2})/);
+            if (mLoc && mLoc[1]) {
+              var countryCode = mLoc[1];
+              var langPays = PAYS_VERS_LANGUE[countryCode];
+              if (!langPays && (countryCode === "MA" || countryCode === "DZ" || countryCode === "TN")) {
+                var nav2 = ((navigator.language || "").slice(0, 2)).toLowerCase();
+                langPays = nav2 === "ar" ? "ar" : "fr";
+              } else if (!langPays && (countryCode === "CH" || countryCode === "CA")) {
+                var navCh = ((navigator.language || "").slice(0, 2)).toLowerCase();
+                langPays = TOUTES_LANGUES_8[navCh] ? navCh : (countryCode === "CH" ? "de" : "en");
+              }
+              if (langPays && TOUTES_LANGUES_8[langPays] && langPays !== savedUserLang) {
+                localStorage.setItem("corantafsir_user_lang_v73", langPays);
+                appliquerLangueCibleGlobale(langPays);
+              }
+            }
+          })
+          .catch(function () {});
+      }
+
+      if (LANGUES_EXT_SUPPORTEES[savedUserLang]) {
+        langExtActive = savedUserLang;
+      } else if (TOUTES_LANGUES_8[savedUserLang]) {
+        langExtActive = "";
+        langueNativeCible = savedUserLang;
       }
     }
   } catch (e) {}
+
+  function appliquerLangueCibleGlobale(codeLang) {
+    if (!TOUTES_LANGUES_8[codeLang]) return;
+    if (LANGUES_EXT_SUPPORTEES[codeLang]) {
+      restaurerTextesOriginauxDepuisExt();
+      langExtActive = codeLang;
+      langueNativeCible = "";
+      try { localStorage.setItem("corantafsir_lang_ext_v73", codeLang); } catch (e) {}
+      var mapBtnExt = { de: "btnLangDeV73", it: "btnLangItV73", id: "btnLangIdV73", ru: "btnLangRuV73" };
+      var bExt = document.getElementById(mapBtnExt[codeLang]);
+      if (bExt && bExt.parentElement) {
+        basculerDepuisArabeSurClicUtilisateur(bExt.parentElement, bExt);
+      }
+      dernierVersetSeo = "";
+      synchroniserTout();
+    } else {
+      langExtActive = "";
+      langueNativeCible = codeLang;
+      try { localStorage.setItem("corantafsir_lang_ext_v73", "native"); } catch (e) {}
+      restaurerTextesOriginauxDepuisExt();
+      cliquerBoutonNatifSiNecessaire(codeLang);
+      dernierVersetSeo = "";
+      synchroniserTout();
+    }
+  }
+
+  function cliquerBoutonNatifSiNecessaire(codeNat) {
+    if (!codeNat || langExtActive) return;
+    var btnDeRef = document.getElementById("btnLangDeV73");
+    if (!btnDeRef || !btnDeRef.parentElement) return;
+    var parentBar = btnDeRef.parentElement;
+    var codeUpper = codeNat.toUpperCase();
+    for (var i = 0; i < parentBar.children.length; i++) {
+      var btn = parentBar.children[i];
+      if (btn.id && btn.id.indexOf("V73") !== -1) continue;
+      var txt = (btn.textContent || "").toUpperCase();
+      if (txt.indexOf(codeUpper) !== -1) {
+        if (!btn.classList.contains("active")) {
+          IgnoreClicInterneFr = true;
+          btn.click();
+          IgnoreClicInterneFr = false;
+        }
+        langueNativeCible = "";
+        break;
+      }
+    }
+  }
 
   // ==========================================================================
   // 0. MOTEUR DU PLANIFICATEUR KHATM COMPACT (SÉLECTEURS STYLE RÉCITATEUR)
@@ -2906,7 +3044,7 @@ html body #btnLangRuV70.active-ext-v70 {
     var badges = document.querySelectorAll("span, div");
     for (var b = 0; b < badges.length; b++) {
       var el = badges[b];
-      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV70")) continue;
+      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV73")) continue;
       var txt = (el.textContent || "").trim();
       var bm = txt.match(/^(\\d{1,3})\\s*:\\s*(\\d{1,3})$/);
       if (bm) return bm[1] + ":" + bm[2];
@@ -3108,11 +3246,10 @@ html body #btnLangRuV70.active-ext-v70 {
     var boiteHero = trouverBoiteHeroPourInsertionInterne();
     if (!boiteHero) return;
 
-    // Masquer le bouton vert natif en doublon dans la bannière Hero
     var liensInternes = boiteHero.querySelectorAll("a, button");
     for (var l = 0; l < liensInternes.length; l++) {
       var elL = liensInternes[l];
-      if (elL.closest("#khatmPlannerWidgetV70")) continue;
+      if (elL.closest("#khatmPlannerWidgetV73")) continue;
       var txtL = (elL.textContent || "").trim();
       if (
         txtL.indexOf("Reprendre :") !== -1 ||
@@ -3128,10 +3265,10 @@ html body #btnLangRuV70.active-ext-v70 {
       }
     }
 
-    var widget = document.getElementById("khatmPlannerWidgetV70");
+    var widget = document.getElementById("khatmPlannerWidgetV73");
     if (!widget) {
       widget = document.createElement("div");
-      widget.id = "khatmPlannerWidgetV70";
+      widget.id = "khatmPlannerWidgetV73";
       widget.setAttribute("translate", "no");
       widget.className = "notranslate";
       boiteHero.appendChild(widget);
@@ -3159,7 +3296,6 @@ html body #btnLangRuV70.active-ext-v70 {
     widget.setAttribute("data-render-sig", cleSignatureRendu);
     widget.style.direction = lang === "ar" ? "rtl" : "ltr";
 
-    // Sélecteur déroulant de Sourate (ou bouton Mémoriser sur une page verset)
     var controlePositionHtml = "";
     if (estSurPageVerset) {
       var partsVk = vkPage.split(":");
@@ -3213,7 +3349,7 @@ html body #btnLangRuV70.active-ext-v70 {
         '<span>' + t.objJour + ' <strong style="color:#fde047;">' + nomSourateCible + ' (' + cibleInfo.s + ':' + cibleInfo.v + ')</strong></span>' +
         '<span>•</span>' +
         '<div class="khatm-mini-bar-wrap"><div class="khatm-mini-bar-fill" style="width:' + Math.max(2, Number(pct)) + '%;"></div></div>' +
-        '<span style="color:#6ee7b7;font-weight:600;">' + idxActuel + ' / 6236 (' + pct + '%) • ~' + joursRestants + ' ' + t.jours + '</span>' +
+        '<span dir="ltr" style="color:#6ee7b7;font-weight:600;display:inline-block;">' + idxActuel + ' / 6236 (' + pct + '%) • ~' + joursRestants + ' ' + t.jours + '</span>' +
       '</div>';
 
     var selMonths = widget.querySelector("select[data-khatm-sel='months']");
@@ -3311,9 +3447,9 @@ html body #btnLangRuV70.active-ext-v70 {
 
   function modifierNoeudTexteSeul(textNode, nouveauTexte) {
     if (!textNode || textNode.nodeType !== 3) return;
-    if (textNode.__origExtV70 === undefined) {
-      textNode.__origExtV70 = textNode.nodeValue;
-      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV70 });
+    if (textNode.__origExtV73 === undefined) {
+      textNode.__origExtV73 = textNode.nodeValue;
+      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV73 });
     }
     if (textNode.nodeValue !== nouveauTexte) {
       textNode.nodeValue = nouveauTexte;
@@ -3368,21 +3504,21 @@ html body #btnLangRuV70.active-ext-v70 {
     for (var f = 0; f < conteneurLang.children.length; f++) {
       if (conteneurLang.children[f] !== btnActif) {
         conteneurLang.children[f].classList.remove("active");
-        conteneurLang.children[f].classList.remove("active-ext-v70");
+        conteneurLang.children[f].classList.remove("active-ext-v73");
       }
     }
-    if (btnActif) btnActif.classList.add("active-ext-v70");
+    if (btnActif) btnActif.classList.add("active-ext-v73");
   }
 
   function assurerBoutonsLanguesEtendues() {
-    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV70), [id^='btnLangItV']:not(#btnLangItV70), [id^='btnLangIdV']:not(#btnLangIdV70), [id^='btnLangRuV']:not(#btnLangRuV70)");
+    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV73), [id^='btnLangItV']:not(#btnLangItV73), [id^='btnLangIdV']:not(#btnLangIdV73), [id^='btnLangRuV']:not(#btnLangRuV73)");
     for (var b = 0; b < oldBtns.length; b++) {
       if (oldBtns[b].parentNode) oldBtns[b].parentNode.removeChild(oldBtns[b]);
     }
 
-    var mapIds = { de: "btnLangDeV70", it: "btnLangItV70", id: "btnLangIdV70", ru: "btnLangRuV70" };
-    if (document.getElementById("btnLangDeV70") && document.getElementById("btnLangIdV70") && document.getElementById("btnLangRuV70")) {
-      var parentBar = document.getElementById("btnLangDeV70").parentElement;
+    var mapIds = { de: "btnLangDeV73", it: "btnLangItV73", id: "btnLangIdV73", ru: "btnLangRuV73" };
+    if (document.getElementById("btnLangDeV73") && document.getElementById("btnLangIdV73") && document.getElementById("btnLangRuV73")) {
+      var parentBar = document.getElementById("btnLangDeV73").parentElement;
       if (parentBar) {
         parentBar.setAttribute("translate", "no");
         parentBar.classList.add("notranslate");
@@ -3391,15 +3527,18 @@ html body #btnLangRuV70.active-ext-v70 {
         var bEl = document.getElementById(mapIds[code]);
         if (!bEl) continue;
         if (langExtActive === code) {
-          bEl.classList.add("active-ext-v70");
+          bEl.classList.add("active-ext-v73");
           if (parentBar) {
             for (var k = 0; k < parentBar.children.length; k++) {
               if (parentBar.children[k] !== bEl) parentBar.children[k].classList.remove("active");
             }
           }
         } else {
-          bEl.classList.remove("active-ext-v70");
+          bEl.classList.remove("active-ext-v73");
         }
+      }
+      if (!langExtActive && langueNativeCible) {
+        cliquerBoutonNatifSiNecessaire(langueNativeCible);
       }
       return;
     }
@@ -3476,14 +3615,19 @@ html body #btnLangRuV70.active-ext-v70 {
         } else {
           nvBtn.innerHTML = '<span style="margin-right:3px;">' + emojiDrapeau + "</span><span>" + labelCourt + "</span>";
         }
-        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v70");
+        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v73");
 
         nvBtn.addEventListener("click", function (ev) {
           ev.preventDefault();
           ev.stopPropagation();
           restaurerTextesOriginauxDepuisExt();
           langExtActive = codeIso;
-          try { localStorage.setItem("corantafsir_lang_ext_v70", codeIso); } catch (e) {}
+          langueNativeCible = "";
+          try {
+            localStorage.setItem("corantafsir_lang_ext_v73", codeIso);
+            localStorage.setItem("corantafsir_user_lang_v73", codeIso);
+            localStorage.setItem("corantafsir_manual_click_v73", "1");
+          } catch (e) {}
           basculerDepuisArabeSurClicUtilisateur(conteneurLang, nvBtn);
           dernierVersetSeo = "";
           setTimeout(synchroniserTout, 15);
@@ -3491,10 +3635,10 @@ html body #btnLangRuV70.active-ext-v70 {
         return nvBtn;
       }
 
-      var btnDe = creerBoutonLangExt("btnLangDeV70", "de", "\\uD83C\\uDDE9\\uD83C\\uDDEA", "DE");
-      var btnIt = creerBoutonLangExt("btnLangItV70", "it", "\\uD83C\\uDDEE\\uD83C\\uDDF9", "IT");
-      var btnId = creerBoutonLangExt("btnLangIdV70", "id", "\\uD83C\\uDDEE\\uD83C\\uDDE9", "ID");
-      var btnRu = creerBoutonLangExt("btnLangRuV70", "ru", "\\uD83C\\uDDF7\\uD83C\\uDDFA", "RU");
+      var btnDe = creerBoutonLangExt("btnLangDeV73", "de", "\\uD83C\\uDDE9\\uD83C\\uDDEA", "DE");
+      var btnIt = creerBoutonLangExt("btnLangItV73", "it", "\\uD83C\\uDDEE\\uD83C\\uDDF9", "IT");
+      var btnId = creerBoutonLangExt("btnLangIdV73", "id", "\\uD83C\\uDDEE\\uD83C\\uDDE9", "ID");
+      var btnRu = creerBoutonLangExt("btnLangRuV73", "ru", "\\uD83C\\uDDF7\\uD83C\\uDDFA", "RU");
 
       for (var a = 0; a < freresInit.length; a++) {
         (function (autre) {
@@ -3504,11 +3648,18 @@ html body #btnLangRuV70.active-ext-v70 {
             if (IgnoreClicInterneFr) return;
             var etaitEnWbw = obtenirCartesMotAMotVisibles().length >= 2;
             langExtActive = "";
-            try { localStorage.setItem("corantafsir_lang_ext_v70", "native"); } catch (e) {}
-            btnDe.classList.remove("active-ext-v70");
-            btnIt.classList.remove("active-ext-v70");
-            btnId.classList.remove("active-ext-v70");
-            btnRu.classList.remove("active-ext-v70");
+            langueNativeCible = "";
+            var txtAutre = (autre.textContent || "").toUpperCase();
+            var codeNatClique = txtAutre.indexOf("EN") !== -1 ? "en" : (txtAutre.indexOf("ES") !== -1 ? "es" : (txtAutre.indexOf("AR") !== -1 ? "ar" : "fr"));
+            try {
+              localStorage.setItem("corantafsir_lang_ext_v73", "native");
+              localStorage.setItem("corantafsir_user_lang_v73", codeNatClique);
+              localStorage.setItem("corantafsir_manual_click_v73", "1");
+            } catch (e) {}
+            btnDe.classList.remove("active-ext-v73");
+            btnIt.classList.remove("active-ext-v73");
+            btnId.classList.remove("active-ext-v73");
+            btnRu.classList.remove("active-ext-v73");
             restaurerTextesOriginauxDepuisExt();
             dernierVersetSeo = "";
 
@@ -3536,6 +3687,8 @@ html body #btnLangRuV70.active-ext-v70 {
 
       if (langExtActive && mapIds[langExtActive]) {
         basculerDepuisArabeSurClicUtilisateur(conteneurLang, document.getElementById(mapIds[langExtActive]));
+      } else if (langueNativeCible) {
+        cliquerBoutonNatifSiNecessaire(langueNativeCible);
       }
     }
   }
@@ -3570,8 +3723,8 @@ html body #btnLangRuV70.active-ext-v70 {
   function traduireNoeudVersExtAsync(textNode, origTxt, codeLang) {
     if (!origTxt || origTxt.length < 3 || !LANGUES_EXT_SUPPORTEES[codeLang]) return;
     var cle = codeLang + "_" + origTxt.slice(0, 140) + "_" + origTxt.length;
-    var esp1 = (textNode.__origExtV70 || textNode.nodeValue).match(/^\\s*/)[0];
-    var esp2 = (textNode.__origExtV70 || textNode.nodeValue).match(/\\s*$/)[0];
+    var esp1 = (textNode.__origExtV73 || textNode.nodeValue).match(/^\\s*/)[0];
+    var esp2 = (textNode.__origExtV73 || textNode.nodeValue).match(/\\s*$/)[0];
 
     if (cacheTexteUnitaireExt[cle]) {
       modifierNoeudTexteSeul(textNode, esp1 + cacheTexteUnitaireExt[cle] + esp2);
@@ -3957,7 +4110,7 @@ html body #btnLangRuV70.active-ext-v70 {
     var cartesAccueil = document.querySelectorAll("a[href*='sourate-']");
     for (var ca = 0; ca < cartesAccueil.length; ca++) {
       var lienCarte = cartesAccueil[ca];
-      if (lienCarte.closest("#khatmPlannerWidgetV70")) continue;
+      if (lienCarte.closest("#khatmPlannerWidgetV73")) continue;
       var mHref = (lienCarte.getAttribute("href") || "").match(/sourate-(\\d+)/i);
       if (mHref) {
         var sId = Number(mHref[1]);
@@ -3966,9 +4119,9 @@ html body #btnLangRuV70.active-ext-v70 {
           for (var te = 0; te < titresEl.length; te++) {
             var candT = titresEl[te];
             if (candT.children.length === 0) {
-              var origT = (candT.__origTitreV70 || candT.textContent || "").trim();
+              var origT = (candT.__origTitreV73 || candT.textContent || "").trim();
               if (origT.indexOf("(") !== -1 && origT.indexOf(")") !== -1 && origT.indexOf("Miracle") === -1 && origT.indexOf("Wunder") === -1 && origT.indexOf("Milagro") === -1) {
-                if (!candT.__origTitreV70) candT.__origTitreV70 = origT;
+                if (!candT.__origTitreV73) candT.__origTitreV73 = origT;
                 if (candT.firstChild && candT.firstChild.nodeType === 3) {
                   modifierNoeudTexteSeul(candT.firstChild, noms114[sId]);
                 }
@@ -3992,9 +4145,9 @@ html body #btnLangRuV70.active-ext-v70 {
       if (!pEl) continue;
       var tag = pEl.tagName;
       if (tag === "SCRIPT" || tag === "STYLE") continue;
-      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate") || pEl.closest("#khatmPlannerWidgetV70")) continue;
+      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate") || pEl.closest("#khatmPlannerWidgetV73")) continue;
 
-      var val = (node.__origExtV70 !== undefined ? node.__origExtV70 : node.nodeValue || "").replace(/\\u00A0/g, " ").trim();
+      var val = (node.__origExtV73 !== undefined ? node.__origExtV73 : node.nodeValue || "").replace(/\\u00A0/g, " ").trim();
       if (!val || /[\\u0600-\\u06FF]/.test(val)) continue;
       var valLower = val.toLowerCase();
 
@@ -4097,7 +4250,7 @@ html body #btnLangRuV70.active-ext-v70 {
     var pEls = document.querySelectorAll("p, button, strong, b, span");
     for (var i = 0; i < pEls.length; i++) {
       var el = pEls[i];
-      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV70")) continue;
+      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV73")) continue;
       var t = el.textContent || "";
       if (t.indexOf("y e temen") !== -1) {
         el.textContent = t.replace("y e temen", "y le temen");
@@ -4136,7 +4289,7 @@ html body #btnLangRuV70.active-ext-v70 {
       btnSuivi.style.setProperty("display", "inline-flex", "important");
       btnSuivi.style.setProperty("visibility", "visible", "important");
       btnSuivi.style.setProperty("opacity", "1", "important");
-      if (btnSuivi.id === "btnSuiviUniverselV70" && btnSuivi.textContent !== labelSuivi) {
+      if (btnSuivi.id === "btnSuiviUniverselV73" && btnSuivi.textContent !== labelSuivi) {
         btnSuivi.textContent = labelSuivi;
       }
       if (suiviEstActif) {
@@ -4145,9 +4298,9 @@ html body #btnLangRuV70.active-ext-v70 {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV70")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV73")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV70";
+      nv.id = "btnSuiviUniverselV73";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.textContent = labelSuivi;
@@ -4161,7 +4314,7 @@ html body #btnLangRuV70.active-ext-v70 {
   // 3. SOLEIL ET LUNE EN ORBITE (AVEC CACHE ULTRA-RAPIDE)
   var astresDejaVerrouilles = false;
   function reparerSoleilEtLuneEnOrbite() {
-    if (astresDejaVerrouilles && document.querySelector(".astre-soleil-pur-v70") && document.querySelector(".astre-lune-pure-v70")) {
+    if (astresDejaVerrouilles && document.querySelector(".astre-soleil-pur-v73") && document.querySelector(".astre-lune-pure-v73")) {
       return;
     }
 
@@ -4241,8 +4394,8 @@ html body #btnLangRuV70.active-ext-v70 {
       }
 
       if (role === "sun") {
-        node.classList.remove("astre-lune-pure-v70");
-        node.classList.add("astre-soleil-pur-v70");
+        node.classList.remove("astre-lune-pure-v73");
+        node.classList.add("astre-soleil-pur-v73");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -4251,8 +4404,8 @@ html body #btnLangRuV70.active-ext-v70 {
         node.style.setProperty("box-shadow", "0 0 50px 16px rgba(253, 224, 71, 0.72), 0 0 110px 38px rgba(245, 158, 11, 0.42)", "important");
         node.style.setProperty("filter", "none", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v70");
-        node.classList.add("astre-lune-pure-v70");
+        node.classList.remove("astre-soleil-pur-v73");
+        node.classList.add("astre-lune-pure-v73");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -4275,19 +4428,17 @@ html body #btnLangRuV70.active-ext-v70 {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v70");
+          row.classList.add("maher-supprime-v73");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
     }
   }
 
-  // DÉTECTION EXACTE DE LA LANGUE ACTIVE SUR L'ACCUEIL COMME SUR LES PAGES VERSETS !
   function obtenirLangueActive() {
     if (langExtActive && LANGUES_EXT_SUPPORTEES[langExtActive]) return langExtActive;
 
-    // 1. Lire directement le bouton .active dans la barre de langues
-    var btnDeRef = document.getElementById("btnLangDeV70");
+    var btnDeRef = document.getElementById("btnLangDeV73");
     if (btnDeRef && btnDeRef.parentElement) {
       var ch = btnDeRef.parentElement.children;
       for (var i = 0; i < ch.length; i++) {
@@ -4301,7 +4452,6 @@ html body #btnLangRuV70.active-ext-v70 {
       }
     }
 
-    // 2. Fallback sur le texte de la page (Accueil + Pages Versets)
     var bodyTxt = document.body ? document.body.innerText : "";
     if (bodyTxt.indexOf("Escuchar aleya") !== -1 || bodyTxt.indexOf("EXPLICACIÓN DE LA ALEYA") !== -1 || bodyTxt.indexOf("EL NOBLE CORÁN") !== -1 || bodyTxt.indexOf("¿Qué es una Sura") !== -1) return "es";
     if (bodyTxt.indexOf("Listen to verse") !== -1 || bodyTxt.indexOf("VERSE EXPLANATION") !== -1 || bodyTxt.indexOf("THE NOBLE QURAN") !== -1 || bodyTxt.indexOf("What is a Meccan") !== -1) return "en";
@@ -4729,6 +4879,7 @@ html body #btnLangRuV70.active-ext-v70 {
     var languesSeo = ["fr", "en", "en-US", "en-GB", "es", "ar", "de", "de-DE", "it", "id", "ru"];
     for (var l = 0; l < languesSeo.length; l++) {
       var codeL = languesSeo[l];
+      var codeBase = codeL.split("-")[0];
       var linkAlt = document.querySelector("link[hreflang='" + codeL + "']");
       if (!linkAlt) {
         linkAlt = document.createElement("link");
@@ -4736,7 +4887,7 @@ html body #btnLangRuV70.active-ext-v70 {
         linkAlt.setAttribute("hreflang", codeL);
         document.head.appendChild(linkAlt);
       }
-      linkAlt.setAttribute("href", codeL === "fr" ? urlCanonique : urlCanonique + "?lang=" + codeL.split("-")[0]);
+      linkAlt.setAttribute("href", codeBase === "fr" ? urlCanonique : urlCanonique + "?lang=" + codeBase);
     }
   }
 
@@ -4901,7 +5052,7 @@ html body #btnLangRuV70.active-ext-v70 {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV70) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV73) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       var self = this;
@@ -4909,8 +5060,8 @@ html body #btnLangRuV70.active-ext-v70 {
       if (self.currentTime < 0.25) {
         reinitialiserMotsEnBlancTamise();
       }
-      if (!self.__listenersV70) {
-        self.__listenersV70 = true;
+      if (!self.__listenersV73) {
+        self.__listenersV73 = true;
         self.addEventListener("playing", lancerBoucleSuivi);
         self.addEventListener("timeupdate", lancerBoucleSuivi);
       }
@@ -4920,7 +5071,7 @@ html body #btnLangRuV70.active-ext-v70 {
       lancerBoucleSuivi();
       return origPlay.apply(self, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV70 = true;
+    HTMLMediaElement.prototype.__hookedV73 = true;
   }
 
   function trouverAudioActif() {
@@ -6325,14 +6476,11 @@ html body #btnLangRuV70.active-ext-v70 {
 <link rel="preconnect" href="[https://everyayah.com](https://everyayah.com)" crossorigin>
 
 <meta name="yandex-verification" content="9ed8551291c4ae1e">
-<meta name="yandex-verification" content="9ed8551291c4ae1e">
-<meta name="yandex-verification" content="9ed8551291c4ae1e">
-<meta name="yandex-verification" content="9ed8551291c4ae1e">
 <link rel="preconnect" href="https://api.quran.com" crossorigin>
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
 <link rel="preconnect" href="https://translate.googleapis.com" crossorigin>
-<style id="patch-master-v70">
+<style id="patch-master-v73">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -6347,7 +6495,7 @@ html body .flat-earth-sun,
 html body [id*="sun" i]:not([id*="sound" i]),
 html body [class*="sun" i]:not([class*="sound" i]),
 html body [data-astre-role="sun"],
-html body .astre-soleil-pur-v70 {
+html body .astre-soleil-pur-v73 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -6368,8 +6516,8 @@ html body .astre-soleil-pur-v70 {
 }
 html body #flatEarthSun::before, html body #flatEarthSun::after,
 html body .flat-earth-sun::before, html body .flat-earth-sun::after,
-html body .astre-soleil-pur-v70::before, html body .astre-soleil-pur-v70::after,
-html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v70 * {
+html body .astre-soleil-pur-v73::before, html body .astre-soleil-pur-v73::after,
+html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v73 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
@@ -6379,7 +6527,7 @@ html body .flat-earth-moon,
 html body [id*="moon" i],
 html body [class*="moon" i],
 html body [data-astre-role="moon"],
-html body .astre-lune-pure-v70 {
+html body .astre-lune-pure-v73 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -6400,15 +6548,15 @@ html body .astre-lune-pure-v70 {
 }
 html body #flatEarthMoon::before, html body #flatEarthMoon::after,
 html body .flat-earth-moon::before, html body .flat-earth-moon::after,
-html body .astre-lune-pure-v70::before, html body .astre-lune-pure-v70::after,
-html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v70 * {
+html body .astre-lune-pure-v73::before, html body .astre-lune-pure-v73::after,
+html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v73 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
 /* 3. MASQUAGE DE MAHER AL-MUAIQLY, BOUTON REPRENDRE DOUBLON & TRADUCTION DU BAS EN MOT-À-MOT */
 html body img[src*="maher" i],
 html body [data-reciter*="maher" i],
-html body .maher-supprime-v70,
+html body .maher-supprime-v73,
 html body .wbw-masquer-traduction-bas,
 html body .khatm-doublon-reprendre-masque {
   display: none !important; visibility: hidden !important; height: 0 !important; max-height: 0 !important; margin: 0 !important; padding: 0 !important; border: none !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important;
@@ -6458,22 +6606,22 @@ html body .follow-word {
 }
 
 /* 6. BOUTONS DE LANGUE ÉTENDUS (DE, IT, ID, RU) AVEC DRAPEAUX IPHONE EXACTS */
-html body #btnLangDeV70,
-html body #btnLangItV70,
-html body #btnLangIdV70,
-html body #btnLangRuV70 {
+html body #btnLangDeV73,
+html body #btnLangItV73,
+html body #btnLangIdV73,
+html body #btnLangRuV73 {
   cursor: pointer !important; transition: all 0.2s ease !important; display: inline-flex !important; align-items: center !important; justify-content: center !important;
 }
-html body #btnLangDeV70.active-ext-v70,
-html body #btnLangItV70.active-ext-v70,
-html body #btnLangIdV70.active-ext-v70,
-html body #btnLangRuV70.active-ext-v70 {
+html body #btnLangDeV73.active-ext-v73,
+html body #btnLangItV73.active-ext-v73,
+html body #btnLangIdV73.active-ext-v73,
+html body #btnLangRuV73.active-ext-v73 {
   background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(56, 189, 248, 0.18)) !important;
   border: 1px solid #38bdf8 !important; color: #ffffff !important; border-radius: 999px !important;
 }
 
 /* 7. PLANIFICATEUR KHATM ULTRA-COMPACT (STYLE SÉLECTEUR RÉCITATEUR) */
-#khatmPlannerWidgetV70 {
+#khatmPlannerWidgetV73 {
   width: 100% !important;
   box-sizing: border-box !important;
   margin: 12px auto 0 auto !important;
@@ -6493,7 +6641,6 @@ html body #btnLangRuV70.active-ext-v70 {
   justify-content: center;
   gap: 8px;
 }
-/* Menus déroulants stylisés exactement comme le sélecteur de Récitateur */
 .khatm-reciter-select {
   appearance: none !important;
   -webkit-appearance: none !important;
@@ -6514,12 +6661,16 @@ html body #btnLangRuV70.active-ext-v70 {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35), inset 0 0 8px rgba(56, 189, 248, 0.06) !important;
   transition: all 0.18s ease !important;
 }
+[dir="rtl"] .khatm-reciter-select,
+#khatmPlannerWidgetV73[style*="rtl"] .khatm-reciter-select {
+  background-position: left 11px center !important;
+  padding: 6px 13px 6px 28px !important;
+}
 .khatm-reciter-select:hover {
   border-color: #38bdf8 !important;
   background-color: rgba(14, 34, 64, 0.92) !important;
   color: #ffffff !important;
 }
-[dir="rtl"] .khatm-reciter-select, #khatmPlannerWidgetV70[style*="rtl"] .khatm-reciter-select { background-position: left 11px center !important; padding: 6px 13px 6px 28px !important; }
 .khatm-reciter-select option {
   background-color: #06101e !important;
   color: #f8fafc !important;
@@ -6604,31 +6755,169 @@ html body #btnLangRuV70.active-ext-v70 {
   transition: width 0.3s ease;
 }
 </style>
-<script id="script-master-v70">(function codeClientV70() {
+<script id="script-master-v73">(function codeClientV73() {
   var LANGUES_EXT_SUPPORTEES = { de: 27, it: 153, id: 33, ru: 45 };
+  var TOUTES_LANGUES_8 = { fr: true, en: true, es: true, ar: true, de: true, it: true, id: true, ru: true };
   var langExtActive = "";
+  var langueNativeCible = "";
   var IgnoreClicInterneFr = false;
 
+  // Table de correspondance Pays ISO (Cloudflare /cdn-cgi/trace) -> Langue du site (8 langues)
+  var PAYS_VERS_LANGUE = {
+    // Allemand (DE)
+    DE: "de", AT: "de", LI: "de",
+    // Italien (IT)
+    IT: "it", SM: "it", VA: "it",
+    // Indonésien / Malais (ID)
+    ID: "id", MY: "id", BN: "id",
+    // Russe & Espace post-soviétique (RU)
+    RU: "ru", BY: "ru", KZ: "ru", KG: "ru", UZ: "ru", TJ: "ru", AZ: "ru", AM: "ru", MD: "ru", UA: "ru",
+    // Espagnol : Espagne & Amérique Latine (ES)
+    ES: "es", MX: "es", AR: "es", CO: "es", CL: "es", PE: "es", VE: "es", EC: "es",
+    GT: "es", CU: "es", BO: "es", DO: "es", HN: "es", PY: "es", SV: "es", NI: "es",
+    CR: "es", PA: "es", UY: "es", PR: "es", GQ: "es",
+    // Monde Arabe (AR)
+    SA: "ar", AE: "ar", QA: "ar", KW: "ar", BH: "ar", OM: "ar", YE: "ar", EG: "ar",
+    JO: "ar", LB: "ar", SY: "ar", IQ: "ar", PS: "ar", SD: "ar", LY: "ar", MR: "ar",
+    // Francophonie (FR)
+    FR: "fr", BE: "fr", MC: "fr", SN: "fr", CI: "fr", ML: "fr", NE: "fr", BF: "fr",
+    TG: "fr", BJ: "fr", GN: "fr", CM: "fr", CD: "fr", CG: "fr", GA: "fr", MG: "fr", DJ: "fr",
+    // Anglophonie & International (EN : USA, UK, Canada, Australie, Europe du Nord, Asie...)
+    US: "en", GB: "en", AU: "en", NZ: "en", IE: "en", ZA: "en", NG: "en", GH: "en",
+    KE: "en", PK: "en", IN: "en", BD: "en", PH: "en", SG: "en", NL: "en", SE: "en",
+    NO: "en", DK: "en", FI: "en", PL: "en", TR: "en", BR: "en", JP: "en", KR: "en"
+  };
+
+  function detecterLangueLocaleNavigateurEtFuseau() {
+    try {
+      var navLangs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""];
+      for (var i = 0; i < navLangs.length; i++) {
+        var code2 = (navLangs[i] || "").slice(0, 2).toLowerCase();
+        if ( code2 === "ms" ) code2 = "id";
+        if (TOUTES_LANGUES_8[code2]) return code2;
+      }
+      var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").toLowerCase();
+      if (tz.indexOf("berlin") !== -1 || tz.indexOf("vienna") !== -1 || tz.indexOf("zurich") !== -1) return "de";
+      if (tz.indexOf("rome") !== -1) return "it";
+      if (tz.indexOf("jakarta") !== -1 || tz.indexOf("makassar") !== -1 || tz.indexOf("jayapura") !== -1 || tz.indexOf("kuala_lumpur") !== -1) return "id";
+      if (tz.indexOf("moscow") !== -1 || tz.indexOf("almaty") !== -1 || tz.indexOf("minsk") !== -1 || tz.indexOf("tashkent") !== -1 || tz.indexOf("baku") !== -1) return "ru";
+      if (tz.indexOf("madrid") !== -1 || tz.indexOf("mexico") !== -1 || tz.indexOf("buenos_aires") !== -1 || tz.indexOf("bogota") !== -1 || tz.indexOf("santiago") !== -1 || tz.indexOf("lima") !== -1) return "es";
+      if (tz.indexOf("riyadh") !== -1 || tz.indexOf("dubai") !== -1 || tz.indexOf("cairo") !== -1 || tz.indexOf("baghdad") !== -1 || tz.indexOf("amman") !== -1 || tz.indexOf("kuwait") !== -1 || tz.indexOf("qatar") !== -1) return "ar";
+      if (tz.indexOf("paris") !== -1 || tz.indexOf("brussels") !== -1 || tz.indexOf("abidjan") !== -1 || tz.indexOf("dakar") !== -1) return "fr";
+      if (tz.indexOf("new_york") !== -1 || tz.indexOf("chicago") !== -1 || tz.indexOf("los_angeles") !== -1 || tz.indexOf("london") !== -1 || tz.indexOf("sydney") !== -1 || tz.indexOf("toronto") !== -1) return "en";
+    } catch (e) {}
+    return "fr";
+  }
+
   try {
-    var oldIds = ["khatmPlannerWidgetV66", "khatmPlannerWidgetV67", "khatmPlannerWidgetV68", "khatmPlannerWidgetV69"];
+    var oldIds = ["khatmPlannerWidgetV66", "khatmPlannerWidgetV67", "khatmPlannerWidgetV68", "khatmPlannerWidgetV69", "khatmPlannerWidgetV70"];
     for (var w = 0; w < oldIds.length; w++) {
       var elOld = document.getElementById(oldIds[w]);
       if (elOld && elOld.parentNode) elOld.parentNode.removeChild(elOld);
     }
 
     var urlParams = new URLSearchParams(window.location.search);
-    var pLang = urlParams.get("lang");
-    if (pLang && LANGUES_EXT_SUPPORTEES[pLang]) {
-      langExtActive = pLang;
-      localStorage.setItem("corantafsir_lang_ext_v70", pLang);
+    var pLang = (urlParams.get("lang") || "").split("-")[0].toLowerCase();
+
+    if (pLang && TOUTES_LANGUES_8[pLang]) {
+      // 1. Priorité absolue au paramètre ?lang=xx (liens Google Allemagne, USA, UK, Italie, Russie, Indonésie, Espagne, Monde Arabe)
+      localStorage.setItem("corantafsir_user_lang_v73", pLang);
+      if (LANGUES_EXT_SUPPORTEES[pLang]) {
+        langExtActive = pLang;
+        localStorage.setItem("corantafsir_lang_ext_v73", pLang);
+      } else {
+        langExtActive = "";
+        langueNativeCible = pLang;
+        localStorage.setItem("corantafsir_lang_ext_v73", "native");
+      }
     } else {
-      var savedExt = localStorage.getItem("corantafsir_lang_ext_v70") || localStorage.getItem("corantafsir_lang_ext_v69") || localStorage.getItem("corantafsir_lang_ext_v68");
-      if (!savedExt && !localStorage.getItem("corantafsir_first_lang_v72")) { localStorage.setItem("corantafsir_first_lang_v72", "1"); var navL = ((navigator.language || "").slice(0, 2)).toLowerCase(); if (LANGUES_EXT_SUPPORTEES[navL]) { langExtActive = navL; localStorage.setItem("corantafsir_lang_ext_v70", navL); } }
-      if (savedExt && LANGUES_EXT_SUPPORTEES[savedExt]) {
-        langExtActive = savedExt;
+      // 2. Sinon vérifier si une langue a déjà été choisie ou détectée
+      var savedUserLang = localStorage.getItem("corantafsir_user_lang_v73");
+      if (!savedUserLang) {
+        // Première visite : détection immédiate via Fuseau horaire & Navigateur
+        savedUserLang = detecterLangueLocaleNavigateurEtFuseau();
+        localStorage.setItem("corantafsir_user_lang_v73", savedUserLang);
+
+        // Affinage automatique par Pays IP via Cloudflare (/cdn-cgi/trace)
+        fetch("/cdn-cgi/trace")
+          .then(function (r) { return r.text(); })
+          .then(function (txt) {
+            if (localStorage.getItem("corantafsir_manual_click_v73") === "1") return;
+            var mLoc = txt.match(/loc=([A-Z]{2})/);
+            if (mLoc && mLoc[1]) {
+              var countryCode = mLoc[1];
+              var langPays = PAYS_VERS_LANGUE[countryCode];
+              if (!langPays && (countryCode === "MA" || countryCode === "DZ" || countryCode === "TN")) {
+                var nav2 = ((navigator.language || "").slice(0, 2)).toLowerCase();
+                langPays = nav2 === "ar" ? "ar" : "fr";
+              } else if (!langPays && (countryCode === "CH" || countryCode === "CA")) {
+                var navCh = ((navigator.language || "").slice(0, 2)).toLowerCase();
+                langPays = TOUTES_LANGUES_8[navCh] ? navCh : (countryCode === "CH" ? "de" : "en");
+              }
+              if (langPays && TOUTES_LANGUES_8[langPays] && langPays !== savedUserLang) {
+                localStorage.setItem("corantafsir_user_lang_v73", langPays);
+                appliquerLangueCibleGlobale(langPays);
+              }
+            }
+          })
+          .catch(function () {});
+      }
+
+      if (LANGUES_EXT_SUPPORTEES[savedUserLang]) {
+        langExtActive = savedUserLang;
+      } else if (TOUTES_LANGUES_8[savedUserLang]) {
+        langExtActive = "";
+        langueNativeCible = savedUserLang;
       }
     }
   } catch (e) {}
+
+  function appliquerLangueCibleGlobale(codeLang) {
+    if (!TOUTES_LANGUES_8[codeLang]) return;
+    if (LANGUES_EXT_SUPPORTEES[codeLang]) {
+      restaurerTextesOriginauxDepuisExt();
+      langExtActive = codeLang;
+      langueNativeCible = "";
+      try { localStorage.setItem("corantafsir_lang_ext_v73", codeLang); } catch (e) {}
+      var mapBtnExt = { de: "btnLangDeV73", it: "btnLangItV73", id: "btnLangIdV73", ru: "btnLangRuV73" };
+      var bExt = document.getElementById(mapBtnExt[codeLang]);
+      if (bExt && bExt.parentElement) {
+        basculerDepuisArabeSurClicUtilisateur(bExt.parentElement, bExt);
+      }
+      dernierVersetSeo = "";
+      synchroniserTout();
+    } else {
+      langExtActive = "";
+      langueNativeCible = codeLang;
+      try { localStorage.setItem("corantafsir_lang_ext_v73", "native"); } catch (e) {}
+      restaurerTextesOriginauxDepuisExt();
+      cliquerBoutonNatifSiNecessaire(codeLang);
+      dernierVersetSeo = "";
+      synchroniserTout();
+    }
+  }
+
+  function cliquerBoutonNatifSiNecessaire(codeNat) {
+    if (!codeNat || langExtActive) return;
+    var btnDeRef = document.getElementById("btnLangDeV73");
+    if (!btnDeRef || !btnDeRef.parentElement) return;
+    var parentBar = btnDeRef.parentElement;
+    var codeUpper = codeNat.toUpperCase();
+    for (var i = 0; i < parentBar.children.length; i++) {
+      var btn = parentBar.children[i];
+      if (btn.id && btn.id.indexOf("V73") !== -1) continue;
+      var txt = (btn.textContent || "").toUpperCase();
+      if (txt.indexOf(codeUpper) !== -1) {
+        if (!btn.classList.contains("active")) {
+          IgnoreClicInterneFr = true;
+          btn.click();
+          IgnoreClicInterneFr = false;
+        }
+        langueNativeCible = "";
+        break;
+      }
+    }
+  }
 
   // ==========================================================================
   // 0. MOTEUR DU PLANIFICATEUR KHATM COMPACT (SÉLECTEURS STYLE RÉCITATEUR)
@@ -6773,7 +7062,7 @@ html body #btnLangRuV70.active-ext-v70 {
     var badges = document.querySelectorAll("span, div");
     for (var b = 0; b < badges.length; b++) {
       var el = badges[b];
-      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV70")) continue;
+      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV73")) continue;
       var txt = (el.textContent || "").trim();
       var bm = txt.match(/^(\\d{1,3})\\s*:\\s*(\\d{1,3})$/);
       if (bm) return bm[1] + ":" + bm[2];
@@ -6975,11 +7264,10 @@ html body #btnLangRuV70.active-ext-v70 {
     var boiteHero = trouverBoiteHeroPourInsertionInterne();
     if (!boiteHero) return;
 
-    // Masquer le bouton vert natif en doublon dans la bannière Hero
     var liensInternes = boiteHero.querySelectorAll("a, button");
     for (var l = 0; l < liensInternes.length; l++) {
       var elL = liensInternes[l];
-      if (elL.closest("#khatmPlannerWidgetV70")) continue;
+      if (elL.closest("#khatmPlannerWidgetV73")) continue;
       var txtL = (elL.textContent || "").trim();
       if (
         txtL.indexOf("Reprendre :") !== -1 ||
@@ -6995,10 +7283,10 @@ html body #btnLangRuV70.active-ext-v70 {
       }
     }
 
-    var widget = document.getElementById("khatmPlannerWidgetV70");
+    var widget = document.getElementById("khatmPlannerWidgetV73");
     if (!widget) {
       widget = document.createElement("div");
-      widget.id = "khatmPlannerWidgetV70";
+      widget.id = "khatmPlannerWidgetV73";
       widget.setAttribute("translate", "no");
       widget.className = "notranslate";
       boiteHero.appendChild(widget);
@@ -7026,7 +7314,6 @@ html body #btnLangRuV70.active-ext-v70 {
     widget.setAttribute("data-render-sig", cleSignatureRendu);
     widget.style.direction = lang === "ar" ? "rtl" : "ltr";
 
-    // Sélecteur déroulant de Sourate (ou bouton Mémoriser sur une page verset)
     var controlePositionHtml = "";
     if (estSurPageVerset) {
       var partsVk = vkPage.split(":");
@@ -7080,7 +7367,7 @@ html body #btnLangRuV70.active-ext-v70 {
         '<span>' + t.objJour + ' <strong style="color:#fde047;">' + nomSourateCible + ' (' + cibleInfo.s + ':' + cibleInfo.v + ')</strong></span>' +
         '<span>•</span>' +
         '<div class="khatm-mini-bar-wrap"><div class="khatm-mini-bar-fill" style="width:' + Math.max(2, Number(pct)) + '%;"></div></div>' +
-        '<span style="color:#6ee7b7;font-weight:600;">' + idxActuel + ' / 6236 (' + pct + '%) • ~' + joursRestants + ' ' + t.jours + '</span>' +
+        '<span dir="ltr" style="color:#6ee7b7;font-weight:600;display:inline-block;">' + idxActuel + ' / 6236 (' + pct + '%) • ~' + joursRestants + ' ' + t.jours + '</span>' +
       '</div>';
 
     var selMonths = widget.querySelector("select[data-khatm-sel='months']");
@@ -7178,9 +7465,9 @@ html body #btnLangRuV70.active-ext-v70 {
 
   function modifierNoeudTexteSeul(textNode, nouveauTexte) {
     if (!textNode || textNode.nodeType !== 3) return;
-    if (textNode.__origExtV70 === undefined) {
-      textNode.__origExtV70 = textNode.nodeValue;
-      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV70 });
+    if (textNode.__origExtV73 === undefined) {
+      textNode.__origExtV73 = textNode.nodeValue;
+      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV73 });
     }
     if (textNode.nodeValue !== nouveauTexte) {
       textNode.nodeValue = nouveauTexte;
@@ -7235,21 +7522,21 @@ html body #btnLangRuV70.active-ext-v70 {
     for (var f = 0; f < conteneurLang.children.length; f++) {
       if (conteneurLang.children[f] !== btnActif) {
         conteneurLang.children[f].classList.remove("active");
-        conteneurLang.children[f].classList.remove("active-ext-v70");
+        conteneurLang.children[f].classList.remove("active-ext-v73");
       }
     }
-    if (btnActif) btnActif.classList.add("active-ext-v70");
+    if (btnActif) btnActif.classList.add("active-ext-v73");
   }
 
   function assurerBoutonsLanguesEtendues() {
-    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV70), [id^='btnLangItV']:not(#btnLangItV70), [id^='btnLangIdV']:not(#btnLangIdV70), [id^='btnLangRuV']:not(#btnLangRuV70)");
+    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV73), [id^='btnLangItV']:not(#btnLangItV73), [id^='btnLangIdV']:not(#btnLangIdV73), [id^='btnLangRuV']:not(#btnLangRuV73)");
     for (var b = 0; b < oldBtns.length; b++) {
       if (oldBtns[b].parentNode) oldBtns[b].parentNode.removeChild(oldBtns[b]);
     }
 
-    var mapIds = { de: "btnLangDeV70", it: "btnLangItV70", id: "btnLangIdV70", ru: "btnLangRuV70" };
-    if (document.getElementById("btnLangDeV70") && document.getElementById("btnLangIdV70") && document.getElementById("btnLangRuV70")) {
-      var parentBar = document.getElementById("btnLangDeV70").parentElement;
+    var mapIds = { de: "btnLangDeV73", it: "btnLangItV73", id: "btnLangIdV73", ru: "btnLangRuV73" };
+    if (document.getElementById("btnLangDeV73") && document.getElementById("btnLangIdV73") && document.getElementById("btnLangRuV73")) {
+      var parentBar = document.getElementById("btnLangDeV73").parentElement;
       if (parentBar) {
         parentBar.setAttribute("translate", "no");
         parentBar.classList.add("notranslate");
@@ -7258,15 +7545,18 @@ html body #btnLangRuV70.active-ext-v70 {
         var bEl = document.getElementById(mapIds[code]);
         if (!bEl) continue;
         if (langExtActive === code) {
-          bEl.classList.add("active-ext-v70");
+          bEl.classList.add("active-ext-v73");
           if (parentBar) {
             for (var k = 0; k < parentBar.children.length; k++) {
               if (parentBar.children[k] !== bEl) parentBar.children[k].classList.remove("active");
             }
           }
         } else {
-          bEl.classList.remove("active-ext-v70");
+          bEl.classList.remove("active-ext-v73");
         }
+      }
+      if (!langExtActive && langueNativeCible) {
+        cliquerBoutonNatifSiNecessaire(langueNativeCible);
       }
       return;
     }
@@ -7343,14 +7633,19 @@ html body #btnLangRuV70.active-ext-v70 {
         } else {
           nvBtn.innerHTML = '<span style="margin-right:3px;">' + emojiDrapeau + "</span><span>" + labelCourt + "</span>";
         }
-        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v70");
+        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v73");
 
         nvBtn.addEventListener("click", function (ev) {
           ev.preventDefault();
           ev.stopPropagation();
           restaurerTextesOriginauxDepuisExt();
           langExtActive = codeIso;
-          try { localStorage.setItem("corantafsir_lang_ext_v70", codeIso); } catch (e) {}
+          langueNativeCible = "";
+          try {
+            localStorage.setItem("corantafsir_lang_ext_v73", codeIso);
+            localStorage.setItem("corantafsir_user_lang_v73", codeIso);
+            localStorage.setItem("corantafsir_manual_click_v73", "1");
+          } catch (e) {}
           basculerDepuisArabeSurClicUtilisateur(conteneurLang, nvBtn);
           dernierVersetSeo = "";
           setTimeout(synchroniserTout, 15);
@@ -7358,10 +7653,10 @@ html body #btnLangRuV70.active-ext-v70 {
         return nvBtn;
       }
 
-      var btnDe = creerBoutonLangExt("btnLangDeV70", "de", "\\uD83C\\uDDE9\\uD83C\\uDDEA", "DE");
-      var btnIt = creerBoutonLangExt("btnLangItV70", "it", "\\uD83C\\uDDEE\\uD83C\\uDDF9", "IT");
-      var btnId = creerBoutonLangExt("btnLangIdV70", "id", "\\uD83C\\uDDEE\\uD83C\\uDDE9", "ID");
-      var btnRu = creerBoutonLangExt("btnLangRuV70", "ru", "\\uD83C\\uDDF7\\uD83C\\uDDFA", "RU");
+      var btnDe = creerBoutonLangExt("btnLangDeV73", "de", "\\uD83C\\uDDE9\\uD83C\\uDDEA", "DE");
+      var btnIt = creerBoutonLangExt("btnLangItV73", "it", "\\uD83C\\uDDEE\\uD83C\\uDDF9", "IT");
+      var btnId = creerBoutonLangExt("btnLangIdV73", "id", "\\uD83C\\uDDEE\\uD83C\\uDDE9", "ID");
+      var btnRu = creerBoutonLangExt("btnLangRuV73", "ru", "\\uD83C\\uDDF7\\uD83C\\uDDFA", "RU");
 
       for (var a = 0; a < freresInit.length; a++) {
         (function (autre) {
@@ -7371,11 +7666,18 @@ html body #btnLangRuV70.active-ext-v70 {
             if (IgnoreClicInterneFr) return;
             var etaitEnWbw = obtenirCartesMotAMotVisibles().length >= 2;
             langExtActive = "";
-            try { localStorage.setItem("corantafsir_lang_ext_v70", "native"); } catch (e) {}
-            btnDe.classList.remove("active-ext-v70");
-            btnIt.classList.remove("active-ext-v70");
-            btnId.classList.remove("active-ext-v70");
-            btnRu.classList.remove("active-ext-v70");
+            langueNativeCible = "";
+            var txtAutre = (autre.textContent || "").toUpperCase();
+            var codeNatClique = txtAutre.indexOf("EN") !== -1 ? "en" : (txtAutre.indexOf("ES") !== -1 ? "es" : (txtAutre.indexOf("AR") !== -1 ? "ar" : "fr"));
+            try {
+              localStorage.setItem("corantafsir_lang_ext_v73", "native");
+              localStorage.setItem("corantafsir_user_lang_v73", codeNatClique);
+              localStorage.setItem("corantafsir_manual_click_v73", "1");
+            } catch (e) {}
+            btnDe.classList.remove("active-ext-v73");
+            btnIt.classList.remove("active-ext-v73");
+            btnId.classList.remove("active-ext-v73");
+            btnRu.classList.remove("active-ext-v73");
             restaurerTextesOriginauxDepuisExt();
             dernierVersetSeo = "";
 
@@ -7403,6 +7705,8 @@ html body #btnLangRuV70.active-ext-v70 {
 
       if (langExtActive && mapIds[langExtActive]) {
         basculerDepuisArabeSurClicUtilisateur(conteneurLang, document.getElementById(mapIds[langExtActive]));
+      } else if (langueNativeCible) {
+        cliquerBoutonNatifSiNecessaire(langueNativeCible);
       }
     }
   }
@@ -7437,8 +7741,8 @@ html body #btnLangRuV70.active-ext-v70 {
   function traduireNoeudVersExtAsync(textNode, origTxt, codeLang) {
     if (!origTxt || origTxt.length < 3 || !LANGUES_EXT_SUPPORTEES[codeLang]) return;
     var cle = codeLang + "_" + origTxt.slice(0, 140) + "_" + origTxt.length;
-    var esp1 = (textNode.__origExtV70 || textNode.nodeValue).match(/^\\s*/)[0];
-    var esp2 = (textNode.__origExtV70 || textNode.nodeValue).match(/\\s*$/)[0];
+    var esp1 = (textNode.__origExtV73 || textNode.nodeValue).match(/^\\s*/)[0];
+    var esp2 = (textNode.__origExtV73 || textNode.nodeValue).match(/\\s*$/)[0];
 
     if (cacheTexteUnitaireExt[cle]) {
       modifierNoeudTexteSeul(textNode, esp1 + cacheTexteUnitaireExt[cle] + esp2);
@@ -7824,7 +8128,7 @@ html body #btnLangRuV70.active-ext-v70 {
     var cartesAccueil = document.querySelectorAll("a[href*='sourate-']");
     for (var ca = 0; ca < cartesAccueil.length; ca++) {
       var lienCarte = cartesAccueil[ca];
-      if (lienCarte.closest("#khatmPlannerWidgetV70")) continue;
+      if (lienCarte.closest("#khatmPlannerWidgetV73")) continue;
       var mHref = (lienCarte.getAttribute("href") || "").match(/sourate-(\\d+)/i);
       if (mHref) {
         var sId = Number(mHref[1]);
@@ -7833,9 +8137,9 @@ html body #btnLangRuV70.active-ext-v70 {
           for (var te = 0; te < titresEl.length; te++) {
             var candT = titresEl[te];
             if (candT.children.length === 0) {
-              var origT = (candT.__origTitreV70 || candT.textContent || "").trim();
+              var origT = (candT.__origTitreV73 || candT.textContent || "").trim();
               if (origT.indexOf("(") !== -1 && origT.indexOf(")") !== -1 && origT.indexOf("Miracle") === -1 && origT.indexOf("Wunder") === -1 && origT.indexOf("Milagro") === -1) {
-                if (!candT.__origTitreV70) candT.__origTitreV70 = origT;
+                if (!candT.__origTitreV73) candT.__origTitreV73 = origT;
                 if (candT.firstChild && candT.firstChild.nodeType === 3) {
                   modifierNoeudTexteSeul(candT.firstChild, noms114[sId]);
                 }
@@ -7859,9 +8163,9 @@ html body #btnLangRuV70.active-ext-v70 {
       if (!pEl) continue;
       var tag = pEl.tagName;
       if (tag === "SCRIPT" || tag === "STYLE") continue;
-      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate") || pEl.closest("#khatmPlannerWidgetV70")) continue;
+      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate") || pEl.closest("#khatmPlannerWidgetV73")) continue;
 
-      var val = (node.__origExtV70 !== undefined ? node.__origExtV70 : node.nodeValue || "").replace(/\\u00A0/g, " ").trim();
+      var val = (node.__origExtV73 !== undefined ? node.__origExtV73 : node.nodeValue || "").replace(/\\u00A0/g, " ").trim();
       if (!val || /[\\u0600-\\u06FF]/.test(val)) continue;
       var valLower = val.toLowerCase();
 
@@ -7964,7 +8268,7 @@ html body #btnLangRuV70.active-ext-v70 {
     var pEls = document.querySelectorAll("p, button, strong, b, span");
     for (var i = 0; i < pEls.length; i++) {
       var el = pEls[i];
-      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV70")) continue;
+      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV73")) continue;
       var t = el.textContent || "";
       if (t.indexOf("y e temen") !== -1) {
         el.textContent = t.replace("y e temen", "y le temen");
@@ -8003,7 +8307,7 @@ html body #btnLangRuV70.active-ext-v70 {
       btnSuivi.style.setProperty("display", "inline-flex", "important");
       btnSuivi.style.setProperty("visibility", "visible", "important");
       btnSuivi.style.setProperty("opacity", "1", "important");
-      if (btnSuivi.id === "btnSuiviUniverselV70" && btnSuivi.textContent !== labelSuivi) {
+      if (btnSuivi.id === "btnSuiviUniverselV73" && btnSuivi.textContent !== labelSuivi) {
         btnSuivi.textContent = labelSuivi;
       }
       if (suiviEstActif) {
@@ -8012,9 +8316,9 @@ html body #btnLangRuV70.active-ext-v70 {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV70")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV73")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV70";
+      nv.id = "btnSuiviUniverselV73";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.textContent = labelSuivi;
@@ -8028,7 +8332,7 @@ html body #btnLangRuV70.active-ext-v70 {
   // 3. SOLEIL ET LUNE EN ORBITE (AVEC CACHE ULTRA-RAPIDE)
   var astresDejaVerrouilles = false;
   function reparerSoleilEtLuneEnOrbite() {
-    if (astresDejaVerrouilles && document.querySelector(".astre-soleil-pur-v70") && document.querySelector(".astre-lune-pure-v70")) {
+    if (astresDejaVerrouilles && document.querySelector(".astre-soleil-pur-v73") && document.querySelector(".astre-lune-pure-v73")) {
       return;
     }
 
@@ -8108,8 +8412,8 @@ html body #btnLangRuV70.active-ext-v70 {
       }
 
       if (role === "sun") {
-        node.classList.remove("astre-lune-pure-v70");
-        node.classList.add("astre-soleil-pur-v70");
+        node.classList.remove("astre-lune-pure-v73");
+        node.classList.add("astre-soleil-pur-v73");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -8118,8 +8422,8 @@ html body #btnLangRuV70.active-ext-v70 {
         node.style.setProperty("box-shadow", "0 0 50px 16px rgba(253, 224, 71, 0.72), 0 0 110px 38px rgba(245, 158, 11, 0.42)", "important");
         node.style.setProperty("filter", "none", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v70");
-        node.classList.add("astre-lune-pure-v70");
+        node.classList.remove("astre-soleil-pur-v73");
+        node.classList.add("astre-lune-pure-v73");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -8142,19 +8446,17 @@ html body #btnLangRuV70.active-ext-v70 {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v70");
+          row.classList.add("maher-supprime-v73");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
     }
   }
 
-  // DÉTECTION EXACTE DE LA LANGUE ACTIVE SUR L'ACCUEIL COMME SUR LES PAGES VERSETS !
   function obtenirLangueActive() {
     if (langExtActive && LANGUES_EXT_SUPPORTEES[langExtActive]) return langExtActive;
 
-    // 1. Lire directement le bouton .active dans la barre de langues
-    var btnDeRef = document.getElementById("btnLangDeV70");
+    var btnDeRef = document.getElementById("btnLangDeV73");
     if (btnDeRef && btnDeRef.parentElement) {
       var ch = btnDeRef.parentElement.children;
       for (var i = 0; i < ch.length; i++) {
@@ -8168,7 +8470,6 @@ html body #btnLangRuV70.active-ext-v70 {
       }
     }
 
-    // 2. Fallback sur le texte de la page (Accueil + Pages Versets)
     var bodyTxt = document.body ? document.body.innerText : "";
     if (bodyTxt.indexOf("Escuchar aleya") !== -1 || bodyTxt.indexOf("EXPLICACIÓN DE LA ALEYA") !== -1 || bodyTxt.indexOf("EL NOBLE CORÁN") !== -1 || bodyTxt.indexOf("¿Qué es una Sura") !== -1) return "es";
     if (bodyTxt.indexOf("Listen to verse") !== -1 || bodyTxt.indexOf("VERSE EXPLANATION") !== -1 || bodyTxt.indexOf("THE NOBLE QURAN") !== -1 || bodyTxt.indexOf("What is a Meccan") !== -1) return "en";
@@ -8596,6 +8897,7 @@ html body #btnLangRuV70.active-ext-v70 {
     var languesSeo = ["fr", "en", "en-US", "en-GB", "es", "ar", "de", "de-DE", "it", "id", "ru"];
     for (var l = 0; l < languesSeo.length; l++) {
       var codeL = languesSeo[l];
+      var codeBase = codeL.split("-")[0];
       var linkAlt = document.querySelector("link[hreflang='" + codeL + "']");
       if (!linkAlt) {
         linkAlt = document.createElement("link");
@@ -8603,7 +8905,7 @@ html body #btnLangRuV70.active-ext-v70 {
         linkAlt.setAttribute("hreflang", codeL);
         document.head.appendChild(linkAlt);
       }
-      linkAlt.setAttribute("href", codeL === "fr" ? urlCanonique : urlCanonique + "?lang=" + codeL.split("-")[0]);
+      linkAlt.setAttribute("href", codeBase === "fr" ? urlCanonique : urlCanonique + "?lang=" + codeBase);
     }
   }
 
@@ -8768,7 +9070,7 @@ html body #btnLangRuV70.active-ext-v70 {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV70) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV73) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       var self = this;
@@ -8776,8 +9078,8 @@ html body #btnLangRuV70.active-ext-v70 {
       if (self.currentTime < 0.25) {
         reinitialiserMotsEnBlancTamise();
       }
-      if (!self.__listenersV70) {
-        self.__listenersV70 = true;
+      if (!self.__listenersV73) {
+        self.__listenersV73 = true;
         self.addEventListener("playing", lancerBoucleSuivi);
         self.addEventListener("timeupdate", lancerBoucleSuivi);
       }
@@ -8787,7 +9089,7 @@ html body #btnLangRuV70.active-ext-v70 {
       lancerBoucleSuivi();
       return origPlay.apply(self, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV70 = true;
+    HTMLMediaElement.prototype.__hookedV73 = true;
   }
 
   function trouverAudioActif() {
