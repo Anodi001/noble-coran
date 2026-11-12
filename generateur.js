@@ -2648,6 +2648,7 @@ html body #btnLangRuV70.active-ext-v70 {
   background-color: rgba(14, 34, 64, 0.92) !important;
   color: #ffffff !important;
 }
+[dir="rtl"] .khatm-reciter-select, #khatmPlannerWidgetV70[style*="rtl"] .khatm-reciter-select { background-position: left 11px center !important; padding: 6px 13px 6px 28px !important; }
 .khatm-reciter-select option {
   background-color: #06101e !important;
   color: #f8fafc !important;
@@ -3207,7 +3208,7 @@ html body #btnLangRuV70.active-ext-v70 {
         '<span>' + t.objJour + ' <strong style="color:#fde047;">' + nomSourateCible + ' (' + cibleInfo.s + ':' + cibleInfo.v + ')</strong></span>' +
         '<span>•</span>' +
         '<div class="khatm-mini-bar-wrap"><div class="khatm-mini-bar-fill" style="width:' + Math.max(2, Number(pct)) + '%;"></div></div>' +
-        '<span style="color:#6ee7b7;font-weight:600;">' + idxActuel + ' / 6 236 (' + pct + '%) • ~' + joursRestants + ' ' + t.jours + '</span>' +
+        '<span style="color:#6ee7b7;font-weight:600;">' + idxActuel + ' / 6236 (' + pct + '%) • ~' + joursRestants + ' ' + t.jours + '</span>' +
       '</div>';
 
     var selMonths = widget.querySelector("select[data-khatm-sel='months']");
@@ -6509,6 +6510,7 @@ html body #btnLangRuV70.active-ext-v70 {
   background-color: rgba(14, 34, 64, 0.92) !important;
   color: #ffffff !important;
 }
+[dir="rtl"] .khatm-reciter-select, #khatmPlannerWidgetV70[style*="rtl"] .khatm-reciter-select { background-position: left 11px center !important; padding: 6px 13px 6px 28px !important; }
 .khatm-reciter-select option {
   background-color: #06101e !important;
   color: #f8fafc !important;
@@ -7068,7 +7070,7 @@ html body #btnLangRuV70.active-ext-v70 {
         '<span>' + t.objJour + ' <strong style="color:#fde047;">' + nomSourateCible + ' (' + cibleInfo.s + ':' + cibleInfo.v + ')</strong></span>' +
         '<span>•</span>' +
         '<div class="khatm-mini-bar-wrap"><div class="khatm-mini-bar-fill" style="width:' + Math.max(2, Number(pct)) + '%;"></div></div>' +
-        '<span style="color:#6ee7b7;font-weight:600;">' + idxActuel + ' / 6 236 (' + pct + '%) • ~' + joursRestants + ' ' + t.jours + '</span>' +
+        '<span style="color:#6ee7b7;font-weight:600;">' + idxActuel + ' / 6236 (' + pct + '%) • ~' + joursRestants + ' ' + t.jours + '</span>' +
       '</div>';
 
     var selMonths = widget.querySelector("select[data-khatm-sel='months']");
