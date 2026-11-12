@@ -2699,9 +2699,9 @@ html body #btnLangItV60.active-ext-v60 {
   var noeudsTextesModifies = [];
 
   try {
-    var sauvChapExt = localStorage.getItem("cache_ext_chap_v60");
+    var sauvChapExt = localStorage.getItem("cache_ext_chap_v61");
     if (sauvChapExt) cacheChapitresExt = JSON.parse(sauvChapExt);
-    var sauvTxtExt = localStorage.getItem("cache_txt_unit_ext_v60");
+    var sauvTxtExt = localStorage.getItem("cache_txt_unit_ext_v61");
     if (sauvTxtExt) cacheTexteUnitaireExt = JSON.parse(sauvTxtExt);
   } catch (e) {}
 
@@ -2935,7 +2935,7 @@ html body #btnLangItV60.active-ext-v60 {
           for (var s = 0; s < res[0].length; s++) {
             if (res[0][s][0]) tr += res[0][s][0];
           }
-          tr = tr.trim();
+          tr = tr.trim().replace(/soddisfatto di lui/gi, "soddisfatto di lei").replace(/Il suo personaggio era il Corano/gi, "Il suo carattere era il Corano").replace(/r[eé]pondit\\s*:/gi, codeLang==="it"?"rispose:":"antwortete:");
           if (tr) {
             cacheTexteUnitaireExt[cle] = tr;
             try { localStorage.setItem("cache_txt_unit_ext_v60", JSON.stringify(cacheTexteUnitaireExt)); } catch (e) {}
@@ -3205,7 +3205,7 @@ html body #btnLangItV60.active-ext-v60 {
 
       var estSurAccueil = !rectArabe;
       var estSousVerset = rectArabe && rectP.top > rectArabe.bottom + 80;
-      if ((estSurAccueil || estSousVerset) && val.length >= 18) {
+      if ((estSurAccueil || estSousVerset) && val.length >= 3) {
         if (
           val.indexOf("Traduction originale") === -1 &&
           val.indexOf("Deutsche Übersetzung") === -1 &&
@@ -5587,9 +5587,9 @@ html body #btnLangItV60.active-ext-v60 {
   var noeudsTextesModifies = [];
 
   try {
-    var sauvChapExt = localStorage.getItem("cache_ext_chap_v60");
+    var sauvChapExt = localStorage.getItem("cache_ext_chap_v61");
     if (sauvChapExt) cacheChapitresExt = JSON.parse(sauvChapExt);
-    var sauvTxtExt = localStorage.getItem("cache_txt_unit_ext_v60");
+    var sauvTxtExt = localStorage.getItem("cache_txt_unit_ext_v61");
     if (sauvTxtExt) cacheTexteUnitaireExt = JSON.parse(sauvTxtExt);
   } catch (e) {}
 
@@ -5823,7 +5823,7 @@ html body #btnLangItV60.active-ext-v60 {
           for (var s = 0; s < res[0].length; s++) {
             if (res[0][s][0]) tr += res[0][s][0];
           }
-          tr = tr.trim();
+          tr = tr.trim().replace(/soddisfatto di lui/gi, "soddisfatto di lei").replace(/Il suo personaggio era il Corano/gi, "Il suo carattere era il Corano").replace(/r[eé]pondit\\s*:/gi, codeLang==="it"?"rispose:":"antwortete:");
           if (tr) {
             cacheTexteUnitaireExt[cle] = tr;
             try { localStorage.setItem("cache_txt_unit_ext_v60", JSON.stringify(cacheTexteUnitaireExt)); } catch (e) {}
@@ -6093,7 +6093,7 @@ html body #btnLangItV60.active-ext-v60 {
 
       var estSurAccueil = !rectArabe;
       var estSousVerset = rectArabe && rectP.top > rectArabe.bottom + 80;
-      if ((estSurAccueil || estSousVerset) && val.length >= 18) {
+      if ((estSurAccueil || estSousVerset) && val.length >= 3) {
         if (
           val.indexOf("Traduction originale") === -1 &&
           val.indexOf("Deutsche Übersetzung") === -1 &&
