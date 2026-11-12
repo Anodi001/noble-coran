@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1794502184914">
-  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=1794502184914">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1794516688415">
+  <link rel="icon" type="image/svg+xml" href="/logo-v30.svg?v=1794516688415">
   <link rel="canonical" href="https://corantafsir.com/sourate-2-verset-134.html">
   <title>Sourate 2 verset 134 (Al-Baqarah) - Coran & Tafsir</title>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -717,7 +717,7 @@ body.wbw-mode-on .fr-verse-text {
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
 <link rel="preconnect" href="https://translate.googleapis.com" crossorigin>
-<style id="patch-master-v68">
+<style id="patch-master-v69">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -726,13 +726,13 @@ body.wbw-mode-on .fr-verse-text {
   --wbw-min-w: 92px;
 }
 
-/* 1. SOLEIL DORÉ PUR 150px */
+/* 1. SOLEIL DORÉ PUR 150px (ACCÉLÉRATION GPU) */
 html body #flatEarthSun,
 html body .flat-earth-sun,
 html body [id*="sun" i]:not([id*="sound" i]),
 html body [class*="sun" i]:not([class*="sound" i]),
 html body [data-astre-role="sun"],
-html body .astre-soleil-pur-v68 {
+html body .astre-soleil-pur-v69 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -749,21 +749,22 @@ html body .astre-soleil-pur-v68 {
   filter: none !important;
   backdrop-filter: none !important;
   mix-blend-mode: normal !important;
+  will-change: transform !important;
 }
 html body #flatEarthSun::before, html body #flatEarthSun::after,
 html body .flat-earth-sun::before, html body .flat-earth-sun::after,
-html body .astre-soleil-pur-v68::before, html body .astre-soleil-pur-v68::after,
-html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v68 * {
+html body .astre-soleil-pur-v69::before, html body .astre-soleil-pur-v69::after,
+html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v69 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
-/* 2. LUNE BLANCHE PURE 150px */
+/* 2. LUNE BLANCHE PURE 150px (ACCÉLÉRATION GPU) */
 html body #flatEarthMoon,
 html body .flat-earth-moon,
 html body [id*="moon" i],
 html body [class*="moon" i],
 html body [data-astre-role="moon"],
-html body .astre-lune-pure-v68 {
+html body .astre-lune-pure-v69 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -780,17 +781,21 @@ html body .astre-lune-pure-v68 {
   filter: none !important;
   backdrop-filter: none !important;
   mix-blend-mode: normal !important;
+  will-change: transform !important;
 }
 html body #flatEarthMoon::before, html body #flatEarthMoon::after,
 html body .flat-earth-moon::before, html body .flat-earth-moon::after,
-html body .astre-lune-pure-v68::before, html body .astre-lune-pure-v68::after,
-html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v68 * {
+html body .astre-lune-pure-v69::before, html body .astre-lune-pure-v69::after,
+html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v69 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
-/* 3. MASQUAGE DE MAHER AL-MUAIQLY & TRADUCTION DU BAS EN MOT-À-MOT */
-html body img[src*="maher" i], html body [data-reciter*="maher" i], html body .maher-supprime-v68,
-html body .wbw-masquer-traduction-bas {
+/* 3. MASQUAGE DE MAHER AL-MUAIQLY, BOUTON REPRENDRE DOUBLON & TRADUCTION DU BAS EN MOT-À-MOT */
+html body img[src*="maher" i],
+html body [data-reciter*="maher" i],
+html body .maher-supprime-v69,
+html body .wbw-masquer-traduction-bas,
+html body .khatm-doublon-reprendre-masque {
   display: none !important; visibility: hidden !important; height: 0 !important; max-height: 0 !important; margin: 0 !important; padding: 0 !important; border: none !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important;
 }
 
@@ -837,88 +842,77 @@ html body .follow-word {
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.14) !important;
 }
 
-/* 6. BOUTONS DE LANGUE ÉTENDUS (DE, IT, ID, RU) AVEC DRAPEAUX IPHONE */
-html body #btnLangDeV68,
-html body #btnLangItV68,
-html body #btnLangIdV68,
-html body #btnLangRuV68 {
+/* 6. BOUTONS DE LANGUE ÉTENDUS (DE, IT, ID, RU) AVEC DRAPEAUX IPHONE EXACTS */
+html body #btnLangDeV69,
+html body #btnLangItV69,
+html body #btnLangIdV69,
+html body #btnLangRuV69 {
   cursor: pointer !important; transition: all 0.2s ease !important; display: inline-flex !important; align-items: center !important; justify-content: center !important;
 }
-html body #btnLangDeV68.active-ext-v68,
-html body #btnLangItV68.active-ext-v68,
-html body #btnLangIdV68.active-ext-v68,
-html body #btnLangRuV68.active-ext-v68 {
+html body #btnLangDeV69.active-ext-v69,
+html body #btnLangItV69.active-ext-v69,
+html body #btnLangIdV69.active-ext-v69,
+html body #btnLangRuV69.active-ext-v69 {
   background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(56, 189, 248, 0.18)) !important;
   border: 1px solid #38bdf8 !important; color: #ffffff !important; border-radius: 999px !important;
 }
 
-/* 7. PLANIFICATEUR DE KHATM — STYLE IDENTIQUE À LA CARTE TITRE "LE NOBLE CORAN & TAFSĪR" */
-#khatmPlannerWidgetV68 {
+/* 7. PLANIFICATEUR DE KHATM INTÉGRÉ À L'INTÉRIEUR DU CADRE "LE NOBLE CORAN & TAFSĪR" */
+#khatmPlannerWidgetV69 {
   width: 100% !important;
   box-sizing: border-box !important;
-  margin: 0 auto 22px auto !important;
-  padding: 24px 28px 22px 28px !important;
-  border-radius: 24px !important;
-  background: radial-gradient(ellipse at 50% 0%, rgba(13, 48, 72, 0.42) 0%, rgba(3, 8, 17, 0.94) 72%) !important;
-  border: 1px solid rgba(212, 175, 55, 0.26) !important;
-  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(253, 224, 71, 0.22), inset 0 -1px 0 rgba(56, 189, 248, 0.25) !important;
+  margin: 18px auto 2px auto !important;
+  padding: 18px 18px 8px 18px !important;
+  background: rgba(4, 12, 24, 0.45) !important;
+  border: 1px solid rgba(56, 189, 248, 0.18) !important;
+  border-radius: 18px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
   color: #f8fafc !important;
   font-family: system-ui, -apple-system, sans-serif !important;
   position: relative !important;
-  overflow: hidden !important;
   z-index: 10 !important;
   text-align: center !important;
 }
-/* Reflet lumineux supérieur doré et inférieur cyan comme la bannière principale */
-#khatmPlannerWidgetV68::before {
-  content: "" !important;
-  position: absolute !important;
-  top: 0 !important;
-  left: 15% !important;
-  right: 15% !important;
-  height: 1px !important;
-  background: linear-gradient(90deg, transparent, rgba(253, 224, 71, 0.65), rgba(56, 189, 248, 0.65), transparent) !important;
-  pointer-events: none !important;
+#khatmPlannerWidgetV69.khatm-inside-verse {
+  margin: 14px auto 4px auto !important;
+  padding: 14px 16px 10px 16px !important;
 }
-#khatmPlannerWidgetV68::after {
-  content: "" !important;
-  position: absolute !important;
-  bottom: 0 !important;
-  left: 20% !important;
-  right: 20% !important;
-  height: 2px !important;
-  background: linear-gradient(90deg, transparent, #38bdf8, transparent) !important;
-  box-shadow: 0 0 12px #38bdf8 !important;
-  pointer-events: none !important;
+.khatm-top-divider-glow {
+  width: 55%;
+  max-width: 420px;
+  height: 1px;
+  margin: -18px auto 14px auto;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.75), rgba(253, 224, 71, 0.65), rgba(56, 189, 248, 0.75), transparent);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.55);
 }
-.khatm-header-center {
+.khatm-header-inline {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 .khatm-title-hero {
   font-family: 'Cinzel', 'Times New Roman', Georgia, serif !important;
-  font-size: 1.32rem !important;
+  font-size: 1.02rem !important;
   font-weight: 800 !important;
   letter-spacing: 0.05em !important;
   text-transform: uppercase !important;
   background: linear-gradient(180deg, #67e8f9 0%, #2dd4bf 55%, #0d9488 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  filter: drop-shadow(0 0 14px rgba(45, 212, 191, 0.28)) !important;
+  filter: drop-shadow(0 0 10px rgba(45, 212, 191, 0.22)) !important;
   margin: 0 !important;
 }
 .khatm-badge-rythme {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.78rem;
-  padding: 4px 14px;
+  font-size: 0.75rem;
+  padding: 3px 12px;
   border-radius: 999px;
-  background: rgba(6, 78, 59, 0.28);
+  background: rgba(6, 78, 59, 0.32);
   border: 1px solid rgba(16, 185, 129, 0.45);
   color: #6ee7b7;
   font-weight: 600;
@@ -926,26 +920,25 @@ html body #btnLangRuV68.active-ext-v68 {
 .khatm-selectors-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
   justify-content: center;
   align-items: center;
-  margin-bottom: 14px;
+  margin-bottom: 11px;
 }
-/* Capsules identiques à la barre FR FR / GB EN / ES ES */
 .khatm-capsule-group {
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 4px;
-  padding: 4px 6px;
+  gap: 3px;
+  padding: 3px 5px;
   border-radius: 999px;
-  background: rgba(6, 13, 25, 0.85);
+  background: rgba(6, 13, 25, 0.88);
   border: 1px solid rgba(56, 189, 248, 0.22);
 }
 .khatm-group-label {
-  font-size: 0.72rem;
+  font-size: 0.70rem;
   color: #94a3b8;
-  padding: 0 8px;
+  padding: 0 7px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -954,12 +947,12 @@ html body #btnLangRuV68.active-ext-v68 {
   background: transparent;
   border: 1px solid transparent;
   color: #cbd5e1;
-  padding: 5px 12px;
+  padding: 4px 11px;
   border-radius: 999px;
-  font-size: 0.77rem;
+  font-size: 0.75rem;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.18s ease;
+  transition: all 0.16s ease;
 }
 .khatm-pill-btn:hover {
   color: #ffffff;
@@ -969,75 +962,73 @@ html body #btnLangRuV68.active-ext-v68 {
   background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(56, 189, 248, 0.16));
   border: 1px solid #38bdf8;
   color: #ffffff;
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.32);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
 }
-/* Filet lumineux central identique à celui sous LE NOBLE CORAN & TAFSĪR */
-.khatm-glow-divider {
-  width: 68%;
-  max-width: 520px;
-  height: 2px;
-  margin: 12px auto 14px auto;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), #38bdf8, rgba(255, 255, 255, 0.85), transparent);
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.75);
+.khatm-progress-track {
+  width: 82%;
+  max-width: 640px;
+  height: 5px;
+  margin: 0 auto 10px auto;
+  background: rgba(15, 23, 42, 0.9);
   border-radius: 999px;
-  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(56, 189, 248, 0.18);
 }
 .khatm-progress-fill-bar {
   height: 100%;
   background: linear-gradient(90deg, #38bdf8, #2dd4bf, #fde047);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.65);
   border-radius: 999px;
   transition: width 0.35s ease;
 }
 .khatm-status-info {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: #cbd5e1;
-  margin-bottom: 14px;
+  margin-bottom: 11px;
 }
 .khatm-actions-center {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
 }
-/* Bouton style "Mettre le site en application sur téléphone" (bordure cyan lumineuse sur fond sombre) */
 .khatm-btn-cyan-hero {
-  background: rgba(8, 25, 48, 0.65);
+  background: rgba(8, 25, 48, 0.68);
   border: 1px solid rgba(56, 189, 248, 0.55);
   color: #38bdf8;
-  padding: 8px 18px;
+  padding: 6px 15px;
   border-radius: 999px;
-  font-size: 0.82rem;
+  font-size: 0.79rem;
   font-weight: 700;
   cursor: pointer;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  box-shadow: 0 0 18px rgba(56, 189, 248, 0.15), inset 0 0 12px rgba(56, 189, 248, 0.08);
-  transition: all 0.2s ease;
+  gap: 6px;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.12), inset 0 0 10px rgba(56, 189, 248, 0.06);
+  transition: all 0.18s ease;
 }
 .khatm-btn-cyan-hero:hover {
   background: rgba(14, 165, 233, 0.22);
   color: #ffffff;
   border-color: #7dd3fc;
 }
-/* Bouton style "Reprendre : Al-Baqarah (v.1)" (bordure vert émeraude sur fond sombre) */
 .khatm-btn-green-hero {
-  background: rgba(6, 46, 36, 0.55);
+  background: rgba(6, 46, 36, 0.58);
   border: 1px solid rgba(16, 185, 129, 0.55);
   color: #34d399;
-  padding: 8px 18px;
+  padding: 6px 16px;
   border-radius: 999px;
-  font-size: 0.82rem;
+  font-size: 0.79rem;
   font-weight: 700;
   cursor: pointer;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  box-shadow: 0 0 18px rgba(16, 185, 129, 0.14), inset 0 0 12px rgba(16, 185, 129, 0.08);
-  transition: all 0.2s ease;
+  gap: 6px;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.12), inset 0 0 10px rgba(16, 185, 129, 0.06);
+  transition: all 0.18s ease;
 }
 .khatm-btn-green-hero:hover {
   background: rgba(16, 185, 129, 0.22);
@@ -1045,12 +1036,12 @@ html body #btnLangRuV68.active-ext-v68 {
   border-color: #6ee7b7;
 }
 .khatm-select-pos {
-  background: rgba(6, 13, 25, 0.88);
+  background: rgba(6, 13, 25, 0.9);
   border: 1px solid rgba(56, 189, 248, 0.38);
   color: #e2e8f0;
-  padding: 7px 14px;
+  padding: 5px 12px;
   border-radius: 999px;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 600;
   outline: none;
   cursor: pointer;
@@ -1059,31 +1050,32 @@ html body #btnLangRuV68.active-ext-v68 {
   background: rgba(30, 10, 18, 0.55);
   border: 1px solid rgba(248, 113, 113, 0.38);
   color: #fca5a5;
-  padding: 7px 13px;
+  padding: 5px 11px;
   border-radius: 999px;
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   font-weight: 600;
   cursor: pointer;
 }
 </style>
-<script id="script-master-v68">(function codeClientV68() {
+<script id="script-master-v69">(function codeClientV69() {
   var LANGUES_EXT_SUPPORTEES = { de: 27, it: 153, id: 33, ru: 45 };
   var langExtActive = "";
   var IgnoreClicInterneFr = false;
 
   try {
-    var oldW66 = document.getElementById("khatmPlannerWidgetV66");
-    if (oldW66 && oldW66.parentNode) oldW66.parentNode.removeChild(oldW66);
-    var oldW67 = document.getElementById("khatmPlannerWidgetV67");
-    if (oldW67 && oldW67.parentNode) oldW67.parentNode.removeChild(oldW67);
+    var oldIds = ["khatmPlannerWidgetV66", "khatmPlannerWidgetV67", "khatmPlannerWidgetV68"];
+    for (var w = 0; w < oldIds.length; w++) {
+      var elOld = document.getElementById(oldIds[w]);
+      if (elOld && elOld.parentNode) elOld.parentNode.removeChild(elOld);
+    }
 
     var urlParams = new URLSearchParams(window.location.search);
     var pLang = urlParams.get("lang");
     if (pLang && LANGUES_EXT_SUPPORTEES[pLang]) {
       langExtActive = pLang;
-      localStorage.setItem("corantafsir_lang_ext_v68", pLang);
+      localStorage.setItem("corantafsir_lang_ext_v69", pLang);
     } else {
-      var savedExt = localStorage.getItem("corantafsir_lang_ext_v68") || localStorage.getItem("corantafsir_lang_ext_v67") || localStorage.getItem("corantafsir_lang_ext_v66");
+      var savedExt = localStorage.getItem("corantafsir_lang_ext_v69") || localStorage.getItem("corantafsir_lang_ext_v68") || localStorage.getItem("corantafsir_lang_ext_v67");
       if (savedExt && LANGUES_EXT_SUPPORTEES[savedExt]) {
         langExtActive = savedExt;
       }
@@ -1091,7 +1083,7 @@ html body #btnLangRuV68.active-ext-v68 {
   } catch (e) {}
 
   // ==========================================================================
-  // 0. MOTEUR DU PLANIFICATEUR DE KHATM (6 236 VERSETS — 3 ORDRES & 4 DURÉES)
+  // 0. MOTEUR DU PLANIFICATEUR DE KHATM INTÉGRÉ DANS LA CARTE HERO
   // ==========================================================================
   var NB_VERSETS_PAR_SOURATE = [
     0,
@@ -1140,7 +1132,7 @@ html body #btnLangRuV68.active-ext-v68 {
   };
 
   try {
-    var sauvKhatm = localStorage.getItem("corantafsir_khatm_v68") || localStorage.getItem("corantafsir_khatm_v67") || localStorage.getItem("corantafsir_khatm_v66");
+    var sauvKhatm = localStorage.getItem("corantafsir_khatm_v69") || localStorage.getItem("corantafsir_khatm_v68") || localStorage.getItem("corantafsir_khatm_v67");
     if (sauvKhatm) {
       var parsedK = JSON.parse(sauvKhatm);
       if (parsedK && parsedK.idxByOrder) {
@@ -1153,7 +1145,7 @@ html body #btnLangRuV68.active-ext-v68 {
 
   function sauvegarderEtatKhatm() {
     try {
-      localStorage.setItem("corantafsir_khatm_v68", JSON.stringify(etatKhatm));
+      localStorage.setItem("corantafsir_khatm_v69", JSON.stringify(etatKhatm));
     } catch (e) {}
   }
 
@@ -1233,7 +1225,7 @@ html body #btnLangRuV68.active-ext-v68 {
     var badges = document.querySelectorAll("span, div");
     for (var b = 0; b < badges.length; b++) {
       var el = badges[b];
-      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV68")) continue;
+      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV69")) continue;
       var txt = (el.textContent || "").trim();
       var bm = txt.match(/^(\d{1,3})\s*:\s*(\d{1,3})$/);
       if (bm) return bm[1] + ":" + bm[2];
@@ -1440,38 +1432,22 @@ html body #btnLangRuV68.active-ext-v68 {
     }
   };
 
-  function trouverBoiteReferenceLargeur() {
-    var tousDivs = document.querySelectorAll("div, header, section");
-    var meilleur = null;
-    var maxW = 0;
-    for (var i = 0; i < tousDivs.length; i++) {
-      var el = tousDivs[i];
-      if (el.id === "khatmPlannerWidgetV68") continue;
-      var st = window.getComputedStyle(el);
-      if (st.borderRadius && parseFloat(st.borderRadius) >= 12 && st.borderWidth && parseFloat(st.borderWidth) > 0) {
-        var r = el.getBoundingClientRect();
-        if (r.width >= 600 && r.width <= 1350 && r.height >= 110 && r.top < 650) {
-          if (r.width > maxW) {
-            maxW = r.width;
-            meilleur = el;
-          }
+  // Trouver la boîte Hero principale ("LE NOBLE CORAN & TAFSĪR" sur l'accueil, ou l'en-tête sur une page verset) pour insérer le Planificateur DEDANS !
+  function trouverBoiteHeroPourInsertionInterne() {
+    var h1 = document.querySelector("h1, h2");
+    if (h1) {
+      var curr = h1.parentElement;
+      while (curr && curr !== document.body) {
+        var st = window.getComputedStyle(curr);
+        var r = curr.getBoundingClientRect();
+        if (st.borderRadius && parseFloat(st.borderRadius) >= 12 && r.width >= 500) {
+          return curr;
         }
+        curr = curr.parentElement;
       }
+      if (h1.parentElement) return h1.parentElement;
     }
-    return meilleur;
-  }
-
-  function ajusterLargeurExactePlanificateur() {
-    var widget = document.getElementById("khatmPlannerWidgetV68");
-    if (!widget) return;
-    var refBox = trouverBoiteReferenceLargeur();
-    if (refBox) {
-      var r = refBox.getBoundingClientRect();
-      if (r.width > 300) {
-        widget.style.setProperty("max-width", Math.round(r.width) + "px", "important");
-        widget.style.setProperty("width", Math.round(r.width) + "px", "important");
-      }
-    }
+    return null;
   }
 
   function afficherOuMettreAJourPlanificateurKhatm() {
@@ -1481,22 +1457,39 @@ html body #btnLangRuV68.active-ext-v68 {
     var vkPage = obtenirCleVerset();
     var estSurPageVerset = Boolean(vkPage);
 
-    var widget = document.getElementById("khatmPlannerWidgetV68");
-    if (!widget) {
-      widget = document.createElement("div");
-      widget.id = "khatmPlannerWidgetV68";
-      widget.setAttribute("translate", "no");
-      widget.className = "notranslate";
+    var boiteHero = trouverBoiteHeroPourInsertionInterne();
+    if (!boiteHero) return;
 
-      var refBox = trouverBoiteReferenceLargeur();
-      if (refBox && refBox.parentElement) {
-        refBox.parentElement.insertBefore(widget, refBox);
-      } else {
-        document.body.insertBefore(widget, document.body.firstChild);
+    // Masquer le bouton vert natif en doublon ("📖 Reprendre : Al-Baqarah (v.23)") à l'intérieur de la boîte Hero puisque le Planificateur est maintenant DEDANS !
+    var liensInternes = boiteHero.querySelectorAll("a, button");
+    for (var l = 0; l < liensInternes.length; l++) {
+      var elL = liensInternes[l];
+      if (elL.closest("#khatmPlannerWidgetV69")) continue;
+      var txtL = (elL.textContent || "").trim();
+      if (
+        txtL.indexOf("Reprendre :") !== -1 ||
+        txtL.indexOf("Resume:") !== -1 ||
+        txtL.indexOf("Continuar:") !== -1 ||
+        txtL.indexOf("Weiterlesen:") !== -1 ||
+        txtL.indexOf("Riprendi lettura:") !== -1 ||
+        txtL.indexOf("Lanjutkan membaca:") !== -1 ||
+        txtL.indexOf("Продолжить чтение:") !== -1 ||
+        txtL.indexOf("متابعة القراءة") !== -1
+      ) {
+        elL.classList.add("khatm-doublon-reprendre-masque");
       }
     }
 
-    ajusterLargeurExactePlanificateur();
+    var widget = document.getElementById("khatmPlannerWidgetV69");
+    if (!widget) {
+      widget = document.createElement("div");
+      widget.id = "khatmPlannerWidgetV69";
+      widget.setAttribute("translate", "no");
+      widget.className = "notranslate" + (estSurPageVerset ? " khatm-inside-verse" : "");
+      boiteHero.appendChild(widget);
+    } else if (widget.parentElement !== boiteHero) {
+      boiteHero.appendChild(widget);
+    }
 
     var ord = etatKhatm.order;
     var m = etatKhatm.months;
@@ -1512,18 +1505,6 @@ html body #btnLangRuV68.active-ext-v68 {
     var nomSourateAct = NOMS_SOURATES_COURT[posInfo.s] || ("Sourate " + posInfo.s);
     var nomSourateCible = NOMS_SOURATES_COURT[cibleInfo.s] || ("Sourate " + cibleInfo.s);
     var urlReprise = "sourate-" + posInfo.s + "-verset-1.html?khatm_verse=" + posInfo.v + (langExtActive ? "&lang=" + langExtActive : "");
-
-    if (!estSurPageVerset) {
-      var liens = document.querySelectorAll("a, button");
-      for (var l = 0; l < liens.length; l++) {
-        var elL = liens[l];
-        if (elL.closest("#khatmPlannerWidgetV68")) continue;
-        var txtL = (elL.textContent || "").trim();
-        if (txtL.indexOf("📖") !== -1 && (txtL.indexOf("Reprendre") !== -1 || txtL.indexOf("Resume") !== -1 || txtL.indexOf("Weiterlesen") !== -1 || txtL.indexOf("Riprendi") !== -1 || txtL.indexOf("Lanjutkan") !== -1 || txtL.indexOf("Продолжить") !== -1 || txtL.indexOf("متابعة") !== -1)) {
-          if (elL.tagName === "A") elL.setAttribute("href", urlReprise);
-        }
-      }
-    }
 
     var cleSignatureRendu = [lang, m, ord, idxActuel, vkPage].join("|");
     if (widget.getAttribute("data-render-sig") === cleSignatureRendu) return;
@@ -1555,8 +1536,9 @@ html body #btnLangRuV68.active-ext-v68 {
     }
 
     widget.innerHTML =
-      '<div class="khatm-header-center">' +
-        '<h2 class="khatm-title-hero">' + t.titre + '</h2>' +
+      '<div class="khatm-top-divider-glow"></div>' +
+      '<div class="khatm-header-inline">' +
+        '<h3 class="khatm-title-hero">' + t.titre + '</h3>' +
         '<div class="khatm-badge-rythme">⚡ ' + vParJour + ' ' + t.vParJour + ' &nbsp;•&nbsp; ' + idxActuel + ' / 6 236 (' + pct + '%) &nbsp;•&nbsp; ~' + joursRestants + ' ' + t.jours + '</div>' +
       '</div>' +
       '<div class="khatm-selectors-bar">' +
@@ -1574,7 +1556,9 @@ html body #btnLangRuV68.active-ext-v68 {
           '<button type="button" class="khatm-pill-btn ' + (ord === "decroissant" ? "active-khatm-pill" : "") + '" data-khatm-order="decroissant">' + t.ordDesc + '</button>' +
         '</div>' +
       '</div>' +
-      '<div class="khatm-glow-divider"></div>' +
+      '<div class="khatm-progress-track">' +
+        '<div class="khatm-progress-fill-bar" style="width:' + Math.max(1.5, Number(pct)) + '%;"></div>' +
+      '</div>' +
       '<div class="khatm-status-info">' +
         '<strong>' + t.posActuelle + '</strong> <span style="color:#38bdf8;font-weight:700;">' + nomSourateAct + ' (' + posInfo.s + ':' + posInfo.v + ')</span>' +
         ' &nbsp;•&nbsp; ' +
@@ -1597,8 +1581,6 @@ html body #btnLangRuV68.active-ext-v68 {
       });
     }
   }
-
-  window.addEventListener("resize", ajusterLargeurExactePlanificateur);
 
   var NOMS_114_ACCUEIL = {
     de: {
@@ -1666,9 +1648,9 @@ html body #btnLangRuV68.active-ext-v68 {
 
   function modifierNoeudTexteSeul(textNode, nouveauTexte) {
     if (!textNode || textNode.nodeType !== 3) return;
-    if (textNode.__origExtV68 === undefined) {
-      textNode.__origExtV68 = textNode.nodeValue;
-      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV68 });
+    if (textNode.__origExtV69 === undefined) {
+      textNode.__origExtV69 = textNode.nodeValue;
+      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV69 });
     }
     if (textNode.nodeValue !== nouveauTexte) {
       textNode.nodeValue = nouveauTexte;
@@ -1723,22 +1705,22 @@ html body #btnLangRuV68.active-ext-v68 {
     for (var f = 0; f < conteneurLang.children.length; f++) {
       if (conteneurLang.children[f] !== btnActif) {
         conteneurLang.children[f].classList.remove("active");
-        conteneurLang.children[f].classList.remove("active-ext-v68");
+        conteneurLang.children[f].classList.remove("active-ext-v69");
       }
     }
-    if (btnActif) btnActif.classList.add("active-ext-v68");
+    if (btnActif) btnActif.classList.add("active-ext-v69");
   }
 
-  // AJOUT DES VRAIS DRAPEAUX UNICODE POUR IPHONE / IOS SUR LES 8 LANGUES (🇫🇷 🇬🇧 🇪🇸 🇸🇦 🇩🇪 🇮🇹 🇮🇩 🇷🇺)
+  // CORRECTION DU DRAPEAU INDONÉSIEN : \uD83C\uDDEE\uD83C\uDDE9 (🇮🇩 ID) ET NON \uDDFA (IU) !
   function assurerBoutonsLanguesEtendues() {
-    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV68), [id^='btnLangItV']:not(#btnLangItV68), [id^='btnLangIdV']:not(#btnLangIdV68), [id^='btnLangRuV']:not(#btnLangRuV68)");
+    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV69), [id^='btnLangItV']:not(#btnLangItV69), [id^='btnLangIdV']:not(#btnLangIdV69), [id^='btnLangRuV']:not(#btnLangRuV69)");
     for (var b = 0; b < oldBtns.length; b++) {
       if (oldBtns[b].parentNode) oldBtns[b].parentNode.removeChild(oldBtns[b]);
     }
 
-    var mapIds = { de: "btnLangDeV68", it: "btnLangItV68", id: "btnLangIdV68", ru: "btnLangRuV68" };
-    if (document.getElementById("btnLangDeV68") && document.getElementById("btnLangIdV68") && document.getElementById("btnLangRuV68")) {
-      var parentBar = document.getElementById("btnLangDeV68").parentElement;
+    var mapIds = { de: "btnLangDeV69", it: "btnLangItV69", id: "btnLangIdV69", ru: "btnLangRuV69" };
+    if (document.getElementById("btnLangDeV69") && document.getElementById("btnLangIdV69") && document.getElementById("btnLangRuV69")) {
+      var parentBar = document.getElementById("btnLangDeV69").parentElement;
       if (parentBar) {
         parentBar.setAttribute("translate", "no");
         parentBar.classList.add("notranslate");
@@ -1747,14 +1729,14 @@ html body #btnLangRuV68.active-ext-v68 {
         var bEl = document.getElementById(mapIds[code]);
         if (!bEl) continue;
         if (langExtActive === code) {
-          bEl.classList.add("active-ext-v68");
+          bEl.classList.add("active-ext-v69");
           if (parentBar) {
             for (var k = 0; k < parentBar.children.length; k++) {
               if (parentBar.children[k] !== bEl) parentBar.children[k].classList.remove("active");
             }
           }
         } else {
-          bEl.classList.remove("active-ext-v68");
+          bEl.classList.remove("active-ext-v69");
         }
       }
       return;
@@ -1794,7 +1776,6 @@ html body #btnLangRuV68.active-ext-v68 {
       conteneurLang.style.setProperty("flex-wrap", "wrap", "important");
       var modeleBtn = btnFrFr || btnSaAr;
 
-      // Garantir que les 4 boutons natifs (FR, EN, ES, AR) ont aussi leurs vrais émojis drapeaux iPhone (\uD83C...)
       var freresInit = Array.prototype.slice.call(conteneurLang.children);
       var mapDrapeauxNatifs = {
         FR: { flag: "\uD83C\uDDEB\uD83C\uDDF7", code: "FR" },
@@ -1833,14 +1814,14 @@ html body #btnLangRuV68.active-ext-v68 {
         } else {
           nvBtn.innerHTML = '<span style="margin-right:3px;">' + emojiDrapeau + "</span><span>" + labelCourt + "</span>";
         }
-        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v68");
+        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v69");
 
         nvBtn.addEventListener("click", function (ev) {
           ev.preventDefault();
           ev.stopPropagation();
           restaurerTextesOriginauxDepuisExt();
           langExtActive = codeIso;
-          try { localStorage.setItem("corantafsir_lang_ext_v68", codeIso); } catch (e) {}
+          try { localStorage.setItem("corantafsir_lang_ext_v69", codeIso); } catch (e) {}
           basculerDepuisArabeSurClicUtilisateur(conteneurLang, nvBtn);
           dernierVersetSeo = "";
           setTimeout(synchroniserTout, 15);
@@ -1848,10 +1829,11 @@ html body #btnLangRuV68.active-ext-v68 {
         return nvBtn;
       }
 
-      var btnDe = creerBoutonLangExt("btnLangDeV68", "de", "\uD83C\uDDE9\uD83C\uDDEA", "DE");
-      var btnIt = creerBoutonLangExt("btnLangItV68", "it", "\uD83C\uDDEE\uD83C\uDDF9", "IT");
-      var btnId = creerBoutonLangExt("btnLangIdV68", "id", "\uD83C\uDDEE\uD83C\uDDFA", "ID");
-      var btnRu = creerBoutonLangExt("btnLangRuV68", "ru", "\uD83C\uDDF7\uD83C\uDDFA", "RU");
+      // Drapeaux exacts : DE (\uDDE9\uDDEA), IT (\uDDEE\uDDF9), ID (\uDDEE\uDDE9), RU (\uDDF7\uDDFA)
+      var btnDe = creerBoutonLangExt("btnLangDeV69", "de", "\uD83C\uDDE9\uD83C\uDDEA", "DE");
+      var btnIt = creerBoutonLangExt("btnLangItV69", "it", "\uD83C\uDDEE\uD83C\uDDF9", "IT");
+      var btnId = creerBoutonLangExt("btnLangIdV69", "id", "\uD83C\uDDEE\uD83C\uDDE9", "ID");
+      var btnRu = creerBoutonLangExt("btnLangRuV69", "ru", "\uD83C\uDDF7\uD83C\uDDFA", "RU");
 
       for (var a = 0; a < freresInit.length; a++) {
         (function (autre) {
@@ -1861,11 +1843,11 @@ html body #btnLangRuV68.active-ext-v68 {
             if (IgnoreClicInterneFr) return;
             var etaitEnWbw = obtenirCartesMotAMotVisibles().length >= 2;
             langExtActive = "";
-            try { localStorage.setItem("corantafsir_lang_ext_v68", "native"); } catch (e) {}
-            btnDe.classList.remove("active-ext-v68");
-            btnIt.classList.remove("active-ext-v68");
-            btnId.classList.remove("active-ext-v68");
-            btnRu.classList.remove("active-ext-v68");
+            try { localStorage.setItem("corantafsir_lang_ext_v69", "native"); } catch (e) {}
+            btnDe.classList.remove("active-ext-v69");
+            btnIt.classList.remove("active-ext-v69");
+            btnId.classList.remove("active-ext-v69");
+            btnRu.classList.remove("active-ext-v69");
             restaurerTextesOriginauxDepuisExt();
             dernierVersetSeo = "";
 
@@ -1927,8 +1909,8 @@ html body #btnLangRuV68.active-ext-v68 {
   function traduireNoeudVersExtAsync(textNode, origTxt, codeLang) {
     if (!origTxt || origTxt.length < 3 || !LANGUES_EXT_SUPPORTEES[codeLang]) return;
     var cle = codeLang + "_" + origTxt.slice(0, 140) + "_" + origTxt.length;
-    var esp1 = (textNode.__origExtV68 || textNode.nodeValue).match(/^\s*/)[0];
-    var esp2 = (textNode.__origExtV68 || textNode.nodeValue).match(/\s*$/)[0];
+    var esp1 = (textNode.__origExtV69 || textNode.nodeValue).match(/^\s*/)[0];
+    var esp2 = (textNode.__origExtV69 || textNode.nodeValue).match(/\s*$/)[0];
 
     if (cacheTexteUnitaireExt[cle]) {
       modifierNoeudTexteSeul(textNode, esp1 + cacheTexteUnitaireExt[cle] + esp2);
@@ -2238,7 +2220,7 @@ html body #btnLangRuV68.active-ext-v68 {
     var cartesAccueil = document.querySelectorAll("a[href*='sourate-']");
     for (var ca = 0; ca < cartesAccueil.length; ca++) {
       var lienCarte = cartesAccueil[ca];
-      if (lienCarte.closest("#khatmPlannerWidgetV68")) continue;
+      if (lienCarte.closest("#khatmPlannerWidgetV69")) continue;
       var mHref = (lienCarte.getAttribute("href") || "").match(/sourate-(\d+)/i);
       if (mHref) {
         var sId = Number(mHref[1]);
@@ -2247,9 +2229,9 @@ html body #btnLangRuV68.active-ext-v68 {
           for (var te = 0; te < titresEl.length; te++) {
             var candT = titresEl[te];
             if (candT.children.length === 0) {
-              var origT = (candT.__origTitreV68 || candT.textContent || "").trim();
+              var origT = (candT.__origTitreV69 || candT.textContent || "").trim();
               if (origT.indexOf("(") !== -1 && origT.indexOf(")") !== -1 && origT.indexOf("Miracle") === -1 && origT.indexOf("Wunder") === -1) {
-                if (!candT.__origTitreV68) candT.__origTitreV68 = origT;
+                if (!candT.__origTitreV69) candT.__origTitreV69 = origT;
                 if (candT.firstChild && candT.firstChild.nodeType === 3) {
                   modifierNoeudTexteSeul(candT.firstChild, noms114[sId]);
                 }
@@ -2273,9 +2255,9 @@ html body #btnLangRuV68.active-ext-v68 {
       if (!pEl) continue;
       var tag = pEl.tagName;
       if (tag === "SCRIPT" || tag === "STYLE") continue;
-      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate") || pEl.closest("#khatmPlannerWidgetV68")) continue;
+      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate") || pEl.closest("#khatmPlannerWidgetV69")) continue;
 
-      var val = (node.__origExtV68 !== undefined ? node.__origExtV68 : node.nodeValue || "").replace(/\u00A0/g, " ").trim();
+      var val = (node.__origExtV69 !== undefined ? node.__origExtV69 : node.nodeValue || "").replace(/\u00A0/g, " ").trim();
       if (!val || /[\u0600-\u06FF]/.test(val)) continue;
       var valLower = val.toLowerCase();
 
@@ -2300,20 +2282,6 @@ html body #btnLangRuV68.active-ext-v68 {
           ru: "📲 Установить приложение на телефон (iPhone / Android)"
         }[codeL];
         modifierNoeudTexteSeul(node, txtPwa);
-        continue;
-      }
-
-      if (valLower.indexOf("reprendre") !== -1 || valLower.indexOf("resume") !== -1 || valLower.indexOf("continuar") !== -1) {
-        var posK = convertirIndexGlobalVersSourateVerset(etatKhatm.order, etatKhatm.idxByOrder[etatKhatm.order] || 0);
-        var nomSRep = NOMS_SOURATES_COURT[posK.s] || "Al-Baqarah";
-        var numVRep = String(posK.v);
-        var txtRep = {
-          de: "📖 Weiterlesen: " + nomSRep + " (Vers " + numVRep + ")",
-          it: "📖 Riprendi lettura: " + nomSRep + " (Versetto " + numVRep + ")",
-          id: "📖 Lanjutkan membaca: " + nomSRep + " (Ayat " + numVRep + ")",
-          ru: "📖 Продолжить чтение: " + nomSRep + " (Аят " + numVRep + ")"
-        }[codeL];
-        modifierNoeudTexteSeul(node, txtRep);
         continue;
       }
 
@@ -2389,26 +2357,16 @@ html body #btnLangRuV68.active-ext-v68 {
 
   function corrigerCoquillesNativesEtTafsir() {
     var lang = obtenirLangueActive();
-    var pEls = document.querySelectorAll("p, button, strong, b, span, a");
-    var posK = convertirIndexGlobalVersSourateVerset(etatKhatm.order, etatKhatm.idxByOrder[etatKhatm.order] || 0);
-    var nomSRep = NOMS_SOURATES_COURT[posK.s] || "Al-Baqarah";
-
+    var pEls = document.querySelectorAll("p, button, strong, b, span");
     for (var i = 0; i < pEls.length; i++) {
       var el = pEls[i];
-      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV68")) continue;
+      if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV69")) continue;
       var t = el.textContent || "";
       if (t.indexOf("y e temen") !== -1) {
         el.textContent = t.replace("y e temen", "y le temen");
       }
       if ((lang === "es" || lang === "it") && t.trim() === "⏸ Pause") {
         el.textContent = "⏸ Pausa";
-      }
-      if (!langExtActive && t.indexOf("📖") !== -1 && (t.indexOf("Reprendre :") !== -1 || t.indexOf("Resume:") !== -1 || t.indexOf("Continuar:") !== -1)) {
-        var nvBtnTxt = lang === "en"
-          ? "📖 Resume: " + nomSRep + " (v." + posK.v + ")"
-          : (lang === "es" ? "📖 Continuar: " + nomSRep + " (v." + posK.v + ")" : "📖 Reprendre : " + nomSRep + " (v." + posK.v + ")");
-        if (el.textContent !== nvBtnTxt) el.textContent = nvBtnTxt;
-        if (el.tagName === "A") el.setAttribute("href", "sourate-" + posK.s + "-verset-1.html?khatm_verse=" + posK.v);
       }
       if (/^\d+\s*\.\s+(?:Le Livre par excellence|This is the Qur'ān|El Libro por excelencia|Das Buch schlechthin|Il Libro per eccellenza|Kitab yang paling|Лучшей книгой)/i.test(t.trim())) {
         el.textContent = t.trim().replace(/^\d+\s*\.\s+/, "");
@@ -2441,7 +2399,7 @@ html body #btnLangRuV68.active-ext-v68 {
       btnSuivi.style.setProperty("display", "inline-flex", "important");
       btnSuivi.style.setProperty("visibility", "visible", "important");
       btnSuivi.style.setProperty("opacity", "1", "important");
-      if (btnSuivi.id === "btnSuiviUniverselV68" && btnSuivi.textContent !== labelSuivi) {
+      if (btnSuivi.id === "btnSuiviUniverselV69" && btnSuivi.textContent !== labelSuivi) {
         btnSuivi.textContent = labelSuivi;
       }
       if (suiviEstActif) {
@@ -2450,9 +2408,9 @@ html body #btnLangRuV68.active-ext-v68 {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV68")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV69")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV68";
+      nv.id = "btnSuiviUniverselV69";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.textContent = labelSuivi;
@@ -2463,8 +2421,13 @@ html body #btnLangRuV68.active-ext-v68 {
     }
   }
 
-  // 3. SOLEIL ET LUNE EN ORBITE
+  // 3. SOLEIL ET LUNE EN ORBITE (AVEC CACHE ULTRA-RAPIDE POUR ZÉRO SURCHARGE CPU)
+  var astresDejaVerrouilles = false;
   function reparerSoleilEtLuneEnOrbite() {
+    if (astresDejaVerrouilles && document.querySelector(".astre-soleil-pur-v69") && document.querySelector(".astre-lune-pure-v69")) {
+      return;
+    }
+
     var tousDivs = document.querySelectorAll("div, span, canvas");
     var spheresTrouvees = [];
 
@@ -2541,8 +2504,8 @@ html body #btnLangRuV68.active-ext-v68 {
       }
 
       if (role === "sun") {
-        node.classList.remove("astre-lune-pure-v68");
-        node.classList.add("astre-soleil-pur-v68");
+        node.classList.remove("astre-lune-pure-v69");
+        node.classList.add("astre-soleil-pur-v69");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -2551,8 +2514,8 @@ html body #btnLangRuV68.active-ext-v68 {
         node.style.setProperty("box-shadow", "0 0 50px 16px rgba(253, 224, 71, 0.72), 0 0 110px 38px rgba(245, 158, 11, 0.42)", "important");
         node.style.setProperty("filter", "none", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v68");
-        node.classList.add("astre-lune-pure-v68");
+        node.classList.remove("astre-soleil-pur-v69");
+        node.classList.add("astre-lune-pure-v69");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -2561,6 +2524,9 @@ html body #btnLangRuV68.active-ext-v68 {
         node.style.setProperty("box-shadow", "0 0 45px 15px rgba(255, 255, 255, 0.65), 0 0 95px 35px rgba(148, 163, 184, 0.35)", "important");
         node.style.setProperty("filter", "none", "important");
       }
+    }
+    if (astresPrincipaux.length >= 2) {
+      astresDejaVerrouilles = true;
     }
   }
 
@@ -2572,7 +2538,7 @@ html body #btnLangRuV68.active-ext-v68 {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v68");
+          row.classList.add("maher-supprime-v69");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
@@ -3180,7 +3146,7 @@ html body #btnLangRuV68.active-ext-v68 {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV68) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV69) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       var self = this;
@@ -3188,8 +3154,8 @@ html body #btnLangRuV68.active-ext-v68 {
       if (self.currentTime < 0.25) {
         reinitialiserMotsEnBlancTamise();
       }
-      if (!self.__listenersV68) {
-        self.__listenersV68 = true;
+      if (!self.__listenersV69) {
+        self.__listenersV69 = true;
         self.addEventListener("playing", lancerBoucleSuivi);
         self.addEventListener("timeupdate", lancerBoucleSuivi);
       }
@@ -3199,7 +3165,7 @@ html body #btnLangRuV68.active-ext-v68 {
       lancerBoucleSuivi();
       return origPlay.apply(self, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV68 = true;
+    HTMLMediaElement.prototype.__hookedV69 = true;
   }
 
   function trouverAudioActif() {
@@ -3474,7 +3440,7 @@ html body #btnLangRuV68.active-ext-v68 {
     if (aud && !aud.paused && !rafId) {
       lancerBoucleSuivi();
     }
-  }, 220);
+  }, 300);
 
   synchroniserTout();
 })();</script>
@@ -3483,7 +3449,7 @@ html body #btnLangRuV68.active-ext-v68 {
   <div class="cosmos-exterior-wrapper"><canvas id="fullPageSkyCanvas"></canvas><div class="flat-earth-sun" id="flatEarthSun"><div class="sun-core"></div></div><div class="flat-earth-moon" id="flatEarthMoon"><div class="moon-white-core"></div></div></div>
   <div class="interface-layer">
     <header class="top-nav">
-      <a href="index.html?v=1794502184914" class="home-btn" onclick="sauvegarderConfigCiel()"><svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Logo Le Noble Coran & Tafsir">
+      <a href="index.html?v=1794516688415" class="home-btn" onclick="sauvegarderConfigCiel()"><svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Logo Le Noble Coran & Tafsir">
     <defs>
       <linearGradient id="bgGrad_nav-logo-svg" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stop-color="#07111a"/>
@@ -3649,7 +3615,7 @@ html body #btnLangRuV68.active-ext-v68 {
       </main>
     </div>
   </div>
-  <script src="data-sourate-2.js?v=1794502184914"></script>
+  <script src="data-sourate-2.js?v=1794516688415"></script>
   <script>
     const numSourateActuelle = 2; let numVersetActuel = 134; let codeAudio = "002134";
     
