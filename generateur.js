@@ -2461,7 +2461,7 @@ async function lancerGeneration() {
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
 <link rel="preconnect" href="https://translate.googleapis.com" crossorigin>
-<style id="patch-master-v62">
+<style id="patch-master-v63">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -2471,10 +2471,10 @@ async function lancerGeneration() {
 }
 
 /* 0. ANTI-FLASH FRANÇAIS -> LANGUES ÉTENDUES (DE / IT / ID / RU) */
-html.lang-ext-pending-v62 h1,
-html.lang-ext-pending-v62 h2,
-html.lang-ext-pending-v62 p,
-html.lang-ext-pending-v62 .tafsir-content {
+html.lang-ext-pending-v63 h1,
+html.lang-ext-pending-v63 h2,
+html.lang-ext-pending-v63 p,
+html.lang-ext-pending-v63 .tafsir-content {
   opacity: 0 !important;
   transition: opacity 0.12s ease !important;
 }
@@ -2485,7 +2485,7 @@ html body .flat-earth-sun,
 html body [id*="sun" i]:not([id*="sound" i]),
 html body [class*="sun" i]:not([class*="sound" i]),
 html body [data-astre-role="sun"],
-html body .astre-soleil-pur-v62 {
+html body .astre-soleil-pur-v63 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -2505,8 +2505,8 @@ html body .astre-soleil-pur-v62 {
 }
 html body #flatEarthSun::before, html body #flatEarthSun::after,
 html body .flat-earth-sun::before, html body .flat-earth-sun::after,
-html body .astre-soleil-pur-v62::before, html body .astre-soleil-pur-v62::after,
-html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v62 * {
+html body .astre-soleil-pur-v63::before, html body .astre-soleil-pur-v63::after,
+html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v63 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
@@ -2516,7 +2516,7 @@ html body .flat-earth-moon,
 html body [id*="moon" i],
 html body [class*="moon" i],
 html body [data-astre-role="moon"],
-html body .astre-lune-pure-v62 {
+html body .astre-lune-pure-v63 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -2536,13 +2536,13 @@ html body .astre-lune-pure-v62 {
 }
 html body #flatEarthMoon::before, html body #flatEarthMoon::after,
 html body .flat-earth-moon::before, html body .flat-earth-moon::after,
-html body .astre-lune-pure-v62::before, html body .astre-lune-pure-v62::after,
-html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v62 * {
+html body .astre-lune-pure-v63::before, html body .astre-lune-pure-v63::after,
+html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v63 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
 /* 3. MASQUAGE DE MAHER AL-MUAIQLY & TRADUCTION DU BAS EN MOT-À-MOT */
-html body img[src*="maher" i], html body [data-reciter*="maher" i], html body .maher-supprime-v62,
+html body img[src*="maher" i], html body [data-reciter*="maher" i], html body .maher-supprime-v63,
 html body .wbw-masquer-traduction-bas {
   display: none !important; visibility: hidden !important; height: 0 !important; max-height: 0 !important; margin: 0 !important; padding: 0 !important; border: none !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important;
 }
@@ -2574,21 +2574,21 @@ html body .verse-stage .arabic-glow-verse span, html body .verse-stage #arabicVe
 }
 
 /* 6. BOUTONS DE LANGUE ÉTENDUS (DE, IT, ID, RU) */
-html body #btnLangDeV62,
-html body #btnLangItV62,
-html body #btnLangIdV62,
-html body #btnLangRuV62 {
+html body #btnLangDeV63,
+html body #btnLangItV63,
+html body #btnLangIdV63,
+html body #btnLangRuV63 {
   cursor: pointer !important; transition: all 0.2s ease !important; display: inline-flex !important; align-items: center !important; justify-content: center !important;
 }
-html body #btnLangDeV62.active-ext-v62,
-html body #btnLangItV62.active-ext-v62,
-html body #btnLangIdV62.active-ext-v62,
-html body #btnLangRuV62.active-ext-v62 {
+html body #btnLangDeV63.active-ext-v63,
+html body #btnLangItV63.active-ext-v63,
+html body #btnLangIdV63.active-ext-v63,
+html body #btnLangRuV63.active-ext-v63 {
   background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(56, 189, 248, 0.18)) !important;
   border: 1px solid #38bdf8 !important; color: #ffffff !important; border-radius: 999px !important;
 }
 </style>
-<script id="script-master-v62">(function codeClientV62() {
+<script id="script-master-v63">(function codeClientV63() {
   var LANGUES_EXT_SUPPORTEES = { de: 27, it: 153, id: 33, ru: 45 };
   var langExtActive = "";
   var IgnoreClicInterneFr = false;
@@ -2598,9 +2598,9 @@ html body #btnLangRuV62.active-ext-v62 {
     var pLang = urlParams.get("lang");
     if (pLang && LANGUES_EXT_SUPPORTEES[pLang]) {
       langExtActive = pLang;
-      localStorage.setItem("corantafsir_lang_ext_v62", pLang);
+      localStorage.setItem("corantafsir_lang_ext_v63", pLang);
     } else {
-      var savedExt = localStorage.getItem("corantafsir_lang_ext_v62") || localStorage.getItem("corantafsir_lang_ext_v60");
+      var savedExt = localStorage.getItem("corantafsir_lang_ext_v63") || localStorage.getItem("corantafsir_lang_ext_v62");
       if (savedExt && LANGUES_EXT_SUPPORTEES[savedExt]) {
         langExtActive = savedExt;
       }
@@ -2608,11 +2608,89 @@ html body #btnLangRuV62.active-ext-v62 {
   } catch (e) {}
 
   if (langExtActive && document.documentElement) {
-    document.documentElement.classList.add("lang-ext-pending-v62");
+    document.documentElement.classList.add("lang-ext-pending-v63");
     setTimeout(function () {
-      document.documentElement.classList.remove("lang-ext-pending-v62");
+      document.documentElement.classList.remove("lang-ext-pending-v63");
     }, 320);
   }
+
+  // NOMS EXACTS DES 114 SOURATES POUR L'ACCUEIL & LES PAGES VERSETS (ZÉRO TRADUCTION BIZARRE)
+  var NOMS_114_ACCUEIL = {
+    de: {
+      1: "Al-Fātihah (Die Eröffnende)", 2: "Al-Baqarah (Die Kuh)", 3: "Āl 'Imrān (Die Sippe 'Imrāns)", 4: "An-Nisā' (Die Frauen)",
+      5: "Al-Mā'idah (Der Tisch)", 6: "Al-An'ām (Das Vieh)", 7: "Al-A'rāf (Die Höhen)", 8: "Al-Anfāl (Die Beute)",
+      9: "At-Tawbah (Die Reue)", 10: "Yūnus (Jonas)", 11: "Hūd", 12: "Yūsuf (Josef)", 13: "Ar-Ra'd (Der Donner)",
+      14: "Ibrāhīm (Abraham)", 15: "Al-Hijr", 16: "An-Nahl (Die Biene)", 17: "Al-Isrā' (Die Nachtreise)", 18: "Al-Kahf (Die Höhle)",
+      19: "Maryam (Maria)", 20: "Tā-Hā", 21: "Al-Anbiyā' (Die Propheten)", 22: "Al-Hajj (Die Pilgerfahrt)", 23: "Al-Mu'minūn (Die Gläubigen)",
+      24: "An-Nūr (Das Licht)", 25: "Al-Furqān (Die Unterscheidung)", 26: "Ash-Shu'arā' (Die Dichter)", 27: "An-Naml (Die Ameisen)",
+      28: "Al-Qasas (Die Geschichten)", 29: "Al-'Ankabūt (Die Spinne)", 30: "Ar-Rūm (Die Römer)", 31: "Luqmān",
+      32: "As-Sajdah (Die Niederwerfung)", 33: "Al-Ahzāb (Die Gruppierungen)", 34: "Saba'", 35: "Fātir (Der Schöpfer)", 36: "Yā-Sīn",
+      37: "As-Sāffāt (Die Gereihten)", 38: "Sād", 39: "Az-Zumar (Die Scharen)", 40: "Ghāfir (Der Vergebende)", 41: "Fussilat (Ausführlich dargelegt)",
+      42: "Ash-Shūrā (Die Beratung)", 43: "Az-Zukhruf (Der Prunk)", 44: "Ad-Dukhān (Der Rauch)", 45: "Al-Jāthiyah (Das Knien)",
+      46: "Al-Ahqāf (Die Dünen)", 47: "Muhammad", 48: "Al-Fath (Der Sieg)", 49: "Al-Hujurāt (Die Gemächer)", 50: "Qāf",
+      51: "Adh-Dhāriyāt (Die Aufwirbelnden)", 52: "At-Tūr (Der Berg)", 53: "An-Najm (Der Stern)", 54: "Al-Qamar (Der Mond)",
+      55: "Ar-Rahmān (Der Allerbarmer)", 56: "Al-Wāqi'ah (Das Ereignis)", 57: "Al-Hadīd (Das Eisen)", 58: "Al-Mujādilah (Die Streitende)",
+      59: "Al-Hashr (Die Versammlung)", 60: "Al-Mumtahanah (Die Geprüfte)", 61: "As-Saff (Die Reihe)", 62: "Al-Jumu'ah (Der Freitag)",
+      63: "Al-Munāfiqūn (Die Heuchler)", 64: "At-Taghābun (Die Übervorteilung)", 65: "At-Talāq (Die Scheidung)", 66: "At-Tahrīm (Das Verbot)",
+      67: "Al-Mulk (Die Herrschaft)", 68: "Al-Qalam (Das Schreibrohr)", 69: "Al-Hāqqah (Die Fällige)", 70: "Al-Ma'ārij (Die Aufstiegswege)",
+      71: "Nūh (Noah)", 72: "Al-Jinn (Die Dschinn)", 73: "Al-Muzzammil (Der Eingehüllte)", 74: "Al-Muddaththir (Der Bedeckte)",
+      75: "Al-Qiyāmah (Die Auferstehung)", 76: "Al-Insān (Der Mensch)", 77: "Al-Mursalāt (Die Gesandten)", 78: "An-Naba' (Die Kunde)",
+      79: "An-Nāzi'āt (Die Entreißenden)", 80: "'Abasa (Er runzelte die Stirn)", 81: "At-Takwīr (Das Umschlingen)", 82: "Al-Infitār (Das Zerbrechen)",
+      83: "Al-Mutaffifīn (Die Betrüger)", 84: "Al-Inshiqāq (Das Zerreißen)", 85: "Al-Burūj (Die Türme)", 86: "At-Tāriq (Der Nachtstern)",
+      87: "Al-A'lā (Der Höchste)", 88: "Al-Ghāshiyah (Die Überdeckende)", 89: "Al-Fajr (Die Morgenröte)", 90: "Al-Balad (Die Stadt)",
+      91: "Ash-Shams (Die Sonne)", 92: "Al-Layl (Die Nacht)", 93: "Ad-Duhā (Der Vormittag)", 94: "Ash-Sharh (Das Weiten)",
+      95: "At-Tīn (Die Feige)", 96: "Al-'Alaq (Das Anhängsel)", 97: "Al-Qadr (Die Bestimmung)", 98: "Al-Bayyinah (Der klare Beweis)",
+      99: "Az-Zalzalah (Das Beben)", 100: "Al-'Ādiyāt (Die Rennenden)", 101: "Al-Qāri'ah (Die Pochende)", 102: "At-Takāthur (Die Vermehrung)",
+      103: "Al-'Asr (Die Zeit)", 104: "Al-Humazah (Der Stichler)", 105: "Al-Fīl (Der Elefant)", 106: "Quraysh (Quraisch)",
+      107: "Al-Mā'ūn (Die Hilfeleistung)", 108: "Al-Kawthar (Die Fülle)", 109: "Al-Kāfirūn (Die Ungläubigen)", 110: "An-Nasr (Die Hilfe)",
+      111: "Al-Masad (Die Palmfasern)", 112: "Al-Ikhlās (Die Reinheit)", 113: "Al-Falaq (Das Morgenrot)", 114: "An-Nās (Die Menschen)"
+    },
+    it: {
+      1: "Al-Fātihah (L'Aprente)", 2: "Al-Baqarah (La Giovenca)", 3: "Āl 'Imrān (La Famiglia di 'Imrān)", 4: "An-Nisā' (Le Donne)",
+      5: "Al-Mā'idah (La Mensa)", 6: "Al-An'ām (Il Bestiame)", 7: "Al-A'rāf (I Limbi)", 8: "Al-Anfāl (Il Bottino)",
+      9: "At-Tawbah (Il Pentimento)", 10: "Yūnus (Giona)", 11: "Hūd", 12: "Yūsuf (Giuseppe)", 13: "Ar-Ra'd (Il Tuono)",
+      14: "Ibrāhīm (Abramo)", 15: "Al-Hijr", 16: "An-Nahl (Le Api)", 17: "Al-Isrā' (Il Viaggio Notturno)", 18: "Al-Kahf (La Caverna)",
+      19: "Maryam (Maria)", 20: "Tā-Hā", 21: "Al-Anbiyā' (I Profeti)", 22: "Al-Hajj (Il Pellegrinaggio)", 23: "Al-Mu'minūn (I Credenti)",
+      24: "An-Nūr (La Luce)", 25: "Al-Furqān (Il Discrimine)", 26: "Ash-Shu'arā' (I Poeti)", 27: "An-Naml (Le Formiche)",
+      28: "Al-Qasas (Il Racconto)", 29: "Al-'Ankabūt (Il Ragno)", 30: "Ar-Rūm (I Romani)", 31: "Luqmān",
+      32: "As-Sajdah (La Prosternazione)", 33: "Al-Ahzāb (I Coalizzati)", 34: "Saba'", 35: "Fātir (Il Creatore)", 36: "Yā-Sīn",
+      37: "As-Sāffāt (I Ranghi)", 38: "Sād", 39: "Az-Zumar (I Gruppi)", 40: "Ghāfir (Il Perdonatore)", 41: "Fussilat (Esposti Chiaramente)",
+      42: "Ash-Shūrā (La Consultazione)", 43: "Az-Zukhruf (Gli Ornamenti)", 44: "Ad-Dukhān (Il Fumo)", 45: "Al-Jāthiyah (La Genuflessa)",
+      46: "Al-Ahqāf (Le Dune)", 47: "Muhammad", 48: "Al-Fath (La Vittoria)", 49: "Al-Hujurāt (Gli Appartamenti)", 50: "Qāf",
+      51: "Adh-Dhāriyāt (Quelle che spargono)", 52: "At-Tūr (Il Monte)", 53: "An-Najm (La Stella)", 54: "Al-Qamar (La Luna)",
+      55: "Ar-Rahmān (Il Compassionevole)", 56: "Al-Wāqi'ah (L'Evento)", 57: "Al-Hadīd (Il Ferro)", 58: "Al-Mujādilah (La Disputante)",
+      59: "Al-Hashr (L'Esodo)", 60: "Al-Mumtahanah (L'Esaminata)", 61: "As-Saff (I Ranghi Serrati)", 62: "Al-Jumu'ah (Il Venerdì)",
+      63: "Al-Munāfiqūn (Gli Ipocriti)", 64: "At-Taghābun (Il Reciproco Inganno)", 65: "At-Talāq (Il Divorzio)", 66: "At-Tahrīm (L'Interdizione)",
+      67: "Al-Mulk (La Sovranità)", 68: "Al-Qalam (Il Calamo)", 69: "Al-Hāqqah (L'Inevitabile)", 70: "Al-Ma'ārij (Le Vie dell'Ascesa)",
+      71: "Nūh (Noè)", 72: "Al-Jinn (I Jinn)", 73: "Al-Muzzammil (L'Avvolto)", 74: "Al-Muddaththir (Il Rivestito)",
+      75: "Al-Qiyāmah (La Resurrezione)", 76: "Al-Insān (L'Uomo)", 77: "Al-Mursalāt (Le Inviate)", 78: "An-Naba' (L'Annuncio)",
+      79: "An-Nāzi'āt (Quelle che strappano)", 80: "'Abasa (Si accigliò)", 81: "At-Takwīr (L'Oscuramento)", 82: "Al-Infitār (Lo Squarciarsi)",
+      83: "Al-Mutaffifīn (I Frodati)", 84: "Al-Inshiqāq (La Fenditura)", 85: "Al-Burūj (Le Costellazioni)", 86: "At-Tāriq (L'Astro Notturno)",
+      87: "Al-A'lā (L'Altissimo)", 88: "Al-Ghāshiyah (L'Avvolgente)", 89: "Al-Fajr (L'Alba)", 90: "Al-Balad (La Contrada)",
+      91: "Ash-Shams (Il Sole)", 92: "Al-Layl (La Notte)", 93: "Ad-Duhā (La Luce del Mattino)", 94: "Ash-Sharh (L'Apertura del Petto)",
+      95: "At-Tīn (Il Fico)", 96: "Al-'Alaq (L'Aderenza)", 97: "Al-Qadr (Il Destino)", 98: "Al-Bayyinah (La Prova Chiara)",
+      99: "Az-Zalzalah (Il Terremoto)", 100: "Al-'Ādiyāt (Le Galoppanti)", 101: "Al-Qāri'ah (La Percotente)", 102: "At-Takāthur (La Rivalità)",
+      103: "Al-'Asr (Il Tempo)", 104: "Al-Humazah (Il Maldicente)", 105: "Al-Fīl (L'Elefante)", 106: "Quraysh (I Coreisciti)",
+      107: "Al-Mā'ūn (L'Utensile)", 108: "Al-Kawthar (L'Abbondanza)", 109: "Al-Kāfirūn (I Miscredenti)", 110: "An-Nasr (L'Ausilio)",
+      111: "Al-Masad (Le Fibre di Palma)", 112: "Al-Ikhlās (Il Puro Monoteismo)", 113: "Al-Falaq (L'Alba Nascente)", 114: "An-Nās (Gli Uomini)"
+    },
+    id: {
+      1: "Al-Fātihah (Pembukaan)", 2: "Al-Baqarah (Sapi Betina)", 68: "Al-Qalam (Pena)", 73: "Al-Muzzammil (Orang yang Berselimut)",
+      74: "Al-Muddaththir (Orang yang Berkemul)", 81: "At-Takwīr (Menggulung)", 87: "Al-A'lā (Yang Paling Tinggi)", 89: "Al-Fajr (Fajar)",
+      92: "Al-Layl (Malam)", 93: "Ad-Duhā (Waktu Duha)", 94: "Ash-Sharh (Melapangkan)", 96: "Al-'Alaq (Segumpal Darah)",
+      100: "Al-'Ādiyāt (Kuda Perang)", 102: "At-Takāthur (Bermegah-megahan)", 103: "Al-'Asr (Masa)", 107: "Al-Mā'ūn (Barang yang Berguna)",
+      108: "Al-Kawthar (Nikmat yang Banyak)", 109: "Al-Kāfirūn (Orang-Orang Kafir)", 111: "Al-Masad (Gejolak Api / Sabut)",
+      112: "Al-Ikhlās (Kemurnian Keesaan Allah)", 113: "Al-Falaq (Waktu Subuh)", 114: "An-Nās (Manusia)"
+    },
+    ru: {
+      1: "Аль-Фатиха (Открывающая Коран)", 2: "Аль-Бакара (Корова)", 68: "Аль-Калам (Письменная трость)", 73: "Аль-Муззаммиль (Закутавшийся)",
+      74: "Аль-Муддассир (Завернувшийся)", 81: "Ат-Таквир (Скручивание)", 87: "Аль-Аля (Всевышний)", 89: "Аль-Фаджр (Заря)",
+      92: "Аль-Лейл (Ночь)", 93: "Ад-Духа (Утро)", 94: "Аш-Шарх (Раскрытие)", 96: "Аль-Аляк (Сгусток крови)",
+      100: "Аль-Адият (Скачущие)", 102: "Ат-Такасур (Страсть к приумножению)", 103: "Аль-Аср (Предвечернее время)", 107: "Аль-Маун (Мелочь)",
+      108: "Аль-Каусар (Изобилие)", 109: "Аль-Кафирун (Неверующие)", 111: "Аль-Масад (Пальмовые волокна)",
+      112: "Аль-Ихляс (Очищение веры)", 113: "Аль-Фаляк (Рассвет)", 114: "Ан-Нас (Люди)"
+    }
+  };
 
   var cacheChapitresExt = {};
   var requetesChapExtEnCours = {};
@@ -2621,9 +2699,11 @@ html body #btnLangRuV62.active-ext-v62 {
   var noeudsTextesModifies = [];
 
   try {
-    var sauvChapExt = localStorage.getItem("cache_ext_chap_v62");
+    localStorage.removeItem("cache_txt_unit_ext_v62");
+    localStorage.removeItem("cache_txt_unit_ext_v60");
+    var sauvChapExt = localStorage.getItem("cache_ext_chap_v63") || localStorage.getItem("cache_ext_chap_v62");
     if (sauvChapExt) cacheChapitresExt = JSON.parse(sauvChapExt);
-    var sauvTxtExt = localStorage.getItem("cache_txt_unit_ext_v62");
+    var sauvTxtExt = localStorage.getItem("cache_txt_unit_ext_v63");
     if (sauvTxtExt) cacheTexteUnitaireExt = JSON.parse(sauvTxtExt);
   } catch (e) {}
 
@@ -2639,16 +2719,15 @@ html body #btnLangRuV62.active-ext-v62 {
 
   function modifierNoeudTexteSeul(textNode, nouveauTexte) {
     if (!textNode || textNode.nodeType !== 3) return;
-    if (textNode.__origExtV62 === undefined) {
-      textNode.__origExtV62 = textNode.nodeValue;
-      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV62 });
+    if (textNode.__origExtV63 === undefined) {
+      textNode.__origExtV63 = textNode.nodeValue;
+      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV63 });
     }
     if (textNode.nodeValue !== nouveauTexte) {
       textNode.nodeValue = nouveauTexte;
     }
   }
 
-  // Nettoyage universel des résidus d'API sur les 6 236 versets (notes de bas de page 1,2, crochets, doubles espaces)
   function nettoyerVersetBrutApi(rawHtml) {
     if (!rawHtml) return "";
     return rawHtml
@@ -2661,7 +2740,6 @@ html body #btnLangRuV62.active-ext-v62 {
       .trim();
   }
 
-  // Correction post-traduction automatique pour les Hadiths et le Tafsir (Aïcha au féminin, etc.)
   function affinerTraductionTheologique(str, codeLang) {
     if (!str) return "";
     var out = str.trim();
@@ -2714,33 +2792,37 @@ html body #btnLangRuV62.active-ext-v62 {
     for (var f = 0; f < conteneurLang.children.length; f++) {
       if (conteneurLang.children[f] !== btnActif) {
         conteneurLang.children[f].classList.remove("active");
-        conteneurLang.children[f].classList.remove("active-ext-v62");
+        conteneurLang.children[f].classList.remove("active-ext-v63");
       }
     }
-    if (btnActif) btnActif.classList.add("active-ext-v62");
+    if (btnActif) btnActif.classList.add("active-ext-v63");
   }
 
   function assurerBoutonsLanguesEtendues() {
-    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV62), [id^='btnLangItV']:not(#btnLangItV62)");
+    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV63), [id^='btnLangItV']:not(#btnLangItV63), [id^='btnLangIdV']:not(#btnLangIdV63), [id^='btnLangRuV']:not(#btnLangRuV63)");
     for (var b = 0; b < oldBtns.length; b++) {
       if (oldBtns[b].parentNode) oldBtns[b].parentNode.removeChild(oldBtns[b]);
     }
 
-    var mapIds = { de: "btnLangDeV62", it: "btnLangItV62", id: "btnLangIdV62", ru: "btnLangRuV62" };
-    if (document.getElementById("btnLangDeV62") && document.getElementById("btnLangIdV62") && document.getElementById("btnLangRuV62")) {
-      var parentBar = document.getElementById("btnLangDeV62").parentElement;
+    var mapIds = { de: "btnLangDeV63", it: "btnLangItV63", id: "btnLangIdV63", ru: "btnLangRuV63" };
+    if (document.getElementById("btnLangDeV63") && document.getElementById("btnLangIdV63") && document.getElementById("btnLangRuV63")) {
+      var parentBar = document.getElementById("btnLangDeV63").parentElement;
+      if (parentBar) {
+        parentBar.setAttribute("translate", "no");
+        parentBar.classList.add("notranslate");
+      }
       for (var code in mapIds) {
         var bEl = document.getElementById(mapIds[code]);
         if (!bEl) continue;
         if (langExtActive === code) {
-          bEl.classList.add("active-ext-v62");
+          bEl.classList.add("active-ext-v63");
           if (parentBar) {
             for (var k = 0; k < parentBar.children.length; k++) {
               if (parentBar.children[k] !== bEl) parentBar.children[k].classList.remove("active");
             }
           }
         } else {
-          bEl.classList.remove("active-ext-v62");
+          bEl.classList.remove("active-ext-v63");
         }
       }
       return;
@@ -2774,6 +2856,9 @@ html body #btnLangRuV62.active-ext-v62 {
 
     if (btnSaAr && btnSaAr.parentElement) {
       var conteneurLang = btnSaAr.parentElement;
+      // EMPÊCHER LE NAVIGATEUR DE TRADUIRE LES BOUTONS FR FR / SA AR EN "FR ПТ" OU "Arab Saudi" !
+      conteneurLang.setAttribute("translate", "no");
+      conteneurLang.classList.add("notranslate");
       conteneurLang.style.setProperty("overflow", "visible", "important");
       conteneurLang.style.setProperty("flex-wrap", "wrap", "important");
       var modeleBtn = btnFrFr || btnSaAr;
@@ -2781,6 +2866,8 @@ html body #btnLangRuV62.active-ext-v62 {
       function creerBoutonLangExt(idBtn, codeIso, labelCourt) {
         var nvBtn = modeleBtn.cloneNode(true);
         nvBtn.id = idBtn;
+        nvBtn.setAttribute("translate", "no");
+        nvBtn.classList.add("notranslate");
         nvBtn.classList.remove("active");
         nvBtn.removeAttribute("onclick");
         nvBtn.removeAttribute("data-lang");
@@ -2790,14 +2877,14 @@ html body #btnLangRuV62.active-ext-v62 {
         } else {
           nvBtn.innerHTML = '<span style="font-size:0.72em;opacity:0.75;margin-right:2px;">' + labelCourt + "</span><span>" + labelCourt + "</span>";
         }
-        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v62");
+        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v63");
 
         nvBtn.addEventListener("click", function (ev) {
           ev.preventDefault();
           ev.stopPropagation();
           restaurerTextesOriginauxDepuisExt();
           langExtActive = codeIso;
-          try { localStorage.setItem("corantafsir_lang_ext_v62", codeIso); } catch (e) {}
+          try { localStorage.setItem("corantafsir_lang_ext_v63", codeIso); } catch (e) {}
           assurerBaseLatinePourExt(conteneurLang, nvBtn);
           dernierVersetSeo = "";
           synchroniserTout();
@@ -2805,22 +2892,24 @@ html body #btnLangRuV62.active-ext-v62 {
         return nvBtn;
       }
 
-      var btnDe = creerBoutonLangExt("btnLangDeV62", "de", "DE");
-      var btnIt = creerBoutonLangExt("btnLangItV62", "it", "IT");
-      var btnId = creerBoutonLangExt("btnLangIdV62", "id", "ID");
-      var btnRu = creerBoutonLangExt("btnLangRuV62", "ru", "RU");
+      var btnDe = creerBoutonLangExt("btnLangDeV63", "de", "DE");
+      var btnIt = creerBoutonLangExt("btnLangItV63", "it", "IT");
+      var btnId = creerBoutonLangExt("btnLangIdV63", "id", "ID");
+      var btnRu = creerBoutonLangExt("btnLangRuV63", "ru", "RU");
 
       var freresInit = Array.prototype.slice.call(conteneurLang.children);
       for (var a = 0; a < freresInit.length; a++) {
         (function (autre) {
+          autre.setAttribute("translate", "no");
+          autre.classList.add("notranslate");
           autre.addEventListener("click", function () {
             if (IgnoreClicInterneFr) return;
             langExtActive = "";
-            try { localStorage.setItem("corantafsir_lang_ext_v62", "native"); } catch (e) {}
-            btnDe.classList.remove("active-ext-v62");
-            btnIt.classList.remove("active-ext-v62");
-            btnId.classList.remove("active-ext-v62");
-            btnRu.classList.remove("active-ext-v62");
+            try { localStorage.setItem("corantafsir_lang_ext_v63", "native"); } catch (e) {}
+            btnDe.classList.remove("active-ext-v63");
+            btnIt.classList.remove("active-ext-v63");
+            btnId.classList.remove("active-ext-v63");
+            btnRu.classList.remove("active-ext-v63");
             restaurerTextesOriginauxDepuisExt();
             dernierVersetSeo = "";
             setTimeout(synchroniserTout, 20);
@@ -2856,7 +2945,7 @@ html body #btnLangRuV62.active-ext-v62 {
             var vk = chap + ":" + (j + 1);
             cacheChapitresExt[cle][vk] = nettoyerVersetBrutApi(d.translations[j].text || "");
           }
-          try { localStorage.setItem("cache_ext_chap_v62", JSON.stringify(cacheChapitresExt)); } catch (e) {}
+          try { localStorage.setItem("cache_ext_chap_v63", JSON.stringify(cacheChapitresExt)); } catch (e) {}
           if (langExtActive === codeLang) appliquerInterfaceEtContenuExt();
         }
       })
@@ -2869,8 +2958,8 @@ html body #btnLangRuV62.active-ext-v62 {
   function traduireNoeudVersExtAsync(textNode, origTxt, codeLang) {
     if (!origTxt || origTxt.length < 3 || !LANGUES_EXT_SUPPORTEES[codeLang]) return;
     var cle = codeLang + "_" + origTxt.slice(0, 140) + "_" + origTxt.length;
-    var esp1 = (textNode.__origExtV62 || textNode.nodeValue).match(/^\\s*/)[0];
-    var esp2 = (textNode.__origExtV62 || textNode.nodeValue).match(/\\s*$/)[0];
+    var esp1 = (textNode.__origExtV63 || textNode.nodeValue).match(/^\\s*/)[0];
+    var esp2 = (textNode.__origExtV63 || textNode.nodeValue).match(/\\s*$/)[0];
 
     if (cacheTexteUnitaireExt[cle]) {
       modifierNoeudTexteSeul(textNode, esp1 + cacheTexteUnitaireExt[cle] + esp2);
@@ -2898,7 +2987,7 @@ html body #btnLangRuV62.active-ext-v62 {
           tr = affinerTraductionTheologique(tr, codeLang);
           if (tr) {
             cacheTexteUnitaireExt[cle] = tr;
-            try { localStorage.setItem("cache_txt_unit_ext_v62", JSON.stringify(cacheTexteUnitaireExt)); } catch (e) {}
+            try { localStorage.setItem("cache_txt_unit_ext_v63", JSON.stringify(cacheTexteUnitaireExt)); } catch (e) {}
             if (langExtActive === codeLang) {
               modifierNoeudTexteSeul(textNode, esp1 + tr + esp2);
             }
@@ -2914,6 +3003,13 @@ html body #btnLangRuV62.active-ext-v62 {
 
   var DICO_UI_PAR_LANG = {
     de: {
+      "le noble coran & tafsīr": "DER EDLE KORAN & TAFSĪR",
+      "le noble coran & tafsir": "DER EDLE KORAN & TAFSĪR",
+      "the noble quran & tafsīr": "DER EDLE KORAN & TAFSĪR",
+      "le noble coran & tafsīr al-mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
+      "the noble quran & tafsīr al-mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
+      "el noble corán y tafsīr al-mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
+      "القرآن الكريم والتفسير المختصر": "Der Edle Koran & Tafsīr Al-Mukhtasar",
       "‹ retour aux 114 sourates": "‹ Zurück zu den 114 Suren",
       "‹ back to 114 surahs": "‹ Zurück zu den 114 Suren",
       "‹ volver a las 114 suras": "‹ Zurück zu den 114 Suren",
@@ -2952,32 +3048,35 @@ html body #btnLangRuV62.active-ext-v62 {
       "lettre muette": "Stummer Buchstabe",
       "silent letter": "Stummer Buchstabe",
       "⭐ développer l'explication complète, le hadīth & les preuves historiques": "⭐ Vollständige Erklärung, Hadīth & historische Beweise ausklappen",
-      "le noble coran & tafsīr al-mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
-      "the noble quran & tafsīr al-mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
-      "el noble corán y tafsīr al-mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
-      "القرآن الكريم والتفسير المختصر": "Der Edle Koran & Tafsīr Al-Mukhtasar",
-      "📲 installer le site en app sur votre téléphone (iphone / android)": "📲 Website als App auf Ihrem Telefon installieren (iPhone / Android)",
-      "📲 install the site as an app on your phone (iphone / android)": "📲 Website als App auf Ihrem Telefon installieren (iPhone / Android)",
       "qu'est-ce qu'une sourate mecquoise ?": "Was ist eine mekkanische Sure?",
       "what is a makkan surah?": "Was ist eine mekkanische Sure?",
       "qu'est-ce qu'une sourate médinoise ?": "Was ist eine medinensische Sure?",
       "what is a madinan surah?": "Was ist eine medinensische Sure?",
-      "mecquoise • 86 sourates": "Mekkanisch • 86 Suren",
-      "makkan • 86 surahs": "Mekkanisch • 86 Suren",
-      "médinoise • 28 sourates": "Medinensisch • 28 Suren",
-      "madinan • 28 surahs": "Medinensisch • 28 Suren",
-      "1. ordre de révélation (1 à 114)": "1. Offenbarungsreihenfolge (1 bis 114)",
-      "1. revelation order (1 to 114)": "1. Offenbarungsreihenfolge (1 bis 114)",
-      "2. ordre du mushaf (1 à 114)": "2. Mushaf-Reihenfolge (1 bis 114)",
-      "2. mushaf order (1 to 114)": "2. Mushaf-Reihenfolge (1 bis 114)",
-      "⭐ 3. versets des miracles scientifiques": "⭐ 3. Verse der wissenschaftlichen Wunder",
-      "⭐ 3. scientific miracles verses": "⭐ 3. Verse der wissenschaftlichen Wunder",
-      "mecquoise": "Mekkanisch",
-      "makkan": "Mekkanisch",
-      "médinoise": "Medinensisch",
-      "madinan": "Medinensisch"
+      "mecquoise • 86 sourates": "MEKKANISCH • 86 SUREN",
+      "makkan • 86 surahs": "MEKKANISCH • 86 SUREN",
+      "médinoise • 28 sourates": "MEDINENSISCH • 28 SUREN",
+      "madinan • 28 surahs": "MEDINENSISCH • 28 SUREN",
+      "1. ordre de révélation (1 à 114)": "1. Offenbarungsreihenfolge (1–114)",
+      "1. revelation order (1 to 114)": "1. Offenbarungsreihenfolge (1–114)",
+      "2. ordre du mushaf (1 à 114)": "2. Klassische Reihenfolge (1–114)",
+      "2. ordre classique (1 à 114)": "2. Klassische Reihenfolge (1–114)",
+      "2. mushaf order (1 to 114)": "2. Klassische Reihenfolge (1–114)",
+      "⭐ 3. versets des miracles scientifiques": "3. ⭐ Wunder des Korans",
+      "3. ⭐ miracles du coran": "3. ⭐ Wunder des Korans",
+      "⭐ 3. scientific miracles verses": "3. ⭐ Wunder des Korans",
+      "mecquoise": "MEKKANISCH",
+      "makkan": "MEKKANISCH",
+      "médinoise": "MEDINENSISCH",
+      "madinan": "MEDINENSISCH"
     },
     it: {
+      "le noble coran & tafsīr": "IL NOBILE CORANO E TAFSĪR",
+      "le noble coran & tafsir": "IL NOBILE CORANO E TAFSĪR",
+      "the noble quran & tafsīr": "IL NOBILE CORANO E TAFSĪR",
+      "le noble coran & tafsīr al-mukhtasar": "Il Nobile Corano e Tafsīr Al-Mukhtasar",
+      "the noble quran & tafsīr al-mukhtasar": "Il Nobile Corano e Tafsīr Al-Mukhtasar",
+      "el noble corán y tafsīr al-mukhtasar": "Il Nobile Corano e Tafsīr Al-Mukhtasar",
+      "القرآن الكريم والتفسير المختصر": "Il Nobile Corano e Tafsīr Al-Mukhtasar",
       "‹ retour aux 114 sourates": "‹ Torna alle 114 Sure",
       "‹ back to 114 surahs": "‹ Torna alle 114 Sure",
       "‹ volver a las 114 suras": "‹ Torna alle 114 Sure",
@@ -3016,32 +3115,35 @@ html body #btnLangRuV62.active-ext-v62 {
       "lettre muette": "Lettera muta",
       "silent letter": "Lettera muta",
       "⭐ développer l'explication complète, le hadīth & les preuves historiques": "⭐ Espandi la spiegazione completa, l'Hadīth e le prove storiche",
-      "le noble coran & tafsīr al-mukhtasar": "Il Nobile Corano e Tafsīr Al-Mukhtasar",
-      "the noble quran & tafsīr al-mukhtasar": "Il Nobile Corano e Tafsīr Al-Mukhtasar",
-      "el noble corán y tafsīr al-mukhtasar": "Il Nobile Corano e Tafsīr Al-Mukhtasar",
-      "القرآن الكريم والتفسير المختصر": "Il Nobile Corano e Tafsīr Al-Mukhtasar",
-      "📲 installer le site en app sur votre téléphone (iphone / android)": "📲 Installa il sito come App sul tuo telefono (iPhone / Android)",
-      "📲 install the site as an app on your phone (iphone / android)": "📲 Installa il sito come App sul tuo telefono (iPhone / Android)",
       "qu'est-ce qu'une sourate mecquoise ?": "Cos'è una Sura Meccana?",
       "what is a makkan surah?": "Cos'è una Sura Meccana?",
       "qu'est-ce qu'une sourate médinoise ?": "Cos'è una Sura Medinese?",
       "what is a madinan surah?": "Cos'è una Sura Medinese?",
-      "mecquoise • 86 sourates": "Meccana • 86 Sure",
-      "makkan • 86 surahs": "Meccana • 86 Sure",
-      "médinoise • 28 sourates": "Medinese • 28 Sure",
-      "madinan • 28 surahs": "Medinese • 28 Sure",
-      "1. ordre de révélation (1 à 114)": "1. Ordine di Rivelazione (da 1 a 114)",
-      "1. revelation order (1 to 114)": "1. Ordine di Rivelazione (da 1 a 114)",
-      "2. ordre du mushaf (1 à 114)": "2. Ordine del Mushaf (da 1 a 114)",
-      "2. mushaf order (1 to 114)": "2. Ordine del Mushaf (da 1 a 114)",
-      "⭐ 3. versets des miracles scientifiques": "⭐ 3. Versetti dei Miracoli Scientifici",
-      "⭐ 3. scientific miracles verses": "⭐ 3. Versetti dei Miracoli Scientifici",
-      "mecquoise": "Meccana",
-      "makkan": "Meccana",
-      "médinoise": "Medinese",
-      "madinan": "Medinese"
+      "mecquoise • 86 sourates": "MECCANA • 86 SURE",
+      "makkan • 86 surahs": "MECCANA • 86 SURE",
+      "médinoise • 28 sourates": "MEDINESE • 28 SURE",
+      "madinan • 28 surahs": "MEDINESE • 28 SURE",
+      "1. ordre de révélation (1 à 114)": "1. Ordine di Rivelazione (1–114)",
+      "1. revelation order (1 to 114)": "1. Ordine di Rivelazione (1–114)",
+      "2. ordre du mushaf (1 à 114)": "2. Ordine Classico (1–114)",
+      "2. ordre classique (1 à 114)": "2. Ordine Classico (1–114)",
+      "2. mushaf order (1 to 114)": "2. Ordine Classico (1–114)",
+      "⭐ 3. versets des miracles scientifiques": "3. ⭐ I Miracoli del Corano",
+      "3. ⭐ miracles du coran": "3. ⭐ I Miracoli del Corano",
+      "⭐ 3. scientific miracles verses": "3. ⭐ I Miracoli del Corano",
+      "mecquoise": "MECCANA",
+      "makkan": "MECCANA",
+      "médinoise": "MEDINESE",
+      "madinan": "MEDINESE"
     },
     id: {
+      "le noble coran & tafsīr": "AL-QUR'AN MULIA & TAFSĪR",
+      "le noble coran & tafsir": "AL-QUR'AN MULIA & TAFSĪR",
+      "the noble quran & tafsīr": "AL-QUR'AN MULIA & TAFSĪR",
+      "le noble coran & tafsīr al-mukhtasar": "Al-Qur'an Mulia & Tafsīr Al-Mukhtasar",
+      "the noble quran & tafsīr al-mukhtasar": "Al-Qur'an Mulia & Tafsīr Al-Mukhtasar",
+      "el noble corán y tafsīr al-mukhtasar": "Al-Qur'an Mulia & Tafsīr Al-Mukhtasar",
+      "القرآن الكريم والتفسير المختصر": "Al-Qur'an Mulia & Tafsīr Al-Mukhtasar",
       "‹ retour aux 114 sourates": "‹ Kembali ke 114 Surah",
       "‹ back to 114 surahs": "‹ Kembali ke 114 Surah",
       "‹ volver a las 114 suras": "‹ Kembali ke 114 Surah",
@@ -3080,32 +3182,35 @@ html body #btnLangRuV62.active-ext-v62 {
       "lettre muette": "Huruf Bisu",
       "silent letter": "Huruf Bisu",
       "⭐ développer l'explication complète, le hadīth & les preuves historiques": "⭐ Buka penjelasan lengkap, Hadis & bukti sejarah",
-      "le noble coran & tafsīr al-mukhtasar": "Al-Qur'an Mulia & Tafsīr Al-Mukhtasar",
-      "the noble quran & tafsīr al-mukhtasar": "Al-Qur'an Mulia & Tafsīr Al-Mukhtasar",
-      "el noble corán y tafsīr al-mukhtasar": "Al-Qur'an Mulia & Tafsīr Al-Mukhtasar",
-      "القرآن الكريم والتفسير المختصر": "Al-Qur'an Mulia & Tafsīr Al-Mukhtasar",
-      "📲 installer le site en app sur votre téléphone (iphone / android)": "📲 Pasang situs sebagai Aplikasi di ponsel Anda (iPhone / Android)",
-      "📲 install the site as an app on your phone (iphone / android)": "📲 Pasang situs sebagai Aplikasi di ponsel Anda (iPhone / Android)",
       "qu'est-ce qu'une sourate mecquoise ?": "Apa itu Surah Makkiyah?",
       "what is a makkan surah?": "Apa itu Surah Makkiyah?",
       "qu'est-ce qu'une sourate médinoise ?": "Apa itu Surah Madaniyah?",
       "what is a madinan surah?": "Apa itu Surah Madaniyah?",
-      "mecquoise • 86 sourates": "Makkiyah • 86 Surah",
-      "makkan • 86 surahs": "Makkiyah • 86 Surah",
-      "médinoise • 28 sourates": "Madaniyah • 28 Surah",
-      "madinan • 28 surahs": "Madaniyah • 28 Surah",
-      "1. ordre de révélation (1 à 114)": "1. Urutan Turunnya Wahyu (1 - 114)",
-      "1. revelation order (1 to 114)": "1. Urutan Turunnya Wahyu (1 - 114)",
-      "2. ordre du mushaf (1 à 114)": "2. Urutan Mushaf (1 - 114)",
-      "2. mushaf order (1 to 114)": "2. Urutan Mushaf (1 - 114)",
-      "⭐ 3. versets des miracles scientifiques": "⭐ 3. Ayat-Ayat Mukjizat Ilmiah",
-      "⭐ 3. scientific miracles verses": "⭐ 3. Ayat-Ayat Mukjizat Ilmiah",
-      "mecquoise": "Makkiyah",
-      "makkan": "Makkiyah",
-      "médinoise": "Madaniyah",
-      "madinan": "Madaniyah"
+      "mecquoise • 86 sourates": "MAKKIYAH • 86 SURAH",
+      "makkan • 86 surahs": "MAKKIYAH • 86 SURAH",
+      "médinoise • 28 sourates": "MADANIYAH • 28 SURAH",
+      "madinan • 28 surahs": "MADANIYAH • 28 SURAH",
+      "1. ordre de révélation (1 à 114)": "1. Urutan Turunnya Wahyu (1–114)",
+      "1. revelation order (1 to 114)": "1. Urutan Turunnya Wahyu (1–114)",
+      "2. ordre du mushaf (1 à 114)": "2. Urutan Mushaf (1–114)",
+      "2. ordre classique (1 à 114)": "2. Urutan Mushaf (1–114)",
+      "2. mushaf order (1 to 114)": "2. Urutan Mushaf (1–114)",
+      "⭐ 3. versets des miracles scientifiques": "3. ⭐ Mukjizat Al-Qur'an",
+      "3. ⭐ miracles du coran": "3. ⭐ Mukjizat Al-Qur'an",
+      "⭐ 3. scientific miracles verses": "3. ⭐ Mukjizat Al-Qur'an",
+      "mecquoise": "MAKKIYAH",
+      "makkan": "MAKKIYAH",
+      "médinoise": "MADANIYAH",
+      "madinan": "MADANIYAH"
     },
     ru: {
+      "le noble coran & tafsīr": "СВЯЩЕННЫЙ КОРАН И ТАФСИР",
+      "le noble coran & tafsir": "СВЯЩЕННЫЙ КОРАН И ТАФСИР",
+      "the noble quran & tafsīr": "СВЯЩЕННЫЙ КОРАН И ТАФСИР",
+      "le noble coran & tafsīr al-mukhtasar": "Священный Коран и Тафсир аль-Мухтасар",
+      "the noble quran & tafsīr al-mukhtasar": "Священный Коран и Тафсир аль-Мухтасар",
+      "el noble corán y tafsīr al-mukhtasar": "Священный Коран и Тафсир аль-Мухтасар",
+      "القرآن الكريم والتفسير المختصر": "Священный Коран и Тафсир аль-Мухтасар",
       "‹ retour aux 114 sourates": "‹ Назад к 114 сурам",
       "‹ back to 114 surahs": "‹ Назад к 114 сурам",
       "‹ volver a las 114 suras": "‹ Назад к 114 сурам",
@@ -3144,30 +3249,26 @@ html body #btnLangRuV62.active-ext-v62 {
       "lettre muette": "Немая буква",
       "silent letter": "Немая буква",
       "⭐ développer l'explication complète, le hadīth & les preuves historiques": "⭐ Развернуть полное толкование, хадис и исторические факты",
-      "le noble coran & tafsīr al-mukhtasar": "Священный Коран и Тафсир аль-Мухтасар",
-      "the noble quran & tafsīr al-mukhtasar": "Священный Коран и Тафсир аль-Мухтасар",
-      "el noble corán y tafsīr al-mukhtasar": "Священный Коран и Тафсир аль-Мухтасар",
-      "القرآن الكريم والتفسير المختصر": "Священный Коран и Тафсир аль-Мухтасар",
-      "📲 installer le site en app sur votre téléphone (iphone / android)": "📲 Установить сайт как приложение на телефон (iPhone / Android)",
-      "📲 install the site as an app on your phone (iphone / android)": "📲 Установить сайт как приложение на телефон (iPhone / Android)",
       "qu'est-ce qu'une sourate mecquoise ?": "Что такое мекканская сура?",
       "what is a makkan surah?": "Что такое мекканская сура?",
       "qu'est-ce qu'une sourate médinoise ?": "Что такое мединская сура?",
       "what is a madinan surah?": "Что такое мединская сура?",
-      "mecquoise • 86 sourates": "Мекканская • 86 сур",
-      "makkan • 86 surahs": "Мекканская • 86 сур",
-      "médinoise • 28 sourates": "Мединская • 28 сур",
-      "madinan • 28 surahs": "Мединская • 28 сур",
+      "mecquoise • 86 sourates": "МЕККАНСКАЯ • 86 СУР",
+      "makkan • 86 surahs": "МЕККАНСКАЯ • 86 СУР",
+      "médinoise • 28 sourates": "МЕДИНСКАЯ • 28 СУР",
+      "madinan • 28 surahs": "МЕДИНСКАЯ • 28 СУР",
       "1. ordre de révélation (1 à 114)": "1. По порядку ниспослания (1–114)",
       "1. revelation order (1 to 114)": "1. По порядку ниспослания (1–114)",
       "2. ordre du mushaf (1 à 114)": "2. По порядку Мусхафа (1–114)",
+      "2. ordre classique (1 à 114)": "2. По порядку Мусхафа (1–114)",
       "2. mushaf order (1 to 114)": "2. По порядку Мусхафа (1–114)",
-      "⭐ 3. versets des miracles scientifiques": "⭐ 3. Аяты научных чудес Корана",
-      "⭐ 3. scientific miracles verses": "⭐ 3. Аяты научных чудес Корана",
-      "mecquoise": "Мекканская",
-      "makkan": "Мекканская",
-      "médinoise": "Мединская",
-      "madinan": "Мединская"
+      "⭐ 3. versets des miracles scientifiques": "3. ⭐ Чудеса Корана",
+      "3. ⭐ miracles du coran": "3. ⭐ Чудеса Корана",
+      "⭐ 3. scientific miracles verses": "3. ⭐ Чудеса Корана",
+      "mecquoise": "МЕККАНСКАЯ",
+      "makkan": "МЕККАНСКАЯ",
+      "médinoise": "МЕДИНСКАЯ",
+      "madinan": "МЕДИНСКАЯ"
     }
   };
 
@@ -3175,7 +3276,7 @@ html body #btnLangRuV62.active-ext-v62 {
     var codeL = langExtActive;
     if (!LANGUES_EXT_SUPPORTEES[codeL] || !document.body) return;
 
-    var mapBtnId = { de: "btnLangDeV62", it: "btnLangItV62", id: "btnLangIdV62", ru: "btnLangRuV62" };
+    var mapBtnId = { de: "btnLangDeV63", it: "btnLangItV63", id: "btnLangIdV63", ru: "btnLangRuV63" };
     var btnActif = document.getElementById(mapBtnId[codeL]);
     if (btnActif && btnActif.parentElement) {
       assurerBaseLatinePourExt(btnActif.parentElement, btnActif);
@@ -3192,6 +3293,7 @@ html body #btnLangRuV62.active-ext-v62 {
     }
     var texteOfficielVerset = (numS && cacheChapitresExt[cleChap]) ? cacheChapitresExt[cleChap][vk] : null;
     var dicoUi = DICO_UI_PAR_LANG[codeL];
+    var noms114 = NOMS_114_ACCUEIL[codeL] || {};
 
     var placeholders = {
       de: "Suche nach einer Sure oder einem Vers (z.B. 2:255, 30:1, Al-Kahf...)",
@@ -3202,6 +3304,32 @@ html body #btnLangRuV62.active-ext-v62 {
     var inputs = document.querySelectorAll("input[type='text'], input[type='search'], input:not([type])");
     for (var inp = 0; inp < inputs.length; inp++) {
       inputs[inp].setAttribute("placeholder", placeholders[codeL]);
+    }
+
+    // Sur la page d'accueil, repérer les cartes de sourates par leur lien href="sourate-X-verset-1.html"
+    var cartesAccueil = document.querySelectorAll("a[href*='sourate-']");
+    for (var ca = 0; ca < cartesAccueil.length; ca++) {
+      var lienCarte = cartesAccueil[ca];
+      var mHref = (lienCarte.getAttribute("href") || "").match(/sourate-(\\d+)/i);
+      if (mHref) {
+        var sId = Number(mHref[1]);
+        if (noms114[sId]) {
+          var titresEl = lienCarte.querySelectorAll("h2, h3, h4, div, span");
+          for (var te = 0; te < titresEl.length; te++) {
+            var candT = titresEl[te];
+            if (candT.children.length === 0) {
+              var origT = (candT.__origTitreV63 || candT.textContent || "").trim();
+              if (origT.indexOf("(") !== -1 && origT.indexOf(")") !== -1 && origT.indexOf("Miracle") === -1 && origT.indexOf("Wunder") === -1 && origT.indexOf("Miracolo") === -1 && origT.indexOf("Mukjizat") === -1 && origT.indexOf("Чудо") === -1) {
+                if (!candT.__origTitreV63) candT.__origTitreV63 = origT;
+                if (candT.firstChild && candT.firstChild.nodeType === 3) {
+                  modifierNoeudTexteSeul(candT.firstChild, noms114[sId]);
+                }
+                break;
+              }
+            }
+          }
+        }
+      }
     }
 
     var conteneurArabe = document.querySelector("#arabicVerse, .arabic-glow-verse");
@@ -3215,17 +3343,55 @@ html body #btnLangRuV62.active-ext-v62 {
       if (!pEl) continue;
       var tag = pEl.tagName;
       if (tag === "SCRIPT" || tag === "STYLE") continue;
-      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner") continue;
+      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate")) continue;
 
-      var val = (node.__origExtV62 !== undefined ? node.__origExtV62 : node.nodeValue || "").replace(/\\u00A0/g, " ").trim();
+      var val = (node.__origExtV63 !== undefined ? node.__origExtV63 : node.nodeValue || "").replace(/\\u00A0/g, " ").trim();
       if (!val || /[\\u0600-\\u06FF]/.test(val)) continue;
       var valLower = val.toLowerCase();
 
+      // 1. Dictionnaire exact insensible à la casse
       if (dicoUi[valLower]) {
         modifierNoeudTexteSeul(node, dicoUi[valLower]);
         continue;
       }
 
+      // 2. CORRECTION CRITIQUE DU BUG "52v." -> "52 pouces / 19e siècle" !
+      var matchVersetsCourt = val.match(/^(\\d+)\\s*(?:v\\.|versets|verses|aleyas)$/i);
+      if (matchVersetsCourt) {
+        var nbV = matchVersetsCourt[1];
+        var unitV = { de: nbV + " Verse", it: nbV + " versetti", id: nbV + " ayat", ru: nbV + " аятов" }[codeL];
+        modifierNoeudTexteSeul(node, unitV);
+        continue;
+      }
+
+      // 3. CORRECTION DU BOUTON PWA "Installer sur votre téléphone (iPhone / Android)"
+      if (valLower.indexOf("safari") !== -1 || valLower.indexOf("android") !== -1 || valLower.indexOf("iphone") !== -1) {
+        var txtPwa = {
+          de: "📲 App auf Ihrem Telefon installieren (iPhone / Android)",
+          it: "📲 Installa l'App sul tuo telefono (iPhone / Android)",
+          id: "📲 Pasang Aplikasi di ponsel Anda (iPhone / Android)",
+          ru: "📲 Установить приложение на телефон (iPhone / Android)"
+        }[codeL];
+        modifierNoeudTexteSeul(node, txtPwa);
+        continue;
+      }
+
+      // 4. CORRECTION DU BOUTON VERT "Reprendre : Al-Baqarah (v.1)" (et non "Résumé Tome 1")
+      if (valLower.indexOf("reprendre") !== -1 || valLower.indexOf("resume") !== -1 || valLower.indexOf("continuar") !== -1) {
+        var mRep = val.match(/:\\s*([^\\(]+)\\(\\s*(?:v\\.?|verset|verse|aleya)\\s*(\\d+)\\s*\\)/i);
+        var nomSRep = mRep ? mRep[1].trim() : "Al-Baqarah";
+        var numVRep = mRep ? mRep[2] : "1";
+        var txtRep = {
+          de: "📖 Weiterlesen: " + nomSRep + " (Vers " + numVRep + ")",
+          it: "📖 Riprendi lettura: " + nomSRep + " (Versetto " + numVRep + ")",
+          id: "📖 Lanjutkan membaca: " + nomSRep + " (Ayat " + numVRep + ")",
+          ru: "📖 Продолжить чтение: " + nomSRep + " (Аят " + numVRep + ")"
+        }[codeL];
+        modifierNoeudTexteSeul(node, txtRep);
+        continue;
+      }
+
+      // 5. Sélecteur de verset : "Verset 2 / 286"
       if (/(?:Verset|Verse|Aleya)\\s+\\d+\\s*\\/\\s*\\d+/i.test(val)) {
         var mapMotVers = { de: "Vers", it: "Versetto", id: "Ayat", ru: "Аят" };
         var mapMotMir = { de: "Wunder", it: "Miracolo", id: "Mukjizat", ru: "Чудо" };
@@ -3233,19 +3399,33 @@ html body #btnLangRuV62.active-ext-v62 {
         continue;
       }
 
-      if (/Miracle\\s*[:\\(]\\s*V\\.?\\s*\\d+/i.test(val)) {
-        var mMir = { de: "Wunder", it: "Miracolo", id: "Mukjizat", ru: "Чудо" }[codeL];
-        var mV = { de: "Vers ", it: "V.", id: "Ayat ", ru: "Аят " }[codeL];
-        modifierNoeudTexteSeul(node, val.replace(/Miracle/gi, mMir).replace(/V\\./i, mV));
+      // 6. Badge Miracle : "⭐ MIRACLE : V.1" ou "⭐ Miracle (V.2)"
+      var mMirBadge = val.match(/Miracle\\s*[:\\(]\\s*(?:V\\.?|Verset|Verse)\\s*(\\d+)\\)?/i);
+      if (mMirBadge) {
+        var vNumMir = mMirBadge[1];
+        var txtMir = {
+          de: "⭐ WUNDER (VERS " + vNumMir + ")",
+          it: "⭐ MIRACOLO (V. " + vNumMir + ")",
+          id: "⭐ MUKJIZAT (AYAT " + vNumMir + ")",
+          ru: "⭐ ЧУДО (АЯТ " + vNumMir + ")"
+        }[codeL];
+        modifierNoeudTexteSeul(node, txtMir);
         continue;
       }
 
-      if (/^\\d+\\s+(?:versets|verses|aleyas)$/i.test(val)) {
-        var mPl = { de: "Verse", it: "versetti", id: "ayat", ru: "аятов" }[codeL];
-        modifierNoeudTexteSeul(node, val.replace(/versets|verses|aleyas/i, mPl));
+      // 7. Titre H1 sur la page de verset
+      if ((val.indexOf("Sourate ") === 0 || val.indexOf("Surah ") === 0 || val.indexOf("Sure ") === 0 || val.indexOf("Sura ") === 0) && (val.indexOf(" — Verset ") !== -1 || val.indexOf(" — Verse ") !== -1)) {
+        var prefS = { de: "Sure ", it: "Sura ", id: "Surah ", ru: "Сура " }[codeL];
+        var prefV = { de: " — Vers ", it: " — Versetto ", id: " — Ayat ", ru: " — Аят " }[codeL];
+        if (numS && noms114[numS]) {
+          modifierNoeudTexteSeul(node, prefS + noms114[numS] + prefV + numV);
+        } else {
+          modifierNoeudTexteSeul(node, val.replace(/^Sourate |^Surah /, prefS).replace(/ — Verset | — Verse /, prefV));
+        }
         continue;
       }
 
+      // 8. Traduction principale du verset juste sous l'arabe
       var rectP = pEl.getBoundingClientRect();
       if (
         !versetHautDejaRemplace &&
@@ -3265,17 +3445,16 @@ html body #btnLangRuV62.active-ext-v62 {
         continue;
       }
 
-      // Traduire tous les autres textes (Titres H1, Hadiths, Tafsir, Accueil) dès 3 caractères !
-      var estSurAccueil = !rectArabe;
-      var estTitreH1 = tag === "H1" || tag === "H2";
-      var estSousVerset = rectArabe && rectP.top > rectArabe.bottom + 75;
-      if ((estSurAccueil || estTitreH1 || estSousVerset) && val.length >= 3) {
+      // 9. Paragraphes longs explicatifs (Encadrés Mecquoise/Médinoise sur l'accueil, ou Tafsir/Hadith en bas des versets)
+      var estSurAccueil = !rectArabe && val.length >= 25;
+      var estSousVerset = rectArabe && rectP.top > rectArabe.bottom + 75 && val.length >= 3;
+      if (estSurAccueil || estSousVerset) {
         if (
           val.indexOf("Traduction originale") === -1 &&
           val.indexOf("Deutsche Übersetzung") === -1 &&
           val.indexOf("Traduzione italiana") === -1 &&
           val.indexOf("Terjemahan Kementerian") === -1 &&
-          val.indexOf("Перевод Эльмира") === -1 &&
+          val.indexOf("Смысловой перевод") === -1 &&
           val.indexOf("Translation by Saheeh") === -1 &&
           val.indexOf("TAFSĪR") === -1
         ) {
@@ -3285,7 +3464,7 @@ html body #btnLangRuV62.active-ext-v62 {
     }
 
     if (document.documentElement) {
-      document.documentElement.classList.remove("lang-ext-pending-v62");
+      document.documentElement.classList.remove("lang-ext-pending-v63");
     }
   }
 
@@ -3314,7 +3493,7 @@ html body #btnLangRuV62.active-ext-v62 {
       btnSuivi.style.setProperty("display", "inline-flex", "important");
       btnSuivi.style.setProperty("visibility", "visible", "important");
       btnSuivi.style.setProperty("opacity", "1", "important");
-      if (btnSuivi.id === "btnSuiviUniverselV62" && btnSuivi.textContent !== labelSuivi) {
+      if (btnSuivi.id === "btnSuiviUniverselV63" && btnSuivi.textContent !== labelSuivi) {
         btnSuivi.textContent = labelSuivi;
       }
       if (suiviEstActif) {
@@ -3323,9 +3502,9 @@ html body #btnLangRuV62.active-ext-v62 {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV62")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV63")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV62";
+      nv.id = "btnSuiviUniverselV63";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.textContent = labelSuivi;
@@ -3414,8 +3593,8 @@ html body #btnLangRuV62.active-ext-v62 {
       }
 
       if (role === "sun") {
-        node.classList.remove("astre-lune-pure-v62");
-        node.classList.add("astre-soleil-pur-v62");
+        node.classList.remove("astre-lune-pure-v63");
+        node.classList.add("astre-soleil-pur-v63");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -3424,8 +3603,8 @@ html body #btnLangRuV62.active-ext-v62 {
         node.style.setProperty("box-shadow", "0 0 50px 16px rgba(253, 224, 71, 0.72), 0 0 110px 38px rgba(245, 158, 11, 0.42)", "important");
         node.style.setProperty("filter", "none", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v62");
-        node.classList.add("astre-lune-pure-v62");
+        node.classList.remove("astre-soleil-pur-v63");
+        node.classList.add("astre-lune-pure-v63");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -3445,7 +3624,7 @@ html body #btnLangRuV62.active-ext-v62 {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v62");
+          row.classList.add("maher-supprime-v63");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
@@ -3527,7 +3706,7 @@ html body #btnLangRuV62.active-ext-v62 {
     }
   }
 
-  // 4. MOT-À-MOT EN ORDRE AUDIO STRICT + COMPATIBILITÉ 8 LANGUES (DONT ID & RU)
+  // 4. MOT-À-MOT EN ORDRE AUDIO STRICT + COMPATIBILITÉ 8 LANGUES
   var DICO_MULTILINGUE = {
     fr: {
       "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn", "طه": "Tā-Hā",
@@ -3562,7 +3741,7 @@ html body #btnLangRuV62.active-ext-v62 {
   var sensGrilleRtl = true;
 
   try {
-    var sauv = localStorage.getItem("cache_wbw_exact_v62");
+    var sauv = localStorage.getItem("cache_wbw_exact_v63") || localStorage.getItem("cache_wbw_exact_v62");
     if (sauv) cacheVersetMotsExact = JSON.parse(sauv);
   } catch (e) {}
 
@@ -3615,7 +3794,6 @@ html body #btnLangRuV62.active-ext-v62 {
     if (cacheVersetMotsExact[cleCache] || requetesVersetEnCours[cleCache]) return;
     requetesVersetEnCours[cleCache] = true;
 
-    // L'API Quran.com supporte nativement le mot-à-mot en Indonésien (id), Russe (ru), Allemand (de) et Anglais (en) !
     var apiLang = (lang === "id" || lang === "ru" || lang === "de" || lang === "en") ? lang : "en";
     var urlQdc = "https://api.quran.com/api/v4/verses/by_key/" + vk + "?language=" + apiLang + "&words=true&word_fields=text_uthmani,translation";
     fetch(urlQdc)
@@ -3638,7 +3816,7 @@ html body #btnLangRuV62.active-ext-v62 {
             if (cert) motsQdc[t].tr = cert;
           }
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v62", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v63", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -3658,7 +3836,7 @@ html body #btnLangRuV62.active-ext-v62 {
 
         if (aTraduireTextes.length === 0) {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v62", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v63", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -3685,7 +3863,7 @@ html body #btnLangRuV62.active-ext-v62 {
           .catch(function () {})
           .finally(function () {
             cacheVersetMotsExact[cleCache] = motsQdc;
-            try { localStorage.setItem("cache_wbw_exact_v62", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+            try { localStorage.setItem("cache_wbw_exact_v63", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
             appliquerVraiMotAMotSurDOM();
           });
       })
@@ -3910,7 +4088,7 @@ html body #btnLangRuV62.active-ext-v62 {
     root.style.setProperty("--wbw-min-w", minW);
   }
 
-  // 6. ANIMATION MODE SUIVI 100% INFAILLIBLE (BLANC PUR -> BLEU NÉON)
+  // 6. ANIMATION MODE SUIVI 100% INFAILLIBLE
   var MAP_NOMS_VERS_QDC = {
     dosari: [174, 168], dossari: [174, 168], yasser: [174, 168],
     afasy: [7], alafasy: [7], mishary: [7],
@@ -4042,7 +4220,7 @@ html body #btnLangRuV62.active-ext-v62 {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV62) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV63) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       var self = this;
@@ -4050,8 +4228,8 @@ html body #btnLangRuV62.active-ext-v62 {
       if (self.currentTime < 0.25) {
         reinitialiserMotsEnBlancPur();
       }
-      if (!self.__listenersV62) {
-        self.__listenersV62 = true;
+      if (!self.__listenersV63) {
+        self.__listenersV63 = true;
         self.addEventListener("playing", lancerBoucleSuivi);
         self.addEventListener("timeupdate", lancerBoucleSuivi);
       }
@@ -4061,7 +4239,7 @@ html body #btnLangRuV62.active-ext-v62 {
       lancerBoucleSuivi();
       return origPlay.apply(self, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV62 = true;
+    HTMLMediaElement.prototype.__hookedV63 = true;
   }
 
   function trouverAudioActif() {
@@ -5419,7 +5597,7 @@ html body #btnLangRuV62.active-ext-v62 {
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
 <link rel="preconnect" href="https://everyayah.com" crossorigin>
 <link rel="preconnect" href="https://translate.googleapis.com" crossorigin>
-<style id="patch-master-v62">
+<style id="patch-master-v63">
 :root {
   --wbw-ar-size: 2.15rem;
   --wbw-tr-size: 0.92rem;
@@ -5429,10 +5607,10 @@ html body #btnLangRuV62.active-ext-v62 {
 }
 
 /* 0. ANTI-FLASH FRANÇAIS -> LANGUES ÉTENDUES (DE / IT / ID / RU) */
-html.lang-ext-pending-v62 h1,
-html.lang-ext-pending-v62 h2,
-html.lang-ext-pending-v62 p,
-html.lang-ext-pending-v62 .tafsir-content {
+html.lang-ext-pending-v63 h1,
+html.lang-ext-pending-v63 h2,
+html.lang-ext-pending-v63 p,
+html.lang-ext-pending-v63 .tafsir-content {
   opacity: 0 !important;
   transition: opacity 0.12s ease !important;
 }
@@ -5443,7 +5621,7 @@ html body .flat-earth-sun,
 html body [id*="sun" i]:not([id*="sound" i]),
 html body [class*="sun" i]:not([class*="sound" i]),
 html body [data-astre-role="sun"],
-html body .astre-soleil-pur-v62 {
+html body .astre-soleil-pur-v63 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -5463,8 +5641,8 @@ html body .astre-soleil-pur-v62 {
 }
 html body #flatEarthSun::before, html body #flatEarthSun::after,
 html body .flat-earth-sun::before, html body .flat-earth-sun::after,
-html body .astre-soleil-pur-v62::before, html body .astre-soleil-pur-v62::after,
-html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v62 * {
+html body .astre-soleil-pur-v63::before, html body .astre-soleil-pur-v63::after,
+html body #flatEarthSun *, html body .flat-earth-sun *, html body .astre-soleil-pur-v63 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
@@ -5474,7 +5652,7 @@ html body .flat-earth-moon,
 html body [id*="moon" i],
 html body [class*="moon" i],
 html body [data-astre-role="moon"],
-html body .astre-lune-pure-v62 {
+html body .astre-lune-pure-v63 {
   width: 150px !important;
   height: 150px !important;
   min-width: 150px !important;
@@ -5494,13 +5672,13 @@ html body .astre-lune-pure-v62 {
 }
 html body #flatEarthMoon::before, html body #flatEarthMoon::after,
 html body .flat-earth-moon::before, html body .flat-earth-moon::after,
-html body .astre-lune-pure-v62::before, html body .astre-lune-pure-v62::after,
-html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v62 * {
+html body .astre-lune-pure-v63::before, html body .astre-lune-pure-v63::after,
+html body #flatEarthMoon *, html body .flat-earth-moon *, html body .astre-lune-pure-v63 * {
   display: none !important; content: none !important; background: none !important; box-shadow: none !important; opacity: 0 !important;
 }
 
 /* 3. MASQUAGE DE MAHER AL-MUAIQLY & TRADUCTION DU BAS EN MOT-À-MOT */
-html body img[src*="maher" i], html body [data-reciter*="maher" i], html body .maher-supprime-v62,
+html body img[src*="maher" i], html body [data-reciter*="maher" i], html body .maher-supprime-v63,
 html body .wbw-masquer-traduction-bas {
   display: none !important; visibility: hidden !important; height: 0 !important; max-height: 0 !important; margin: 0 !important; padding: 0 !important; border: none !important; overflow: hidden !important; opacity: 0 !important; pointer-events: none !important;
 }
@@ -5532,21 +5710,21 @@ html body .verse-stage .arabic-glow-verse span, html body .verse-stage #arabicVe
 }
 
 /* 6. BOUTONS DE LANGUE ÉTENDUS (DE, IT, ID, RU) */
-html body #btnLangDeV62,
-html body #btnLangItV62,
-html body #btnLangIdV62,
-html body #btnLangRuV62 {
+html body #btnLangDeV63,
+html body #btnLangItV63,
+html body #btnLangIdV63,
+html body #btnLangRuV63 {
   cursor: pointer !important; transition: all 0.2s ease !important; display: inline-flex !important; align-items: center !important; justify-content: center !important;
 }
-html body #btnLangDeV62.active-ext-v62,
-html body #btnLangItV62.active-ext-v62,
-html body #btnLangIdV62.active-ext-v62,
-html body #btnLangRuV62.active-ext-v62 {
+html body #btnLangDeV63.active-ext-v63,
+html body #btnLangItV63.active-ext-v63,
+html body #btnLangIdV63.active-ext-v63,
+html body #btnLangRuV63.active-ext-v63 {
   background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(56, 189, 248, 0.18)) !important;
   border: 1px solid #38bdf8 !important; color: #ffffff !important; border-radius: 999px !important;
 }
 </style>
-<script id="script-master-v62">(function codeClientV62() {
+<script id="script-master-v63">(function codeClientV63() {
   var LANGUES_EXT_SUPPORTEES = { de: 27, it: 153, id: 33, ru: 45 };
   var langExtActive = "";
   var IgnoreClicInterneFr = false;
@@ -5556,9 +5734,9 @@ html body #btnLangRuV62.active-ext-v62 {
     var pLang = urlParams.get("lang");
     if (pLang && LANGUES_EXT_SUPPORTEES[pLang]) {
       langExtActive = pLang;
-      localStorage.setItem("corantafsir_lang_ext_v62", pLang);
+      localStorage.setItem("corantafsir_lang_ext_v63", pLang);
     } else {
-      var savedExt = localStorage.getItem("corantafsir_lang_ext_v62") || localStorage.getItem("corantafsir_lang_ext_v60");
+      var savedExt = localStorage.getItem("corantafsir_lang_ext_v63") || localStorage.getItem("corantafsir_lang_ext_v62");
       if (savedExt && LANGUES_EXT_SUPPORTEES[savedExt]) {
         langExtActive = savedExt;
       }
@@ -5566,11 +5744,89 @@ html body #btnLangRuV62.active-ext-v62 {
   } catch (e) {}
 
   if (langExtActive && document.documentElement) {
-    document.documentElement.classList.add("lang-ext-pending-v62");
+    document.documentElement.classList.add("lang-ext-pending-v63");
     setTimeout(function () {
-      document.documentElement.classList.remove("lang-ext-pending-v62");
+      document.documentElement.classList.remove("lang-ext-pending-v63");
     }, 320);
   }
+
+  // NOMS EXACTS DES 114 SOURATES POUR L'ACCUEIL & LES PAGES VERSETS (ZÉRO TRADUCTION BIZARRE)
+  var NOMS_114_ACCUEIL = {
+    de: {
+      1: "Al-Fātihah (Die Eröffnende)", 2: "Al-Baqarah (Die Kuh)", 3: "Āl 'Imrān (Die Sippe 'Imrāns)", 4: "An-Nisā' (Die Frauen)",
+      5: "Al-Mā'idah (Der Tisch)", 6: "Al-An'ām (Das Vieh)", 7: "Al-A'rāf (Die Höhen)", 8: "Al-Anfāl (Die Beute)",
+      9: "At-Tawbah (Die Reue)", 10: "Yūnus (Jonas)", 11: "Hūd", 12: "Yūsuf (Josef)", 13: "Ar-Ra'd (Der Donner)",
+      14: "Ibrāhīm (Abraham)", 15: "Al-Hijr", 16: "An-Nahl (Die Biene)", 17: "Al-Isrā' (Die Nachtreise)", 18: "Al-Kahf (Die Höhle)",
+      19: "Maryam (Maria)", 20: "Tā-Hā", 21: "Al-Anbiyā' (Die Propheten)", 22: "Al-Hajj (Die Pilgerfahrt)", 23: "Al-Mu'minūn (Die Gläubigen)",
+      24: "An-Nūr (Das Licht)", 25: "Al-Furqān (Die Unterscheidung)", 26: "Ash-Shu'arā' (Die Dichter)", 27: "An-Naml (Die Ameisen)",
+      28: "Al-Qasas (Die Geschichten)", 29: "Al-'Ankabūt (Die Spinne)", 30: "Ar-Rūm (Die Römer)", 31: "Luqmān",
+      32: "As-Sajdah (Die Niederwerfung)", 33: "Al-Ahzāb (Die Gruppierungen)", 34: "Saba'", 35: "Fātir (Der Schöpfer)", 36: "Yā-Sīn",
+      37: "As-Sāffāt (Die Gereihten)", 38: "Sād", 39: "Az-Zumar (Die Scharen)", 40: "Ghāfir (Der Vergebende)", 41: "Fussilat (Ausführlich dargelegt)",
+      42: "Ash-Shūrā (Die Beratung)", 43: "Az-Zukhruf (Der Prunk)", 44: "Ad-Dukhān (Der Rauch)", 45: "Al-Jāthiyah (Das Knien)",
+      46: "Al-Ahqāf (Die Dünen)", 47: "Muhammad", 48: "Al-Fath (Der Sieg)", 49: "Al-Hujurāt (Die Gemächer)", 50: "Qāf",
+      51: "Adh-Dhāriyāt (Die Aufwirbelnden)", 52: "At-Tūr (Der Berg)", 53: "An-Najm (Der Stern)", 54: "Al-Qamar (Der Mond)",
+      55: "Ar-Rahmān (Der Allerbarmer)", 56: "Al-Wāqi'ah (Das Ereignis)", 57: "Al-Hadīd (Das Eisen)", 58: "Al-Mujādilah (Die Streitende)",
+      59: "Al-Hashr (Die Versammlung)", 60: "Al-Mumtahanah (Die Geprüfte)", 61: "As-Saff (Die Reihe)", 62: "Al-Jumu'ah (Der Freitag)",
+      63: "Al-Munāfiqūn (Die Heuchler)", 64: "At-Taghābun (Die Übervorteilung)", 65: "At-Talāq (Die Scheidung)", 66: "At-Tahrīm (Das Verbot)",
+      67: "Al-Mulk (Die Herrschaft)", 68: "Al-Qalam (Das Schreibrohr)", 69: "Al-Hāqqah (Die Fällige)", 70: "Al-Ma'ārij (Die Aufstiegswege)",
+      71: "Nūh (Noah)", 72: "Al-Jinn (Die Dschinn)", 73: "Al-Muzzammil (Der Eingehüllte)", 74: "Al-Muddaththir (Der Bedeckte)",
+      75: "Al-Qiyāmah (Die Auferstehung)", 76: "Al-Insān (Der Mensch)", 77: "Al-Mursalāt (Die Gesandten)", 78: "An-Naba' (Die Kunde)",
+      79: "An-Nāzi'āt (Die Entreißenden)", 80: "'Abasa (Er runzelte die Stirn)", 81: "At-Takwīr (Das Umschlingen)", 82: "Al-Infitār (Das Zerbrechen)",
+      83: "Al-Mutaffifīn (Die Betrüger)", 84: "Al-Inshiqāq (Das Zerreißen)", 85: "Al-Burūj (Die Türme)", 86: "At-Tāriq (Der Nachtstern)",
+      87: "Al-A'lā (Der Höchste)", 88: "Al-Ghāshiyah (Die Überdeckende)", 89: "Al-Fajr (Die Morgenröte)", 90: "Al-Balad (Die Stadt)",
+      91: "Ash-Shams (Die Sonne)", 92: "Al-Layl (Die Nacht)", 93: "Ad-Duhā (Der Vormittag)", 94: "Ash-Sharh (Das Weiten)",
+      95: "At-Tīn (Die Feige)", 96: "Al-'Alaq (Das Anhängsel)", 97: "Al-Qadr (Die Bestimmung)", 98: "Al-Bayyinah (Der klare Beweis)",
+      99: "Az-Zalzalah (Das Beben)", 100: "Al-'Ādiyāt (Die Rennenden)", 101: "Al-Qāri'ah (Die Pochende)", 102: "At-Takāthur (Die Vermehrung)",
+      103: "Al-'Asr (Die Zeit)", 104: "Al-Humazah (Der Stichler)", 105: "Al-Fīl (Der Elefant)", 106: "Quraysh (Quraisch)",
+      107: "Al-Mā'ūn (Die Hilfeleistung)", 108: "Al-Kawthar (Die Fülle)", 109: "Al-Kāfirūn (Die Ungläubigen)", 110: "An-Nasr (Die Hilfe)",
+      111: "Al-Masad (Die Palmfasern)", 112: "Al-Ikhlās (Die Reinheit)", 113: "Al-Falaq (Das Morgenrot)", 114: "An-Nās (Die Menschen)"
+    },
+    it: {
+      1: "Al-Fātihah (L'Aprente)", 2: "Al-Baqarah (La Giovenca)", 3: "Āl 'Imrān (La Famiglia di 'Imrān)", 4: "An-Nisā' (Le Donne)",
+      5: "Al-Mā'idah (La Mensa)", 6: "Al-An'ām (Il Bestiame)", 7: "Al-A'rāf (I Limbi)", 8: "Al-Anfāl (Il Bottino)",
+      9: "At-Tawbah (Il Pentimento)", 10: "Yūnus (Giona)", 11: "Hūd", 12: "Yūsuf (Giuseppe)", 13: "Ar-Ra'd (Il Tuono)",
+      14: "Ibrāhīm (Abramo)", 15: "Al-Hijr", 16: "An-Nahl (Le Api)", 17: "Al-Isrā' (Il Viaggio Notturno)", 18: "Al-Kahf (La Caverna)",
+      19: "Maryam (Maria)", 20: "Tā-Hā", 21: "Al-Anbiyā' (I Profeti)", 22: "Al-Hajj (Il Pellegrinaggio)", 23: "Al-Mu'minūn (I Credenti)",
+      24: "An-Nūr (La Luce)", 25: "Al-Furqān (Il Discrimine)", 26: "Ash-Shu'arā' (I Poeti)", 27: "An-Naml (Le Formiche)",
+      28: "Al-Qasas (Il Racconto)", 29: "Al-'Ankabūt (Il Ragno)", 30: "Ar-Rūm (I Romani)", 31: "Luqmān",
+      32: "As-Sajdah (La Prosternazione)", 33: "Al-Ahzāb (I Coalizzati)", 34: "Saba'", 35: "Fātir (Il Creatore)", 36: "Yā-Sīn",
+      37: "As-Sāffāt (I Ranghi)", 38: "Sād", 39: "Az-Zumar (I Gruppi)", 40: "Ghāfir (Il Perdonatore)", 41: "Fussilat (Esposti Chiaramente)",
+      42: "Ash-Shūrā (La Consultazione)", 43: "Az-Zukhruf (Gli Ornamenti)", 44: "Ad-Dukhān (Il Fumo)", 45: "Al-Jāthiyah (La Genuflessa)",
+      46: "Al-Ahqāf (Le Dune)", 47: "Muhammad", 48: "Al-Fath (La Vittoria)", 49: "Al-Hujurāt (Gli Appartamenti)", 50: "Qāf",
+      51: "Adh-Dhāriyāt (Quelle che spargono)", 52: "At-Tūr (Il Monte)", 53: "An-Najm (La Stella)", 54: "Al-Qamar (La Luna)",
+      55: "Ar-Rahmān (Il Compassionevole)", 56: "Al-Wāqi'ah (L'Evento)", 57: "Al-Hadīd (Il Ferro)", 58: "Al-Mujādilah (La Disputante)",
+      59: "Al-Hashr (L'Esodo)", 60: "Al-Mumtahanah (L'Esaminata)", 61: "As-Saff (I Ranghi Serrati)", 62: "Al-Jumu'ah (Il Venerdì)",
+      63: "Al-Munāfiqūn (Gli Ipocriti)", 64: "At-Taghābun (Il Reciproco Inganno)", 65: "At-Talāq (Il Divorzio)", 66: "At-Tahrīm (L'Interdizione)",
+      67: "Al-Mulk (La Sovranità)", 68: "Al-Qalam (Il Calamo)", 69: "Al-Hāqqah (L'Inevitabile)", 70: "Al-Ma'ārij (Le Vie dell'Ascesa)",
+      71: "Nūh (Noè)", 72: "Al-Jinn (I Jinn)", 73: "Al-Muzzammil (L'Avvolto)", 74: "Al-Muddaththir (Il Rivestito)",
+      75: "Al-Qiyāmah (La Resurrezione)", 76: "Al-Insān (L'Uomo)", 77: "Al-Mursalāt (Le Inviate)", 78: "An-Naba' (L'Annuncio)",
+      79: "An-Nāzi'āt (Quelle che strappano)", 80: "'Abasa (Si accigliò)", 81: "At-Takwīr (L'Oscuramento)", 82: "Al-Infitār (Lo Squarciarsi)",
+      83: "Al-Mutaffifīn (I Frodati)", 84: "Al-Inshiqāq (La Fenditura)", 85: "Al-Burūj (Le Costellazioni)", 86: "At-Tāriq (L'Astro Notturno)",
+      87: "Al-A'lā (L'Altissimo)", 88: "Al-Ghāshiyah (L'Avvolgente)", 89: "Al-Fajr (L'Alba)", 90: "Al-Balad (La Contrada)",
+      91: "Ash-Shams (Il Sole)", 92: "Al-Layl (La Notte)", 93: "Ad-Duhā (La Luce del Mattino)", 94: "Ash-Sharh (L'Apertura del Petto)",
+      95: "At-Tīn (Il Fico)", 96: "Al-'Alaq (L'Aderenza)", 97: "Al-Qadr (Il Destino)", 98: "Al-Bayyinah (La Prova Chiara)",
+      99: "Az-Zalzalah (Il Terremoto)", 100: "Al-'Ādiyāt (Le Galoppanti)", 101: "Al-Qāri'ah (La Percotente)", 102: "At-Takāthur (La Rivalità)",
+      103: "Al-'Asr (Il Tempo)", 104: "Al-Humazah (Il Maldicente)", 105: "Al-Fīl (L'Elefante)", 106: "Quraysh (I Coreisciti)",
+      107: "Al-Mā'ūn (L'Utensile)", 108: "Al-Kawthar (L'Abbondanza)", 109: "Al-Kāfirūn (I Miscredenti)", 110: "An-Nasr (L'Ausilio)",
+      111: "Al-Masad (Le Fibre di Palma)", 112: "Al-Ikhlās (Il Puro Monoteismo)", 113: "Al-Falaq (L'Alba Nascente)", 114: "An-Nās (Gli Uomini)"
+    },
+    id: {
+      1: "Al-Fātihah (Pembukaan)", 2: "Al-Baqarah (Sapi Betina)", 68: "Al-Qalam (Pena)", 73: "Al-Muzzammil (Orang yang Berselimut)",
+      74: "Al-Muddaththir (Orang yang Berkemul)", 81: "At-Takwīr (Menggulung)", 87: "Al-A'lā (Yang Paling Tinggi)", 89: "Al-Fajr (Fajar)",
+      92: "Al-Layl (Malam)", 93: "Ad-Duhā (Waktu Duha)", 94: "Ash-Sharh (Melapangkan)", 96: "Al-'Alaq (Segumpal Darah)",
+      100: "Al-'Ādiyāt (Kuda Perang)", 102: "At-Takāthur (Bermegah-megahan)", 103: "Al-'Asr (Masa)", 107: "Al-Mā'ūn (Barang yang Berguna)",
+      108: "Al-Kawthar (Nikmat yang Banyak)", 109: "Al-Kāfirūn (Orang-Orang Kafir)", 111: "Al-Masad (Gejolak Api / Sabut)",
+      112: "Al-Ikhlās (Kemurnian Keesaan Allah)", 113: "Al-Falaq (Waktu Subuh)", 114: "An-Nās (Manusia)"
+    },
+    ru: {
+      1: "Аль-Фатиха (Открывающая Коран)", 2: "Аль-Бакара (Корова)", 68: "Аль-Калам (Письменная трость)", 73: "Аль-Муззаммиль (Закутавшийся)",
+      74: "Аль-Муддассир (Завернувшийся)", 81: "Ат-Таквир (Скручивание)", 87: "Аль-Аля (Всевышний)", 89: "Аль-Фаджр (Заря)",
+      92: "Аль-Лейл (Ночь)", 93: "Ад-Духа (Утро)", 94: "Аш-Шарх (Раскрытие)", 96: "Аль-Аляк (Сгусток крови)",
+      100: "Аль-Адият (Скачущие)", 102: "Ат-Такасур (Страсть к приумножению)", 103: "Аль-Аср (Предвечернее время)", 107: "Аль-Маун (Мелочь)",
+      108: "Аль-Каусар (Изобилие)", 109: "Аль-Кафирун (Неверующие)", 111: "Аль-Масад (Пальмовые волокна)",
+      112: "Аль-Ихляс (Очищение веры)", 113: "Аль-Фаляк (Рассвет)", 114: "Ан-Нас (Люди)"
+    }
+  };
 
   var cacheChapitresExt = {};
   var requetesChapExtEnCours = {};
@@ -5579,9 +5835,11 @@ html body #btnLangRuV62.active-ext-v62 {
   var noeudsTextesModifies = [];
 
   try {
-    var sauvChapExt = localStorage.getItem("cache_ext_chap_v62");
+    localStorage.removeItem("cache_txt_unit_ext_v62");
+    localStorage.removeItem("cache_txt_unit_ext_v60");
+    var sauvChapExt = localStorage.getItem("cache_ext_chap_v63") || localStorage.getItem("cache_ext_chap_v62");
     if (sauvChapExt) cacheChapitresExt = JSON.parse(sauvChapExt);
-    var sauvTxtExt = localStorage.getItem("cache_txt_unit_ext_v62");
+    var sauvTxtExt = localStorage.getItem("cache_txt_unit_ext_v63");
     if (sauvTxtExt) cacheTexteUnitaireExt = JSON.parse(sauvTxtExt);
   } catch (e) {}
 
@@ -5597,16 +5855,15 @@ html body #btnLangRuV62.active-ext-v62 {
 
   function modifierNoeudTexteSeul(textNode, nouveauTexte) {
     if (!textNode || textNode.nodeType !== 3) return;
-    if (textNode.__origExtV62 === undefined) {
-      textNode.__origExtV62 = textNode.nodeValue;
-      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV62 });
+    if (textNode.__origExtV63 === undefined) {
+      textNode.__origExtV63 = textNode.nodeValue;
+      noeudsTextesModifies.push({ node: textNode, orig: textNode.__origExtV63 });
     }
     if (textNode.nodeValue !== nouveauTexte) {
       textNode.nodeValue = nouveauTexte;
     }
   }
 
-  // Nettoyage universel des résidus d'API sur les 6 236 versets (notes de bas de page 1,2, crochets, doubles espaces)
   function nettoyerVersetBrutApi(rawHtml) {
     if (!rawHtml) return "";
     return rawHtml
@@ -5619,7 +5876,6 @@ html body #btnLangRuV62.active-ext-v62 {
       .trim();
   }
 
-  // Correction post-traduction automatique pour les Hadiths et le Tafsir (Aïcha au féminin, etc.)
   function affinerTraductionTheologique(str, codeLang) {
     if (!str) return "";
     var out = str.trim();
@@ -5672,33 +5928,37 @@ html body #btnLangRuV62.active-ext-v62 {
     for (var f = 0; f < conteneurLang.children.length; f++) {
       if (conteneurLang.children[f] !== btnActif) {
         conteneurLang.children[f].classList.remove("active");
-        conteneurLang.children[f].classList.remove("active-ext-v62");
+        conteneurLang.children[f].classList.remove("active-ext-v63");
       }
     }
-    if (btnActif) btnActif.classList.add("active-ext-v62");
+    if (btnActif) btnActif.classList.add("active-ext-v63");
   }
 
   function assurerBoutonsLanguesEtendues() {
-    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV62), [id^='btnLangItV']:not(#btnLangItV62)");
+    var oldBtns = document.querySelectorAll("[id^='btnLangTrV'], [id^='btnLangDeV']:not(#btnLangDeV63), [id^='btnLangItV']:not(#btnLangItV63), [id^='btnLangIdV']:not(#btnLangIdV63), [id^='btnLangRuV']:not(#btnLangRuV63)");
     for (var b = 0; b < oldBtns.length; b++) {
       if (oldBtns[b].parentNode) oldBtns[b].parentNode.removeChild(oldBtns[b]);
     }
 
-    var mapIds = { de: "btnLangDeV62", it: "btnLangItV62", id: "btnLangIdV62", ru: "btnLangRuV62" };
-    if (document.getElementById("btnLangDeV62") && document.getElementById("btnLangIdV62") && document.getElementById("btnLangRuV62")) {
-      var parentBar = document.getElementById("btnLangDeV62").parentElement;
+    var mapIds = { de: "btnLangDeV63", it: "btnLangItV63", id: "btnLangIdV63", ru: "btnLangRuV63" };
+    if (document.getElementById("btnLangDeV63") && document.getElementById("btnLangIdV63") && document.getElementById("btnLangRuV63")) {
+      var parentBar = document.getElementById("btnLangDeV63").parentElement;
+      if (parentBar) {
+        parentBar.setAttribute("translate", "no");
+        parentBar.classList.add("notranslate");
+      }
       for (var code in mapIds) {
         var bEl = document.getElementById(mapIds[code]);
         if (!bEl) continue;
         if (langExtActive === code) {
-          bEl.classList.add("active-ext-v62");
+          bEl.classList.add("active-ext-v63");
           if (parentBar) {
             for (var k = 0; k < parentBar.children.length; k++) {
               if (parentBar.children[k] !== bEl) parentBar.children[k].classList.remove("active");
             }
           }
         } else {
-          bEl.classList.remove("active-ext-v62");
+          bEl.classList.remove("active-ext-v63");
         }
       }
       return;
@@ -5732,6 +5992,9 @@ html body #btnLangRuV62.active-ext-v62 {
 
     if (btnSaAr && btnSaAr.parentElement) {
       var conteneurLang = btnSaAr.parentElement;
+      // EMPÊCHER LE NAVIGATEUR DE TRADUIRE LES BOUTONS FR FR / SA AR EN "FR ПТ" OU "Arab Saudi" !
+      conteneurLang.setAttribute("translate", "no");
+      conteneurLang.classList.add("notranslate");
       conteneurLang.style.setProperty("overflow", "visible", "important");
       conteneurLang.style.setProperty("flex-wrap", "wrap", "important");
       var modeleBtn = btnFrFr || btnSaAr;
@@ -5739,6 +6002,8 @@ html body #btnLangRuV62.active-ext-v62 {
       function creerBoutonLangExt(idBtn, codeIso, labelCourt) {
         var nvBtn = modeleBtn.cloneNode(true);
         nvBtn.id = idBtn;
+        nvBtn.setAttribute("translate", "no");
+        nvBtn.classList.add("notranslate");
         nvBtn.classList.remove("active");
         nvBtn.removeAttribute("onclick");
         nvBtn.removeAttribute("data-lang");
@@ -5748,14 +6013,14 @@ html body #btnLangRuV62.active-ext-v62 {
         } else {
           nvBtn.innerHTML = '<span style="font-size:0.72em;opacity:0.75;margin-right:2px;">' + labelCourt + "</span><span>" + labelCourt + "</span>";
         }
-        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v62");
+        if (langExtActive === codeIso) nvBtn.classList.add("active-ext-v63");
 
         nvBtn.addEventListener("click", function (ev) {
           ev.preventDefault();
           ev.stopPropagation();
           restaurerTextesOriginauxDepuisExt();
           langExtActive = codeIso;
-          try { localStorage.setItem("corantafsir_lang_ext_v62", codeIso); } catch (e) {}
+          try { localStorage.setItem("corantafsir_lang_ext_v63", codeIso); } catch (e) {}
           assurerBaseLatinePourExt(conteneurLang, nvBtn);
           dernierVersetSeo = "";
           synchroniserTout();
@@ -5763,22 +6028,24 @@ html body #btnLangRuV62.active-ext-v62 {
         return nvBtn;
       }
 
-      var btnDe = creerBoutonLangExt("btnLangDeV62", "de", "DE");
-      var btnIt = creerBoutonLangExt("btnLangItV62", "it", "IT");
-      var btnId = creerBoutonLangExt("btnLangIdV62", "id", "ID");
-      var btnRu = creerBoutonLangExt("btnLangRuV62", "ru", "RU");
+      var btnDe = creerBoutonLangExt("btnLangDeV63", "de", "DE");
+      var btnIt = creerBoutonLangExt("btnLangItV63", "it", "IT");
+      var btnId = creerBoutonLangExt("btnLangIdV63", "id", "ID");
+      var btnRu = creerBoutonLangExt("btnLangRuV63", "ru", "RU");
 
       var freresInit = Array.prototype.slice.call(conteneurLang.children);
       for (var a = 0; a < freresInit.length; a++) {
         (function (autre) {
+          autre.setAttribute("translate", "no");
+          autre.classList.add("notranslate");
           autre.addEventListener("click", function () {
             if (IgnoreClicInterneFr) return;
             langExtActive = "";
-            try { localStorage.setItem("corantafsir_lang_ext_v62", "native"); } catch (e) {}
-            btnDe.classList.remove("active-ext-v62");
-            btnIt.classList.remove("active-ext-v62");
-            btnId.classList.remove("active-ext-v62");
-            btnRu.classList.remove("active-ext-v62");
+            try { localStorage.setItem("corantafsir_lang_ext_v63", "native"); } catch (e) {}
+            btnDe.classList.remove("active-ext-v63");
+            btnIt.classList.remove("active-ext-v63");
+            btnId.classList.remove("active-ext-v63");
+            btnRu.classList.remove("active-ext-v63");
             restaurerTextesOriginauxDepuisExt();
             dernierVersetSeo = "";
             setTimeout(synchroniserTout, 20);
@@ -5814,7 +6081,7 @@ html body #btnLangRuV62.active-ext-v62 {
             var vk = chap + ":" + (j + 1);
             cacheChapitresExt[cle][vk] = nettoyerVersetBrutApi(d.translations[j].text || "");
           }
-          try { localStorage.setItem("cache_ext_chap_v62", JSON.stringify(cacheChapitresExt)); } catch (e) {}
+          try { localStorage.setItem("cache_ext_chap_v63", JSON.stringify(cacheChapitresExt)); } catch (e) {}
           if (langExtActive === codeLang) appliquerInterfaceEtContenuExt();
         }
       })
@@ -5827,8 +6094,8 @@ html body #btnLangRuV62.active-ext-v62 {
   function traduireNoeudVersExtAsync(textNode, origTxt, codeLang) {
     if (!origTxt || origTxt.length < 3 || !LANGUES_EXT_SUPPORTEES[codeLang]) return;
     var cle = codeLang + "_" + origTxt.slice(0, 140) + "_" + origTxt.length;
-    var esp1 = (textNode.__origExtV62 || textNode.nodeValue).match(/^\\s*/)[0];
-    var esp2 = (textNode.__origExtV62 || textNode.nodeValue).match(/\\s*$/)[0];
+    var esp1 = (textNode.__origExtV63 || textNode.nodeValue).match(/^\\s*/)[0];
+    var esp2 = (textNode.__origExtV63 || textNode.nodeValue).match(/\\s*$/)[0];
 
     if (cacheTexteUnitaireExt[cle]) {
       modifierNoeudTexteSeul(textNode, esp1 + cacheTexteUnitaireExt[cle] + esp2);
@@ -5856,7 +6123,7 @@ html body #btnLangRuV62.active-ext-v62 {
           tr = affinerTraductionTheologique(tr, codeLang);
           if (tr) {
             cacheTexteUnitaireExt[cle] = tr;
-            try { localStorage.setItem("cache_txt_unit_ext_v62", JSON.stringify(cacheTexteUnitaireExt)); } catch (e) {}
+            try { localStorage.setItem("cache_txt_unit_ext_v63", JSON.stringify(cacheTexteUnitaireExt)); } catch (e) {}
             if (langExtActive === codeLang) {
               modifierNoeudTexteSeul(textNode, esp1 + tr + esp2);
             }
@@ -5872,6 +6139,13 @@ html body #btnLangRuV62.active-ext-v62 {
 
   var DICO_UI_PAR_LANG = {
     de: {
+      "le noble coran & tafsīr": "DER EDLE KORAN & TAFSĪR",
+      "le noble coran & tafsir": "DER EDLE KORAN & TAFSĪR",
+      "the noble quran & tafsīr": "DER EDLE KORAN & TAFSĪR",
+      "le noble coran & tafsīr al-mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
+      "the noble quran & tafsīr al-mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
+      "el noble corán y tafsīr al-mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
+      "القرآن الكريم والتفسير المختصر": "Der Edle Koran & Tafsīr Al-Mukhtasar",
       "‹ retour aux 114 sourates": "‹ Zurück zu den 114 Suren",
       "‹ back to 114 surahs": "‹ Zurück zu den 114 Suren",
       "‹ volver a las 114 suras": "‹ Zurück zu den 114 Suren",
@@ -5910,32 +6184,35 @@ html body #btnLangRuV62.active-ext-v62 {
       "lettre muette": "Stummer Buchstabe",
       "silent letter": "Stummer Buchstabe",
       "⭐ développer l'explication complète, le hadīth & les preuves historiques": "⭐ Vollständige Erklärung, Hadīth & historische Beweise ausklappen",
-      "le noble coran & tafsīr al-mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
-      "the noble quran & tafsīr al-mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
-      "el noble corán y tafsīr al-mukhtasar": "Der Edle Koran & Tafsīr Al-Mukhtasar",
-      "القرآن الكريم والتفسير المختصر": "Der Edle Koran & Tafsīr Al-Mukhtasar",
-      "📲 installer le site en app sur votre téléphone (iphone / android)": "📲 Website als App auf Ihrem Telefon installieren (iPhone / Android)",
-      "📲 install the site as an app on your phone (iphone / android)": "📲 Website als App auf Ihrem Telefon installieren (iPhone / Android)",
       "qu'est-ce qu'une sourate mecquoise ?": "Was ist eine mekkanische Sure?",
       "what is a makkan surah?": "Was ist eine mekkanische Sure?",
       "qu'est-ce qu'une sourate médinoise ?": "Was ist eine medinensische Sure?",
       "what is a madinan surah?": "Was ist eine medinensische Sure?",
-      "mecquoise • 86 sourates": "Mekkanisch • 86 Suren",
-      "makkan • 86 surahs": "Mekkanisch • 86 Suren",
-      "médinoise • 28 sourates": "Medinensisch • 28 Suren",
-      "madinan • 28 surahs": "Medinensisch • 28 Suren",
-      "1. ordre de révélation (1 à 114)": "1. Offenbarungsreihenfolge (1 bis 114)",
-      "1. revelation order (1 to 114)": "1. Offenbarungsreihenfolge (1 bis 114)",
-      "2. ordre du mushaf (1 à 114)": "2. Mushaf-Reihenfolge (1 bis 114)",
-      "2. mushaf order (1 to 114)": "2. Mushaf-Reihenfolge (1 bis 114)",
-      "⭐ 3. versets des miracles scientifiques": "⭐ 3. Verse der wissenschaftlichen Wunder",
-      "⭐ 3. scientific miracles verses": "⭐ 3. Verse der wissenschaftlichen Wunder",
-      "mecquoise": "Mekkanisch",
-      "makkan": "Mekkanisch",
-      "médinoise": "Medinensisch",
-      "madinan": "Medinensisch"
+      "mecquoise • 86 sourates": "MEKKANISCH • 86 SUREN",
+      "makkan • 86 surahs": "MEKKANISCH • 86 SUREN",
+      "médinoise • 28 sourates": "MEDINENSISCH • 28 SUREN",
+      "madinan • 28 surahs": "MEDINENSISCH • 28 SUREN",
+      "1. ordre de révélation (1 à 114)": "1. Offenbarungsreihenfolge (1–114)",
+      "1. revelation order (1 to 114)": "1. Offenbarungsreihenfolge (1–114)",
+      "2. ordre du mushaf (1 à 114)": "2. Klassische Reihenfolge (1–114)",
+      "2. ordre classique (1 à 114)": "2. Klassische Reihenfolge (1–114)",
+      "2. mushaf order (1 to 114)": "2. Klassische Reihenfolge (1–114)",
+      "⭐ 3. versets des miracles scientifiques": "3. ⭐ Wunder des Korans",
+      "3. ⭐ miracles du coran": "3. ⭐ Wunder des Korans",
+      "⭐ 3. scientific miracles verses": "3. ⭐ Wunder des Korans",
+      "mecquoise": "MEKKANISCH",
+      "makkan": "MEKKANISCH",
+      "médinoise": "MEDINENSISCH",
+      "madinan": "MEDINENSISCH"
     },
     it: {
+      "le noble coran & tafsīr": "IL NOBILE CORANO E TAFSĪR",
+      "le noble coran & tafsir": "IL NOBILE CORANO E TAFSĪR",
+      "the noble quran & tafsīr": "IL NOBILE CORANO E TAFSĪR",
+      "le noble coran & tafsīr al-mukhtasar": "Il Nobile Corano e Tafsīr Al-Mukhtasar",
+      "the noble quran & tafsīr al-mukhtasar": "Il Nobile Corano e Tafsīr Al-Mukhtasar",
+      "el noble corán y tafsīr al-mukhtasar": "Il Nobile Corano e Tafsīr Al-Mukhtasar",
+      "القرآن الكريم والتفسير المختصر": "Il Nobile Corano e Tafsīr Al-Mukhtasar",
       "‹ retour aux 114 sourates": "‹ Torna alle 114 Sure",
       "‹ back to 114 surahs": "‹ Torna alle 114 Sure",
       "‹ volver a las 114 suras": "‹ Torna alle 114 Sure",
@@ -5974,32 +6251,35 @@ html body #btnLangRuV62.active-ext-v62 {
       "lettre muette": "Lettera muta",
       "silent letter": "Lettera muta",
       "⭐ développer l'explication complète, le hadīth & les preuves historiques": "⭐ Espandi la spiegazione completa, l'Hadīth e le prove storiche",
-      "le noble coran & tafsīr al-mukhtasar": "Il Nobile Corano e Tafsīr Al-Mukhtasar",
-      "the noble quran & tafsīr al-mukhtasar": "Il Nobile Corano e Tafsīr Al-Mukhtasar",
-      "el noble corán y tafsīr al-mukhtasar": "Il Nobile Corano e Tafsīr Al-Mukhtasar",
-      "القرآن الكريم والتفسير المختصر": "Il Nobile Corano e Tafsīr Al-Mukhtasar",
-      "📲 installer le site en app sur votre téléphone (iphone / android)": "📲 Installa il sito come App sul tuo telefono (iPhone / Android)",
-      "📲 install the site as an app on your phone (iphone / android)": "📲 Installa il sito come App sul tuo telefono (iPhone / Android)",
       "qu'est-ce qu'une sourate mecquoise ?": "Cos'è una Sura Meccana?",
       "what is a makkan surah?": "Cos'è una Sura Meccana?",
       "qu'est-ce qu'une sourate médinoise ?": "Cos'è una Sura Medinese?",
       "what is a madinan surah?": "Cos'è una Sura Medinese?",
-      "mecquoise • 86 sourates": "Meccana • 86 Sure",
-      "makkan • 86 surahs": "Meccana • 86 Sure",
-      "médinoise • 28 sourates": "Medinese • 28 Sure",
-      "madinan • 28 surahs": "Medinese • 28 Sure",
-      "1. ordre de révélation (1 à 114)": "1. Ordine di Rivelazione (da 1 a 114)",
-      "1. revelation order (1 to 114)": "1. Ordine di Rivelazione (da 1 a 114)",
-      "2. ordre du mushaf (1 à 114)": "2. Ordine del Mushaf (da 1 a 114)",
-      "2. mushaf order (1 to 114)": "2. Ordine del Mushaf (da 1 a 114)",
-      "⭐ 3. versets des miracles scientifiques": "⭐ 3. Versetti dei Miracoli Scientifici",
-      "⭐ 3. scientific miracles verses": "⭐ 3. Versetti dei Miracoli Scientifici",
-      "mecquoise": "Meccana",
-      "makkan": "Meccana",
-      "médinoise": "Medinese",
-      "madinan": "Medinese"
+      "mecquoise • 86 sourates": "MECCANA • 86 SURE",
+      "makkan • 86 surahs": "MECCANA • 86 SURE",
+      "médinoise • 28 sourates": "MEDINESE • 28 SURE",
+      "madinan • 28 surahs": "MEDINESE • 28 SURE",
+      "1. ordre de révélation (1 à 114)": "1. Ordine di Rivelazione (1–114)",
+      "1. revelation order (1 to 114)": "1. Ordine di Rivelazione (1–114)",
+      "2. ordre du mushaf (1 à 114)": "2. Ordine Classico (1–114)",
+      "2. ordre classique (1 à 114)": "2. Ordine Classico (1–114)",
+      "2. mushaf order (1 to 114)": "2. Ordine Classico (1–114)",
+      "⭐ 3. versets des miracles scientifiques": "3. ⭐ I Miracoli del Corano",
+      "3. ⭐ miracles du coran": "3. ⭐ I Miracoli del Corano",
+      "⭐ 3. scientific miracles verses": "3. ⭐ I Miracoli del Corano",
+      "mecquoise": "MECCANA",
+      "makkan": "MECCANA",
+      "médinoise": "MEDINESE",
+      "madinan": "MEDINESE"
     },
     id: {
+      "le noble coran & tafsīr": "AL-QUR'AN MULIA & TAFSĪR",
+      "le noble coran & tafsir": "AL-QUR'AN MULIA & TAFSĪR",
+      "the noble quran & tafsīr": "AL-QUR'AN MULIA & TAFSĪR",
+      "le noble coran & tafsīr al-mukhtasar": "Al-Qur'an Mulia & Tafsīr Al-Mukhtasar",
+      "the noble quran & tafsīr al-mukhtasar": "Al-Qur'an Mulia & Tafsīr Al-Mukhtasar",
+      "el noble corán y tafsīr al-mukhtasar": "Al-Qur'an Mulia & Tafsīr Al-Mukhtasar",
+      "القرآن الكريم والتفسير المختصر": "Al-Qur'an Mulia & Tafsīr Al-Mukhtasar",
       "‹ retour aux 114 sourates": "‹ Kembali ke 114 Surah",
       "‹ back to 114 surahs": "‹ Kembali ke 114 Surah",
       "‹ volver a las 114 suras": "‹ Kembali ke 114 Surah",
@@ -6038,32 +6318,35 @@ html body #btnLangRuV62.active-ext-v62 {
       "lettre muette": "Huruf Bisu",
       "silent letter": "Huruf Bisu",
       "⭐ développer l'explication complète, le hadīth & les preuves historiques": "⭐ Buka penjelasan lengkap, Hadis & bukti sejarah",
-      "le noble coran & tafsīr al-mukhtasar": "Al-Qur'an Mulia & Tafsīr Al-Mukhtasar",
-      "the noble quran & tafsīr al-mukhtasar": "Al-Qur'an Mulia & Tafsīr Al-Mukhtasar",
-      "el noble corán y tafsīr al-mukhtasar": "Al-Qur'an Mulia & Tafsīr Al-Mukhtasar",
-      "القرآن الكريم والتفسير المختصر": "Al-Qur'an Mulia & Tafsīr Al-Mukhtasar",
-      "📲 installer le site en app sur votre téléphone (iphone / android)": "📲 Pasang situs sebagai Aplikasi di ponsel Anda (iPhone / Android)",
-      "📲 install the site as an app on your phone (iphone / android)": "📲 Pasang situs sebagai Aplikasi di ponsel Anda (iPhone / Android)",
       "qu'est-ce qu'une sourate mecquoise ?": "Apa itu Surah Makkiyah?",
       "what is a makkan surah?": "Apa itu Surah Makkiyah?",
       "qu'est-ce qu'une sourate médinoise ?": "Apa itu Surah Madaniyah?",
       "what is a madinan surah?": "Apa itu Surah Madaniyah?",
-      "mecquoise • 86 sourates": "Makkiyah • 86 Surah",
-      "makkan • 86 surahs": "Makkiyah • 86 Surah",
-      "médinoise • 28 sourates": "Madaniyah • 28 Surah",
-      "madinan • 28 surahs": "Madaniyah • 28 Surah",
-      "1. ordre de révélation (1 à 114)": "1. Urutan Turunnya Wahyu (1 - 114)",
-      "1. revelation order (1 to 114)": "1. Urutan Turunnya Wahyu (1 - 114)",
-      "2. ordre du mushaf (1 à 114)": "2. Urutan Mushaf (1 - 114)",
-      "2. mushaf order (1 to 114)": "2. Urutan Mushaf (1 - 114)",
-      "⭐ 3. versets des miracles scientifiques": "⭐ 3. Ayat-Ayat Mukjizat Ilmiah",
-      "⭐ 3. scientific miracles verses": "⭐ 3. Ayat-Ayat Mukjizat Ilmiah",
-      "mecquoise": "Makkiyah",
-      "makkan": "Makkiyah",
-      "médinoise": "Madaniyah",
-      "madinan": "Madaniyah"
+      "mecquoise • 86 sourates": "MAKKIYAH • 86 SURAH",
+      "makkan • 86 surahs": "MAKKIYAH • 86 SURAH",
+      "médinoise • 28 sourates": "MADANIYAH • 28 SURAH",
+      "madinan • 28 surahs": "MADANIYAH • 28 SURAH",
+      "1. ordre de révélation (1 à 114)": "1. Urutan Turunnya Wahyu (1–114)",
+      "1. revelation order (1 to 114)": "1. Urutan Turunnya Wahyu (1–114)",
+      "2. ordre du mushaf (1 à 114)": "2. Urutan Mushaf (1–114)",
+      "2. ordre classique (1 à 114)": "2. Urutan Mushaf (1–114)",
+      "2. mushaf order (1 to 114)": "2. Urutan Mushaf (1–114)",
+      "⭐ 3. versets des miracles scientifiques": "3. ⭐ Mukjizat Al-Qur'an",
+      "3. ⭐ miracles du coran": "3. ⭐ Mukjizat Al-Qur'an",
+      "⭐ 3. scientific miracles verses": "3. ⭐ Mukjizat Al-Qur'an",
+      "mecquoise": "MAKKIYAH",
+      "makkan": "MAKKIYAH",
+      "médinoise": "MADANIYAH",
+      "madinan": "MADANIYAH"
     },
     ru: {
+      "le noble coran & tafsīr": "СВЯЩЕННЫЙ КОРАН И ТАФСИР",
+      "le noble coran & tafsir": "СВЯЩЕННЫЙ КОРАН И ТАФСИР",
+      "the noble quran & tafsīr": "СВЯЩЕННЫЙ КОРАН И ТАФСИР",
+      "le noble coran & tafsīr al-mukhtasar": "Священный Коран и Тафсир аль-Мухтасар",
+      "the noble quran & tafsīr al-mukhtasar": "Священный Коран и Тафсир аль-Мухтасар",
+      "el noble corán y tafsīr al-mukhtasar": "Священный Коран и Тафсир аль-Мухтасар",
+      "القرآن الكريم والتفسير المختصر": "Священный Коран и Тафсир аль-Мухтасар",
       "‹ retour aux 114 sourates": "‹ Назад к 114 сурам",
       "‹ back to 114 surahs": "‹ Назад к 114 сурам",
       "‹ volver a las 114 suras": "‹ Назад к 114 сурам",
@@ -6102,30 +6385,26 @@ html body #btnLangRuV62.active-ext-v62 {
       "lettre muette": "Немая буква",
       "silent letter": "Немая буква",
       "⭐ développer l'explication complète, le hadīth & les preuves historiques": "⭐ Развернуть полное толкование, хадис и исторические факты",
-      "le noble coran & tafsīr al-mukhtasar": "Священный Коран и Тафсир аль-Мухтасар",
-      "the noble quran & tafsīr al-mukhtasar": "Священный Коран и Тафсир аль-Мухтасар",
-      "el noble corán y tafsīr al-mukhtasar": "Священный Коран и Тафсир аль-Мухтасар",
-      "القرآن الكريم والتفسير المختصر": "Священный Коран и Тафсир аль-Мухтасар",
-      "📲 installer le site en app sur votre téléphone (iphone / android)": "📲 Установить сайт как приложение на телефон (iPhone / Android)",
-      "📲 install the site as an app on your phone (iphone / android)": "📲 Установить сайт как приложение на телефон (iPhone / Android)",
       "qu'est-ce qu'une sourate mecquoise ?": "Что такое мекканская сура?",
       "what is a makkan surah?": "Что такое мекканская сура?",
       "qu'est-ce qu'une sourate médinoise ?": "Что такое мединская сура?",
       "what is a madinan surah?": "Что такое мединская сура?",
-      "mecquoise • 86 sourates": "Мекканская • 86 сур",
-      "makkan • 86 surahs": "Мекканская • 86 сур",
-      "médinoise • 28 sourates": "Мединская • 28 сур",
-      "madinan • 28 surahs": "Мединская • 28 сур",
+      "mecquoise • 86 sourates": "МЕККАНСКАЯ • 86 СУР",
+      "makkan • 86 surahs": "МЕККАНСКАЯ • 86 СУР",
+      "médinoise • 28 sourates": "МЕДИНСКАЯ • 28 СУР",
+      "madinan • 28 surahs": "МЕДИНСКАЯ • 28 СУР",
       "1. ordre de révélation (1 à 114)": "1. По порядку ниспослания (1–114)",
       "1. revelation order (1 to 114)": "1. По порядку ниспослания (1–114)",
       "2. ordre du mushaf (1 à 114)": "2. По порядку Мусхафа (1–114)",
+      "2. ordre classique (1 à 114)": "2. По порядку Мусхафа (1–114)",
       "2. mushaf order (1 to 114)": "2. По порядку Мусхафа (1–114)",
-      "⭐ 3. versets des miracles scientifiques": "⭐ 3. Аяты научных чудес Корана",
-      "⭐ 3. scientific miracles verses": "⭐ 3. Аяты научных чудес Корана",
-      "mecquoise": "Мекканская",
-      "makkan": "Мекканская",
-      "médinoise": "Мединская",
-      "madinan": "Мединская"
+      "⭐ 3. versets des miracles scientifiques": "3. ⭐ Чудеса Корана",
+      "3. ⭐ miracles du coran": "3. ⭐ Чудеса Корана",
+      "⭐ 3. scientific miracles verses": "3. ⭐ Чудеса Корана",
+      "mecquoise": "МЕККАНСКАЯ",
+      "makkan": "МЕККАНСКАЯ",
+      "médinoise": "МЕДИНСКАЯ",
+      "madinan": "МЕДИНСКАЯ"
     }
   };
 
@@ -6133,7 +6412,7 @@ html body #btnLangRuV62.active-ext-v62 {
     var codeL = langExtActive;
     if (!LANGUES_EXT_SUPPORTEES[codeL] || !document.body) return;
 
-    var mapBtnId = { de: "btnLangDeV62", it: "btnLangItV62", id: "btnLangIdV62", ru: "btnLangRuV62" };
+    var mapBtnId = { de: "btnLangDeV63", it: "btnLangItV63", id: "btnLangIdV63", ru: "btnLangRuV63" };
     var btnActif = document.getElementById(mapBtnId[codeL]);
     if (btnActif && btnActif.parentElement) {
       assurerBaseLatinePourExt(btnActif.parentElement, btnActif);
@@ -6150,6 +6429,7 @@ html body #btnLangRuV62.active-ext-v62 {
     }
     var texteOfficielVerset = (numS && cacheChapitresExt[cleChap]) ? cacheChapitresExt[cleChap][vk] : null;
     var dicoUi = DICO_UI_PAR_LANG[codeL];
+    var noms114 = NOMS_114_ACCUEIL[codeL] || {};
 
     var placeholders = {
       de: "Suche nach einer Sure oder einem Vers (z.B. 2:255, 30:1, Al-Kahf...)",
@@ -6160,6 +6440,32 @@ html body #btnLangRuV62.active-ext-v62 {
     var inputs = document.querySelectorAll("input[type='text'], input[type='search'], input:not([type])");
     for (var inp = 0; inp < inputs.length; inp++) {
       inputs[inp].setAttribute("placeholder", placeholders[codeL]);
+    }
+
+    // Sur la page d'accueil, repérer les cartes de sourates par leur lien href="sourate-X-verset-1.html"
+    var cartesAccueil = document.querySelectorAll("a[href*='sourate-']");
+    for (var ca = 0; ca < cartesAccueil.length; ca++) {
+      var lienCarte = cartesAccueil[ca];
+      var mHref = (lienCarte.getAttribute("href") || "").match(/sourate-(\\d+)/i);
+      if (mHref) {
+        var sId = Number(mHref[1]);
+        if (noms114[sId]) {
+          var titresEl = lienCarte.querySelectorAll("h2, h3, h4, div, span");
+          for (var te = 0; te < titresEl.length; te++) {
+            var candT = titresEl[te];
+            if (candT.children.length === 0) {
+              var origT = (candT.__origTitreV63 || candT.textContent || "").trim();
+              if (origT.indexOf("(") !== -1 && origT.indexOf(")") !== -1 && origT.indexOf("Miracle") === -1 && origT.indexOf("Wunder") === -1 && origT.indexOf("Miracolo") === -1 && origT.indexOf("Mukjizat") === -1 && origT.indexOf("Чудо") === -1) {
+                if (!candT.__origTitreV63) candT.__origTitreV63 = origT;
+                if (candT.firstChild && candT.firstChild.nodeType === 3) {
+                  modifierNoeudTexteSeul(candT.firstChild, noms114[sId]);
+                }
+                break;
+              }
+            }
+          }
+        }
+      }
     }
 
     var conteneurArabe = document.querySelector("#arabicVerse, .arabic-glow-verse");
@@ -6173,17 +6479,55 @@ html body #btnLangRuV62.active-ext-v62 {
       if (!pEl) continue;
       var tag = pEl.tagName;
       if (tag === "SCRIPT" || tag === "STYLE") continue;
-      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner") continue;
+      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate")) continue;
 
-      var val = (node.__origExtV62 !== undefined ? node.__origExtV62 : node.nodeValue || "").replace(/\\u00A0/g, " ").trim();
+      var val = (node.__origExtV63 !== undefined ? node.__origExtV63 : node.nodeValue || "").replace(/\\u00A0/g, " ").trim();
       if (!val || /[\\u0600-\\u06FF]/.test(val)) continue;
       var valLower = val.toLowerCase();
 
+      // 1. Dictionnaire exact insensible à la casse
       if (dicoUi[valLower]) {
         modifierNoeudTexteSeul(node, dicoUi[valLower]);
         continue;
       }
 
+      // 2. CORRECTION CRITIQUE DU BUG "52v." -> "52 pouces / 19e siècle" !
+      var matchVersetsCourt = val.match(/^(\\d+)\\s*(?:v\\.|versets|verses|aleyas)$/i);
+      if (matchVersetsCourt) {
+        var nbV = matchVersetsCourt[1];
+        var unitV = { de: nbV + " Verse", it: nbV + " versetti", id: nbV + " ayat", ru: nbV + " аятов" }[codeL];
+        modifierNoeudTexteSeul(node, unitV);
+        continue;
+      }
+
+      // 3. CORRECTION DU BOUTON PWA "Installer sur votre téléphone (iPhone / Android)"
+      if (valLower.indexOf("safari") !== -1 || valLower.indexOf("android") !== -1 || valLower.indexOf("iphone") !== -1) {
+        var txtPwa = {
+          de: "📲 App auf Ihrem Telefon installieren (iPhone / Android)",
+          it: "📲 Installa l'App sul tuo telefono (iPhone / Android)",
+          id: "📲 Pasang Aplikasi di ponsel Anda (iPhone / Android)",
+          ru: "📲 Установить приложение на телефон (iPhone / Android)"
+        }[codeL];
+        modifierNoeudTexteSeul(node, txtPwa);
+        continue;
+      }
+
+      // 4. CORRECTION DU BOUTON VERT "Reprendre : Al-Baqarah (v.1)" (et non "Résumé Tome 1")
+      if (valLower.indexOf("reprendre") !== -1 || valLower.indexOf("resume") !== -1 || valLower.indexOf("continuar") !== -1) {
+        var mRep = val.match(/:\\s*([^\\(]+)\\(\\s*(?:v\\.?|verset|verse|aleya)\\s*(\\d+)\\s*\\)/i);
+        var nomSRep = mRep ? mRep[1].trim() : "Al-Baqarah";
+        var numVRep = mRep ? mRep[2] : "1";
+        var txtRep = {
+          de: "📖 Weiterlesen: " + nomSRep + " (Vers " + numVRep + ")",
+          it: "📖 Riprendi lettura: " + nomSRep + " (Versetto " + numVRep + ")",
+          id: "📖 Lanjutkan membaca: " + nomSRep + " (Ayat " + numVRep + ")",
+          ru: "📖 Продолжить чтение: " + nomSRep + " (Аят " + numVRep + ")"
+        }[codeL];
+        modifierNoeudTexteSeul(node, txtRep);
+        continue;
+      }
+
+      // 5. Sélecteur de verset : "Verset 2 / 286"
       if (/(?:Verset|Verse|Aleya)\\s+\\d+\\s*\\/\\s*\\d+/i.test(val)) {
         var mapMotVers = { de: "Vers", it: "Versetto", id: "Ayat", ru: "Аят" };
         var mapMotMir = { de: "Wunder", it: "Miracolo", id: "Mukjizat", ru: "Чудо" };
@@ -6191,19 +6535,33 @@ html body #btnLangRuV62.active-ext-v62 {
         continue;
       }
 
-      if (/Miracle\\s*[:\\(]\\s*V\\.?\\s*\\d+/i.test(val)) {
-        var mMir = { de: "Wunder", it: "Miracolo", id: "Mukjizat", ru: "Чудо" }[codeL];
-        var mV = { de: "Vers ", it: "V.", id: "Ayat ", ru: "Аят " }[codeL];
-        modifierNoeudTexteSeul(node, val.replace(/Miracle/gi, mMir).replace(/V\\./i, mV));
+      // 6. Badge Miracle : "⭐ MIRACLE : V.1" ou "⭐ Miracle (V.2)"
+      var mMirBadge = val.match(/Miracle\\s*[:\\(]\\s*(?:V\\.?|Verset|Verse)\\s*(\\d+)\\)?/i);
+      if (mMirBadge) {
+        var vNumMir = mMirBadge[1];
+        var txtMir = {
+          de: "⭐ WUNDER (VERS " + vNumMir + ")",
+          it: "⭐ MIRACOLO (V. " + vNumMir + ")",
+          id: "⭐ MUKJIZAT (AYAT " + vNumMir + ")",
+          ru: "⭐ ЧУДО (АЯТ " + vNumMir + ")"
+        }[codeL];
+        modifierNoeudTexteSeul(node, txtMir);
         continue;
       }
 
-      if (/^\\d+\\s+(?:versets|verses|aleyas)$/i.test(val)) {
-        var mPl = { de: "Verse", it: "versetti", id: "ayat", ru: "аятов" }[codeL];
-        modifierNoeudTexteSeul(node, val.replace(/versets|verses|aleyas/i, mPl));
+      // 7. Titre H1 sur la page de verset
+      if ((val.indexOf("Sourate ") === 0 || val.indexOf("Surah ") === 0 || val.indexOf("Sure ") === 0 || val.indexOf("Sura ") === 0) && (val.indexOf(" — Verset ") !== -1 || val.indexOf(" — Verse ") !== -1)) {
+        var prefS = { de: "Sure ", it: "Sura ", id: "Surah ", ru: "Сура " }[codeL];
+        var prefV = { de: " — Vers ", it: " — Versetto ", id: " — Ayat ", ru: " — Аят " }[codeL];
+        if (numS && noms114[numS]) {
+          modifierNoeudTexteSeul(node, prefS + noms114[numS] + prefV + numV);
+        } else {
+          modifierNoeudTexteSeul(node, val.replace(/^Sourate |^Surah /, prefS).replace(/ — Verset | — Verse /, prefV));
+        }
         continue;
       }
 
+      // 8. Traduction principale du verset juste sous l'arabe
       var rectP = pEl.getBoundingClientRect();
       if (
         !versetHautDejaRemplace &&
@@ -6223,17 +6581,16 @@ html body #btnLangRuV62.active-ext-v62 {
         continue;
       }
 
-      // Traduire tous les autres textes (Titres H1, Hadiths, Tafsir, Accueil) dès 3 caractères !
-      var estSurAccueil = !rectArabe;
-      var estTitreH1 = tag === "H1" || tag === "H2";
-      var estSousVerset = rectArabe && rectP.top > rectArabe.bottom + 75;
-      if ((estSurAccueil || estTitreH1 || estSousVerset) && val.length >= 3) {
+      // 9. Paragraphes longs explicatifs (Encadrés Mecquoise/Médinoise sur l'accueil, ou Tafsir/Hadith en bas des versets)
+      var estSurAccueil = !rectArabe && val.length >= 25;
+      var estSousVerset = rectArabe && rectP.top > rectArabe.bottom + 75 && val.length >= 3;
+      if (estSurAccueil || estSousVerset) {
         if (
           val.indexOf("Traduction originale") === -1 &&
           val.indexOf("Deutsche Übersetzung") === -1 &&
           val.indexOf("Traduzione italiana") === -1 &&
           val.indexOf("Terjemahan Kementerian") === -1 &&
-          val.indexOf("Перевод Эльмира") === -1 &&
+          val.indexOf("Смысловой перевод") === -1 &&
           val.indexOf("Translation by Saheeh") === -1 &&
           val.indexOf("TAFSĪR") === -1
         ) {
@@ -6243,7 +6600,7 @@ html body #btnLangRuV62.active-ext-v62 {
     }
 
     if (document.documentElement) {
-      document.documentElement.classList.remove("lang-ext-pending-v62");
+      document.documentElement.classList.remove("lang-ext-pending-v63");
     }
   }
 
@@ -6272,7 +6629,7 @@ html body #btnLangRuV62.active-ext-v62 {
       btnSuivi.style.setProperty("display", "inline-flex", "important");
       btnSuivi.style.setProperty("visibility", "visible", "important");
       btnSuivi.style.setProperty("opacity", "1", "important");
-      if (btnSuivi.id === "btnSuiviUniverselV62" && btnSuivi.textContent !== labelSuivi) {
+      if (btnSuivi.id === "btnSuiviUniverselV63" && btnSuivi.textContent !== labelSuivi) {
         btnSuivi.textContent = labelSuivi;
       }
       if (suiviEstActif) {
@@ -6281,9 +6638,9 @@ html body #btnLangRuV62.active-ext-v62 {
       } else {
         btnSuivi.style.removeProperty("background");
       }
-    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV62")) {
+    } else if (btnTajwid && btnTajwid.parentElement && !document.getElementById("btnSuiviUniverselV63")) {
       var nv = document.createElement("button");
-      nv.id = "btnSuiviUniverselV62";
+      nv.id = "btnSuiviUniverselV63";
       nv.type = "button";
       nv.className = btnTajwid.className;
       nv.textContent = labelSuivi;
@@ -6372,8 +6729,8 @@ html body #btnLangRuV62.active-ext-v62 {
       }
 
       if (role === "sun") {
-        node.classList.remove("astre-lune-pure-v62");
-        node.classList.add("astre-soleil-pur-v62");
+        node.classList.remove("astre-lune-pure-v63");
+        node.classList.add("astre-soleil-pur-v63");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -6382,8 +6739,8 @@ html body #btnLangRuV62.active-ext-v62 {
         node.style.setProperty("box-shadow", "0 0 50px 16px rgba(253, 224, 71, 0.72), 0 0 110px 38px rgba(245, 158, 11, 0.42)", "important");
         node.style.setProperty("filter", "none", "important");
       } else {
-        node.classList.remove("astre-soleil-pur-v62");
-        node.classList.add("astre-lune-pure-v62");
+        node.classList.remove("astre-soleil-pur-v63");
+        node.classList.add("astre-lune-pure-v63");
         node.style.setProperty("width", "150px", "important");
         node.style.setProperty("height", "150px", "important");
         node.style.setProperty("border-radius", "50%", "important");
@@ -6403,7 +6760,7 @@ html body #btnLangRuV62.active-ext-v62 {
       if (src.indexOf("maher") !== -1 || src.indexOf("muaiqly") !== -1) {
         var row = imgs[im].parentElement;
         if (row && row.getBoundingClientRect().height < 110) {
-          row.classList.add("maher-supprime-v62");
+          row.classList.add("maher-supprime-v63");
           if (row.parentNode) row.parentNode.removeChild(row);
         }
       }
@@ -6485,7 +6842,7 @@ html body #btnLangRuV62.active-ext-v62 {
     }
   }
 
-  // 4. MOT-À-MOT EN ORDRE AUDIO STRICT + COMPATIBILITÉ 8 LANGUES (DONT ID & RU)
+  // 4. MOT-À-MOT EN ORDRE AUDIO STRICT + COMPATIBILITÉ 8 LANGUES
   var DICO_MULTILINGUE = {
     fr: {
       "الم": "Alif, Lām, Mīm", "ن": "Nūn", "ق": "Qāf", "ص": "Sād", "يس": "Yā-Sīn", "طه": "Tā-Hā",
@@ -6520,7 +6877,7 @@ html body #btnLangRuV62.active-ext-v62 {
   var sensGrilleRtl = true;
 
   try {
-    var sauv = localStorage.getItem("cache_wbw_exact_v62");
+    var sauv = localStorage.getItem("cache_wbw_exact_v63") || localStorage.getItem("cache_wbw_exact_v62");
     if (sauv) cacheVersetMotsExact = JSON.parse(sauv);
   } catch (e) {}
 
@@ -6573,7 +6930,6 @@ html body #btnLangRuV62.active-ext-v62 {
     if (cacheVersetMotsExact[cleCache] || requetesVersetEnCours[cleCache]) return;
     requetesVersetEnCours[cleCache] = true;
 
-    // L'API Quran.com supporte nativement le mot-à-mot en Indonésien (id), Russe (ru), Allemand (de) et Anglais (en) !
     var apiLang = (lang === "id" || lang === "ru" || lang === "de" || lang === "en") ? lang : "en";
     var urlQdc = "https://api.quran.com/api/v4/verses/by_key/" + vk + "?language=" + apiLang + "&words=true&word_fields=text_uthmani,translation";
     fetch(urlQdc)
@@ -6596,7 +6952,7 @@ html body #btnLangRuV62.active-ext-v62 {
             if (cert) motsQdc[t].tr = cert;
           }
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v62", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v63", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -6616,7 +6972,7 @@ html body #btnLangRuV62.active-ext-v62 {
 
         if (aTraduireTextes.length === 0) {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v62", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v63", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -6643,7 +6999,7 @@ html body #btnLangRuV62.active-ext-v62 {
           .catch(function () {})
           .finally(function () {
             cacheVersetMotsExact[cleCache] = motsQdc;
-            try { localStorage.setItem("cache_wbw_exact_v62", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+            try { localStorage.setItem("cache_wbw_exact_v63", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
             appliquerVraiMotAMotSurDOM();
           });
       })
@@ -6868,7 +7224,7 @@ html body #btnLangRuV62.active-ext-v62 {
     root.style.setProperty("--wbw-min-w", minW);
   }
 
-  // 6. ANIMATION MODE SUIVI 100% INFAILLIBLE (BLANC PUR -> BLEU NÉON)
+  // 6. ANIMATION MODE SUIVI 100% INFAILLIBLE
   var MAP_NOMS_VERS_QDC = {
     dosari: [174, 168], dossari: [174, 168], yasser: [174, 168],
     afasy: [7], alafasy: [7], mishary: [7],
@@ -7000,7 +7356,7 @@ html body #btnLangRuV62.active-ext-v62 {
     }
   }
 
-  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV62) {
+  if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV63) {
     var origPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function () {
       var self = this;
@@ -7008,8 +7364,8 @@ html body #btnLangRuV62.active-ext-v62 {
       if (self.currentTime < 0.25) {
         reinitialiserMotsEnBlancPur();
       }
-      if (!self.__listenersV62) {
-        self.__listenersV62 = true;
+      if (!self.__listenersV63) {
+        self.__listenersV63 = true;
         self.addEventListener("playing", lancerBoucleSuivi);
         self.addEventListener("timeupdate", lancerBoucleSuivi);
       }
@@ -7019,7 +7375,7 @@ html body #btnLangRuV62.active-ext-v62 {
       lancerBoucleSuivi();
       return origPlay.apply(self, arguments);
     };
-    HTMLMediaElement.prototype.__hookedV62 = true;
+    HTMLMediaElement.prototype.__hookedV63 = true;
   }
 
   function trouverAudioActif() {
