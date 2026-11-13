@@ -1,5 +1,12 @@
 const QURAN_API_IDS = { en: 20, es: 83, de: 27, it: 153, id: 33, ru: 45, ar: 16 };
 
+const BROWSER_HEADERS = {
+  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+  "Accept": "application/json, text/plain, */*"
+};
+
+let MEM_STATIC_TAFSIR_CACHE = null;
+
 const ATTRIBUTIONS_BAS = {
   fr: "Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
   en: "Translation by Saheeh International • Exegesis (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
@@ -278,59 +285,185 @@ async function obtenirVersetOfficiel(sNum, vNum, lang) {
   if (!sNum || !vNum || !QURAN_API_IDS[lang]) return { ok: false, text: null };
   const url = "https://api.quran.com/api/v4/quran/translations/" + QURAN_API_IDS[lang] + "?verse_key=" + sNum + ":" + vNum;
   try {
-    const r = await fetch(url, { cf: { cacheTtl: 2592000, cacheEverything: true } });
+    const r = await fetch(url, { headers: BROWSER_HEADERS, cf: { cacheTtl: 2592000, cacheEverything: true } });
     if (!r.ok) return { ok: false, text: null };
     const d = await r.json();
     if (d && d.translations && d.translations[0] && d.translations[0].text) {
       const clean = nettoyerVersetApi(d.translations[0].text);
       return { ok: Boolean(clean), text: clean || null };
     }
-  } catch (e) {}
+  } catch (e) {
+    console.error("[Worker SSR] Erreur API Quran:", e && e.message);
+  }
   return { ok: false, text: null };
 }
 
+// Traduction serveur avec User-Agent navigateur + 3 moteurs de secours et journalisation Cloudflare
 async function traduireTexteServeur(texte, lang) {
-  if (!texte || lang === "fr") return { ok: true, text: texte };
+  if (!texte || lang === "fr") return { ok: true, text: texte, provider: "fr" };
+
+  // Moteur 1 : Google GTX avec User-Agent navigateur
   try {
-    const url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=fr&tl=" + lang + "&dt=t&q=" + encodeURIComponent(texte);
-    const r = await fetch(url, { cf: { cacheTtl: 2592000, cacheEverything: true } });
-    if (!r.ok) return { ok: false, text: texte };
-    const d = await r.json();
-    if (d && d[0]) {
-      let out = "";
-      for (let i = 0; i < d[0].length; i++) {
-        if (d[0][i][0]) out += d[0][i][0];
+    const url1 = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=fr&tl=" + lang + "&dt=t&q=" + encodeURIComponent(texte);
+    const r1 = await fetch(url1, { headers: BROWSER_HEADERS, cf: { cacheTtl: 2592000, cacheEverything: true } });
+    if (r1.ok) {
+      const d1 = await r1.json();
+      if (d1 && Array.isArray(d1[0])) {
+        let out = "";
+        for (let i = 0; i < d1[0].length; i++) {
+          if (d1[0][i] && d1[0][i][0]) out += d1[0][i][0];
+        }
+        if (out.trim()) return { ok: true, text: out.trim(), provider: "gtx" };
       }
-      const finalTxt = out.trim();
-      if (finalTxt) {
-        return { ok: true, text: finalTxt };
+    } else {
+      console.error("[Worker SSR] GTX HTTP status:", r1.status);
+    }
+  } catch (e1) {
+    console.error("[Worker SSR] Exception GTX:", e1 && e1.message);
+  }
+
+  // Moteur 2 : Google Dict-Chrome-Ex (endpoint alternatif non limité sur IP Cloudflare)
+  try {
+    const url2 = "https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl=fr&tl=" + lang + "&q=" + encodeURIComponent(texte);
+    const r2 = await fetch(url2, { headers: BROWSER_HEADERS, cf: { cacheTtl: 2592000, cacheEverything: true } });
+    if (r2.ok) {
+      const d2 = await r2.json();
+      let out2 = "";
+      if (Array.isArray(d2)) {
+        if (typeof d2[0] === "string") out2 = d2[0];
+        else if (Array.isArray(d2[0]) && typeof d2[0][0] === "string") out2 = d2.map(x => x[0]).join("");
+      } else if (d2 && Array.isArray(d2.sentences)) {
+        out2 = d2.sentences.map(s => s.trans || "").join("");
+      }
+      if (out2.trim()) return { ok: true, text: out2.trim(), provider: "clients5" };
+    } else {
+      console.error("[Worker SSR] Clients5 HTTP status:", r2.status);
+    }
+  } catch (e2) {
+    console.error("[Worker SSR] Exception Clients5:", e2 && e2.message);
+  }
+
+  // Moteur 3 : MyMemory API (secours supplémentaire)
+  try {
+    const url3 = "https://api.mymemory.translated.net/get?q=" + encodeURIComponent(texte.slice(0, 490)) + "&langpair=fr|" + lang;
+    const r3 = await fetch(url3, { headers: BROWSER_HEADERS });
+    if (r3.ok) {
+      const d3 = await r3.json();
+      if (d3 && d3.responseData && d3.responseData.translatedText) {
+        return { ok: true, text: d3.responseData.translatedText.trim(), provider: "mymemory" };
       }
     }
-  } catch (e) {}
-  return { ok: false, text: texte };
+  } catch (e3) {
+    console.error("[Worker SSR] Exception MyMemory:", e3 && e3.message);
+  }
+
+  return { ok: false, text: texte, provider: "failed" };
 }
 
+// Regroupe tous les segments de #mainExplanationEl en UNE SEULE requête HTTP (évite le blocage 429 des boucles)
 async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
-  if (!innerHtml || lang === "fr") return { ok: true, html: innerHtml, translatedCount: 0 };
+  if (!innerHtml || lang === "fr") return { ok: true, html: innerHtml, diag: "fr" };
   const parts = innerHtml.split(/(<[^>]+>)/g);
-  let allOk = true;
-  let translatedCount = 0;
+  const idxs = [];
+  const segs = [];
+
   for (let i = 0; i < parts.length; i += 2) {
     const rawTxt = parts[i];
     const cleanTxt = rawTxt.replace(/&nbsp;/g, " ").trim();
     if (cleanTxt.length >= 2 && /[a-zA-ZÀ-ÿ]/.test(cleanTxt)) {
-      const lead = (rawTxt.match(/^\s*/) || [""])[0];
-      const trail = (rawTxt.match(/\s*$/) || [""])[0];
-      const res = await traduireTexteServeur(cleanTxt, lang);
-      if (!res.ok) {
-        allOk = false;
-      } else {
-        translatedCount++;
-      }
-      parts[i] = lead + res.text + trail;
+      idxs.push(i);
+      segs.push(cleanTxt);
     }
   }
-  return { ok: allOk && translatedCount > 0, html: parts.join(""), translatedCount };
+
+  if (segs.length === 0) return { ok: false, html: innerHtml, diag: "empty-segs" };
+
+  // Appel groupé unique avec séparateur neutre de paragraphe
+  const joined = segs.join("\n\n");
+  const batchRes = await traduireTexteServeur(joined, lang);
+  if (batchRes.ok && batchRes.text) {
+    const splitTr = batchRes.text.split(/\n\s*\n/);
+    if (splitTr.length === idxs.length) {
+      for (let j = 0; j < idxs.length; j++) {
+        const idx = idxs[j];
+        const rawOrig = parts[idx];
+        const lead = (rawOrig.match(/^\s*/) || [""])[0];
+        const trail = (rawOrig.match(/\s*$/) || [""])[0];
+        parts[idx] = lead + splitTr[j].trim() + trail;
+      }
+      return { ok: true, html: parts.join(""), diag: "batch-" + batchRes.provider };
+    }
+  }
+
+  // Repli segment par segment si le découpage de lignes diffère
+  let okCount = 0;
+  let lastProv = batchRes.provider || "err";
+  for (let j = 0; j < idxs.length; j++) {
+    const idx = idxs[j];
+    const rawOrig = parts[idx];
+    const lead = (rawOrig.match(/^\s*/) || [""])[0];
+    const trail = (rawOrig.match(/\s*$/) || [""])[0];
+    const r = await traduireTexteServeur(segs[j], lang);
+    if (r.ok && r.text) {
+      parts[idx] = lead + r.text + trail;
+      okCount++;
+      lastProv = r.provider;
+    }
+  }
+
+  return {
+    ok: okCount === idxs.length,
+    html: parts.join(""),
+    diag: okCount === idxs.length ? ("seq-" + lastProv) : ("partial-" + okCount + "-of-" + idxs.length)
+  };
+}
+
+async function obtenirTafsirDepuisCachesDurablesOuTraduire(innerHtml, sNum, vNum, lang, env, ctx) {
+  const vk = sNum + ":" + vNum;
+
+  // 1. Vérifier le fichier statique durable /tafsir-cache.json (0 ms, aucune dépendance réseau)
+  try {
+    if (!MEM_STATIC_TAFSIR_CACHE && env && env.ASSETS && typeof env.ASSETS.fetch === "function") {
+      const rStatic = await env.ASSETS.fetch(new Request("https://corantafsir.com/tafsir-cache.json"));
+      if (rStatic.ok) {
+        MEM_STATIC_TAFSIR_CACHE = await rStatic.json();
+      }
+    }
+    if (MEM_STATIC_TAFSIR_CACHE && MEM_STATIC_TAFSIR_CACHE[vk] && MEM_STATIC_TAFSIR_CACHE[vk][lang]) {
+      return { ok: true, html: MEM_STATIC_TAFSIR_CACHE[vk][lang], diag: "static-cache" };
+    }
+  } catch (e) {}
+
+  // 2. Vérifier le Cache Edge Cloudflare durable par verset (valable 1 an)
+  const cache = typeof caches !== "undefined" && caches.default ? caches.default : null;
+  const edgeCacheReq = new Request("https://corantafsir.com/_tafsir_edge_v82/" + sNum + "-" + vNum + "-" + lang);
+  if (cache) {
+    try {
+      const cachedTaf = await cache.match(edgeCacheReq);
+      if (cachedTaf) {
+        const txt = await cachedTaf.text();
+        if (txt && txt.length > 10) {
+          return { ok: true, html: txt, diag: "edge-cache" };
+        }
+      }
+    } catch (e) {}
+  }
+
+  // 3. Traduire et sauvegarder durablement dans le Cache Edge Cloudflare (1 an)
+  const liveRes = await traduireHtmlEnPreservantBalises(innerHtml, lang);
+  if (liveRes.ok && liveRes.html && cache) {
+    try {
+      const respToStore = new Response(liveRes.html, {
+        headers: {
+          "content-type": "text/html; charset=utf-8",
+          "cache-control": "public, max-age=31536000, immutable"
+        }
+      });
+      if (ctx && ctx.waitUntil) ctx.waitUntil(cache.put(edgeCacheReq, respToStore));
+      else await cache.put(edgeCacheReq, respToStore);
+    } catch (e) {}
+  }
+  return liveRes;
 }
 
 function construireBlocHreflangHarmonise(urlBaseFr) {
@@ -343,11 +476,9 @@ function construireBlocHreflangHarmonise(urlBaseFr) {
   return lignes.join("\n");
 }
 
-export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname) {
+export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname, env, ctx) {
   const cleanPath = (pathname || "/").trim();
-  // Reconnaît les deux formats d'URL de versets : avec ou sans .html
   const mVerse = cleanPath.match(/^\/?sourate-(\d+)-verset-(\d+)(?:\.html)?\/?$/i);
-  // Reconnaît uniquement l'accueil réel (/ ou /index ou /index.html)
   const isHome = !mVerse && /^\/?(?:index(?:\.html)?)?\/?$/i.test(cleanPath);
 
   const sNum = mVerse ? mVerse[1] : "";
@@ -360,8 +491,8 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname) 
   const canonicalHref = (!lang || lang === "fr") ? urlBaseFr : (urlBaseFr + "?lang=" + lang);
 
   let out = html;
+  let diagTafsir = "none";
 
-  // Harmonisation systématique de canonical, hreflang et liens internes vers les URLs finales sans .html
   out = out.replace(/<link rel="canonical" href="[^"]*">/gi, '<link rel="canonical" href="' + canonicalHref + '">');
   out = out.replace(/<link rel="alternate" hreflang="[^"]*"[^>]*>\s*/gi, "");
   out = out.replace(/(<link rel="canonical" href="[^"]*">)/i, "$1\n" + construireBlocHreflangHarmonise(urlBaseFr));
@@ -369,15 +500,13 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname) 
   if (!lang || lang === "fr") {
     out = out.replace(/href="\/?sourate-(\d+)-verset-(\d+)(?:\.html)?"/gi, 'href="/sourate-$1-verset-$2"');
     out = out.replace(/href="\/?index(?:\.html)?"/gi, 'href="/"');
-    return { html: out, complete: Boolean(isHome || mVerse) };
+    return { html: out, complete: Boolean(isHome || mVerse), diag: "fr" };
   }
 
   let traductionComplete = true;
 
-  // 1. Attributs <html lang="..." dir="...">
   out = out.replace(/<html([^>]*)lang="[^"]*"([^>]*)>/i, '<html$1lang="' + lang + '" dir="' + (lang === "ar" ? "rtl" : "ltr") + '"$2>');
 
-  // 2. Title & Meta Description adaptés uniquement selon Accueil réel vs Verset
   if (isHome || mVerse) {
     const titles = {
       en: mVerse ? ("Surah " + sNum + ":" + vNum + " — Noble Quran, Audio, Word by Word & Tafsīr") : "The Noble Quran & Tafsīr Al-Mukhtasar — Audio, Tajwīd & Word by Word (8 Languages)",
@@ -401,7 +530,6 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname) 
     if (descriptions[lang]) out = out.replace(/<meta name="description" content="[^"]*">/i, () => '<meta name="description" content="' + descriptions[lang] + '">');
   }
 
-  // 3. Traduction de l'interface et des attributions
   const mapUi = UI_TEXTES[lang] || {};
   for (const [kFr, vTr] of Object.entries(mapUi)) {
     out = out.split(kFr).join(vTr);
@@ -409,16 +537,14 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname) 
   if (ATTRIBUTIONS_BAS[lang]) out = out.split(ATTRIBUTIONS_BAS.fr).join(ATTRIBUTIONS_BAS[lang]);
   if (ATTRIBUTIONS_HAUT[lang]) out = out.split(ATTRIBUTIONS_HAUT.fr).join(ATTRIBUTIONS_HAUT[lang]);
 
-  // 4. Traduction du contenu principal et vérification stricte qu'il a bien été traité
   if (isHome) {
     if (INTRO_HOME[lang]) {
       out = out.replace(/Révélée au début de la révélation[^<]+/i, () => INTRO_HOME[lang].mecq);
       out = out.replace(/Révélée après l['’]Hégire[^<]+/i, () => INTRO_HOME[lang].med);
       const mecqOk = out.includes(INTRO_HOME[lang].mecq);
       const medOk = out.includes(INTRO_HOME[lang].med);
-      if (!mecqOk || !medOk) {
-        traductionComplete = false;
-      }
+      if (!mecqOk || !medOk) traductionComplete = false;
+      diagTafsir = mecqOk && medOk ? "home-ok" : "home-incomplete";
     } else {
       traductionComplete = false;
     }
@@ -441,31 +567,32 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname) 
     const regMainExp = /(<([a-z0-9]+)[^>]*\bid=["']mainExplanationEl["'][^>]*>)([\s\S]*?)(<\/\2>)/i;
     const mMainExp = out.match(regMainExp);
     if (mMainExp && mMainExp[3]) {
-      const expRes = await traduireHtmlEnPreservantBalises(mMainExp[3], lang);
-      if (expRes.ok) {
+      const expRes = await obtenirTafsirDepuisCachesDurablesOuTraduire(mMainExp[3], sNum, vNum, lang, env, ctx);
+      diagTafsir = expRes.diag || "unknown";
+      if (expRes.ok && expRes.html) {
         out = out.replace(regMainExp, (_, openTag, _tag, _inner, closeTag) => openTag + expRes.html + closeTag);
         tafsirTraiteOk = true;
       }
+    } else {
+      diagTafsir = "selector-not-found";
     }
 
     if (!versetTraiteOk || !tafsirTraiteOk) {
       traductionComplete = false;
     }
   } else {
-    // Page inconnue : ne jamais la marquer comme entièrement traduite
     traductionComplete = false;
   }
 
-  // 5. Harmonisation des liens internes avec les URLs finales sans .html et avec ?lang=xx
   out = out.replace(/href="\/?sourate-(\d+)-verset-(\d+)(?:\.html)?(?:\?[^"]*)?"/gi, 'href="/sourate-$1-verset-$2?lang=' + lang + '"');
   out = out.replace(/href="\/?index(?:\.html)?(?:\?[^"]*)?"/gi, 'href="/?lang=' + lang + '"');
   out = out.replace(/href="\/"/g, 'href="/?lang=' + lang + '"');
 
-  return { html: out, complete: traductionComplete };
+  return { html: out, complete: traductionComplete, diag: diagTafsir };
 }
 
-export async function transformerHtmlCompletSSR(html, lang, pathname) {
-  const res = await transformerHtmlCompletSSRWithStatus(html, lang, pathname);
+export async function transformerHtmlCompletSSR(html, lang, pathname, env, ctx) {
+  const res = await transformerHtmlCompletSSRWithStatus(html, lang, pathname, env, ctx);
   return res.html;
 }
 
@@ -487,10 +614,9 @@ export default {
       return recupererFichierStatiquePages(request, env);
     }
 
-    // Clé de cache versionnée v81 pour invalider immédiatement toutes les anciennes réponses en cache
     const cache = typeof caches !== "undefined" && caches.default ? caches.default : null;
     const cacheUrl = new URL(url.toString());
-    cacheUrl.searchParams.set("_ssr_v", "81");
+    cacheUrl.searchParams.set("_ssr_v", "82");
     const cacheKey = new Request(cacheUrl.toString(), request);
 
     if (cache) {
@@ -509,12 +635,13 @@ export default {
     }
 
     const htmlOrig = await response.text();
-    const { html: htmlTraduit, complete: traductionComplete } = await transformerHtmlCompletSSRWithStatus(htmlOrig, lang, url.pathname);
+    const { html: htmlTraduit, complete: traductionComplete, diag } = await transformerHtmlCompletSSRWithStatus(htmlOrig, lang, url.pathname, env, ctx);
 
     const headers = new Headers(response.headers);
     headers.set("content-type", "text/html; charset=utf-8");
     headers.set("content-language", lang);
     headers.set("x-translation-status", traductionComplete ? "complete" : "incomplete");
+    headers.set("x-tafsir-diag", diag || "none");
 
     if (!traductionComplete) {
       headers.set("cache-control", "no-store, no-cache, must-revalidate");
