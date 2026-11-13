@@ -304,6 +304,23 @@ async function traduireTexteServeur(texte, lang) {
   return texte;
 }
 
+// Traduit le contenu de #mainExplanationEl en préservant intactes les balises <strong>, <br>, etc.
+async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
+  if (!innerHtml || lang === "fr") return innerHtml;
+  const parts = innerHtml.split(/(<[^>]+>)/g);
+  for (let i = 0; i < parts.length; i += 2) {
+    const rawTxt = parts[i];
+    const cleanTxt = rawTxt.replace(/&nbsp;/g, " ").trim();
+    if (cleanTxt.length >= 2 && /[a-zA-ZÀ-ÿ]/.test(cleanTxt)) {
+      const lead = (rawTxt.match(/^\s*/) || [""])[0];
+      const trail = (rawTxt.match(/\s*$/) || [""])[0];
+      const traduit = await traduireTexteServeur(cleanTxt, lang);
+      parts[i] = lead + traduit + trail;
+    }
+  }
+  return parts.join("");
+}
+
 export async function transformerHtmlCompletSSR(html, lang, pathname) {
   if (!lang || lang === "fr") return html;
   let out = html;
@@ -339,8 +356,8 @@ export async function transformerHtmlCompletSSR(html, lang, pathname) {
     id: "Baca dan dengarkan Al-Qur'an Mulia (6.236 ayat, Terjemahan Kemenag RI) dengan pelacakan audio kata demi kata, Tajwid, perencana Khatam, dan Tafsir Al-Mukhtasar.",
     ru: "Читайте и слушайте Священный Коран (6 236 аятов, перевод Эльмира Кулиева) с пословным аудио-слежением, Таджвидом, планом чтения и Тафсиром аль-Мухтасар."
   };
-  if (titles[lang]) out = out.replace(/<title>[\s\S]*?<\/title>/i, "<title>" + titles[lang] + "</title>");
-  if (descriptions[lang]) out = out.replace(/<meta name="description" content="[^"]*">/i, '<meta name="description" content="' + descriptions[lang] + '">');
+  if (titles[lang]) out = out.replace(/<title>[\s\S]*?<\/title>/i, () => "<title>" + titles[lang] + "</title>");
+  if (descriptions[lang]) out = out.replace(/<meta name="description" content="[^"]*">/i, () => '<meta name="description" content="' + descriptions[lang] + '">');
 
   // 4. Traduction du texte visible de l'interface et des attributions dans le <body>
   const mapUi = UI_TEXTES[lang] || {};
@@ -350,10 +367,10 @@ export async function transformerHtmlCompletSSR(html, lang, pathname) {
   if (ATTRIBUTIONS_BAS[lang]) out = out.split(ATTRIBUTIONS_BAS.fr).join(ATTRIBUTIONS_BAS[lang]);
   if (ATTRIBUTIONS_HAUT[lang]) out = out.split(ATTRIBUTIONS_HAUT.fr).join(ATTRIBUTIONS_HAUT[lang]);
 
-  // 5. Traduction du contenu principal visible (Accueil ou Verset + Tafsir) dans le HTML initial sans JS
+  // 5. Traduction du contenu principal visible (Accueil ou Verset + #mainExplanationEl) dans le HTML initial sans JS
   if (!mVerse && INTRO_HOME[lang]) {
-    out = out.replace(/Révélée au début de la révélation[^<]+/i, INTRO_HOME[lang].mecq);
-    out = out.replace(/Révélée après l['’]Hégire[^<]+/i, INTRO_HOME[lang].med);
+    out = out.replace(/Révélée au début de la révélation[^<]+/i, () => INTRO_HOME[lang].mecq);
+    out = out.replace(/Révélée après l['’]Hégire[^<]+/i, () => INTRO_HOME[lang].med);
   } else if (mVerse) {
     const prefS = { en: "Surah ", es: "Sura ", ar: "سورة ", de: "Sure ", it: "Sura ", id: "Surah ", ru: "Сура " }[lang] || "Sourate ";
     const prefV = { en: " — Verse ", es: " — Aleya ", ar: " — الآية ", de: " — Vers ", it: " — Versetto ", id: " — Ayat ", ru: " — Аят " }[lang] || " — Verset ";
@@ -363,15 +380,15 @@ export async function transformerHtmlCompletSSR(html, lang, pathname) {
     const versetOff = await obtenirVersetOfficiel(sNum, vNum, lang);
     if (versetOff) {
       const regVersetFr = new RegExp("(>)(\\s*" + vNum + "\\s*[\\.-]\\s+)([^<]{4,})(<\\/)", "i");
-      out = out.replace(regVersetFr, "$1$2" + versetOff + "$4");
+      out = out.replace(regVersetFr, (_, p1, p2, _p3, p4) => p1 + p2 + versetOff + p4);
     }
 
-    // Traduction du paragraphe de Tafsir dans le HTML initial
-    const regTafsir = /(TAFSĪR[^<]*<\/[^>]+>\s*<[^>]+>)([^<]{15,})(<\/)/i;
-    const mTaf = out.match(regTafsir);
-    if (mTaf && mTaf[2]) {
-      const tafTraduit = await traduireTexteServeur(mTaf[2].trim(), lang);
-      out = out.replace(regTafsir, "$1" + tafTraduit + "$3");
+    // Ciblage direct de #mainExplanationEl et traduction en préservant <strong> et <br>
+    const regMainExp = /(<([a-z0-9]+)[^>]*\bid=["']mainExplanationEl["'][^>]*>)([\s\S]*?)(<\/\2>)/i;
+    const mMainExp = out.match(regMainExp);
+    if (mMainExp && mMainExp[3]) {
+      const expTraduit = await traduireHtmlEnPreservantBalises(mMainExp[3], lang);
+      out = out.replace(regMainExp, (_, openTag, _tag, _inner, closeTag) => openTag + expTraduit + closeTag);
     }
   }
 
