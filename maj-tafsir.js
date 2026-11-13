@@ -17,7 +17,7 @@ const preconnectTagsBase = `<meta name="yandex-verification" content="9ed8551291
 function construireTagsSeoStatiquesParPage(nomFichier) {
   const urlBase = (!nomFichier || nomFichier === 'index.html')
     ? 'https://corantafsir.com/'
-    : 'https://corantafsir.com/' + nomFichier;
+    : 'https://corantafsir.com/' + nomFichier.replace('.html', '');
   const langs = ['fr', 'en', 'es', 'ar', 'de', 'it', 'id', 'ru'];
   const lignes = [
     `<link rel="canonical" href="${urlBase}">`
@@ -384,7 +384,7 @@ function codeClientV77() {
         }
       }
 
-      var pathBase = (numS && numV) ? ("/sourate-" + numS + "-verset-" + numV + ".html") : "/";
+      var pathBase = (numS && numV) ? ("/sourate-" + numS + "-verset-" + numV) : "/";
       var urlBaseFr = "https://corantafsir.com" + pathBase;
       var urlCanoniqueLang = lang === "fr" ? urlBaseFr : (urlBaseFr + "?lang=" + lang);
 
@@ -3047,7 +3047,7 @@ if (fs.existsSync(dossierSite)) {
   for (const langLoc of langsSitemap) {
     const blocsUrlLang = [];
     for (const fName of pagesPourSitemap) {
-      const urlBase = fName === 'index.html' ? 'https://corantafsir.com/' : `https://corantafsir.com/${fName}`;
+      const urlBase = fName === 'index.html' ? 'https://corantafsir.com/' : `https://corantafsir.com/${fName.replace(".html", "")}`;
       const locUrl = langLoc === 'fr' ? urlBase : `${urlBase}?lang=${langLoc}`;
       const prio = fName === 'index.html' ? '1.0' : '0.8';
       const xhtmlLinks = langsSitemap.map(l => {

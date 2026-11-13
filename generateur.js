@@ -2815,7 +2815,7 @@ html body #btnLangRuV77.active-ext-v77 {
         }
       }
 
-      var pathBase = (numS && numV) ? ("/sourate-" + numS + "-verset-" + numV + ".html") : "/";
+      var pathBase = (numS && numV) ? ("/sourate-" + numS + "-verset-" + numV) : "/";
       var urlBaseFr = "https://corantafsir.com" + pathBase;
       var urlCanoniqueLang = lang === "fr" ? urlBaseFr : (urlBaseFr + "?lang=" + lang);
 
@@ -6902,7 +6902,7 @@ html body #btnLangRuV77.active-ext-v77 {
         }
       }
 
-      var pathBase = (numS && numV) ? ("/sourate-" + numS + "-verset-" + numV + ".html") : "/";
+      var pathBase = (numS && numV) ? ("/sourate-" + numS + "-verset-" + numV) : "/";
       var urlBaseFr = "https://corantafsir.com" + pathBase;
       var urlCanoniqueLang = lang === "fr" ? urlBaseFr : (urlBaseFr + "?lang=" + lang);
 
