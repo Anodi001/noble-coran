@@ -275,55 +275,63 @@ function nettoyerVersetApi(raw) {
 }
 
 async function obtenirVersetOfficiel(sNum, vNum, lang) {
-  if (!sNum || !vNum || !QURAN_API_IDS[lang]) return null;
+  if (!sNum || !vNum || !QURAN_API_IDS[lang]) return { ok: true, text: null };
   const url = "https://api.quran.com/api/v4/quran/translations/" + QURAN_API_IDS[lang] + "?verse_key=" + sNum + ":" + vNum;
   try {
     const r = await fetch(url, { cf: { cacheTtl: 2592000, cacheEverything: true } });
+    if (!r.ok) return { ok: false, text: null };
     const d = await r.json();
     if (d && d.translations && d.translations[0] && d.translations[0].text) {
-      return nettoyerVersetApi(d.translations[0].text);
+      const clean = nettoyerVersetApi(d.translations[0].text);
+      return { ok: Boolean(clean), text: clean || null };
     }
   } catch (e) {}
-  return null;
+  return { ok: false, text: null };
 }
 
 async function traduireTexteServeur(texte, lang) {
-  if (!texte || lang === "fr") return texte;
+  if (!texte || lang === "fr") return { ok: true, text: texte };
   try {
     const url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=fr&tl=" + lang + "&dt=t&q=" + encodeURIComponent(texte);
     const r = await fetch(url, { cf: { cacheTtl: 2592000, cacheEverything: true } });
+    if (!r.ok) return { ok: false, text: texte };
     const d = await r.json();
     if (d && d[0]) {
       let out = "";
       for (let i = 0; i < d[0].length; i++) {
         if (d[0][i][0]) out += d[0][i][0];
       }
-      return out.trim() || texte;
+      const finalTxt = out.trim();
+      if (finalTxt) {
+        return { ok: true, text: finalTxt };
+      }
     }
   } catch (e) {}
-  return texte;
+  return { ok: false, text: texte };
 }
 
-// Traduit le contenu de #mainExplanationEl en préservant intactes les balises <strong>, <br>, etc.
 async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
-  if (!innerHtml || lang === "fr") return innerHtml;
+  if (!innerHtml || lang === "fr") return { ok: true, html: innerHtml };
   const parts = innerHtml.split(/(<[^>]+>)/g);
+  let allOk = true;
   for (let i = 0; i < parts.length; i += 2) {
     const rawTxt = parts[i];
     const cleanTxt = rawTxt.replace(/&nbsp;/g, " ").trim();
     if (cleanTxt.length >= 2 && /[a-zA-ZÀ-ÿ]/.test(cleanTxt)) {
       const lead = (rawTxt.match(/^\s*/) || [""])[0];
       const trail = (rawTxt.match(/\s*$/) || [""])[0];
-      const traduit = await traduireTexteServeur(cleanTxt, lang);
-      parts[i] = lead + traduit + trail;
+      const res = await traduireTexteServeur(cleanTxt, lang);
+      if (!res.ok) allOk = false;
+      parts[i] = lead + res.text + trail;
     }
   }
-  return parts.join("");
+  return { ok: allOk, html: parts.join("") };
 }
 
-export async function transformerHtmlCompletSSR(html, lang, pathname) {
-  if (!lang || lang === "fr") return html;
+export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname) {
+  if (!lang || lang === "fr") return { html, complete: true };
   let out = html;
+  let traductionComplete = true;
 
   const mVerse = (pathname || "").match(/sourate-(\d+)-verset-(\d+)\.html/i);
   const sNum = mVerse ? mVerse[1] : "";
@@ -376,26 +384,42 @@ export async function transformerHtmlCompletSSR(html, lang, pathname) {
     const prefV = { en: " — Verse ", es: " — Aleya ", ar: " — الآية ", de: " — Vers ", it: " — Versetto ", id: " — Ayat ", ru: " — Аят " }[lang] || " — Verset ";
     out = out.replace(/(<h1[^>]*>\s*)Sourate ([^<]+?) — Verset (\d+)/i, "$1" + prefS + "$2" + prefV + "$3");
 
-    // Remplacement de la traduction du verset par la traduction officielle de référence
-    const versetOff = await obtenirVersetOfficiel(sNum, vNum, lang);
-    if (versetOff) {
-      const regVersetFr = new RegExp("(>)(\\s*" + vNum + "\\s*[\\.-]\\s+)([^<]{4,})(<\\/)", "i");
-      out = out.replace(regVersetFr, (_, p1, p2, _p3, p4) => p1 + p2 + versetOff + p4);
+    if (QURAN_API_IDS[lang]) {
+      const versetRes = await obtenirVersetOfficiel(sNum, vNum, lang);
+      if (versetRes.ok && versetRes.text) {
+        const regVersetFr = new RegExp("(>)(\\s*" + vNum + "\\s*[\\.-]\\s+)([^<]{4,})(<\\/)", "i");
+        out = out.replace(regVersetFr, (_, p1, p2, _p3, p4) => p1 + p2 + versetRes.text + p4);
+      } else {
+        traductionComplete = false;
+      }
     }
 
-    // Ciblage direct de #mainExplanationEl et traduction en préservant <strong> et <br>
     const regMainExp = /(<([a-z0-9]+)[^>]*\bid=["']mainExplanationEl["'][^>]*>)([\s\S]*?)(<\/\2>)/i;
     const mMainExp = out.match(regMainExp);
     if (mMainExp && mMainExp[3]) {
-      const expTraduit = await traduireHtmlEnPreservantBalises(mMainExp[3], lang);
-      out = out.replace(regMainExp, (_, openTag, _tag, _inner, closeTag) => openTag + expTraduit + closeTag);
+      const expRes = await traduireHtmlEnPreservantBalises(mMainExp[3], lang);
+      if (!expRes.ok) traductionComplete = false;
+      out = out.replace(regMainExp, (_, openTag, _tag, _inner, closeTag) => openTag + expRes.html + closeTag);
     }
   }
 
   // 6. Mise à jour des liens internes <a href="sourate-..."> avec ?lang=xx
   out = out.replace(/href="((?:sourate-\d+-verset-\d+|index)\.html)"/gi, 'href="$1?lang=' + lang + '"');
 
-  return out;
+  return { html: out, complete: traductionComplete };
+}
+
+export async function transformerHtmlCompletSSR(html, lang, pathname) {
+  const res = await transformerHtmlCompletSSRWithStatus(html, lang, pathname);
+  return res.html;
+}
+
+// Accès aux fichiers statiques compatible Cloudflare Pages (env.ASSETS.fetch) et Workers classiques
+async function recupererFichierStatiquePages(request, env) {
+  if (env && env.ASSETS && typeof env.ASSETS.fetch === "function") {
+    return env.ASSETS.fetch(request);
+  }
+  return fetch(request);
 }
 
 export default {
@@ -406,7 +430,7 @@ export default {
     const lang = supported.includes(langParam) ? langParam : "fr";
 
     if (lang === "fr") {
-      return fetch(request);
+      return recupererFichierStatiquePages(request, env);
     }
 
     const cache = typeof caches !== "undefined" && caches.default ? caches.default : null;
@@ -416,18 +440,27 @@ export default {
       if (cachedResp) return cachedResp;
     }
 
-    const response = await fetch(request);
+    const response = await recupererFichierStatiquePages(request, env);
+    if (!response.ok) {
+      return response;
+    }
+
     const contentType = response.headers.get("content-type") || "";
     if (!contentType.includes("text/html")) {
       return response;
     }
 
     const htmlOrig = await response.text();
-    const htmlTraduit = await transformerHtmlCompletSSR(htmlOrig, lang, url.pathname);
+    const { html: htmlTraduit, complete: traductionComplete } = await transformerHtmlCompletSSRWithStatus(htmlOrig, lang, url.pathname);
 
     const headers = new Headers(response.headers);
     headers.set("content-type", "text/html; charset=utf-8");
     headers.set("content-language", lang);
+    headers.set("x-translation-status", traductionComplete ? "complete" : "incomplete");
+
+    if (!traductionComplete) {
+      headers.set("cache-control", "no-store, no-cache, must-revalidate");
+    }
 
     const finalResponse = new Response(htmlTraduit, {
       status: response.status,
@@ -435,7 +468,8 @@ export default {
       headers
     });
 
-    if (cache && ctx && ctx.waitUntil) {
+    // Mise en cache uniquement si toutes les traductions ont réussi
+    if (traductionComplete && cache && ctx && ctx.waitUntil) {
       ctx.waitUntil(cache.put(cacheKey, finalResponse.clone()));
     }
     return finalResponse;
