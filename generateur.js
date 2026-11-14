@@ -5096,7 +5096,7 @@ html body #btnLangRuV77.active-ext-v77 {
     return { type: "spans", items: conteneur.querySelectorAll("span") };
   }
 
-  function reinitialiserMotsEnBlancTamise() {
+  function reinitialiserMotsEnBlancTamise() { window.__wbwResetDemande = true; window.__wbwEnergies = []; window.__wbwBleus = []; window.__wbwActiveFloat = -1; window.__wbwIdxEntier = -1;
     energiesMots = [];
     bleusMots = [];
     var cibleObj = obtenirElementsMotsAAnimer();
@@ -5162,7 +5162,7 @@ html body #btnLangRuV77.active-ext-v77 {
     return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   }
 
-  function etapeSuiviAudioAfterEffects() {
+  function etapeSuiviAudioAfterEffects() { window.__wbwSuiviBoutonActif = Boolean(suiviEstActif);
     var vkActuel = obtenirCleVerset();
     if (vkActuel && vkActuel !== dernierVersetSuivi) {
       dernierVersetSuivi = vkActuel;
