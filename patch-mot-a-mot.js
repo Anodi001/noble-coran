@@ -3,7 +3,7 @@ const path = require('path');
 
 const dossierSite = path.join(__dirname, 'site');
 
-const codeClientV91 = `
+const codeClientV92 = `
 (function() {
   function forcer(el, prop, val) {
     if (el && el.style && el.style.getPropertyValue(prop) !== val) {
@@ -30,23 +30,22 @@ const codeClientV91 = `
     return true;
   }
 
-  // Courbe douce identique à courbeAfterEffects du mode sans Mot à mot
-  function courbeFluide(x) {
+  function courbeAppleMusic(x) {
     var v = Math.max(0, Math.min(1, x || 0));
     return v * v * (3 - 2 * v);
   }
 
-  function melangerCouleur(r1, g1, b1, r2, g2, b2, t) {
+  function melangerRGB(r1, g1, b1, r2, g2, b2, t) {
     var k = Math.max(0, Math.min(1, t || 0));
-    var r = Math.round(r1 + (r2 - r1) * k);
-    var g = Math.round(g1 + (g2 - g1) * k);
-    var b = Math.round(b1 + (b2 - b1) * k);
-    return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+    return 'rgb(' +
+      Math.round(r1 + (r2 - r1) * k) + ', ' +
+      Math.round(g1 + (g2 - g1) * k) + ', ' +
+      Math.round(b1 + (b2 - b1) * k) + ')';
   }
 
   var cacheTradMots = {};
   try {
-    cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v90') || '{}');
+    cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v92') || '{}');
   } catch (e) {}
   var enCoursTrad = {};
 
@@ -57,33 +56,49 @@ const codeClientV91 = `
     return h || 'fr';
   }
 
+  // Détecte si un mot est déjà en français (issus du dictionnaire local avec "_" ou accents/mots FR)
+  var motsFrConnus = /^(il|elle|ils|elles|je|tu|nous|vous|le|la|les|un|une|des|de|du|au|aux|en|dans|sur|sous|avec|sans|pour|par|vers|chez|entre|contre|et|ou|mais|donc|car|ni|ne|pas|plus|moins|très|tout|tous|toute|toutes|ce|cet|cette|ces|mon|ton|son|ma|ta|sa|mes|tes|ses|notre|votre|leur|leurs|qui|que|quoi|dont|où|oui|non|bien|mal|comme|alors|puis|ainsi|aussi|encore|déjà|toujours|jamais|rien|personne|aucun|autre|même|tel|chaque|allah|seigneur|livre|guidée|pieux|croyants|prière|enfer|paradis|jour|nuit|terre|ciel|cieux|eau|feu|coeur|coeurs)$/i;
+
   function nettoyerEtTraduireMot(elTrad, lang) {
     if (!elTrad) return;
     var brut = (elTrad.textContent || '').trim();
     if (!brut) return;
 
+    // Si le mot contient "_" (ex: "Ceux_qui", "sur_eux"), il vient déjà du dictionnaire français local
     if (brut.indexOf('_') !== -1) {
       brut = brut.split('_').join(' ').replace(/\\s{2,}/g, ' ').trim();
       elTrad.textContent = brut;
+      elTrad.dataset. dejaFr = '1';
+      return;
     }
 
     if (lang === 'en' || lang === 'ar') return;
+    if (elTrad.dataset.dejaFr === '1') return;
+
+    // Si le texte contient des accents français ou uniquement des petits mots français connus, on le garde tel quel
+    if (/[àâäéèêëîïôöùûüçœæ]/i.test(brut) && lang === 'fr') {
+      elTrad.dataset.dejaFr = '1';
+      return;
+    }
+    var premierMot = brut.split(/\\s+/)[0].replace(/[^a-zA-Z]/g, '');
+    if (lang === 'fr' && brut.split(/\\s+/).length === 1 && motsFrConnus.test(premierMot)) {
+      elTrad.dataset.dejaFr = '1';
+      return;
+    }
 
     var cle = lang + ':' + brut.toLowerCase();
     if (cacheTradMots[cle]) {
       if (elTrad.textContent !== cacheTradMots[cle]) {
         elTrad.textContent = cacheTradMots[cle];
       }
+      elTrad.dataset.dejaFr = '1';
       return;
     }
-
-    var motsAnglais = /\\b(the|and|in|of|to|for|who|what|with|from|upon|is|was|are|were|they|them|their|you|your|he|him|his|we|our|us|not|no|it|that|this|those|believe|unseen|book|guidance|conscious|provided|spend|sent|down|before|hereafter|firmly|lord|all|have|has|had|will|shall|may|can)\\b/i;
-    if (!motsAnglais.test(brut) && brut.indexOf('(is)') === -1) return;
 
     if (enCoursTrad[cle]) return;
     enCoursTrad[cle] = true;
 
-    var propreEn = brut.replace(/^\\(is\\)\\s*/i, '').trim();
+    var propreEn = brut.replace(/^\\(is\\)\\s*/i, '').replace(/\\([^)]*\\)/g, '').trim() || brut;
     var url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=' + encodeURIComponent(lang) + '&dt=t&q=' + encodeURIComponent(propreEn);
     fetch(url)
       .then(function(r) { return r.json(); })
@@ -92,13 +107,21 @@ const codeClientV91 = `
           var tr = d[0].map(function(x) { return x[0] || ''; }).join('').trim();
           if (tr) {
             cacheTradMots[cle] = tr;
-            try { localStorage.setItem('wbw_tr_cache_v90', JSON.stringify(cacheTradMots)); } catch (e) {}
-            if (elTrad) elTrad.textContent = tr;
+            try { localStorage.setItem('wbw_tr_cache_v92', JSON.stringify(cacheTradMots)); } catch (e) {}
+            if (elTrad) {
+              elTrad.textContent = tr;
+              elTrad.dataset.dejaFr = '1';
+            }
           }
         }
       })
       .catch(function() {});
   }
+
+  // Mémoire d'interpolation ultra-fluide propre au mode Apple Music Lyrics
+  var lissageE = [];
+  var lissageB = [];
+  var modeContrasteSuivi = 0;
 
   window.__appliquerRubanColleWBW = function() {
     var cartes = [];
@@ -120,13 +143,13 @@ const codeClientV91 = `
       return;
     }
 
-    // Fond 100% transparent sans cadre supplémentaire (identique au mode sans Mot à mot)
+    // Alignement horizontal strict des mots arabes (flex-start) et fond transparent identique au mode normal
     forcer(grille, 'flex-wrap', 'wrap');
     forcer(grille, 'justify-content', 'center');
-    forcer(grille, 'align-items', 'baseline');
-    forcer(grille, 'gap', '2px 8px');
-    forcer(grille, 'row-gap', '16px');
-    forcer(grille, 'padding', '8px 4px');
+    forcer(grille, 'align-items', 'flex-start');
+    forcer(grille, 'gap', '4px 10px');
+    forcer(grille, 'row-gap', '18px');
+    forcer(grille, 'padding', '10px 6px');
     forcer(grille, 'background', 'transparent');
     forcer(grille, 'border', 'none');
     forcer(grille, 'border-radius', '0px');
@@ -134,23 +157,64 @@ const codeClientV91 = `
 
     var energies = window.__wbwEnergies || [];
     var bleus = window.__wbwBleus || [];
+    var idxFloat = typeof window.__wbwActiveFloat === 'number' ? window.__wbwActiveFloat : -1;
+    var idxEntier = typeof window.__wbwIdxEntier === 'number' ? window.__wbwIdxEntier : -1;
+
+    var aud = window.__lecteurAudioActuel || document.querySelector('audio');
+    var audioActif = Boolean(aud && (!aud.paused || aud.currentTime > 0.05));
+
+    // Vérifie si au moins un mot est déjà allumé ou si la lecture est en cours
+    var maxBleu = 0;
+    for (var z = 0; z < cartes.length; z++) {
+      if ((bleus[z] || 0) > maxBleu) maxBleu = bleus[z];
+      if ((energies[z] || 0) > maxBleu) maxBleu = energies[z];
+    }
+
+    var cibleContraste = (audioActif || maxBleu > 0.02) ? 1.0 : 0.0;
+    modeContrasteSuivi += (cibleContraste - modeContrasteSuivi) * 0.18;
+
+    if (lissageE.length !== cartes.length) {
+      lissageE = new Array(cartes.length).fill(0);
+      lissageB = new Array(cartes.length).fill(0);
+    }
+
     var lang = obtenirLanguePage();
 
     for (var m = 0; m < cartes.length; m++) {
       var carte = cartes[m];
       if (!carte) continue;
 
-      // Valeurs continues AfterEffects (0.000 -> 1.000) identiques au mode sans Mot à mot
-      var e = courbeFluide(energies[m] || 0);
-      var b = courbeFluide(bleus[m] || 0);
-      var mixBleu = Math.max(b, e * 0.85);
+      var eBrut = energies[m] || 0;
+      var bBrut = bleus[m] || 0;
 
-      // Même élévation fluide et zoom doux que le mode sans Mot à mot
-      var yPx = (-5.5 * e).toFixed(2);
-      var sc = (1.0 + 0.08 * e).toFixed(3);
+      // Anticipation Apple Music Lyrics : pré-illumine doucement le mot suivant en fin de syllabe du mot actuel
+      if (idxFloat >= 0 && m === idxEntier + 1) {
+        var frac = idxFloat - idxEntier;
+        if (frac > 0.65) {
+          var ant = (frac - 0.65) / 0.35;
+          eBrut = Math.max(eBrut, ant * 0.38);
+          bBrut = Math.max(bBrut, ant * 0.30);
+        }
+      }
+
+      // Lissage ressort haute fréquence (effet Apple Music Sing sans aucune saccade)
+      lissageE[m] += (eBrut - lissageE[m]) * 0.28;
+      lissageB[m] += (bBrut - lissageB[m]) * 0.24;
+
+      var e = courbeAppleMusic(lissageE[m]);
+      var b = courbeAppleMusic(lissageB[m]);
+      var lum = Math.max(b, e);
+
+      // Même élévation (-7.5px) et zoom (+12%) que le mode sans Mot à mot
+      var yPx = (-7.5 * e).toFixed(2);
+      var sc = (1.0 + 0.12 * e).toFixed(3);
+
+      // Opacité Apple Music : les mots non récités sont tamisés (0.34) pendant la lecture pour faire ressortir le mot chanté (1.00)
+      var opRepos = 0.90 - 0.56 * modeContrasteSuivi;
+      var opMot = (opRepos + (1.0 - opRepos) * lum).toFixed(3);
 
       forcer(carte, 'margin', '0px');
-      forcer(carte, 'padding', '2px 6px 4px 6px');
+      forcer(carte, 'padding', '2px 7px 4px 7px');
       forcer(carte, 'background', 'transparent');
       forcer(carte, 'border', 'none');
       forcer(carte, 'border-bottom', 'none');
@@ -160,8 +224,12 @@ const codeClientV91 = `
       forcer(carte, 'min-width', '0px');
       forcer(carte, 'width', 'auto');
       forcer(carte, 'height', 'auto');
-      forcer(carte, 'opacity', (0.86 + 0.14 * Math.max(b, e)).toFixed(3));
-      forcer(carte, 'will-change', 'transform');
+      forcer(carte, 'display', 'inline-flex');
+      forcer(carte, 'flex-direction', 'column');
+      forcer(carte, 'align-items', 'center');
+      forcer(carte, 'justify-content', 'flex-start');
+      forcer(carte, 'opacity', opMot);
+      forcer(carte, 'will-change', 'transform, opacity');
       forcer(carte, 'transform', 'translate3d(0px, ' + yPx + 'px, 0px) scale(' + sc + ')');
 
       var sousEls = carte.querySelectorAll('*');
@@ -174,36 +242,54 @@ const codeClientV91 = `
         if (sub.children.length === 0) {
           var txt = (sub.textContent || '').trim();
           if (estPetitNumero(txt)) {
-            // Masque les petits numéros pour un rendu pur identique au mode sans Mot à mot
             forcer(sub, 'display', 'none');
           } else if (contientArabe(txt)) {
-            // Interpolation continue blanc -> bleu ciel -> cyan lumineux + halo progressif
-            var colBaseAr = melangerCouleur(248, 250, 252, 135, 218, 255, mixBleu);
-            var colFinaleAr = e > 0.01 ? melangerCouleur(135, 218, 255, 230, 249, 255, e) : colBaseAr;
-            var rayon1 = (8 + 16 * e + 8 * b).toFixed(1);
-            var alpha1 = (0.14 + 0.65 * e + 0.38 * b).toFixed(3);
-            var ombreAr = '0 0 ' + rayon1 + 'px rgba(56, 189, 248, ' + alpha1 + ')';
-            if (e > 0.02) {
-              ombreAr += ', 0 0 ' + (26 * e).toFixed(1) + 'px rgba(0, 210, 255, ' + (0.55 * e).toFixed(3) + ')';
-            } else if (b < 0.05) {
+            // Hauteur fixe sur le mot arabe pour que toute la ligne arabe soit parfaitement alignée horizontalement
+            forcer(sub, 'min-height', '3.15rem');
+            forcer(sub, 'display', 'flex');
+            forcer(sub, 'align-items', 'center');
+            forcer(sub, 'justify-content', 'center');
+            forcer(sub, 'font-size', 'clamp(1.9rem, 3.1vw, 2.42rem)');
+            forcer(sub, 'line-height', '1.35');
+
+            // Couleur identique au mode normal : Blanc tamisé -> Bleu ciel lumineux (lu) -> Blanc-Cyan éclatant (en cours)
+            var colArRepos = melangerRGB(248, 250, 252, 185, 200, 220, modeContrasteSuivi);
+            var colArLu = melangerRGB(248, 250, 252, 135, 218, 255, b);
+            var colArBase = lum > 0.01 ? colArLu : colArRepos;
+            var colArFinal = e > 0.01 ? melangerRGB(135, 218, 255, 255, 255, 255, e) : colArBase;
+
+            var ombreAr = 'none';
+            if (e > 0.015 || b > 0.02) {
+              var r1 = (10 + 16 * e + 6 * b).toFixed(1);
+              var a1 = (0.55 * b + 0.45 * e).toFixed(3);
+              var r2 = (22 + 24 * e + 10 * b).toFixed(1);
+              var a2 = (0.30 * b + 0.60 * e).toFixed(3);
+              ombreAr = '0 0 ' + r1 + 'px rgba(56, 189, 248, ' + a1 + '), 0 0 ' + r2 + 'px rgba(0, 210, 255, ' + a2 + ')';
+              if (e > 0.08) {
+                ombreAr = '0 0 ' + (10 * e).toFixed(1) + 'px rgba(255, 255, 255, ' + (0.85 * e).toFixed(3) + '), ' + ombreAr;
+              }
+            } else if (modeContrasteSuivi < 0.2) {
               ombreAr = '0 0 8px rgba(255, 255, 255, 0.14)';
             }
-            forcer(sub, 'font-size', 'clamp(1.85rem, 3vw, 2.35rem)');
-            forcer(sub, 'line-height', '1.45');
-            forcer(sub, 'color', colFinaleAr);
+
+            forcer(sub, 'color', colArFinal);
             forcer(sub, 'text-shadow', ombreAr);
           } else if (txt.length > 0) {
             nettoyerEtTraduireMot(sub, lang);
-            var colBaseTr = melangerCouleur(148, 163, 184, 125, 211, 252, mixBleu);
-            var colFinaleTr = e > 0.01 ? melangerCouleur(125, 211, 252, 224, 242, 254, e) : colBaseTr;
-            var ombreTr = (e > 0.02 || b > 0.1)
-              ? ('0 0 ' + (12 * e + 5 * b).toFixed(1) + 'px rgba(56, 189, 248, ' + (0.65 * e + 0.22 * b).toFixed(3) + ')')
-              : 'none';
-            forcer(sub, 'max-width', '115px');
+            forcer(sub, 'max-width', '112px');
             forcer(sub, 'text-align', 'center');
-            forcer(sub, 'line-height', '1.2');
+            forcer(sub, 'line-height', '1.22');
             forcer(sub, 'font-size', '0.84rem');
-            forcer(sub, 'color', colFinaleTr);
+            forcer(sub, 'margin-top', '2px');
+
+            var colTrLu = melangerRGB(148, 163, 184, 125, 211, 252, b);
+            var colTrFinal = e > 0.01 ? melangerRGB(125, 211, 252, 240, 249, 255, e) : colTrLu;
+            var ombreTr = (e > 0.02 || b > 0.08)
+              ? ('0 0 ' + (14 * e + 6 * b).toFixed(1) + 'px rgba(56, 189, 248, ' + (0.75 * e + 0.30 * b).toFixed(3) + ')')
+              : 'none';
+
+            forcer(sub, 'color', colTrFinal);
+            forcer(sub, 'font-weight', e > 0.25 ? '600' : (b > 0.5 ? '500' : '400'));
             forcer(sub, 'text-shadow', ombreTr);
           }
         }
@@ -211,10 +297,9 @@ const codeClientV91 = `
     }
   };
 
-  // Synchronisation pure sur requestAnimationFrame (zéro setInterval = zéro saccade)
   var origRaf = window.requestAnimationFrame;
-  if (origRaf && !window.__rafHookedV91) {
-    window.__rafHookedV91 = true;
+  if (origRaf && !window.__rafHookedV92) {
+    window.__rafHookedV92 = true;
     window.requestAnimationFrame = function(cb) {
       return origRaf.call(window, function(ts) {
         var r = cb(ts);
@@ -245,7 +330,7 @@ const codeClientV91 = `
 })();
 `;
 
-const blocHtmlV91 = '<!-- WBW_COLLE_V91_START -->\n<script id="wbw-colle-v91">' + codeClientV91 + '</script>\n<!-- WBW_COLLE_V91_END -->';
+const blocHtmlV92 = '<!-- WBW_COLLE_V92_START -->\n<script id="wbw-colle-v92">' + codeClientV92 + '</script>\n<!-- WBW_COLLE_V92_END -->';
 
 const fichiers = fs.readdirSync(dossierSite).filter(f => f.endsWith('.html'));
 let nb = 0;
@@ -254,11 +339,17 @@ for (const f of fichiers) {
   const p = path.join(dossierSite, f);
   let c = fs.readFileSync(p, 'utf8');
 
-  c = c.replace(/<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91)_START -->[\s\S]*?<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91)_END -->\s*/g, '');
+  c = c.replace(/<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92)_START -->[\s\S]*?<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92)_END -->\s*/g, '');
 
-  c = c.replace('</body>', blocHtmlV91 + '\n</body>');
+  // Ajoute activeIndexFloat (window.__wbwActiveFloat) pour l'anticipation fluide Apple Music Lyrics entre deux mots
+  c = c.replace(
+    'window.__wbwIdxEntier = idxEntier;',
+    'window.__wbwActiveFloat = activeIndexFloat; window.__wbwIdxEntier = idxEntier;'
+  );
+
+  c = c.replace('</body>', blocHtmlV92 + '\n</body>');
   fs.writeFileSync(p, c, 'utf8');
   nb++;
 }
 
-console.log('✅ V91 appliquée sur ' + nb + ' pages : fluidité AfterEffects 240Hz et visuel identique au mode sans Mot à mot !');
+console.log('✅ V92 Apple Music Lyrics appliquée sur ' + nb + ' pages !');
