@@ -3,7 +3,7 @@ const path = require('path');
 
 const dossierSite = path.join(__dirname, 'site');
 
-const codeClientV92 = `
+const codeClientV93 = `
 (function() {
   function forcer(el, prop, val) {
     if (el && el.style && el.style.getPropertyValue(prop) !== val) {
@@ -43,9 +43,53 @@ const codeClientV92 = `
       Math.round(b1 + (b2 - b1) * k) + ')';
   }
 
+  // Table officielle des Lettres Mystérieuses (Al-Muqatta'at) pour ne jamais les traduire par erreur
+  function nettoyerArabeBrut(s) {
+    return (s || '').replace(/[\\u064B-\\u065F\\u0670\\u06D6-\\u06ED\\u0640\\s]/g, '');
+  }
+
+  var tableMuqattaat = {
+    'الم': 'Alif Lām Mīm',
+    'المص': 'Alif Lām Mīm Sād',
+    'الر': 'Alif Lām Rā',
+    'المر': 'Alif Lām Mīm Rā',
+    'كهيعص': 'Kāf Hā Yā ʿAyn Sād',
+    'طه': 'Tā Hā',
+    'طسم': 'Tā Sīn Mīm',
+    'طس': 'Tā Sīn',
+    'يس': 'Yā Sīn',
+    'ص': 'Sād',
+    'حم': 'Hā Mīm',
+    'عسق': 'ʿAyn Sīn Qāf',
+    'حمعسق': 'Hā Mīm ʿAyn Sīn Qāf',
+    'ق': 'Qāf',
+    'ن': 'Nūn'
+  };
+
+  function obtenirTranslitMuqattaat(texteArabe, texteTrad) {
+    var arPur = nettoyerArabeBrut(texteArabe);
+    if (tableMuqattaat[arPur]) return tableMuqattaat[arPur];
+    var tr = (texteTrad || '').trim();
+    if (/^(alif|lam|meem|mim|kaf|ha|ya|ain|ayn|sad|ta|seen|sin|ra|qaf|nun|noon)([\\s,\\-\\.]+(alif|lam|meem|mim|kaf|ha|ya|ain|ayn|sad|ta|seen|sin|ra|qaf|nun|noon))*\\.?$/i.test(tr)) {
+      return tr.replace(/meem/gi, 'Mīm').replace(/seen/gi, 'Sīn').replace(/noon/gi, 'Nūn');
+    }
+    return null;
+  }
+
+  // Supprime "(96➔110)" sur le bouton/sélecteur Ordre : Révélation dans toutes les langues
+  function nettoyerTexteOrdreRevelation() {
+    var els = document.querySelectorAll('button, option, span, div, label, a');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (el.children.length === 0 && el.textContent && el.textContent.indexOf('96') !== -1 && el.textContent.indexOf('110') !== -1) {
+        el.textContent = el.textContent.replace(/\\s*\\(96\\s*[^)]*\\s*110\\)/g, '').trim();
+      }
+    }
+  }
+
   var cacheTradMots = {};
   try {
-    cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v92') || '{}');
+    cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v93') || '{}');
   } catch (e) {}
   var enCoursTrad = {};
 
@@ -56,26 +100,33 @@ const codeClientV92 = `
     return h || 'fr';
   }
 
-  // Détecte si un mot est déjà en français (issus du dictionnaire local avec "_" ou accents/mots FR)
   var motsFrConnus = /^(il|elle|ils|elles|je|tu|nous|vous|le|la|les|un|une|des|de|du|au|aux|en|dans|sur|sous|avec|sans|pour|par|vers|chez|entre|contre|et|ou|mais|donc|car|ni|ne|pas|plus|moins|très|tout|tous|toute|toutes|ce|cet|cette|ces|mon|ton|son|ma|ta|sa|mes|tes|ses|notre|votre|leur|leurs|qui|que|quoi|dont|où|oui|non|bien|mal|comme|alors|puis|ainsi|aussi|encore|déjà|toujours|jamais|rien|personne|aucun|autre|même|tel|chaque|allah|seigneur|livre|guidée|pieux|croyants|prière|enfer|paradis|jour|nuit|terre|ciel|cieux|eau|feu|coeur|coeurs)$/i;
 
-  function nettoyerEtTraduireMot(elTrad, lang) {
+  function nettoyerEtTraduireMot(elTrad, elAr, lang) {
     if (!elTrad) return;
     var brut = (elTrad.textContent || '').trim();
     if (!brut) return;
 
-    // Si le mot contient "_" (ex: "Ceux_qui", "sur_eux"), il vient déjà du dictionnaire français local
+    // 1. Vérifie d'abord si c'est une Lettre Mystérieuse (Muqatta'at) : on affiche sa phonétique pure sans traduction
+    var txtAr = elAr ? (elAr.textContent || '') : '';
+    var muq = obtenirTranslitMuqattaat(txtAr, brut);
+    if (muq) {
+      if (elTrad.textContent !== muq) elTrad.textContent = muq;
+      elTrad.dataset.dejaFr = '1';
+      return;
+    }
+
+    // 2. Nettoie les underscores "_" du dictionnaire local
     if (brut.indexOf('_') !== -1) {
       brut = brut.split('_').join(' ').replace(/\\s{2,}/g, ' ').trim();
       elTrad.textContent = brut;
-      elTrad.dataset. dejaFr = '1';
+      elTrad.dataset.dejaFr = '1';
       return;
     }
 
     if (lang === 'en' || lang === 'ar') return;
     if (elTrad.dataset.dejaFr === '1') return;
 
-    // Si le texte contient des accents français ou uniquement des petits mots français connus, on le garde tel quel
     if (/[àâäéèêëîïôöùûüçœæ]/i.test(brut) && lang === 'fr') {
       elTrad.dataset.dejaFr = '1';
       return;
@@ -107,7 +158,7 @@ const codeClientV92 = `
           var tr = d[0].map(function(x) { return x[0] || ''; }).join('').trim();
           if (tr) {
             cacheTradMots[cle] = tr;
-            try { localStorage.setItem('wbw_tr_cache_v92', JSON.stringify(cacheTradMots)); } catch (e) {}
+            try { localStorage.setItem('wbw_tr_cache_v93', JSON.stringify(cacheTradMots)); } catch (e) {}
             if (elTrad) {
               elTrad.textContent = tr;
               elTrad.dataset.dejaFr = '1';
@@ -118,19 +169,22 @@ const codeClientV92 = `
       .catch(function() {});
   }
 
-  // Mémoire d'interpolation ultra-fluide propre au mode Apple Music Lyrics
   var lissageE = [];
   var lissageB = [];
   var modeContrasteSuivi = 0;
+  var dernierSignatureGrille = '';
 
   window.__appliquerRubanColleWBW = function() {
+    nettoyerTexteOrdreRevelation();
+
     var cartes = [];
     if (typeof window.__obtenirCartesWBW === 'function') {
       try { cartes = window.__obtenirCartesWBW() || []; } catch (e) {}
     }
 
     var banner = document.getElementById('wbwSensLectureBanner');
-    if (!cartes || cartes.length < 2) {
+    // Prend en charge dès 1 seul mot (ex: "الم" en 2:1, "كهيعص" en 19:1, "يس" en 36:1) !
+    if (!cartes || cartes.length < 1) {
       if (banner) banner.style.display = 'none';
       return;
     }
@@ -143,7 +197,11 @@ const codeClientV92 = `
       return;
     }
 
-    // Alignement horizontal strict des mots arabes (flex-start) et fond transparent identique au mode normal
+    // Masque la bannière "Sens de lecture (1 -> 1)" quand le verset n'a qu'un seul mot (ex: Lettres Mystérieuses)
+    if (banner) {
+      banner.style.display = cartes.length <= 1 ? 'none' : 'block';
+    }
+
     forcer(grille, 'flex-wrap', 'wrap');
     forcer(grille, 'justify-content', 'center');
     forcer(grille, 'align-items', 'flex-start');
@@ -163,7 +221,14 @@ const codeClientV92 = `
     var aud = window.__lecteurAudioActuel || document.querySelector('audio');
     var audioActif = Boolean(aud && (!aud.paused || aud.currentTime > 0.05));
 
-    // Vérifie si au moins un mot est déjà allumé ou si la lecture est en cours
+    // Réinitialise immédiatement le lissage si on change de verset
+    var sigGrille = cartes.length + ':' + (cartes[0].textContent || '').slice(0, 12);
+    if (sigGrille !== dernierSignatureGrille) {
+      dernierSignatureGrille = sigGrille;
+      lissageE = new Array(cartes.length).fill(0);
+      lissageB = new Array(cartes.length).fill(0);
+    }
+
     var maxBleu = 0;
     for (var z = 0; z < cartes.length; z++) {
       if ((bleus[z] || 0) > maxBleu) maxBleu = bleus[z];
@@ -171,12 +236,7 @@ const codeClientV92 = `
     }
 
     var cibleContraste = (audioActif || maxBleu > 0.02) ? 1.0 : 0.0;
-    modeContrasteSuivi += (cibleContraste - modeContrasteSuivi) * 0.18;
-
-    if (lissageE.length !== cartes.length) {
-      lissageE = new Array(cartes.length).fill(0);
-      lissageB = new Array(cartes.length).fill(0);
-    }
+    modeContrasteSuivi += (cibleContraste - modeContrasteSuivi) * 0.22;
 
     var lang = obtenirLanguePage();
 
@@ -187,8 +247,11 @@ const codeClientV92 = `
       var eBrut = energies[m] || 0;
       var bBrut = bleus[m] || 0;
 
-      // Anticipation Apple Music Lyrics : pré-illumine doucement le mot suivant en fin de syllabe du mot actuel
-      if (idxFloat >= 0 && m === idxEntier + 1) {
+      // Si le verset ne contient qu'un seul mot (ex: الم), il s'illumine dès que l'audio joue
+      if (cartes.length === 1 && audioActif && !aud.ended) {
+        eBrut = Math.max(eBrut, 1.0);
+        bBrut = Math.max(bBrut, 1.0);
+      } else if (idxFloat >= 0 && m === idxEntier + 1) {
         var frac = idxFloat - idxEntier;
         if (frac > 0.65) {
           var ant = (frac - 0.65) / 0.35;
@@ -197,19 +260,16 @@ const codeClientV92 = `
         }
       }
 
-      // Lissage ressort haute fréquence (effet Apple Music Sing sans aucune saccade)
-      lissageE[m] += (eBrut - lissageE[m]) * 0.28;
-      lissageB[m] += (bBrut - lissageB[m]) * 0.24;
+      lissageE[m] += (eBrut - lissageE[m]) * 0.30;
+      lissageB[m] += (bBrut - lissageB[m]) * 0.25;
 
       var e = courbeAppleMusic(lissageE[m]);
       var b = courbeAppleMusic(lissageB[m]);
       var lum = Math.max(b, e);
 
-      // Même élévation (-7.5px) et zoom (+12%) que le mode sans Mot à mot
       var yPx = (-7.5 * e).toFixed(2);
       var sc = (1.0 + 0.12 * e).toFixed(3);
 
-      // Opacité Apple Music : les mots non récités sont tamisés (0.34) pendant la lecture pour faire ressortir le mot chanté (1.00)
       var opRepos = 0.90 - 0.56 * modeContrasteSuivi;
       var opMot = (opRepos + (1.0 - opRepos) * lum).toFixed(3);
 
@@ -233,6 +293,14 @@ const codeClientV92 = `
       forcer(carte, 'transform', 'translate3d(0px, ' + yPx + 'px, 0px) scale(' + sc + ')');
 
       var sousEls = carte.querySelectorAll('*');
+      var elArCarte = null;
+      for (var a = 0; a < sousEls.length; a++) {
+        if (sousEls[a].children.length === 0 && contientArabe(sousEls[a].textContent || '')) {
+          elArCarte = sousEls[a];
+          break;
+        }
+      }
+
       for (var k = 0; k < sousEls.length; k++) {
         var sub = sousEls[k];
         forcer(sub, 'background', 'transparent');
@@ -244,7 +312,6 @@ const codeClientV92 = `
           if (estPetitNumero(txt)) {
             forcer(sub, 'display', 'none');
           } else if (contientArabe(txt)) {
-            // Hauteur fixe sur le mot arabe pour que toute la ligne arabe soit parfaitement alignée horizontalement
             forcer(sub, 'min-height', '3.15rem');
             forcer(sub, 'display', 'flex');
             forcer(sub, 'align-items', 'center');
@@ -252,7 +319,6 @@ const codeClientV92 = `
             forcer(sub, 'font-size', 'clamp(1.9rem, 3.1vw, 2.42rem)');
             forcer(sub, 'line-height', '1.35');
 
-            // Couleur identique au mode normal : Blanc tamisé -> Bleu ciel lumineux (lu) -> Blanc-Cyan éclatant (en cours)
             var colArRepos = melangerRGB(248, 250, 252, 185, 200, 220, modeContrasteSuivi);
             var colArLu = melangerRGB(248, 250, 252, 135, 218, 255, b);
             var colArBase = lum > 0.01 ? colArLu : colArRepos;
@@ -275,8 +341,8 @@ const codeClientV92 = `
             forcer(sub, 'color', colArFinal);
             forcer(sub, 'text-shadow', ombreAr);
           } else if (txt.length > 0) {
-            nettoyerEtTraduireMot(sub, lang);
-            forcer(sub, 'max-width', '112px');
+            nettoyerEtTraduireMot(sub, elArCarte, lang);
+            forcer(sub, 'max-width', '120px');
             forcer(sub, 'text-align', 'center');
             forcer(sub, 'line-height', '1.22');
             forcer(sub, 'font-size', '0.84rem');
@@ -298,8 +364,8 @@ const codeClientV92 = `
   };
 
   var origRaf = window.requestAnimationFrame;
-  if (origRaf && !window.__rafHookedV92) {
-    window.__rafHookedV92 = true;
+  if (origRaf && !window.__rafHookedV93) {
+    window.__rafHookedV93 = true;
     window.requestAnimationFrame = function(cb) {
       return origRaf.call(window, function(ts) {
         var r = cb(ts);
@@ -322,34 +388,69 @@ const codeClientV92 = `
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
+      nettoyerTexteOrdreRevelation();
       if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW();
     });
   } else {
+    nettoyerTexteOrdreRevelation();
     if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW();
   }
 })();
 `;
 
-const blocHtmlV92 = '<!-- WBW_COLLE_V92_START -->\n<script id="wbw-colle-v92">' + codeClientV92 + '</script>\n<!-- WBW_COLLE_V92_END -->';
+const blocHtmlV93 = '<!-- WBW_COLLE_V93_START -->\n<script id="wbw-colle-v93">' + codeClientV93 + '</script>\n<!-- WBW_COLLE_V93_END -->';
+
+function patcherContenu(c) {
+  // 1. Nettoyage des versions précédentes
+  c = c.replace(/<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93)_START -->[\s\S]*?<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93)_END -->\s*/g, '');
+
+  // 2. Suppression de "(96➔110)" / "(96->110)" dans toutes les langues sur le bouton Ordre : Révélation
+  c = c.replace(/\s*\(96\s*(?:➔|→|->|\\u2794|\\u2192|&rarr;)\s*110\)/g, '');
+
+  // 3. Prise en charge des versets d'un seul mot (Lettres Mystérieuses : الم, كهيعص, طه, يس, ص, ق, حم)
+  c = c.replace(/if\s*\(\s*cartes\.length\s*>=\s*2\s*\)\s*return\s*\{\s*type:\s*"cartes"/g, 'if (cartes.length >= 1) return { type: "cartes"');
+  c = c.replace(/if\s*\(\s*cartes\.length\s*<\s*2\s*\)/g, 'if (cartes.length < 1)');
+  c = c.replace(/if\s*\(\s*spansExistants\.length\s*>\s*1\s*&&\s*!aSigneIsole\s*\)/g, 'if (spansExistants.length >= 1 && !aSigneIsole)');
+
+  // 4. Branchements internes pour le suivi 240Hz
+  if (c.indexOf('window.__obtenirCartesWBW = obtenirCartesMotAMotVisibles;') === -1) {
+    c = c.replace(
+      /var\s+cartes\s*=\s*obtenirCartesMotAMotVisibles\(\);/,
+      'window.__obtenirCartesWBW = obtenirCartesMotAMotVisibles; var cartes = obtenirCartesMotAMotVisibles();'
+    );
+  }
+
+  if (c.indexOf('window.__wbwActiveFloat = activeIndexFloat;') === -1) {
+    if (c.indexOf('window.__wbwIdxEntier = idxEntier;') !== -1) {
+      c = c.replace('window.__wbwIdxEntier = idxEntier;', 'window.__wbwActiveFloat = activeIndexFloat; window.__wbwIdxEntier = idxEntier;');
+    } else {
+      c = c.replace(
+        /var\s+idxEntier\s*=\s*Math\.floor\(activeIndexFloat\);\s*var\s+lectureEnCours\s*=\s*activeIndexFloat\s*>=\s*0;/,
+        'var idxEntier = Math.floor(activeIndexFloat); var lectureEnCours = activeIndexFloat >= 0; window.__wbwLectureActive = Boolean(suiviEstActif && lectureEnCours); window.__wbwActiveFloat = activeIndexFloat; window.__wbwIdxEntier = idxEntier; window.__wbwEnergies = energiesMots; window.__wbwBleus = bleusMots;'
+      );
+    }
+  }
+
+  return c;
+}
 
 const fichiers = fs.readdirSync(dossierSite).filter(f => f.endsWith('.html'));
 let nb = 0;
 
 for (const f of fichiers) {
   const p = path.join(dossierSite, f);
-  let c = fs.readFileSync(p, 'utf8');
-
-  c = c.replace(/<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92)_START -->[\s\S]*?<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92)_END -->\s*/g, '');
-
-  // Ajoute activeIndexFloat (window.__wbwActiveFloat) pour l'anticipation fluide Apple Music Lyrics entre deux mots
-  c = c.replace(
-    'window.__wbwIdxEntier = idxEntier;',
-    'window.__wbwActiveFloat = activeIndexFloat; window.__wbwIdxEntier = idxEntier;'
-  );
-
-  c = c.replace('</body>', blocHtmlV92 + '\n</body>');
+  let c = patcherContenu(fs.readFileSync(p, 'utf8'));
+  c = c.replace('</body>', blocHtmlV93 + '\n</body>');
   fs.writeFileSync(p, c, 'utf8');
   nb++;
 }
 
-console.log('✅ V92 Apple Music Lyrics appliquée sur ' + nb + ' pages !');
+// Mise à jour simultanée de generateur.js pour conserver ces corrections à chaque future génération
+const cheminGen = path.join(__dirname, 'generateur.js');
+if (fs.existsSync(cheminGen)) {
+  let gen = patcherContenu(fs.readFileSync(cheminGen, 'utf8'));
+  fs.writeFileSync(cheminGen, gen, 'utf8');
+  console.log('✅ generateur.js également mis à jour !');
+}
+
+console.log('✅ V93 appliquée sur ' + nb + ' pages : Lettres mystérieuses (1 mot) corrigées + (96->110) supprimé + Animations vérifiées sur tout le site !');

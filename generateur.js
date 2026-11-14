@@ -3147,7 +3147,7 @@ html body #btnLangRuV77.active-ext-v77 {
   var TEXTES_KHATM_I18N = {
     fr: {
       m1: "🗓️ 1 Mois (208 v./j)", m4: "🗓️ 4 Mois (52 v./j)", m6: "🗓️ 6 Mois (35 v./j)", m12: "🗓️ 12 Mois (18 v./j)",
-      ordRev: "📜 Ordre : Révélation (96➔110)",
+      ordRev: "📜 Ordre : Révélation",
       ordAsc: "⬆️ Ordre : Croissant (1➔114)",
       ordDesc: "⬇️ Ordre : Décroissant (114➔1)",
       jours: "j. restants",
@@ -3162,7 +3162,7 @@ html body #btnLangRuV77.active-ext-v77 {
     },
     en: {
       m1: "🗓️ 1 Month (208 v./d)", m4: "🗓️ 4 Months (52 v./d)", m6: "🗓️ 6 Months (35 v./d)", m12: "🗓️ 12 Months (18 v./d)",
-      ordRev: "📜 Order: Revelation (96➔110)",
+      ordRev: "📜 Order: Revelation",
       ordAsc: "⬆️ Order: Ascending (1➔114)",
       ordDesc: "⬇️ Order: Descending (114➔1)",
       jours: "d. left",
@@ -3177,7 +3177,7 @@ html body #btnLangRuV77.active-ext-v77 {
     },
     es: {
       m1: "🗓️ 1 Mes (208 a./d)", m4: "🗓️ 4 Meses (52 a./d)", m6: "🗓️ 6 Meses (35 a./d)", m12: "🗓️ 12 Meses (18 a./d)",
-      ordRev: "📜 Orden: Revelación (96➔110)",
+      ordRev: "📜 Orden: Revelación",
       ordAsc: "⬆️ Orden: Creciente (1➔114)",
       ordDesc: "⬇️ Orden: Decreciente (114➔1)",
       jours: "d. restantes",
@@ -3207,7 +3207,7 @@ html body #btnLangRuV77.active-ext-v77 {
     },
     de: {
       m1: "🗓️ 1 Monat (208 V./T)", m4: "🗓️ 4 Monate (52 V./T)", m6: "🗓️ 6 Monate (35 V./T)", m12: "🗓️ 12 Monate (18 V./T)",
-      ordRev: "📜 Reihenfolge: Offenbarung (96➔110)",
+      ordRev: "📜 Reihenfolge: Offenbarung",
       ordAsc: "⬆️ Reihenfolge: Aufsteigend (1➔114)",
       ordDesc: "⬇️ Reihenfolge: Absteigend (114➔1)",
       jours: "T. übrig",
@@ -3222,7 +3222,7 @@ html body #btnLangRuV77.active-ext-v77 {
     },
     it: {
       m1: "🗓️ 1 Mese (208 v./g)", m4: "🗓️ 4 Mesi (52 v./g)", m6: "🗓️ 6 Mesi (35 v./g)", m12: "🗓️ 12 Mesi (18 v./g)",
-      ordRev: "📜 Ordine: Rivelazione (96➔110)",
+      ordRev: "📜 Ordine: Rivelazione",
       ordAsc: "⬆️ Ordine: Crescente (1➔114)",
       ordDesc: "⬇️ Ordine: Decrescente (114➔1)",
       jours: "g. rimasti",
@@ -3237,7 +3237,7 @@ html body #btnLangRuV77.active-ext-v77 {
     },
     id: {
       m1: "🗓️ 1 Bulan (208 a./h)", m4: "🗓️ 4 Bulan (52 a./h)", m6: "🗓️ 6 Bulan (35 a./h)", m12: "🗓️ 12 Bulan (18 a./h)",
-      ordRev: "📜 Urutan: Wahyu (96➔110)",
+      ordRev: "📜 Urutan: Wahyu",
       ordAsc: "⬆️ Urutan: Menaik (1➔114)",
       ordDesc: "⬇️ Urutan: Menurun (114➔1)",
       jours: "h. tersisa",
@@ -3252,7 +3252,7 @@ html body #btnLangRuV77.active-ext-v77 {
     },
     ru: {
       m1: "🗓️ 1 мес. (208 а./д)", m4: "🗓️ 4 мес. (52 а./д)", m6: "🗓️ 6 мес. (35 а./д)", m12: "🗓️ 12 мес. (18 а./д)",
-      ordRev: "📜 Порядок: Ниспослание (96➔110)",
+      ordRev: "📜 Порядок: Ниспослание",
       ordAsc: "⬆️ Порядок: Возрастание (1➔114)",
       ordDesc: "⬇️ Порядок: Убывание (114➔1)",
       jours: "дн. ост.",
@@ -4837,7 +4837,7 @@ html body #btnLangRuV77.active-ext-v77 {
   }
 
   function appliquerVraiMotAMotSurDOM() {
-    var cartes = obtenirCartesMotAMotVisibles();
+    window.__obtenirCartesWBW = obtenirCartesMotAMotVisibles; var cartes = obtenirCartesMotAMotVisibles();
     var oldBanner = document.getElementById("wbwSensLectureBanner");
     if (cartes.length === 0) {
       if (oldBanner) oldBanner.style.display = "none";
@@ -4937,7 +4937,7 @@ html body #btnLangRuV77.active-ext-v77 {
 
   function masquerTraductionBasSiMotAMot() {
     var cartes = obtenirCartesMotAMotVisibles();
-    if (cartes.length < 2) {
+    if (cartes.length < 1) {
       var caches = document.querySelectorAll(".wbw-masquer-traduction-bas");
       for (var c = 0; c < caches.length; c++) caches[c].classList.remove("wbw-masquer-traduction-bas");
       return;
@@ -5057,7 +5057,7 @@ html body #btnLangRuV77.active-ext-v77 {
 
   function obtenirElementsMotsAAnimer() {
     var cartes = obtenirCartesMotAMotVisibles();
-    if (cartes.length >= 2) return { type: "cartes", items: cartes };
+    if (cartes.length >= 1) return { type: "cartes", items: cartes };
 
     var conteneur = document.querySelector("#arabicVerse, .arabic-glow-verse");
     if (!conteneur) return { type: "spans", items: [] };
@@ -5072,7 +5072,7 @@ html body #btnLangRuV77.active-ext-v77 {
         break;
       }
     }
-    if (spansExistants.length > 1 && !aSigneIsole) {
+    if (spansExistants.length >= 1 && !aSigneIsole) {
       return { type: "spans", items: spansExistants };
     }
 
@@ -5216,8 +5216,7 @@ html body #btnLangRuV77.active-ext-v77 {
         activeIndexFloat = items.length;
       }
 
-      var idxEntier = Math.floor(activeIndexFloat);
-      var lectureEnCours = activeIndexFloat >= 0;
+      var idxEntier = Math.floor(activeIndexFloat); var lectureEnCours = activeIndexFloat >= 0; window.__wbwLectureActive = Boolean(suiviEstActif && lectureEnCours); window.__wbwActiveFloat = activeIndexFloat; window.__wbwIdxEntier = idxEntier; window.__wbwEnergies = energiesMots; window.__wbwBleus = bleusMots;
 
       for (var m = 0; m < items.length; m++) {
         var el = items[m];
@@ -7234,7 +7233,7 @@ html body #btnLangRuV77.active-ext-v77 {
   var TEXTES_KHATM_I18N = {
     fr: {
       m1: "🗓️ 1 Mois (208 v./j)", m4: "🗓️ 4 Mois (52 v./j)", m6: "🗓️ 6 Mois (35 v./j)", m12: "🗓️ 12 Mois (18 v./j)",
-      ordRev: "📜 Ordre : Révélation (96➔110)",
+      ordRev: "📜 Ordre : Révélation",
       ordAsc: "⬆️ Ordre : Croissant (1➔114)",
       ordDesc: "⬇️ Ordre : Décroissant (114➔1)",
       jours: "j. restants",
@@ -7249,7 +7248,7 @@ html body #btnLangRuV77.active-ext-v77 {
     },
     en: {
       m1: "🗓️ 1 Month (208 v./d)", m4: "🗓️ 4 Months (52 v./d)", m6: "🗓️ 6 Months (35 v./d)", m12: "🗓️ 12 Months (18 v./d)",
-      ordRev: "📜 Order: Revelation (96➔110)",
+      ordRev: "📜 Order: Revelation",
       ordAsc: "⬆️ Order: Ascending (1➔114)",
       ordDesc: "⬇️ Order: Descending (114➔1)",
       jours: "d. left",
@@ -7264,7 +7263,7 @@ html body #btnLangRuV77.active-ext-v77 {
     },
     es: {
       m1: "🗓️ 1 Mes (208 a./d)", m4: "🗓️ 4 Meses (52 a./d)", m6: "🗓️ 6 Meses (35 a./d)", m12: "🗓️ 12 Meses (18 a./d)",
-      ordRev: "📜 Orden: Revelación (96➔110)",
+      ordRev: "📜 Orden: Revelación",
       ordAsc: "⬆️ Orden: Creciente (1➔114)",
       ordDesc: "⬇️ Orden: Decreciente (114➔1)",
       jours: "d. restantes",
@@ -7294,7 +7293,7 @@ html body #btnLangRuV77.active-ext-v77 {
     },
     de: {
       m1: "🗓️ 1 Monat (208 V./T)", m4: "🗓️ 4 Monate (52 V./T)", m6: "🗓️ 6 Monate (35 V./T)", m12: "🗓️ 12 Monate (18 V./T)",
-      ordRev: "📜 Reihenfolge: Offenbarung (96➔110)",
+      ordRev: "📜 Reihenfolge: Offenbarung",
       ordAsc: "⬆️ Reihenfolge: Aufsteigend (1➔114)",
       ordDesc: "⬇️ Reihenfolge: Absteigend (114➔1)",
       jours: "T. übrig",
@@ -7309,7 +7308,7 @@ html body #btnLangRuV77.active-ext-v77 {
     },
     it: {
       m1: "🗓️ 1 Mese (208 v./g)", m4: "🗓️ 4 Mesi (52 v./g)", m6: "🗓️ 6 Mesi (35 v./g)", m12: "🗓️ 12 Mesi (18 v./g)",
-      ordRev: "📜 Ordine: Rivelazione (96➔110)",
+      ordRev: "📜 Ordine: Rivelazione",
       ordAsc: "⬆️ Ordine: Crescente (1➔114)",
       ordDesc: "⬇️ Ordine: Decrescente (114➔1)",
       jours: "g. rimasti",
@@ -7324,7 +7323,7 @@ html body #btnLangRuV77.active-ext-v77 {
     },
     id: {
       m1: "🗓️ 1 Bulan (208 a./h)", m4: "🗓️ 4 Bulan (52 a./h)", m6: "🗓️ 6 Bulan (35 a./h)", m12: "🗓️ 12 Bulan (18 a./h)",
-      ordRev: "📜 Urutan: Wahyu (96➔110)",
+      ordRev: "📜 Urutan: Wahyu",
       ordAsc: "⬆️ Urutan: Menaik (1➔114)",
       ordDesc: "⬇️ Urutan: Menurun (114➔1)",
       jours: "h. tersisa",
@@ -7339,7 +7338,7 @@ html body #btnLangRuV77.active-ext-v77 {
     },
     ru: {
       m1: "🗓️ 1 мес. (208 а./д)", m4: "🗓️ 4 мес. (52 а./д)", m6: "🗓️ 6 мес. (35 а./д)", m12: "🗓️ 12 мес. (18 а./д)",
-      ordRev: "📜 Порядок: Ниспослание (96➔110)",
+      ordRev: "📜 Порядок: Ниспослание",
       ordAsc: "⬆️ Порядок: Возрастание (1➔114)",
       ordDesc: "⬇️ Порядок: Убывание (114➔1)",
       jours: "дн. ост.",
@@ -9024,7 +9023,7 @@ html body #btnLangRuV77.active-ext-v77 {
 
   function masquerTraductionBasSiMotAMot() {
     var cartes = obtenirCartesMotAMotVisibles();
-    if (cartes.length < 2) {
+    if (cartes.length < 1) {
       var caches = document.querySelectorAll(".wbw-masquer-traduction-bas");
       for (var c = 0; c < caches.length; c++) caches[c].classList.remove("wbw-masquer-traduction-bas");
       return;
@@ -9144,7 +9143,7 @@ html body #btnLangRuV77.active-ext-v77 {
 
   function obtenirElementsMotsAAnimer() {
     var cartes = obtenirCartesMotAMotVisibles();
-    if (cartes.length >= 2) return { type: "cartes", items: cartes };
+    if (cartes.length >= 1) return { type: "cartes", items: cartes };
 
     var conteneur = document.querySelector("#arabicVerse, .arabic-glow-verse");
     if (!conteneur) return { type: "spans", items: [] };
@@ -9159,7 +9158,7 @@ html body #btnLangRuV77.active-ext-v77 {
         break;
       }
     }
-    if (spansExistants.length > 1 && !aSigneIsole) {
+    if (spansExistants.length >= 1 && !aSigneIsole) {
       return { type: "spans", items: spansExistants };
     }
 
