@@ -3,224 +3,152 @@ const path = require('path');
 
 const dossierSite = path.join(__dirname, 'site');
 
-const blocPropreV85 = `<!-- WBW_CLEAN_V85_START -->
-<style id="wbw-clean-style-v85">
-  /* 1. Correction du menu déroulant des récitateurs coupé à droite en mode Arabe (RTL) ou petit écran */
-  [dir="rtl"] [id*="reciter" i][id*="menu" i],
-  [dir="rtl"] [id*="reciter" i][id*="list" i],
-  [dir="rtl"] [class*="reciter" i][class*="menu" i],
-  [dir="rtl"] [class*="reciter" i][class*="dropdown" i],
-  .reciter-dropdown-fixed-rtl {
-    right: 0 !important;
-    left: auto !important;
-    direction: ltr !important;
-    text-align: left !important;
-    max-width: calc(100vw - 24px) !important;
-  }
-
-  /* 2. Mode Mot à mot assemblé sans aucun rectangle ni carré autour des mots */
-  .wbw-assembled-container {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    align-items: baseline !important;
-    gap: 2px 0px !important;
-    row-gap: 16px !important;
-    padding: 18px 14px !important;
-    background: rgba(8, 19, 36, 0.5) !important;
-    border: 1px solid rgba(56, 189, 248, 0.15) !important;
-    border-radius: 16px !important;
-  }
-
-  .wbw-assembled-container > .wbw-assembled-word {
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-    border: none !important;
-    border-bottom: 2px solid transparent !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    margin: 0 !important;
-    padding: 4px 9px 6px 9px !important;
-    min-width: 0 !important;
-    width: auto !important;
-    height: auto !important;
-    display: inline-flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    transform: none !important;
-    transition: border-color 0.12s ease, background 0.12s ease !important;
-  }
-
-  .wbw-assembled-container > .wbw-assembled-word .wbw-sub-num {
-    position: static !important;
-    font-size: 0.6rem !important;
-    opacity: 0.28 !important;
-    color: #94a3b8 !important;
-    line-height: 1 !important;
-    margin-bottom: 1px !important;
-  }
-
-  .wbw-assembled-container > .wbw-assembled-word .wbw-sub-ar {
-    font-size: clamp(1.65rem, 2.5vw, 2.05rem) !important;
-    line-height: 1.4 !important;
-    color: #f8fafc !important;
-    margin: 1px 0 3px 0 !important;
-    white-space: nowrap !important;
-    transition: color 0.12s ease, text-shadow 0.12s ease !important;
-  }
-
-  .wbw-assembled-container > .wbw-assembled-word .wbw-sub-tr {
-    font-size: 0.82rem !important;
-    line-height: 1.2 !important;
-    color: #94a3b8 !important;
-    text-align: center !important;
-    max-width: 115px !important;
-    word-break: break-word !important;
-    transition: color 0.12s ease, text-shadow 0.12s ease !important;
-  }
-
-  /* 3. Illumination simultanée du mot arabe + français en mode Suivi */
-  .wbw-assembled-container > .wbw-assembled-word.wbw-follow-on {
-    background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.18) 0%, rgba(56, 189, 248, 0) 75%) !important;
-    border-bottom: 2.5px solid #38bdf8 !important;
-  }
-
-  .wbw-assembled-container > .wbw-assembled-word.wbw-follow-on .wbw-sub-ar {
-    color: #38bdf8 !important;
-    text-shadow: 0 0 15px rgba(56, 189, 248, 0.9) !important;
-  }
-
-  .wbw-assembled-container > .wbw-assembled-word.wbw-follow-on .wbw-sub-tr {
-    color: #e0f2fe !important;
-    font-weight: 600 !important;
-    text-shadow: 0 0 10px rgba(56, 189, 248, 0.75) !important;
-  }
-
-  .wbw-assembled-container > .wbw-assembled-word.wbw-follow-on .wbw-sub-num {
-    opacity: 0.85 !important;
-    color: #38bdf8 !important;
-  }
-</style>
-<script id="wbw-clean-script-v85">
+const blocColleV86 = `<!-- WBW_COLLE_V86_START -->
+<script id="wbw-colle-script-v86">
 (function() {
-  function estCarteMotValide(el) {
-    if (!el || el.children.length < 2 || el.children.length > 4) return false;
-    const txtGlobal = el.textContent || '';
-    if (txtGlobal.indexOf('Mot coranique') !== -1 || txtGlobal.indexOf('Racine') !== -1 || txtGlobal.indexOf('Fermer') !== -1) {
-      return false;
+  function appliquerStyleImportant(el, prop, val) {
+    if (el && el.style && el.style.getPropertyValue(prop) !== val) {
+      el.style.setProperty(prop, val, 'important');
     }
-    let aNumero = false;
-    let aArabe = false;
-    for (let i = 0; i < el.children.length; i++) {
-      const t = (el.children[i].textContent || '').trim();
-      if (/^\\d{1,3}$/.test(t)) aNumero = true;
-      else if (/[\\u0600-\\u06FF]/.test(t)) aArabe = true;
-    }
-    return aNumero && aArabe;
   }
 
-  function signatureEtat(card) {
-    const cls = (card.className || '').replace(/\\b(wbw-assembled-word|wbw-follow-on)\\b/g, '').trim();
-    const st = card.getAttribute('style') || '';
-    return cls + '||' + st;
+  function estDansModale(el) {
+    let cur = el;
+    while (cur && cur !== document.body) {
+      const txt = cur.textContent || '';
+      const pos = window.getComputedStyle(cur).position;
+      if (pos === 'fixed' && (txt.indexOf('Mot coranique') !== -1 || txt.indexOf('Racine') !== -1)) {
+        return true;
+      }
+      cur = cur.parentElement;
+    }
+    return false;
   }
 
-  function verifierMenuRecitateurRtl() {
-    const divs = document.querySelectorAll('div, ul');
-    for (let i = 0; i < divs.length; i++) {
-      const d = divs[i];
-      const txt = d.textContent || '';
-      if (txt.indexOf('Yasser Al-Dosari') !== -1 && txt.indexOf('Mishary Rashid') !== -1 && d.children.length >= 4 && d.offsetWidth < 500) {
-        const rect = d.getBoundingClientRect();
-        if (document.documentElement.dir === 'rtl' || rect.right > window.innerWidth - 8) {
-          d.classList.add('reciter-dropdown-fixed-rtl');
+  function collerMotsEtSuivi() {
+    // 1. Trouve la phrase "Sens de lecture" ou son équivalent au-dessus des mots
+    const tous = document.querySelectorAll('div, p, span');
+    let conteneurMots = null;
+
+    for (let i = 0; i < tous.length; i++) {
+      const el = tous[i];
+      if (el.children.length >= 2 && el.children.length <= 200 && !estDansModale(el)) {
+        // Vérifie si au moins 2 enfants directs contiennent un numéro + un mot arabe
+        let nbCartesMots = 0;
+        for (let j = 0; j < Math.min(el.children.length, 6); j++) {
+          const enf = el.children[j];
+          const t = (enf.textContent || '').trim();
+          if (enf.children.length >= 2 && enf.children.length <= 5 && /\\d/.test(t) && /[\\u0600-\\u06FF]/.test(t)) {
+            nbCartesMots++;
+          }
+        }
+        if (nbCartesMots >= 1) {
+          conteneurMots = el;
+          break;
         }
       }
     }
-  }
 
-  function appliquerMotAMotAssemble() {
-    verifierMenuRecitateurRtl();
+    if (!conteneurMots) return;
 
-    // Trouve uniquement le vrai conteneur dont les enfants directs sont les cartes numérotées (1, 2, 3...)
-    const tous = document.querySelectorAll('div');
-    let vraiConteneur = null;
-    for (let i = 0; i < tous.length; i++) {
-      const d = tous[i];
-      if (d.children.length >= 1 && d.children.length <= 200 && estCarteMotValide(d.children[0])) {
-        vraiConteneur = d;
-        break;
+    // 2. Transforme le conteneur en un seul bloc continu où tous les mots sont collés
+    appliquerStyleImportant(conteneurMots, 'display', 'flex');
+    appliquerStyleImportant(conteneurMots, 'flex-wrap', 'wrap');
+    appliquerStyleImportant(conteneurMots, 'justify-content', 'center');
+    appliquerStyleImportant(conteneurMots, 'align-items', 'stretch');
+    appliquerStyleImportant(conteneurMots, 'gap', '0px');
+    appliquerStyleImportant(conteneurMots, 'row-gap', '12px');
+    appliquerStyleImportant(conteneurMots, 'padding', '14px 10px');
+    appliquerStyleImportant(conteneurMots, 'background', 'rgba(9, 20, 38, 0.65)');
+    appliquerStyleImportant(conteneurMots, 'border', '1px solid rgba(56, 189, 248, 0.18)');
+    appliquerStyleImportant(conteneurMots, 'border-radius', '16px');
+
+    // 3. Parcourt chaque mot pour supprimer son rectangle/carré et les coller côte à côte
+    const cartes = conteneurMots.children;
+    for (let i = 0; i < cartes.length; i++) {
+      const carte = cartes[i];
+      if (carte.children.length < 2) continue;
+
+      let elNum = null, elAr = null, elFr = null;
+      for (let k = 0; k < carte.children.length; k++) {
+        const ch = carte.children[k];
+        const txt = (ch.textContent || '').trim();
+        if (/^\\d{1,3}$/.test(txt)) elNum = ch;
+        else if (/[\\u0600-\\u06FF]/.test(txt)) elAr = ch;
+        else if (txt.length > 0) elFr = ch;
       }
-    }
-    if (!vraiConteneur) return;
+      if (!elAr) continue;
 
-    if (!vraiConteneur.classList.contains('wbw-assembled-container')) {
-      vraiConteneur.classList.add('wbw-assembled-container');
-    }
+      // Détecte si ce mot est actuellement récité par le mode Suivi (via la couleur ou l'ombre du mot arabe)
+      const styleAr = window.getComputedStyle(elAr);
+      const shadowAr = styleAr.textShadow || '';
+      const colorAr = styleAr.color || '';
+      const carteClass = carte.className || '';
+      const estActif =
+        shadowAr.indexOf('56, 189, 248') !== -1 ||
+        shadowAr.indexOf('0, 210, 255') !== -1 ||
+        shadowAr.indexOf('38bdf8') !== -1 ||
+        colorAr.indexOf('56, 189, 248') !== -1 ||
+        /active|playing|current/i.test(carteClass) ||
+        (shadowAr !== 'none' && shadowAr.indexOf('255, 255, 255, 0.14') === -1 && shadowAr.indexOf('rgba(255, 255, 255') === -1);
 
-    const cards = vraiConteneur.children;
-    const n = cards.length;
-    const freq = {};
-    const sigs = new Array(n);
+      // Supprime le rectangle autour du mot et colle la case à ses voisines
+      appliquerStyleImportant(carte, 'margin', '0px');
+      appliquerStyleImportant(carte, 'border-radius', '0px');
+      appliquerStyleImportant(carte, 'border-top', 'none');
+      appliquerStyleImportant(carte, 'border-left', 'none');
+      appliquerStyleImportant(carte, 'border-right', 'none');
+      appliquerStyleImportant(carte, 'box-shadow', 'none');
+      appliquerStyleImportant(carte, 'transform', 'none');
+      appliquerStyleImportant(carte, 'padding', '6px 9px 8px 9px');
+      appliquerStyleImportant(carte, 'min-width', 'auto');
+      appliquerStyleImportant(carte, 'width', 'auto');
 
-    for (let i = 0; i < n; i++) {
-      const card = cards[i];
-      if (!card.classList.contains('wbw-assembled-word')) {
-        card.classList.add('wbw-assembled-word');
-      }
-      for (let k = 0; k < card.children.length; k++) {
-        const ch = card.children[k];
-        const t = (ch.textContent || '').trim();
-        if (/^\\d{1,3}$/.test(t)) ch.classList.add('wbw-sub-num');
-        else if (/[\\u0600-\\u06FF]/.test(t)) ch.classList.add('wbw-sub-ar');
-        else if (t.length > 0) ch.classList.add('wbw-sub-tr');
-      }
-
-      const s = signatureEtat(card);
-      sigs[i] = s;
-      freq[s] = (freq[s] || 0) + 1;
-    }
-
-    let sigRepos = null;
-    let maxCount = 0;
-    for (const k in freq) {
-      if (freq[k] > maxCount) {
-        maxCount = freq[k];
-        sigRepos = k;
-      }
-    }
-    if (maxCount === n && sigRepos) {
-      vraiConteneur.dataset.reposSig = sigRepos;
-    }
-    const refRepos = vraiConteneur.dataset.reposSig || sigRepos;
-
-    for (let i = 0; i < n; i++) {
-      const card = cards[i];
-      const actif = (maxCount < n && sigs[i] !== refRepos) || /active|playing|current|highlight/i.test(sigs[i]);
-      if (actif) {
-        if (!card.classList.contains('wbw-follow-on')) card.classList.add('wbw-follow-on');
+      if (estActif) {
+        appliquerStyleImportant(carte, 'background', 'linear-gradient(180deg, rgba(56,189,248,0.20) 0%, rgba(56,189,248,0.04) 100%)');
+        appliquerStyleImportant(carte, 'border-bottom', '2.5px solid #38bdf8');
+        if (elFr) {
+          appliquerStyleImportant(elFr, 'color', '#38bdf8');
+          appliquerStyleImportant(elFr, 'font-weight', '600');
+          appliquerStyleImportant(elFr, 'text-shadow', '0 0 10px rgba(56,189,248,0.65)');
+        }
       } else {
-        if (card.classList.contains('wbw-follow-on')) card.classList.remove('wbw-follow-on');
+        appliquerStyleImportant(carte, 'background', 'transparent');
+        appliquerStyleImportant(carte, 'border-bottom', '2px solid rgba(56,189,248,0.10)');
+        if (elFr) {
+          appliquerStyleImportant(elFr, 'color', '#94a3b8');
+          appliquerStyleImportant(elFr, 'font-weight', '400');
+          appliquerStyleImportant(elFr, 'text-shadow', 'none');
+        }
+      }
+
+      if (elNum) {
+        appliquerStyleImportant(elNum, 'font-size', '0.62rem');
+        appliquerStyleImportant(elNum, 'opacity', estActif ? '0.9' : '0.28');
+      }
+      if (elFr) {
+        appliquerStyleImportant(elFr, 'max-width', '115px');
+        appliquerStyleImportant(elFr, 'text-align', 'center');
+        appliquerStyleImportant(elFr, 'line-height', '1.2');
       }
     }
   }
 
-  setInterval(appliquerMotAMotAssemble, 80);
+  setInterval(collerMotsEtSuivi, 60);
   document.addEventListener('click', function() {
-    setTimeout(appliquerMotAMotAssemble, 15);
+    setTimeout(collerMotsEtSuivi, 15);
   });
 })();
 </script>
-<!-- WBW_CLEAN_V85_END -->`;
+<!-- WBW_COLLE_V86_END -->`;
 
-function nettoyerEtPatcher(html) {
+function patcher(html) {
   let propre = html
     .replace(/<!-- WBW_RIBBON_V83_START -->[\s\S]*?<!-- WBW_RIBBON_V83_END -->\s*/g, '')
     .replace(/<!-- WBW_UNIFIED_V84_START -->[\s\S]*?<!-- WBW_UNIFIED_V84_END -->\s*/g, '')
-    .replace(/<!-- WBW_CLEAN_V85_START -->[\s\S]*?<!-- WBW_CLEAN_V85_END -->\s*/g, '');
-  return propre.replace('</body>', blocPropreV85 + '\n</body>');
+    .replace(/<!-- WBW_CLEAN_V85_START -->[\s\S]*?<!-- WBW_CLEAN_V85_END -->\s*/g, '')
+    .replace(/<!-- WBW_COLLE_V86_START -->[\s\S]*?<!-- WBW_COLLE_V86_END -->\s*/g, '');
+  return propre.replace('</body>', blocColleV86 + '\n</body>');
 }
 
 const fichiers = fs.readdirSync(dossierSite).filter(f => f.endsWith('.html'));
@@ -230,7 +158,7 @@ for (const f of fichiers) {
   for (let essai = 0; essai < 12; essai++) {
     try {
       const c = fs.readFileSync(p, 'utf8');
-      fs.writeFileSync(p, nettoyerEtPatcher(c), 'utf8');
+      fs.writeFileSync(p, patcher(c), 'utf8');
       nb++;
       break;
     } catch (e) {
@@ -238,4 +166,4 @@ for (const f of fichiers) {
     }
   }
 }
-console.log('✅ V85 appliquée sur ' + nb + ' pages : Pop-up corrigée + Menu récitateur RTL corrigé + Mot à mot assemblé sans rectangles !');
+console.log('✅ Terminé : ' + nb + ' pages mises à jour avec les mots collés sans rectangles (V86) !');
