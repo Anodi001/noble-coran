@@ -3101,8 +3101,8 @@ html body #btnLangRuV77.active-ext-v77 {
     return cartes;
   }
 
-  function appliquerVraiMotAMotSurDOM() {
-    var cartes = obtenirCartesMotAMotVisibles();
+  function appliquerVraiMotAMotSurDOM() { Promise.resolve().then(function(){ if(window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW(); });
+    window.__obtenirCartesWBW = obtenirCartesMotAMotVisibles; var cartes = obtenirCartesMotAMotVisibles();
     var oldBanner = document.getElementById("wbwSensLectureBanner");
     if (cartes.length === 0) {
       if (oldBanner) oldBanner.style.display = "none";
@@ -3361,7 +3361,7 @@ html body #btnLangRuV77.active-ext-v77 {
     return { type: "spans", items: conteneur.querySelectorAll("span") };
   }
 
-  function reinitialiserMotsEnBlancTamise() {
+  function reinitialiserMotsEnBlancTamise() { window.__wbwLectureActive = false; window.__wbwIdxEntier = -1; Promise.resolve().then(function(){ if(window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW(); });
     energiesMots = [];
     bleusMots = [];
     var cibleObj = obtenirElementsMotsAAnimer();
@@ -4890,166 +4890,155 @@ html body #btnLangRuV77.active-ext-v77 {
     });
 </script>
 
-<!-- WBW_COLLE_V88_START -->
-
-<style id="wbw-style-v88">
-  .wbw-grid-v88 {
-    gap: 0px !important;
-    column-gap: 0px !important;
-    row-gap: 14px !important;
-  }
-  .wbw-card-v88 {
-    background: transparent !important;
-    border-top: none !important;
-    border-left: none !important;
-    border-right: none !important;
-    border-radius: 0px !important;
-    box-shadow: none !important;
-    margin: 0px !important;
-  }
-</style>
-<script id="wbw-colle-v88">
+<!-- WBW_COLLE_V89_START -->
+<script id="wbw-colle-v89">
 (function() {
-  function forcerStyle(el, prop, val) {
-    if (el && el.style && el.style.getPropertyValue(prop) !== val) {
+  function forcer(el, prop, val) {
+    if (el && el.style) {
       el.style.setProperty(prop, val, 'important');
     }
   }
 
-  // Vérifie sans aucune regex si le texte est uniquement un entier entre 1 et 400 (ex: "1", "2", "14")
-  function estNumeroMotPur(str) {
-    var s = (str || '').trim();
-    if (s.length < 1 || s.length > 3) return false;
-    for (var i = 0; i < s.length; i++) {
-      var code = s.charCodeAt(i);
-      if (code < 48 || code > 57) return false;
-    }
-    var num = parseInt(s, 10);
-    return num >= 1 && num <= 400;
-  }
-
-  // Vérifie sans regex si le texte contient des lettres arabes
-  function contientTexteArabe(str) {
+  function contientArabe(str) {
     var s = str || '';
     for (var i = 0; i < s.length; i++) {
-      var code = s.charCodeAt(i);
-      if (code >= 1536 && code <= 1791) return true;
+      var c = s.charCodeAt(i);
+      if (c >= 1536 && c <= 1791) return true;
     }
     return false;
   }
 
-  function souderMotsSansRectangles() {
-    var tousLesElements = document.querySelectorAll('span, div, small, sup, b, p');
-    var grillesTraitees = [];
-
-    for (var i = 0; i < tousLesElements.length; i++) {
-      var elNum = tousLesElements[i];
-      if (elNum.children.length !== 0) continue;
-      if (!estNumeroMotPur(elNum.textContent)) continue;
-
-      var carte = elNum.parentElement;
-      if (!carte || carte.children.length < 2 || carte.children.length > 5) continue;
-      if (carte.offsetWidth > 380 || carte.offsetHeight > 260) continue;
-      if (!contientTexteArabe(carte.textContent)) continue;
-
-      var grille = carte.parentElement;
-      if (!grille) continue;
-
-      // 1. Style du grand conteneur unique (rassemble tous les mots sans espace horizontal)
-      if (grillesTraitees.indexOf(grille) === -1) {
-        grillesTraitees.push(grille);
-        grille.classList.add('wbw-grid-v88');
-        forcerStyle(grille, 'display', 'flex');
-        forcerStyle(grille, 'flex-wrap', 'wrap');
-        forcerStyle(grille, 'justify-content', 'center');
-        forcerStyle(grille, 'align-items', 'stretch');
-        forcerStyle(grille, 'gap', '0px');
-        forcerStyle(grille, 'column-gap', '0px');
-        forcerStyle(grille, 'row-gap', '14px');
-        forcerStyle(grille, 'padding', '18px 14px');
-        forcerStyle(grille, 'background', 'rgba(8, 19, 36, 0.72)');
-        forcerStyle(grille, 'border', '1px solid rgba(56, 189, 248, 0.22)');
-        forcerStyle(grille, 'border-radius', '18px');
-      }
-
-      // 2. Identification du mot arabe et de la traduction dans la carte
-      var elAr = null;
-      var elTrad = null;
-      for (var k = 0; k < carte.children.length; k++) {
-        var enf = carte.children[k];
-        if (enf === elNum) continue;
-        if (!elAr && contientTexteArabe(enf.textContent)) {
-          elAr = enf;
-        } else {
-          elTrad = enf;
-        }
-      }
-      if (!elAr) continue;
-
-      // 3. Détection de l'illumination du mode Suivi (Follow) sur le mot arabe
-      var styleArInline = elAr.getAttribute('style') || '';
-      var styleCompAr = window.getComputedStyle(elAr);
-      var ombreAr = (styleCompAr.textShadow || '') + ' ' + styleArInline;
-      var couleurAr = (styleCompAr.color || '') + ' ' + styleArInline;
-
-      // Dans reinitialiserMotsEnBlancTamise, le repos a l'ombre "rgba(255, 255, 255, 0.14)"
-      var estMotEnLecture =
-        ombreAr.indexOf('56, 189, 248') !== -1 ||
-        ombreAr.indexOf('0, 210, 255') !== -1 ||
-        ombreAr.indexOf('38bdf8') !== -1 ||
-        couleurAr.indexOf('56, 189, 248') !== -1 ||
-        couleurAr.indexOf('38bdf8') !== -1 ||
-        (styleArInline.indexOf('text-shadow') !== -1 && styleArInline.indexOf('0.14') === -1);
-
-      // 4. Suppression totale du rectangle/carré autour du mot et collage aux mots voisins
-      carte.classList.add('wbw-card-v88');
-      forcerStyle(carte, 'margin', '0px');
-      forcerStyle(carte, 'border-top', 'none');
-      forcerStyle(carte, 'border-left', 'none');
-      forcerStyle(carte, 'border-right', 'none');
-      forcerStyle(carte, 'border-radius', '0px');
-      forcerStyle(carte, 'box-shadow', 'none');
-      forcerStyle(carte, 'outline', 'none');
-      forcerStyle(carte, 'padding', '6px 10px 8px 10px');
-      forcerStyle(carte, 'min-width', '0px');
-      forcerStyle(carte, 'width', 'auto');
-      forcerStyle(carte, 'transform', 'none');
-
-      if (estMotEnLecture) {
-        forcerStyle(carte, 'background', 'radial-gradient(ellipse at center, rgba(56, 189, 248, 0.24) 0%, rgba(56, 189, 248, 0) 75%)');
-        forcerStyle(carte, 'border-bottom', '2.5px solid #38bdf8');
-        if (elTrad) {
-          forcerStyle(elTrad, 'color', '#38bdf8');
-          forcerStyle(elTrad, 'font-weight', '600');
-          forcerStyle(elTrad, 'text-shadow', '0 0 10px rgba(56, 189, 248, 0.75)');
-        }
-      } else {
-        forcerStyle(carte, 'background', 'transparent');
-        forcerStyle(carte, 'border-bottom', '1px solid rgba(56, 189, 248, 0.14)');
-        if (elTrad) {
-          forcerStyle(elTrad, 'color', '#94a3b8');
-          forcerStyle(elTrad, 'font-weight', '400');
-          forcerStyle(elTrad, 'text-shadow', 'none');
-        }
-      }
-
-      forcerStyle(elNum, 'font-size', '0.6rem');
-      forcerStyle(elNum, 'opacity', estMotEnLecture ? '0.9' : '0.25');
-
-      if (elTrad) {
-        forcerStyle(elTrad, 'max-width', '115px');
-        forcerStyle(elTrad, 'text-align', 'center');
-        forcerStyle(elTrad, 'line-height', '1.22');
-      }
+  function estPetitNumero(str) {
+    var s = (str || '').trim();
+    if (s.length < 1 || s.length > 3) return false;
+    for (var i = 0; i < s.length; i++) {
+      var c = s.charCodeAt(i);
+      if (c < 48 || c > 57) return false;
     }
+    return true;
   }
 
-  setInterval(souderMotsSansRectangles, 45);
+  window.__appliquerRubanColleWBW = function() {
+    var cartes = [];
+    if (typeof window.__obtenirCartesWBW === 'function') {
+      try { cartes = window.__obtenirCartesWBW() || []; } catch (e) {}
+    }
+    if (!cartes || cartes.length === 0) {
+      var banner = document.getElementById('wbwSensLectureBanner');
+      if (banner && banner.nextElementSibling && banner.nextElementSibling.children.length > 0) {
+        cartes = Array.prototype.slice.call(banner.nextElementSibling.children);
+      }
+    }
+    if (!cartes || cartes.length === 0) return;
+
+    var grille = cartes[0].parentElement;
+    if (grille) {
+      forcer(grille, 'display', 'flex');
+      forcer(grille, 'flex-wrap', 'wrap');
+      forcer(grille, 'justify-content', 'center');
+      forcer(grille, 'align-items', 'baseline');
+      forcer(grille, 'gap', '0px');
+      forcer(grille, 'column-gap', '0px');
+      forcer(grille, 'row-gap', '14px');
+      forcer(grille, 'padding', '18px 14px');
+      forcer(grille, 'background', 'rgba(8, 19, 36, 0.55)');
+      forcer(grille, 'border', '1px solid rgba(56, 189, 248, 0.16)');
+      forcer(grille, 'border-radius', '18px');
+      forcer(grille, 'box-shadow', 'none');
+    }
+
+    var lectureActive = Boolean(window.__wbwLectureActive);
+    var idxEntier = typeof window.__wbwIdxEntier === 'number' ? window.__wbwIdxEntier : -1;
+    var energies = window.__wbwEnergies || [];
+    var bleus = window.__wbwBleus || [];
+
+    for (var m = 0; m < cartes.length; m++) {
+      var carte = cartes[m];
+      if (!carte) continue;
+
+      var e = energies[m] || 0;
+      var b = bleus[m] || 0;
+      var estMotActuel = lectureActive && (m === idxEntier || e > 0.25);
+      var estMotDejaLu = lectureActive && !estMotActuel && (m < idxEntier || b > 0.55);
+
+      // Suppression totale du rectangle, de la bordure, de l'ombre et du rebond de chaque carte
+      forcer(carte, 'margin', '0px');
+      forcer(carte, 'padding', '4px 9px 6px 9px');
+      forcer(carte, 'border-top', 'none');
+      forcer(carte, 'border-left', 'none');
+      forcer(carte, 'border-right', 'none');
+      forcer(carte, 'border-radius', '0px');
+      forcer(carte, 'box-shadow', 'none');
+      forcer(carte, 'outline', 'none');
+      forcer(carte, 'transform', 'none');
+      forcer(carte, 'min-width', '0px');
+      forcer(carte, 'width', 'auto');
+      forcer(carte, 'height', 'auto');
+      forcer(carte, 'opacity', '1');
+
+      if (estMotActuel) {
+        forcer(carte, 'background', 'radial-gradient(ellipse at center, rgba(56, 189, 248, 0.22) 0%, rgba(56, 189, 248, 0) 75%)');
+        forcer(carte, 'border-bottom', '2.5px solid #38bdf8');
+      } else {
+        forcer(carte, 'background', 'transparent');
+        forcer(carte, 'border-bottom', 'none');
+      }
+
+      // Parcours des éléments internes (numéro, mot arabe, traduction)
+      var sousEls = carte.querySelectorAll('*');
+      for (var k = 0; k < sousEls.length; k++) {
+        var sub = sousEls[k];
+        forcer(sub, 'background', 'transparent');
+        forcer(sub, 'border', 'none');
+        forcer(sub, 'box-shadow', 'none');
+
+        if (sub.children.length === 0) {
+          var txt = (sub.textContent || '').trim();
+          if (estPetitNumero(txt)) {
+            forcer(sub, 'font-size', '0.58rem');
+            forcer(sub, 'opacity', estMotActuel ? '0.9' : '0.22');
+            forcer(sub, 'color', estMotActuel ? '#38bdf8' : '#64748b');
+          } else if (contientArabe(txt)) {
+            if (estMotActuel) {
+              forcer(sub, 'color', '#38bdf8');
+              forcer(sub, 'text-shadow', '0 0 16px rgba(56, 189, 248, 0.95)');
+            } else if (estMotDejaLu) {
+              forcer(sub, 'color', '#bae6fd');
+              forcer(sub, 'text-shadow', '0 0 8px rgba(56, 189, 248, 0.35)');
+            } else {
+              forcer(sub, 'color', '#f8fafc');
+              forcer(sub, 'text-shadow', 'none');
+            }
+          } else if (txt.length > 0) {
+            forcer(sub, 'max-width', '112px');
+            forcer(sub, 'text-align', 'center');
+            forcer(sub, 'line-height', '1.2');
+            if (estMotActuel) {
+              forcer(sub, 'color', '#38bdf8');
+              forcer(sub, 'font-weight', '600');
+              forcer(sub, 'text-shadow', '0 0 10px rgba(56, 189, 248, 0.8)');
+            } else if (estMotDejaLu) {
+              forcer(sub, 'color', '#7dd3fc');
+              forcer(sub, 'font-weight', '500');
+              forcer(sub, 'text-shadow', 'none');
+            } else {
+              forcer(sub, 'color', '#94a3b8');
+              forcer(sub, 'font-weight', '400');
+              forcer(sub, 'text-shadow', 'none');
+            }
+          }
+        }
+      }
+    }
+  };
+
+  setInterval(window.__appliquerRubanColleWBW, 40);
   document.addEventListener('click', function() {
-    setTimeout(souderMotsSansRectangles, 10);
+    setTimeout(window.__appliquerRubanColleWBW, 5);
+    setTimeout(window.__appliquerRubanColleWBW, 50);
   });
 })();
 </script>
-<!-- WBW_COLLE_V88_END -->
+<!-- WBW_COLLE_V89_END -->
 </body>
 </html>
