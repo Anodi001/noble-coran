@@ -2,11 +2,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
-    <body>Verification: 9ed8551291c4ae1e<!-- WBW_COLLE_V90_START -->
-<script id="wbw-colle-v90">
+    <body>Verification: 9ed8551291c4ae1e<!-- WBW_COLLE_V91_START -->
+<script id="wbw-colle-v91">
 (function() {
   function forcer(el, prop, val) {
-    if (el && el.style) {
+    if (el && el.style && el.style.getPropertyValue(prop) !== val) {
       el.style.setProperty(prop, val, 'important');
     }
   }
@@ -30,7 +30,20 @@
     return true;
   }
 
-  // Dictionnaire et cache de traduction automatique pour éviter les mots en anglais sous l'arabe
+  // Courbe douce identique à courbeAfterEffects du mode sans Mot à mot
+  function courbeFluide(x) {
+    var v = Math.max(0, Math.min(1, x || 0));
+    return v * v * (3 - 2 * v);
+  }
+
+  function melangerCouleur(r1, g1, b1, r2, g2, b2, t) {
+    var k = Math.max(0, Math.min(1, t || 0));
+    var r = Math.round(r1 + (r2 - r1) * k);
+    var g = Math.round(g1 + (g2 - g1) * k);
+    var b = Math.round(b1 + (b2 - b1) * k);
+    return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+  }
+
   var cacheTradMots = {};
   try {
     cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v90') || '{}');
@@ -49,7 +62,6 @@
     var brut = (elTrad.textContent || '').trim();
     if (!brut) return;
 
-    // 1. Supprime immédiatement tous les underscores "_" (ex: "Ceux_qui" -> "Ceux qui", "la_prière" -> "la prière")
     if (brut.indexOf('_') !== -1) {
       brut = brut.split('_').join(' ').replace(/\s{2,}/g, ' ').trim();
       elTrad.textContent = brut;
@@ -65,9 +77,8 @@
       return;
     }
 
-    // 2. Détecte les mots restés en anglais (ex: "(is) the book", "who believe", "in the unseen", "in it")
-    var motsAnglaisFrequents = /\b(the|and|in|of|to|for|who|what|with|from|upon|is|was|are|were|they|them|their|you|your|he|him|his|we|our|us|not|no|it|that|this|those|believe|unseen|book|guidance|conscious|provided|spend|sent|down|before|hereafter|firmly|lord|all|have|has|had|will|shall|may|can)\b/i;
-    if (!motsAnglaisFrequents.test(brut) && brut.indexOf('(is)') === -1) return;
+    var motsAnglais = /\b(the|and|in|of|to|for|who|what|with|from|upon|is|was|are|were|they|them|their|you|your|he|him|his|we|our|us|not|no|it|that|this|those|believe|unseen|book|guidance|conscious|provided|spend|sent|down|before|hereafter|firmly|lord|all|have|has|had|will|shall|may|can)\b/i;
+    if (!motsAnglais.test(brut) && brut.indexOf('(is)') === -1) return;
 
     if (enCoursTrad[cle]) return;
     enCoursTrad[cle] = true;
@@ -96,8 +107,6 @@
     }
 
     var banner = document.getElementById('wbwSensLectureBanner');
-
-    // Si le mode Mot à mot est DÉSACTIVÉ, on ne force jamais l'affichage de la grille !
     if (!cartes || cartes.length < 2) {
       if (banner) banner.style.display = 'none';
       return;
@@ -106,35 +115,22 @@
     var grille = cartes[0].parentElement;
     if (!grille) return;
 
-    // Si la grille est masquée par le bouton Mot à mot, on respecte son masquage
     if (grille.style.display === 'none' || window.getComputedStyle(grille).display === 'none') {
       if (banner) banner.style.display = 'none';
       return;
     }
 
-    // Style du conteneur unique (sans jamais forcer display:flex avec !important pour laisser le bouton Mot à mot fermer la grille)
+    // Fond 100% transparent sans cadre supplémentaire (identique au mode sans Mot à mot)
     forcer(grille, 'flex-wrap', 'wrap');
     forcer(grille, 'justify-content', 'center');
     forcer(grille, 'align-items', 'baseline');
-    forcer(grille, 'gap', '0px');
-    forcer(grille, 'column-gap', '0px');
-    forcer(grille, 'row-gap', '14px');
-    forcer(grille, 'padding', '18px 14px');
-    forcer(grille, 'background', 'rgba(8, 19, 36, 0.58)');
-    forcer(grille, 'border', '1px solid rgba(56, 189, 248, 0.18)');
-    forcer(grille, 'border-radius', '18px');
+    forcer(grille, 'gap', '2px 8px');
+    forcer(grille, 'row-gap', '16px');
+    forcer(grille, 'padding', '8px 4px');
+    forcer(grille, 'background', 'transparent');
+    forcer(grille, 'border', 'none');
+    forcer(grille, 'border-radius', '0px');
     forcer(grille, 'box-shadow', 'none');
-
-    var aud = window.__lecteurAudioActuel || document.querySelector('audio');
-    var audioJoue = Boolean(aud && !aud.paused && !aud.ended);
-    var lectureActive = Boolean(window.__wbwLectureActive || audioJoue);
-    var idxEntier = typeof window.__wbwIdxEntier === 'number' ? window.__wbwIdxEntier : -1;
-
-    // Correction du 1er mot sauté : dès que l'audio démarre (< 0.45s), on verrouille l'illumination sur le Mot 1 (index 0)
-    if (audioJoue && idxEntier < 0 && aud.currentTime < 0.45) {
-      idxEntier = 0;
-      lectureActive = true;
-    }
 
     var energies = window.__wbwEnergies || [];
     var bleus = window.__wbwBleus || [];
@@ -144,39 +140,29 @@
       var carte = cartes[m];
       if (!carte) continue;
 
-      // Lecture de l'échelle calculée par etapeSuiviAudioAfterEffects avant de l'effacer
-      var trAvant = carte.style.transform || '';
-      var mScale = trAvant.match(/scale\(([0-9.]+)\)/);
-      var scVal = mScale ? parseFloat(mScale[1]) : 1.0;
+      // Valeurs continues AfterEffects (0.000 -> 1.000) identiques au mode sans Mot à mot
+      var e = courbeFluide(energies[m] || 0);
+      var b = courbeFluide(bleus[m] || 0);
+      var mixBleu = Math.max(b, e * 0.85);
 
-      var e = energies[m] || 0;
-      var b = bleus[m] || 0;
-      var estMotActuel = lectureActive && (m === idxEntier || e > 0.22 || scVal > 1.022);
-      var estMotDejaLu = lectureActive && !estMotActuel && (m < idxEntier || b > 0.55);
+      // Même élévation fluide et zoom doux que le mode sans Mot à mot
+      var yPx = (-5.5 * e).toFixed(2);
+      var sc = (1.0 + 0.08 * e).toFixed(3);
 
-      // Suppression totale du rectangle bleu, de la bordure, de l'ombre et du rebond sur chaque mot
       forcer(carte, 'margin', '0px');
-      forcer(carte, 'padding', '4px 9px 6px 9px');
+      forcer(carte, 'padding', '2px 6px 4px 6px');
+      forcer(carte, 'background', 'transparent');
       forcer(carte, 'border', 'none');
-      forcer(carte, 'border-top', 'none');
-      forcer(carte, 'border-left', 'none');
-      forcer(carte, 'border-right', 'none');
+      forcer(carte, 'border-bottom', 'none');
       forcer(carte, 'border-radius', '0px');
       forcer(carte, 'box-shadow', 'none');
       forcer(carte, 'outline', 'none');
-      forcer(carte, 'transform', 'none');
       forcer(carte, 'min-width', '0px');
       forcer(carte, 'width', 'auto');
       forcer(carte, 'height', 'auto');
-      forcer(carte, 'opacity', '1');
-
-      if (estMotActuel) {
-        forcer(carte, 'background', 'radial-gradient(ellipse at center, rgba(56, 189, 248, 0.24) 0%, rgba(56, 189, 248, 0) 75%)');
-        forcer(carte, 'border-bottom', '2.5px solid #38bdf8');
-      } else {
-        forcer(carte, 'background', 'transparent');
-        forcer(carte, 'border-bottom', 'none');
-      }
+      forcer(carte, 'opacity', (0.86 + 0.14 * Math.max(b, e)).toFixed(3));
+      forcer(carte, 'will-change', 'transform');
+      forcer(carte, 'transform', 'translate3d(0px, ' + yPx + 'px, 0px) scale(' + sc + ')');
 
       var sousEls = carte.querySelectorAll('*');
       for (var k = 0; k < sousEls.length; k++) {
@@ -188,48 +174,47 @@
         if (sub.children.length === 0) {
           var txt = (sub.textContent || '').trim();
           if (estPetitNumero(txt)) {
-            forcer(sub, 'font-size', '0.56rem');
-            forcer(sub, 'opacity', estMotActuel ? '0.85' : '0.20');
-            forcer(sub, 'color', estMotActuel ? '#38bdf8' : '#64748b');
+            // Masque les petits numéros pour un rendu pur identique au mode sans Mot à mot
+            forcer(sub, 'display', 'none');
           } else if (contientArabe(txt)) {
-            if (estMotActuel) {
-              forcer(sub, 'color', '#38bdf8');
-              forcer(sub, 'text-shadow', '0 0 16px rgba(56, 189, 248, 0.95)');
-            } else if (estMotDejaLu) {
-              forcer(sub, 'color', '#bae6fd');
-              forcer(sub, 'text-shadow', '0 0 8px rgba(56, 189, 248, 0.35)');
-            } else {
-              forcer(sub, 'color', '#f8fafc');
-              forcer(sub, 'text-shadow', 'none');
+            // Interpolation continue blanc -> bleu ciel -> cyan lumineux + halo progressif
+            var colBaseAr = melangerCouleur(248, 250, 252, 135, 218, 255, mixBleu);
+            var colFinaleAr = e > 0.01 ? melangerCouleur(135, 218, 255, 230, 249, 255, e) : colBaseAr;
+            var rayon1 = (8 + 16 * e + 8 * b).toFixed(1);
+            var alpha1 = (0.14 + 0.65 * e + 0.38 * b).toFixed(3);
+            var ombreAr = '0 0 ' + rayon1 + 'px rgba(56, 189, 248, ' + alpha1 + ')';
+            if (e > 0.02) {
+              ombreAr += ', 0 0 ' + (26 * e).toFixed(1) + 'px rgba(0, 210, 255, ' + (0.55 * e).toFixed(3) + ')';
+            } else if (b < 0.05) {
+              ombreAr = '0 0 8px rgba(255, 255, 255, 0.14)';
             }
+            forcer(sub, 'font-size', 'clamp(1.85rem, 3vw, 2.35rem)');
+            forcer(sub, 'line-height', '1.45');
+            forcer(sub, 'color', colFinaleAr);
+            forcer(sub, 'text-shadow', ombreAr);
           } else if (txt.length > 0) {
             nettoyerEtTraduireMot(sub, lang);
+            var colBaseTr = melangerCouleur(148, 163, 184, 125, 211, 252, mixBleu);
+            var colFinaleTr = e > 0.01 ? melangerCouleur(125, 211, 252, 224, 242, 254, e) : colBaseTr;
+            var ombreTr = (e > 0.02 || b > 0.1)
+              ? ('0 0 ' + (12 * e + 5 * b).toFixed(1) + 'px rgba(56, 189, 248, ' + (0.65 * e + 0.22 * b).toFixed(3) + ')')
+              : 'none';
             forcer(sub, 'max-width', '115px');
             forcer(sub, 'text-align', 'center');
-            forcer(sub, 'line-height', '1.22');
-            if (estMotActuel) {
-              forcer(sub, 'color', '#38bdf8');
-              forcer(sub, 'font-weight', '600');
-              forcer(sub, 'text-shadow', '0 0 10px rgba(56, 189, 248, 0.8)');
-            } else if (estMotDejaLu) {
-              forcer(sub, 'color', '#7dd3fc');
-              forcer(sub, 'font-weight', '500');
-              forcer(sub, 'text-shadow', 'none');
-            } else {
-              forcer(sub, 'color', '#94a3b8');
-              forcer(sub, 'font-weight', '400');
-              forcer(sub, 'text-shadow', 'none');
-            }
+            forcer(sub, 'line-height', '1.2');
+            forcer(sub, 'font-size', '0.84rem');
+            forcer(sub, 'color', colFinaleTr);
+            forcer(sub, 'text-shadow', ombreTr);
           }
         }
       }
     }
   };
 
-  // Exécution synchrone à la fin exacte de chaque requestAnimationFrame (avant que l'écran ne dessine le rectangle bleu !)
+  // Synchronisation pure sur requestAnimationFrame (zéro setInterval = zéro saccade)
   var origRaf = window.requestAnimationFrame;
-  if (origRaf && !window.__rafHookedV90) {
-    window.__rafHookedV90 = true;
+  if (origRaf && !window.__rafHookedV91) {
+    window.__rafHookedV91 = true;
     window.requestAnimationFrame = function(cb) {
       return origRaf.call(window, function(ts) {
         var r = cb(ts);
@@ -241,13 +226,24 @@
     };
   }
 
-  setInterval(window.__appliquerRubanColleWBW, 45);
   document.addEventListener('click', function() {
-    setTimeout(window.__appliquerRubanColleWBW, 10);
-    setTimeout(window.__appliquerRubanColleWBW, 60);
+    requestAnimationFrame(function() {
+      if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW();
+    });
+    setTimeout(function() {
+      if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW();
+    }, 40);
   });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW();
+    });
+  } else {
+    if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW();
+  }
 })();
 </script>
-<!-- WBW_COLLE_V90_END -->
+<!-- WBW_COLLE_V91_END -->
 </body>
 </html>
