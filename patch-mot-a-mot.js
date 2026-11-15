@@ -3,16 +3,28 @@ const path = require('path');
 
 const dossierSite = path.join(__dirname, 'site');
 
-const styleV98 = `<style id="wbw-style-v98">
-  /* 1. Masquage du bloc de progression (Khatm) uniquement sur les pages de sourates */
-  .wbw-hide-khatm-on-surah {
-    display: none !important;
-  }
-  .wbw-masquer-doublon-v98 {
+const styleV99 = `<style id="wbw-style-v99">
+  /* 1. Masquage du bloc de progression (Khatm) sur les pages de sourates */
+  .wbw-hide-khatm-on-surah,
+  .wbw-masquer-doublon-v99 {
     display: none !important;
   }
 
-  /* 2. Allègement GPU mobile (coupe les flous temps réel coûteux sur iOS/Android) */
+  /* 2. Masquage absolu des petits numéros (1, 2, 3...) sur le Mot à mot */
+  .wbw-num-hidden-v99,
+  .wbw-card-v99 > *:first-child:not(.wbw-ar-v99):not(.wbw-tr-v99) {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    font-size: 0px !important;
+    line-height: 0 !important;
+    height: 0px !important;
+    width: 0px !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* 3. Allègement GPU mobile */
   @media (max-width: 820px) {
     *, *::before, *::after {
       backdrop-filter: none !important;
@@ -27,9 +39,12 @@ const styleV98 = `<style id="wbw-style-v98">
   }
 </style>`;
 
-const codeClientV98 = `
+const codeClientV99 = `
 (function() {
   window.__wbwBypassOrigCartes = true;
+
+  // Remplace ici par ton numéro RNA exact si tu le souhaites :
+  var CODE_RNA_ASSOS = 'Déclarée en Préfecture (RNA & SIRET enregistrés)';
 
   function forcer(el, prop, val) {
     if (el && el.style && el.style.getPropertyValue(prop) !== val) {
@@ -69,7 +84,85 @@ const codeClientV98 = `
       Math.round(b1 + (b2 - b1) * k) + ')';
   }
 
-  // 1. Nettoyage de "(96 ➔ 110)" sur toutes les pages (y compris l'accueil)
+  // 1. Activation automatique par défaut de : Mot à mot + Tajwīd + Suivi dès l'arrivée sur une sourate
+  var autoModesInitialises = false;
+  function activerModesParDefautSurSourate() {
+    if (autoModesInitialises) return;
+    var estPageSourate = /sourate-\\d+/i.test(window.location.pathname) || Boolean(document.querySelector('#arabicVerse, .arabic-glow-verse'));
+    if (!estPageSourate) return;
+
+    autoModesInitialises = true;
+
+    function boutonEstActif(btn) {
+      if (!btn) return true;
+      if (btn.classList.contains('active') || btn.getAttribute('aria-pressed') === 'true') return true;
+      var bg = window.getComputedStyle(btn).backgroundColor || '';
+      // Détecte le fond bleu clair (#38bdf8 -> rgb(56, 189, 248)) d'un bouton déjà activé
+      if (bg.indexOf('56, 189, 248') !== -1 || bg.indexOf('14, 165, 233') !== -1 || bg.indexOf('2, 132, 199') !== -1) return true;
+      return false;
+    }
+
+    setTimeout(function() {
+      var boutons = document.querySelectorAll('button');
+      var btnWbw = null, btnTajwid = null, btnSuivi = null;
+
+      for (var i = 0; i < boutons.length; i++) {
+        var b = boutons[i];
+        var t = (b.textContent || '').trim();
+        if (!btnWbw && (t.indexOf('Mot à mot') !== -1 || t.indexOf('Word by Word') !== -1 || t.indexOf('Пословный') !== -1 || t.indexOf('Palabra por') !== -1 || t.indexOf('Wort für') !== -1 || t.indexOf('Parola per') !== -1 || t.indexOf('Kata demi') !== -1 || t.indexOf('كلمة بكلمة') !== -1)) {
+          btnWbw = b;
+        } else if (!btnTajwid && (t.indexOf('Tajw') !== -1 || t.indexOf('Таджвид') !== -1 || t.indexOf('تجويد') !== -1)) {
+          btnTajwid = b;
+        } else if (!btnSuivi && (t.indexOf('Suivi') !== -1 || t.indexOf('Follow') !== -1 || t.indexOf('Слежение') !== -1 || t.indexOf('Seguimiento') !== -1 || t.indexOf('Verfolgen') !== -1 || t.indexOf('Segui') !== -1 || t.indexOf('Ikuti') !== -1 || t.indexOf('تتبع') !== -1)) {
+          btnSuivi = b;
+        }
+      }
+
+      if (btnWbw && !boutonEstActif(btnWbw)) btnWbw.click();
+      setTimeout(function() {
+        if (btnTajwid && !boutonEstActif(btnTajwid)) btnTajwid.click();
+        if (btnSuivi && !boutonEstActif(btnSuivi)) btnSuivi.click();
+        if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW();
+      }, 35);
+    }, 40);
+  }
+
+  // 2. Enrichissement propre et anti-spam des Mentions Légales (Association + RNA + Contact protégé)
+  function ameliorerMentionsLegalesAntiSpam() {
+    var divs = document.querySelectorAll('div, p');
+    for (var i = 0; i < divs.length; i++) {
+      var d = divs[i];
+      if (d.dataset.legalV99 === '1') continue;
+      var txt = d.textContent || '';
+      if (txt.indexOf('Institut Muhasiba') !== -1 && d.children.length === 0) {
+        d.dataset.legalV99 = '1';
+        var parentModale = d.parentElement;
+        if (parentModale && !parentModale.querySelector('#wbw-legal-extra-v99')) {
+          var infoAssos = document.createElement('div');
+          infoAssos.id = 'wbw-legal-extra-v99';
+          infoAssos.style.cssText = 'font-size:0.82rem;color:#94a3b8;margin-top:8px;margin-bottom:12px;line-height:1.5;text-align:center;';
+          var u = 'contact';
+          var dom = 'corantafsir.com';
+          infoAssos.innerHTML =
+            'Association loi 1901 à but non lucratif • ' + CODE_RNA_ASSOS + '<br>' +
+            'Siège : Montpellier (34000), France • Hébergeur : Cloudflare, Inc.<br>' +
+            '<a href="#" id="wbw-contact-mail-btn" style="color:#38bdf8;text-decoration:none;font-weight:500;">✉️ Afficher l’adresse e-mail de contact</a>';
+          parentModale.insertBefore(infoAssos, d.nextSibling);
+
+          var lienMail = infoAssos.querySelector('#wbw-contact-mail-btn');
+          if (lienMail) {
+            lienMail.addEventListener('click', function(e) {
+              e.preventDefault();
+              var adr = u + '@' + dom;
+              this.textContent = '✉️ ' + adr;
+              this.href = 'mailto:' + adr;
+            });
+          }
+        }
+      }
+    }
+  }
+
   function nettoyerTexteOrdreRevelation() {
     var els = document.querySelectorAll('button, option, span, div, label, a');
     for (var i = 0; i < els.length; i++) {
@@ -80,7 +173,6 @@ const codeClientV98 = `
     }
   }
 
-  // 2. Masquage du bloc "où on en est" uniquement sur l'interface des sourates
   function masquerBlocProgressionSurSourate() {
     var estPageSourate = /sourate-\\d+/i.test(window.location.pathname) || Boolean(document.querySelector('#arabicVerse, .arabic-glow-verse'));
     if (!estPageSourate) return;
@@ -105,12 +197,11 @@ const codeClientV98 = `
     }
   }
 
-  // 3. Masque le verset normal en bas même quand le verset n'a qu'un seul mot (ex: 2:1 الم)
   function gererMasquageDoublonVerset(cartes, grilleVisible) {
-    var caches = document.querySelectorAll('.wbw-masquer-doublon-v98');
+    var caches = document.querySelectorAll('.wbw-masquer-doublon-v99');
     if (!grilleVisible || !cartes || cartes.length < 1) {
       for (var c = 0; c < caches.length; c++) {
-        caches[c].classList.remove('wbw-masquer-doublon-v98');
+        caches[c].classList.remove('wbw-masquer-doublon-v99');
         caches[c].style.removeProperty('display');
       }
       return;
@@ -127,8 +218,8 @@ const codeClientV98 = `
       if (el.querySelector('button') || el.tagName === 'BUTTON') continue;
       var t = (el.textContent || '').trim();
       if (t.indexOf('Sens de lecture') !== -1 || t.indexOf('Reading order') !== -1) continue;
-      if (t.length > 0 && !el.classList.contains('wbw-masquer-doublon-v98')) {
-        el.classList.add('wbw-masquer-doublon-v98');
+      if (t.length > 0 && !el.classList.contains('wbw-masquer-doublon-v99')) {
+        el.classList.add('wbw-masquer-doublon-v99');
         forcer(el, 'display', 'none');
       }
     }
@@ -243,7 +334,7 @@ const codeClientV98 = `
     return h || 'fr';
   }
 
-  var motsFrConnus = /^(il|elle|ils|elles|je|tu|nous|vous|le|la|les|un|une|des|de|du|au|aux|en|dans|sur|sous|avec|sans|pour|par|vers|chez|entre|contre|et|ou|mais|donc|car|ni|ne|pas|plus|moins|très|tout|tous|toute|toutes|ce|cet|cette|ces|mon|ton|son|ma|ta|sa|mes|tes|ses|notre|votre|leur|leurs|qui|que|quoi|dont|où|oui|non|bien|mal|comme|alors|puis|ainsi|aussi|encore|déjà|toujours|jamais|rien|personne|aucun|autre|même|tel|chaque|allah|seigneur|livre|guidée|pieux|croyants|prière|enfer|paradis|jour|nuit|terre|ciel|cieux|eau|feu|coeur|coeurs|lis)$/i;
+  var motsFrConnus = /^(il|elle|ils|elles|je|tu|nous|vous|le|la|les|un|une|des|de|du|au|aux|en|dans|sur|sous|avec|sans|pour|par|vers|chez|entre|contre|et|ou|mais|donc|car|ni|ne|pas|plus|moins|très|tout|tous|toute|toutes|ce|cet|cette|ces|mon|ton|son|ma|ta|sa|mes|tes|ses|notre|votre|leur|leurs|qui|que|quoi|dont|où|oui|non|bien|mal|comme|alors|puis|ainsi|aussi|encore|déjà|toujours|jamais|rien|personne|aucun|autre|même|tel|chaque|allah|seigneur|livre|guidée|pieux|croyants|prière|enfer|paradis|jour|nuit|terre|ciel|cieux|eau|feu|coeur|coeurs|lis|quand|secret)$/i;
 
   function nettoyerEtTraduireMotUneFois(elTrad, elAr, lang) {
     if (!elTrad) return;
@@ -331,6 +422,18 @@ const codeClientV98 = `
   var dernierTempsAudio = 0;
   var derniereCleVersetVue = '';
 
+  function masquerElementNumero(el) {
+    if (!el) return;
+    el.classList.add('wbw-num-hidden-v99');
+    forcer(el, 'display', 'none');
+    forcer(el, 'visibility', 'hidden');
+    forcer(el, 'opacity', '0');
+    forcer(el, 'font-size', '0px');
+    forcer(el, 'height', '0px');
+    forcer(el, 'width', '0px');
+    forcer(el, 'overflow', 'hidden');
+  }
+
   function preparerGrilleSiNecessaire(cartes) {
     if (!cartes || cartes.length < 1) {
       cacheMetaCartes = [];
@@ -354,17 +457,32 @@ const codeClientV98 = `
     var lang = obtenirLanguePage();
     var dernierMotTxt = (cartes[cartes.length - 1].textContent || '').slice(0, 16);
     var sig = lang + ':' + cartes.length + ':' + (cartes[0].textContent || '').slice(0, 16) + ':' + dernierMotTxt;
-    if (sig === derniereSigPreparation && cacheMetaCartes.length === cartes.length) {
+
+    // CORRECTION CRITIQUE V99 : Vérifie aussi que la référence DOM (cartes[0]) est exactement la même !
+    // Si appliquerVraiMotAMotSurDOM() ou le bouton Tajwīd a recréé les cartes, on relance immédiatement le masquage des chiffres.
+    var memeDom =
+      sig === derniereSigPreparation &&
+      cacheMetaCartes.length === cartes.length &&
+      cacheMetaCartes[0] &&
+      cacheMetaCartes[0].carte === cartes[0] &&
+      cartes[0].classList.contains('wbw-card-v99');
+
+    if (memeDom) {
       return true;
     }
 
+    var changementVerset = (sig !== derniereSigPreparation);
     derniereSigPreparation = sig;
-    maxIdxAtteintVerset = -1;
-    lissageE = new Array(cartes.length).fill(0);
-    lissageB = new Array(cartes.length).fill(0);
+    if (changementVerset) {
+      maxIdxAtteintVerset = -1;
+      lissageE = new Array(cartes.length).fill(0);
+      lissageB = new Array(cartes.length).fill(0);
+    } else if (lissageE.length !== cartes.length) {
+      lissageE = new Array(cartes.length).fill(0);
+      lissageB = new Array(cartes.length).fill(0);
+    }
     cacheMetaCartes = new Array(cartes.length);
 
-    // Style forcé avec !important sur la grille dès l'ouverture (même quand l'audio est en pause !)
     forcer(grille, 'display', 'flex');
     forcer(grille, 'flex-wrap', 'wrap');
     forcer(grille, 'justify-content', 'center');
@@ -381,8 +499,8 @@ const codeClientV98 = `
 
     for (var m = 0; m < cartes.length; m++) {
       var carte = cartes[m];
+      carte.classList.add('wbw-card-v99');
 
-      // Suppression immédiate des rectangles bleus avec !important dès l'affichage (audio en pause ou en lecture)
       forcer(carte, 'margin', '0px');
       forcer(carte, 'padding', '2px 8px 4px 8px');
       forcer(carte, 'background', 'transparent');
@@ -413,7 +531,7 @@ const codeClientV98 = `
         forcer(sub, 'border', 'none');
         forcer(sub, 'box-shadow', 'none');
         if (sub.children.length === 0 && estPetitNumero(sub.textContent)) {
-          forcer(sub, 'display', 'none');
+          masquerElementNumero(sub);
         }
       }
 
@@ -422,7 +540,7 @@ const codeClientV98 = `
         var ch = directs[d];
         var tCh = (ch.textContent || '').trim();
         if (estPetitNumero(tCh)) {
-          forcer(ch, 'display', 'none');
+          masquerElementNumero(ch);
         } else if (!elAr && contientArabe(tCh)) {
           elAr = ch;
         } else if (tCh.length > 0) {
@@ -431,6 +549,7 @@ const codeClientV98 = `
       }
 
       if (elAr) {
+        elAr.classList.add('wbw-ar-v99');
         forcer(elAr, 'display', 'block');
         forcer(elAr, 'min-height', '3.35rem');
         forcer(elAr, 'line-height', '3.35rem');
@@ -439,6 +558,7 @@ const codeClientV98 = `
         forcer(elAr, 'white-space', 'nowrap');
       }
       if (elTrad) {
+        elTrad.classList.add('wbw-tr-v99');
         forcer(elTrad, 'max-width', '135px');
         forcer(elTrad, 'text-align', 'center');
         forcer(elTrad, 'line-height', '1.25');
@@ -488,7 +608,6 @@ const codeClientV98 = `
     var audioJoue = Boolean(aud && !aud.paused && !aud.ended);
     var audioActif = Boolean(suiviBoutonOn && aud && (!aud.paused || tActuel > 0.05));
 
-    // Dès que l'audio démarre, le Mot 1 (index 0) est immédiatement verrouillé
     if (suiviBoutonOn && audioJoue && idxEntier < 0 && tActuel < 0.5) {
       idxEntier = 0;
       idxFloat = 0;
@@ -508,7 +627,6 @@ const codeClientV98 = `
     }
     dernierTempsAudio = tActuel;
 
-    // Progression monotone : tout mot déjà lu (m <= maxIdxAtteintVerset) reste illuminé en bleu ciel jusqu'à la fin !
     if (suiviBoutonOn && idxEntier > maxIdxAtteintVerset && idxEntier < cartes.length) {
       maxIdxAtteintVerset = idxEntier;
     }
@@ -529,7 +647,6 @@ const codeClientV98 = `
       var eBrut = estMotActuel ? 1.0 : (energies[m] || 0);
       var bBrut = estDejaLu ? 1.0 : (bleus[m] || 0);
 
-      // Anticipation Apple Music Lyrics sur le mot suivant
       if (suiviBoutonOn && audioJoue && idxFloat >= 0 && m === idxEntier + 1) {
         var frac = idxFloat - idxEntier;
         if (frac > 0.65) {
@@ -547,7 +664,6 @@ const codeClientV98 = `
       var e = courbeAppleMusic(lissageE[m]);
       var b = courbeAppleMusic(lissageB[m]);
 
-      // Optimisation CPU/GPU : 0 appel DOM si le mot n'est pas en train de changer d'état
       if (
         Math.abs(e - meta.lastE) < 0.004 &&
         Math.abs(b - meta.lastB) < 0.004 &&
@@ -563,7 +679,6 @@ const codeClientV98 = `
       var yPx = (-7.5 * e).toFixed(2);
       var sc = (1.0 + 0.12 * e).toFixed(3);
 
-      // Les mots non lus sont tamisés (0.36), les mots déjà lus (b=1) et le mot actuel (e=1) sont à pleine opacité (1.0) !
       var opRepos = 0.94 - 0.58 * modeContrasteSuivi;
       var opMot = (opRepos + (1.0 - opRepos) * lum).toFixed(3);
 
@@ -571,10 +686,6 @@ const codeClientV98 = `
       forcer(meta.carte, 'transform', 'translate3d(0px, ' + yPx + 'px, 0px) scale(' + sc + ')');
 
       if (meta.elAr) {
-        // 3 États avec setProperty('important') :
-        // - À venir (b=0, e=0) : Blanc tamisé
-        // - Déjà lu (b=1, e=0) : Bleu ciel lumineux (#58c4ff) avec halo cyan doux
-        // - En cours (e=1)     : Blanc-Cyan éclatant (#ffffff) avec halo néon intense
         var colArRepos = melangerRGB(248, 250, 252, 185, 200, 220, modeContrasteSuivi);
         var colArLu = melangerRGB(248, 250, 252, 88, 196, 255, b);
         var colArBase = lum > 0.01 ? colArLu : colArRepos;
@@ -607,8 +718,8 @@ const codeClientV98 = `
   };
 
   var origRaf = window.requestAnimationFrame;
-  if (origRaf && !window.__rafHookedV98) {
-    window.__rafHookedV98 = true;
+  if (origRaf && !window.__rafHookedV99) {
+    window.__rafHookedV99 = true;
     window.requestAnimationFrame = function(cb) {
       return origRaf.call(window, function(ts) {
         var r = cb(ts);
@@ -620,12 +731,12 @@ const codeClientV98 = `
     };
   }
 
-  // Surveillance légère (200ms) quand l'audio est en pause + synchronisation immédiate au clic sur Suivant / Précédent
   function verifierChangementVersetEtPause() {
+    activerModesParDefautSurSourate();
     nettoyerTexteOrdreRevelation();
     masquerBlocProgressionSurSourate();
+    ameliorerMentionsLegalesAntiSpam();
 
-    // Si le numéro de verset a changé (ex: clic sur Suivant >), on force la mise à jour de la grille Mot à mot
     if (typeof window.__obtenirCleVersetWBW === 'function') {
       try {
         var cleActuelle = window.__obtenirCleVersetWBW() || '';
@@ -647,7 +758,7 @@ const codeClientV98 = `
     }
   }
 
-  setInterval(verifierChangementVersetEtPause, 180);
+  setInterval(verifierChangementVersetEtPause, 160);
 
   document.addEventListener('click', function() {
     setTimeout(verifierChangementVersetEtPause, 15);
@@ -667,23 +778,17 @@ const codeClientV98 = `
 })();
 `;
 
-new Function(codeClientV98);
+new Function(codeClientV99);
 
-const blocHtmlV98 = '<!-- WBW_COLLE_V98_START -->\n' + styleV98 + '\n<script id="wbw-colle-v98">' + codeClientV98 + '</script>\n<!-- WBW_COLLE_V98_END -->';
+const blocHtmlV99 = '<!-- WBW_COLLE_V99_START -->\n' + styleV99 + '\n<script id="wbw-colle-v99">' + codeClientV99 + '</script>\n<!-- WBW_COLLE_V99_END -->';
 
 function patcherContenu(c) {
-  // 1. Nettoyage des versions précédentes V83 -> V98
-  c = c.replace(/<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93|COLLE_V94|COLLE_V95|COLLE_V96|COLLE_V97|COLLE_V98)_START -->[\s\S]*?<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93|COLLE_V94|COLLE_V95|COLLE_V96|COLLE_V97|COLLE_V98)_END -->\s*/g, '');
-
-  // 2. Suppression universelle de "(96 ➔ 110)" dans tous les fichiers (y compris index.html)
+  c = c.replace(/<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93|COLLE_V94|COLLE_V95|COLLE_V96|COLLE_V97|COLLE_V98|COLLE_V99)_START -->[\s\S]*?<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93|COLLE_V94|COLLE_V95|COLLE_V96|COLLE_V97|COLLE_V98|COLLE_V99)_END -->\s*/g, '');
   c = c.replace(/\s*\(96\s*[^)]{0,10}\s*110\)/g, '');
-
-  // 3. Support des versets d'un seul mot (ex: 2:1 الم)
   c = c.replace(/if\s*\(\s*cartes\.length\s*>=\s*2\s*\)\s*return\s*\{\s*type:\s*"cartes"/g, 'if (cartes.length >= 1) return { type: "cartes"');
   c = c.replace(/if\s*\(\s*cartes\.length\s*<\s*2\s*\)/g, 'if (cartes.length < 1)');
   c = c.replace(/if\s*\(\s*spansExistants\.length\s*>\s*1\s*&&\s*!aSigneIsole\s*\)/g, 'if (spansExistants.length >= 1 && !aSigneIsole)');
 
-  // 4. Exposition de obtenirCartesMotAMotVisibles, obtenirCleVerset et appliquerVraiMotAMotSurDOM
   if (c.indexOf('window.__obtenirCartesWBW = obtenirCartesMotAMotVisibles;') === -1) {
     c = c.replace(
       /var\s+cartes\s*=\s*obtenirCartesMotAMotVisibles\(\);/,
@@ -696,7 +801,6 @@ function patcherContenu(c) {
     );
   }
 
-  // 5. Rafraîchissement instantané dès la fin de appliquerVraiMotAMotSurDOM
   if (c.indexOf('function appliquerVraiMotAMotSurDOM() { setTimeout') === -1) {
     c = c.replace(
       'function appliquerVraiMotAMotSurDOM() {',
@@ -704,7 +808,6 @@ function patcherContenu(c) {
     );
   }
 
-  // 6. Court-circuit des écritures DOM conflictuelles sur les cartes dans etapeSuiviAudioAfterEffects
   if (c.indexOf('window.__wbwBypassOrigCartes') === -1) {
     c = c.replace(
       /var\s+yPx\s*=\s*\(-7\.5\s*\*\s*e\)\.toFixed\(2\);\s*var\s+sc\s*=\s*\(1\.0\s*\+\s*0\.12\s*\*\s*e\)\.toFixed\(3\);\s*if\s*\(\s*estCartes\s*\)\s*\{/g,
@@ -712,7 +815,6 @@ function patcherContenu(c) {
     );
   }
 
-  // 7. Correction du bug .active timeupdate mobile
   c = c.replace(
     /for\s*\(\s*var\s+i\s*=\s*0;\s*i\s*<\s*items\.length;\s*i\+\+\s*\)\s*\{\s*if\s*\(\s*items\[i\]\.classList\.contains\("active"\)\s*\|\|\s*items\[i\]\.classList\.contains\("speaking"\)\s*\|\|\s*items\[i\]\.classList\.contains\("current"\)\s*\)\s*\{\s*activeIndexFloat\s*=\s*i;\s*break;\s*\}\s*\}/g,
     'for (var i = 0; i < items.length; i++) { items[i].classList.remove("active", "speaking", "current"); }'
@@ -752,21 +854,20 @@ let nb = 0;
 for (const f of fichiers) {
   const p = path.join(dossierSite, f);
   let c = patcherContenu(fs.readFileSync(p, 'utf8'));
-  c = c.replace('</body>', function() { return blocHtmlV98 + '\n</body>'; });
+  c = c.replace('</body>', function() { return blocHtmlV99 + '\n</body>'; });
   fs.writeFileSync(p, c, 'utf8');
   nb++;
 }
 
-// Nettoie aussi index.html et generateur.js à la racine du projet s'ils existent
 for (const racineF of ['index.html', 'generateur.js']) {
   const pRacine = path.join(__dirname, racineF);
   if (fs.existsSync(pRacine)) {
     let cr = patcherContenu(fs.readFileSync(pRacine, 'utf8'));
     if (racineF.endsWith('.html') && cr.indexOf('</body>') !== -1) {
-      cr = cr.replace('</body>', function() { return blocHtmlV98 + '\n</body>'; });
+      cr = cr.replace('</body>', function() { return blocHtmlV99 + '\n</body>'; });
     }
     fs.writeFileSync(pRacine, cr, 'utf8');
   }
 }
 
-console.log('✅ V98 appliquée sur ' + nb + ' pages : 0 rectangle même en pause + Mots lus restent illuminés en bleu + Fix Verset 1 (الم) + Synchronisation Suivant/Précédent !');
+console.log('✅ V99 appliquée sur ' + nb + ' pages : Petits chiffres 100% masqués + Activation auto (Mot à mot + Tajwid + Suivi) + Mentions légales RNA/Mail anti-spam !');
