@@ -4807,7 +4807,7 @@ html body #btnLangRuV77.active-ext-v77 {
     for (var d = 0; d < tousDivs.length; d++) {
       var el = tousDivs[d];
       if (
-        el.children && el.children.length >= 2 && el.children.length <= 3 &&
+        el.children && el.children.length >= 1 && el.children.length <= 3 &&
         el.children[0].tagName === "DIV" && el.children[el.children.length - 1].tagName === "DIV" &&
         !el.querySelector("button")
       ) {
@@ -4837,7 +4837,7 @@ html body #btnLangRuV77.active-ext-v77 {
   }
 
   function appliquerVraiMotAMotSurDOM() { setTimeout(function(){ if(window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW(); }, 0);
-    window.__obtenirCartesWBW = obtenirCartesMotAMotVisibles; window.__obtenirCleVersetWBW = typeof obtenirCleVerset === "function" ? obtenirCleVerset : null; window.__rafraichirDomMotAMotOrig = typeof appliquerVraiMotAMotSurDOM === "function" ? appliquerVraiMotAMotSurDOM : null; var cartes = obtenirCartesMotAMotVisibles();
+    window.__obtenirCartesWBWOrig = obtenirCartesMotAMotVisibles; window.__obtenirCleVersetWBW = typeof obtenirCleVerset === "function" ? obtenirCleVerset : null; window.__rafraichirDomMotAMotOrig = typeof appliquerVraiMotAMotSurDOM === "function" ? appliquerVraiMotAMotSurDOM : null; var cartes = obtenirCartesMotAMotVisibles();
     var oldBanner = document.getElementById("wbwSensLectureBanner");
     if (cartes.length === 0) {
       if (oldBanner) oldBanner.style.display = "none";
@@ -4854,7 +4854,7 @@ html body #btnLangRuV77.active-ext-v77 {
     for (var i = 0; i < cartes.length; i++) {
       var c = cartes[i];
       c.setAttribute("data-word-num", String(i + 1));
-      if (!c.children || c.children.length < 2) continue;
+      if (!c.children || c.children.length < 1) continue;
       var elAr = c.children[0];
       var elTr = c.children[c.children.length - 1];
       elAr.classList.remove("wbw-card-unit");
