@@ -3786,7 +3786,7 @@ html body #btnLangRuV77.active-ext-v77 {
           if (langExtActive === codeLang) appliquerInterfaceEtContenuExt();
         }
       })
-      .catch(function() { if (typeof requetesEnCours !== "undefined" && typeof cleChap !== "undefined") delete requetesEnCours[cleChap]; })
+      .catch(function () {})
       .finally(function () {
         requetesChapExtEnCours[cle] = false;
       });
@@ -3825,7 +3825,7 @@ html body #btnLangRuV77.active-ext-v77 {
           }
         }
       })
-      .catch(function() { if (typeof requetesEnCours !== "undefined" && typeof cleChap !== "undefined") delete requetesEnCours[cleChap]; })
+      .catch(function () {})
       .finally(function () {
         requeteTexteExtEnCours[cle] = false;
       });
@@ -4777,14 +4777,14 @@ html body #btnLangRuV77.active-ext-v77 {
               }
             }
           })
-          .catch(function() { if (typeof requetesEnCours !== "undefined" && typeof cleChap !== "undefined") delete requetesEnCours[cleChap]; })
+          .catch(function () {})
           .finally(function () {
             cacheVersetMotsExact[cleCache] = motsQdc;
             try { localStorage.setItem("cache_wbw_exact_v65", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
             appliquerVraiMotAMotSurDOM();
           });
       })
-      .catch(function() { if (typeof requetesEnCours !== "undefined" && typeof cleChap !== "undefined") delete requetesEnCours[cleChap]; })
+      .catch(function () {})
       .finally(function () {
         requetesVersetEnCours[cleCache] = false;
       });
@@ -5052,7 +5052,7 @@ html body #btnLangRuV77.active-ext-v77 {
           }
         }
       })
-      .catch(function() { if (typeof requetesEnCours !== "undefined" && typeof cleChap !== "undefined") delete requetesEnCours[cleChap]; });
+      .catch(function () {});
   }
 
   function obtenirElementsMotsAAnimer() {
@@ -5120,13 +5120,13 @@ html body #btnLangRuV77.active-ext-v77 {
 
   function lancerBoucleSuivi() {
     if (!rafId) {
-      rafId = if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW(performance.now()); requestAnimationFrame(etapeSuiviAudioAfterEffects);
+      rafId = requestAnimationFrame(etapeSuiviAudioAfterEffects);
     }
   }
 
   if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV77) {
     var origPlay = HTMLMediaElement.prototype.play;
-    HTMLMediaElement.prototype.play = function () { if (this.id && this.id !== "ayahAudio") return origPlay.apply(this, arguments);
+    HTMLMediaElement.prototype.play = function () {
       var self = this;
       window.__lecteurAudioActuel = self;
       if (self.currentTime < 0.25) {
@@ -5211,7 +5211,7 @@ html body #btnLangRuV77.active-ext-v77 {
         activeIndexFloat = items.length;
       }
 
-      var idxEntier = Math.floor(activeIndexFloat); var lectureEnCours = activeIndexFloat >= 0; window.__wbwLectureActive = Boolean(suiviEstActif && lectureEnCours); window.__wbwActiveFloat = activeIndexFloat; window.__wbwIdxEntier = idxEntier; window.__wbwEnergies = energiesMots; window.__wbwBleus = bleusMots;
+      var idxEntier = Math.floor(activeIndexFloat); var lectureEnCours = activeIndexFloat >= 0; window.__wbwLectureActive = Boolean(suiviEstActif && lectureEnCours); window.__wbwActiveFloat = activeIndexFloat; window.__wbwIdxEntier = idxEntier; window.__wbwEnergies = energiesMots; window.__wbwBleus = bleusMots; if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW(performance.now());
 
       for (var m = 0; m < items.length; m++) {
         var el = items[m];
@@ -5277,7 +5277,7 @@ html body #btnLangRuV77.active-ext-v77 {
     }
 
     if ((aud && !aud.paused) || animEnCours) {
-      rafId = if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW(performance.now()); requestAnimationFrame(etapeSuiviAudioAfterEffects);
+      rafId = requestAnimationFrame(etapeSuiviAudioAfterEffects);
     } else {
       rafId = null;
     }
@@ -7864,7 +7864,7 @@ html body #btnLangRuV77.active-ext-v77 {
           if (langExtActive === codeLang) appliquerInterfaceEtContenuExt();
         }
       })
-      .catch(function() { if (typeof requetesEnCours !== "undefined" && typeof cleChap !== "undefined") delete requetesEnCours[cleChap]; })
+      .catch(function () {})
       .finally(function () {
         requetesChapExtEnCours[cle] = false;
       });
@@ -7903,7 +7903,7 @@ html body #btnLangRuV77.active-ext-v77 {
           }
         }
       })
-      .catch(function() { if (typeof requetesEnCours !== "undefined" && typeof cleChap !== "undefined") delete requetesEnCours[cleChap]; })
+      .catch(function () {})
       .finally(function () {
         requeteTexteExtEnCours[cle] = false;
       });
@@ -8855,14 +8855,14 @@ html body #btnLangRuV77.active-ext-v77 {
               }
             }
           })
-          .catch(function() { if (typeof requetesEnCours !== "undefined" && typeof cleChap !== "undefined") delete requetesEnCours[cleChap]; })
+          .catch(function () {})
           .finally(function () {
             cacheVersetMotsExact[cleCache] = motsQdc;
             try { localStorage.setItem("cache_wbw_exact_v65", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
             appliquerVraiMotAMotSurDOM();
           });
       })
-      .catch(function() { if (typeof requetesEnCours !== "undefined" && typeof cleChap !== "undefined") delete requetesEnCours[cleChap]; })
+      .catch(function () {})
       .finally(function () {
         requetesVersetEnCours[cleCache] = false;
       });
@@ -9130,7 +9130,7 @@ html body #btnLangRuV77.active-ext-v77 {
           }
         }
       })
-      .catch(function() { if (typeof requetesEnCours !== "undefined" && typeof cleChap !== "undefined") delete requetesEnCours[cleChap]; });
+      .catch(function () {});
   }
 
   function obtenirElementsMotsAAnimer() {
@@ -9198,7 +9198,7 @@ html body #btnLangRuV77.active-ext-v77 {
 
   function lancerBoucleSuivi() {
     if (!rafId) {
-      rafId = if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW(performance.now()); requestAnimationFrame(etapeSuiviAudioAfterEffects);
+      rafId = requestAnimationFrame(etapeSuiviAudioAfterEffects);
     }
   }
 
@@ -9356,7 +9356,7 @@ html body #btnLangRuV77.active-ext-v77 {
     }
 
     if ((aud && !aud.paused) || animEnCours) {
-      rafId = if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW(performance.now()); requestAnimationFrame(etapeSuiviAudioAfterEffects);
+      rafId = requestAnimationFrame(etapeSuiviAudioAfterEffects);
     } else {
       rafId = null;
     }
