@@ -2693,7 +2693,7 @@ function codeClientV77() {
 
   if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV77) {
     var origPlay = HTMLMediaElement.prototype.play;
-    HTMLMediaElement.prototype.play = function () { if (this.id && this.id !== "ayahAudio") return origPlay.apply(this, arguments);  if (this.id && this.id !== "ayahAudio") return origPlay.apply(this, arguments); var self = this;
+    HTMLMediaElement.prototype.play = function () { if (this.id && this.id !== "ayahAudio") return origPlay.apply(this, arguments);  if (this.id && this.id !== "ayahAudio") return origPlay.apply(this, arguments);  if (this.id && this.id !== "ayahAudio") return origPlay.apply(this, arguments); var self = this;
       window.__lecteurAudioActuel = self;
       if (self.currentTime < 0.25) {
         reinitialiserMotsEnBlancTamise();
