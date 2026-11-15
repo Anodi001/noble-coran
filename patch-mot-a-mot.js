@@ -3,15 +3,20 @@ const path = require('path');
 
 const dossierSite = path.join(__dirname, 'site');
 
-const styleV102 = `<style id="wbw-style-v102">
+const styleV103 = `<style id="wbw-style-v103">
   /* 1. Masquage du bloc de progression (Khatm) sur les pages de sourates */
   .wbw-hide-khatm-on-surah,
-  .wbw-masquer-doublon-v102 {
+  .wbw-masquer-doublon-v103 {
     display: none !important;
   }
 
-  /* 2. Masquage absolu des petits chiffres (1, 2, 3...) sur le Mot à mot */
-  .wbw-num-hidden-v102 {
+  /* 2. Masquage absolu de TOUT élément dans une carte Mot à mot qui n'est ni l'arabe (.wbw-ar-v103) ni la traduction (.wbw-tr-v103) */
+  .wbw-num-hidden-v103,
+  .wbw-card-v103 > *:not(.wbw-ar-v103):not(.wbw-tr-v103),
+  .wbw-card-v103 [style*="position: absolute"],
+  .wbw-card-v103 [style*="position:absolute"],
+  .wbw-card-v103 sup,
+  .wbw-card-v103 small {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
@@ -19,11 +24,16 @@ const styleV102 = `<style id="wbw-style-v102">
     color: transparent !important;
     width: 0px !important;
     height: 0px !important;
+    max-width: 0px !important;
+    max-height: 0px !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    border: none !important;
     overflow: hidden !important;
     pointer-events: none !important;
   }
 
-  /* 3. Allègement GPU mobile */
+  /* 3. Optimisation GPU mobile */
   @media (max-width: 820px) {
     *, *::before, *::after {
       backdrop-filter: none !important;
@@ -38,7 +48,7 @@ const styleV102 = `<style id="wbw-style-v102">
   }
 </style>`;
 
-const codeClientV102 = `
+const codeClientV103 = `
 (function() {
   window.__wbwBypassOrigCartes = true;
 
@@ -61,7 +71,7 @@ const codeClientV102 = `
   }
 
   function estPetitNumero(str) {
-    var s = (str || '').replace(/[\\s\\u200E\\u200F\\u061C#\\.\\-]/g, '');
+    var s = (str || '').replace(/[\\s\\u200E\\u200F\\u061C#\\.\\-\\(\\):]/g, '');
     if (s.length < 1 || s.length > 3) return false;
     for (var i = 0; i < s.length; i++) {
       var c = s.charCodeAt(i);
@@ -83,14 +93,183 @@ const codeClientV102 = `
       Math.round(b1 + (b2 - b1) * k) + ')';
   }
 
-  if (!window.__popstateV102) {
-    window.__popstateV102 = true;
+  // =========================================================================
+  // 1. OCCULTATION DES ÉTOILES ET FLOCONS PAR LE SOLEIL ET LA LUNE (CANVAS 2D)
+  // =========================================================================
+  function activerOccultationSoleilLune() {
+    if (window.__skyOcclusionV103 || typeof CanvasRenderingContext2D === 'undefined') return;
+    window.__skyOcclusionV103 = true;
+
+    var proto = CanvasRenderingContext2D.prototype;
+    var origClearRect = proto.clearRect;
+    var origCreateRadialGradient = proto.createRadialGradient;
+    var origArc = proto.arc;
+    var origFillText = proto.fillText;
+    var origFill = proto.fill;
+
+    // Calcul du facteur de visibilité d'une étoile à la position (x, y) par rapport au Soleil et à la Lune
+    function visibiliteEtoile(ctx, x, y) {
+      var liste = (ctx.__orbesFrame && ctx.__orbesFrame.length > 0)
+        ? ctx.__orbesFrame
+        : (ctx.__orbesPrev || []);
+      if (!liste || liste.length === 0) return 1.0;
+
+      var visMin = 1.0;
+      for (var i = 0; i < liste.length; i++) {
+        var o = liste[i];
+        var dx = x - o.x;
+        var dy = y - o.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        // Zone d'occultation totale (coeur + halo fort du Soleil/Lune) : l'étoile disparaît complètement
+        var rOpaque = Math.max(o.r * 0.78, 42);
+        // Zone de transition douce dans le halo externe
+        var rHalo = Math.max(o.r * 1.08, 64);
+        if (dist <= rOpaque) {
+          return 0.0;
+        } else if (dist < rHalo) {
+          var v = (dist - rOpaque) / (rHalo - rOpaque);
+          if (v < visMin) visMin = v;
+        }
+      }
+      return visMin;
+    }
+
+    proto.clearRect = function(x, y, w, h) {
+      if (this.canvas && w >= this.canvas.width * 0.8 && h >= this.canvas.height * 0.8) {
+        if (this.__orbesFrame && this.__orbesFrame.length > 0) {
+          this.__orbesPrev = this.__orbesFrame.slice(0, 6);
+        }
+        this.__orbesFrame = [];
+      }
+      return origClearRect.apply(this, arguments);
+    };
+
+    proto.createRadialGradient = function(x0, y0, r0, x1, y1, r1) {
+      // Détecte le Soleil et la Lune (grands dégradés radiaux r1 >= 25px)
+      if (r1 >= 25 && this.canvas && this.canvas.width > 200) {
+        if (!this.__orbesFrame) this.__orbesFrame = [];
+        var deja = false;
+        for (var i = 0; i < this.__orbesFrame.length; i++) {
+          var o = this.__orbesFrame[i];
+          if (Math.abs(o.x - x1) < 8 && Math.abs(o.y - y1) < 8) {
+            if (r1 > o.r) o.r = r1;
+            deja = true;
+            break;
+          }
+        }
+        if (!deja && this.__orbesFrame.length < 8) {
+          this.__orbesFrame.push({ x: x1, y: y1, r: r1 });
+        }
+      }
+      return origCreateRadialGradient.apply(this, arguments);
+    };
+
+    proto.arc = function(x, y, r, sa, ea, ccw) {
+      // Si c'est une étoile ou particule (petit rayon r <= 6px) sur le canvas du ciel
+      if (r > 0 && r <= 6.5 && this.canvas && this.canvas.width > 200) {
+        var vis = visibiliteEtoile(this, x, y);
+        if (vis <= 0.02) {
+          // On ignore complètement le tracé de l'étoile : c'est l'étoile qu'on ne voit plus quand le Soleil/Lune passe dessus !
+          this.__skipNextStarFill = true;
+          return;
+        }
+        this.__starFadeFactor = vis;
+      } else {
+        this.__skipNextStarFill = false;
+        this.__starFadeFactor = 1.0;
+      }
+      return origArc.apply(this, arguments);
+    };
+
+    proto.fill = function() {
+      if (this.__skipNextStarFill) {
+        this.__skipNextStarFill = false;
+        return;
+      }
+      if (typeof this.__starFadeFactor === 'number' && this.__starFadeFactor < 0.99) {
+        var oldAlpha = this.globalAlpha;
+        this.globalAlpha = oldAlpha * this.__starFadeFactor;
+        this.__starFadeFactor = 1.0;
+        var res = origFill.apply(this, arguments);
+        this.globalAlpha = oldAlpha;
+        return res;
+      }
+      return origFill.apply(this, arguments);
+    };
+
+    proto.fillText = function(text, x, y) {
+      // Masque aussi les flocons ("❄", "*", etc.) quand ils touchent le Soleil ou la Lune
+      if (this.canvas && this.canvas.width > 200 && typeof text === 'string' && text.length <= 3) {
+        var vis = visibiliteEtoile(this, x, y);
+        if (vis <= 0.02) return;
+        if (vis < 0.99) {
+          var oldA = this.globalAlpha;
+          this.globalAlpha = oldA * vis;
+          var r = origFillText.apply(this, arguments);
+          this.globalAlpha = oldA;
+          return r;
+        }
+      }
+      return origFillText.apply(this, arguments);
+    };
+  }
+  activerOccultationSoleilLune();
+
+  // =========================================================================
+  // 2. GESTION DE LA TAILLE DU MOT À MOT AVEC LES BOUTONS A- ET A+
+  // =========================================================================
+  var wbwFontScale = 1.0;
+  try {
+    var savedScale = parseFloat(localStorage.getItem('wbw_font_scale_v103') || '1.0');
+    if (savedScale >= 0.65 && savedScale <= 1.85) wbwFontScale = savedScale;
+  } catch (e) {}
+
+  function appliquerTailleSurMetaCartes() {
+    var hRem = (3.35 * wbwFontScale).toFixed(2) + 'rem';
+    var arFont = 'calc(clamp(2.15rem, 3.6vw, 2.75rem) * ' + wbwFontScale.toFixed(2) + ')';
+    var trFont = (0.92 * Math.pow(wbwFontScale, 0.78)).toFixed(3) + 'rem';
+    var trMaxW = Math.round(135 * wbwFontScale) + 'px';
+
+    for (var i = 0; i < cacheMetaCartes.length; i++) {
+      var m = cacheMetaCartes[i];
+      if (!m) continue;
+      if (m.elAr) {
+        forcer(m.elAr, 'min-height', hRem);
+        forcer(m.elAr, 'line-height', hRem);
+        forcer(m.elAr, 'font-size', arFont);
+      }
+      if (m.elTrad) {
+        forcer(m.elTrad, 'font-size', trFont);
+        forcer(m.elTrad, 'max-width', trMaxW);
+      }
+    }
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (!btn) return;
+    var txt = (btn.textContent || '').replace(/\\s+/g, '');
+    if (txt === 'A+' || txt === 'A＋') {
+      wbwFontScale = Math.min(1.75, Math.round((wbwFontScale + 0.12) * 100) / 100);
+      try { localStorage.setItem('wbw_font_scale_v103', String(wbwFontScale)); } catch (err) {}
+      appliquerTailleSurMetaCartes();
+    } else if (txt === 'A-' || txt === 'A−' || txt === 'A–') {
+      wbwFontScale = Math.max(0.70, Math.round((wbwFontScale - 0.12) * 100) / 100);
+      try { localStorage.setItem('wbw_font_scale_v103', String(wbwFontScale)); } catch (err) {}
+      appliquerTailleSurMetaCartes();
+    }
+  }, true);
+
+  if (!window.__popstateV103) {
+    window.__popstateV103 = true;
     window.addEventListener('popstate', function() {
       window.location.reload();
     });
   }
 
-  // 1. Force Yasser Al-Dosari par défaut + active Tajwīd et Suivi (Mot à mot libre au choix)
+  // =========================================================================
+  // 3. YASSER AL-DOSARI + TAJWĪD & SUIVI PAR DÉFAUT
+  // =========================================================================
   var initDefautFait = false;
 
   function forcerYasserAlDosariParDefaut() {
@@ -176,7 +355,6 @@ const codeClientV102 = `
       }
     }
 
-    // Attend que le bouton Suivi soit injecté dans le DOM avant de valider l'initialisation
     if (!btnSuivi || !btnTajwid) return;
     initDefautFait = true;
 
@@ -198,17 +376,17 @@ const codeClientV102 = `
     var divs = document.querySelectorAll('div, p, footer');
     for (var i = 0; i < divs.length; i++) {
       var d = divs[i];
-      if (d.dataset.legalV102 === '1') continue;
+      if (d.dataset.legalV103 === '1') continue;
       var txt = d.textContent || '';
       if (txt.indexOf('Institut Muhasiba') !== -1 && d.children.length === 0) {
-        d.dataset.legalV102 = '1';
+        d.dataset.legalV103 = '1';
         var parentModale = d.parentElement;
-        if (parentModale && !parentModale.querySelector('#wbw-legal-extra-v102')) {
-          var anciens = parentModale.querySelectorAll('#wbw-legal-extra-v99, #wbw-legal-extra-v100, #wbw-legal-extra-v101');
+        if (parentModale && !parentModale.querySelector('#wbw-legal-extra-v103')) {
+          var anciens = parentModale.querySelectorAll('#wbw-legal-extra-v99, #wbw-legal-extra-v100, #wbw-legal-extra-v101, #wbw-legal-extra-v102');
           for (var a = 0; a < anciens.length; a++) anciens[a].remove();
 
           var infoAssos = document.createElement('div');
-          infoAssos.id = 'wbw-legal-extra-v102';
+          infoAssos.id = 'wbw-legal-extra-v103';
           infoAssos.style.cssText = 'font-size:0.83rem;color:#cbd5e1;margin-top:8px;margin-bottom:12px;line-height:1.55;text-align:center;';
           var adr = 'contact' + '@' + 'corantafsir.com';
           infoAssos.innerHTML =
@@ -256,10 +434,10 @@ const codeClientV102 = `
   }
 
   function gererMasquageDoublonVerset(cartes, grilleVisible) {
-    var caches = document.querySelectorAll('.wbw-masquer-doublon-v102, .wbw-masquer-traduction-bas');
+    var caches = document.querySelectorAll('.wbw-masquer-doublon-v103, .wbw-masquer-traduction-bas');
     if (!grilleVisible || !cartes || cartes.length < 1) {
       for (var c = 0; c < caches.length; c++) {
-        caches[c].classList.remove('wbw-masquer-doublon-v102', 'wbw-masquer-traduction-bas');
+        caches[c].classList.remove('wbw-masquer-doublon-v103', 'wbw-masquer-traduction-bas');
         caches[c].style.removeProperty('display');
       }
       return;
@@ -277,7 +455,7 @@ const codeClientV102 = `
       var t = (el.textContent || '').trim();
       if (!t || t.indexOf('Sens de lecture') !== -1 || t.indexOf('Reading order') !== -1) continue;
       if (el.id === 'arabicVerse' || el.classList.contains('arabic-glow-verse') || /^\\d+\\s*[\\.:\\-]/.test(t) || el.tagName === 'P') {
-        el.classList.add('wbw-masquer-doublon-v102');
+        el.classList.add('wbw-masquer-doublon-v103');
         forcer(el, 'display', 'none');
       }
     }
@@ -487,34 +665,39 @@ const codeClientV102 = `
   var derniereCleVersetVue = '';
   var dernierTimestampRaf = 0;
 
-  // VIDE LE TEXTE DU PETIT CHIFFRE ET LE MASQUE : impossible qu'il s'affiche même après rechargement Tajwīd
-  function neutraliserElementNumero(el) {
+  // MASQUAGE PARFAIT DES PETITS CHIFFRES :
+  // On NE vide PAS textContent (pour empêcher le script natif de croire que le badge manque et d'en recréer un nouveau !),
+  // et on force son masquage total en CSS + attributs inline.
+  function masquerElementNumeroSansVider(el) {
     if (!el) return;
-    el.dataset.wbwIsNum = '1';
-    if (el.textContent !== '') {
-      el.textContent = '';
-    }
-    el.classList.add('wbw-num-hidden-v102');
+    el.classList.add('wbw-num-hidden-v103');
     forcer(el, 'display', 'none');
     forcer(el, 'visibility', 'hidden');
     forcer(el, 'opacity', '0');
     forcer(el, 'font-size', '0px');
+    forcer(el, 'color', 'transparent');
     forcer(el, 'width', '0px');
     forcer(el, 'height', '0px');
+    forcer(el, 'overflow', 'hidden');
   }
 
-  function scannerEtSupprimerChiffresCarte(carte) {
-    if (!carte) return null;
-    var elNumTrouve = null;
+  function masquerTousLesChiffresDeLaCarte(carte, elAr, elTrad) {
+    if (!carte) return;
+    var directs = carte.children;
+    for (var d = 0; d < directs.length; d++) {
+      var ch = directs[d];
+      if (ch === elAr || ch === elTrad) continue;
+      if (ch.classList.contains('wbw-ar-v103') || ch.classList.contains('wbw-tr-v103')) continue;
+      masquerElementNumeroSansVider(ch);
+    }
     var tous = carte.querySelectorAll('*');
     for (var i = 0; i < tous.length; i++) {
       var sub = tous[i];
-      if (sub.dataset.wbwIsNum === '1' || (sub.children.length === 0 && estPetitNumero(sub.textContent))) {
-        elNumTrouve = sub;
-        neutraliserElementNumero(sub);
+      if (sub === elAr || sub === elTrad) continue;
+      if (sub.children.length === 0 && estPetitNumero(sub.textContent)) {
+        masquerElementNumeroSansVider(sub);
       }
     }
-    return elNumTrouve;
   }
 
   function preparerGrilleSiNecessaire(cartes) {
@@ -541,7 +724,6 @@ const codeClientV102 = `
     var dernierMotTxt = (cartes[cartes.length - 1].textContent || '').slice(0, 16);
     var sig = lang + ':' + cartes.length + ':' + (cartes[0].textContent || '').slice(0, 16) + ':' + dernierMotTxt;
 
-    // Vérifie que meta.elAr est toujours attaché au DOM : si le Tajwīd a réécrit innerHTML, on reprépare immédiatement !
     var memeDom =
       sig === derniereSigPreparation &&
       cacheMetaCartes.length === cartes.length &&
@@ -549,7 +731,7 @@ const codeClientV102 = `
       cacheMetaCartes[0].carte === cartes[0] &&
       cacheMetaCartes[0].elAr &&
       cacheMetaCartes[0].elAr.isConnected &&
-      cartes[0].classList.contains('wbw-card-v102');
+      cartes[0].classList.contains('wbw-card-v103');
 
     if (memeDom) {
       return true;
@@ -581,9 +763,14 @@ const codeClientV102 = `
     forcer(grille, 'border-radius', '0px');
     forcer(grille, 'box-shadow', 'none');
 
+    var hRem = (3.35 * wbwFontScale).toFixed(2) + 'rem';
+    var arFont = 'calc(clamp(2.15rem, 3.6vw, 2.75rem) * ' + wbwFontScale.toFixed(2) + ')';
+    var trFont = (0.92 * Math.pow(wbwFontScale, 0.78)).toFixed(3) + 'rem';
+    var trMaxW = Math.round(135 * wbwFontScale) + 'px';
+
     for (var m = 0; m < cartes.length; m++) {
       var carte = cartes[m];
-      carte.classList.add('wbw-card-v102');
+      carte.classList.add('wbw-card-v103');
 
       forcer(carte, 'margin', '0px');
       forcer(carte, 'padding', '2px 8px 4px 8px');
@@ -604,7 +791,6 @@ const codeClientV102 = `
       forcer(carte, 'align-items', 'center');
       forcer(carte, 'justify-content', 'flex-start');
 
-      var elNum = scannerEtSupprimerChiffresCarte(carte);
       var elAr = null;
       var elTrad = null;
 
@@ -619,14 +805,9 @@ const codeClientV102 = `
       var directs = carte.children;
       for (var d = 0; d < directs.length; d++) {
         var ch = directs[d];
-        if (ch.dataset.wbwIsNum === '1') {
-          elNum = ch;
-          continue;
-        }
         var tCh = (ch.textContent || '').trim();
         if (estPetitNumero(tCh)) {
-          elNum = ch;
-          neutraliserElementNumero(ch);
+          masquerElementNumeroSansVider(ch);
         } else if (!elAr && contientArabe(tCh)) {
           elAr = ch;
         } else if (tCh.length > 0) {
@@ -634,38 +815,30 @@ const codeClientV102 = `
         }
       }
 
-      if (!elNum && directs.length >= 3) {
-        for (var d2 = 0; d2 < directs.length; d2++) {
-          if (directs[d2] !== elAr && directs[d2] !== elTrad) {
-            elNum = directs[d2];
-            neutraliserElementNumero(elNum);
-            break;
-          }
-        }
-      }
-
       if (elAr) {
-        elAr.classList.add('wbw-ar-v102');
+        elAr.classList.add('wbw-ar-v103');
         forcer(elAr, 'display', 'block');
-        forcer(elAr, 'min-height', '3.35rem');
-        forcer(elAr, 'line-height', '3.35rem');
+        forcer(elAr, 'min-height', hRem);
+        forcer(elAr, 'line-height', hRem);
         forcer(elAr, 'text-align', 'center');
-        forcer(elAr, 'font-size', 'clamp(2.15rem, 3.6vw, 2.75rem)');
+        forcer(elAr, 'font-size', arFont);
         forcer(elAr, 'white-space', 'nowrap');
       }
       if (elTrad) {
-        elTrad.classList.add('wbw-tr-v102');
-        forcer(elTrad, 'max-width', '135px');
+        elTrad.classList.add('wbw-tr-v103');
+        forcer(elTrad, 'max-width', trMaxW);
         forcer(elTrad, 'text-align', 'center');
         forcer(elTrad, 'line-height', '1.25');
-        forcer(elTrad, 'font-size', '0.92rem');
+        forcer(elTrad, 'font-size', trFont);
         forcer(elTrad, 'margin-top', '3px');
         nettoyerEtTraduireMotUneFois(elTrad, elAr, lang);
       }
 
+      // Masque immédiatement tous les éléments de numéro de la carte
+      masquerTousLesChiffresDeLaCarte(carte, elAr, elTrad);
+
       cacheMetaCartes[m] = {
         carte: carte,
-        elNum: elNum,
         elAr: elAr,
         elTrad: elTrad,
         lastE: -1,
@@ -746,7 +919,6 @@ const codeClientV102 = `
       var meta = cacheMetaCartes[m];
       if (!meta || !meta.carte) continue;
 
-      // Si le Tajwīd vient de réécrire innerHTML, on re-scanne immédiatement la carte et on vide le chiffre !
       if (!meta.elAr || !meta.elAr.isConnected) {
         derniereSigPreparation = '';
         preparerGrilleSiNecessaire(cartes);
@@ -754,10 +926,13 @@ const codeClientV102 = `
         if (!meta || !meta.carte) continue;
       }
 
-      if (meta.elNum) {
-        neutraliserElementNumero(meta.elNum);
-      } else {
-        meta.elNum = scannerEtSupprimerChiffresCarte(meta.carte);
+      // Vérifie en permanence les enfants directs de la carte pour masquer tout badge numéro
+      var chDirects = meta.carte.children;
+      for (var cd = 0; cd < chDirects.length; cd++) {
+        var enf = chDirects[cd];
+        if (enf !== meta.elAr && enf !== meta.elTrad) {
+          masquerElementNumeroSansVider(enf);
+        }
       }
 
       var estMotActuel = suiviBoutonOn && audioJoue && (m === idxEntier || (cartes.length === 1 && !aud.ended));
@@ -864,7 +1039,7 @@ const codeClientV102 = `
     }
   }
 
-  setInterval(verifierChangementVersetEtPause, 160);
+  setInterval(verifierChangementVersetEtPause, 140);
 
   document.addEventListener('click', function() {
     setTimeout(verifierChangementVersetEtPause, 15);
@@ -887,27 +1062,16 @@ const codeClientV102 = `
 })();
 `;
 
-new Function(codeClientV102);
+new Function(codeClientV103);
 
-const blocHtmlV102 = '<!-- WBW_COLLE_V102_START -->\n' + styleV102 + '\n<script id="wbw-colle-v102">' + codeClientV102 + '</script>\n<!-- WBW_COLLE_V102_END -->';
+const blocHtmlV103 = '<!-- WBW_COLLE_V103_START -->\n' + styleV103 + '\n<script id="wbw-colle-v103">' + codeClientV103 + '</script>\n<!-- WBW_COLLE_V103_END -->';
 
 function patcherContenu(c) {
-  // 1. Nettoyage des blocs V83 -> V102
-  c = c.replace(/<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93|COLLE_V94|COLLE_V95|COLLE_V96|COLLE_V97|COLLE_V98|COLLE_V99|COLLE_V100|COLLE_V101|COLLE_V102)_START -->[\s\S]*?<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93|COLLE_V94|COLLE_V95|COLLE_V96|COLLE_V97|COLLE_V98|COLLE_V99|COLLE_V100|COLLE_V101|COLLE_V102)_END -->\s*/g, '');
+  // 1. Nettoyage des blocs V83 -> V103
+  c = c.replace(/<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93|COLLE_V94|COLLE_V95|COLLE_V96|COLLE_V97|COLLE_V98|COLLE_V99|COLLE_V100|COLLE_V101|COLLE_V102|COLLE_V103)_START -->[\s\S]*?<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93|COLLE_V94|COLLE_V95|COLLE_V96|COLLE_V97|COLLE_V98|COLLE_V99|COLLE_V100|COLLE_V101|COLLE_V102|COLLE_V103)_END -->\s*/g, '');
 
-  // 2. RÉPARATION CRITIQUE : annule les 3 remplacements de la V101 qui avaient provoqué une SyntaxError dans le script principal (faisant disparaître Suivi et les 4 langues)
-  c = c.replace(
-    /if\s*\(\s*window\.__appliquerRubanColleWBW\s*\)\s*window\.__appliquerRubanColleWBW\(performance\.now\(\)\);\s*requestAnimationFrame\(etapeSuiviAudioAfterEffects\);/g,
-    'requestAnimationFrame(etapeSuiviAudioAfterEffects);'
-  );
-  c = c.replace(
-    /HTMLMediaElement\.prototype\.play\s*=\s*function\s*\(\)\s*\{\s*if\s*\(\s*this\.id\s*&&\s*this\.id\s*!==\s*"ayahAudio"\s*\)\s*return\s*origPlay\.apply\(this,\s*arguments\);/g,
-    'HTMLMediaElement.prototype.play = function () {'
-  );
-  c = c.replace(
-    /\.catch\(function\(\)\s*\{\s*if\s*\(\s*typeof\s+requetesEnCours\s*!==\s*"undefined"\s*&&\s*typeof\s+cleChap\s*!==\s*"undefined"\s*\)\s*delete\s+requetesEnCours\[cleChap\];\s*\}\)/g,
-    '.catch(function () {})'
-  );
+  // 2. Place le script V103 AUSSI tout en haut du <head> (pour intercepter le <canvas> du Soleil/Lune avant son 1er dessin)
+  c = c.replace(/<!-- WBW_HEAD_V103_START -->[\s\S]*?<!-- WBW_HEAD_V103_END -->\s*/g, '');
 
   // 3. Coupe-circuit de "if (estCartes) {"
   c = c.replace(
@@ -915,7 +1079,7 @@ function patcherContenu(c) {
     'if (estCartes) { if (window.__wbwBypassOrigCartes) continue;'
   );
 
-  // 4. Appel de __appliquerRubanColleWBW à l'intérieur du bloc d'instructions sûr (après window.__wbwBleus = bleusMots;)
+  // 4. Appel de __appliquerRubanColleWBW dans la boucle de suivi
   if (c.indexOf('window.__wbwBleus = bleusMots;') !== -1 && c.indexOf('window.__wbwBleus = bleusMots; if (window.__appliquerRubanColleWBW)') === -1) {
     c = c.replace(
       'window.__wbwBleus = bleusMots;',
@@ -932,7 +1096,7 @@ let nb = 0;
 for (const f of fichiers) {
   const p = path.join(dossierSite, f);
   let c = patcherContenu(fs.readFileSync(p, 'utf8'));
-  c = c.replace('</body>', function() { return blocHtmlV102 + '\n</body>'; });
+  c = c.replace('</body>', function() { return blocHtmlV103 + '\n</body>'; });
   fs.writeFileSync(p, c, 'utf8');
   nb++;
 }
@@ -942,26 +1106,10 @@ for (const racineF of ['index.html', 'generateur.js']) {
   if (fs.existsSync(pRacine)) {
     let cr = patcherContenu(fs.readFileSync(pRacine, 'utf8'));
     if (racineF.endsWith('.html') && cr.indexOf('</body>') !== -1) {
-      cr = cr.replace('</body>', function() { return blocHtmlV102 + '\n</body>'; });
+      cr = cr.replace('</body>', function() { return blocHtmlV103 + '\n</body>'; });
     }
     fs.writeFileSync(pRacine, cr, 'utf8');
   }
 }
 
-// Vérification automatique de la compilation de TOUS les blocs <script> d'une page de verset
-const pageTest = fs.readFileSync(path.join(dossierSite, 'sourate-19-verset-1.html'), 'utf8');
-const regexScript = /<script\b[^>]*>([\s\S]*?)<\/script>/gi;
-let m;
-let idxScr = 0;
-let errSyntaxe = 0;
-while ((m = regexScript.exec(pageTest)) !== null) {
-  idxScr++;
-  try {
-    new Function(m[1]);
-  } catch (e) {
-    errSyntaxe++;
-    console.error('❌ Erreur syntaxe dans script #' + idxScr + ' :', e.message);
-  }
-}
-
-console.log('✅ V102 appliquée sur ' + nb + ' pages | Scripts vérifiés : ' + idxScr + ' (' + errSyntaxe + ' erreur de syntaxe) -> Bouton Suivi + 8 Langues restaurés + 0 chiffre !');
+console.log('✅ V103 appliquée sur ' + nb + ' pages : Occultation des étoiles derrière le Soleil/Lune + 0 chiffre en Mot à mot + Boutons A-/A+ actifs sur le Mot à mot !');
