@@ -3,15 +3,18 @@ const path = require('path');
 
 const dossierSite = path.join(__dirname, 'site');
 
-const styleV100 = `<style id="wbw-style-v100">
+const styleV101 = `<style id="wbw-style-v101">
   /* 1. Masquage du bloc de progression (Khatm) sur les pages de sourates */
   .wbw-hide-khatm-on-surah,
-  .wbw-masquer-doublon-v100 {
+  .wbw-masquer-doublon-v101 {
     display: none !important;
   }
 
-  /* 2. Suppression totale et définitive des petits chiffres (1, 2, 3...) sur le Mot à mot */
-  .wbw-num-hidden-v100 {
+  /* 2. Suppression absolue des petits numéros (1, 2, 3...) et pseudo-éléments dans Mot à mot */
+  .wbw-num-hidden-v101,
+  #wbwStageContainer .wbw-word-box > *:first-child:not(.wbw-ar-v101):not(.wbw-tr-v101),
+  .wbw-card-v101::before, .wbw-card-v101::after,
+  .wbw-card-v101 *::before, .wbw-card-v101 *::after {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
@@ -19,11 +22,13 @@ const styleV100 = `<style id="wbw-style-v100">
     color: transparent !important;
     width: 0px !important;
     height: 0px !important;
+    max-width: 0px !important;
+    max-height: 0px !important;
     overflow: hidden !important;
     pointer-events: none !important;
   }
 
-  /* 3. Allègement GPU mobile (120Hz fluide sur iPhone) */
+  /* 3. Optimisation GPU mobile */
   @media (max-width: 820px) {
     *, *::before, *::after {
       backdrop-filter: none !important;
@@ -38,11 +43,11 @@ const styleV100 = `<style id="wbw-style-v100">
   }
 </style>`;
 
-const codeClientV100 = `
+const codeClientV101 = `
 (function() {
   window.__wbwBypassOrigCartes = true;
 
-  // Remplace par ton numéro RNA exact pour la validation Google Ad Grants (10 000 $/mois) :
+  // Remplace par ton numéro RNA exact pour Google Ad Grants :
   var NUMERO_RNA = 'RNA : W343000000 • SIRET en cours d’attribution INSEE';
 
   function forcer(el, prop, val) {
@@ -61,7 +66,7 @@ const codeClientV100 = `
   }
 
   function estPetitNumero(str) {
-    var s = (str || '').trim();
+    var s = (str || '').replace(/[\\s\\u200E\\u200F\\u061C#\\.\\-]/g, '');
     if (s.length < 1 || s.length > 3) return false;
     for (var i = 0; i < s.length; i++) {
       var c = s.charCodeAt(i);
@@ -83,12 +88,19 @@ const codeClientV100 = `
       Math.round(b1 + (b2 - b1) * k) + ')';
   }
 
-  // 1. Force Yasser Al-Dosari comme récitateur par défaut + active Tajwīd et Suivi (en laissant Mot à mot au libre choix)
+  // Correctif A5 de l'audit : synchronisation du bouton Retour navigateur (popstate)
+  if (!window.__popstateV101) {
+    window.__popstateV101 = true;
+    window.addEventListener('popstate', function() {
+      window.location.reload();
+    });
+  }
+
+  // 1. Sélectionne Yasser Al-Dosari par défaut + active Tajwīd et Suivi (Mot à mot libre au choix)
   var initDefautFait = false;
 
   function forcerYasserAlDosariParDefaut() {
     try {
-      // Force Yasser Al-Dosari dans localStorage si un autre récitateur (ex: Al-Hussary) s'est mis automatiquement
       for (var k = 0; k < localStorage.length; k++) {
         var cle = localStorage.key(k);
         if (cle && /recit|sheikh|qari|lecteur|audio/i.test(cle)) {
@@ -100,7 +112,6 @@ const codeClientV100 = `
       }
     } catch (e) {}
 
-    // Vérifie si un élément <select> ou une option du menu récitateur contient "Yasser" / "Dosari"
     var selects = document.querySelectorAll('select');
     for (var s = 0; s < selects.length; s++) {
       var sel = selects[s];
@@ -116,7 +127,6 @@ const codeClientV100 = `
       }
     }
 
-    // Si c'est un menu personnalisé (div/button/li), clique sur l'élément Yasser Al-Dosari s'il n'est pas déjà affiché
     var tousEls = document.querySelectorAll('button, div, li, span, a');
     var boutonRecitateur = null;
     for (var i = 0; i < tousEls.length; i++) {
@@ -133,13 +143,10 @@ const codeClientV100 = `
         var item = tousEls[j];
         if (item === boutonRecitateur) continue;
         var tItem = (item.textContent || '').trim();
-        if (tItem.length > 3 && tItem.length < 65 && /Yasser\s*Al-Dosari|Yasser\s*Al-Dossari|ياسر\s*الدوسري|Ясир\s*Аль-Досари/i.test(tItem)) {
+        if (tItem.length > 3 && tItem.length < 65 && /Yasser\\s*Al-Dosari|Yasser\\s*Al-Dossari|ياسر\\s*الدوسري|Ясир\\s*Аль-Досари/i.test(tItem)) {
           if (item.children.length <= 3) {
             item.click();
-            // Referme le menu déroulant s'il s'est ouvert
-            setTimeout(function() {
-              document.body.click();
-            }, 10);
+            setTimeout(function() { document.body.click(); }, 10);
             break;
           }
         }
@@ -178,12 +185,9 @@ const codeClientV100 = `
         }
       }
 
-      // 1. On laisse Mot à mot DÉSACTIVÉ au démarrage (libre choix à l'utilisateur de cliquer dessus après)
       if (btnWbw && boutonEstActif(btnWbw)) {
         btnWbw.click();
       }
-
-      // 2. On active automatiquement Tajwīd et Suivi
       if (btnTajwid && !boutonEstActif(btnTajwid)) {
         btnTajwid.click();
       }
@@ -191,33 +195,32 @@ const codeClientV100 = `
         btnSuivi.click();
       }
 
-      // 3. Comme le clic sur Tajwīd basculait parfois sur Al-Hussary, on re-force Yasser Al-Dosari juste après !
       setTimeout(forcerYasserAlDosariParDefaut, 25);
       setTimeout(forcerYasserAlDosariParDefaut, 120);
     }, 30);
   }
 
-  // 2. Mentions Légales conformes Google Ad Grants (10 000 $/mois) : Nom Assos + RNA + Siège Ville + Contact
+  // 2. Mentions Légales conformes Google Ad Grants (34000 Montpellier sans rue personnelle)
   function mettreAJourMentionsLegalesGoogleGrants() {
     var divs = document.querySelectorAll('div, p, footer');
     for (var i = 0; i < divs.length; i++) {
       var d = divs[i];
-      if (d.dataset.legalV100 === '1') continue;
+      if (d.dataset.legalV101 === '1') continue;
       var txt = d.textContent || '';
       if (txt.indexOf('Institut Muhasiba') !== -1 && d.children.length === 0) {
-        d.dataset.legalV100 = '1';
+        d.dataset.legalV101 = '1';
         var parentModale = d.parentElement;
-        if (parentModale && !parentModale.querySelector('#wbw-legal-extra-v100')) {
-          var ancien = parentModale.querySelector('#wbw-legal-extra-v99');
-          if (ancien) ancien.remove();
+        if (parentModale && !parentModale.querySelector('#wbw-legal-extra-v101')) {
+          var anciens = parentModale.querySelectorAll('#wbw-legal-extra-v99, #wbw-legal-extra-v100');
+          for (var a = 0; a < anciens.length; a++) anciens[a].remove();
 
           var infoAssos = document.createElement('div');
-          infoAssos.id = 'wbw-legal-extra-v100';
+          infoAssos.id = 'wbw-legal-extra-v101';
           infoAssos.style.cssText = 'font-size:0.83rem;color:#cbd5e1;margin-top:8px;margin-bottom:12px;line-height:1.55;text-align:center;';
           var adr = 'contact' + '@' + 'corantafsir.com';
           infoAssos.innerHTML =
             '<strong>Association loi 1901 à but non lucratif</strong> • ' + NUMERO_RNA + '<br>' +
-            'Siège social : Montpellier (34000), France • Hébergement : Cloudflare, Inc.<br>' +
+            'Siège social : 34000 Montpellier, France • Hébergement : Cloudflare, Inc.<br>' +
             'Contact officiel : <a href="mailto:' + adr + '" style="color:#38bdf8;text-decoration:none;font-weight:600;">' + adr + '</a>';
           parentModale.insertBefore(infoAssos, d.nextSibling);
         }
@@ -259,12 +262,11 @@ const codeClientV100 = `
     }
   }
 
-  // Masque proprement la traduction globale du bas quand Mot à mot est activé, et la réaffiche dès qu'on le désactive
   function gererMasquageDoublonVerset(cartes, grilleVisible) {
-    var caches = document.querySelectorAll('.wbw-masquer-doublon-v100, .wbw-masquer-traduction-bas');
+    var caches = document.querySelectorAll('.wbw-masquer-doublon-v101, .wbw-masquer-traduction-bas');
     if (!grilleVisible || !cartes || cartes.length < 1) {
       for (var c = 0; c < caches.length; c++) {
-        caches[c].classList.remove('wbw-masquer-doublon-v100', 'wbw-masquer-traduction-bas');
+        caches[c].classList.remove('wbw-masquer-doublon-v101', 'wbw-masquer-traduction-bas');
         caches[c].style.removeProperty('display');
       }
       return;
@@ -281,9 +283,8 @@ const codeClientV100 = `
       if (el.querySelector('button') || el.tagName === 'BUTTON') continue;
       var t = (el.textContent || '').trim();
       if (!t || t.indexOf('Sens de lecture') !== -1 || t.indexOf('Reading order') !== -1) continue;
-      // Cible le verset arabe normal ou le paragraphe de traduction numéroté en bas de la boîte du verset
       if (el.id === 'arabicVerse' || el.classList.contains('arabic-glow-verse') || /^\\d+\\s*[\\.:\\-]/.test(t) || el.tagName === 'P') {
-        el.classList.add('wbw-masquer-doublon-v100');
+        el.classList.add('wbw-masquer-doublon-v101');
         forcer(el, 'display', 'none');
       }
     }
@@ -387,9 +388,10 @@ const codeClientV100 = `
 
   var cacheTradMots = {};
   try {
-    cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v98') || '{}');
+    cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v101') || '{}');
   } catch (e) {}
   var enCoursTrad = {};
+  var prochainEssaiTrad = {};
 
   function obtenirLanguePage() {
     var p = new URLSearchParams(window.location.search).get('lang');
@@ -400,6 +402,7 @@ const codeClientV100 = `
 
   var motsFrConnus = /^(il|elle|ils|elles|je|tu|nous|vous|le|la|les|un|une|des|de|du|au|aux|en|dans|sur|sous|avec|sans|pour|par|vers|chez|entre|contre|et|ou|mais|donc|car|ni|ne|pas|plus|moins|très|tout|tous|toute|toutes|ce|cet|cette|ces|mon|ton|son|ma|ta|sa|mes|tes|ses|notre|votre|leur|leurs|qui|que|quoi|dont|où|oui|non|bien|mal|comme|alors|puis|ainsi|aussi|encore|déjà|toujours|jamais|rien|personne|aucun|autre|même|tel|chaque|allah|seigneur|livre|guidée|pieux|croyants|prière|enfer|paradis|jour|nuit|terre|ciel|cieux|eau|feu|coeur|coeurs|lis|quand|secret|puis|créé)$/i;
 
+  // Correctif S1 & A2 de l'audit : textContent strict + libération de enCoursTrad dans finally + délai de réessai
   function nettoyerEtTraduireMotUneFois(elTrad, elAr, lang) {
     if (!elTrad) return;
     var brut = (elTrad.textContent || '').trim();
@@ -454,27 +457,32 @@ const codeClientV100 = `
       return;
     }
 
-    if (enCoursTrad[cle]) return;
+    if (enCoursTrad[cle] || Date.now() < (prochainEssaiTrad[cle] || 0)) return;
     enCoursTrad[cle] = true;
 
     var propreEn = brut.replace(/^\\(is\\)\\s*/i, '').replace(/\\((the|a|an|are)\\)/gi, '$1').replace(/\\([^)]*\\)/g, '').trim() || brut;
     var url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=' + encodeURIComponent(lang) + '&dt=t&q=' + encodeURIComponent(propreEn);
     fetch(url)
-      .then(function(r) { return r.json(); })
+      .then(function(r) { return r.ok ? r.json() : Promise.reject(new Error('HTTP')); })
       .then(function(d) {
         if (d && d[0] && d[0][0] && d[0][0][0]) {
           var tr = d[0].map(function(x) { return x[0] || ''; }).join('').trim();
           if (tr) {
             cacheTradMots[cle] = tr;
-            try { localStorage.setItem('wbw_tr_cache_v98', JSON.stringify(cacheTradMots)); } catch (e) {}
-            if (elTrad) {
+            try { localStorage.setItem('wbw_tr_cache_v101', JSON.stringify(cacheTradMots)); } catch (e) {}
+            if (elTrad && elTrad.isConnected && obtenirLanguePage() === lang) {
               elTrad.textContent = tr;
               elTrad.dataset.wbwTrOk = lang;
             }
           }
         }
       })
-      .catch(function() {});
+      .catch(function() {
+        prochainEssaiTrad[cle] = Date.now() + 15000;
+      })
+      .finally(function() {
+        delete enCoursTrad[cle];
+      });
   }
 
   var cacheMetaCartes = [];
@@ -485,17 +493,36 @@ const codeClientV100 = `
   var maxIdxAtteintVerset = -1;
   var dernierTempsAudio = 0;
   var derniereCleVersetVue = '';
+  var dernierTimestampRaf = 0;
 
-  function masquerElementNumero(el) {
+  // SUPPRESSION RADICALE DU PETIT CHIFFRE : vide son textContent ET le masque
+  function neutraliserElementNumero(el) {
     if (!el) return;
-    el.classList.add('wbw-num-hidden-v100');
+    el.dataset.wbwIsNum = '1';
+    if (el.textContent !== '') {
+      el.textContent = '';
+    }
+    el.classList.add('wbw-num-hidden-v101');
     forcer(el, 'display', 'none');
     forcer(el, 'visibility', 'hidden');
     forcer(el, 'opacity', '0');
     forcer(el, 'font-size', '0px');
-    forcer(el, 'color', 'transparent');
-    forcer(el, 'height', '0px');
     forcer(el, 'width', '0px');
+    forcer(el, 'height', '0px');
+  }
+
+  function scannerEtSupprimerChiffresCarte(carte) {
+    if (!carte) return null;
+    var elNumTrouve = null;
+    var tous = carte.querySelectorAll('*');
+    for (var i = 0; i < tous.length; i++) {
+      var sub = tous[i];
+      if (sub.dataset.wbwIsNum === '1' || (sub.children.length === 0 && estPetitNumero(sub.textContent))) {
+        elNumTrouve = sub;
+        neutraliserElementNumero(sub);
+      }
+    }
+    return elNumTrouve;
   }
 
   function preparerGrilleSiNecessaire(cartes) {
@@ -506,7 +533,7 @@ const codeClientV100 = `
       return false;
     }
     var grille = cartes[0].parentElement;
-    if (!grille || grille.style.display === 'none' || window.getComputedStyle(grille).display === 'none') {
+    if (!grille || grille.style.display === 'none') {
       gererMasquageDoublonVerset(null, false);
       return false;
     }
@@ -522,12 +549,15 @@ const codeClientV100 = `
     var dernierMotTxt = (cartes[cartes.length - 1].textContent || '').slice(0, 16);
     var sig = lang + ':' + cartes.length + ':' + (cartes[0].textContent || '').slice(0, 16) + ':' + dernierMotTxt;
 
+    // Vérifie non seulement la carte mais aussi que meta.elAr est toujours connecté (détecte toute réécriture innerHTML par le Tajwīd !)
     var memeDom =
       sig === derniereSigPreparation &&
       cacheMetaCartes.length === cartes.length &&
       cacheMetaCartes[0] &&
       cacheMetaCartes[0].carte === cartes[0] &&
-      cartes[0].classList.contains('wbw-card-v100');
+      cacheMetaCartes[0].elAr &&
+      cacheMetaCartes[0].elAr.isConnected &&
+      cartes[0].classList.contains('wbw-card-v101');
 
     if (memeDom) {
       return true;
@@ -561,7 +591,7 @@ const codeClientV100 = `
 
     for (var m = 0; m < cartes.length; m++) {
       var carte = cartes[m];
-      carte.classList.add('wbw-card-v100');
+      carte.classList.add('wbw-card-v101');
 
       forcer(carte, 'margin', '0px');
       forcer(carte, 'padding', '2px 8px 4px 8px');
@@ -581,9 +611,10 @@ const codeClientV100 = `
       forcer(carte, 'flex-direction', 'column');
       forcer(carte, 'align-items', 'center');
       forcer(carte, 'justify-content', 'flex-start');
-      forcer(carte, 'will-change', 'transform, opacity');
 
-      var elNum = null;
+      // 1. Neutralise immédiatement tout petit chiffre dans la carte
+      var elNum = scannerEtSupprimerChiffresCarte(carte);
+
       var elAr = null;
       var elTrad = null;
 
@@ -593,19 +624,19 @@ const codeClientV100 = `
         forcer(sub, 'background', 'transparent');
         forcer(sub, 'border', 'none');
         forcer(sub, 'box-shadow', 'none');
-        if (sub.children.length === 0 && estPetitNumero(sub.textContent)) {
-          elNum = sub;
-          masquerElementNumero(sub);
-        }
       }
 
       var directs = carte.children;
       for (var d = 0; d < directs.length; d++) {
         var ch = directs[d];
+        if (ch.dataset.wbwIsNum === '1') {
+          elNum = ch;
+          continue;
+        }
         var tCh = (ch.textContent || '').trim();
         if (estPetitNumero(tCh)) {
           elNum = ch;
-          masquerElementNumero(ch);
+          neutraliserElementNumero(ch);
         } else if (!elAr && contientArabe(tCh)) {
           elAr = ch;
         } else if (tCh.length > 0) {
@@ -613,8 +644,19 @@ const codeClientV100 = `
         }
       }
 
+      // Si la carte possède 3 enfants directs (Numéro, Arabe, Traduction), le 1er enfant qui n'est ni elAr ni elTrad est forcément le numéro
+      if (!elNum && directs.length >= 3) {
+        for (var d2 = 0; d2 < directs.length; d2++) {
+          if (directs[d2] !== elAr && directs[d2] !== elTrad) {
+            elNum = directs[d2];
+            neutraliserElementNumero(elNum);
+            break;
+          }
+        }
+      }
+
       if (elAr) {
-        elAr.classList.add('wbw-ar-v100');
+        elAr.classList.add('wbw-ar-v101');
         forcer(elAr, 'display', 'block');
         forcer(elAr, 'min-height', '3.35rem');
         forcer(elAr, 'line-height', '3.35rem');
@@ -623,7 +665,7 @@ const codeClientV100 = `
         forcer(elAr, 'white-space', 'nowrap');
       }
       if (elTrad) {
-        elTrad.classList.add('wbw-tr-v100');
+        elTrad.classList.add('wbw-tr-v101');
         forcer(elTrad, 'max-width', '135px');
         forcer(elTrad, 'text-align', 'center');
         forcer(elTrad, 'line-height', '1.25');
@@ -645,9 +687,25 @@ const codeClientV100 = `
     return true;
   }
 
-  window.__appliquerRubanColleWBW = function() {
+  // Correctifs P1 & P3 de l'audit : appelé depuis etapeSuiviAudioAfterEffects avec calcul delta-time (60Hz / 120Hz identiques)
+  window.__appliquerRubanColleWBW = function(ts) {
+    var maintenant = (typeof ts === 'number' && ts > 0) ? ts : performance.now();
+    var dt = dernierTimestampRaf ? Math.min(50, Math.max(1, maintenant - dernierTimestampRaf)) : (1000 / 60);
+    dernierTimestampRaf = maintenant;
+
+    var alphaE = 1 - Math.pow(1 - 0.32, dt / (1000 / 60));
+    var alphaB = 1 - Math.pow(1 - 0.26, dt / (1000 / 60));
+    var alphaC = 1 - Math.pow(1 - 0.25, dt / (1000 / 60));
+
     var cartes = [];
-    if (typeof window.__obtenirCartesWBW === 'function') {
+    var rootStage = document.getElementById('wbwStageContainer');
+    if (rootStage && rootStage.style.display !== 'none') {
+      var boxes = rootStage.querySelectorAll('.wbw-word-box');
+      if (boxes && boxes.length > 0) {
+        cartes = Array.prototype.slice.call(boxes);
+      }
+    }
+    if (cartes.length === 0 && typeof window.__obtenirCartesWBW === 'function') {
       try { cartes = window.__obtenirCartesWBW() || []; } catch (e) {}
     }
 
@@ -669,7 +727,7 @@ const codeClientV100 = `
     var idxFloat = suiviBoutonOn && typeof window.__wbwActiveFloat === 'number' ? window.__wbwActiveFloat : -1;
     var idxEntier = suiviBoutonOn && typeof window.__wbwIdxEntier === 'number' ? window.__wbwIdxEntier : -1;
 
-    var aud = window.__lecteurAudioActuel || document.querySelector('audio');
+    var aud = document.getElementById('ayahAudio') || window.__lecteurAudioActuel || document.querySelector('audio');
     var tActuel = aud ? (aud.currentTime || 0) : 0;
     var audioJoue = Boolean(aud && !aud.paused && !aud.ended);
     var audioActif = Boolean(suiviBoutonOn && aud && (!aud.paused || tActuel > 0.05));
@@ -701,14 +759,24 @@ const codeClientV100 = `
     }
 
     var cibleContraste = (suiviBoutonOn && (audioActif || maxIdxAtteintVerset >= 0)) ? 1.0 : 0.0;
-    modeContrasteSuivi += (cibleContraste - modeContrasteSuivi) * 0.25;
+    modeContrasteSuivi += (cibleContraste - modeContrasteSuivi) * alphaC;
 
     for (var m = 0; m < cacheMetaCartes.length; m++) {
       var meta = cacheMetaCartes[m];
       if (!meta || !meta.carte) continue;
 
+      // Si le Tajwīd vient de réécrire l'intérieur de la carte, on resynchronise immédiatement et on vide le chiffre
+      if (!meta.elAr || !meta.elAr.isConnected) {
+        derniereSigPreparation = '';
+        preparerGrilleSiNecessaire(cartes);
+        meta = cacheMetaCartes[m];
+        if (!meta || !meta.carte) continue;
+      }
+
       if (meta.elNum) {
-        masquerElementNumero(meta.elNum);
+        neutraliserElementNumero(meta.elNum);
+      } else {
+        meta.elNum = scannerEtSupprimerChiffresCarte(meta.carte);
       }
 
       var estMotActuel = suiviBoutonOn && audioJoue && (m === idxEntier || (cartes.length === 1 && !aud.ended));
@@ -726,8 +794,8 @@ const codeClientV100 = `
         }
       }
 
-      lissageE[m] += (eBrut - lissageE[m]) * 0.32;
-      lissageB[m] += (bBrut - lissageB[m]) * 0.26;
+      lissageE[m] += (eBrut - lissageE[m]) * alphaE;
+      lissageB[m] += (bBrut - lissageB[m]) * alphaB;
       if (lissageE[m] < 0.002) lissageE[m] = 0;
       if (lissageB[m] < 0.002) lissageB[m] = 0;
 
@@ -749,7 +817,6 @@ const codeClientV100 = `
       var yPx = (-7.5 * e).toFixed(2);
       var sc = (1.0 + 0.12 * e).toFixed(3);
 
-      // Mots à venir tamisés (0.34), mots déjà entendus (b=1) et mot actuel (e=1) à 100% d'opacité (1.00)
       var opRepos = 0.94 - 0.60 * modeContrasteSuivi;
       var opMot = (opRepos + (1.0 - opRepos) * lum).toFixed(3);
 
@@ -757,12 +824,9 @@ const codeClientV100 = `
       forcer(meta.carte, 'transform', 'translate3d(0px, ' + yPx + 'px, 0px) scale(' + sc + ')');
 
       if (meta.elAr) {
-        // RENDU BLANC IDENTIQUE AU MODE SANS MOT À MOT :
-        // - Non lu (b=0, e=0) : Blanc tamisé (#94a3b8) sans halo
-        // - Déjà entendu (b=1) : Blanc pur lumineux (#ffffff) avec halo blanc/glacé doux (tout en gardant les couleurs Tajwīd !)
-        // - En cours (e=1)     : Blanc éclatant (#ffffff) avec halo blanc intense
+        // Mots déjà entendus et mot en cours en BLANC PUR (#ffffff) identique au mode sans Mot à mot
         var colArRepos = melangerRGB(248, 250, 252, 148, 163, 184, modeContrasteSuivi);
-        var colArLu = melangerRGB(colArRepos ? 148 : 248, colArRepos ? 163 : 250, colArRepos ? 184 : 252, 255, 255, 255, lum);
+        var colArLu = melangerRGB(148, 163, 184, 255, 255, 255, lum);
         var colArFinal = modeContrasteSuivi > 0.05 ? colArLu : '#f8fafc';
 
         var ombreAr = 'none';
@@ -781,7 +845,6 @@ const codeClientV100 = `
       }
 
       if (meta.elTrad) {
-        // Traduction française : Gris tamisé (#64748b) -> Blanc pur (#ffffff) quand le mot est entendu
         var colTrRepos = melangerRGB(148, 163, 184, 100, 116, 139, modeContrasteSuivi);
         var colTrFinal = lum > 0.01 ? melangerRGB(100, 116, 139, 255, 255, 255, lum) : colTrRepos;
         var ombreTr = (e > 0.02 || b > 0.08)
@@ -794,18 +857,19 @@ const codeClientV100 = `
     }
   };
 
-  var origRaf = window.requestAnimationFrame;
-  if (origRaf && !window.__rafHookedV100) {
-    window.__rafHookedV100 = true;
-    window.requestAnimationFrame = function(cb) {
-      return origRaf.call(window, function(ts) {
-        var r = cb(ts);
-        if (window.__appliquerRubanColleWBW) {
-          window.__appliquerRubanColleWBW();
-        }
-        return r;
+  // Correctif P1 de l'audit : AUCUN remplacement global de window.requestAnimationFrame !
+  // On observe uniquement les mutations de #wbwStageContainer (quand Tajwīd ou Mot à mot injecte des noeuds)
+  var obsWbw = null;
+  function brancherObservateurStage() {
+    var stage = document.getElementById('wbwStageContainer');
+    if (stage && !stage.__obsV101 && typeof MutationObserver !== 'undefined') {
+      stage.__obsV101 = true;
+      obsWbw = new MutationObserver(function() {
+        derniereSigPreparation = '';
+        if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW();
       });
-    };
+      obsWbw.observe(stage, { childList: true, subtree: true });
+    }
   }
 
   function verifierChangementVersetEtPause() {
@@ -813,6 +877,7 @@ const codeClientV100 = `
     nettoyerTexteOrdreRevelation();
     masquerBlocProgressionSurSourate();
     mettreAJourMentionsLegalesGoogleGrants();
+    brancherObservateurStage();
 
     if (typeof window.__obtenirCleVersetWBW === 'function') {
       try {
@@ -835,16 +900,17 @@ const codeClientV100 = `
     }
   }
 
-  setInterval(verifierChangementVersetEtPause, 150);
-
   document.addEventListener('click', function() {
     setTimeout(verifierChangementVersetEtPause, 15);
-    setTimeout(verifierChangementVersetEtPause, 70);
-    setTimeout(verifierChangementVersetEtPause, 160);
+    setTimeout(verifierChangementVersetEtPause, 80);
   });
   document.addEventListener('change', function() {
     setTimeout(verifierChangementVersetEtPause, 20);
     setTimeout(verifierChangementVersetEtPause, 100);
+  });
+  document.addEventListener('visibilitychange', function() {
+    dernierTimestampRaf = 0;
+    if (!document.hidden) verifierChangementVersetEtPause();
   });
 
   if (document.readyState === 'loading') {
@@ -855,21 +921,43 @@ const codeClientV100 = `
 })();
 `;
 
-new Function(codeClientV100);
+new Function(codeClientV101);
 
-const blocHtmlV100 = '<!-- WBW_COLLE_V100_START -->\n' + styleV100 + '\n<script id="wbw-colle-v100">' + codeClientV100 + '</script>\n<!-- WBW_COLLE_V100_END -->';
+const blocHtmlV101 = '<!-- WBW_COLLE_V101_START -->\n' + styleV101 + '\n<script id="wbw-colle-v101">' + codeClientV101 + '</script>\n<!-- WBW_COLLE_V101_END -->';
 
 function patcherContenu(c) {
-  // 1. Nettoyage des anciens blocs V83 -> V100
-  c = c.replace(/<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93|COLLE_V94|COLLE_V95|COLLE_V96|COLLE_V97|COLLE_V98|COLLE_V99|COLLE_V100)_START -->[\s\S]*?<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93|COLLE_V94|COLLE_V95|COLLE_V96|COLLE_V97|COLLE_V98|COLLE_V99|COLLE_V100)_END -->\s*/g, '');
+  // 1. Nettoyage des blocs V83 -> V101
+  c = c.replace(/<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93|COLLE_V94|COLLE_V95|COLLE_V96|COLLE_V97|COLLE_V98|COLLE_V99|COLLE_V100|COLLE_V101)_START -->[\s\S]*?<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93|COLLE_V94|COLLE_V95|COLLE_V96|COLLE_V97|COLLE_V98|COLLE_V99|COLLE_V100|COLLE_V101)_END -->\s*/g, '');
 
-  // 2. Coupe directement le bloc "if (estCartes) {" qui recoloriait les mots en bleu et réaffichait les petits chiffres !
+  // 2. Coupe-circuit de "if (estCartes) {" pour empêcher le code natif de remettre le bleu ou les chiffres
   c = c.replace(
     /if\s*\(\s*estCartes\s*\)\s*\{(?!\s*if\s*\(\s*window\.__wbwBypassOrigCartes\s*\))/g,
     'if (estCartes) { if (window.__wbwBypassOrigCartes) continue;'
   );
 
-  // 3. Suppression de "(96 ➔ 110)" et support des versets à 1 mot
+  // 3. Correctif P1 de l'audit : appel direct de __appliquerRubanColleWBW à la fin de etapeSuiviAudioAfterEffects
+  if (c.indexOf('if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW(performance.now());') === -1) {
+    c = c.replace(
+      /requestAnimationFrame\(etapeSuiviAudioAfterEffects\);/g,
+      'if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW(performance.now()); requestAnimationFrame(etapeSuiviAudioAfterEffects);'
+    );
+  }
+
+  // 4. Correctif A3 de l'audit : ignore l'audio d'un mot isolé (#wbwSingleWordAudio) dans le hook global play()
+  if (c.indexOf('if (this.id && this.id !== "ayahAudio") return origPlay.apply(this, arguments);') === -1) {
+    c = c.replace(
+      /HTMLMediaElement\.prototype\.play\s*=\s*function\s*\(\)\s*\{/,
+      'HTMLMediaElement.prototype.play = function () { if (this.id && this.id !== "ayahAudio") return origPlay.apply(this, arguments);'
+    );
+  }
+
+  // 5. Correctif A2 de l'audit : libère requetesEnCours[cleChap] en cas d'erreur réseau sur les timestamps
+  c = c.replace(
+    /\.catch\(\s*function\s*\(\)\s*\{\s*\}\s*\)/g,
+    '.catch(function() { if (typeof requetesEnCours !== "undefined" && typeof cleChap !== "undefined") delete requetesEnCours[cleChap]; })'
+  );
+
+  // 6. Suppression de "(96 ➔ 110)" et support des versets à 1 mot
   c = c.replace(/\s*\(96\s*[^)]{0,10}\s*110\)/g, '');
   c = c.replace(/if\s*\(\s*cartes\.length\s*>=\s*2\s*\)\s*return\s*\{\s*type:\s*"cartes"/g, 'if (cartes.length >= 1) return { type: "cartes"');
   c = c.replace(/if\s*\(\s*cartes\.length\s*<\s*2\s*\)/g, 'if (cartes.length < 1)');
@@ -879,11 +967,6 @@ function patcherContenu(c) {
     c = c.replace(
       /var\s+cartes\s*=\s*obtenirCartesMotAMotVisibles\(\);/,
       'window.__obtenirCartesWBW = obtenirCartesMotAMotVisibles; window.__obtenirCleVersetWBW = typeof obtenirCleVerset === "function" ? obtenirCleVerset : null; window.__rafraichirDomMotAMotOrig = typeof appliquerVraiMotAMotSurDOM === "function" ? appliquerVraiMotAMotSurDOM : null; var cartes = obtenirCartesMotAMotVisibles();'
-    );
-  } else if (c.indexOf('window.__obtenirCleVersetWBW') === -1) {
-    c = c.replace(
-      'window.__obtenirCartesWBW = obtenirCartesMotAMotVisibles;',
-      'window.__obtenirCartesWBW = obtenirCartesMotAMotVisibles; window.__obtenirCleVersetWBW = typeof obtenirCleVerset === "function" ? obtenirCleVerset : null; window.__rafraichirDomMotAMotOrig = typeof appliquerVraiMotAMotSurDOM === "function" ? appliquerVraiMotAMotSurDOM : null;'
     );
   }
 
@@ -920,24 +1003,52 @@ function patcherContenu(c) {
   if (c.indexOf('window.__wbwResetDemande = true;') === -1) {
     c = c.replace(
       'function reinitialiserMotsEnBlancTamise() {',
-      'function reinitialiserMotsEnBlancTamise() { window.__wbwResetDemande = true; window.__wbwEnergies = []; window.__wbwBleus = []; window.__wbwActiveFloat = -1; window.__wbwIdxEntier = -1;'
+      'function reinitialiserMotsEnBlancTamise() { window.__wbwResetDemande = true; window.__wbwEnergies = []; window.__wbwBleus = []; window.__wbwActiveFloat = -1; window.__wbwIdxEntier = -1; if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW();'
     );
   }
 
   return c;
 }
 
+// Correctifs S1, S2, S3, S5 et I1 de l'audit sur site/_worker.js
+function patcherWorker(w) {
+  if (w.indexOf('function escapeHtmlText(value)') === -1) {
+    w = 'function escapeHtmlText(value) { return String(value ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\\"":"&quot;"}[c])); }\n' + w;
+  }
+  // Correctif S1 : échappement des fragments traduits
+  w = w.replace(
+    'parts[idx] = lead + splitTr[j].trim() + trail;',
+    'parts[idx] = lead + escapeHtmlText(splitTr[j].trim()) + trail;'
+  );
+  w = w.replace(
+    'parts[idx] = lead + r.text + trail;',
+    'parts[idx] = lead + escapeHtmlText(r.text) + trail;'
+  );
+
+  // Correctif I1 : protège tous les blocs <script> pendant les remplacements globaux out.split(kFr).join(vTr) (fix accueil indonésien Al-Qur'an)
+  if (w.indexOf('__SAVED_SCRIPTS_V101__') === -1) {
+    w = w.replace(
+      /for\s*\(\s*const\s*\[kFr,\s*vTr\]\s*of\s*Object\.entries\(dico\)\s*\)\s*\{\s*out\s*=\s*out\.split\(kFr\)\.join\(vTr\);\s*\}/,
+      'const __SAVED_SCRIPTS_V101__ = []; out = out.replace(/<script\\b[^>]*>[\\s\\S]*?<\\/script>/gi, m => { __SAVED_SCRIPTS_V101__.push(m); return "<!--__SCR_V101_" + (__SAVED_SCRIPTS_V101__.length - 1) + "__-->"; }); for (const [kFr, vTr] of Object.entries(dico)) { out = out.split(kFr).join(vTr); } out = out.replace(/<!--__SCR_V101_(\\d+)__-->/g, (_, idx) => __SAVED_SCRIPTS_V101__[Number(idx)]);'
+    );
+  }
+
+  // Correctif S2 : vérifie responseStatus === 200 et refuse les messages de quota MyMemory
+  w = w.replace(
+    /if\s*\(\s*responseData\s*&&\s*responseData\.translatedText\s*\)/g,
+    'if (Number(data?.responseStatus ?? 200) === 200 && responseData && responseData.translatedText && !/MYMEMORY WARNING|QUERY LENGTH LIMIT|FREE TRANSLATIONS/i.test(responseData.translatedText))'
+  );
+
+  return w;
+}
+
 const fichiers = fs.readdirSync(dossierSite).filter(f => f.endsWith('.html'));
 let nb = 0;
-let bypassOk = 0;
 
 for (const f of fichiers) {
   const p = path.join(dossierSite, f);
   let c = patcherContenu(fs.readFileSync(p, 'utf8'));
-  if (c.indexOf('if (estCartes) { if (window.__wbwBypassOrigCartes) continue;') !== -1) {
-    bypassOk++;
-  }
-  c = c.replace('</body>', function() { return blocHtmlV100 + '\n</body>'; });
+  c = c.replace('</body>', function() { return blocHtmlV101 + '\n</body>'; });
   fs.writeFileSync(p, c, 'utf8');
   nb++;
 }
@@ -947,10 +1058,18 @@ for (const racineF of ['index.html', 'generateur.js']) {
   if (fs.existsSync(pRacine)) {
     let cr = patcherContenu(fs.readFileSync(pRacine, 'utf8'));
     if (racineF.endsWith('.html') && cr.indexOf('</body>') !== -1) {
-      cr = cr.replace('</body>', function() { return blocHtmlV100 + '\n</body>'; });
+      cr = cr.replace('</body>', function() { return blocHtmlV101 + '\n</body>'; });
     }
     fs.writeFileSync(pRacine, cr, 'utf8');
   }
 }
 
-console.log('✅ V100 appliquée sur ' + nb + ' pages (' + bypassOk + ' pages avec coupe-circuit estCartes : Mots lus en BLANC pur + 0 chiffre + Yasser Al-Dosari + Tajwid & Suivi par défaut) !');
+for (const cheminW of [path.join(dossierSite, '_worker.js'), path.join(__dirname, '_worker.js')]) {
+  if (fs.existsSync(cheminW)) {
+    let cw = patcherWorker(fs.readFileSync(cheminW, 'utf8'));
+    fs.writeFileSync(cheminW, cw, 'utf8');
+    console.log('✅ Worker sécurisé (S1, S2, I1 indonésien) : ' + cheminW);
+  }
+}
+
+console.log('✅ V101 (Audit Complet + Suppression radicale des petits chiffres) appliquée sur ' + nb + ' pages !');

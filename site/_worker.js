@@ -1,3 +1,4 @@
+function escapeHtmlText(value) { return String(value ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c])); }
 const QURAN_API_IDS = { en: 20, es: 83, de: 27, it: 153, id: 33, ru: 45, ar: 16 };
 
 const BROWSER_HEADERS = {
@@ -389,7 +390,7 @@ async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
         const rawOrig = parts[idx];
         const lead = (rawOrig.match(/^\s*/) || [""])[0];
         const trail = (rawOrig.match(/\s*$/) || [""])[0];
-        parts[idx] = lead + splitTr[j].trim() + trail;
+        parts[idx] = lead + escapeHtmlText(splitTr[j].trim()) + trail;
       }
       return { ok: true, html: parts.join(""), diag: "batch-" + batchRes.provider };
     }
@@ -405,7 +406,7 @@ async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
     const trail = (rawOrig.match(/\s*$/) || [""])[0];
     const r = await traduireTexteServeur(segs[j], lang);
     if (r.ok && r.text) {
-      parts[idx] = lead + r.text + trail;
+      parts[idx] = lead + escapeHtmlText(r.text) + trail;
       okCount++;
       lastProv = r.provider;
     }
