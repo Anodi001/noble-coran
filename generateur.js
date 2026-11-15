@@ -2449,14 +2449,6 @@ async function lancerGeneration() {
 
 
 
-<link rel="preconnect" href="[https://api.quran.com](https://api.quran.com)" crossorigin>
-<link rel="preconnect" href="[https://api.qurancdn.com](https://api.qurancdn.com)" crossorigin>
-<link rel="preconnect" href="[https://everyayah.com](https://everyayah.com)" crossorigin>
-
-<link rel="preconnect" href="[https://api.quran.com](https://api.quran.com)" crossorigin>
-<link rel="preconnect" href="[https://api.qurancdn.com](https://api.qurancdn.com)" crossorigin>
-<link rel="preconnect" href="[https://everyayah.com](https://everyayah.com)" crossorigin>
-
 <meta name="yandex-verification" content="9ed8551291c4ae1e">
 <link rel="preconnect" href="https://api.quran.com" crossorigin>
 <link rel="preconnect" href="https://api.qurancdn.com" crossorigin>
@@ -4792,10 +4784,10 @@ html body #btnLangRuV77.active-ext-v77 {
 
   function obtenirCartesMotAMotVisibles() {
     var cartes = [];
-    var c1 = document.querySelectorAll(".wbw-card, .wbw-word, .wbw-item");
+    var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v110, .wbw-card, .wbw-word, .wbw-item");
     for (var i = 0; i < c1.length; i++) {
       var r1 = c1[i].getBoundingClientRect();
-      if (r1.width > 25 && r1.height > 25) {
+      if (r1.width > 4 && r1.height > 4) {
         c1[i].classList.add("wbw-card-unit");
         cartes.push(c1[i]);
       }
@@ -4812,7 +4804,7 @@ html body #btnLangRuV77.active-ext-v77 {
         !el.querySelector("button")
       ) {
         var r = el.getBoundingClientRect();
-        if (r.width >= 48 && r.width <= 280 && r.height >= 48 && r.height <= 220) {
+        if (r.width >= 10 && r.width <= 320 && r.height >= 18 && r.height <= 240) {
           var txt0 = (el.children[0].textContent || "").trim();
           if (/[\\u0600-\\u06FF]/.test(txt0) && txt0.length < 40) candidats.push(el);
         }
@@ -5052,9 +5044,7 @@ html body #btnLangRuV77.active-ext-v77 {
           }
         }
       })
-      .catch(function () {});
-  }
-
+      .catch(function () {}).finally(function () { delete requetesEnCours[cleChap]; }); }
   function obtenirElementsMotsAAnimer() {
     var cartes = obtenirCartesMotAMotVisibles();
     if (cartes.length >= 1) return { type: "cartes", items: cartes };
@@ -5126,8 +5116,7 @@ html body #btnLangRuV77.active-ext-v77 {
 
   if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV77) {
     var origPlay = HTMLMediaElement.prototype.play;
-    HTMLMediaElement.prototype.play = function () {
-      var self = this;
+    HTMLMediaElement.prototype.play = function () { if (this.id && this.id !== "ayahAudio") return origPlay.apply(this, arguments); var self = this;
       window.__lecteurAudioActuel = self;
       if (self.currentTime < 0.25) {
         reinitialiserMotsEnBlancTamise();
@@ -5877,7 +5866,7 @@ html body #btnLangRuV77.active-ext-v77 {
       const S = window.SOURATE_DATA;
       const vData = (S && S.versets) ? S.versets[numVersetActuel - 1] : null;
       const phrase = vData ? (langCible === 'en' ? (vData.tradEn || '') : (langCible === 'es' ? (vData.tradEs || '') : (vData.tradPropre || ''))) : '';
-      if ((langCible === 'fr' || langCible === 'es') && phrase && mots.length > 0) {
+      if (false && (langCible === 'fr' || langCible === 'es') && phrase && mots.length > 0) {
         const txt = document.createElement('textarea');
         txt.innerHTML = phrase;
         const propre = retirerNumeroVersetDebut(txt.value);
@@ -6526,14 +6515,6 @@ html body #btnLangRuV77.active-ext-v77 {
 
 
 
-
-<link rel="preconnect" href="[https://api.quran.com](https://api.quran.com)" crossorigin>
-<link rel="preconnect" href="[https://api.qurancdn.com](https://api.qurancdn.com)" crossorigin>
-<link rel="preconnect" href="[https://everyayah.com](https://everyayah.com)" crossorigin>
-
-<link rel="preconnect" href="[https://api.quran.com](https://api.quran.com)" crossorigin>
-<link rel="preconnect" href="[https://api.qurancdn.com](https://api.qurancdn.com)" crossorigin>
-<link rel="preconnect" href="[https://everyayah.com](https://everyayah.com)" crossorigin>
 
 <meta name="yandex-verification" content="9ed8551291c4ae1e">
 <link rel="preconnect" href="https://api.quran.com" crossorigin>
@@ -8870,10 +8851,10 @@ html body #btnLangRuV77.active-ext-v77 {
 
   function obtenirCartesMotAMotVisibles() {
     var cartes = [];
-    var c1 = document.querySelectorAll(".wbw-card, .wbw-word, .wbw-item");
+    var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v110, .wbw-card, .wbw-word, .wbw-item");
     for (var i = 0; i < c1.length; i++) {
       var r1 = c1[i].getBoundingClientRect();
-      if (r1.width > 25 && r1.height > 25) {
+      if (r1.width > 4 && r1.height > 4) {
         c1[i].classList.add("wbw-card-unit");
         cartes.push(c1[i]);
       }
@@ -8890,7 +8871,7 @@ html body #btnLangRuV77.active-ext-v77 {
         !el.querySelector("button")
       ) {
         var r = el.getBoundingClientRect();
-        if (r.width >= 48 && r.width <= 280 && r.height >= 48 && r.height <= 220) {
+        if (r.width >= 10 && r.width <= 320 && r.height >= 18 && r.height <= 240) {
           var txt0 = (el.children[0].textContent || "").trim();
           if (/[\\u0600-\\u06FF]/.test(txt0) && txt0.length < 40) candidats.push(el);
         }
@@ -9130,9 +9111,7 @@ html body #btnLangRuV77.active-ext-v77 {
           }
         }
       })
-      .catch(function () {});
-  }
-
+      .catch(function () {}).finally(function () { delete requetesEnCours[cleChap]; }); }
   function obtenirElementsMotsAAnimer() {
     var cartes = obtenirCartesMotAMotVisibles();
     if (cartes.length >= 1) return { type: "cartes", items: cartes };
@@ -9204,8 +9183,7 @@ html body #btnLangRuV77.active-ext-v77 {
 
   if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV77) {
     var origPlay = HTMLMediaElement.prototype.play;
-    HTMLMediaElement.prototype.play = function () {
-      var self = this;
+    HTMLMediaElement.prototype.play = function () { if (this.id && this.id !== "ayahAudio") return origPlay.apply(this, arguments); var self = this;
       window.__lecteurAudioActuel = self;
       if (self.currentTime < 0.25) {
         reinitialiserMotsEnBlancTamise();
@@ -9532,7 +9510,7 @@ html body #btnLangRuV77.active-ext-v77 {
     <div class="app-modal-card" id="legalModalCard" style="text-align:center;">
       <h3 id="legalModalTitleEl">⚖️ Mentions légales</h3>
       <p id="legalModalDescEl">Portail éducatif, linguistique et culturel gratuit (sans publicité commerciale) édité par l'Association Loi 1901 à but non lucratif :</p>
-      <p style="color:#7dd3fc; font-weight:800; font-size:0.98rem;">« Institut Numérique Coran, Langues &amp; Tafsīr »</p>
+      <p style="color:#7dd3fc; font-weight:800; font-size:0.98rem;">« Institut Muhasiba »</p>
       <button type="button" class="app-modal-close" id="legalModalCloseEl" onclick="document.getElementById('legalModal').classList.remove('open')">Fermer</button>
     </div>
   </div>

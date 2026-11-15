@@ -2361,10 +2361,10 @@ function codeClientV77() {
 
   function obtenirCartesMotAMotVisibles() {
     var cartes = [];
-    var c1 = document.querySelectorAll(".wbw-card, .wbw-word, .wbw-item");
+    var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v110, .wbw-card, .wbw-word, .wbw-item");
     for (var i = 0; i < c1.length; i++) {
       var r1 = c1[i].getBoundingClientRect();
-      if (r1.width > 25 && r1.height > 25) {
+      if (r1.width > 4 && r1.height > 4) {
         c1[i].classList.add("wbw-card-unit");
         cartes.push(c1[i]);
       }
@@ -2376,12 +2376,12 @@ function codeClientV77() {
     for (var d = 0; d < tousDivs.length; d++) {
       var el = tousDivs[d];
       if (
-        el.children && el.children.length >= 2 && el.children.length <= 3 &&
+        el.children && el.children.length >= 1 && el.children.length <= 3 &&
         el.children[0].tagName === "DIV" && el.children[el.children.length - 1].tagName === "DIV" &&
         !el.querySelector("button")
       ) {
         var r = el.getBoundingClientRect();
-        if (r.width >= 48 && r.width <= 280 && r.height >= 48 && r.height <= 220) {
+        if (r.width >= 10 && r.width <= 320 && r.height >= 18 && r.height <= 240) {
           var txt0 = (el.children[0].textContent || "").trim();
           if (/[\u0600-\u06FF]/.test(txt0) && txt0.length < 40) candidats.push(el);
         }
@@ -2423,7 +2423,7 @@ function codeClientV77() {
     for (var i = 0; i < cartes.length; i++) {
       var c = cartes[i];
       c.setAttribute("data-word-num", String(i + 1));
-      if (!c.children || c.children.length < 2) continue;
+      if (!c.children || c.children.length < 1) continue;
       var elAr = c.children[0];
       var elTr = c.children[c.children.length - 1];
       elAr.classList.remove("wbw-card-unit");
@@ -2621,9 +2621,7 @@ function codeClientV77() {
           }
         }
       })
-      .catch(function () {});
-  }
-
+      .catch(function () {}).finally(function () { delete requetesEnCours[cleChap]; }); }
   function obtenirElementsMotsAAnimer() {
     var cartes = obtenirCartesMotAMotVisibles();
     if (cartes.length >= 2) return { type: "cartes", items: cartes };
@@ -2675,7 +2673,7 @@ function codeClientV77() {
       var el = items[i];
       el.style.setProperty("transform", "translate3d(0, 0px, 0) scale(1)", "important");
       el.style.setProperty("filter", "none", "important");
-      if (estCartes) {
+      if (estCartes) { if (window.__wbwBypassOrigCartes) continue;
         el.style.setProperty("opacity", "0.82", "important");
         el.style.setProperty("border-color", "rgba(255, 255, 255, 0.15)", "important");
         el.style.setProperty("box-shadow", "none", "important");
@@ -2695,8 +2693,7 @@ function codeClientV77() {
 
   if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV77) {
     var origPlay = HTMLMediaElement.prototype.play;
-    HTMLMediaElement.prototype.play = function () {
-      var self = this;
+    HTMLMediaElement.prototype.play = function () { if (this.id && this.id !== "ayahAudio") return origPlay.apply(this, arguments); var self = this;
       window.__lecteurAudioActuel = self;
       if (self.currentTime < 0.25) {
         reinitialiserMotsEnBlancTamise();
@@ -2807,7 +2804,7 @@ function codeClientV77() {
         var yPx = (-7.5 * e).toFixed(2);
         var sc = (1.0 + 0.12 * e).toFixed(3);
 
-        if (estCartes) {
+        if (estCartes) { if (window.__wbwBypassOrigCartes) continue;
           var opCarte = (0.82 + 0.18 * b).toFixed(2);
           el.style.setProperty("opacity", opCarte, "important");
           el.style.setProperty("transform", "translate3d(0, " + yPx + "px, 0) scale(" + (1.0 + 0.08 * e).toFixed(3) + ")", "important");

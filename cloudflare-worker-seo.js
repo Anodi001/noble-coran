@@ -1,4 +1,28 @@
+function escapeHtmlText(value) {
+  return String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
+  }[c]));
+}
+
 const QURAN_API_IDS = { en: 20, es: 83, de: 27, it: 153, id: 33, ru: 45, ar: 16 };
+
+// Nombre exact de versets par sourate (1 à 114) pour bloquer les fausses pages (Audit I3)
+const NB_VERSETS_PAR_SOURATE = [
+  0,
+  7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,135,
+  112,78,118,64,77,227,93,88,69,60,34,30,73,54,45,83,182,88,75,85,
+  54,53,89,59,37,35,38,29,18,45,60,49,62,55,78,96,29,22,24,13,
+  14,11,11,18,12,12,30,52,52,44,28,28,20,56,40,31,50,40,46,42,
+  29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,
+  11,8,3,9,5,4,7,3,6,3,5,4,5,6
+];
+
+function verifierVersetValide(pathname) {
+  const m = (pathname || "").trim().match(/^\/?sourate-(\d+)-verset-(\d+)(?:\.html)?\/?$/i);
+  if (!m) return null;
+  const s = Number(m[1]), v = Number(m[2]);
+  return Number.isInteger(s) && s >= 1 && s <= 114 && Number.isInteger(v) && v >= 1 && v <= NB_VERSETS_PAR_SOURATE[s];
+}
 
 const BROWSER_HEADERS = {
   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
@@ -285,27 +309,23 @@ async function obtenirVersetOfficiel(sNum, vNum, lang) {
   if (!sNum || !vNum || !QURAN_API_IDS[lang]) return { ok: false, text: null };
   const url = "https://api.quran.com/api/v4/quran/translations/" + QURAN_API_IDS[lang] + "?verse_key=" + sNum + ":" + vNum;
   try {
-    const r = await fetch(url, { headers: BROWSER_HEADERS, cf: { cacheTtl: 2592000, cacheEverything: true } });
+    const r = await fetch(url, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(3000), cf: { cacheTtl: 2592000, cacheEverything: true } });
     if (!r.ok) return { ok: false, text: null };
     const d = await r.json();
     if (d && d.translations && d.translations[0] && d.translations[0].text) {
       const clean = nettoyerVersetApi(d.translations[0].text);
       return { ok: Boolean(clean), text: clean || null };
     }
-  } catch (e) {
-    console.error("[Worker SSR] Erreur API Quran:", e && e.message);
-  }
+  } catch (e) {}
   return { ok: false, text: null };
 }
 
-// Traduction serveur avec User-Agent navigateur + 3 moteurs de secours et journalisation Cloudflare
 async function traduireTexteServeur(texte, lang) {
   if (!texte || lang === "fr") return { ok: true, text: texte, provider: "fr" };
 
-  // Moteur 1 : Google GTX avec User-Agent navigateur
   try {
     const url1 = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=fr&tl=" + lang + "&dt=t&q=" + encodeURIComponent(texte);
-    const r1 = await fetch(url1, { headers: BROWSER_HEADERS, cf: { cacheTtl: 2592000, cacheEverything: true } });
+    const r1 = await fetch(url1, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(3000), cf: { cacheTtl: 2592000, cacheEverything: true } });
     if (r1.ok) {
       const d1 = await r1.json();
       if (d1 && Array.isArray(d1[0])) {
@@ -315,17 +335,12 @@ async function traduireTexteServeur(texte, lang) {
         }
         if (out.trim()) return { ok: true, text: out.trim(), provider: "gtx" };
       }
-    } else {
-      console.error("[Worker SSR] GTX HTTP status:", r1.status);
     }
-  } catch (e1) {
-    console.error("[Worker SSR] Exception GTX:", e1 && e1.message);
-  }
+  } catch (e1) {}
 
-  // Moteur 2 : Google Dict-Chrome-Ex (endpoint alternatif non limité sur IP Cloudflare)
   try {
     const url2 = "https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl=fr&tl=" + lang + "&q=" + encodeURIComponent(texte);
-    const r2 = await fetch(url2, { headers: BROWSER_HEADERS, cf: { cacheTtl: 2592000, cacheEverything: true } });
+    const r2 = await fetch(url2, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(3000), cf: { cacheTtl: 2592000, cacheEverything: true } });
     if (r2.ok) {
       const d2 = await r2.json();
       let out2 = "";
@@ -336,31 +351,30 @@ async function traduireTexteServeur(texte, lang) {
         out2 = d2.sentences.map(s => s.trans || "").join("");
       }
       if (out2.trim()) return { ok: true, text: out2.trim(), provider: "clients5" };
-    } else {
-      console.error("[Worker SSR] Clients5 HTTP status:", r2.status);
     }
-  } catch (e2) {
-    console.error("[Worker SSR] Exception Clients5:", e2 && e2.message);
-  }
+  } catch (e2) {}
 
-  // Moteur 3 : MyMemory API (secours supplémentaire)
-  try {
-    const url3 = "https://api.mymemory.translated.net/get?q=" + encodeURIComponent(texte.slice(0, 490)) + "&langpair=fr|" + lang;
-    const r3 = await fetch(url3, { headers: BROWSER_HEADERS });
-    if (r3.ok) {
-      const d3 = await r3.json();
-      if (d3 && d3.responseData && d3.responseData.translatedText) {
-        return { ok: true, text: d3.responseData.translatedText.trim(), provider: "mymemory" };
+  // Moteur 3 sécurisé (Audit S2 : pas de troncature silencieuse ni de faux positif 200)
+  if (texte.length <= 490) {
+    try {
+      const endpoint = new URL("https://api.mymemory.translated.net/get");
+      endpoint.searchParams.set("q", texte);
+      endpoint.searchParams.set("langpair", "fr|" + lang);
+      const r3 = await fetch(endpoint, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(3000), redirect: "error" });
+      if (r3.ok) {
+        const d3 = await r3.json();
+        const text = d3?.responseData?.translatedText;
+        const errorText = /MYMEMORY WARNING|QUERY LENGTH LIMIT|FREE TRANSLATIONS|PLEASE SELECT/i;
+        if (Number(d3?.responseStatus) === 200 && typeof text === "string" && text.trim() && !errorText.test(text)) {
+          return { ok: true, text: text.trim(), provider: "mymemory" };
+        }
       }
-    }
-  } catch (e3) {
-    console.error("[Worker SSR] Exception MyMemory:", e3 && e3.message);
+    } catch (e3) {}
   }
 
   return { ok: false, text: texte, provider: "failed" };
 }
 
-// Regroupe tous les segments de #mainExplanationEl en UNE SEULE requête HTTP (évite le blocage 429 des boucles)
 async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
   if (!innerHtml || lang === "fr") return { ok: true, html: innerHtml, diag: "fr" };
   const parts = innerHtml.split(/(<[^>]+>)/g);
@@ -378,7 +392,6 @@ async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
 
   if (segs.length === 0) return { ok: false, html: innerHtml, diag: "empty-segs" };
 
-  // Appel groupé unique avec séparateur neutre de paragraphe
   const joined = segs.join("\n\n");
   const batchRes = await traduireTexteServeur(joined, lang);
   if (batchRes.ok && batchRes.text) {
@@ -389,13 +402,12 @@ async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
         const rawOrig = parts[idx];
         const lead = (rawOrig.match(/^\s*/) || [""])[0];
         const trail = (rawOrig.match(/\s*$/) || [""])[0];
-        parts[idx] = lead + splitTr[j].trim() + trail;
+        parts[idx] = lead + escapeHtmlText(splitTr[j].trim()) + trail;
       }
       return { ok: true, html: parts.join(""), diag: "batch-" + batchRes.provider };
     }
   }
 
-  // Repli segment par segment si le découpage de lignes diffère
   let okCount = 0;
   let lastProv = batchRes.provider || "err";
   for (let j = 0; j < idxs.length; j++) {
@@ -405,7 +417,7 @@ async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
     const trail = (rawOrig.match(/\s*$/) || [""])[0];
     const r = await traduireTexteServeur(segs[j], lang);
     if (r.ok && r.text) {
-      parts[idx] = lead + r.text + trail;
+      parts[idx] = lead + escapeHtmlText(r.text) + trail;
       okCount++;
       lastProv = r.provider;
     }
@@ -420,36 +432,28 @@ async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
 
 async function obtenirTafsirDepuisCachesDurablesOuTraduire(innerHtml, sNum, vNum, lang, env, ctx) {
   const vk = sNum + ":" + vNum;
-
-  // 1. Vérifier le fichier statique durable /tafsir-cache.json (0 ms, aucune dépendance réseau)
   try {
     if (!MEM_STATIC_TAFSIR_CACHE && env && env.ASSETS && typeof env.ASSETS.fetch === "function") {
       const rStatic = await env.ASSETS.fetch(new Request("https://corantafsir.com/tafsir-cache.json"));
-      if (rStatic.ok) {
-        MEM_STATIC_TAFSIR_CACHE = await rStatic.json();
-      }
+      if (rStatic.ok) MEM_STATIC_TAFSIR_CACHE = await rStatic.json();
     }
     if (MEM_STATIC_TAFSIR_CACHE && MEM_STATIC_TAFSIR_CACHE[vk] && MEM_STATIC_TAFSIR_CACHE[vk][lang]) {
       return { ok: true, html: MEM_STATIC_TAFSIR_CACHE[vk][lang], diag: "static-cache" };
     }
   } catch (e) {}
 
-  // 2. Vérifier le Cache Edge Cloudflare durable par verset (valable 1 an)
   const cache = typeof caches !== "undefined" && caches.default ? caches.default : null;
-  const edgeCacheReq = new Request("https://corantafsir.com/_tafsir_edge_v82/" + sNum + "-" + vNum + "-" + lang);
+  const edgeCacheReq = new Request("https://corantafsir.com/_tafsir_edge_v110/" + sNum + "-" + vNum + "-" + lang);
   if (cache) {
     try {
       const cachedTaf = await cache.match(edgeCacheReq);
       if (cachedTaf) {
         const txt = await cachedTaf.text();
-        if (txt && txt.length > 10) {
-          return { ok: true, html: txt, diag: "edge-cache" };
-        }
+        if (txt && txt.length > 10) return { ok: true, html: txt, diag: "edge-cache" };
       }
     } catch (e) {}
   }
 
-  // 3. Traduire et sauvegarder durablement dans le Cache Edge Cloudflare (1 an)
   const liveRes = await traduireHtmlEnPreservantBalises(innerHtml, lang);
   if (liveRes.ok && liveRes.html && cache) {
     try {
@@ -476,6 +480,15 @@ function construireBlocHreflangHarmonise(urlBaseFr) {
   return lignes.join("\n");
 }
 
+// Applique une transformation uniquement en dehors des blocs <script> et <style> (Corrige Audit I1 : 0 SyntaxError JS en Indonésien)
+function remplacerHorsScriptsEtStyles(html, fnRemplacement) {
+  const blocs = html.split(/(<script\b[^>]*>[\s\S]*?<\/script>|<style\b[^>]*>[\s\S]*?<\/style>)/gi);
+  for (let i = 0; i < blocs.length; i += 2) {
+    blocs[i] = fnRemplacement(blocs[i]);
+  }
+  return blocs.join("");
+}
+
 export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname, env, ctx) {
   const cleanPath = (pathname || "/").trim();
   const mVerse = cleanPath.match(/^\/?sourate-(\d+)-verset-(\d+)(?:\.html)?\/?$/i);
@@ -498,8 +511,11 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname, 
   out = out.replace(/(<link rel="canonical" href="[^"]*">)/i, "$1\n" + construireBlocHreflangHarmonise(urlBaseFr));
 
   if (!lang || lang === "fr") {
-    out = out.replace(/href="\/?sourate-(\d+)-verset-(\d+)(?:\.html)?"/gi, 'href="/sourate-$1-verset-$2"');
-    out = out.replace(/href="\/?index(?:\.html)?"/gi, 'href="/"');
+    out = remplacerHorsScriptsEtStyles(out, segment =>
+      segment
+        .replace(/href="\/?sourate-(\d+)-verset-(\d+)(?:\.html)?"/gi, 'href="/sourate-$1-verset-$2"')
+        .replace(/href="\/?index(?:\.html)?"/gi, 'href="/"')
+    );
     return { html: out, complete: Boolean(isHome || mVerse), diag: "fr" };
   }
 
@@ -526,21 +542,35 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname, 
       id: "Baca dan dengarkan Al-Qur'an Mulia (6.236 ayat, Terjemahan Kemenag RI) dengan pelacakan audio kata demi kata, Tajwid, perencana Khatam, dan Tafsir Al-Mukhtasar.",
       ru: "Читайте и слушайте Священный Коран (6 236 аятов, перевод Эльмира Кулиева) с пословным аудио-слежением, Таджвидом, планом чтения и Тафсиром аль-Мухтасар."
     };
-    if (titles[lang]) out = out.replace(/<title>[\s\S]*?<\/title>/i, () => "<title>" + titles[lang] + "</title>");
-    if (descriptions[lang]) out = out.replace(/<meta name="description" content="[^"]*">/i, () => '<meta name="description" content="' + descriptions[lang] + '">');
+    if (titles[lang]) out = out.replace(/<title>[\s\S]*?<\/title>/i, () => "<title>" + escapeHtmlText(titles[lang]) + "</title>");
+    if (descriptions[lang]) {
+      if (/<meta name="description" content="[^"]*">/i.test(out)) {
+        out = out.replace(/<meta name="description" content="[^"]*">/i, () => '<meta name="description" content="' + escapeHtmlText(descriptions[lang]) + '">');
+      } else {
+        out = out.replace(/<\/title>/i, '</title>\n  <meta name="description" content="' + escapeHtmlText(descriptions[lang]) + '">');
+      }
+    }
   }
 
+  // Remplacement UI strictement HORS des balises <script> et <style> (Fix Audit I1)
   const mapUi = UI_TEXTES[lang] || {};
-  for (const [kFr, vTr] of Object.entries(mapUi)) {
-    out = out.split(kFr).join(vTr);
-  }
-  if (ATTRIBUTIONS_BAS[lang]) out = out.split(ATTRIBUTIONS_BAS.fr).join(ATTRIBUTIONS_BAS[lang]);
-  if (ATTRIBUTIONS_HAUT[lang]) out = out.split(ATTRIBUTIONS_HAUT.fr).join(ATTRIBUTIONS_HAUT[lang]);
+  out = remplacerHorsScriptsEtStyles(out, segment => {
+    let s = segment;
+    for (const [kFr, vTr] of Object.entries(mapUi)) {
+      s = s.split(kFr).join(vTr);
+    }
+    if (ATTRIBUTIONS_BAS[lang]) s = s.split(ATTRIBUTIONS_BAS.fr).join(ATTRIBUTIONS_BAS[lang]);
+    if (ATTRIBUTIONS_HAUT[lang]) s = s.split(ATTRIBUTIONS_HAUT.fr).join(ATTRIBUTIONS_HAUT[lang]);
+    return s;
+  });
 
   if (isHome) {
     if (INTRO_HOME[lang]) {
-      out = out.replace(/Révélée au début de la révélation[^<]+/i, () => INTRO_HOME[lang].mecq);
-      out = out.replace(/Révélée après l['’]Hégire[^<]+/i, () => INTRO_HOME[lang].med);
+      out = remplacerHorsScriptsEtStyles(out, segment =>
+        segment
+          .replace(/Révélée au début de la révélation[^<]+/i, () => INTRO_HOME[lang].mecq)
+          .replace(/Révélée après l['’]Hégire[^<]+/i, () => INTRO_HOME[lang].med)
+      );
       const mecqOk = out.includes(INTRO_HOME[lang].mecq);
       const medOk = out.includes(INTRO_HOME[lang].med);
       if (!mecqOk || !medOk) traductionComplete = false;
@@ -558,7 +588,7 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname, 
     if (QURAN_API_IDS[lang] && regVersetFr.test(out)) {
       const versetRes = await obtenirVersetOfficiel(sNum, vNum, lang);
       if (versetRes.ok && versetRes.text) {
-        out = out.replace(regVersetFr, (_, p1, p2, _p3, p4) => p1 + p2 + versetRes.text + p4);
+        out = out.replace(regVersetFr, (_, p1, p2, _p3, p4) => p1 + p2 + escapeHtmlText(versetRes.text) + p4);
         versetTraiteOk = true;
       }
     }
@@ -584,9 +614,12 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname, 
     traductionComplete = false;
   }
 
-  out = out.replace(/href="\/?sourate-(\d+)-verset-(\d+)(?:\.html)?(?:\?[^"]*)?"/gi, 'href="/sourate-$1-verset-$2?lang=' + lang + '"');
-  out = out.replace(/href="\/?index(?:\.html)?(?:\?[^"]*)?"/gi, 'href="/?lang=' + lang + '"');
-  out = out.replace(/href="\/"/g, 'href="/?lang=' + lang + '"');
+  out = remplacerHorsScriptsEtStyles(out, segment =>
+    segment
+      .replace(/href="\/?sourate-(\d+)-verset-(\d+)(?:\.html)?(?:\?[^"]*)?"/gi, 'href="/sourate-$1-verset-$2?lang=' + lang + '"')
+      .replace(/href="\/?index(?:\.html)?(?:\?[^"]*)?"/gi, 'href="/?lang=' + lang + '"')
+      .replace(/href="\/"/g, 'href="/?lang=' + lang + '"')
+  );
 
   return { html: out, complete: traductionComplete, diag: diagTafsir };
 }
@@ -603,9 +636,58 @@ async function recupererFichierStatiquePages(request, env) {
   return fetch(request);
 }
 
-export default {
+const SSR_VERSION = "v110";
+function construireCleCache(request, lang) {
+  const key = new URL(request.url);
+  key.pathname = key.pathname.replace(/\.html$/i, "");
+  if (key.pathname === "/index") key.pathname = "/";
+  key.search = "";
+  if (lang !== "fr") key.searchParams.set("lang", lang);
+  key.searchParams.set("_ssr_v", SSR_VERSION);
+  return new Request(key.toString(), { method: "GET" });
+}
+
+const CSP_COMPATIBLE = [
+  "default-src 'self'", "base-uri 'none'", "object-src 'none'",
+  "frame-ancestors 'none'", "form-action 'self'",
+  "script-src 'self' 'unsafe-inline'",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "font-src 'self' https://fonts.gstatic.com", "img-src 'self' data:",
+  "media-src 'self' blob: https://everyayah.com https://audio.qurancdn.com",
+  "connect-src 'self' https://api.quran.com https://api.qurancdn.com https://translate.googleapis.com https://everyayah.com https://audio.qurancdn.com",
+  "worker-src 'self' blob:", "upgrade-insecure-requests"
+].join("; ");
+
+function securiserReponse(response) {
+  const headers = new Headers(response.headers);
+  headers.set("Content-Security-Policy", CSP_COMPATIBLE);
+  headers.set("Strict-Transport-Security", "max-age=31536000");
+  headers.set("X-Frame-Options", "DENY");
+  headers.set("X-Content-Type-Options", "nosniff");
+  headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=(), usb=(), autoplay=(self)");
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers
+  });
+}
+
+const application = {
   async fetch(request, env, ctx) {
+    if (!["GET", "HEAD"].includes(request.method)) {
+      return new Response("Method Not Allowed", { status: 405, headers: { Allow: "GET, HEAD" } });
+    }
+
     const url = new URL(request.url);
+    const validiteVerset = verifierVersetValide(url.pathname);
+    if (validiteVerset === false) {
+      return new Response("<!DOCTYPE html><html lang='fr'><head><meta charset='UTF-8'><meta name='robots' content='noindex'><title>404 - Verset introuvable</title></head><body style='background:#020406;color:#f8fafc;font-family:sans-serif;text-align:center;padding:80px 20px;'><h1>404 — Ce verset n'existe pas</h1><p><a href='/' style='color:#38bdf8;'>Retour aux 114 Sourates</a></p></body></html>", {
+        status: 404,
+        headers: { "content-type": "text/html; charset=utf-8", "x-robots-tag": "noindex" }
+      });
+    }
+
     const langParam = (url.searchParams.get("lang") || "fr").split("-")[0].toLowerCase();
     const supported = ["fr", "en", "es", "ar", "de", "it", "id", "ru"];
     const lang = supported.includes(langParam) ? langParam : "fr";
@@ -615,24 +697,18 @@ export default {
     }
 
     const cache = typeof caches !== "undefined" && caches.default ? caches.default : null;
-    const cacheUrl = new URL(url.toString());
-    cacheUrl.searchParams.set("_ssr_v", "82");
-    const cacheKey = new Request(cacheUrl.toString(), request);
+    const cacheKey = construireCleCache(request, lang);
 
-    if (cache) {
+    if (cache && request.method === "GET") {
       const cachedResp = await cache.match(cacheKey);
       if (cachedResp) return cachedResp;
     }
 
     const response = await recupererFichierStatiquePages(request, env);
-    if (!response.ok) {
-      return response;
-    }
+    if (!response.ok) return response;
 
     const contentType = response.headers.get("content-type") || "";
-    if (!contentType.includes("text/html")) {
-      return response;
-    }
+    if (!contentType.includes("text/html")) return response;
 
     const htmlOrig = await response.text();
     const { html: htmlTraduit, complete: traductionComplete, diag } = await transformerHtmlCompletSSRWithStatus(htmlOrig, lang, url.pathname, env, ctx);
@@ -647,15 +723,21 @@ export default {
       headers.set("cache-control", "no-store, no-cache, must-revalidate");
     }
 
-    const finalResponse = new Response(htmlTraduit, {
+    const finalResponse = new Response(request.method === "HEAD" ? null : htmlTraduit, {
       status: response.status,
       statusText: response.statusText,
       headers
     });
 
-    if (traductionComplete && cache && ctx && ctx.waitUntil) {
+    if (request.method === "GET" && traductionComplete && cache && ctx && ctx.waitUntil) {
       ctx.waitUntil(cache.put(cacheKey, finalResponse.clone()));
     }
     return finalResponse;
+  }
+};
+
+export default {
+  async fetch(request, env, ctx) {
+    return securiserReponse(await application.fetch(request, env, ctx));
   }
 };
