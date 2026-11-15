@@ -6,7 +6,6 @@ function escapeHtmlText(value) {
 
 const QURAN_API_IDS = { en: 20, es: 83, de: 27, it: 153, id: 33, ru: 45, ar: 16 };
 
-// Nombre exact de versets par sourate (1 à 114) pour bloquer les fausses pages (Audit I3)
 const NB_VERSETS_PAR_SOURATE = [
   0,
   7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,135,
@@ -354,7 +353,6 @@ async function traduireTexteServeur(texte, lang) {
     }
   } catch (e2) {}
 
-  // Moteur 3 sécurisé (Audit S2 : pas de troncature silencieuse ni de faux positif 200)
   if (texte.length <= 490) {
     try {
       const endpoint = new URL("https://api.mymemory.translated.net/get");
@@ -443,7 +441,7 @@ async function obtenirTafsirDepuisCachesDurablesOuTraduire(innerHtml, sNum, vNum
   } catch (e) {}
 
   const cache = typeof caches !== "undefined" && caches.default ? caches.default : null;
-  const edgeCacheReq = new Request("https://corantafsir.com/_tafsir_edge_v110/" + sNum + "-" + vNum + "-" + lang);
+  const edgeCacheReq = new Request("https://corantafsir.com/_tafsir_edge_v111/" + sNum + "-" + vNum + "-" + lang);
   if (cache) {
     try {
       const cachedTaf = await cache.match(edgeCacheReq);
@@ -480,7 +478,6 @@ function construireBlocHreflangHarmonise(urlBaseFr) {
   return lignes.join("\n");
 }
 
-// Applique une transformation uniquement en dehors des blocs <script> et <style> (Corrige Audit I1 : 0 SyntaxError JS en Indonésien)
 function remplacerHorsScriptsEtStyles(html, fnRemplacement) {
   const blocs = html.split(/(<script\b[^>]*>[\s\S]*?<\/script>|<style\b[^>]*>[\s\S]*?<\/style>)/gi);
   for (let i = 0; i < blocs.length; i += 2) {
@@ -552,7 +549,6 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname, 
     }
   }
 
-  // Remplacement UI strictement HORS des balises <script> et <style> (Fix Audit I1)
   const mapUi = UI_TEXTES[lang] || {};
   out = remplacerHorsScriptsEtStyles(out, segment => {
     let s = segment;
@@ -636,7 +632,7 @@ async function recupererFichierStatiquePages(request, env) {
   return fetch(request);
 }
 
-const SSR_VERSION = "v110";
+const SSR_VERSION = "v111";
 function construireCleCache(request, lang) {
   const key = new URL(request.url);
   key.pathname = key.pathname.replace(/\.html$/i, "");

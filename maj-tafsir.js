@@ -2361,7 +2361,7 @@ function codeClientV77() {
 
   function obtenirCartesMotAMotVisibles() {
     var cartes = [];
-    var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v110, .wbw-card, .wbw-word, .wbw-item");
+    var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v111, .wbw-card, .wbw-word, .wbw-item");
     for (var i = 0; i < c1.length; i++) {
       var r1 = c1[i].getBoundingClientRect();
       if (r1.width > 4 && r1.height > 4) {
@@ -2693,7 +2693,7 @@ function codeClientV77() {
 
   if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV77) {
     var origPlay = HTMLMediaElement.prototype.play;
-    HTMLMediaElement.prototype.play = function () { if (this.id && this.id !== "ayahAudio") return origPlay.apply(this, arguments); var self = this;
+    HTMLMediaElement.prototype.play = function () { if (this.id && this.id !== "ayahAudio") return origPlay.apply(this, arguments);  if (this.id && this.id !== "ayahAudio") return origPlay.apply(this, arguments); var self = this;
       window.__lecteurAudioActuel = self;
       if (self.currentTime < 0.25) {
         reinitialiserMotsEnBlancTamise();
