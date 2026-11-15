@@ -5106,7 +5106,7 @@ html body #btnLangRuV77.active-ext-v77 {
       var el = items[i];
       el.style.setProperty("transform", "translate3d(0, 0px, 0) scale(1)", "important");
       el.style.setProperty("filter", "none", "important");
-      if (estCartes) {
+      if (estCartes) { if (window.__wbwBypassOrigCartes) continue;
         el.style.setProperty("opacity", "0.82", "important");
         el.style.setProperty("border-color", "rgba(255, 255, 255, 0.15)", "important");
         el.style.setProperty("box-shadow", "none", "important");
@@ -5229,7 +5229,7 @@ html body #btnLangRuV77.active-ext-v77 {
         var e = courbeAfterEffects(energiesMots[m]);
         var b = courbeAfterEffects(bleusMots[m]);
 
-        var yPx = (-7.5 * e).toFixed(2); var sc = (1.0 + 0.12 * e).toFixed(3); if (estCartes && window.__wbwBypassOrigCartes) continue; var __ak = (lectureEnCours ? "1:" : "0:") + e.toFixed(2) + ":" + b.toFixed(2); if (el.__lastAk === __ak) continue; el.__lastAk = __ak; if (estCartes) {
+        var yPx = (-7.5 * e).toFixed(2); var sc = (1.0 + 0.12 * e).toFixed(3); if (estCartes && window.__wbwBypassOrigCartes) continue; var __ak = (lectureEnCours ? "1:" : "0:") + e.toFixed(2) + ":" + b.toFixed(2); if (el.__lastAk === __ak) continue; el.__lastAk = __ak; if (estCartes) { if (window.__wbwBypassOrigCartes) continue;
           var opCarte = (0.82 + 0.18 * b).toFixed(2);
           el.style.setProperty("opacity", opCarte, "important");
           el.style.setProperty("transform", "translate3d(0, " + yPx + "px, 0) scale(" + (1.0 + 0.08 * e).toFixed(3) + ")", "important");
@@ -9184,7 +9184,7 @@ html body #btnLangRuV77.active-ext-v77 {
       var el = items[i];
       el.style.setProperty("transform", "translate3d(0, 0px, 0) scale(1)", "important");
       el.style.setProperty("filter", "none", "important");
-      if (estCartes) {
+      if (estCartes) { if (window.__wbwBypassOrigCartes) continue;
         el.style.setProperty("opacity", "0.82", "important");
         el.style.setProperty("border-color", "rgba(255, 255, 255, 0.15)", "important");
         el.style.setProperty("box-shadow", "none", "important");
@@ -9308,7 +9308,7 @@ html body #btnLangRuV77.active-ext-v77 {
         var e = courbeAfterEffects(energiesMots[m]);
         var b = courbeAfterEffects(bleusMots[m]);
 
-        var yPx = (-7.5 * e).toFixed(2); var sc = (1.0 + 0.12 * e).toFixed(3); if (estCartes && window.__wbwBypassOrigCartes) continue; var __ak = (lectureEnCours ? "1:" : "0:") + e.toFixed(2) + ":" + b.toFixed(2); if (el.__lastAk === __ak) continue; el.__lastAk = __ak; if (estCartes) {
+        var yPx = (-7.5 * e).toFixed(2); var sc = (1.0 + 0.12 * e).toFixed(3); if (estCartes && window.__wbwBypassOrigCartes) continue; var __ak = (lectureEnCours ? "1:" : "0:") + e.toFixed(2) + ":" + b.toFixed(2); if (el.__lastAk === __ak) continue; el.__lastAk = __ak; if (estCartes) { if (window.__wbwBypassOrigCartes) continue;
           var opCarte = (0.82 + 0.18 * b).toFixed(2);
           el.style.setProperty("opacity", opCarte, "important");
           el.style.setProperty("transform", "translate3d(0, " + yPx + "px, 0) scale(" + (1.0 + 0.08 * e).toFixed(3) + ")", "important");
