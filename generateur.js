@@ -5182,12 +5182,7 @@ html body #btnLangRuV77.active-ext-v77 {
         bleusMots = new Array(items.length).fill(0);
       }
 
-      for (var i = 0; i < items.length; i++) {
-        if (items[i].classList.contains("active") || items[i].classList.contains("speaking") || items[i].classList.contains("current")) {
-          activeIndexFloat = i;
-          break;
-        }
-      }
+      for (var i = 0; i < items.length; i++) { items[i].classList.remove("active", "speaking", "current"); }
 
       if (activeIndexFloat === -1 && aud && aud.duration > 0.2 && aud.currentTime > 0.02) {
         var cleRec = obtenirCleRecitateurSelectionne();
@@ -9268,12 +9263,7 @@ html body #btnLangRuV77.active-ext-v77 {
         bleusMots = new Array(items.length).fill(0);
       }
 
-      for (var i = 0; i < items.length; i++) {
-        if (items[i].classList.contains("active") || items[i].classList.contains("speaking") || items[i].classList.contains("current")) {
-          activeIndexFloat = i;
-          break;
-        }
-      }
+      for (var i = 0; i < items.length; i++) { items[i].classList.remove("active", "speaking", "current"); }
 
       if (activeIndexFloat === -1 && aud && aud.duration > 0.2 && aud.currentTime > 0.02) {
         var cleRec = obtenirCleRecitateurSelectionne();
