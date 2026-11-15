@@ -3192,7 +3192,7 @@ html body #btnLangRuV77.active-ext-v77 {
     },
     ar: {
       m1: "🗓️ شهر واحد (208 آية/ي)", m4: "🗓️ 4 أشهر (52 آية/ي)", m6: "🗓️ 6 أشهر (35 آية/ي)", m12: "🗓️ 12 شهراً (18 آية/ي)",
-      ordRev: "📜 الترتيب: النزول (96⬅110)",
+      ordRev: "📜 الترتيب: النزول",
       ordAsc: "⬆️ الترتيب: تصاعدي (1⬅114)",
       ordDesc: "⬇️ الترتيب: تنازلي (114⬅1)",
       jours: "يوم متبقي",
@@ -4836,8 +4836,8 @@ html body #btnLangRuV77.active-ext-v77 {
     return cartes;
   }
 
-  function appliquerVraiMotAMotSurDOM() {
-    window.__obtenirCartesWBW = obtenirCartesMotAMotVisibles; var cartes = obtenirCartesMotAMotVisibles();
+  function appliquerVraiMotAMotSurDOM() { setTimeout(function(){ if(window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW(); }, 0);
+    window.__obtenirCartesWBW = obtenirCartesMotAMotVisibles; window.__obtenirCleVersetWBW = typeof obtenirCleVerset === "function" ? obtenirCleVerset : null; window.__rafraichirDomMotAMotOrig = typeof appliquerVraiMotAMotSurDOM === "function" ? appliquerVraiMotAMotSurDOM : null; var cartes = obtenirCartesMotAMotVisibles();
     var oldBanner = document.getElementById("wbwSensLectureBanner");
     if (cartes.length === 0) {
       if (oldBanner) oldBanner.style.display = "none";
@@ -7270,7 +7270,7 @@ html body #btnLangRuV77.active-ext-v77 {
     },
     ar: {
       m1: "🗓️ شهر واحد (208 آية/ي)", m4: "🗓️ 4 أشهر (52 آية/ي)", m6: "🗓️ 6 أشهر (35 آية/ي)", m12: "🗓️ 12 شهراً (18 آية/ي)",
-      ordRev: "📜 الترتيب: النزول (96⬅110)",
+      ordRev: "📜 الترتيب: النزول",
       ordAsc: "⬆️ الترتيب: تصاعدي (1⬅114)",
       ordDesc: "⬇️ الترتيب: تنازلي (114⬅1)",
       jours: "يوم متبقي",

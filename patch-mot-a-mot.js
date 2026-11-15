@@ -3,165 +3,39 @@ const path = require('path');
 
 const dossierSite = path.join(__dirname, 'site');
 
-const styleV97 = `<style id="wbw-style-v97">
-  /* 1. Masquage du bloc de progression (Khatm) sur l'interface des sourates */
-  .wbw-hide-khatm-on-surah,
-  #khatmTrackerBar,
-  #khatmWidget,
-  .khatm-widget,
-  .khatm-bar,
-  .khatm-container {
+const styleV98 = `<style id="wbw-style-v98">
+  /* 1. Masquage du bloc de progression (Khatm) uniquement sur les pages de sourates */
+  .wbw-hide-khatm-on-surah {
+    display: none !important;
+  }
+  .wbw-masquer-doublon-v98 {
     display: none !important;
   }
 
-  /* 2. Mode Turbo GPU sur Mobile (iPhone 11 -> 17 & Android) : coupe les flous temps réel coûteux */
+  /* 2. Allègement GPU mobile (coupe les flous temps réel coûteux sur iOS/Android) */
   @media (max-width: 820px) {
     *, *::before, *::after {
       backdrop-filter: none !important;
       -webkit-backdrop-filter: none !important;
     }
     body::before, body::after,
-    .bg-orb, .glow-orb, .moon-orb, .sun-orb, [class*="orb" i], [class*="snowflake" i], [class*="star" i] {
+    .bg-orb, .glow-orb, .moon-orb, .sun-orb, [class*="orb" i] {
       display: none !important;
       animation: none !important;
       filter: none !important;
     }
   }
-
-  /* 3. Architecture CSS GPU (Zéro recalcul de text-shadow par frame = 0 Repaint WebKit) */
-  #wbwSensLectureBanner {
-    margin-bottom: 6px !important;
-  }
-  .wbw-grid-v97 {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    align-items: flex-start !important;
-    gap: 6px 14px !important;
-    row-gap: 22px !important;
-    margin-top: 20px !important;
-    margin-bottom: 14px !important;
-    padding: 16px 10px !important;
-    background: transparent !important;
-    border: none !important;
-    border-radius: 0px !important;
-    box-shadow: none !important;
-    contain: layout style !important;
-  }
-  .wbw-card-v97 {
-    margin: 0px !important;
-    padding: 2px 8px 4px 8px !important;
-    background: transparent !important;
-    border: none !important;
-    border-radius: 0px !important;
-    box-shadow: none !important;
-    outline: none !important;
-    min-width: 0px !important;
-    width: auto !important;
-    height: auto !important;
-    display: inline-flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    will-change: transform, opacity !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
-    transform: translate3d(0px, 0px, 0px) scale(1);
-  }
-  .wbw-num-v97 {
-    display: none !important;
-  }
-  .wbw-ar-v97 {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    display: block !important;
-    min-height: 3.35rem !important;
-    line-height: 3.35rem !important;
-    text-align: center !important;
-    font-size: clamp(2.15rem, 3.6vw, 2.75rem) !important;
-    white-space: nowrap !important;
-    color: #f8fafc !important;
-    text-shadow: none !important;
-    transition: color 0.16s ease-out, text-shadow 0.16s ease-out !important;
-  }
-  .wbw-tr-v97 {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    max-width: 135px !important;
-    text-align: center !important;
-    line-height: 1.25 !important;
-    font-size: 0.92rem !important;
-    margin-top: 3px !important;
-    color: #94a3b8 !important;
-    font-weight: 400 !important;
-    text-shadow: none !important;
-    transition: color 0.16s ease-out !important;
-  }
-
-  /* États visuels Apple Music Lyrics gérés nativement par le GPU via classes CSS */
-  .wbw-card-v97.wbw-st-upcoming .wbw-ar-v97 {
-    color: #cbd5e1 !important;
-    text-shadow: none !important;
-  }
-  .wbw-card-v97.wbw-st-upcoming .wbw-tr-v97 {
-    color: #64748b !important;
-    font-weight: 400 !important;
-  }
-
-  .wbw-card-v97.wbw-st-read .wbw-ar-v97 {
-    color: #7dd3fc !important;
-    text-shadow: 0 0 10px rgba(56, 189, 248, 0.38) !important;
-  }
-  .wbw-card-v97.wbw-st-read .wbw-tr-v97 {
-    color: #7dd3fc !important;
-    font-weight: 500 !important;
-  }
-
-  .wbw-card-v97.wbw-st-active .wbw-ar-v97 {
-    color: #ffffff !important;
-    text-shadow: 0 0 16px rgba(56, 189, 248, 0.92), 0 0 28px rgba(0, 210, 255, 0.55) !important;
-  }
-  .wbw-card-v97.wbw-st-active .wbw-tr-v97 {
-    color: #e0f2fe !important;
-    font-weight: 600 !important;
-    text-shadow: 0 0 8px rgba(56, 189, 248, 0.6) !important;
-  }
-
-  @media (max-width: 640px) {
-    .wbw-grid-v97 {
-      gap: 4px 10px !important;
-      row-gap: 18px !important;
-      margin-top: 16px !important;
-      padding: 12px 6px !important;
-    }
-    .wbw-ar-v97 {
-      min-height: 2.95rem !important;
-      line-height: 2.95rem !important;
-      font-size: clamp(1.9rem, 6.2vw, 2.35rem) !important;
-    }
-    .wbw-tr-v97 {
-      font-size: 0.86rem !important;
-      max-width: 118px !important;
-    }
-    /* Ombre simple 1-passe sur mobile pour 120 FPS garantis même sur iPhone 11 */
-    .wbw-card-v97.wbw-st-active .wbw-ar-v97 {
-      text-shadow: 0 0 12px rgba(56, 189, 248, 0.85) !important;
-    }
-    .wbw-card-v97.wbw-st-read .wbw-ar-v97 {
-      text-shadow: none !important;
-    }
-    .wbw-card-v97.wbw-st-active .wbw-tr-v97 {
-      text-shadow: none !important;
-    }
-  }
 </style>`;
 
-const codeClientV97 = `
+const codeClientV98 = `
 (function() {
-  // Active le court-circuit de l'ancienne boucle DOM sur les cartes Mot à mot
   window.__wbwBypassOrigCartes = true;
+
+  function forcer(el, prop, val) {
+    if (el && el.style && el.style.getPropertyValue(prop) !== val) {
+      el.style.setProperty(prop, val, 'important');
+    }
+  }
 
   function contientArabe(str) {
     var s = str || '';
@@ -187,6 +61,26 @@ const codeClientV97 = `
     return v * v * (3 - 2 * v);
   }
 
+  function melangerRGB(r1, g1, b1, r2, g2, b2, t) {
+    var k = Math.max(0, Math.min(1, t || 0));
+    return 'rgb(' +
+      Math.round(r1 + (r2 - r1) * k) + ', ' +
+      Math.round(g1 + (g2 - g1) * k) + ', ' +
+      Math.round(b1 + (b2 - b1) * k) + ')';
+  }
+
+  // 1. Nettoyage de "(96 ➔ 110)" sur toutes les pages (y compris l'accueil)
+  function nettoyerTexteOrdreRevelation() {
+    var els = document.querySelectorAll('button, option, span, div, label, a');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (el.children.length === 0 && el.textContent && el.textContent.indexOf('96') !== -1 && el.textContent.indexOf('110') !== -1) {
+        el.textContent = el.textContent.replace(/\\s*\\(96\\s*[^)]*\\s*110\\)/g, '').trim();
+      }
+    }
+  }
+
+  // 2. Masquage du bloc "où on en est" uniquement sur l'interface des sourates
   function masquerBlocProgressionSurSourate() {
     var estPageSourate = /sourate-\\d+/i.test(window.location.pathname) || Boolean(document.querySelector('#arabicVerse, .arabic-glow-verse'));
     if (!estPageSourate) return;
@@ -206,7 +100,36 @@ const codeClientV97 = `
 
       if (estBlocKhatm && el.offsetHeight < 420) {
         el.classList.add('wbw-hide-khatm-on-surah');
-        el.style.setProperty('display', 'none', 'important');
+        forcer(el, 'display', 'none');
+      }
+    }
+  }
+
+  // 3. Masque le verset normal en bas même quand le verset n'a qu'un seul mot (ex: 2:1 الم)
+  function gererMasquageDoublonVerset(cartes, grilleVisible) {
+    var caches = document.querySelectorAll('.wbw-masquer-doublon-v98');
+    if (!grilleVisible || !cartes || cartes.length < 1) {
+      for (var c = 0; c < caches.length; c++) {
+        caches[c].classList.remove('wbw-masquer-doublon-v98');
+        caches[c].style.removeProperty('display');
+      }
+      return;
+    }
+
+    var grille = cartes[0].parentElement;
+    var boite = grille ? grille.parentElement : null;
+    if (!boite) return;
+
+    var enfants = boite.children;
+    for (var i = 0; i < enfants.length; i++) {
+      var el = enfants[i];
+      if (el === grille || el.id === 'wbwSensLectureBanner' || el.contains(grille)) continue;
+      if (el.querySelector('button') || el.tagName === 'BUTTON') continue;
+      var t = (el.textContent || '').trim();
+      if (t.indexOf('Sens de lecture') !== -1 || t.indexOf('Reading order') !== -1) continue;
+      if (t.length > 0 && !el.classList.contains('wbw-masquer-doublon-v98')) {
+        el.classList.add('wbw-masquer-doublon-v98');
+        forcer(el, 'display', 'none');
       }
     }
   }
@@ -246,7 +169,12 @@ const codeClientV97 = `
     '(is) the most generous': 'le Très Généreux',
     'the most generous': 'le Très Généreux',
     'taught': 'a enseigné',
-    'by the pen': 'par la plume',
+    'by the pen': 'Par la plume',
+    'and what': 'et ce qu’',
+    'they inscribe': 'ils écrivent',
+    'which of you': 'lequel d’entre vous',
+    '(is) the afflicted': 'est le dément',
+    'the afflicted': 'le dément',
     'man': 'à l’homme',
     'what': 'ce que',
     'not': 'ne ... pas',
@@ -254,7 +182,7 @@ const codeClientV97 = `
     'from': 'd’une',
     'a clinging substance': 'adhérence',
     'clinging substance': 'adhérence',
-    'that': 'Cela',
+    'that': 'Ceci',
     '(is) the book': 'est le Livre',
     'the book': 'le Livre',
     'no': 'aucun',
@@ -272,6 +200,19 @@ const codeClientV97 = `
     'and out of what': 'et de ce que',
     'we have provided them': 'Nous leur avons attribué',
     'they spend': 'ils dépensent',
+    'and those who': 'Et ceux qui',
+    'in what': 'à ce qui',
+    '(is) sent down': 'a été descendu',
+    'to you': 'vers toi',
+    'before you': 'avant toi',
+    'and in the hereafter': 'et à l’au-delà',
+    'they': 'eux',
+    'firmly believe': 'croient avec certitude',
+    'those': 'Ceux-là',
+    '(are) on': 'sont sur',
+    'from their lord': 'de leur Seigneur',
+    'and those': 'et ceux-là',
+    '(are) the successful': 'sont les gagnants',
     'indeed': 'Certes',
     'disbelieved': 'ont mécru',
     'it is the same': 'il est égal',
@@ -291,7 +232,7 @@ const codeClientV97 = `
 
   var cacheTradMots = {};
   try {
-    cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v96') || '{}');
+    cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v98') || '{}');
   } catch (e) {}
   var enCoursTrad = {};
 
@@ -305,14 +246,16 @@ const codeClientV97 = `
   var motsFrConnus = /^(il|elle|ils|elles|je|tu|nous|vous|le|la|les|un|une|des|de|du|au|aux|en|dans|sur|sous|avec|sans|pour|par|vers|chez|entre|contre|et|ou|mais|donc|car|ni|ne|pas|plus|moins|très|tout|tous|toute|toutes|ce|cet|cette|ces|mon|ton|son|ma|ta|sa|mes|tes|ses|notre|votre|leur|leurs|qui|que|quoi|dont|où|oui|non|bien|mal|comme|alors|puis|ainsi|aussi|encore|déjà|toujours|jamais|rien|personne|aucun|autre|même|tel|chaque|allah|seigneur|livre|guidée|pieux|croyants|prière|enfer|paradis|jour|nuit|terre|ciel|cieux|eau|feu|coeur|coeurs|lis)$/i;
 
   function nettoyerEtTraduireMotUneFois(elTrad, elAr, lang) {
-    if (!elTrad || elTrad.dataset.wbwTrOk === lang) return;
+    if (!elTrad) return;
     var brut = (elTrad.textContent || '').trim();
     if (!brut) return;
 
     var txtAr = elAr ? (elAr.textContent || '') : '';
     var arPur = nettoyerArabeBrut(txtAr);
     if (tableMuqattaat[arPur]) {
-      elTrad.textContent = tableMuqattaat[arPur];
+      if (elTrad.textContent !== tableMuqattaat[arPur]) {
+        elTrad.textContent = tableMuqattaat[arPur];
+      }
       elTrad.dataset.wbwTrOk = lang;
       return;
     }
@@ -336,6 +279,8 @@ const codeClientV97 = `
       return;
     }
 
+    if (elTrad.dataset.wbwTrOk === lang) return;
+
     if (/[àâäéèêëîïôöùûüçœæ]/i.test(brut) && lang === 'fr') {
       elTrad.dataset.wbwTrOk = lang;
       return;
@@ -357,7 +302,7 @@ const codeClientV97 = `
     if (enCoursTrad[cle]) return;
     enCoursTrad[cle] = true;
 
-    var propreEn = brut.replace(/^\\(is\\)\\s*/i, '').replace(/\\((the|a|an)\\)/gi, '$1').replace(/\\([^)]*\\)/g, '').trim() || brut;
+    var propreEn = brut.replace(/^\\(is\\)\\s*/i, '').replace(/\\((the|a|an|are)\\)/gi, '$1').replace(/\\([^)]*\\)/g, '').trim() || brut;
     var url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=' + encodeURIComponent(lang) + '&dt=t&q=' + encodeURIComponent(propreEn);
     fetch(url)
       .then(function(r) { return r.json(); })
@@ -366,7 +311,7 @@ const codeClientV97 = `
           var tr = d[0].map(function(x) { return x[0] || ''; }).join('').trim();
           if (tr) {
             cacheTradMots[cle] = tr;
-            try { localStorage.setItem('wbw_tr_cache_v96', JSON.stringify(cacheTradMots)); } catch (e) {}
+            try { localStorage.setItem('wbw_tr_cache_v98', JSON.stringify(cacheTradMots)); } catch (e) {}
             if (elTrad) {
               elTrad.textContent = tr;
               elTrad.dataset.wbwTrOk = lang;
@@ -384,18 +329,31 @@ const codeClientV97 = `
   var modeContrasteSuivi = 0;
   var maxIdxAtteintVerset = -1;
   var dernierTempsAudio = 0;
+  var derniereCleVersetVue = '';
 
   function preparerGrilleSiNecessaire(cartes) {
     if (!cartes || cartes.length < 1) {
       cacheMetaCartes = [];
       derniereSigPreparation = '';
+      gererMasquageDoublonVerset(null, false);
       return false;
     }
     var grille = cartes[0].parentElement;
-    if (!grille || grille.style.display === 'none') return false;
+    if (!grille || grille.style.display === 'none' || window.getComputedStyle(grille).display === 'none') {
+      gererMasquageDoublonVerset(null, false);
+      return false;
+    }
+
+    gererMasquageDoublonVerset(cartes, true);
+
+    var banner = document.getElementById('wbwSensLectureBanner');
+    if (banner) {
+      forcer(banner, 'display', cartes.length <= 1 ? 'none' : 'block');
+    }
 
     var lang = obtenirLanguePage();
-    var sig = lang + ':' + cartes.length + ':' + (cartes[0].textContent || '').slice(0, 16);
+    var dernierMotTxt = (cartes[cartes.length - 1].textContent || '').slice(0, 16);
+    var sig = lang + ':' + cartes.length + ':' + (cartes[0].textContent || '').slice(0, 16) + ':' + dernierMotTxt;
     if (sig === derniereSigPreparation && cacheMetaCartes.length === cartes.length) {
       return true;
     }
@@ -406,19 +364,44 @@ const codeClientV97 = `
     lissageB = new Array(cartes.length).fill(0);
     cacheMetaCartes = new Array(cartes.length);
 
-    grille.classList.add('wbw-grid-v97');
-    var banner = document.getElementById('wbwSensLectureBanner');
-    if (banner) {
-      banner.style.display = cartes.length <= 1 ? 'none' : 'block';
-    }
+    // Style forcé avec !important sur la grille dès l'ouverture (même quand l'audio est en pause !)
+    forcer(grille, 'display', 'flex');
+    forcer(grille, 'flex-wrap', 'wrap');
+    forcer(grille, 'justify-content', 'center');
+    forcer(grille, 'align-items', 'flex-start');
+    forcer(grille, 'gap', '6px 14px');
+    forcer(grille, 'row-gap', '22px');
+    forcer(grille, 'margin-top', '20px');
+    forcer(grille, 'margin-bottom', '14px');
+    forcer(grille, 'padding', '16px 10px');
+    forcer(grille, 'background', 'transparent');
+    forcer(grille, 'border', 'none');
+    forcer(grille, 'border-radius', '0px');
+    forcer(grille, 'box-shadow', 'none');
 
     for (var m = 0; m < cartes.length; m++) {
       var carte = cartes[m];
-      carte.className = (carte.className || '').replace(/\\bwbw-st-(?:upcoming|read|active)\\b/g, '').trim() + ' wbw-card-v97';
-      // Nettoie une seule fois les anciens styles inline lourds
-      carte.style.removeProperty('background');
-      carte.style.removeProperty('border');
-      carte.style.removeProperty('box-shadow');
+
+      // Suppression immédiate des rectangles bleus avec !important dès l'affichage (audio en pause ou en lecture)
+      forcer(carte, 'margin', '0px');
+      forcer(carte, 'padding', '2px 8px 4px 8px');
+      forcer(carte, 'background', 'transparent');
+      forcer(carte, 'border', 'none');
+      forcer(carte, 'border-top', 'none');
+      forcer(carte, 'border-bottom', 'none');
+      forcer(carte, 'border-left', 'none');
+      forcer(carte, 'border-right', 'none');
+      forcer(carte, 'border-radius', '0px');
+      forcer(carte, 'box-shadow', 'none');
+      forcer(carte, 'outline', 'none');
+      forcer(carte, 'min-width', '0px');
+      forcer(carte, 'width', 'auto');
+      forcer(carte, 'height', 'auto');
+      forcer(carte, 'display', 'inline-flex');
+      forcer(carte, 'flex-direction', 'column');
+      forcer(carte, 'align-items', 'center');
+      forcer(carte, 'justify-content', 'flex-start');
+      forcer(carte, 'will-change', 'transform, opacity');
 
       var elAr = null;
       var elTrad = null;
@@ -426,9 +409,11 @@ const codeClientV97 = `
       var tousEnfants = carte.querySelectorAll('*');
       for (var k = 0; k < tousEnfants.length; k++) {
         var sub = tousEnfants[k];
+        forcer(sub, 'background', 'transparent');
+        forcer(sub, 'border', 'none');
+        forcer(sub, 'box-shadow', 'none');
         if (sub.children.length === 0 && estPetitNumero(sub.textContent)) {
-          sub.classList.add('wbw-num-v97');
-          sub.style.setProperty('display', 'none', 'important');
+          forcer(sub, 'display', 'none');
         }
       }
 
@@ -437,8 +422,7 @@ const codeClientV97 = `
         var ch = directs[d];
         var tCh = (ch.textContent || '').trim();
         if (estPetitNumero(tCh)) {
-          ch.classList.add('wbw-num-v97');
-          ch.style.setProperty('display', 'none', 'important');
+          forcer(ch, 'display', 'none');
         } else if (!elAr && contientArabe(tCh)) {
           elAr = ch;
         } else if (tCh.length > 0) {
@@ -447,28 +431,34 @@ const codeClientV97 = `
       }
 
       if (elAr) {
-        elAr.classList.add('wbw-ar-v97');
-        elAr.style.removeProperty('color');
-        elAr.style.removeProperty('text-shadow');
+        forcer(elAr, 'display', 'block');
+        forcer(elAr, 'min-height', '3.35rem');
+        forcer(elAr, 'line-height', '3.35rem');
+        forcer(elAr, 'text-align', 'center');
+        forcer(elAr, 'font-size', 'clamp(2.15rem, 3.6vw, 2.75rem)');
+        forcer(elAr, 'white-space', 'nowrap');
       }
       if (elTrad) {
-        elTrad.classList.add('wbw-tr-v97');
-        elTrad.style.removeProperty('color');
-        elTrad.style.removeProperty('text-shadow');
+        forcer(elTrad, 'max-width', '135px');
+        forcer(elTrad, 'text-align', 'center');
+        forcer(elTrad, 'line-height', '1.25');
+        forcer(elTrad, 'font-size', '0.92rem');
+        forcer(elTrad, 'margin-top', '3px');
         nettoyerEtTraduireMotUneFois(elTrad, elAr, lang);
       }
 
       cacheMetaCartes[m] = {
         carte: carte,
-        etatClasse: '',
-        lastTransform: '',
-        lastOpacity: ''
+        elAr: elAr,
+        elTrad: elTrad,
+        lastE: -1,
+        lastB: -1,
+        lastContraste: -1
       };
     }
     return true;
   }
 
-  // Boucle GPU Pure : ne modifie QUE transform, opacity et 1 classe CSS quand nécessaire
   window.__appliquerRubanColleWBW = function() {
     var cartes = [];
     if (typeof window.__obtenirCartesWBW === 'function') {
@@ -477,12 +467,13 @@ const codeClientV97 = `
 
     var banner = document.getElementById('wbwSensLectureBanner');
     if (!cartes || cartes.length < 1) {
-      if (banner) banner.style.display = 'none';
+      if (banner) forcer(banner, 'display', 'none');
+      gererMasquageDoublonVerset(null, false);
       return;
     }
 
     if (!preparerGrilleSiNecessaire(cartes)) {
-      if (banner) banner.style.display = 'none';
+      if (banner) forcer(banner, 'display', 'none');
       return;
     }
 
@@ -494,18 +485,30 @@ const codeClientV97 = `
 
     var aud = window.__lecteurAudioActuel || document.querySelector('audio');
     var tActuel = aud ? (aud.currentTime || 0) : 0;
+    var audioJoue = Boolean(aud && !aud.paused && !aud.ended);
     var audioActif = Boolean(suiviBoutonOn && aud && (!aud.paused || tActuel > 0.05));
 
-    if (window.__wbwResetDemande || (tActuel < 0.2 && dernierTempsAudio > 0.5)) {
+    // Dès que l'audio démarre, le Mot 1 (index 0) est immédiatement verrouillé
+    if (suiviBoutonOn && audioJoue && idxEntier < 0 && tActuel < 0.5) {
+      idxEntier = 0;
+      idxFloat = 0;
+    }
+
+    if (window.__wbwResetDemande || (tActuel < 0.18 && dernierTempsAudio > 0.5)) {
       window.__wbwResetDemande = false;
       maxIdxAtteintVerset = -1;
       for (var r = 0; r < cartes.length; r++) {
         lissageE[r] = 0;
         lissageB[r] = 0;
+        if (cacheMetaCartes[r]) {
+          cacheMetaCartes[r].lastE = -1;
+          cacheMetaCartes[r].lastB = -1;
+        }
       }
     }
     dernierTempsAudio = tActuel;
 
+    // Progression monotone : tout mot déjà lu (m <= maxIdxAtteintVerset) reste illuminé en bleu ciel jusqu'à la fin !
     if (suiviBoutonOn && idxEntier > maxIdxAtteintVerset && idxEntier < cartes.length) {
       maxIdxAtteintVerset = idxEntier;
     }
@@ -520,19 +523,19 @@ const codeClientV97 = `
       var meta = cacheMetaCartes[m];
       if (!meta || !meta.carte) continue;
 
-      var estDejaLuMonotone = (suiviBoutonOn && m <= maxIdxAtteintVerset);
-      var eBrut = energies[m] || 0;
-      var bBrut = estDejaLuMonotone ? 1.0 : (bleus[m] || 0);
+      var estMotActuel = suiviBoutonOn && audioJoue && (m === idxEntier || (cartes.length === 1 && !aud.ended));
+      var estDejaLu = suiviBoutonOn && (m <= maxIdxAtteintVerset || (bleus[m] || 0) > 0.45);
 
-      if (cartes.length === 1 && audioActif && aud && !aud.ended) {
-        eBrut = 1.0;
-        bBrut = 1.0;
-      } else if (suiviBoutonOn && idxFloat >= 0 && m === idxEntier + 1) {
+      var eBrut = estMotActuel ? 1.0 : (energies[m] || 0);
+      var bBrut = estDejaLu ? 1.0 : (bleus[m] || 0);
+
+      // Anticipation Apple Music Lyrics sur le mot suivant
+      if (suiviBoutonOn && audioJoue && idxFloat >= 0 && m === idxEntier + 1) {
         var frac = idxFloat - idxEntier;
         if (frac > 0.65) {
           var ant = (frac - 0.65) / 0.35;
-          eBrut = Math.max(eBrut, ant * 0.35);
-          bBrut = Math.max(bBrut, ant * 0.25);
+          eBrut = Math.max(eBrut, ant * 0.38);
+          bBrut = Math.max(bBrut, ant * 0.30);
         }
       }
 
@@ -543,48 +546,69 @@ const codeClientV97 = `
 
       var e = courbeAppleMusic(lissageE[m]);
       var b = courbeAppleMusic(lissageB[m]);
+
+      // Optimisation CPU/GPU : 0 appel DOM si le mot n'est pas en train de changer d'état
+      if (
+        Math.abs(e - meta.lastE) < 0.004 &&
+        Math.abs(b - meta.lastB) < 0.004 &&
+        Math.abs(modeContrasteSuivi - meta.lastContraste) < 0.005
+      ) {
+        continue;
+      }
+      meta.lastE = e;
+      meta.lastB = b;
+      meta.lastContraste = modeContrasteSuivi;
+
       var lum = Math.max(b, e);
+      var yPx = (-7.5 * e).toFixed(2);
+      var sc = (1.0 + 0.12 * e).toFixed(3);
 
-      // 1. Changement de classe CSS uniquement quand l'état du mot change (0 Repaint continu)
-      var nouvEtat = 'idle';
-      if (e > 0.18) {
-        nouvEtat = 'active';
-      } else if (b > 0.35) {
-        nouvEtat = 'read';
-      } else if (modeContrasteSuivi > 0.3) {
-        nouvEtat = 'upcoming';
-      }
+      // Les mots non lus sont tamisés (0.36), les mots déjà lus (b=1) et le mot actuel (e=1) sont à pleine opacité (1.0) !
+      var opRepos = 0.94 - 0.58 * modeContrasteSuivi;
+      var opMot = (opRepos + (1.0 - opRepos) * lum).toFixed(3);
 
-      if (meta.etatClasse !== nouvEtat) {
-        meta.etatClasse = nouvEtat;
-        var cl = meta.carte.classList;
-        cl.remove('wbw-st-upcoming', 'wbw-st-read', 'wbw-st-active');
-        if (nouvEtat !== 'idle') {
-          cl.add('wbw-st-' + nouvEtat);
+      forcer(meta.carte, 'opacity', opMot);
+      forcer(meta.carte, 'transform', 'translate3d(0px, ' + yPx + 'px, 0px) scale(' + sc + ')');
+
+      if (meta.elAr) {
+        // 3 États avec setProperty('important') :
+        // - À venir (b=0, e=0) : Blanc tamisé
+        // - Déjà lu (b=1, e=0) : Bleu ciel lumineux (#58c4ff) avec halo cyan doux
+        // - En cours (e=1)     : Blanc-Cyan éclatant (#ffffff) avec halo néon intense
+        var colArRepos = melangerRGB(248, 250, 252, 185, 200, 220, modeContrasteSuivi);
+        var colArLu = melangerRGB(248, 250, 252, 88, 196, 255, b);
+        var colArBase = lum > 0.01 ? colArLu : colArRepos;
+        var colArFinal = e > 0.01 ? melangerRGB(88, 196, 255, 255, 255, 255, e) : colArBase;
+
+        var ombreAr = 'none';
+        if (e > 0.015 || b > 0.02) {
+          var r1 = (10 + 16 * e + 6 * b).toFixed(1);
+          var a1 = (0.58 * b + 0.42 * e).toFixed(3);
+          ombreAr = '0 0 ' + r1 + 'px rgba(56, 189, 248, ' + a1 + ')';
+          if (e > 0.08) {
+            ombreAr = '0 0 ' + (12 * e).toFixed(1) + 'px rgba(255, 255, 255, ' + (0.85 * e).toFixed(3) + '), ' + ombreAr;
+          }
         }
+        forcer(meta.elAr, 'color', colArFinal);
+        forcer(meta.elAr, 'text-shadow', ombreAr);
       }
 
-      // 2. Mise à jour GPU (transform + opacity) uniquement si la valeur a réellement varié
-      var yPx = (-7.0 * e).toFixed(1);
-      var sc = (1.0 + 0.11 * e).toFixed(3);
-      var opRepos = 0.94 - 0.56 * modeContrasteSuivi;
-      var opMot = (opRepos + (1.0 - opRepos) * lum).toFixed(2);
-      var trStr = 'translate3d(0px,' + yPx + 'px,0px) scale(' + sc + ')';
-
-      if (meta.lastTransform !== trStr) {
-        meta.lastTransform = trStr;
-        meta.carte.style.transform = trStr;
-      }
-      if (meta.lastOpacity !== opMot) {
-        meta.lastOpacity = opMot;
-        meta.carte.style.opacity = opMot;
+      if (meta.elTrad) {
+        var colTrLu = melangerRGB(148, 163, 184, 96, 205, 255, b);
+        var colTrFinal = e > 0.01 ? melangerRGB(96, 205, 255, 255, 255, 255, e) : colTrLu;
+        var ombreTr = (e > 0.02 || b > 0.08)
+          ? ('0 0 ' + (12 * e + 5 * b).toFixed(1) + 'px rgba(56, 189, 248, ' + (0.70 * e + 0.32 * b).toFixed(3) + ')')
+          : 'none';
+        forcer(meta.elTrad, 'color', colTrFinal);
+        forcer(meta.elTrad, 'font-weight', e > 0.25 ? '600' : (b > 0.5 ? '500' : '400'));
+        forcer(meta.elTrad, 'text-shadow', ombreTr);
       }
     }
   };
 
   var origRaf = window.requestAnimationFrame;
-  if (origRaf && !window.__rafHookedV97) {
-    window.__rafHookedV97 = true;
+  if (origRaf && !window.__rafHookedV98) {
+    window.__rafHookedV98 = true;
     window.requestAnimationFrame = function(cb) {
       return origRaf.call(window, function(ts) {
         var r = cb(ts);
@@ -596,39 +620,91 @@ const codeClientV97 = `
     };
   }
 
-  function rafraichirInterface() {
+  // Surveillance légère (200ms) quand l'audio est en pause + synchronisation immédiate au clic sur Suivant / Précédent
+  function verifierChangementVersetEtPause() {
+    nettoyerTexteOrdreRevelation();
     masquerBlocProgressionSurSourate();
-    derniereSigPreparation = '';
-    if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW();
+
+    // Si le numéro de verset a changé (ex: clic sur Suivant >), on force la mise à jour de la grille Mot à mot
+    if (typeof window.__obtenirCleVersetWBW === 'function') {
+      try {
+        var cleActuelle = window.__obtenirCleVersetWBW() || '';
+        if (cleActuelle && derniereCleVersetVue && cleActuelle !== derniereCleVersetVue) {
+          derniereCleVersetVue = cleActuelle;
+          derniereSigPreparation = '';
+          maxIdxAtteintVerset = -1;
+          if (typeof window.__rafraichirDomMotAMotOrig === 'function') {
+            window.__rafraichirDomMotAMotOrig();
+          }
+        } else if (cleActuelle) {
+          derniereCleVersetVue = cleActuelle;
+        }
+      } catch (e) {}
+    }
+
+    if (window.__appliquerRubanColleWBW) {
+      window.__appliquerRubanColleWBW();
+    }
   }
 
+  setInterval(verifierChangementVersetEtPause, 180);
+
   document.addEventListener('click', function() {
-    setTimeout(rafraichirInterface, 15);
-    setTimeout(rafraichirInterface, 80);
+    setTimeout(verifierChangementVersetEtPause, 15);
+    setTimeout(verifierChangementVersetEtPause, 70);
+    setTimeout(verifierChangementVersetEtPause, 160);
   });
   document.addEventListener('change', function() {
-    setTimeout(rafraichirInterface, 20);
+    setTimeout(verifierChangementVersetEtPause, 20);
+    setTimeout(verifierChangementVersetEtPause, 100);
   });
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', rafraichirInterface);
+    document.addEventListener('DOMContentLoaded', verifierChangementVersetEtPause);
   } else {
-    rafraichirInterface();
+    verifierChangementVersetEtPause();
   }
 })();
 `;
 
-new Function(codeClientV97);
+new Function(codeClientV98);
 
-const blocHtmlV97 = '<!-- WBW_COLLE_V97_START -->\n' + styleV97 + '\n<script id="wbw-colle-v97">' + codeClientV97 + '</script>\n<!-- WBW_COLLE_V97_END -->';
+const blocHtmlV98 = '<!-- WBW_COLLE_V98_START -->\n' + styleV98 + '\n<script id="wbw-colle-v98">' + codeClientV98 + '</script>\n<!-- WBW_COLLE_V98_END -->';
 
 function patcherContenu(c) {
-  // 1. Nettoyage des versions précédentes V83 -> V97
-  c = c.replace(/<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93|COLLE_V94|COLLE_V95|COLLE_V96|COLLE_V97)_START -->[\s\S]*?<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93|COLLE_V94|COLLE_V95|COLLE_V96|COLLE_V97)_END -->\s*/g, '');
+  // 1. Nettoyage des versions précédentes V83 -> V98
+  c = c.replace(/<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93|COLLE_V94|COLLE_V95|COLLE_V96|COLLE_V97|COLLE_V98)_START -->[\s\S]*?<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93|COLLE_V94|COLLE_V95|COLLE_V96|COLLE_V97|COLLE_V98)_END -->\s*/g, '');
 
-  // 2. Optimisation majeure dans etapeSuiviAudioAfterEffects :
-  // - Court-circuite 100% des écritures DOM de l'ancienne boucle quand estCartes est actif
-  // - Court-circuite les mots immobiles en mode Normal (gain 90% CPU sur iPhone 11 à 17)
+  // 2. Suppression universelle de "(96 ➔ 110)" dans tous les fichiers (y compris index.html)
+  c = c.replace(/\s*\(96\s*[^)]{0,10}\s*110\)/g, '');
+
+  // 3. Support des versets d'un seul mot (ex: 2:1 الم)
+  c = c.replace(/if\s*\(\s*cartes\.length\s*>=\s*2\s*\)\s*return\s*\{\s*type:\s*"cartes"/g, 'if (cartes.length >= 1) return { type: "cartes"');
+  c = c.replace(/if\s*\(\s*cartes\.length\s*<\s*2\s*\)/g, 'if (cartes.length < 1)');
+  c = c.replace(/if\s*\(\s*spansExistants\.length\s*>\s*1\s*&&\s*!aSigneIsole\s*\)/g, 'if (spansExistants.length >= 1 && !aSigneIsole)');
+
+  // 4. Exposition de obtenirCartesMotAMotVisibles, obtenirCleVerset et appliquerVraiMotAMotSurDOM
+  if (c.indexOf('window.__obtenirCartesWBW = obtenirCartesMotAMotVisibles;') === -1) {
+    c = c.replace(
+      /var\s+cartes\s*=\s*obtenirCartesMotAMotVisibles\(\);/,
+      'window.__obtenirCartesWBW = obtenirCartesMotAMotVisibles; window.__obtenirCleVersetWBW = typeof obtenirCleVerset === "function" ? obtenirCleVerset : null; window.__rafraichirDomMotAMotOrig = typeof appliquerVraiMotAMotSurDOM === "function" ? appliquerVraiMotAMotSurDOM : null; var cartes = obtenirCartesMotAMotVisibles();'
+    );
+  } else if (c.indexOf('window.__obtenirCleVersetWBW') === -1) {
+    c = c.replace(
+      'window.__obtenirCartesWBW = obtenirCartesMotAMotVisibles;',
+      'window.__obtenirCartesWBW = obtenirCartesMotAMotVisibles; window.__obtenirCleVersetWBW = typeof obtenirCleVerset === "function" ? obtenirCleVerset : null; window.__rafraichirDomMotAMotOrig = typeof appliquerVraiMotAMotSurDOM === "function" ? appliquerVraiMotAMotSurDOM : null;'
+    );
+  }
+
+  // 5. Rafraîchissement instantané dès la fin de appliquerVraiMotAMotSurDOM
+  if (c.indexOf('function appliquerVraiMotAMotSurDOM() { setTimeout') === -1) {
+    c = c.replace(
+      'function appliquerVraiMotAMotSurDOM() {',
+      'function appliquerVraiMotAMotSurDOM() { setTimeout(function(){ if(window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW(); }, 0);'
+    );
+  }
+
+  // 6. Court-circuit des écritures DOM conflictuelles sur les cartes dans etapeSuiviAudioAfterEffects
   if (c.indexOf('window.__wbwBypassOrigCartes') === -1) {
     c = c.replace(
       /var\s+yPx\s*=\s*\(-7\.5\s*\*\s*e\)\.toFixed\(2\);\s*var\s+sc\s*=\s*\(1\.0\s*\+\s*0\.12\s*\*\s*e\)\.toFixed\(3\);\s*if\s*\(\s*estCartes\s*\)\s*\{/g,
@@ -636,24 +712,11 @@ function patcherContenu(c) {
     );
   }
 
-  // 3. Correction du bug .active timeupdate mobile
+  // 7. Correction du bug .active timeupdate mobile
   c = c.replace(
     /for\s*\(\s*var\s+i\s*=\s*0;\s*i\s*<\s*items\.length;\s*i\+\+\s*\)\s*\{\s*if\s*\(\s*items\[i\]\.classList\.contains\("active"\)\s*\|\|\s*items\[i\]\.classList\.contains\("speaking"\)\s*\|\|\s*items\[i\]\.classList\.contains\("current"\)\s*\)\s*\{\s*activeIndexFloat\s*=\s*i;\s*break;\s*\}\s*\}/g,
     'for (var i = 0; i < items.length; i++) { items[i].classList.remove("active", "speaking", "current"); }'
   );
-
-  // 4. Suppression de "(96➔110)" et support des versets à 1 mot
-  c = c.replace(/\s*\(96\s*(?:➔|→|->|\\u2794|\\u2192|&rarr;)\s*110\)/g, '');
-  c = c.replace(/if\s*\(\s*cartes\.length\s*>=\s*2\s*\)\s*return\s*\{\s*type:\s*"cartes"/g, 'if (cartes.length >= 1) return { type: "cartes"');
-  c = c.replace(/if\s*\(\s*cartes\.length\s*<\s*2\s*\)/g, 'if (cartes.length < 1)');
-  c = c.replace(/if\s*\(\s*spansExistants\.length\s*>\s*1\s*&&\s*!aSigneIsole\s*\)/g, 'if (spansExistants.length >= 1 && !aSigneIsole)');
-
-  if (c.indexOf('window.__obtenirCartesWBW = obtenirCartesMotAMotVisibles;') === -1) {
-    c = c.replace(
-      /var\s+cartes\s*=\s*obtenirCartesMotAMotVisibles\(\);/,
-      'window.__obtenirCartesWBW = obtenirCartesMotAMotVisibles; var cartes = obtenirCartesMotAMotVisibles();'
-    );
-  }
 
   if (c.indexOf('window.__wbwActiveFloat = activeIndexFloat;') === -1) {
     if (c.indexOf('window.__wbwIdxEntier = idxEntier;') !== -1) {
@@ -685,21 +748,25 @@ function patcherContenu(c) {
 
 const fichiers = fs.readdirSync(dossierSite).filter(f => f.endsWith('.html'));
 let nb = 0;
-let gpuBypassOk = 0;
 
 for (const f of fichiers) {
   const p = path.join(dossierSite, f);
   let c = patcherContenu(fs.readFileSync(p, 'utf8'));
-  if (c.indexOf('window.__wbwBypassOrigCartes') !== -1) gpuBypassOk++;
-  c = c.replace('</body>', function() { return blocHtmlV97 + '\n</body>'; });
+  c = c.replace('</body>', function() { return blocHtmlV98 + '\n</body>'; });
   fs.writeFileSync(p, c, 'utf8');
   nb++;
 }
 
-const cheminGen = path.join(__dirname, 'generateur.js');
-if (fs.existsSync(cheminGen)) {
-  let gen = patcherContenu(fs.readFileSync(cheminGen, 'utf8'));
-  fs.writeFileSync(cheminGen, gen, 'utf8');
+// Nettoie aussi index.html et generateur.js à la racine du projet s'ils existent
+for (const racineF of ['index.html', 'generateur.js']) {
+  const pRacine = path.join(__dirname, racineF);
+  if (fs.existsSync(pRacine)) {
+    let cr = patcherContenu(fs.readFileSync(pRacine, 'utf8'));
+    if (racineF.endsWith('.html') && cr.indexOf('</body>') !== -1) {
+      cr = cr.replace('</body>', function() { return blocHtmlV98 + '\n</body>'; });
+    }
+    fs.writeFileSync(pRacine, cr, 'utf8');
+  }
 }
 
-console.log('✅ V97 Turbo GPU appliquée sur ' + nb + ' pages (' + gpuBypassOk + ' pages avec court-circuit DOM 98% plus léger pour iPhone 11 -> 17) !');
+console.log('✅ V98 appliquée sur ' + nb + ' pages : 0 rectangle même en pause + Mots lus restent illuminés en bleu + Fix Verset 1 (الم) + Synchronisation Suivant/Précédent !');
