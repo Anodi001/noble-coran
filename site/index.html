@@ -4003,7 +4003,11 @@ html body #btnLangRuV77.active-ext-v77 {
   html body .wbw-word-box::before,
   html body .wbw-word-box::after,
   html body .wbw-card-v110::before,
-  html body .wbw-card-v110::after {
+  html body .wbw-card-v110::after,
+  html body .wbw-card-v110 .wbw-ar-v110::before,
+  html body .wbw-card-v110 .wbw-ar-v110::after,
+  html body .wbw-card-v110 .wbw-tr-v110::before,
+  html body .wbw-card-v110 .wbw-tr-v110::after {
     content: none !important;
     display: none !important;
     visibility: hidden !important;
@@ -4016,6 +4020,22 @@ html body #btnLangRuV77.active-ext-v77 {
     border: none !important;
     overflow: hidden !important;
     pointer-events: none !important;
+  }
+
+  /* Suppression totale de la ligne entre le mot arabe et le mot français */
+  html body .wbw-card-v110 .wbw-ar-v110,
+  html body .wbw-card-v110 .wbw-tr-v110,
+  html body .wbw-card-v110 .wbw-ar,
+  html body .wbw-card-v110 .wbw-tr,
+  html body .wbw-word-box .wbw-ar,
+  html body .wbw-word-box .wbw-tr {
+    border: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background-image: none !important;
+    text-decoration: none !important;
   }
 
   html body .wbw-card-v110 .wbw-tr-v110,
@@ -4078,7 +4098,6 @@ html body #btnLangRuV77.active-ext-v77 {
     background: linear-gradient(90deg, #38bdf8 0%, #bae6fd 65%, #ffffff 100%) !important;
   }
 
-  /* Aucun curseur rond */
   .wbw-scrub-dot {
     display: none !important;
   }
@@ -4188,6 +4207,189 @@ html body #btnLangRuV77.active-ext-v77 {
 <script id="wbw-colle-v110">
 (function() {
   window.__wbwBypassOrigCartes = true;
+
+  // =========================================================================
+  // 1. OCCULTATION TOTALE DES ÉTOILES DÈS QU'ELLES TOUCHENT LA LUNE OU LE SOLEIL
+  // =========================================================================
+  function activerOccultationSoleilLune() {
+    if (window.__skyOcclusionV110 || typeof CanvasRenderingContext2D === 'undefined') return;
+    window.__skyOcclusionV110 = true;
+
+    var proto = CanvasRenderingContext2D.prototype;
+    var origClearRect = proto.clearRect;
+    var origSave = proto.save;
+    var origRestore = proto.restore;
+    var origTranslate = proto.translate;
+    var origDrawImage = proto.drawImage;
+    var origArc = proto.arc;
+    var origFillText = proto.fillText;
+    var origFill = proto.fill;
+
+    function recenserOrbesSoleilLune(ctx) {
+      var orbes = [];
+      var els = document.querySelectorAll('#flatEarthSun, #flatEarthMoon, .flat-earth-sun, .flat-earth-moon, .astre-soleil-pur-v77, .astre-lune-pure-v77');
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        var st = window.getComputedStyle(el);
+        if (st.display === 'none' || st.visibility === 'hidden' || parseFloat(st.opacity || '1') < 0.05) continue;
+        var rect = el.getBoundingClientRect();
+        if (rect.width >= 30 && rect.height >= 30 && rect.bottom > 0 && rect.right > 0 && rect.top < window.innerHeight && rect.left < window.innerWidth) {
+          orbes.push({
+            x: rect.left + rect.width * 0.5,
+            y: rect.top + rect.height * 0.5,
+            r: Math.max(rect.width, rect.height) * 0.5
+          });
+        }
+      }
+      ctx.__orbesDomV110 = orbes;
+    }
+
+    function visibiliteEtoile(ctx, x, y, rayonEtoile) {
+      var liste = [];
+      if (ctx.__orbesDomV110 && ctx.__orbesDomV110.length) {
+        for (var i = 0; i < ctx.__orbesDomV110.length; i++) liste.push(ctx.__orbesDomV110[i]);
+      }
+      if (ctx.__orbesCanvasV110 && ctx.__orbesCanvasV110.length) {
+        for (var j = 0; j < ctx.__orbesCanvasV110.length; j++) liste.push(ctx.__orbesCanvasV110[j]);
+      }
+      if (liste.length === 0) return 1.0;
+
+      var pad = (rayonEtoile || 5) * 0.85;
+      var visMin = 1.0;
+      for (var k = 0; k < liste.length; k++) {
+        var o = liste[k];
+        var dx = x - o.x;
+        var dy = y - o.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        // Dès que l'étoile touche le disque ou le halo proche de la Lune/Soleil, elle devient 100% invisible
+        var rOpaque = o.r * 1.12 + pad;
+        var rDoux = o.r * 1.38 + pad;
+        if (dist <= rOpaque) {
+          return 0.0;
+        } else if (dist < rDoux) {
+          var t = (dist - rOpaque) / (rDoux - rOpaque);
+          var v = t * t * (3 - 2 * t);
+          if (v < visMin) visMin = v;
+        }
+      }
+      return visMin;
+    }
+
+    proto.clearRect = function(x, y, w, h) {
+      if (this.canvas && w >= this.canvas.width * 0.8 && h >= this.canvas.height * 0.8) {
+        this.__orbesCanvasV110 = [];
+        this.__txV110 = 0;
+        this.__tyV110 = 0;
+        this.__stackTxV110 = [];
+        recenserOrbesSoleilLune(this);
+      }
+      return origClearRect.apply(this, arguments);
+    };
+
+    proto.save = function() {
+      if (this.canvas && this.canvas.id === 'fullPageSkyCanvas') {
+        if (!this.__stackTxV110) this.__stackTxV110 = [];
+        this.__stackTxV110.push({ x: this.__txV110 || 0, y: this.__tyV110 || 0 });
+      }
+      return origSave.apply(this, arguments);
+    };
+
+    proto.restore = function() {
+      if (this.canvas && this.canvas.id === 'fullPageSkyCanvas' && this.__stackTxV110 && this.__stackTxV110.length > 0) {
+        var prev = this.__stackTxV110.pop();
+        this.__txV110 = prev.x;
+        this.__tyV110 = prev.y;
+      }
+      return origRestore.apply(this, arguments);
+    };
+
+    proto.translate = function(tx, ty) {
+      if (this.canvas && this.canvas.id === 'fullPageSkyCanvas') {
+        this.__txV110 = (this.__txV110 || 0) + (Number(tx) || 0);
+        this.__tyV110 = (this.__tyV110 || 0) + (Number(ty) || 0);
+      }
+      return origTranslate.apply(this, arguments);
+    };
+
+    proto.drawImage = function(img, dx, dy, dw, dh) {
+      if (this.canvas && (this.canvas.id === 'fullPageSkyCanvas' || this.canvas.width > 200)) {
+        if (!this.__orbesDomV110) recenserOrbesSoleilLune(this);
+        var w = typeof dw === 'number' ? dw : (img && img.width ? img.width : 0);
+        var h = typeof dh === 'number' ? dh : (img && img.height ? img.height : 0);
+        var wx = (this.__txV110 || 0) + (Number(dx) || 0) + w * 0.5;
+        var wy = (this.__tyV110 || 0) + (Number(dy) || 0) + h * 0.5;
+
+        var vis = visibiliteEtoile(this, wx, wy, Math.max(w, h) * 0.5);
+        if (vis <= 0.02) {
+          return;
+        }
+        if (vis < 0.99) {
+          var oldAlpha = this.globalAlpha;
+          this.globalAlpha = oldAlpha * vis;
+          var res = origDrawImage.apply(this, arguments);
+          this.globalAlpha = oldAlpha;
+          return res;
+        }
+      }
+      return origDrawImage.apply(this, arguments);
+    };
+
+    proto.arc = function(x, y, r, sa, ea, ccw) {
+      if (r >= 22 && r <= 240 && this.canvas && this.canvas.width > 200) {
+        if (!this.__orbesCanvasV110) this.__orbesCanvasV110 = [];
+        if (this.__orbesCanvasV110.length < 6) {
+          this.__orbesCanvasV110.push({ x: (this.__txV110 || 0) + x, y: (this.__tyV110 || 0) + y, r: r });
+        }
+        this.__skipNextStarFill = false;
+        this.__starFadeFactor = 1.0;
+      } else if (r > 0 && r <= 8 && this.canvas && this.canvas.width > 200) {
+        if (!this.__orbesDomV110) recenserOrbesSoleilLune(this);
+        var vis = visibiliteEtoile(this, (this.__txV110 || 0) + x, (this.__tyV110 || 0) + y, r);
+        if (vis <= 0.02) {
+          this.__skipNextStarFill = true;
+          return;
+        }
+        this.__starFadeFactor = vis;
+      } else {
+        this.__skipNextStarFill = false;
+        this.__starFadeFactor = 1.0;
+      }
+      return origArc.apply(this, arguments);
+    };
+
+    proto.fill = function() {
+      if (this.__skipNextStarFill) {
+        this.__skipNextStarFill = false;
+        return;
+      }
+      if (typeof this.__starFadeFactor === 'number' && this.__starFadeFactor < 0.99) {
+        var oldAlpha = this.globalAlpha;
+        this.globalAlpha = oldAlpha * this.__starFadeFactor;
+        this.__starFadeFactor = 1.0;
+        var res = origFill.apply(this, arguments);
+        this.globalAlpha = oldAlpha;
+        return res;
+      }
+      return origFill.apply(this, arguments);
+    };
+
+    proto.fillText = function(text, x, y) {
+      if (this.canvas && this.canvas.width > 200 && typeof text === 'string' && text.length <= 3) {
+        if (!this.__orbesDomV110) recenserOrbesSoleilLune(this);
+        var vis = visibiliteEtoile(this, (this.__txV110 || 0) + x, (this.__tyV110 || 0) + y, 7);
+        if (vis <= 0.02) return;
+        if (vis < 0.99) {
+          var oldA = this.globalAlpha;
+          this.globalAlpha = oldA * vis;
+          var r = origFillText.apply(this, arguments);
+          this.globalAlpha = oldA;
+          return r;
+        }
+      }
+      return origFillText.apply(this, arguments);
+    };
+  }
+  activerOccultationSoleilLune();
 
   function forcer(el, prop, val) {
     if (el && el.style && el.style.getPropertyValue(prop) !== val) {
@@ -4832,7 +5034,6 @@ html body #btnLangRuV77.active-ext-v77 {
           appliquerTailleSurMetaCartes();
         } else if (txt === 'A-' || txt === 'A−' || txt === 'A–') {
           wbwFontScale = Math.max(0.70, Math.round((wbwFontScale - 0.12) * 100) / 100);
-          try { localStorage.setItem('wbw_tr_cache_v110', JSON.stringify(cacheTradMots)); } catch (err) {}
           try { localStorage.setItem('wbw_font_scale_v110', String(wbwFontScale)); } catch (err) {}
           appliquerTailleSurMetaCartes();
         }
@@ -4943,7 +5144,6 @@ html body #btnLangRuV77.active-ext-v77 {
     return 'rtl';
   }
 
-  // 1 CLIC SUR LA BARRE = REVIENT PILE AU DÉBUT (0%) DU MOT CHOISI ET LANCE LA LECTURE
   function allerAuDebutDuMot(idxMot) {
     if (idxMot < 0 || idxMot >= cacheMetaCartes.length) return;
 
@@ -4954,7 +5154,6 @@ html body #btnLangRuV77.active-ext-v77 {
     idxMotForceDebut = idxMot;
     expIdxMotForce = performance.now() + 260;
 
-    // Réinitialise l'animation des mots suivants pour repartir proprement de ce mot
     for (var r = 0; r < cacheMetaCartes.length; r++) {
       if (r < idxMot) {
         lissageE[r] = 0;
@@ -5179,6 +5378,9 @@ html body #btnLangRuV77.active-ext-v77 {
         forcer(elAr, 'text-align', 'center');
         forcer(elAr, 'font-size', arFont);
         forcer(elAr, 'white-space', 'nowrap');
+        forcer(elAr, 'border', 'none');
+        forcer(elAr, 'border-bottom', 'none');
+        forcer(elAr, 'border-top', 'none');
       }
       if (elTrad) {
         elTrad.classList.remove('wbw-num-hidden-v110', 'wbw-num-hidden-v111', 'wbw-num-hidden-v112');
@@ -5194,6 +5396,10 @@ html body #btnLangRuV77.active-ext-v77 {
         forcer(elTrad, 'line-height', '1.25');
         forcer(elTrad, 'font-size', trFont);
         forcer(elTrad, 'margin-top', '4px');
+        forcer(elTrad, 'padding-top', '0px');
+        forcer(elTrad, 'border', 'none');
+        forcer(elTrad, 'border-top', 'none');
+        forcer(elTrad, 'border-bottom', 'none');
         nettoyerEtTraduireMotUneFois(elTrad, elAr, lang);
       }
 
@@ -5299,7 +5505,6 @@ html body #btnLangRuV77.active-ext-v77 {
       }
     }
 
-    // Remplissage fluide de 0% à 100% depuis le début du mot
     var ratioMotActuel = 0;
     if (audioJoue && idxActuel >= 0) {
       var dureeMoyMotMs = durAudio > 0 ? Math.max(260, (durAudio * 920) / Math.max(1, cartes.length)) : 650;
@@ -5403,6 +5608,8 @@ html body #btnLangRuV77.active-ext-v77 {
         forcer(meta.elAr, 'transform', transMot);
         forcer(meta.elAr, 'color', '#f8fafc');
         forcer(meta.elAr, 'text-shadow', ombreAr);
+        forcer(meta.elAr, 'border', 'none');
+        forcer(meta.elAr, 'border-bottom', 'none');
       }
 
       if (meta.elTrad) {
@@ -5416,6 +5623,8 @@ html body #btnLangRuV77.active-ext-v77 {
         forcer(meta.elTrad, 'color', colTrFinal);
         forcer(meta.elTrad, 'font-weight', e > 0.25 ? '600' : (b > 0.5 ? '500' : '400'));
         forcer(meta.elTrad, 'text-shadow', ombreTr);
+        forcer(meta.elTrad, 'border', 'none');
+        forcer(meta.elTrad, 'border-top', 'none');
       }
     }
   };
