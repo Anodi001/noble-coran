@@ -4705,7 +4705,7 @@ html body #btnLangRuV77.active-ext-v77 {
     return "";
   }
 
-  function chargerVraiMotAMotVerset(vk, lang) { if (window.__wbwBypassOrigCartes) return; if (!vk) return;
+  function chargerVraiMotAMotVerset(vk, lang) {if (!vk) return;
     var cleCache = vk + "_" + lang;
     if (cacheVersetMotsExact[cleCache] || requetesVersetEnCours[cleCache]) return;
     requetesVersetEnCours[cleCache] = true;
@@ -4786,7 +4786,7 @@ html body #btnLangRuV77.active-ext-v77 {
 
   function obtenirCartesMotAMotVisibles() {
     var cartes = [];
-    var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v112, .wbw-card, .wbw-word, .wbw-item");
+    var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v111, .wbw-card, .wbw-word, .wbw-item");
     for (var i = 0; i < c1.length; i++) {
       var r1 = c1[i].getBoundingClientRect();
       if (r1.width > 4 && r1.height > 4) {
@@ -4847,7 +4847,7 @@ html body #btnLangRuV77.active-ext-v77 {
 
     for (var i = 0; i < cartes.length; i++) {
       var c = cartes[i];
-      if (!window.__wbwBypassOrigCartes) c.setAttribute("data-word-num", String(i + 1));
+      c.setAttribute("data-word-num", String(i + 1));
       if (!c.children || c.children.length < 1) continue;
       var elAr = c.children[0];
       var elTr = c.children[c.children.length - 1];
@@ -4887,7 +4887,7 @@ html body #btnLangRuV77.active-ext-v77 {
         }
       }
 
-      if (!window.__wbwBypassOrigCartes && tradFinale && elTr.textContent !== tradFinale) elTr.textContent = tradFinale;
+      if (tradFinale && elTr.textContent !== tradFinale) elTr.textContent = tradFinale;
     }
 
     var grilleParente = cartes[0].parentElement;
@@ -4974,13 +4974,13 @@ html body #btnLangRuV77.active-ext-v77 {
   }
 
   var MAP_NOMS_VERS_QDC = {
-    dosari: [13, 174, 168], dossari: [13, 174, 168], yasser: [13, 174, 168],
+    dosari: [174, 168], dossari: [174, 168], yasser: [174, 168],
     afasy: [7], alafasy: [7], mishary: [7],
     sudais: [3], soudais: [3],
     shuraim: [10, 4], shuraym: [10, 4],
     hussary: [6], husary: [6],
     abdulbaset: [2, 1], abdulbasit: [2, 1],
-    minshawi: [8, 9]
+    minshawi: [9]
   };
 
   var cacheTimingVerset = {};
@@ -5749,7 +5749,7 @@ html body #btnLangRuV77.active-ext-v77 {
 
     function extraireMotsTajweedPropres(htmlTajweedComplet) {
       if (!htmlTajweedComplet) return [];
-      const temp = document.createElement('div'); temp.innerHTML = window.__assainirHtmlTajwidV112 ? window.__assainirHtmlTajwidV112(htmlTajweedComplet) : htmlTajweedComplet;
+      const temp = document.createElement('div'); temp.innerHTML = htmlTajweedComplet;
       temp.querySelectorAll('span.end').forEach(el => el.remove());
       const src = temp.innerHTML.trim();
       const tokens = [];
@@ -5962,7 +5962,7 @@ html body #btnLangRuV77.active-ext-v77 {
       if (!cacheWbwData[cleVerset]) {
         try {
           const [respWords, respTaj] = await Promise.all([
-            fetch('https://api.quran.com/api/v4/verses/by_key/' + cleVerset + '?language=en&words=true&word_fields=text_uthmani,text_uthmani_tajweed,audio_url,translation'),
+            fetch('https://api.quran.com/api/v4/verses/by_key/' + cleVerset + '?language=en&words=true&word_fields=text_uthmani,text_uthmani_tajweed,audio_url'),
             fetch('https://api.quran.com/api/v4/quran/verses/uthmani_tajweed?verse_key=' + cleVerset)
           ]);
           const jsonWords = await respWords.json();
@@ -8774,7 +8774,7 @@ html body #btnLangRuV77.active-ext-v77 {
     return "";
   }
 
-  function chargerVraiMotAMotVerset(vk, lang) { if (window.__wbwBypassOrigCartes) return; if (!vk) return;
+  function chargerVraiMotAMotVerset(vk, lang) {if (!vk) return;
     var cleCache = vk + "_" + lang;
     if (cacheVersetMotsExact[cleCache] || requetesVersetEnCours[cleCache]) return;
     requetesVersetEnCours[cleCache] = true;
@@ -8855,7 +8855,7 @@ html body #btnLangRuV77.active-ext-v77 {
 
   function obtenirCartesMotAMotVisibles() {
     var cartes = [];
-    var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v112, .wbw-card, .wbw-word, .wbw-item");
+    var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v111, .wbw-card, .wbw-word, .wbw-item");
     for (var i = 0; i < c1.length; i++) {
       var r1 = c1[i].getBoundingClientRect();
       if (r1.width > 4 && r1.height > 4) {
@@ -8916,7 +8916,7 @@ html body #btnLangRuV77.active-ext-v77 {
 
     for (var i = 0; i < cartes.length; i++) {
       var c = cartes[i];
-      if (!window.__wbwBypassOrigCartes) c.setAttribute("data-word-num", String(i + 1));
+      c.setAttribute("data-word-num", String(i + 1));
       if (!c.children || c.children.length < 2) continue;
       var elAr = c.children[0];
       var elTr = c.children[c.children.length - 1];
@@ -8956,7 +8956,7 @@ html body #btnLangRuV77.active-ext-v77 {
         }
       }
 
-      if (!window.__wbwBypassOrigCartes && tradFinale && elTr.textContent !== tradFinale) elTr.textContent = tradFinale;
+      if (tradFinale && elTr.textContent !== tradFinale) elTr.textContent = tradFinale;
     }
 
     var grilleParente = cartes[0].parentElement;
@@ -9043,13 +9043,13 @@ html body #btnLangRuV77.active-ext-v77 {
   }
 
   var MAP_NOMS_VERS_QDC = {
-    dosari: [13, 174, 168], dossari: [13, 174, 168], yasser: [13, 174, 168],
+    dosari: [174, 168], dossari: [174, 168], yasser: [174, 168],
     afasy: [7], alafasy: [7], mishary: [7],
     sudais: [3], soudais: [3],
     shuraim: [10, 4], shuraym: [10, 4],
     hussary: [6], husary: [6],
     abdulbaset: [2, 1], abdulbasit: [2, 1],
-    minshawi: [8, 9]
+    minshawi: [9]
   };
 
   var cacheTimingVerset = {};

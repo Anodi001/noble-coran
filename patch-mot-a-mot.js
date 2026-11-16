@@ -5,9 +5,9 @@ const path = require('path');
 const dossierSite = path.join(__dirname, 'site');
 
 // ============================================================================
-// 1. MISE À JOUR SÉCURISÉE DE site/_worker.js, site/_headers ET site/404.html (V112)
+// 1. MISE À JOUR SÉCURISÉE DE site/_worker.js, site/_headers ET site/404.html (V111)
 // ============================================================================
-const WORKER_SECURISE_V112 = `function escapeHtmlText(value) {
+const WORKER_SECURISE_V111 = `function escapeHtmlText(value) {
   return String(value ?? "").replace(/[&<>"']/g, c => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", "\\"": "&quot;", "'": "&#39;"
   }[c]));
@@ -15,6 +15,7 @@ const WORKER_SECURISE_V112 = `function escapeHtmlText(value) {
 
 const QURAN_API_IDS = { en: 20, es: 83, de: 27, it: 153, id: 33, ru: 45, ar: 16 };
 
+// Nombre officiel de versets pour chacune des 114 sourates (index 1 à 114)
 const NB_VERSETS_PAR_SOURATE = [
   0,
   7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,135,
@@ -25,6 +26,7 @@ const NB_VERSETS_PAR_SOURATE = [
   11,8,3,9,5,4,7,3,6,3,5,4,5,6
 ];
 
+// Noms courts des 114 sourates pour générer un <title> unique par verset
 const NOMS_SOURATES_COURT = [
   "",
   "Al-Fātihah","Al-Baqarah","Āl 'Imrān","An-Nisā'","Al-Mā'idah","Al-An'ām","Al-A'rāf","Al-Anfāl","At-Tawbah","Yūnus",
@@ -344,13 +346,12 @@ async function obtenirVersetOfficiel(sNum, vNum, lang) {
   return { ok: false, text: null };
 }
 
-async function traduireTexteServeur(texte, lang, deadlineMs) {
+async function traduireTexteServeur(texte, lang) {
   if (!texte || lang === "fr") return { ok: true, text: texte, provider: "fr" };
-  if (deadlineMs && Date.now() > deadlineMs) return { ok: false, text: texte, provider: "budget-exceeded" };
 
   try {
     const url1 = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=fr&tl=" + lang + "&dt=t&q=" + encodeURIComponent(texte);
-    const r1 = await fetch(url1, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(2500), cf: { cacheTtl: 2592000, cacheEverything: true } });
+    const r1 = await fetch(url1, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(2800), cf: { cacheTtl: 2592000, cacheEverything: true } });
     if (r1.ok) {
       const d1 = await r1.json();
       if (d1 && Array.isArray(d1[0])) {
@@ -363,11 +364,9 @@ async function traduireTexteServeur(texte, lang, deadlineMs) {
     }
   } catch (e1) {}
 
-  if (deadlineMs && Date.now() > deadlineMs) return { ok: false, text: texte, provider: "budget-exceeded" };
-
   try {
     const url2 = "https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl=fr&tl=" + lang + "&q=" + encodeURIComponent(texte);
-    const r2 = await fetch(url2, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(2500), cf: { cacheTtl: 2592000, cacheEverything: true } });
+    const r2 = await fetch(url2, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(2800), cf: { cacheTtl: 2592000, cacheEverything: true } });
     if (r2.ok) {
       const d2 = await r2.json();
       let out2 = "";
@@ -381,14 +380,12 @@ async function traduireTexteServeur(texte, lang, deadlineMs) {
     }
   } catch (e2) {}
 
-  if (deadlineMs && Date.now() > deadlineMs) return { ok: false, text: texte, provider: "budget-exceeded" };
-
   if (texte.length <= 490) {
     try {
       const endpoint = new URL("https://api.mymemory.translated.net/get");
       endpoint.searchParams.set("q", texte);
       endpoint.searchParams.set("langpair", "fr|" + lang);
-      const r3 = await fetch(endpoint, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(2500), redirect: "error" });
+      const r3 = await fetch(endpoint, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(2800), redirect: "error" });
       if (r3.ok) {
         const d3 = await r3.json();
         const text = d3?.responseData?.translatedText;
@@ -405,7 +402,6 @@ async function traduireTexteServeur(texte, lang, deadlineMs) {
 
 async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
   if (!innerHtml || lang === "fr") return { ok: true, html: innerHtml, diag: "fr" };
-  const deadlineMs = Date.now() + 4500; // Budget global de traduction max 4.5s (Audit S3)
   const parts = innerHtml.split(/(<[^>]+>)/g);
   const idxs = [];
   const segs = [];
@@ -422,7 +418,7 @@ async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
   if (segs.length === 0) return { ok: false, html: innerHtml, diag: "empty-segs" };
 
   const joined = segs.join("\\n\\n");
-  const batchRes = await traduireTexteServeur(joined, lang, deadlineMs);
+  const batchRes = await traduireTexteServeur(joined, lang);
   if (batchRes.ok && batchRes.text) {
     const splitTr = batchRes.text.split(/\\n\\s*\\n/);
     if (splitTr.length === idxs.length) {
@@ -440,12 +436,11 @@ async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
   let okCount = 0;
   let lastProv = batchRes.provider || "err";
   for (let j = 0; j < idxs.length; j++) {
-    if (Date.now() > deadlineMs) break;
     const idx = idxs[j];
     const rawOrig = parts[idx];
     const lead = (rawOrig.match(/^\\s*/) || [""])[0];
     const trail = (rawOrig.match(/\\s*$/) || [""])[0];
-    const r = await traduireTexteServeur(segs[j], lang, deadlineMs);
+    const r = await traduireTexteServeur(segs[j], lang);
     if (r.ok && r.text) {
       parts[idx] = lead + escapeHtmlText(r.text) + trail;
       okCount++;
@@ -473,7 +468,7 @@ async function obtenirTafsirDepuisCachesDurablesOuTraduire(innerHtml, sNum, vNum
   } catch (e) {}
 
   const cache = typeof caches !== "undefined" && caches.default ? caches.default : null;
-  const edgeCacheReq = new Request("https://corantafsir.com/_tafsir_edge_v112/" + sNum + "-" + vNum + "-" + lang);
+  const edgeCacheReq = new Request("https://corantafsir.com/_tafsir_edge_v105/" + sNum + "-" + vNum + "-" + lang);
   if (cache) {
     try {
       const cachedTaf = await cache.match(edgeCacheReq);
@@ -540,55 +535,11 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname, 
   out = out.replace(/<link rel="alternate" hreflang="[^"]*"[^>]*>\\s*/gi, "");
   out = out.replace(/(<link rel="canonical" href="[^"]*">)/i, "$1\\n" + construireBlocHreflangHarmonise(urlBaseFr));
 
-  const codeLangMeta = (!lang || !["fr","en","es","ar","de","it","id","ru"].includes(lang)) ? "fr" : lang;
-  const titles = {
-    fr: mVerse ? ("Sourate " + nomS + " (" + sNum + ":" + vNum + ") — Coran, Audio, Mot à Mot & Tafsīr") : "Le Noble Coran & Tafsīr Al-Mukhtasar — Audio, Tajwīd & Mot à Mot (8 Langues)",
-    en: mVerse ? ("Surah " + nomS + " (" + sNum + ":" + vNum + ") — Noble Quran, Audio, Word by Word & Tafsīr") : "The Noble Quran & Tafsīr Al-Mukhtasar — Audio, Tajwīd & Word by Word (8 Languages)",
-    es: mVerse ? ("Sura " + nomS + " (" + sNum + ":" + vNum + ") — El Noble Corán, Audio, Palabra por Palabra y Tafsīr") : "El Noble Corán y Tafsīr Al-Mukhtasar — Audio, Tajwīd y Palabra por Palabra (8 Idiomas)",
-    ar: mVerse ? ("سورة " + nomS + " (" + sNum + ":" + vNum + ") — القرآن الكريم والتفسير المختصر") : "القرآن الكريم والتفسير المختصر — تلاوة، تجويد وترجمة كلمة بكلمة (8 لغات)",
-    de: mVerse ? ("Sure " + nomS + " (" + sNum + ":" + vNum + ") — Der Edle Koran, Audio, Wort für Wort & Tafsīr") : "Der Edle Koran & Tafsīr Al-Mukhtasar — Audio, Tajwīd & Wort für Wort (Bubenheim & Elyas)",
-    it: mVerse ? ("Sura " + nomS + " (" + sNum + ":" + vNum + ") — Il Nobile Corano, Audio, Parola per Parola e Tafsīr") : "Il Nobile Corano e Tafsīr Al-Mukhtasar — Audio, Tajwīd e Parola per Parola (Piccardo)",
-    id: mVerse ? ("Surah " + nomS + " (" + sNum + ":" + vNum + ") — Al-Qur'an Mulia, Audio, Kata demi Kata & Tafsir") : "Al-Qur'an Mulia & Tafsir Al-Mukhtasar — Audio, Tajwid & Kata demi Kata (Kemenag RI)",
-    ru: mVerse ? ("Сура " + nomS + " (" + sNum + ":" + vNum + ") — Священный Коран, Аудио, Пословный перевод и Тафсир") : "Священный Коран и Тафсир аль-Мухтасар — Аудио, Таджвид и Пословный перевод (Э. Кулиев)"
-  };
-  const descriptions = {
-    fr: "Lisez et écoutez le Noble Coran (6 236 versets) avec suivi audio mot à mot, Tajwīd coloré et exégèse (Tafsīr Al-Mukhtasar & Ibn Kathīr) en 8 langues.",
-    en: "Read and listen to the Noble Quran (6,236 verses) with word-by-word audio tracking, color Tajwīd, Khatm planner and Tafsīr Al-Mukhtasar & Ibn Kathīr in 8 languages.",
-    es: "Lea y escuche el Noble Corán (6.236 aleyas) con seguimiento de audio palabra por palabra, Tajwīd, planificador Khatm y Tafsīr Al-Mukhtasar en 8 idiomas.",
-    ar: "اقرأ واستمع إلى القرآن الكريم (6236 آية) مع التتبع الصوتي كلمة بكلمة، التجويد المصور، برنامج ختم القرآن والتفسير المختصر وابن كثير بـ 8 لغات.",
-    de: "Lesen und hören Sie den Edlen Koran (6.236 Verse, Übersetzung Bubenheim & Elyas) mit Wort-für-Wort-Audioverfolgung, Tajwīd, Leseplaner und Tafsīr Al-Mukhtasar.",
-    it: "Leggi e ascolta il Nobile Corano (6.236 versetti, traduzione Hamza Roberto Piccardo) con seguito audio parola per parola, Tajwīd, pianificatore Khatm e Tafsīr.",
-    id: "Baca dan dengarkan Al-Qur'an Mulia (6.236 ayat, Terjemahan Kemenag RI) dengan pelacakan audio kata demi kata, Tajwid, perencana Khatam, dan Tafsir Al-Mukhtasar.",
-    ru: "Читайте и слушайте Священный Коран (6 236 аятов, перевод Эльмира Кулиева) с пословным аудио-слежением, Таджвидом, планом чтения и Тафсиром аль-Мухтасар."
-  };
-
-  if (isHome || mVerse) {
-    const tLoc = titles[codeLangMeta];
-    const dLoc = descriptions[codeLangMeta];
-    out = out.replace(/<title>[\\s\\S]*?<\\/title>/i, () => "<title>" + escapeHtmlText(tLoc) + "</title>");
-    const ogAndJsonLd = [
-      '<meta name="description" content="' + escapeHtmlText(dLoc) + '">',
-      '<meta property="og:title" content="' + escapeHtmlText(tLoc) + '">',
-      '<meta property="og:description" content="' + escapeHtmlText(dLoc) + '">',
-      '<meta property="og:url" content="' + canonicalHref + '">',
-      '<meta property="og:type" content="' + (mVerse ? 'article' : 'website') + '">',
-      '<script type="application/ld+json">' + JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "url": canonicalHref,
-        "name": tLoc,
-        "description": dLoc,
-        "inLanguage": codeLangMeta
-      }).replace(/</g, "\\\\u003c") + '</script>'
-    ].join("\\n  ");
-
-    out = out.replace(/<meta name="description" content="[^"]*">\\s*/gi, "");
-    out = out.replace(/<meta property="og:[^"]*" content="[^"]*">\\s*/gi, "");
-    out = out.replace(/<script type="application\\/ld\\+json">[\\s\\S]*?<\\/script>\\s*/gi, "");
-    out = out.replace(/<\\/title>/i, "</title>\\n  " + ogAndJsonLd);
-  }
-
   if (!lang || lang === "fr") {
+    if (mVerse) {
+      const titleFr = "Sourate " + nomS + " (" + sNum + ":" + vNum + ") — Coran, Audio, Mot à Mot & Tafsīr";
+      out = out.replace(/<title>[\\s\\S]*?<\\/title>/i, () => "<title>" + escapeHtmlText(titleFr) + "</title>");
+    }
     out = remplacerHorsScriptsEtStyles(out, segment =>
       segment
         .replace(/href="\\/?sourate-(\\d+)-verset-(\\d+)(?:\\.html)?"/gi, 'href="/sourate-$1-verset-$2"')
@@ -600,6 +551,36 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname, 
   let traductionComplete = true;
 
   out = out.replace(/<html([^>]*)lang="[^"]*"([^>]*)>/i, '<html$1lang="' + lang + '" dir="' + (lang === "ar" ? "rtl" : "ltr") + '"$2>');
+
+  const titles = {
+    en: mVerse ? ("Surah " + nomS + " (" + sNum + ":" + vNum + ") — Noble Quran, Audio, Word by Word & Tafsīr") : "The Noble Quran & Tafsīr Al-Mukhtasar — Audio, Tajwīd & Word by Word (8 Languages)",
+    es: mVerse ? ("Sura " + nomS + " (" + sNum + ":" + vNum + ") — El Noble Corán, Audio, Palabra por Palabra y Tafsīr") : "El Noble Corán y Tafsīr Al-Mukhtasar — Audio, Tajwīd y Palabra por Palabra (8 Idiomas)",
+    ar: mVerse ? ("سورة " + nomS + " (" + sNum + ":" + vNum + ") — القرآن الكريم والتفسير المختصر") : "القرآن الكريم والتفسير المختصر — تلاوة، تجويد وترجمة كلمة بكلمة (8 لغات)",
+    de: mVerse ? ("Sure " + nomS + " (" + sNum + ":" + vNum + ") — Der Edle Koran, Audio, Wort für Wort & Tafsīr") : "Der Edle Koran & Tafsīr Al-Mukhtasar — Audio, Tajwīd & Wort für Wort (Bubenheim & Elyas)",
+    it: mVerse ? ("Sura " + nomS + " (" + sNum + ":" + vNum + ") — Il Nobile Corano, Audio, Parola per Parola e Tafsīr") : "Il Nobile Corano e Tafsīr Al-Mukhtasar — Audio, Tajwīd e Parola per Parola (Piccardo)",
+    id: mVerse ? ("Surah " + nomS + " (" + sNum + ":" + vNum + ") — Al-Qur'an Mulia, Audio, Kata demi Kata & Tafsir") : "Al-Qur'an Mulia & Tafsir Al-Mukhtasar — Audio, Tajwid & Kata demi Kata (Kemenag RI)",
+    ru: mVerse ? ("Сура " + nomS + " (" + sNum + ":" + vNum + ") — Священный Коран, Аудио, Пословный перевод и Тафсир") : "Священный Коран и Тафсир аль-Мухтасар — Аудио, Таджвид и Пословный перевод (Э. Кулиев)"
+  };
+  const descriptions = {
+    en: "Read and listen to the Noble Quran (6,236 verses) with word-by-word audio tracking, color Tajwīd, Khatm planner and Tafsīr Al-Mukhtasar & Ibn Kathīr in 8 languages.",
+    es: "Lea y escuche el Noble Corán (6.236 aleyas) con seguimiento de audio palabra por palabra, Tajwīd, planificador Khatm y Tafsīr Al-Mukhtasar en 8 idiomas.",
+    ar: "اقرأ واستمع إلى القرآن الكريم (6236 آية) مع التتبع الصوتي كلمة بكلمة، التجويد المصور، برنامج ختم القرآن والتفسير المختصر وابن كثير بـ 8 لغات.",
+    de: "Lesen und hören Sie den Edlen Koran (6.236 Verse, Übersetzung Bubenheim & Elyas) mit Wort-für-Wort-Audioverfolgung, Tajwīd, Leseplaner und Tafsīr Al-Mukhtasar.",
+    it: "Leggi e ascolta il Nobile Corano (6.236 versetti, traduzione Hamza Roberto Piccardo) con seguito audio parola per parola, Tajwīd, pianificatore Khatm e Tafsīr.",
+    id: "Baca dan dengarkan Al-Qur'an Mulia (6.236 ayat, Terjemahan Kemenag RI) dengan pelacakan audio kata demi kata, Tajwid, perencana Khatam, dan Tafsir Al-Mukhtasar.",
+    ru: "Читайте и слушайте Священный Коран (6 236 аятов, перевод Эльмира Кулиева) с пословным аудио-слежением, Таджвидом, планом чтения и Тафсиром аль-Мухтасар."
+  };
+
+  if (titles[lang]) {
+    out = out.replace(/<title>[\\s\\S]*?<\\/title>/i, () => "<title>" + escapeHtmlText(titles[lang]) + "</title>");
+  }
+  if (descriptions[lang]) {
+    if (/<meta name="description" content="[^"]*">/i.test(out)) {
+      out = out.replace(/<meta name="description" content="[^"]*">/i, () => '<meta name="description" content="' + escapeHtmlText(descriptions[lang]) + '">');
+    } else {
+      out = out.replace(/<\\/title>/i, () => '</title>\\n  <meta name="description" content="' + escapeHtmlText(descriptions[lang]) + '">');
+    }
+  }
 
   const mapUi = UI_TEXTES[lang] || {};
   out = remplacerHorsScriptsEtStyles(out, segment => {
@@ -686,7 +667,7 @@ async function recupererFichierStatiquePages(request, env) {
   return fetch(request);
 }
 
-const SSR_VERSION = "v112";
+const SSR_VERSION = "v111";
 function construireCleCache(request, lang) {
   const key = new URL(request.url);
   key.pathname = key.pathname.replace(/\\.html$/i, "");
@@ -793,7 +774,7 @@ export default {
 };
 `;
 
-const HEADERS_CONTENU_V112 = `/*
+const HEADERS_CONTENU_V111 = `/*
   Content-Security-Policy: default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self' blob: https://everyayah.com https://audio.qurancdn.com; connect-src 'self' https://api.quran.com https://api.qurancdn.com https://translate.googleapis.com https://everyayah.com https://audio.qurancdn.com; worker-src 'self' blob:; upgrade-insecure-requests
   Strict-Transport-Security: max-age=31536000
   X-Frame-Options: DENY
@@ -802,7 +783,7 @@ const HEADERS_CONTENU_V112 = `/*
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), autoplay=(self)
 `;
 
-const PAGE_404_V112 = `<!DOCTYPE html>
+const PAGE_404_V111 = `<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -827,105 +808,49 @@ const PAGE_404_V112 = `<!DOCTYPE html>
 </html>`;
 
 if (fs.existsSync(dossierSite)) {
-  fs.writeFileSync(path.join(dossierSite, '_worker.js'), WORKER_SECURISE_V112, 'utf8');
-  fs.writeFileSync(path.join(dossierSite, '_headers'), HEADERS_CONTENU_V112, 'utf8');
-  fs.writeFileSync(path.join(dossierSite, '404.html'), PAGE_404_V112, 'utf8');
+  fs.writeFileSync(path.join(dossierSite, '_worker.js'), WORKER_SECURISE_V111, 'utf8');
+  fs.writeFileSync(path.join(dossierSite, '_headers'), HEADERS_CONTENU_V111, 'utf8');
+  fs.writeFileSync(path.join(dossierSite, '404.html'), PAGE_404_V111, 'utf8');
 }
 if (fs.existsSync(path.join(__dirname, 'cloudflare-worker-seo.js'))) {
-  fs.writeFileSync(path.join(__dirname, 'cloudflare-worker-seo.js'), WORKER_SECURISE_V112, 'utf8');
+  fs.writeFileSync(path.join(__dirname, 'cloudflare-worker-seo.js'), WORKER_SECURISE_V111, 'utf8');
 }
 
 // ============================================================================
-// 2. SCRIPT DE RÉFÉRENCES CLIQUABLES CORRIGÉ (NE TOUCHE JAMAIS À window.allerAuVerset)
+// 2. STYLE & CODE CLIENT V111 (ORIGINAL SYNCHRONISÉ AVEC LE RÉCITATEUR)
 // ============================================================================
-const SCRIPT_REFS_CLIQUABLES_PROPRE = `<script id="script-refs-cliquables">
-(function(){
-  window.allerAuVersetDepuisRef = function(numVerset) {
-    if (typeof window.allerAuVerset === 'function') {
-      window.allerAuVerset(Number(numVerset), false);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-    var sel = document.getElementById('verseJumperSelect');
-    if (sel && sel.options) {
-      for (var i = 0; i < sel.options.length; i++) {
-        var optTxt = sel.options[i].textContent || '';
-        var m = optTxt.match(/(\\d+)/);
-        if (m && parseInt(m[1], 10) === Number(numVerset)) {
-          sel.selectedIndex = i;
-          sel.dispatchEvent(new Event('change', { bubbles: true }));
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          return;
-        }
-      }
-    }
-  };
-
-  function rendreReferencesCliquables() {
-    var blocs = document.querySelectorAll('#mainExplanationEl, .consensus-note, .miracle-summary, .miracle-deep-details');
-    for (var i = 0; i < blocs.length; i++) {
-      var el = blocs[i];
-      var sig = (el.textContent || '').length;
-      if (el.dataset.refsSig === String(sig) || el.querySelector('button, select')) continue;
-      var html = el.innerHTML;
-      if (!html) continue;
-
-      var nvHtml = html.replace(/\\b(v\\.|verset\\s+|aleya\\s+|آية\\s*)(\\d+)(?:\\s*[–\\-]\\s*\\d+)?/gi, function(match, prefix, num) {
-        return '<span class="tafsir-ref-link" onclick="window.allerAuVersetDepuisRef(' + num + ')" title="Aller directement au verset ' + num + '">' + match + '</span>';
-      });
-
-      if (nvHtml !== html) {
-        el.innerHTML = nvHtml;
-      }
-      el.dataset.refsSig = String((el.textContent || '').length);
-    }
-  }
-
-  document.addEventListener('click', function(){ setTimeout(rendreReferencesCliquables, 50); });
-  document.addEventListener('change', function(){ setTimeout(rendreReferencesCliquables, 50); });
-  window.addEventListener('DOMContentLoaded', rendreReferencesCliquables);
-})();
-</script>`;
-
-// ============================================================================
-// 3. STYLE & CODE CLIENT V112 (OCCULTATION TOTALE SOLEIL/LUNE + XSS TAJWID + 0 PING-PONG DOM)
-// ============================================================================
-const styleV112 = `<style id="wbw-style-v112">
-  /* 0. Soleil et Lune 100% opaques au-dessus du canvas des étoiles (z-index: 3 > z-index: 2) */
+const styleV111 = `<style id="wbw-style-v111">
+  /* 0. Soleil et Lune 100% opaques pour ne laisser passer aucune étoile */
   html body #flatEarthSun,
   html body .flat-earth-sun,
   html body .astre-soleil-pur-v77 {
-    z-index: 3 !important;
     opacity: 1 !important;
-    background: radial-gradient(circle at 50% 50%, #ffffff 0%, #fffef0 35%, #fef08a 65%, #facc15 88%, #f59e0b 100%) !important;
     background-color: #facc15 !important;
   }
   html body #flatEarthMoon,
   html body .flat-earth-moon,
   html body .astre-lune-pure-v77 {
-    z-index: 3 !important;
     opacity: 1 !important;
-    background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f8fafc 50%, #e2e8f0 85%, #cbd5e1 100%) !important;
     background-color: #f1f5f9 !important;
   }
 
   /* 1. Masquage du bloc de progression (Khatm) et des doublons sur les sourates */
   .wbw-hide-khatm-on-surah,
-  .wbw-masquer-doublon-v112,
-  .maher-item-removed-v112 {
+  .wbw-masquer-doublon-v111,
+  .maher-item-removed-v111 {
     display: none !important;
   }
 
   /* 2. Suppression ciblée des petits numéros (1, 2, 3...) sans toucher à la traduction */
-  .wbw-num-hidden-v112,
-  .wbw-card-v112 sup,
-  .wbw-card-v112 small,
+  .wbw-num-hidden-v111,
+  .wbw-card-v111 sup,
+  .wbw-card-v111 small,
   html body .wbw-card-unit::before,
   html body .wbw-card-unit::after,
   html body .wbw-word-box::before,
   html body .wbw-word-box::after,
-  html body .wbw-card-v112::before,
-  html body .wbw-card-v112::after {
+  html body .wbw-card-v111::before,
+  html body .wbw-card-v111::after {
     content: none !important;
     display: none !important;
     visibility: hidden !important;
@@ -941,7 +866,7 @@ const styleV112 = `<style id="wbw-style-v112">
   }
 
   /* 3. Garantie d'affichage de la traduction sous chaque mot en Mot à mot */
-  html body .wbw-card-v112 .wbw-tr-v112,
+  html body .wbw-card-v111 .wbw-tr-v111,
   html body .wbw-word-box .wbw-tr {
     display: block !important;
     visibility: visible !important;
@@ -969,9 +894,9 @@ const styleV112 = `<style id="wbw-style-v112">
   html body .verse-stage #arabicVerse span[class*="iqlab"],
   html body .verse-stage #arabicVerseEl span[class*="iqlab"],
   html body .verse-stage .arabic-glow-verse span[class*="iqlab"],
-  html body .verse-stage .wbw-card-v112 [class*="ghunnah"],
-  html body .verse-stage .wbw-card-v112 [class*="ikhf"],
-  html body .verse-stage .wbw-card-v112 [class*="iqlab"] {
+  html body .verse-stage .wbw-card-v111 [class*="ghunnah"],
+  html body .verse-stage .wbw-card-v111 [class*="ikhf"],
+  html body .verse-stage .wbw-card-v111 [class*="iqlab"] {
     color: #4ade80 !important;
     text-shadow: 0 0 10px rgba(74, 222, 128, 0.45) !important;
     opacity: 1 !important;
@@ -989,8 +914,8 @@ const styleV112 = `<style id="wbw-style-v112">
   html body .verse-stage #arabicVerse span[class*="qalaq"],
   html body .verse-stage #arabicVerseEl span[class*="qalaq"],
   html body .verse-stage .arabic-glow-verse span[class*="qalaq"],
-  html body .verse-stage .wbw-card-v112 [class*="qalq"],
-  html body .verse-stage .wbw-card-v112 [class*="qalaq"] {
+  html body .verse-stage .wbw-card-v111 [class*="qalq"],
+  html body .verse-stage .wbw-card-v111 [class*="qalaq"] {
     color: #38bdf8 !important;
     text-shadow: 0 0 10px rgba(56, 189, 248, 0.5) !important;
     opacity: 1 !important;
@@ -1002,7 +927,7 @@ const styleV112 = `<style id="wbw-style-v112">
   html body .verse-stage #arabicVerse span[class*="madd"],
   html body .verse-stage #arabicVerseEl span[class*="madd"],
   html body .verse-stage .arabic-glow-verse span[class*="madd"],
-  html body .verse-stage .wbw-card-v112 [class*="madd"] {
+  html body .verse-stage .wbw-card-v111 [class*="madd"] {
     color: #f87171 !important;
     text-shadow: 0 0 12px rgba(248, 113, 113, 0.5) !important;
     opacity: 1 !important;
@@ -1026,9 +951,9 @@ const styleV112 = `<style id="wbw-style-v112">
   html body .verse-stage #arabicVerse span[class*="tafkh"],
   html body .verse-stage #arabicVerseEl span[class*="tafkh"],
   html body .verse-stage .arabic-glow-verse span[class*="tafkh"],
-  html body .verse-stage .wbw-card-v112 [class*="idgham"],
-  html body .verse-stage .wbw-card-v112 [class*="laam_shams"],
-  html body .verse-stage .wbw-card-v112 [class*="tafkh"] {
+  html body .verse-stage .wbw-card-v111 [class*="idgham"],
+  html body .verse-stage .wbw-card-v111 [class*="laam_shams"],
+  html body .verse-stage .wbw-card-v111 [class*="tafkh"] {
     color: #fbbf24 !important;
     text-shadow: 0 0 10px rgba(251, 191, 36, 0.45) !important;
     opacity: 1 !important;
@@ -1046,14 +971,14 @@ const styleV112 = `<style id="wbw-style-v112">
   html body .verse-stage #arabicVerse span[class*="slnt"],
   html body .verse-stage #arabicVerseEl span[class*="slnt"],
   html body .verse-stage .arabic-glow-verse span[class*="slnt"],
-  html body .verse-stage .wbw-card-v112 [class*="ham_wasl"],
-  html body .verse-stage .wbw-card-v112 [class*="slnt"] {
+  html body .verse-stage .wbw-card-v111 [class*="ham_wasl"],
+  html body .verse-stage .wbw-card-v111 [class*="slnt"] {
     color: #94a3b8 !important;
     text-shadow: none !important;
   }
 
-  /* 5. MODALE AUDIO : PLAGE DE VERSETS & RÉPÉTITIONS */
-  #wbwAudioRangeBtnV112 {
+  /* 5. MODALE AUDIO : PLAGE DE VERSETS & RÉPÉTITIONS (STYLE QURAN.COM) */
+  #wbwAudioRangeBtnV111 {
     background: rgba(14, 165, 233, 0.14);
     color: #7dd3fc;
     border: 1px solid rgba(56, 189, 248, 0.42);
@@ -1068,15 +993,15 @@ const styleV112 = `<style id="wbw-style-v112">
     align-items: center;
     gap: 6px;
   }
-  #wbwAudioRangeBtnV112:hover,
-  #wbwAudioRangeBtnV112.active {
+  #wbwAudioRangeBtnV111:hover,
+  #wbwAudioRangeBtnV111.active {
     background: linear-gradient(135deg, #38bdf8, #0ea5e9);
     color: #021019;
     border-color: #7dd3fc;
     box-shadow: 0 0 16px rgba(56, 189, 248, 0.48);
   }
 
-  #wbwAudioRangeOverlayV112 {
+  #wbwAudioRangeOverlayV111 {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.72);
@@ -1089,16 +1014,16 @@ const styleV112 = `<style id="wbw-style-v112">
     padding: 0;
   }
   @media (min-width: 640px) {
-    #wbwAudioRangeOverlayV112 {
+    #wbwAudioRangeOverlayV111 {
       align-items: center;
       padding: 16px;
     }
   }
-  #wbwAudioRangeOverlayV112.open {
+  #wbwAudioRangeOverlayV111.open {
     display: flex;
   }
 
-  .wbw-audio-sheet-v112 {
+  .wbw-audio-sheet-v111 {
     width: 100%;
     max-width: 440px;
     background: #14171c;
@@ -1108,27 +1033,27 @@ const styleV112 = `<style id="wbw-style-v112">
     color: #f8fafc;
     box-shadow: 0 -10px 45px rgba(0, 0, 0, 0.85);
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    animation: wbwSheetUpV112 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: wbwSheetUpV111 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
   @media (min-width: 640px) {
-    .wbw-audio-sheet-v112 {
+    .wbw-audio-sheet-v111 {
       border-radius: 24px;
       box-shadow: 0 20px 55px rgba(0, 0, 0, 0.9);
     }
   }
-  @keyframes wbwSheetUpV112 {
+  @keyframes wbwSheetUpV111 {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .wbw-audio-handle-v112 {
+  .wbw-audio-handle-v111 {
     width: 40px;
     height: 4px;
     background: rgba(255, 255, 255, 0.25);
     border-radius: 99px;
     margin: 0 auto 12px auto;
   }
-  .wbw-audio-title-v112 {
+  .wbw-audio-title-v111 {
     text-align: center;
     font-size: 1.02rem;
     font-weight: 800;
@@ -1136,7 +1061,7 @@ const styleV112 = `<style id="wbw-style-v112">
     margin-bottom: 14px;
     letter-spacing: 0.01em;
   }
-  .wbw-audio-row-v112 {
+  .wbw-audio-row-v111 {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1144,10 +1069,10 @@ const styleV112 = `<style id="wbw-style-v112">
     padding: 13px 4px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   }
-  .wbw-audio-row-v112:last-of-type {
+  .wbw-audio-row-v111:last-of-type {
     border-bottom: none;
   }
-  .wbw-audio-label-v112 {
+  .wbw-audio-label-v111 {
     display: inline-flex;
     align-items: center;
     gap: 12px;
@@ -1155,7 +1080,7 @@ const styleV112 = `<style id="wbw-style-v112">
     font-weight: 600;
     color: #e2e8f0;
   }
-  .wbw-audio-icon-v112 {
+  .wbw-audio-icon-v111 {
     width: 22px;
     text-align: center;
     font-size: 1rem;
@@ -1164,7 +1089,7 @@ const styleV112 = `<style id="wbw-style-v112">
     align-items: center;
     justify-content: center;
   }
-  .wbw-audio-select-v112 {
+  .wbw-audio-select-v111 {
     background: #1e232b;
     color: #f8fafc;
     border: 1px solid rgba(56, 189, 248, 0.28);
@@ -1178,11 +1103,11 @@ const styleV112 = `<style id="wbw-style-v112">
     min-width: 118px;
     text-align: right;
   }
-  .wbw-audio-select-v112:focus {
+  .wbw-audio-select-v111:focus {
     border-color: #38bdf8;
     box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
   }
-  .wbw-audio-actions-v112 {
+  .wbw-audio-actions-v111 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
@@ -1190,7 +1115,7 @@ const styleV112 = `<style id="wbw-style-v112">
     padding-top: 14px;
     border-top: 1px solid rgba(255, 255, 255, 0.09);
   }
-  .wbw-audio-cancel-v112 {
+  .wbw-audio-cancel-v111 {
     background: transparent;
     color: #e2e8f0;
     border: 1px solid rgba(255, 255, 255, 0.16);
@@ -1202,11 +1127,11 @@ const styleV112 = `<style id="wbw-style-v112">
     cursor: pointer;
     transition: 0.18s;
   }
-  .wbw-audio-cancel-v112:hover {
+  .wbw-audio-cancel-v111:hover {
     background: rgba(255, 255, 255, 0.08);
     color: #ffffff;
   }
-  .wbw-audio-play-v112 {
+  .wbw-audio-play-v111 {
     background: linear-gradient(135deg, #56a8f5, #38bdf8);
     color: #ffffff;
     border: none;
@@ -1219,12 +1144,12 @@ const styleV112 = `<style id="wbw-style-v112">
     box-shadow: 0 6px 20px rgba(56, 189, 248, 0.38);
     transition: 0.18s;
   }
-  .wbw-audio-play-v112:hover {
+  .wbw-audio-play-v111:hover {
     filter: brightness(1.08);
     transform: translateY(-1px);
   }
 
-  /* 6. Optimisation GPU mobile */
+  /* 6. Optimisation GPU mobile : désactive backdrop-filter coûteux sur petits écrans */
   @media (max-width: 820px) {
     *, *::before, *::after {
       backdrop-filter: none !important;
@@ -1239,26 +1164,11 @@ const styleV112 = `<style id="wbw-style-v112">
   }
 </style>`;
 
-const codeClientV112 = `
+const codeClientV111 = `
 (function() {
   window.__wbwBypassOrigCartes = true;
 
   var NUMERO_RNA = 'RNA : W343000000 • SIRET en cours d’attribution INSEE';
-
-  // Assainisseur HTML strict sans dépendance externe pour le Tajwīd (Audit S1)
-  function assainirHtmlTajwid(raw) {
-    var s = String(raw ?? '');
-    s = s.replace(/<(?:script|style|iframe|object|embed|svg|math|img)[^>]*>[\\s\\S]*?<\\/(?:script|style|iframe|object|embed|svg|math|img)>/gi, '');
-    return s.replace(/<(\\/?)([a-z0-9-]+)([^>]*)>/gi, function(_m, slash, tag, attrs) {
-      var t = tag.toLowerCase();
-      if (t !== 'tajweed' && t !== 'span') return '';
-      if (slash) return '</' + t + '>';
-      var mCls = attrs.match(/\\bclass\\s*=\\s*["']?([a-zA-Z0-9_\\-\\s]+)["']?/i);
-      var cls = mCls ? mCls[1].replace(/[^a-zA-Z0-9_\\-\\s]/g, '').trim() : '';
-      return cls ? ('<' + t + ' class="' + cls + '">') : ('<' + t + '>');
-    });
-  }
-  window.__assainirHtmlTajwidV112 = assainirHtmlTajwid;
 
   function forcer(el, prop, val) {
     if (el && el.style && el.style.getPropertyValue(prop) !== val) {
@@ -1398,12 +1308,11 @@ const codeClientV112 = `
   }
 
   // =========================================================================
-  // 1. OCCULTATION 100% TOTALE DES ÉTOILES & FLOCONS SOUS LE SOLEIL ET LA LUNE
-  //    (Zéro Layout Thrashing + Masque radial sur tout le disque et sa couronne)
+  // 1. OCCULTATION EXACTE DES ÉTOILES SOUS LE SOLEIL ET LA LUNE (DOM + CANVAS)
   // =========================================================================
   function activerOccultationSoleilLune() {
-    if (window.__skyOcclusionV112 || typeof CanvasRenderingContext2D === 'undefined') return;
-    window.__skyOcclusionV112 = true;
+    if (window.__skyOcclusionV111 || typeof CanvasRenderingContext2D === 'undefined') return;
+    window.__skyOcclusionV111 = true;
 
     var proto = CanvasRenderingContext2D.prototype;
     var origClearRect = proto.clearRect;
@@ -1415,30 +1324,15 @@ const codeClientV112 = `
     var origFillText = proto.fillText;
     var origFill = proto.fill;
 
-    var cacheOrbesDom = [];
-    var dernierCalculOrbesMs = 0;
-
-    function recenserOrbesSoleilLune(ctx, force) {
-      var now = performance.now();
-      if (!force && (now - dernierCalculOrbesMs) < 28 && cacheOrbesDom.length > 0) {
-        ctx.__orbesDomV112 = cacheOrbesDom;
-        return;
-      }
-      dernierCalculOrbesMs = now;
+    function recenserOrbesSoleilLune(ctx) {
       var orbes = [];
-      var sunEl = document.getElementById('flatEarthSun');
-      var moonEl = document.getElementById('flatEarthMoon');
-      var candidats = [];
-      if (sunEl) candidats.push(sunEl);
-      if (moonEl) candidats.push(moonEl);
-      if (candidats.length === 0) {
-        var els = document.querySelectorAll('.flat-earth-sun, .flat-earth-moon, .astre-soleil-pur-v77, .astre-lune-pure-v77');
-        for (var k = 0; k < els.length; k++) candidats.push(els[k]);
-      }
-      for (var i = 0; i < candidats.length; i++) {
-        var el = candidats[i];
+      var els = document.querySelectorAll('#flatEarthSun, #flatEarthMoon, .flat-earth-sun, .flat-earth-moon, .astre-soleil-pur-v77, .astre-lune-pure-v77');
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        var st = window.getComputedStyle(el);
+        if (st.display === 'none' || st.visibility === 'hidden' || parseFloat(st.opacity || '1') < 0.05) continue;
         var rect = el.getBoundingClientRect();
-        if (rect.width >= 30 && rect.height >= 30) {
+        if (rect.width >= 30 && rect.height >= 30 && rect.bottom > 0 && rect.right > 0 && rect.top < window.innerHeight && rect.left < window.innerWidth) {
           orbes.push({
             x: rect.left + rect.width * 0.5,
             y: rect.top + rect.height * 0.5,
@@ -1446,28 +1340,32 @@ const codeClientV112 = `
           });
         }
       }
-      cacheOrbesDom = orbes;
-      ctx.__orbesDomV112 = orbes;
+      ctx.__orbesDomV111 = orbes;
     }
 
     function visibiliteEtoile(ctx, x, y, rayonEtoile) {
-      var liste = ctx.__orbesDomV112 || cacheOrbesDom;
-      if (!liste || liste.length === 0) return 1.0;
+      var liste = [];
+      if (ctx.__orbesDomV111 && ctx.__orbesDomV111.length) {
+        for (var i = 0; i < ctx.__orbesDomV111.length; i++) liste.push(ctx.__orbesDomV111[i]);
+      }
+      if (ctx.__orbesCanvasV111 && ctx.__orbesCanvasV111.length) {
+        for (var j = 0; j < ctx.__orbesCanvasV111.length; j++) liste.push(ctx.__orbesCanvasV111[j]);
+      }
+      if (liste.length === 0) return 1.0;
 
-      var pad = (rayonEtoile || 6) * 0.7;
+      var pad = (rayonEtoile || 4) * 0.5;
       var visMin = 1.0;
-      for (var i = 0; i < liste.length; i++) {
-        var o = liste[i];
+      for (var k = 0; k < liste.length; k++) {
+        var o = liste[k];
         var dx = x - o.x;
         var dy = y - o.y;
         var dist = Math.sqrt(dx * dx + dy * dy);
-        // Rayon intérieur 100% opaque couvrant tout le disque (75px) + la couronne lumineuse (jusqu'à 92px)
-        var rOpaque = Math.max(o.r * 1.22, 92) + pad;
-        var rHalo = Math.max(o.r * 1.65, 126) + pad;
+        var rOpaque = o.r * 0.94 + pad;
+        var rDoux = o.r * 1.15 + pad;
         if (dist <= rOpaque) {
           return 0.0;
-        } else if (dist < rHalo) {
-          var t = (dist - rOpaque) / (rHalo - rOpaque);
+        } else if (dist < rDoux) {
+          var t = (dist - rOpaque) / (rDoux - rOpaque);
           var v = t * t * (3 - 2 * t);
           if (v < visMin) visMin = v;
         }
@@ -1476,49 +1374,50 @@ const codeClientV112 = `
     }
 
     proto.clearRect = function(x, y, w, h) {
-      if (this.canvas && (this.canvas.id === 'fullPageSkyCanvas' || w >= this.canvas.width * 0.8)) {
-        this.__txV112 = 0;
-        this.__tyV112 = 0;
-        this.__stackTxV112 = [];
-        recenserOrbesSoleilLune(this, false);
+      if (this.canvas && w >= this.canvas.width * 0.8 && h >= this.canvas.height * 0.8) {
+        this.__orbesCanvasV111 = [];
+        this.__txV111 = 0;
+        this.__tyV111 = 0;
+        this.__stackTxV111 = [];
+        recenserOrbesSoleilLune(this);
       }
       return origClearRect.apply(this, arguments);
     };
 
     proto.save = function() {
       if (this.canvas && this.canvas.id === 'fullPageSkyCanvas') {
-        if (!this.__stackTxV112) this.__stackTxV112 = [];
-        this.__stackTxV112.push({ x: this.__txV112 || 0, y: this.__tyV112 || 0 });
+        if (!this.__stackTxV111) this.__stackTxV111 = [];
+        this.__stackTxV111.push({ x: this.__txV111 || 0, y: this.__tyV111 || 0 });
       }
       return origSave.apply(this, arguments);
     };
 
     proto.restore = function() {
-      if (this.canvas && this.canvas.id === 'fullPageSkyCanvas' && this.__stackTxV112 && this.__stackTxV112.length > 0) {
-        var prev = this.__stackTxV112.pop();
-        this.__txV112 = prev.x;
-        this.__tyV112 = prev.y;
+      if (this.canvas && this.canvas.id === 'fullPageSkyCanvas' && this.__stackTxV111 && this.__stackTxV111.length > 0) {
+        var prev = this.__stackTxV111.pop();
+        this.__txV111 = prev.x;
+        this.__tyV111 = prev.y;
       }
       return origRestore.apply(this, arguments);
     };
 
     proto.translate = function(tx, ty) {
       if (this.canvas && this.canvas.id === 'fullPageSkyCanvas') {
-        this.__txV112 = (this.__txV112 || 0) + (Number(tx) || 0);
-        this.__tyV112 = (this.__tyV112 || 0) + (Number(ty) || 0);
+        this.__txV111 = (this.__txV111 || 0) + (Number(tx) || 0);
+        this.__tyV111 = (this.__tyV111 || 0) + (Number(ty) || 0);
       }
       return origTranslate.apply(this, arguments);
     };
 
     proto.drawImage = function(img, dx, dy, dw, dh) {
       if (this.canvas && (this.canvas.id === 'fullPageSkyCanvas' || this.canvas.width > 200)) {
-        if (!this.__orbesDomV112) recenserOrbesSoleilLune(this, true);
+        if (!this.__orbesDomV111) recenserOrbesSoleilLune(this);
         var w = typeof dw === 'number' ? dw : (img && img.width ? img.width : 0);
         var h = typeof dh === 'number' ? dh : (img && img.height ? img.height : 0);
-        var wx = (this.__txV112 || 0) + (Number(dx) || 0) + w * 0.5;
-        var wy = (this.__tyV112 || 0) + (Number(dy) || 0) + h * 0.5;
+        var wx = (this.__txV111 || 0) + (Number(dx) || 0) + w * 0.5;
+        var wy = (this.__tyV111 || 0) + (Number(dy) || 0) + h * 0.5;
 
-        var vis = visibiliteEtoile(this, wx, wy, Math.max(w, h) * 0.5);
+        var vis = visibiliteEtoile(this, wx, wy, Math.max(w, h) * 0.45);
         if (vis <= 0.02) {
           return;
         }
@@ -1534,9 +1433,16 @@ const codeClientV112 = `
     };
 
     proto.arc = function(x, y, r, sa, ea, ccw) {
-      if (r > 0 && r <= 8 && this.canvas && this.canvas.width > 200) {
-        if (!this.__orbesDomV112) recenserOrbesSoleilLune(this, true);
-        var vis = visibiliteEtoile(this, (this.__txV112 || 0) + x, (this.__tyV112 || 0) + y, r);
+      if (r >= 22 && r <= 240 && this.canvas && this.canvas.width > 200) {
+        if (!this.__orbesCanvasV111) this.__orbesCanvasV111 = [];
+        if (this.__orbesCanvasV111.length < 6) {
+          this.__orbesCanvasV111.push({ x: (this.__txV111 || 0) + x, y: (this.__tyV111 || 0) + y, r: r });
+        }
+        this.__skipNextStarFill = false;
+        this.__starFadeFactor = 1.0;
+      } else if (r > 0 && r <= 6.5 && this.canvas && this.canvas.width > 200) {
+        if (!this.__orbesDomV111) recenserOrbesSoleilLune(this);
+        var vis = visibiliteEtoile(this, (this.__txV111 || 0) + x, (this.__tyV111 || 0) + y, r);
         if (vis <= 0.02) {
           this.__skipNextStarFill = true;
           return;
@@ -1567,8 +1473,8 @@ const codeClientV112 = `
 
     proto.fillText = function(text, x, y) {
       if (this.canvas && this.canvas.width > 200 && typeof text === 'string' && text.length <= 3) {
-        if (!this.__orbesDomV112) recenserOrbesSoleilLune(this, true);
-        var vis = visibiliteEtoile(this, (this.__txV112 || 0) + x, (this.__tyV112 || 0) + y, 8);
+        if (!this.__orbesDomV111) recenserOrbesSoleilLune(this);
+        var vis = visibiliteEtoile(this, (this.__txV111 || 0) + x, (this.__tyV111 || 0) + y, 6);
         if (vis <= 0.02) return;
         if (vis < 0.99) {
           var oldA = this.globalAlpha;
@@ -1588,7 +1494,7 @@ const codeClientV112 = `
   // =========================================================================
   var wbwFontScale = 1.0;
   try {
-    var savedScale = parseFloat(localStorage.getItem('wbw_font_scale_v112') || localStorage.getItem('wbw_font_scale_v111') || '1.0');
+    var savedScale = parseFloat(localStorage.getItem('wbw_font_scale_v111') || '1.0');
     if (savedScale >= 0.65 && savedScale <= 1.85) wbwFontScale = savedScale;
   } catch (e) {}
 
@@ -1617,7 +1523,7 @@ const codeClientV112 = `
     if (e.isTrusted && e.target && e.target.closest) {
       var rpItemClick = e.target.closest('.rp-item');
       if (rpItemClick) {
-        window.__userPickedReciterManuallyV112 = true;
+        window.__userPickedReciterManuallyV111 = true;
       }
     }
 
@@ -1626,17 +1532,17 @@ const codeClientV112 = `
     var txt = (btn.textContent || '').replace(/\\s+/g, '');
     if (txt === 'A+' || txt === 'A＋') {
       wbwFontScale = Math.min(1.75, Math.round((wbwFontScale + 0.12) * 100) / 100);
-      try { localStorage.setItem('wbw_font_scale_v112', String(wbwFontScale)); } catch (err) {}
+      try { localStorage.setItem('wbw_font_scale_v111', String(wbwFontScale)); } catch (err) {}
       appliquerTailleSurMetaCartes();
     } else if (txt === 'A-' || txt === 'A−' || txt === 'A–') {
       wbwFontScale = Math.max(0.70, Math.round((wbwFontScale - 0.12) * 100) / 100);
-      try { localStorage.setItem('wbw_font_scale_v112', String(wbwFontScale)); } catch (err) {}
+      try { localStorage.setItem('wbw_font_scale_v111', String(wbwFontScale)); } catch (err) {}
       appliquerTailleSurMetaCartes();
     }
   }, true);
 
-  if (!window.__popstateV112) {
-    window.__popstateV112 = true;
+  if (!window.__popstateV111) {
+    window.__popstateV111 = true;
     window.addEventListener('popstate', function() {
       window.location.reload();
     });
@@ -1757,7 +1663,7 @@ const codeClientV112 = `
     var stage = document.getElementById('wbwStageContainer');
     if (stage) {
       forcer(stage, 'display', 'flex');
-      var boxes = stage.querySelectorAll('.wbw-word-box, .wbw-card-unit, .wbw-card-v112');
+      var boxes = stage.querySelectorAll('.wbw-word-box, .wbw-card-unit, .wbw-card-v111');
       if (boxes && boxes.length >= 1) {
         var arr = Array.prototype.slice.call(boxes);
         if (grilleCorrespondAuVersetActuel(arr)) return ordonnerCartesSensLecture(arr);
@@ -1797,7 +1703,7 @@ const codeClientV112 = `
   window.__obtenirCartesWBW = obtenirCartesMotAMotUniversel;
 
   // =========================================================================
-  // 4. RECHARGEMENT AUTOMATIQUE DU TAJWĪD ASSAINI (AUDIT S1)
+  // 4. RECHARGEMENT AUTOMATIQUE DU TAJWĪD DEPUIS L'API QURAN.COM SI MANQUANT
   // =========================================================================
   var cacheTajwidVerset = {};
   var enCoursTajwidVerset = {};
@@ -1817,7 +1723,7 @@ const codeClientV112 = `
     function injecterHtmlTajwid(htmlComplet) {
       if (!htmlComplet || obtenirCleVersetActuelDom() !== cle) return;
       var temp = document.createElement('div');
-      temp.innerHTML = assainirHtmlTajwid(htmlComplet);
+      temp.innerHTML = htmlComplet;
       var ends = temp.querySelectorAll('.end, span.end');
       for (var e = 0; e < ends.length; e++) ends[e].remove();
       var htmlPropre = temp.innerHTML.replace(/[\\u0660-\\u06690-9]+\\s*$/g, '').trim();
@@ -1827,11 +1733,11 @@ const codeClientV112 = `
         var spans = vNormal.querySelectorAll('span.ar-word-follow, span.inline-clickable-word');
         if (spans.length === motsHtml.length && spans.length > 0) {
           for (var s = 0; s < spans.length; s++) {
-            spans[s].innerHTML = assainirHtmlTajwid(motsHtml[s]);
+            spans[s].innerHTML = motsHtml[s];
           }
         } else if (spans.length === 0) {
           vNormal.innerHTML = motsHtml.map(function(m) {
-            return '<span class="ar-word-follow">' + assainirHtmlTajwid(m) + '</span>';
+            return '<span class="ar-word-follow">' + m + '</span>';
           }).join(' ');
         }
       }
@@ -1840,7 +1746,7 @@ const codeClientV112 = `
         for (var c = 0; c < cacheMetaCartes.length; c++) {
           var meta = cacheMetaCartes[c];
           if (meta && meta.elAr && !meta.elAr.querySelector('tajweed')) {
-            meta.elAr.innerHTML = assainirHtmlTajwid(motsHtml[c]);
+            meta.elAr.innerHTML = motsHtml[c];
           }
         }
       }
@@ -1875,7 +1781,7 @@ const codeClientV112 = `
   var initDefautFait = false;
 
   function supprimerMaherEtForcerYasser() {
-    if (window.__userPickedReciterManuallyV112) return;
+    if (window.__userPickedReciterManuallyV111) return;
 
     try {
       for (var k = 0; k < localStorage.length; k++) {
@@ -1892,7 +1798,7 @@ const codeClientV112 = `
     var selects = document.querySelectorAll('select');
     for (var s = 0; s < selects.length; s++) {
       var sel = selects[s];
-      if (sel.classList.contains('wbw-audio-select-v112') || sel.classList.contains('khatm-reciter-select') || sel.id === 'verseJumperSelect') continue;
+      if (sel.classList.contains('wbw-audio-select-v111') || sel.classList.contains('khatm-reciter-select') || sel.id === 'verseJumperSelect') continue;
       var yasserIdx = -1;
       for (var o = sel.options.length - 1; o >= 0; o--) {
         var opt = sel.options[o];
@@ -1920,7 +1826,7 @@ const codeClientV112 = `
       var it = rpItems[i];
       var txtIt = (it.textContent || '') + ' ' + (it.getAttribute('data-reciter') || '');
       if (/maher|muaiqly|ماهر|Махер/i.test(txtIt)) {
-        it.classList.add('maher-item-removed-v112');
+        it.classList.add('maher-item-removed-v111');
         if (it.parentNode) it.parentNode.removeChild(it);
       } else if (!itemYasser && /yasser|dosari|dossary|dussary|الدوسري|Досари/i.test(txtIt)) {
         itemYasser = it;
@@ -1940,7 +1846,7 @@ const codeClientV112 = `
   }
 
   // =========================================================================
-  // 6. MODE AUDIO : PLAGE DE VERSETS (START/END RANGE) & RÉPÉTITIONS
+  // 6. MODE AUDIO : PLAGE DE VERSETS (START/END RANGE) & RÉPÉTITIONS (QURAN.COM)
   // =========================================================================
   var TEXTES_AUDIO_MODAL_I18N = {
     fr: {
@@ -2069,7 +1975,7 @@ const codeClientV112 = `
   };
 
   function mettreAJourBoutonAudioRange() {
-    var btn = document.getElementById('wbwAudioRangeBtnV112');
+    var btn = document.getElementById('wbwAudioRangeBtnV111');
     if (!btn) return;
     var lang = obtenirLanguePage();
     var t = TEXTES_AUDIO_MODAL_I18N[lang] || TEXTES_AUDIO_MODAL_I18N.fr;
@@ -2102,18 +2008,15 @@ const codeClientV112 = `
       if (aud && aud.paused) {
         var playBtn = document.getElementById('playSyncBtn');
         if (playBtn) playBtn.click();
-        else {
-          var p = aud.play();
-          if (p && p.catch) p.catch(function() {});
-        }
+        else aud.play().catch(function() {});
       }
     }, 90);
   }
 
   function installerIntercepteurFinAudio() {
     var aud = document.getElementById('ayahAudio');
-    if (!aud || aud.__wbwRangeHookedV112) return;
-    aud.__wbwRangeHookedV112 = true;
+    if (!aud || aud.__wbwRangeHookedV111) return;
+    aud.__wbwRangeHookedV111 = true;
 
     aud.addEventListener('ended', function(ev) {
       var info = obtenirInfosSourateEtVerset();
@@ -2127,8 +2030,7 @@ const codeClientV112 = `
         mettreAJourBoutonAudioRange();
         window.__wbwResetDemande = true;
         aud.currentTime = 0;
-        var pReplay = aud.play();
-        if (pReplay && pReplay.catch) pReplay.catch(function() {});
+        aud.play().catch(function() {});
         return;
       }
 
@@ -2148,8 +2050,7 @@ const codeClientV112 = `
         } else {
           window.__wbwResetDemande = true;
           aud.currentTime = 0;
-          var pLoop = aud.play();
-          if (pLoop && pLoop.catch) pLoop.catch(function() {});
+          aud.play().catch(function() {});
         }
         return;
       }
@@ -2163,7 +2064,7 @@ const codeClientV112 = `
   }
 
   function ouvrirModaleAudioRange() {
-    var overlay = document.getElementById('wbwAudioRangeOverlayV112');
+    var overlay = document.getElementById('wbwAudioRangeOverlayV111');
     if (!overlay) return;
     var lang = obtenirLanguePage();
     var t = TEXTES_AUDIO_MODAL_I18N[lang] || TEXTES_AUDIO_MODAL_I18N.fr;
@@ -2198,34 +2099,34 @@ const codeClientV112 = `
       optsRepAyah += '<option value="' + item.val + '"' + (item.val === repAyahDefaut ? ' selected' : '') + '>' + item.txt + '</option>';
     }
 
-    var sheet = overlay.querySelector('.wbw-audio-sheet-v112');
+    var sheet = overlay.querySelector('.wbw-audio-sheet-v111');
     sheet.style.direction = lang === 'ar' ? 'rtl' : 'ltr';
     sheet.innerHTML =
-      '<div class="wbw-audio-handle-v112"></div>' +
-      '<div class="wbw-audio-title-v112">' + t.title + '</div>' +
-      '<div class="wbw-audio-row-v112">' +
-        '<span class="wbw-audio-label-v112"><span class="wbw-audio-icon-v112">|&lt;</span> ' + t.start + '</span>' +
-        '<select id="wbwStartRangeSelV112" class="wbw-audio-select-v112">' + optsStart + '</select>' +
+      '<div class="wbw-audio-handle-v111"></div>' +
+      '<div class="wbw-audio-title-v111">' + t.title + '</div>' +
+      '<div class="wbw-audio-row-v111">' +
+        '<span class="wbw-audio-label-v111"><span class="wbw-audio-icon-v111">|&lt;</span> ' + t.start + '</span>' +
+        '<select id="wbwStartRangeSelV111" class="wbw-audio-select-v111">' + optsStart + '</select>' +
       '</div>' +
-      '<div class="wbw-audio-row-v112">' +
-        '<span class="wbw-audio-label-v112"><span class="wbw-audio-icon-v112">&gt;|</span> ' + t.end + '</span>' +
-        '<select id="wbwEndRangeSelV112" class="wbw-audio-select-v112">' + optsEnd + '</select>' +
+      '<div class="wbw-audio-row-v111">' +
+        '<span class="wbw-audio-label-v111"><span class="wbw-audio-icon-v111">&gt;|</span> ' + t.end + '</span>' +
+        '<select id="wbwEndRangeSelV111" class="wbw-audio-select-v111">' + optsEnd + '</select>' +
       '</div>' +
-      '<div class="wbw-audio-row-v112">' +
-        '<span class="wbw-audio-label-v112"><span class="wbw-audio-icon-v112">↻</span> ' + t.repSel + '</span>' +
-        '<select id="wbwRepSelV112" class="wbw-audio-select-v112">' + optsRepSel + '</select>' +
+      '<div class="wbw-audio-row-v111">' +
+        '<span class="wbw-audio-label-v111"><span class="wbw-audio-icon-v111">↻</span> ' + t.repSel + '</span>' +
+        '<select id="wbwRepSelV111" class="wbw-audio-select-v111">' + optsRepSel + '</select>' +
       '</div>' +
-      '<div class="wbw-audio-row-v112">' +
-        '<span class="wbw-audio-label-v112"><span class="wbw-audio-icon-v112">↺</span> ' + t.repAyah + '</span>' +
-        '<select id="wbwRepAyahV112" class="wbw-audio-select-v112">' + optsRepAyah + '</select>' +
+      '<div class="wbw-audio-row-v111">' +
+        '<span class="wbw-audio-label-v111"><span class="wbw-audio-icon-v111">↺</span> ' + t.repAyah + '</span>' +
+        '<select id="wbwRepAyahV111" class="wbw-audio-select-v111">' + optsRepAyah + '</select>' +
       '</div>' +
-      '<div class="wbw-audio-actions-v112">' +
-        '<button type="button" id="wbwAudioCancelBtnV112" class="wbw-audio-cancel-v112">' + (etatAudioRange.actif ? t.stop : t.cancel) + '</button>' +
-        '<button type="button" id="wbwAudioPlayBtnV112" class="wbw-audio-play-v112">' + t.play + '</button>' +
+      '<div class="wbw-audio-actions-v111">' +
+        '<button type="button" id="wbwAudioCancelBtnV111" class="wbw-audio-cancel-v111">' + (etatAudioRange.actif ? t.stop : t.cancel) + '</button>' +
+        '<button type="button" id="wbwAudioPlayBtnV111" class="wbw-audio-play-v111">' + t.play + '</button>' +
       '</div>';
 
-    var selS = document.getElementById('wbwStartRangeSelV112');
-    var selE = document.getElementById('wbwEndRangeSelV112');
+    var selS = document.getElementById('wbwStartRangeSelV111');
+    var selE = document.getElementById('wbwEndRangeSelV111');
     selS.addEventListener('change', function() {
       if (parseInt(selE.value, 10) < parseInt(selS.value, 10)) {
         selE.value = selS.value;
@@ -2237,7 +2138,7 @@ const codeClientV112 = `
       }
     });
 
-    document.getElementById('wbwAudioCancelBtnV112').addEventListener('click', function() {
+    document.getElementById('wbwAudioCancelBtnV111').addEventListener('click', function() {
       if (etatAudioRange.actif) {
         etatAudioRange.actif = false;
         var aud = document.getElementById('ayahAudio');
@@ -2247,7 +2148,7 @@ const codeClientV112 = `
       overlay.classList.remove('open');
     });
 
-    document.getElementById('wbwAudioPlayBtnV112').addEventListener('click', function() {
+    document.getElementById('wbwAudioPlayBtnV111').addEventListener('click', function() {
       var sVal = parseInt(selS.value, 10) || 1;
       var eVal = parseInt(selE.value, 10) || sVal;
       if (eVal < sVal) eVal = sVal;
@@ -2256,8 +2157,8 @@ const codeClientV112 = `
       etatAudioRange.sourate = info.s;
       etatAudioRange.startV = sVal;
       etatAudioRange.endV = eVal;
-      etatAudioRange.repeatSelMax = parseInt(document.getElementById('wbwRepSelV112').value, 10) || 1;
-      etatAudioRange.repeatAyahMax = parseInt(document.getElementById('wbwRepAyahV112').value, 10) || 1;
+      etatAudioRange.repeatSelMax = parseInt(document.getElementById('wbwRepSelV111').value, 10) || 1;
+      etatAudioRange.repeatAyahMax = parseInt(document.getElementById('wbwRepAyahV111').value, 10) || 1;
       etatAudioRange.compteurSel = 1;
       etatAudioRange.compteurAyah = 1;
 
@@ -2287,33 +2188,33 @@ const codeClientV112 = `
 
     installerIntercepteurFinAudio();
 
-    var oldBtns = document.querySelectorAll('#wbwAudioRangeBtnV109, #wbwAudioRangeBtnV110, #wbwAudioRangeBtnV111');
+    var oldBtns = document.querySelectorAll('#wbwAudioRangeBtnV109, #wbwAudioRangeBtnV110, #wbwAudioRangeBtnV112');
     for (var b = 0; b < oldBtns.length; b++) {
       if (oldBtns[b].parentNode) oldBtns[b].parentNode.removeChild(oldBtns[b]);
     }
-    var oldOvs = document.querySelectorAll('#wbwAudioRangeOverlayV109, #wbwAudioRangeOverlayV110, #wbwAudioRangeOverlayV111');
+    var oldOvs = document.querySelectorAll('#wbwAudioRangeOverlayV109, #wbwAudioRangeOverlayV110, #wbwAudioRangeOverlayV112');
     for (var o = 0; o < oldOvs.length; o++) {
       if (oldOvs[o].parentNode) oldOvs[o].parentNode.removeChild(oldOvs[o]);
     }
 
-    if (!document.getElementById('wbwAudioRangeOverlayV112')) {
+    if (!document.getElementById('wbwAudioRangeOverlayV111')) {
       var ov = document.createElement('div');
-      ov.id = 'wbwAudioRangeOverlayV112';
-      ov.innerHTML = '<div class="wbw-audio-sheet-v112"></div>';
+      ov.id = 'wbwAudioRangeOverlayV111';
+      ov.innerHTML = '<div class="wbw-audio-sheet-v111"></div>';
       ov.addEventListener('click', function(e) {
         if (e.target === ov) ov.classList.remove('open');
       });
       document.body.appendChild(ov);
     }
 
-    if (!document.getElementById('wbwAudioRangeBtnV112')) {
+    if (!document.getElementById('wbwAudioRangeBtnV111')) {
       var btnSuivi = trouverBoutonParTexte(['Suivi', 'Follow', 'Слежение', 'Seguimiento', 'Verfolgen', 'Segui', 'Ikuti', 'تتبع']);
       var btnTaj = trouverBoutonTajwid();
       var cible = btnSuivi || btnTaj || document.getElementById('replaySyncBtn');
       if (cible && cible.parentElement) {
         var btn = document.createElement('button');
         btn.type = 'button';
-        btn.id = 'wbwAudioRangeBtnV112';
+        btn.id = 'wbwAudioRangeBtnV111';
         btn.addEventListener('click', ouvrirModaleAudioRange);
         cible.parentElement.insertBefore(btn, cible.nextSibling);
       }
@@ -2358,18 +2259,18 @@ const codeClientV112 = `
     var divs = document.querySelectorAll('div, p, footer');
     for (var i = 0; i < divs.length; i++) {
       var d = divs[i];
-      if (d.dataset.legalV112 === '1') continue;
+      if (d.dataset.legalV111 === '1') continue;
       var txt = d.textContent || '';
       if ((txt.indexOf('Institut Muhasiba') !== -1 || txt.indexOf('Institut Numérique Coran') !== -1) && d.children.length === 0) {
-        d.dataset.legalV112 = '1';
+        d.dataset.legalV111 = '1';
         d.textContent = '« Institut Muhasiba »';
         var parentModale = d.parentElement;
-        if (parentModale && !parentModale.querySelector('#wbw-legal-extra-v112')) {
+        if (parentModale && !parentModale.querySelector('#wbw-legal-extra-v111')) {
           var anciens = parentModale.querySelectorAll('[id^="wbw-legal-extra-v"]');
           for (var a = 0; a < anciens.length; a++) anciens[a].remove();
 
           var infoAssos = document.createElement('div');
-          infoAssos.id = 'wbw-legal-extra-v112';
+          infoAssos.id = 'wbw-legal-extra-v111';
           infoAssos.style.cssText = 'font-size:0.83rem;color:#cbd5e1;margin-top:8px;margin-bottom:12px;line-height:1.55;text-align:center;';
           var adr = 'contact' + '@' + 'corantafsir.com';
           infoAssos.innerHTML =
@@ -2441,7 +2342,7 @@ const codeClientV112 = `
         /^\\d+\\s*[\\.:\\-]/.test(t) ||
         el.tagName === 'P'
       ) {
-        el.classList.add('wbw-masquer-doublon-v112');
+        el.classList.add('wbw-masquer-doublon-v111');
         forcer(el, 'display', 'none');
       }
     }
@@ -2548,7 +2449,7 @@ const codeClientV112 = `
 
   var cacheTradMots = {};
   try {
-    cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v112') || localStorage.getItem('wbw_tr_cache_v111') || '{}');
+    cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v111') || '{}');
   } catch (e) {}
   var enCoursTrad = {};
   var prochainEssaiTrad = {};
@@ -2644,7 +2545,7 @@ const codeClientV112 = `
               tr = 'Lève-toi';
             }
             cacheTradMots[cle] = tr;
-            try { localStorage.setItem('wbw_tr_cache_v112', JSON.stringify(cacheTradMots)); } catch (e) {}
+            try { localStorage.setItem('wbw_tr_cache_v111', JSON.stringify(cacheTradMots)); } catch (e) {}
             if (elTrad && elTrad.isConnected && obtenirLanguePage() === lang) {
               elTrad.textContent = tr;
               elTrad.dataset.wbwTrOk = lang;
@@ -2671,15 +2572,15 @@ const codeClientV112 = `
   var dernierTimestampRaf = 0;
 
   // =========================================================================
-  // 7. ÉLIMINATION CIBLÉE DES PETITS CHIFFRES
+  // 7. ÉLIMINATION CIBLÉE DES PETITS CHIFFRES (NE TOUCHE JAMAIS AU TEXTE TRADUIT)
   // =========================================================================
   function detruireNoeudNumero(el) {
-    if (!el || el.classList.contains('wbw-ar-v112') || el.classList.contains('wbw-tr-v112') || el.classList.contains('wbw-ar') || el.classList.contains('wbw-tr')) return;
+    if (!el || el.classList.contains('wbw-ar-v111') || el.classList.contains('wbw-tr-v111') || el.classList.contains('wbw-ar') || el.classList.contains('wbw-tr')) return;
     el.dataset.wbwIsNum = '1';
     if (el.textContent !== '') {
       el.textContent = '';
     }
-    el.classList.add('wbw-num-hidden-v112');
+    el.classList.add('wbw-num-hidden-v111');
     forcer(el, 'display', 'none');
   }
 
@@ -2693,7 +2594,7 @@ const codeClientV112 = `
     for (var i = 0; i < tous.length; i++) {
       var sub = tous[i];
       if (sub === elAr || sub === elTrad) continue;
-      if (sub.classList.contains('wbw-ar-v112') || sub.classList.contains('wbw-tr-v112') || sub.classList.contains('wbw-ar') || sub.classList.contains('wbw-tr')) continue;
+      if (sub.classList.contains('wbw-ar-v111') || sub.classList.contains('wbw-tr-v111') || sub.classList.contains('wbw-ar') || sub.classList.contains('wbw-tr')) continue;
       if (elAr && elAr.contains(sub) && !estPetitNumero(sub.textContent)) continue;
       if (elTrad && elTrad.contains(sub)) continue;
       if (
@@ -2715,6 +2616,32 @@ const codeClientV112 = `
     }
   }
 
+  var obsEnCours = false;
+  var observerMutationsGrille = typeof MutationObserver !== 'undefined' ? new MutationObserver(function(mutations) {
+    if (obsEnCours) return;
+    obsEnCours = true;
+    try {
+      var lang = obtenirLanguePage();
+      for (var i = 0; i < mutations.length; i++) {
+        var mut = mutations[i];
+        var cible = mut.target && mut.target.nodeType === 1 ? mut.target : (mut.target ? mut.target.parentElement : null);
+        if (!cible) continue;
+        var carte = cible.closest ? cible.closest('.wbw-card-v111') : null;
+        if (carte) {
+          var ar = carte.querySelector('.wbw-ar-v111, .wbw-ar');
+          var tr = carte.querySelector('.wbw-tr-v111, .wbw-tr');
+          purgerTousLesChiffresDeLaCarte(carte, ar, tr);
+          if (tr) {
+            delete tr.dataset.wbwTrOk;
+            nettoyerEtTraduireMotUneFois(tr, ar, lang);
+          }
+        }
+      }
+    } catch (e) {}
+    obsEnCours = false;
+  }) : null;
+  var derniereGrilleObservee = null;
+
   function preparerGrilleSiNecessaire(cartes) {
     if (!cartes || cartes.length < 1 || !estModeMotAMotActif()) {
       cacheMetaCartes = [];
@@ -2730,6 +2657,20 @@ const codeClientV112 = `
     }
 
     gererMasquageDoublonVerset(cartes, true);
+
+    if (observerMutationsGrille && derniereGrilleObservee !== grille) {
+      try {
+        observerMutationsGrille.disconnect();
+        observerMutationsGrille.observe(grille, {
+          childList: true,
+          subtree: true,
+          characterData: true,
+          attributes: true,
+          attributeFilter: ['data-word-num', 'data-index']
+        });
+        derniereGrilleObservee = grille;
+      } catch (e) {}
+    }
 
     var banner = document.getElementById('wbwSensLectureBanner');
     if (banner) {
@@ -2748,7 +2689,7 @@ const codeClientV112 = `
       cacheMetaCartes[0].carte === cartes[0] &&
       cacheMetaCartes[0].elAr &&
       cacheMetaCartes[0].elAr.isConnected &&
-      cartes[0].classList.contains('wbw-card-v112');
+      cartes[0].classList.contains('wbw-card-v111');
 
     if (memeDom) {
       for (var u = 0; u < cacheMetaCartes.length; u++) {
@@ -2791,8 +2732,8 @@ const codeClientV112 = `
     for (var m = 0; m < cartes.length; m++) {
       var carte = cartes[m];
       if (!carte.dataset.wbwOrd) carte.dataset.wbwOrd = String(m + 1);
-      carte.classList.remove('wbw-card-v104', 'wbw-card-v105', 'wbw-card-v106', 'wbw-card-v107', 'wbw-card-v108', 'wbw-card-v109', 'wbw-card-v110', 'wbw-card-v111');
-      carte.classList.add('wbw-card-v112');
+      carte.classList.remove('wbw-card-v104', 'wbw-card-v105', 'wbw-card-v106', 'wbw-card-v107', 'wbw-card-v108', 'wbw-card-v109', 'wbw-card-v110', 'wbw-card-v112');
+      carte.classList.add('wbw-card-v111');
       if (carte.hasAttribute('data-word-num')) carte.removeAttribute('data-word-num');
 
       forcer(carte, 'margin', '0px');
@@ -2819,17 +2760,17 @@ const codeClientV112 = `
         var tCh = (ch.textContent || '').trim();
         if (estPetitNumero(tCh) || ch.tagName === 'SUP' || ch.tagName === 'SMALL') {
           detruireNoeudNumero(ch);
-        } else if (!elAr && (ch.classList.contains('wbw-ar') || ch.classList.contains('wbw-ar-v111') || ch.classList.contains('wbw-ar-v112') || contientArabe(tCh))) {
+        } else if (!elAr && (ch.classList.contains('wbw-ar') || ch.classList.contains('wbw-ar-v111') || contientArabe(tCh))) {
           elAr = ch;
-        } else if (ch !== elAr && (ch.classList.contains('wbw-tr') || ch.classList.contains('wbw-tr-v111') || ch.classList.contains('wbw-tr-v112') || tCh.length > 0)) {
+        } else if (ch !== elAr && (ch.classList.contains('wbw-tr') || ch.classList.contains('wbw-tr-v111') || tCh.length > 0)) {
           elTrad = ch;
         }
       }
 
       if (elAr) {
-        elAr.classList.remove('wbw-num-hidden-v111', 'wbw-num-hidden-v112');
+        elAr.classList.remove('wbw-num-hidden-v111', 'wbw-num-hidden-v112', 'wbw-ar-v112');
         delete elAr.dataset.wbwIsNum;
-        elAr.classList.add('wbw-ar-v112');
+        elAr.classList.add('wbw-ar-v111');
         forcer(elAr, 'display', 'block');
         forcer(elAr, 'visibility', 'visible');
         forcer(elAr, 'opacity', '1');
@@ -2840,9 +2781,9 @@ const codeClientV112 = `
         forcer(elAr, 'white-space', 'nowrap');
       }
       if (elTrad) {
-        elTrad.classList.remove('wbw-num-hidden-v111', 'wbw-num-hidden-v112');
+        elTrad.classList.remove('wbw-num-hidden-v111', 'wbw-num-hidden-v112', 'wbw-tr-v112');
         delete elTrad.dataset.wbwIsNum;
-        elTrad.classList.add('wbw-tr-v112');
+        elTrad.classList.add('wbw-tr-v111');
         forcer(elTrad, 'display', 'block');
         forcer(elTrad, 'visibility', 'visible');
         forcer(elTrad, 'opacity', '1');
@@ -3072,85 +3013,56 @@ const codeClientV112 = `
 })();
 `;
 
-new Function(codeClientV112);
+new Function(codeClientV111);
 
-const blocHtmlV112 = '<!-- WBW_COLLE_V112_START -->\n' + styleV112 + '\n<script id="wbw-colle-v112">' + codeClientV112 + '</script>\n<!-- WBW_COLLE_V112_END -->';
+const blocHtmlV111 = '<!-- WBW_COLLE_V111_START -->\n' + styleV111 + '\n<script id="wbw-colle-v111">' + codeClientV111 + '</script>\n<!-- WBW_COLLE_V111_END -->';
 
 function patcherContenu(c) {
-  // 1. Nettoyage de tous les anciens blocs WBW (V83 à V112)
+  // Nettoyage de tous les blocs (y compris V112)
   c = c.replace(/<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93|COLLE_V94|COLLE_V95|COLLE_V96|COLLE_V97|COLLE_V98|COLLE_V99|COLLE_V100|COLLE_V101|COLLE_V102|COLLE_V103|COLLE_V104|COLLE_V105|COLLE_V106|COLLE_V107|COLLE_V108|COLLE_V109|COLLE_V110|COLLE_V111|COLLE_V112)_START -->[\s\S]*?<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93|COLLE_V94|COLLE_V95|COLLE_V96|COLLE_V97|COLLE_V98|COLLE_V99|COLLE_V100|COLLE_V101|COLLE_V102|COLLE_V103|COLLE_V104|COLLE_V105|COLLE_V106|COLLE_V107|COLLE_V108|COLLE_V109|COLLE_V110|COLLE_V111|COLLE_V112)_END -->\s*/g, '');
 
-  // 2. Retrait du code postal 34000
+  // Restauration exacte des IDs QDC et fonctions de synchronisation V111 (annule les modifications V112)
+  c = c.replace(
+    /dosari:\s*\[13,\s*174,\s*168\],\s*dossari:\s*\[13,\s*174,\s*168\],\s*yasser:\s*\[13,\s*174,\s*168\]/g,
+    'dosari: [174, 168], dossari: [174, 168], yasser: [174, 168]'
+  );
+  c = c.replace(/minshawi:\s*\[8,\s*9\]/g, 'minshawi: [9]');
+  c = c.replace(
+    /function chargerVraiMotAMotVerset\(vk,\s*lang\)\s*\{\s*if\s*\(window\.__wbwBypassOrigCartes\)\s*return;\s*/g,
+    'function chargerVraiMotAMotVerset(vk, lang) {'
+  );
+  c = c.replace(
+    /if\s*\(!window\.__wbwBypassOrigCartes\)\s*c\.setAttribute\("data-word-num",\s*String\(i\s*\+\s*1\)\);/g,
+    'c.setAttribute("data-word-num", String(i + 1));'
+  );
+  c = c.replace(
+    /if\s*\(!window\.__wbwBypassOrigCartes\s*&&\s*tradFinale\s*&&\s*elTr\.textContent\s*!==\s*tradFinale\)\s*elTr\.textContent\s*=\s*tradFinale;/g,
+    'if (tradFinale && elTr.textContent !== tradFinale) elTr.textContent = tradFinale;'
+  );
+  c = c.replace(
+    /word_fields=text_uthmani,text_uthmani_tajweed,audio_url,translation/g,
+    'word_fields=text_uthmani,text_uthmani_tajweed,audio_url'
+  );
+  c = c.replace(
+    /const temp = document\.createElement\('div'\);\s*temp\.innerHTML = window\.__assainirHtmlTajwidV112 \? window\.__assainirHtmlTajwidV112\(htmlTajweedComplet\) : htmlTajweedComplet;/g,
+    "const temp = document.createElement('div'); temp.innerHTML = htmlTajweedComplet;"
+  );
+
+  // Retrait du code postal 34000 partout dans les fichiers
   c = c.replace(/34000\s+Montpellier/g, 'Montpellier');
 
-  // 3. Remplacement complet de #script-refs-cliquables (corrige Bug 1 : écrasement de window.allerAuVerset + regex (d+) cassées)
-  c = c.replace(/<script id="script-refs-cliquables">[\s\S]*?<\/script>/g, SCRIPT_REFS_CLIQUABLES_PROPRE);
-
-  // 4. Nettoyage idempotent de HTMLMediaElement.prototype.play (corrige Bug 2 : supprime les 5 duplications et vérifie this.id !== "ayahAudio")
-  c = c.replace(
-    /HTMLMediaElement\.prototype\.play\s*=\s*function\s*\(\)\s*\{(?:\s*if\s*\([^}]*?"ayahAudio"[^}]*?;\s*)*/g,
-    'HTMLMediaElement.prototype.play = function () { if (this.id !== "ayahAudio") return origPlay.apply(this, arguments); '
-  );
-
-  // 5. Désactive la bascule automatique navigator.language sur les URLs françaises sans ?lang= (corrige Bug 4 / Audit I3 pour Googlebot)
-  c = c.replace(
-    /const navL = \(navigator\.language \|\| navigator\.userLanguage \|\| 'fr'\)\.toLowerCase\(\)\.slice\(0, 2\);\s*if \(\['fr','en','es','ar'\]\.includes\(navL\)\) currentLang = navL;/g,
-    "currentLang = 'fr';"
-  );
-
-  // 6. Ajoute ",translation" à word_fields dans chargerDonneesMotAMotEtTajweed et stoppe la guerre DOM/réseau avec script-master-v77 (corrige Bug 3)
-  c = c.replace(
-    /word_fields=text_uthmani,text_uthmani_tajweed,audio_url(?!,translation)/g,
-    'word_fields=text_uthmani,text_uthmani_tajweed,audio_url,translation'
-  );
-  c = c.replace(
-    /function chargerVraiMotAMotVerset\(vk,\s*lang\)\s*\{\s*(?!if\s*\(window\.__wbwBypassOrigCartes\)\s*return;)/g,
-    'function chargerVraiMotAMotVerset(vk, lang) { if (window.__wbwBypassOrigCartes) return; '
-  );
-  c = c.replace(
-    /c\.setAttribute\("data-word-num",\s*String\(i\s*\+\s*1\)\);/g,
-    'if (!window.__wbwBypassOrigCartes) c.setAttribute("data-word-num", String(i + 1));'
-  );
-  c = c.replace(
-    /if\s*\(tradFinale\s*&&\s*elTr\.textContent\s*!==\s*tradFinale\)\s*elTr\.textContent\s*=\s*tradFinale;/g,
-    'if (!window.__wbwBypassOrigCartes && tradFinale && elTr.textContent !== tradFinale) elTr.textContent = tradFinale;'
-  );
-
-  // 7. Harmonise MAP_NOMS_VERS_QDC avec l'ID QDC 13 de Yasser Al-Dosari et 8 de Minshawi + vérifie r.ok (Audit A2 & A4)
-  c = c.replace(
-    /dosari:\s*\[174,\s*168\],\s*dossari:\s*\[174,\s*168\],\s*yasser:\s*\[174,\s*168\]/g,
-    'dosari: [13, 174, 168], dossari: [13, 174, 168], yasser: [13, 174, 168]'
-  );
-  c = c.replace(
-    /minshawi:\s*\[9\]/g,
-    'minshawi: [8, 9]'
-  );
-
-  // 8. Sécurise changerRecitateur contre AbortError (Audit A6)
-  c = c.replace(
-    /const enCours = !audio\.paused; majAudio\(\); if \(enCours\) audio\.play\(\);/g,
-    'const enCours = !audio.paused; majAudio(); if (enCours) audio.play().catch(arreterVisuel);'
-  );
-
-  // 9. Assainit le HTML Tajwīd dans extraireMotsTajweedPropres (Audit S1)
-  c = c.replace(
-    /const temp = document\.createElement\('div'\);\s*temp\.innerHTML = htmlTajweedComplet;/g,
-    "const temp = document.createElement('div'); temp.innerHTML = window.__assainirHtmlTajwidV112 ? window.__assainirHtmlTajwidV112(htmlTajweedComplet) : htmlTajweedComplet;"
-  );
-
-  // 10. Maintient les correctifs précédents (taille des petits mots arabes, Muqattaat, etc.)
   c = c.replace(/<link\s+rel="preconnect"\s+href="\[https:\/\/[^"]+"\s*crossorigin>\s*/gi, '');
   c = c.replace(
     /if\s*\(\(langCible\s*===\s*'fr'\s*\|\|\s*langCible\s*===\s*'es'\)\s*&&\s*phrase\s*&&\s*mots\.length\s*>\s*0\)/g,
     "if (false && (langCible === 'fr' || langCible === 'es') && phrase && mots.length > 0)"
   );
   c = c.replace(
-    /var c1 = document\.querySelectorAll\("\.wbw-word-box, \.wbw-card-v11[01], \.wbw-card, \.wbw-word, \.wbw-item"\);/g,
-    'var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v112, .wbw-card, .wbw-word, .wbw-item");'
+    /var c1 = document\.querySelectorAll\("\.wbw-word-box, \.wbw-card-v11[012], \.wbw-card, \.wbw-word, \.wbw-item"\);/g,
+    'var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v111, .wbw-card, .wbw-word, .wbw-item");'
   );
   c = c.replace(
     /var c1 = document\.querySelectorAll\("\.wbw-card, \.wbw-word, \.wbw-item"\);/g,
-    'var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v112, .wbw-card, .wbw-word, .wbw-item");'
+    'var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v111, .wbw-card, .wbw-word, .wbw-item");'
   );
   c = c.replace(/if\s*\(\s*r1\.width\s*>\s*25\s*&&\s*r1\.height\s*>\s*25\s*\)/g, 'if (r1.width > 4 && r1.height > 4)');
   c = c.replace(/if\s*\(\s*r\.width\s*>=\s*48\s*&&\s*r\.width\s*<=\s*280\s*&&\s*r\.height\s*>=\s*48\s*&&\s*r\.height\s*<=\s*220\s*\)/g, 'if (r.width >= 10 && r.width <= 320 && r.height >= 18 && r.height <= 240)');
@@ -3193,7 +3105,7 @@ let nb = 0;
 for (const f of fichiers) {
   const p = path.join(dossierSite, f);
   let c = patcherContenu(fs.readFileSync(p, 'utf8'));
-  c = c.replace('</body>', function() { return blocHtmlV112 + '\n</body>'; });
+  c = c.replace('</body>', function() { return blocHtmlV111 + '\n</body>'; });
   fs.writeFileSync(p, c, 'utf8');
   nb++;
 }
@@ -3203,10 +3115,10 @@ for (const racineF of ['index.html', 'generateur.js', 'maj-tafsir.js']) {
   if (fs.existsSync(pRacine)) {
     let cr = patcherContenu(fs.readFileSync(pRacine, 'utf8'));
     if (racineF.endsWith('.html') && cr.indexOf('</body>') !== -1) {
-      cr = cr.replace('</body>', function() { return blocHtmlV112 + '\n</body>'; });
+      cr = cr.replace('</body>', function() { return blocHtmlV111 + '\n</body>'; });
     }
     fs.writeFileSync(pRacine, cr, 'utf8');
   }
 }
 
-console.log('✅ V112 Master appliquée sur ' + nb + ' pages : 10/10 bugs corrigés (Soleil/Lune 100% opaques, 0 ping-pong DOM, XSS Tajwid assaini, SEO Googlebot fixé, Refs cliquables réparées) !');
+console.log('✅ Retour complet à la V111 appliqué sur ' + nb + ' pages (synchronisation du mode Suivi avec Yasser Al-Dosari restaurée) !');
