@@ -4997,6 +4997,178 @@ html body #btnLangRuV77.active-ext-v77 {
     display: none !important;
   }
 
+  /* MODALE AUDIO : PLAGE DE VERSETS & RÉPÉTITIONS */
+  #wbwAudioRangeBtnV110 {
+    background: rgba(14, 165, 233, 0.14);
+    color: #7dd3fc;
+    border: 1px solid rgba(56, 189, 248, 0.42);
+    padding: 6px 13px;
+    border-radius: 11px;
+    font-family: inherit;
+    font-size: 0.81rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  #wbwAudioRangeBtnV110:hover,
+  #wbwAudioRangeBtnV110.active {
+    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+    color: #021019;
+    border-color: #7dd3fc;
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.48);
+  }
+
+  #wbwAudioRangeOverlayV110 {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 10050;
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0;
+  }
+  @media (min-width: 640px) {
+    #wbwAudioRangeOverlayV110 {
+      align-items: center;
+      padding: 16px;
+    }
+  }
+  #wbwAudioRangeOverlayV110.open {
+    display: flex;
+  }
+
+  .wbw-audio-sheet-v110 {
+    width: 100%;
+    max-width: 440px;
+    background: #14171c;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px 24px 0 0;
+    padding: 12px 20px 22px 20px;
+    color: #f8fafc;
+    box-shadow: 0 -10px 45px rgba(0, 0, 0, 0.85);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    animation: wbwSheetUpV110 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @media (min-width: 640px) {
+    .wbw-audio-sheet-v110 {
+      border-radius: 24px;
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.9);
+    }
+  }
+  @keyframes wbwSheetUpV110 {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .wbw-audio-handle-v110 {
+    width: 40px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 99px;
+    margin: 0 auto 12px auto;
+  }
+  .wbw-audio-title-v110 {
+    text-align: center;
+    font-size: 1.02rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 14px;
+    letter-spacing: 0.01em;
+  }
+  .wbw-audio-row-v110 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 13px 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  .wbw-audio-row-v110:last-of-type {
+    border-bottom: none;
+  }
+  .wbw-audio-label-v110 {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.93rem;
+    font-weight: 600;
+    color: #e2e8f0;
+  }
+  .wbw-audio-icon-v110 {
+    width: 22px;
+    text-align: center;
+    font-size: 1rem;
+    color: #94a3b8;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wbw-audio-select-v110 {
+    background: #1e232b;
+    color: #f8fafc;
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    border-radius: 10px;
+    padding: 7px 12px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    min-width: 118px;
+    text-align: right;
+  }
+  .wbw-audio-select-v110:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+  }
+  .wbw-audio-actions-v110 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
+  }
+  .wbw-audio-cancel-v110 {
+    background: transparent;
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    padding: 11px 16px;
+    font-family: inherit;
+    font-size: 0.94rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.18s;
+  }
+  .wbw-audio-cancel-v110:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+  }
+  .wbw-audio-play-v110 {
+    background: linear-gradient(135deg, #56a8f5, #38bdf8);
+    color: #ffffff;
+    border: none;
+    border-radius: 999px;
+    padding: 11px 16px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.38);
+    transition: 0.18s;
+  }
+  .wbw-audio-play-v110:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+  }
+
   /* Couleurs du Tajwīd */
   html body .verse-stage #arabicVerse tajweed[class*="ghunnah"],
   html body .verse-stage #arabicVerseEl tajweed[class*="ghunnah"],
@@ -5156,7 +5328,6 @@ html body #btnLangRuV77.active-ext-v77 {
         var dx = x - o.x;
         var dy = y - o.y;
         var dist = Math.sqrt(dx * dx + dy * dy);
-        // Dès que l'étoile touche le disque ou le halo proche de la Lune/Soleil, elle devient 100% invisible
         var rOpaque = o.r * 1.12 + pad;
         var rDoux = o.r * 1.38 + pad;
         if (dist <= rOpaque) {
@@ -5372,11 +5543,36 @@ html body #btnLangRuV77.active-ext-v77 {
     return '';
   }
 
+  function obtenirInfosSourateEtVerset() {
+    var cle = obtenirCleVersetActuelDom();
+    var parts = cle ? cle.split(':') : [];
+    var s = parts.length === 2 ? parseInt(parts[0], 10) : (typeof numSourateActuelle !== 'undefined' ? Number(numSourateActuelle) : 1);
+    var v = parts.length === 2 ? parseInt(parts[1], 10) : (typeof numVersetActuel !== 'undefined' ? Number(numVersetActuel) : 1);
+    var totalV = 1;
+    if (window.SOURATE_DATA && window.SOURATE_DATA.nbVersets) {
+      totalV = Number(window.SOURATE_DATA.nbVersets);
+    } else {
+      var selJ = document.getElementById('verseJumperSelect');
+      if (selJ && selJ.options && selJ.options.length > 0) {
+        totalV = selJ.options.length;
+      }
+    }
+    return { s: s || 1, v: v || 1, totalV: Math.max(1, totalV || 1) };
+  }
+
+  // CORRECTION DU BUG MOT À MOT : vérifie l'opacité alpha (a >= 0.55) pour ne jamais confondre
+  // le fond bleu sombre transparent d'un bouton inactif (rgba(..., 0.12)) avec un bouton actif !
   function boutonEstActif(btn) {
     if (!btn) return false;
     if (btn.classList.contains('active') || btn.getAttribute('aria-pressed') === 'true') return true;
     var bg = window.getComputedStyle(btn).backgroundColor || '';
-    if (bg.indexOf('56, 189, 248') !== -1 || bg.indexOf('14, 165, 233') !== -1 || bg.indexOf('2, 132, 199') !== -1) return true;
+    var mRgba = bg.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:\s*,\s*([0-9.]+))?\s*\)/i);
+    if (mRgba) {
+      var g = parseInt(mRgba[2], 10);
+      var b = parseInt(mRgba[3], 10);
+      var a = mRgba[4] !== undefined ? parseFloat(mRgba[4]) : 1.0;
+      if (a >= 0.55 && g >= 110 && b >= 180) return true;
+    }
     return false;
   }
 
@@ -5393,7 +5589,7 @@ html body #btnLangRuV77.active-ext-v77 {
   }
 
   function trouverBoutonMotAMot() {
-    return trouverBoutonParTexte(['Mot à mot', 'Word by Word', 'Пословный', 'Palabra por', 'Wort für', 'Parola per', 'Kata demi', 'كلمة بكلمة']);
+    return document.getElementById('wbwToggleBtn') || trouverBoutonParTexte(['Mot à mot', 'Word by Word', 'Пословный', 'Palabra por', 'Wort für', 'Parola per', 'Kata demi', 'كلمة بكلمة']);
   }
 
   function trouverBoutonTajwid() {
@@ -5453,6 +5649,13 @@ html body #btnLangRuV77.active-ext-v77 {
     if (stage) {
       forcer(stage, 'display', 'none');
     }
+    var cartesRestantes = document.querySelectorAll('.wbw-card-v110, .wbw-word-box, .wbw-card-unit');
+    for (var i = 0; i < cartesRestantes.length; i++) {
+      var p = cartesRestantes[i].parentElement;
+      if (p && !estElementVersetNormal(p) && !p.classList.contains('verse-stage') && !p.classList.contains('stage-blue-nav')) {
+        forcer(p, 'display', 'none');
+      }
+    }
   }
 
   function extraireIndiceOrdreCarte(carte) {
@@ -5497,10 +5700,31 @@ html body #btnLangRuV77.active-ext-v77 {
     return copie;
   }
 
+  function grilleCorrespondAuVersetActuel(cartes) {
+    if (!cartes || cartes.length === 0) return false;
+    var cleDom = obtenirCleVersetActuelDom();
+    if (cleDom && cleDom !== '19:1' && cartes.length === 1) {
+      var arTxt = nettoyerArabeBrut(cartes[0].textContent || '');
+      if (arTxt.indexOf('كهيعص') !== -1) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   function obtenirCartesMotAMotUniversel() {
     if (!estModeMotAMotActif()) {
       cacherGrilleMotAMotQuandInactif();
       return [];
+    }
+
+    // Réaffiche les conteneurs de cartes quand le mode Mot à mot est actif
+    var cartesDejaDom = document.querySelectorAll('.wbw-card-v110, .wbw-word-box, .wbw-card-unit');
+    for (var k = 0; k < cartesDejaDom.length; k++) {
+      var pk = cartesDejaDom[k].parentElement;
+      if (pk && !estElementVersetNormal(pk) && !pk.classList.contains('verse-stage') && !pk.classList.contains('stage-blue-nav')) {
+        forcer(pk, 'display', 'flex');
+      }
     }
 
     var stage = document.getElementById('wbwStageContainer');
@@ -5508,7 +5732,8 @@ html body #btnLangRuV77.active-ext-v77 {
       forcer(stage, 'display', 'flex');
       var boxes = stage.querySelectorAll('.wbw-word-box, .wbw-card-unit, .wbw-card-v110');
       if (boxes && boxes.length >= 1) {
-        return ordonnerCartesSensLecture(Array.prototype.slice.call(boxes));
+        var arr = Array.prototype.slice.call(boxes);
+        if (grilleCorrespondAuVersetActuel(arr)) return ordonnerCartesSensLecture(arr);
       }
     }
 
@@ -5524,14 +5749,14 @@ html body #btnLangRuV77.active-ext-v77 {
             ch.push(c);
           }
         }
-        if (ch.length >= 1) return ordonnerCartesSensLecture(ch);
+        if (ch.length >= 1 && grilleCorrespondAuVersetActuel(ch)) return ordonnerCartesSensLecture(ch);
       }
     }
 
     if (typeof window.__obtenirCartesWBWOrig === 'function') {
       try {
         var orig = window.__obtenirCartesWBWOrig() || [];
-        if (orig.length >= 1) return ordonnerCartesSensLecture(orig);
+        if (orig.length >= 1 && grilleCorrespondAuVersetActuel(orig)) return ordonnerCartesSensLecture(orig);
       } catch (e) {}
     }
 
@@ -5547,7 +5772,7 @@ html body #btnLangRuV77.active-ext-v77 {
     var selects = document.querySelectorAll('select');
     for (var s = 0; s < selects.length; s++) {
       var sel = selects[s];
-      if (sel.classList.contains('khatm-reciter-select') || sel.id === 'verseJumperSelect') continue;
+      if (sel.classList.contains('wbw-audio-select-v110') || sel.classList.contains('khatm-reciter-select') || sel.id === 'verseJumperSelect') continue;
       var yasserIdx = -1;
       for (var o = sel.options.length - 1; o >= 0; o--) {
         var opt = sel.options[o];
@@ -5570,8 +5795,387 @@ html body #btnLangRuV77.active-ext-v77 {
     }
   }
 
+  // =========================================================================
+  // RESTAURATION COMPLÈTE DU BOUTON & MODALE AUDIO : PLAGE & RÉPÉTITIONS
+  // =========================================================================
+  var TEXTES_AUDIO_MODAL_I18N = {
+    fr: {
+      btn: '🔁 Plage & Répétition',
+      title: 'Audio',
+      start: 'Début de la plage',
+      end: 'Fin de la plage',
+      repSel: 'Répéter la sélection',
+      repAyah: 'Répéter le verset',
+      none: 'Aucune',
+      times: 'fois',
+      inf: '∞ Infini',
+      cancel: 'Annuler',
+      stop: 'Arrêter la boucle',
+      play: 'Lire'
+    },
+    en: {
+      btn: '🔁 Audio Range',
+      title: 'Audio',
+      start: 'Start Range',
+      end: 'End Range',
+      repSel: 'Repeat selection',
+      repAyah: 'Repeat Ayah',
+      none: 'None',
+      times: 'times',
+      inf: '∞ Infinite',
+      cancel: 'Cancel',
+      stop: 'Stop Loop',
+      play: 'Play'
+    },
+    es: {
+      btn: '🔁 Rango y Repetición',
+      title: 'Audio',
+      start: 'Inicio del rango',
+      end: 'Fin del rango',
+      repSel: 'Repetir selección',
+      repAyah: 'Repetir aleya',
+      none: 'Ninguna',
+      times: 'veces',
+      inf: '∞ Infinito',
+      cancel: 'Cancelar',
+      stop: 'Detener bucle',
+      play: 'Reproducir'
+    },
+    ar: {
+      btn: '🔁 نطاق التكرار',
+      title: 'الصوت والتكرار',
+      start: 'بداية النطاق',
+      end: 'نهاية النطاق',
+      repSel: 'تكرار المقطع',
+      repAyah: 'تكرار الآية',
+      none: 'بدون',
+      times: 'مرات',
+      inf: '∞ بلا حدود',
+      cancel: 'إلغاء',
+      stop: 'إيقاف التكرار',
+      play: 'تشغيل'
+    },
+    de: {
+      btn: '🔁 Bereich & Wiederholung',
+      title: 'Audio',
+      start: 'Startbereich',
+      end: 'Endbereich',
+      repSel: 'Auswahl wiederholen',
+      repAyah: 'Vers wiederholen',
+      none: 'Keine',
+      times: 'Mal',
+      inf: '∞ Unendlich',
+      cancel: 'Abbrechen',
+      stop: 'Stoppen',
+      play: 'Abspielen'
+    },
+    it: {
+      btn: '🔁 Intervallo Audio',
+      title: 'Audio',
+      start: 'Inizio intervallo',
+      end: 'Fine intervallo',
+      repSel: 'Ripeti selezione',
+      repAyah: 'Ripeti versetto',
+      none: 'Nessuna',
+      times: 'volte',
+      inf: '∞ Infinito',
+      cancel: 'Annulla',
+      stop: 'Ferma ciclo',
+      play: 'Riproduci'
+    },
+    id: {
+      btn: '🔁 Rentang & Ulangi',
+      title: 'Audio',
+      start: 'Mulai Rentang',
+      end: 'Akhir Rentang',
+      repSel: 'Ulangi pilihan',
+      repAyah: 'Ulangi Ayat',
+      none: 'Tidak ada',
+      times: 'kali',
+      inf: '∞ Tak terbatas',
+      cancel: 'Batal',
+      stop: 'Hentikan',
+      play: 'Putar'
+    },
+    ru: {
+      btn: '🔁 Диапазон и повтор',
+      title: 'Аудио',
+      start: 'Начало диапазона',
+      end: 'Конец диапазона',
+      repSel: 'Повтор выбора',
+      repAyah: 'Повтор аята',
+      none: 'Нет',
+      times: 'раз(а)',
+      inf: '∞ Бесконечно',
+      cancel: 'Отмена',
+      stop: 'Остановить',
+      play: 'Слушать'
+    }
+  };
+
+  var etatAudioRange = {
+    actif: false,
+    sourate: 0,
+    startV: 1,
+    endV: 1,
+    repeatSelMax: 1,
+    repeatAyahMax: 1,
+    compteurSel: 1,
+    compteurAyah: 1
+  };
+
+  function mettreAJourBoutonAudioRange() {
+    var btn = document.getElementById('wbwAudioRangeBtnV110');
+    if (!btn) return;
+    var lang = obtenirLanguePage();
+    var t = TEXTES_AUDIO_MODAL_I18N[lang] || TEXTES_AUDIO_MODAL_I18N.fr;
+    var info = obtenirInfosSourateEtVerset();
+
+    if (etatAudioRange.actif && etatAudioRange.sourate === info.s) {
+      btn.classList.add('active');
+      var lblAyah = etatAudioRange.repeatAyahMax === -1 ? '∞' : (etatAudioRange.repeatAyahMax > 1 ? (etatAudioRange.compteurAyah + '/' + etatAudioRange.repeatAyahMax) : '');
+      var lblSel = etatAudioRange.repeatSelMax === -1 ? '∞' : (etatAudioRange.repeatSelMax > 1 ? (etatAudioRange.compteurSel + '/' + etatAudioRange.repeatSelMax) : '');
+      var details = [lblAyah ? ('v.' + lblAyah) : '', lblSel ? ('↻' + lblSel) : ''].filter(Boolean).join(' ');
+      btn.textContent = '🔁 ' + info.s + ':' + etatAudioRange.startV + '➔' + etatAudioRange.endV + (details ? (' (' + details + ')') : '');
+    } else {
+      btn.classList.remove('active');
+      btn.textContent = t.btn;
+    }
+  }
+
+  function naviguerEtJouerVerset(numV) {
+    if (typeof window.allerAuVerset === 'function') {
+      window.allerAuVerset(numV, true);
+      return;
+    }
+    var selJ = document.getElementById('verseJumperSelect');
+    if (selJ && selJ.options.length >= numV) {
+      selJ.selectedIndex = numV - 1;
+      selJ.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+    setTimeout(function() {
+      var aud = document.getElementById('ayahAudio');
+      if (aud && aud.paused) {
+        var playBtn = document.getElementById('playSyncBtn');
+        if (playBtn) playBtn.click();
+        else aud.play().catch(function() {});
+      }
+    }, 90);
+  }
+
+  function installerIntercepteurFinAudio() {
+    var aud = document.getElementById('ayahAudio');
+    if (!aud || aud.__wbwRangeHookedV110) return;
+    aud.__wbwRangeHookedV110 = true;
+
+    aud.addEventListener('ended', function(ev) {
+      var info = obtenirInfosSourateEtVerset();
+      if (!etatAudioRange.actif || etatAudioRange.sourate !== info.s) return;
+
+      ev.stopImmediatePropagation();
+
+      var encoreAyah = (etatAudioRange.repeatAyahMax === -1) || (etatAudioRange.compteurAyah < etatAudioRange.repeatAyahMax);
+      if (encoreAyah) {
+        etatAudioRange.compteurAyah++;
+        mettreAJourBoutonAudioRange();
+        window.__wbwResetDemande = true;
+        aud.currentTime = 0;
+        aud.play().catch(function() {});
+        return;
+      }
+
+      etatAudioRange.compteurAyah = 1;
+      if (info.v < etatAudioRange.endV && info.v < info.totalV) {
+        mettreAJourBoutonAudioRange();
+        naviguerEtJouerVerset(info.v + 1);
+        return;
+      }
+
+      var encoreSel = (etatAudioRange.repeatSelMax === -1) || (etatAudioRange.compteurSel < etatAudioRange.repeatSelMax);
+      if (encoreSel) {
+        etatAudioRange.compteurSel++;
+        mettreAJourBoutonAudioRange();
+        if (info.v !== etatAudioRange.startV) {
+          naviguerEtJouerVerset(etatAudioRange.startV);
+        } else {
+          window.__wbwResetDemande = true;
+          aud.currentTime = 0;
+          aud.play().catch(function() {});
+        }
+        return;
+      }
+
+      etatAudioRange.actif = false;
+      mettreAJourBoutonAudioRange();
+      if (typeof arreterVisuel === 'function') {
+        try { arreterVisuel(); } catch (e) {}
+      }
+    }, true);
+  }
+
+  function ouvrirModaleAudioRange() {
+    var overlay = document.getElementById('wbwAudioRangeOverlayV110');
+    if (!overlay) return;
+    var lang = obtenirLanguePage();
+    var t = TEXTES_AUDIO_MODAL_I18N[lang] || TEXTES_AUDIO_MODAL_I18N.fr;
+    var info = obtenirInfosSourateEtVerset();
+
+    var startDefaut = (etatAudioRange.actif && etatAudioRange.sourate === info.s) ? etatAudioRange.startV : info.v;
+    var endDefaut = (etatAudioRange.actif && etatAudioRange.sourate === info.s) ? etatAudioRange.endV : info.totalV;
+    var repSelDefaut = (etatAudioRange.actif && etatAudioRange.sourate === info.s) ? etatAudioRange.repeatSelMax : 1;
+    var repAyahDefaut = (etatAudioRange.actif && etatAudioRange.sourate === info.s) ? etatAudioRange.repeatAyahMax : 1;
+
+    var optsStart = '';
+    var optsEnd = '';
+    for (var i = 1; i <= info.totalV; i++) {
+      optsStart += '<option value="' + i + '"' + (i === startDefaut ? ' selected' : '') + '>' + info.s + ':' + i + '</option>';
+      optsEnd += '<option value="' + i + '"' + (i === endDefaut ? ' selected' : '') + '>' + info.s + ':' + i + '</option>';
+    }
+
+    var valeursRep = [
+      { val: 1, txt: t.none },
+      { val: 2, txt: '2 ' + t.times },
+      { val: 3, txt: '3 ' + t.times },
+      { val: 5, txt: '5 ' + t.times },
+      { val: 10, txt: '10 ' + t.times },
+      { val: -1, txt: t.inf }
+    ];
+
+    var optsRepSel = '';
+    var optsRepAyah = '';
+    for (var r = 0; r < valeursRep.length; r++) {
+      var item = valeursRep[r];
+      optsRepSel += '<option value="' + item.val + '"' + (item.val === repSelDefaut ? ' selected' : '') + '>' + item.txt + '</option>';
+      optsRepAyah += '<option value="' + item.val + '"' + (item.val === repAyahDefaut ? ' selected' : '') + '>' + item.txt + '</option>';
+    }
+
+    var sheet = overlay.querySelector('.wbw-audio-sheet-v110');
+    sheet.style.direction = lang === 'ar' ? 'rtl' : 'ltr';
+    sheet.innerHTML =
+      '<div class="wbw-audio-handle-v110"></div>' +
+      '<div class="wbw-audio-title-v110">' + t.title + '</div>' +
+      '<div class="wbw-audio-row-v110">' +
+        '<span class="wbw-audio-label-v110"><span class="wbw-audio-icon-v110">|&lt;</span> ' + t.start + '</span>' +
+        '<select id="wbwStartRangeSelV110" class="wbw-audio-select-v110">' + optsStart + '</select>' +
+      '</div>' +
+      '<div class="wbw-audio-row-v110">' +
+        '<span class="wbw-audio-label-v110"><span class="wbw-audio-icon-v110">&gt;|</span> ' + t.end + '</span>' +
+        '<select id="wbwEndRangeSelV110" class="wbw-audio-select-v110">' + optsEnd + '</select>' +
+      '</div>' +
+      '<div class="wbw-audio-row-v110">' +
+        '<span class="wbw-audio-label-v110"><span class="wbw-audio-icon-v110">↻</span> ' + t.repSel + '</span>' +
+        '<select id="wbwRepSelV110" class="wbw-audio-select-v110">' + optsRepSel + '</select>' +
+      '</div>' +
+      '<div class="wbw-audio-row-v110">' +
+        '<span class="wbw-audio-label-v110"><span class="wbw-audio-icon-v110">↺</span> ' + t.repAyah + '</span>' +
+        '<select id="wbwRepAyahV110" class="wbw-audio-select-v110">' + optsRepAyah + '</select>' +
+      '</div>' +
+      '<div class="wbw-audio-actions-v110">' +
+        '<button type="button" id="wbwAudioCancelBtnV110" class="wbw-audio-cancel-v110">' + (etatAudioRange.actif ? t.stop : t.cancel) + '</button>' +
+        '<button type="button" id="wbwAudioPlayBtnV110" class="wbw-audio-play-v110">' + t.play + '</button>' +
+      '</div>';
+
+    var selS = document.getElementById('wbwStartRangeSelV110');
+    var selE = document.getElementById('wbwEndRangeSelV110');
+    selS.addEventListener('change', function() {
+      if (parseInt(selE.value, 10) < parseInt(selS.value, 10)) {
+        selE.value = selS.value;
+      }
+    });
+    selE.addEventListener('change', function() {
+      if (parseInt(selE.value, 10) < parseInt(selS.value, 10)) {
+        selS.value = selE.value;
+      }
+    });
+
+    document.getElementById('wbwAudioCancelBtnV110').addEventListener('click', function() {
+      if (etatAudioRange.actif) {
+        etatAudioRange.actif = false;
+        var aud = document.getElementById('ayahAudio');
+        if (aud && !aud.paused) aud.pause();
+        mettreAJourBoutonAudioRange();
+      }
+      overlay.classList.remove('open');
+    });
+
+    document.getElementById('wbwAudioPlayBtnV110').addEventListener('click', function() {
+      var sVal = parseInt(selS.value, 10) || 1;
+      var eVal = parseInt(selE.value, 10) || sVal;
+      if (eVal < sVal) eVal = sVal;
+
+      etatAudioRange.actif = true;
+      etatAudioRange.sourate = info.s;
+      etatAudioRange.startV = sVal;
+      etatAudioRange.endV = eVal;
+      etatAudioRange.repeatSelMax = parseInt(document.getElementById('wbwRepSelV110').value, 10) || 1;
+      etatAudioRange.repeatAyahMax = parseInt(document.getElementById('wbwRepAyahV110').value, 10) || 1;
+      etatAudioRange.compteurSel = 1;
+      etatAudioRange.compteurAyah = 1;
+
+      overlay.classList.remove('open');
+      mettreAJourBoutonAudioRange();
+
+      var aud = document.getElementById('ayahAudio');
+      if (info.v !== sVal) {
+        naviguerEtJouerVerset(sVal);
+      } else if (aud) {
+        window.__wbwResetDemande = true;
+        aud.currentTime = 0;
+        if (aud.paused) {
+          var playBtn = document.getElementById('playSyncBtn');
+          if (playBtn) playBtn.click();
+          else aud.play().catch(function() {});
+        }
+      }
+    });
+
+    overlay.classList.add('open');
+  }
+
+  function assurerBoutonEtModaleAudioRange() {
+    var estPageSourate = /sourate-\d+/i.test(window.location.pathname) || Boolean(document.querySelector('#arabicVerse, #arabicVerseEl, .arabic-glow-verse'));
+    if (!estPageSourate) return;
+
+    installerIntercepteurFinAudio();
+
+    var oldBtns = document.querySelectorAll('#wbwAudioRangeBtnV109, #wbwAudioRangeBtnV111, #wbwAudioRangeBtnV112');
+    for (var b = 0; b < oldBtns.length; b++) {
+      if (oldBtns[b].parentNode) oldBtns[b].parentNode.removeChild(oldBtns[b]);
+    }
+    var oldOvs = document.querySelectorAll('#wbwAudioRangeOverlayV109, #wbwAudioRangeOverlayV111, #wbwAudioRangeOverlayV112');
+    for (var o = 0; o < oldOvs.length; o++) {
+      if (oldOvs[o].parentNode) oldOvs[o].parentNode.removeChild(oldOvs[o]);
+    }
+
+    if (!document.getElementById('wbwAudioRangeOverlayV110')) {
+      var ov = document.createElement('div');
+      ov.id = 'wbwAudioRangeOverlayV110';
+      ov.innerHTML = '<div class="wbw-audio-sheet-v110"></div>';
+      ov.addEventListener('click', function(e) {
+        if (e.target === ov) ov.classList.remove('open');
+      });
+      document.body.appendChild(ov);
+    }
+
+    if (!document.getElementById('wbwAudioRangeBtnV110')) {
+      var btnSuivi = trouverBoutonParTexte(['Suivi', 'Follow', 'Слежение', 'Seguimiento', 'Verfolgen', 'Segui', 'Ikuti', 'تتبع']);
+      var btnTaj = trouverBoutonTajwid();
+      var cible = btnSuivi || btnTaj || document.getElementById('replaySyncBtn');
+      if (cible && cible.parentElement) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.id = 'wbwAudioRangeBtnV110';
+        btn.addEventListener('click', ouvrirModaleAudioRange);
+        cible.parentElement.insertBefore(btn, cible.nextSibling);
+      }
+    }
+
+    mettreAJourBoutonAudioRange();
+  }
+
   function initialiserModesSurSourate() {
     supprimerMaherEtForcerYasser();
+    assurerBoutonEtModaleAudioRange();
 
     if (initDefautFait) return;
     var estPageSourate = /sourate-\d+/i.test(window.location.pathname) || Boolean(document.querySelector('#arabicVerse, #arabicVerseEl, .arabic-glow-verse'));
@@ -5614,14 +6218,20 @@ html body #btnLangRuV77.active-ext-v77 {
         caches[c].classList.remove('wbw-masquer-doublon-v104', 'wbw-masquer-doublon-v105', 'wbw-masquer-doublon-v106', 'wbw-masquer-doublon-v107', 'wbw-masquer-doublon-v108', 'wbw-masquer-doublon-v109', 'wbw-masquer-doublon-v110', 'wbw-masquer-doublon-v111', 'wbw-masquer-doublon-v112', 'wbw-masquer-traduction-bas');
         caches[c].style.removeProperty('display');
       }
-      var vNorm = document.querySelector('#arabicVerseEl, #arabicVerse, .arabic-glow-verse');
-      if (vNorm) {
-        vNorm.style.removeProperty('display');
-        vNorm.style.removeProperty('transform');
+      var vNorms = document.querySelectorAll('#arabicVerseEl, #arabicVerse, .arabic-glow-verse');
+      for (var v = 0; v < vNorms.length; v++) {
+        vNorms[v].classList.remove('wbw-masquer-doublon-v110');
+        vNorms[v].style.removeProperty('display');
+        vNorms[v].style.removeProperty('transform');
+        forcer(vNorms[v], 'display', 'block');
       }
-      var fNorm = document.querySelector('#frenchVerseEl, .french-glow-verse');
-      if (fNorm && obtenirLanguePage() !== 'ar') {
-        fNorm.style.removeProperty('display');
+      var fNorms = document.querySelectorAll('#frenchVerseEl, .french-glow-verse');
+      if (obtenirLanguePage() !== 'ar') {
+        for (var f = 0; f < fNorms.length; f++) {
+          fNorms[f].classList.remove('wbw-masquer-doublon-v110');
+          fNorms[f].style.removeProperty('display');
+          forcer(fNorms[f], 'display', 'block');
+        }
       }
       return;
     }
@@ -5833,7 +6443,6 @@ html body #btnLangRuV77.active-ext-v77 {
       });
   }
 
-  // Traduction automatique en français de la modale de racine
   var dernierMotCliqueTrad = '';
   var dernierMotCliqueAr = '';
 
@@ -6540,6 +7149,7 @@ html body #btnLangRuV77.active-ext-v77 {
       window.__wbwEnergies = [];
       window.__wbwBleus = [];
       gererMasquageDoublonVerset(null, false);
+      mettreAJourBoutonAudioRange();
     } else if (cleActuelle) {
       derniereCleVersetVue = cleActuelle;
     }
@@ -6552,12 +7162,12 @@ html body #btnLangRuV77.active-ext-v77 {
   setInterval(verifierChangementVersetEtPause, 180);
 
   document.addEventListener('click', function() {
-    setTimeout(verifierChangementVersetEtPause, 20);
-    setTimeout(verifierChangementVersetEtPause, 90);
+    setTimeout(verifierChangementVersetEtPause, 15);
+    setTimeout(verifierChangementVersetEtPause, 75);
   });
   document.addEventListener('change', function() {
-    setTimeout(verifierChangementVersetEtPause, 20);
-    setTimeout(verifierChangementVersetEtPause, 90);
+    setTimeout(verifierChangementVersetEtPause, 15);
+    setTimeout(verifierChangementVersetEtPause, 75);
   });
 
   if (document.readyState === 'loading') {
