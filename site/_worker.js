@@ -16,6 +16,22 @@ const NB_VERSETS_PAR_SOURATE = [
   11,8,3,9,5,4,7,3,6,3,5,4,5,6
 ];
 
+const NOMS_SOURATES_COURT = [
+  "",
+  "Al-Fātihah","Al-Baqarah","Āl 'Imrān","An-Nisā'","Al-Mā'idah","Al-An'ām","Al-A'rāf","Al-Anfāl","At-Tawbah","Yūnus",
+  "Hūd","Yūsuf","Ar-Ra'd","Ibrāhīm","Al-Hijr","An-Nahl","Al-Isrā'","Al-Kahf","Maryam","Tā-Hā",
+  "Al-Anbiyā'","Al-Hajj","Al-Mu'minūn","An-Nūr","Al-Furqān","Ash-Shu'arā'","An-Naml","Al-Qasas","Al-'Ankabūt","Ar-Rūm",
+  "Luqmān","As-Sajdah","Al-Ahzāb","Saba'","Fātir","Yā-Sīn","As-Sāffāt","Sād","Az-Zumar","Ghāfir",
+  "Fussilat","Ash-Shūrā","Az-Zukhruf","Ad-Dukhān","Al-Jāthiyah","Al-Ahqāf","Muhammad","Al-Fath","Al-Hujurāt","Qāf",
+  "Adh-Dhāriyāt","At-Tūr","An-Najm","Al-Qamar","Ar-Rahmān","Al-Wāqi'ah","Al-Hadīd","Al-Mujādilah","Al-Hashr","Al-Mumtahanah",
+  "As-Saff","Al-Jumu'ah","Al-Munāfiqūn","At-Taghābun","At-Talāq","At-Tahrīm","Al-Mulk","Al-Qalam","Al-Hāqqah","Al-Ma'ārij",
+  "Nūh","Al-Jinn","Al-Muzzammil","Al-Muddaththir","Al-Qiyāmah","Al-Insān","Al-Mursalāt","An-Naba'","An-Nāzi'āt","'Abasa",
+  "At-Takwīr","Al-Infitār","Al-Mutaffifīn","Al-Inshiqāq","Al-Burūj","At-Tāriq","Al-A'lā","Al-Ghāshiyah","Al-Fajr","Al-Balad",
+  "Ash-Shams","Al-Layl","Ad-Duhā","Ash-Sharh","At-Tīn","Al-'Alaq","Al-Qadr","Al-Bayyinah","Az-Zalzalah","Al-'Ādiyāt",
+  "Al-Qāri'ah","At-Takāthur","Al-'Asr","Al-Humazah","Al-Fīl","Quraysh","Al-Mā'ūn","Al-Kawthar","Al-Kāfirūn","An-Nasr",
+  "Al-Masad","Al-Ikhlās","Al-Falaq","An-Nās"
+];
+
 function verifierVersetValide(pathname) {
   const m = (pathname || "").trim().match(/^\/?sourate-(\d+)-verset-(\d+)(?:\.html)?\/?$/i);
   if (!m) return null;
@@ -308,7 +324,7 @@ async function obtenirVersetOfficiel(sNum, vNum, lang) {
   if (!sNum || !vNum || !QURAN_API_IDS[lang]) return { ok: false, text: null };
   const url = "https://api.quran.com/api/v4/quran/translations/" + QURAN_API_IDS[lang] + "?verse_key=" + sNum + ":" + vNum;
   try {
-    const r = await fetch(url, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(3000), cf: { cacheTtl: 2592000, cacheEverything: true } });
+    const r = await fetch(url, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(2800), cf: { cacheTtl: 2592000, cacheEverything: true } });
     if (!r.ok) return { ok: false, text: null };
     const d = await r.json();
     if (d && d.translations && d.translations[0] && d.translations[0].text) {
@@ -319,12 +335,13 @@ async function obtenirVersetOfficiel(sNum, vNum, lang) {
   return { ok: false, text: null };
 }
 
-async function traduireTexteServeur(texte, lang) {
+async function traduireTexteServeur(texte, lang, deadlineMs) {
   if (!texte || lang === "fr") return { ok: true, text: texte, provider: "fr" };
+  if (deadlineMs && Date.now() > deadlineMs) return { ok: false, text: texte, provider: "budget-exceeded" };
 
   try {
     const url1 = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=fr&tl=" + lang + "&dt=t&q=" + encodeURIComponent(texte);
-    const r1 = await fetch(url1, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(3000), cf: { cacheTtl: 2592000, cacheEverything: true } });
+    const r1 = await fetch(url1, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(2500), cf: { cacheTtl: 2592000, cacheEverything: true } });
     if (r1.ok) {
       const d1 = await r1.json();
       if (d1 && Array.isArray(d1[0])) {
@@ -337,9 +354,11 @@ async function traduireTexteServeur(texte, lang) {
     }
   } catch (e1) {}
 
+  if (deadlineMs && Date.now() > deadlineMs) return { ok: false, text: texte, provider: "budget-exceeded" };
+
   try {
     const url2 = "https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl=fr&tl=" + lang + "&q=" + encodeURIComponent(texte);
-    const r2 = await fetch(url2, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(3000), cf: { cacheTtl: 2592000, cacheEverything: true } });
+    const r2 = await fetch(url2, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(2500), cf: { cacheTtl: 2592000, cacheEverything: true } });
     if (r2.ok) {
       const d2 = await r2.json();
       let out2 = "";
@@ -353,12 +372,14 @@ async function traduireTexteServeur(texte, lang) {
     }
   } catch (e2) {}
 
+  if (deadlineMs && Date.now() > deadlineMs) return { ok: false, text: texte, provider: "budget-exceeded" };
+
   if (texte.length <= 490) {
     try {
       const endpoint = new URL("https://api.mymemory.translated.net/get");
       endpoint.searchParams.set("q", texte);
       endpoint.searchParams.set("langpair", "fr|" + lang);
-      const r3 = await fetch(endpoint, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(3000), redirect: "error" });
+      const r3 = await fetch(endpoint, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(2500), redirect: "error" });
       if (r3.ok) {
         const d3 = await r3.json();
         const text = d3?.responseData?.translatedText;
@@ -375,6 +396,7 @@ async function traduireTexteServeur(texte, lang) {
 
 async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
   if (!innerHtml || lang === "fr") return { ok: true, html: innerHtml, diag: "fr" };
+  const deadlineMs = Date.now() + 4500; // Budget global de traduction max 4.5s (Audit S3)
   const parts = innerHtml.split(/(<[^>]+>)/g);
   const idxs = [];
   const segs = [];
@@ -391,7 +413,7 @@ async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
   if (segs.length === 0) return { ok: false, html: innerHtml, diag: "empty-segs" };
 
   const joined = segs.join("\n\n");
-  const batchRes = await traduireTexteServeur(joined, lang);
+  const batchRes = await traduireTexteServeur(joined, lang, deadlineMs);
   if (batchRes.ok && batchRes.text) {
     const splitTr = batchRes.text.split(/\n\s*\n/);
     if (splitTr.length === idxs.length) {
@@ -409,11 +431,12 @@ async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
   let okCount = 0;
   let lastProv = batchRes.provider || "err";
   for (let j = 0; j < idxs.length; j++) {
+    if (Date.now() > deadlineMs) break;
     const idx = idxs[j];
     const rawOrig = parts[idx];
     const lead = (rawOrig.match(/^\s*/) || [""])[0];
     const trail = (rawOrig.match(/\s*$/) || [""])[0];
-    const r = await traduireTexteServeur(segs[j], lang);
+    const r = await traduireTexteServeur(segs[j], lang, deadlineMs);
     if (r.ok && r.text) {
       parts[idx] = lead + escapeHtmlText(r.text) + trail;
       okCount++;
@@ -441,7 +464,7 @@ async function obtenirTafsirDepuisCachesDurablesOuTraduire(innerHtml, sNum, vNum
   } catch (e) {}
 
   const cache = typeof caches !== "undefined" && caches.default ? caches.default : null;
-  const edgeCacheReq = new Request("https://corantafsir.com/_tafsir_edge_v111/" + sNum + "-" + vNum + "-" + lang);
+  const edgeCacheReq = new Request("https://corantafsir.com/_tafsir_edge_v112/" + sNum + "-" + vNum + "-" + lang);
   if (cache) {
     try {
       const cachedTaf = await cache.match(edgeCacheReq);
@@ -493,6 +516,7 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname, 
 
   const sNum = mVerse ? mVerse[1] : "";
   const vNum = mVerse ? mVerse[2] : "";
+  const nomS = sNum && NOMS_SOURATES_COURT[Number(sNum)] ? NOMS_SOURATES_COURT[Number(sNum)] : "";
   const pathClean = mVerse
     ? ("/sourate-" + sNum + "-verset-" + vNum)
     : (isHome ? "/" : cleanPath.replace(/\.html$/i, ""));
@@ -507,6 +531,54 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname, 
   out = out.replace(/<link rel="alternate" hreflang="[^"]*"[^>]*>\s*/gi, "");
   out = out.replace(/(<link rel="canonical" href="[^"]*">)/i, "$1\n" + construireBlocHreflangHarmonise(urlBaseFr));
 
+  const codeLangMeta = (!lang || !["fr","en","es","ar","de","it","id","ru"].includes(lang)) ? "fr" : lang;
+  const titles = {
+    fr: mVerse ? ("Sourate " + nomS + " (" + sNum + ":" + vNum + ") — Coran, Audio, Mot à Mot & Tafsīr") : "Le Noble Coran & Tafsīr Al-Mukhtasar — Audio, Tajwīd & Mot à Mot (8 Langues)",
+    en: mVerse ? ("Surah " + nomS + " (" + sNum + ":" + vNum + ") — Noble Quran, Audio, Word by Word & Tafsīr") : "The Noble Quran & Tafsīr Al-Mukhtasar — Audio, Tajwīd & Word by Word (8 Languages)",
+    es: mVerse ? ("Sura " + nomS + " (" + sNum + ":" + vNum + ") — El Noble Corán, Audio, Palabra por Palabra y Tafsīr") : "El Noble Corán y Tafsīr Al-Mukhtasar — Audio, Tajwīd y Palabra por Palabra (8 Idiomas)",
+    ar: mVerse ? ("سورة " + nomS + " (" + sNum + ":" + vNum + ") — القرآن الكريم والتفسير المختصر") : "القرآن الكريم والتفسير المختصر — تلاوة، تجويد وترجمة كلمة بكلمة (8 لغات)",
+    de: mVerse ? ("Sure " + nomS + " (" + sNum + ":" + vNum + ") — Der Edle Koran, Audio, Wort für Wort & Tafsīr") : "Der Edle Koran & Tafsīr Al-Mukhtasar — Audio, Tajwīd & Wort für Wort (Bubenheim & Elyas)",
+    it: mVerse ? ("Sura " + nomS + " (" + sNum + ":" + vNum + ") — Il Nobile Corano, Audio, Parola per Parola e Tafsīr") : "Il Nobile Corano e Tafsīr Al-Mukhtasar — Audio, Tajwīd e Parola per Parola (Piccardo)",
+    id: mVerse ? ("Surah " + nomS + " (" + sNum + ":" + vNum + ") — Al-Qur'an Mulia, Audio, Kata demi Kata & Tafsir") : "Al-Qur'an Mulia & Tafsir Al-Mukhtasar — Audio, Tajwid & Kata demi Kata (Kemenag RI)",
+    ru: mVerse ? ("Сура " + nomS + " (" + sNum + ":" + vNum + ") — Священный Коран, Аудио, Пословный перевод и Тафсир") : "Священный Коран и Тафсир аль-Мухтасар — Аудио, Таджвид и Пословный перевод (Э. Кулиев)"
+  };
+  const descriptions = {
+    fr: "Lisez et écoutez le Noble Coran (6 236 versets) avec suivi audio mot à mot, Tajwīd coloré et exégèse (Tafsīr Al-Mukhtasar & Ibn Kathīr) en 8 langues.",
+    en: "Read and listen to the Noble Quran (6,236 verses) with word-by-word audio tracking, color Tajwīd, Khatm planner and Tafsīr Al-Mukhtasar & Ibn Kathīr in 8 languages.",
+    es: "Lea y escuche el Noble Corán (6.236 aleyas) con seguimiento de audio palabra por palabra, Tajwīd, planificador Khatm y Tafsīr Al-Mukhtasar en 8 idiomas.",
+    ar: "اقرأ واستمع إلى القرآن الكريم (6236 آية) مع التتبع الصوتي كلمة بكلمة، التجويد المصور، برنامج ختم القرآن والتفسير المختصر وابن كثير بـ 8 لغات.",
+    de: "Lesen und hören Sie den Edlen Koran (6.236 Verse, Übersetzung Bubenheim & Elyas) mit Wort-für-Wort-Audioverfolgung, Tajwīd, Leseplaner und Tafsīr Al-Mukhtasar.",
+    it: "Leggi e ascolta il Nobile Corano (6.236 versetti, traduzione Hamza Roberto Piccardo) con seguito audio parola per parola, Tajwīd, pianificatore Khatm e Tafsīr.",
+    id: "Baca dan dengarkan Al-Qur'an Mulia (6.236 ayat, Terjemahan Kemenag RI) dengan pelacakan audio kata demi kata, Tajwid, perencana Khatam, dan Tafsir Al-Mukhtasar.",
+    ru: "Читайте и слушайте Священный Коран (6 236 аятов, перевод Эльмира Кулиева) с пословным аудио-слежением, Таджвидом, планом чтения и Тафсиром аль-Мухтасар."
+  };
+
+  if (isHome || mVerse) {
+    const tLoc = titles[codeLangMeta];
+    const dLoc = descriptions[codeLangMeta];
+    out = out.replace(/<title>[\s\S]*?<\/title>/i, () => "<title>" + escapeHtmlText(tLoc) + "</title>");
+    const ogAndJsonLd = [
+      '<meta name="description" content="' + escapeHtmlText(dLoc) + '">',
+      '<meta property="og:title" content="' + escapeHtmlText(tLoc) + '">',
+      '<meta property="og:description" content="' + escapeHtmlText(dLoc) + '">',
+      '<meta property="og:url" content="' + canonicalHref + '">',
+      '<meta property="og:type" content="' + (mVerse ? 'article' : 'website') + '">',
+      '<script type="application/ld+json">' + JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "url": canonicalHref,
+        "name": tLoc,
+        "description": dLoc,
+        "inLanguage": codeLangMeta
+      }).replace(/</g, "\\u003c") + '</script>'
+    ].join("\n  ");
+
+    out = out.replace(/<meta name="description" content="[^"]*">\s*/gi, "");
+    out = out.replace(/<meta property="og:[^"]*" content="[^"]*">\s*/gi, "");
+    out = out.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>\s*/gi, "");
+    out = out.replace(/<\/title>/i, "</title>\n  " + ogAndJsonLd);
+  }
+
   if (!lang || lang === "fr") {
     out = remplacerHorsScriptsEtStyles(out, segment =>
       segment
@@ -519,35 +591,6 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname, 
   let traductionComplete = true;
 
   out = out.replace(/<html([^>]*)lang="[^"]*"([^>]*)>/i, '<html$1lang="' + lang + '" dir="' + (lang === "ar" ? "rtl" : "ltr") + '"$2>');
-
-  if (isHome || mVerse) {
-    const titles = {
-      en: mVerse ? ("Surah " + sNum + ":" + vNum + " — Noble Quran, Audio, Word by Word & Tafsīr") : "The Noble Quran & Tafsīr Al-Mukhtasar — Audio, Tajwīd & Word by Word (8 Languages)",
-      es: mVerse ? ("Sura " + sNum + ":" + vNum + " — El Noble Corán, Audio, Palabra por Palabra y Tafsīr") : "El Noble Corán y Tafsīr Al-Mukhtasar — Audio, Tajwīd y Palabra por Palabra (8 Idiomas)",
-      ar: mVerse ? ("سورة " + sNum + ":" + vNum + " — القرآن الكريم والتفسير المختصر") : "القرآن الكريم والتفسير المختصر — تلاوة، تجويد وترجمة كلمة بكلمة (8 لغات)",
-      de: mVerse ? ("Sure " + sNum + ":" + vNum + " — Der Edle Koran, Audio, Wort für Wort & Tafsīr") : "Der Edle Koran & Tafsīr Al-Mukhtasar — Audio, Tajwīd & Wort für Wort (Bubenheim & Elyas)",
-      it: mVerse ? ("Sura " + sNum + ":" + vNum + " — Il Nobile Corano, Audio, Parola per Parola e Tafsīr") : "Il Nobile Corano e Tafsīr Al-Mukhtasar — Audio, Tajwīd e Parola per Parola (Piccardo)",
-      id: mVerse ? ("Surah " + sNum + ":" + vNum + " — Al-Qur'an Mulia, Audio, Kata demi Kata & Tafsir") : "Al-Qur'an Mulia & Tafsir Al-Mukhtasar — Audio, Tajwid & Kata demi Kata (Kemenag RI)",
-      ru: mVerse ? ("Сура " + sNum + ":" + vNum + " — Священный Коран, Аудио, Пословный перевод и Тафсир") : "Священный Коран и Тафсир аль-Мухтасар — Аудио, Таджвид и Пословный перевод (Э. Кулиев)"
-    };
-    const descriptions = {
-      en: "Read and listen to the Noble Quran (6,236 verses) with word-by-word audio tracking, color Tajwīd, Khatm planner and Tafsīr Al-Mukhtasar & Ibn Kathīr in 8 languages.",
-      es: "Lea y escuche el Noble Corán (6.236 aleyas) con seguimiento de audio palabra por palabra, Tajwīd, planificador Khatm y Tafsīr Al-Mukhtasar en 8 idiomas.",
-      ar: "اقرأ واستمع إلى القرآن الكريم (6236 آية) مع التتبع الصوتي كلمة بكلمة، التجويد المصور، برنامج ختم القرآن والتفسير المختصر وابن كثير بـ 8 لغات.",
-      de: "Lesen und hören Sie den Edlen Koran (6.236 Verse, Übersetzung Bubenheim & Elyas) mit Wort-für-Wort-Audioverfolgung, Tajwīd, Leseplaner und Tafsīr Al-Mukhtasar.",
-      it: "Leggi e ascolta il Nobile Corano (6.236 versetti, traduzione Hamza Roberto Piccardo) con seguito audio parola per parola, Tajwīd, pianificatore Khatm e Tafsīr.",
-      id: "Baca dan dengarkan Al-Qur'an Mulia (6.236 ayat, Terjemahan Kemenag RI) dengan pelacakan audio kata demi kata, Tajwid, perencana Khatam, dan Tafsir Al-Mukhtasar.",
-      ru: "Читайте и слушайте Священный Коран (6 236 аятов, перевод Эльмира Кулиева) с пословным аудио-слежением, Таджвидом, планом чтения и Тафсиром аль-Мухтасар."
-    };
-    if (titles[lang]) out = out.replace(/<title>[\s\S]*?<\/title>/i, () => "<title>" + escapeHtmlText(titles[lang]) + "</title>");
-    if (descriptions[lang]) {
-      if (/<meta name="description" content="[^"]*">/i.test(out)) {
-        out = out.replace(/<meta name="description" content="[^"]*">/i, () => '<meta name="description" content="' + escapeHtmlText(descriptions[lang]) + '">');
-      } else {
-        out = out.replace(/<\/title>/i, '</title>\n  <meta name="description" content="' + escapeHtmlText(descriptions[lang]) + '">');
-      }
-    }
-  }
 
   const mapUi = UI_TEXTES[lang] || {};
   out = remplacerHorsScriptsEtStyles(out, segment => {
@@ -581,7 +624,9 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname, 
 
     let versetTraiteOk = false;
     const regVersetFr = new RegExp("(>)(\\s*" + vNum + "\\s*[\\.-]\\s+)([^<]{2,})(<\\/)", "i");
-    if (QURAN_API_IDS[lang] && regVersetFr.test(out)) {
+    if (lang === "ar") {
+      versetTraiteOk = true;
+    } else if (QURAN_API_IDS[lang] && regVersetFr.test(out)) {
       const versetRes = await obtenirVersetOfficiel(sNum, vNum, lang);
       if (versetRes.ok && versetRes.text) {
         out = out.replace(regVersetFr, (_, p1, p2, _p3, p4) => p1 + p2 + escapeHtmlText(versetRes.text) + p4);
@@ -632,7 +677,7 @@ async function recupererFichierStatiquePages(request, env) {
   return fetch(request);
 }
 
-const SSR_VERSION = "v111";
+const SSR_VERSION = "v112";
 function construireCleCache(request, lang) {
   const key = new URL(request.url);
   key.pathname = key.pathname.replace(/\.html$/i, "");

@@ -2279,8 +2279,7 @@ function codeClientV77() {
     return "";
   }
 
-  function chargerVraiMotAMotVerset(vk, lang) {
-    if (!vk) return;
+  function chargerVraiMotAMotVerset(vk, lang) { if (window.__wbwBypassOrigCartes) return; if (!vk) return;
     var cleCache = vk + "_" + lang;
     if (cacheVersetMotsExact[cleCache] || requetesVersetEnCours[cleCache]) return;
     requetesVersetEnCours[cleCache] = true;
@@ -2361,7 +2360,7 @@ function codeClientV77() {
 
   function obtenirCartesMotAMotVisibles() {
     var cartes = [];
-    var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v111, .wbw-card, .wbw-word, .wbw-item");
+    var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v112, .wbw-card, .wbw-word, .wbw-item");
     for (var i = 0; i < c1.length; i++) {
       var r1 = c1[i].getBoundingClientRect();
       if (r1.width > 4 && r1.height > 4) {
@@ -2422,7 +2421,7 @@ function codeClientV77() {
 
     for (var i = 0; i < cartes.length; i++) {
       var c = cartes[i];
-      c.setAttribute("data-word-num", String(i + 1));
+      if (!window.__wbwBypassOrigCartes) c.setAttribute("data-word-num", String(i + 1));
       if (!c.children || c.children.length < 1) continue;
       var elAr = c.children[0];
       var elTr = c.children[c.children.length - 1];
@@ -2462,7 +2461,7 @@ function codeClientV77() {
         }
       }
 
-      if (tradFinale && elTr.textContent !== tradFinale) elTr.textContent = tradFinale;
+      if (!window.__wbwBypassOrigCartes && tradFinale && elTr.textContent !== tradFinale) elTr.textContent = tradFinale;
     }
 
     var grilleParente = cartes[0].parentElement;
@@ -2549,13 +2548,13 @@ function codeClientV77() {
   }
 
   var MAP_NOMS_VERS_QDC = {
-    dosari: [174, 168], dossari: [174, 168], yasser: [174, 168],
+    dosari: [13, 174, 168], dossari: [13, 174, 168], yasser: [13, 174, 168],
     afasy: [7], alafasy: [7], mishary: [7],
     sudais: [3], soudais: [3],
     shuraim: [10, 4], shuraym: [10, 4],
     hussary: [6], husary: [6],
     abdulbaset: [2, 1], abdulbasit: [2, 1],
-    minshawi: [9]
+    minshawi: [8, 9]
   };
 
   var cacheTimingVerset = {};
@@ -2693,7 +2692,7 @@ function codeClientV77() {
 
   if (typeof HTMLMediaElement !== "undefined" && HTMLMediaElement.prototype && !HTMLMediaElement.prototype.__hookedV77) {
     var origPlay = HTMLMediaElement.prototype.play;
-    HTMLMediaElement.prototype.play = function () { if (this.id && this.id !== "ayahAudio") return origPlay.apply(this, arguments);  if (this.id && this.id !== "ayahAudio") return origPlay.apply(this, arguments);  if (this.id && this.id !== "ayahAudio") return origPlay.apply(this, arguments); var self = this;
+    HTMLMediaElement.prototype.play = function () { if (this.id !== "ayahAudio") return origPlay.apply(this, arguments); var self = this;
       window.__lecteurAudioActuel = self;
       if (self.currentTime < 0.25) {
         reinitialiserMotsEnBlancTamise();
