@@ -4,470 +4,278 @@
     </head>
     <body>Verification: 9ed8551291c4ae1e<!-- WBW_COLLE_V110_START -->
 <style id="wbw-style-v110">
-  html body #flatEarthSun,
-  html body .flat-earth-sun,
-  html body .astre-soleil-pur-v77 {
-    opacity: 1 !important;
-    background-color: #facc15 !important;
+  html body #flatEarthSun, html body .flat-earth-sun, html body .astre-soleil-pur-v77 {
+    opacity: 1 !important; background-color: #facc15 !important;
   }
-  html body #flatEarthMoon,
-  html body .flat-earth-moon,
-  html body .astre-lune-pure-v77 {
-    opacity: 1 !important;
-    background-color: #f1f5f9 !important;
+  html body #flatEarthMoon, html body .flat-earth-moon, html body .astre-lune-pure-v77 {
+    opacity: 1 !important; background-color: #f1f5f9 !important;
   }
-
-  .wbw-hide-khatm-on-surah,
-  .wbw-masquer-doublon-v110,
-  .maher-item-removed-v110 {
+  .wbw-hide-khatm-on-surah, .wbw-masquer-doublon-v110, .maher-item-removed-v110 {
     display: none !important;
   }
-
-  .wbw-num-hidden-v110,
-  .wbw-card-v110 sup,
-  .wbw-card-v110 small,
-  html body .wbw-card-unit::before,
-  html body .wbw-card-unit::after,
-  html body .wbw-word-box::before,
-  html body .wbw-word-box::after,
-  html body .wbw-card-v110::before,
-  html body .wbw-card-v110::after,
-  html body .wbw-card-v110 .wbw-ar-v110::before,
-  html body .wbw-card-v110 .wbw-ar-v110::after,
-  html body .wbw-card-v110 .wbw-tr-v110::before,
-  html body .wbw-card-v110 .wbw-tr-v110::after {
-    content: none !important;
+  /* Désactivation totale de la modale de racine / morphologie au clic sur un mot */
+  #wordMorphModal, #morphModal, #wordRootModal, #quranWordModal,
+  .word-morph-modal, .morph-modal-overlay, .wbw-morph-hidden-v110 {
+    display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;
+  }
+  /* Bascule instantanée quand Mot à mot est désactivé */
+  body.wbw-instant-off #wbwSensLectureBanner,
+  body.wbw-instant-off #wbwStageContainer,
+  body.wbw-instant-off .wbw-grid-container-v110,
+  body.wbw-instant-off .wbw-card-v110 {
     display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    font-size: 0px !important;
-    width: 0px !important;
-    height: 0px !important;
-    margin: 0px !important;
-    padding: 0px !important;
-    border: none !important;
-    overflow: hidden !important;
-    pointer-events: none !important;
   }
-
-  /* Suppression totale de la ligne entre le mot arabe et le mot français */
-  html body .wbw-card-v110 .wbw-ar-v110,
-  html body .wbw-card-v110 .wbw-tr-v110,
-  html body .wbw-card-v110 .wbw-ar,
-  html body .wbw-card-v110 .wbw-tr,
-  html body .wbw-word-box .wbw-ar,
-  html body .wbw-word-box .wbw-tr {
-    border: none !important;
-    border-top: none !important;
-    border-bottom: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    background-image: none !important;
-    text-decoration: none !important;
-  }
-
-  html body .wbw-card-v110 .wbw-tr-v110,
-  html body .wbw-word-box .wbw-tr {
+  body.wbw-instant-off #arabicVerseEl,
+  body.wbw-instant-off #arabicVerse,
+  body.wbw-instant-off .arabic-glow-verse,
+  body.wbw-instant-off #frenchVerseEl,
+  body.wbw-instant-off .french-glow-verse {
     display: block !important;
-    visibility: visible !important;
-    height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
   }
-
-  /* Ligne cliquable au-dessus de chaque mot (SANS curseur rond, 1 clic = début du mot) */
+  .wbw-num-hidden-v110, .wbw-card-v110 sup, .wbw-card-v110 small,
+  html body .wbw-card-unit::before, html body .wbw-card-unit::after,
+  html body .wbw-word-box::before, html body .wbw-word-box::after,
+  html body .wbw-card-v110::before, html body .wbw-card-v110::after,
+  html body .wbw-card-v110 .wbw-ar-v110::before, html body .wbw-card-v110 .wbw-ar-v110::after,
+  html body .wbw-card-v110 .wbw-tr-v110::before, html body .wbw-card-v110 .wbw-tr-v110::after {
+    content: none !important; display: none !important; visibility: hidden !important;
+    opacity: 0 !important; font-size: 0px !important; width: 0px !important;
+    height: 0px !important; margin: 0px !important; padding: 0px !important;
+    border: none !important; overflow: hidden !important; pointer-events: none !important;
+  }
+  /* Suppression totale de la ligne entre le mot arabe et le mot traduit */
+  html body .wbw-card-v110, html body .wbw-word-box, html body .wbw-card-unit,
+  html body .wbw-card-v110 .wbw-ar-v110, html body .wbw-card-v110 .wbw-tr-v110,
+  html body .wbw-card-v110 .wbw-ar, html body .wbw-card-v110 .wbw-tr,
+  html body .wbw-word-box .wbw-ar, html body .wbw-word-box .wbw-tr {
+    border: none !important; border-top: none !important; border-bottom: none !important;
+    border-left: none !important; border-right: none !important;
+    outline: none !important; box-shadow: none !important; background-image: none !important;
+    text-decoration: none !important; cursor: pointer !important;
+  }
+  html body .wbw-card-v110 .wbw-tr-v110, html body .wbw-word-box .wbw-tr {
+    display: block !important; visibility: visible !important; height: auto !important;
+    max-height: none !important; overflow: visible !important;
+  }
+  /* Ligne cliquable au-dessus de chaque mot */
   .wbw-scrub-wrap {
-    width: calc(100% + 12px) !important;
-    margin: 0 -6px 10px -6px !important;
-    padding: 10px 0 !important;
-    cursor: pointer !important;
-    user-select: none !important;
-    -webkit-user-select: none !important;
-    touch-action: manipulation !important;
-    position: relative !important;
-    display: block !important;
-    z-index: 30 !important;
+    width: calc(100% + 12px) !important; margin: 0 -6px 10px -6px !important;
+    padding: 10px 0 !important; cursor: pointer !important; user-select: none !important;
+    -webkit-user-select: none !important; touch-action: manipulation !important;
+    position: relative !important; display: block !important; z-index: 30 !important;
     pointer-events: auto !important;
   }
-
   .wbw-scrub-track {
-    width: 100% !important;
-    height: 4px !important;
-    border-radius: 999px !important;
-    background: rgba(148, 163, 184, 0.22) !important;
-    position: relative !important;
-    overflow: hidden !important;
-    pointer-events: none !important;
+    width: 100% !important; height: 4px !important; border-radius: 999px !important;
+    background: rgba(148, 163, 184, 0.22) !important; position: relative !important;
+    overflow: hidden !important; pointer-events: none !important;
     transition: height 0.15s ease, background-color 0.2s ease, opacity 0.2s ease !important;
   }
-
-  .wbw-scrub-wrap:hover .wbw-scrub-track,
-  .wbw-scrub-wrap.wbw-scrub-active .wbw-scrub-track {
+  .wbw-scrub-wrap:hover .wbw-scrub-track, .wbw-scrub-wrap.wbw-scrub-active .wbw-scrub-track {
     height: 5.5px !important;
   }
-
   .wbw-scrub-fill {
-    position: absolute !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    right: 0 !important;
-    left: auto !important;
-    width: 0% !important;
+    position: absolute !important; top: 0 !important; bottom: 0 !important;
+    right: 0 !important; left: auto !important; width: 0% !important;
     border-radius: 999px !important;
     background: linear-gradient(90deg, #ffffff 0%, #bae6fd 35%, #38bdf8 100%) !important;
     box-shadow: 0 0 10px rgba(56, 189, 248, 0.65), 0 0 4px rgba(255, 255, 255, 0.8) !important;
-    pointer-events: none !important;
-    transition: width 0.06s linear !important;
+    pointer-events: none !important; transition: width 0.06s linear !important;
   }
-
   .wbw-scrub-wrap[data-dir="ltr"] .wbw-scrub-fill {
-    left: 0 !important;
-    right: auto !important;
+    left: 0 !important; right: auto !important;
     background: linear-gradient(90deg, #38bdf8 0%, #bae6fd 65%, #ffffff 100%) !important;
   }
+  .wbw-scrub-dot { display: none !important; }
 
-  .wbw-scrub-dot {
-    display: none !important;
+  /* Bouton & Modale Audio : Plage & Répétition (texte parfaitement lisible) */
+  html body #wbwAudioRangeBtnV110 {
+    background: rgba(14, 165, 233, 0.16) !important;
+    color: #e0f2fe !important;
+    border: 1px solid rgba(56, 189, 248, 0.45) !important;
+    padding: 6px 13px !important;
+    border-radius: 11px !important;
+    font-family: inherit !important;
+    font-size: 0.81rem !important;
+    font-weight: 800 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
   }
-
-  /* MODALE AUDIO : PLAGE DE VERSETS & RÉPÉTITIONS */
-  #wbwAudioRangeBtnV110 {
-    background: rgba(14, 165, 233, 0.14);
-    color: #7dd3fc;
-    border: 1px solid rgba(56, 189, 248, 0.42);
-    padding: 6px 13px;
-    border-radius: 11px;
-    font-family: inherit;
-    font-size: 0.81rem;
-    font-weight: 800;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+  html body #wbwAudioRangeBtnV110:hover,
+  html body #wbwAudioRangeBtnV110.active {
+    background: linear-gradient(135deg, #38bdf8, #0ea5e9) !important;
+    color: #021019 !important;
+    border-color: #7dd3fc !important;
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.48) !important;
   }
-  #wbwAudioRangeBtnV110:hover,
-  #wbwAudioRangeBtnV110.active {
-    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-    color: #021019;
-    border-color: #7dd3fc;
-    box-shadow: 0 0 16px rgba(56, 189, 248, 0.48);
-  }
-
   #wbwAudioRangeOverlayV110 {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.72);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    z-index: 10050;
-    display: none;
-    align-items: flex-end;
-    justify-content: center;
-    padding: 0;
+    position: fixed; inset: 0; background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    z-index: 10050; display: none; align-items: flex-end; justify-content: center; padding: 0;
   }
-  @media (min-width: 640px) {
-    #wbwAudioRangeOverlayV110 {
-      align-items: center;
-      padding: 16px;
-    }
-  }
-  #wbwAudioRangeOverlayV110.open {
-    display: flex;
-  }
-
+  @media (min-width: 640px) { #wbwAudioRangeOverlayV110 { align-items: center; padding: 16px; } }
+  #wbwAudioRangeOverlayV110.open { display: flex; }
   .wbw-audio-sheet-v110 {
-    width: 100%;
-    max-width: 440px;
-    background: #14171c;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 24px 24px 0 0;
-    padding: 12px 20px 22px 20px;
-    color: #f8fafc;
+    width: 100%; max-width: 440px; background: #14171c;
+    border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 24px 24px 0 0;
+    padding: 12px 20px 22px 20px; color: #f8fafc;
     box-shadow: 0 -10px 45px rgba(0, 0, 0, 0.85);
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    animation: wbwSheetUpV110 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   }
-  @media (min-width: 640px) {
-    .wbw-audio-sheet-v110 {
-      border-radius: 24px;
-      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.9);
-    }
-  }
-  @keyframes wbwSheetUpV110 {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
+  @media (min-width: 640px) { .wbw-audio-sheet-v110 { border-radius: 24px; } }
   .wbw-audio-handle-v110 {
-    width: 40px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.25);
-    border-radius: 99px;
-    margin: 0 auto 12px auto;
+    width: 40px; height: 4px; background: rgba(255, 255, 255, 0.25);
+    border-radius: 99px; margin: 0 auto 12px auto;
   }
   .wbw-audio-title-v110 {
-    text-align: center;
-    font-size: 1.02rem;
-    font-weight: 800;
-    color: #ffffff;
-    margin-bottom: 14px;
-    letter-spacing: 0.01em;
+    text-align: center; font-size: 1.02rem; font-weight: 800; color: #ffffff; margin-bottom: 14px;
   }
   .wbw-audio-row-v110 {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 13px 4px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; padding: 13px 4px; border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   }
-  .wbw-audio-row-v110:last-of-type {
-    border-bottom: none;
-  }
+  .wbw-audio-row-v110:last-of-type { border-bottom: none; }
   .wbw-audio-label-v110 {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.93rem;
-    font-weight: 600;
-    color: #e2e8f0;
+    display: inline-flex; align-items: center; gap: 12px; font-size: 0.93rem; font-weight: 600; color: #e2e8f0;
   }
   .wbw-audio-icon-v110 {
-    width: 22px;
-    text-align: center;
-    font-size: 1rem;
-    color: #94a3b8;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    width: 22px; text-align: center; font-size: 1rem; color: #94a3b8;
+    display: inline-flex; align-items: center; justify-content: center;
   }
   .wbw-audio-select-v110 {
-    background: #1e232b;
-    color: #f8fafc;
-    border: 1px solid rgba(56, 189, 248, 0.28);
-    border-radius: 10px;
-    padding: 7px 12px;
-    font-family: inherit;
-    font-size: 0.9rem;
-    font-weight: 700;
-    cursor: pointer;
-    outline: none;
-    min-width: 118px;
-    text-align: right;
-  }
-  .wbw-audio-select-v110:focus {
-    border-color: #38bdf8;
-    box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+    background: #1e232b; color: #f8fafc; border: 1px solid rgba(56, 189, 248, 0.28);
+    border-radius: 10px; padding: 7px 12px; font-family: inherit; font-size: 0.9rem;
+    font-weight: 700; cursor: pointer; outline: none; min-width: 118px; text-align: right;
   }
   .wbw-audio-actions-v110 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 18px;
-    padding-top: 14px;
-    border-top: 1px solid rgba(255, 255, 255, 0.09);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    margin-top: 18px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.09);
   }
   .wbw-audio-cancel-v110 {
-    background: transparent;
-    color: #e2e8f0;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 999px;
-    padding: 11px 16px;
-    font-family: inherit;
-    font-size: 0.94rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.18s;
-  }
-  .wbw-audio-cancel-v110:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: #ffffff;
+    background: transparent; color: #e2e8f0; border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px; padding: 11px 16px; font-family: inherit; font-size: 0.94rem;
+    font-weight: 700; cursor: pointer;
   }
   .wbw-audio-play-v110 {
-    background: linear-gradient(135deg, #56a8f5, #38bdf8);
-    color: #ffffff;
-    border: none;
-    border-radius: 999px;
-    padding: 11px 16px;
-    font-family: inherit;
-    font-size: 0.95rem;
-    font-weight: 800;
-    cursor: pointer;
-    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.38);
-    transition: 0.18s;
-  }
-  .wbw-audio-play-v110:hover {
-    filter: brightness(1.08);
-    transform: translateY(-1px);
+    background: linear-gradient(135deg, #56a8f5, #38bdf8); color: #ffffff; border: none;
+    border-radius: 999px; padding: 11px 16px; font-family: inherit; font-size: 0.95rem;
+    font-weight: 800; cursor: pointer; box-shadow: 0 6px 20px rgba(56, 189, 248, 0.38);
   }
 
   /* Couleurs du Tajwīd */
-  html body .verse-stage #arabicVerse tajweed[class*="ghunnah"],
-  html body .verse-stage #arabicVerseEl tajweed[class*="ghunnah"],
-  html body .verse-stage .arabic-glow-verse tajweed[class*="ghunnah"],
-  html body .verse-stage #arabicVerse tajweed[class*="ikhf"],
-  html body .verse-stage #arabicVerseEl tajweed[class*="ikhf"],
-  html body .verse-stage .arabic-glow-verse tajweed[class*="ikhf"],
-  html body .verse-stage #arabicVerse tajweed[class*="iqlab"],
-  html body .verse-stage #arabicVerseEl tajweed[class*="iqlab"],
-  html body .verse-stage .arabic-glow-verse tajweed[class*="iqlab"],
-  html body .verse-stage #arabicVerse span[class*="ghunnah"],
-  html body .verse-stage #arabicVerseEl span[class*="ghunnah"],
-  html body .verse-stage .arabic-glow-verse span[class*="ghunnah"],
-  html body .verse-stage #arabicVerse span[class*="ikhf"],
-  html body .verse-stage #arabicVerseEl span[class*="ikhf"],
-  html body .verse-stage .arabic-glow-verse span[class*="ikhf"],
-  html body .verse-stage #arabicVerse span[class*="iqlab"],
-  html body .verse-stage #arabicVerseEl span[class*="iqlab"],
-  html body .verse-stage .arabic-glow-verse span[class*="iqlab"],
-  html body .verse-stage .wbw-card-v110 [class*="ghunnah"],
-  html body .verse-stage .wbw-card-v110 [class*="ikhf"],
-  html body .verse-stage .wbw-card-v110 [class*="iqlab"] {
-    color: #4ade80 !important;
-    text-shadow: 0 0 10px rgba(74, 222, 128, 0.45) !important;
-    opacity: 1 !important;
+  html body .verse-stage [class*="ghunnah"], html body .verse-stage [class*="ikhf"], html body .verse-stage [class*="iqlab"] {
+    color: #4ade80 !important; text-shadow: 0 0 10px rgba(74, 222, 128, 0.45) !important; opacity: 1 !important;
   }
-
-  html body .verse-stage #arabicVerse tajweed[class*="qalq"],
-  html body .verse-stage #arabicVerseEl tajweed[class*="qalq"],
-  html body .verse-stage .arabic-glow-verse tajweed[class*="qalq"],
-  html body .verse-stage #arabicVerse tajweed[class*="qalaq"],
-  html body .verse-stage #arabicVerseEl tajweed[class*="qalaq"],
-  html body .verse-stage .arabic-glow-verse tajweed[class*="qalaq"],
-  html body .verse-stage #arabicVerse span[class*="qalq"],
-  html body .verse-stage #arabicVerseEl span[class*="qalq"],
-  html body .verse-stage .arabic-glow-verse span[class*="qalq"],
-  html body .verse-stage #arabicVerse span[class*="qalaq"],
-  html body .verse-stage #arabicVerseEl span[class*="qalaq"],
-  html body .verse-stage .arabic-glow-verse span[class*="qalaq"],
-  html body .verse-stage .wbw-card-v110 [class*="qalq"],
-  html body .verse-stage .wbw-card-v110 [class*="qalaq"] {
-    color: #38bdf8 !important;
-    text-shadow: 0 0 10px rgba(56, 189, 248, 0.5) !important;
-    opacity: 1 !important;
+  html body .verse-stage [class*="qalq"], html body .verse-stage [class*="qalaq"] {
+    color: #38bdf8 !important; text-shadow: 0 0 10px rgba(56, 189, 248, 0.5) !important; opacity: 1 !important;
   }
-
-  html body .verse-stage #arabicVerse tajweed[class*="madd"],
-  html body .verse-stage #arabicVerseEl tajweed[class*="madd"],
-  html body .verse-stage .arabic-glow-verse tajweed[class*="madd"],
-  html body .verse-stage #arabicVerse span[class*="madd"],
-  html body .verse-stage #arabicVerseEl span[class*="madd"],
-  html body .verse-stage .arabic-glow-verse span[class*="madd"],
-  html body .verse-stage .wbw-card-v110 [class*="madd"] {
-    color: #f87171 !important;
-    text-shadow: 0 0 12px rgba(248, 113, 113, 0.5) !important;
-    opacity: 1 !important;
+  html body .verse-stage [class*="madd"] {
+    color: #f87171 !important; text-shadow: 0 0 12px rgba(248, 113, 113, 0.5) !important; opacity: 1 !important;
   }
-
-  html body .verse-stage #arabicVerse tajweed[class*="idgham"],
-  html body .verse-stage #arabicVerseEl tajweed[class*="idgham"],
-  html body .verse-stage .arabic-glow-verse tajweed[class*="idgham"],
-  html body .verse-stage #arabicVerse tajweed[class*="laam_shams"],
-  html body .verse-stage #arabicVerseEl tajweed[class*="laam_shams"],
-  html body .verse-stage .arabic-glow-verse tajweed[class*="laam_shams"],
-  html body .verse-stage #arabicVerse tajweed[class*="tafkh"],
-  html body .verse-stage #arabicVerseEl tajweed[class*="tafkh"],
-  html body .verse-stage .arabic-glow-verse tajweed[class*="tafkh"],
-  html body .verse-stage #arabicVerse span[class*="idgham"],
-  html body .verse-stage #arabicVerseEl span[class*="idgham"],
-  html body .verse-stage .arabic-glow-verse span[class*="idgham"],
-  html body .verse-stage #arabicVerse span[class*="laam_shams"],
-  html body .verse-stage #arabicVerseEl span[class*="laam_shams"],
-  html body .verse-stage .arabic-glow-verse span[class*="laam_shams"],
-  html body .verse-stage #arabicVerse span[class*="tafkh"],
-  html body .verse-stage #arabicVerseEl span[class*="tafkh"],
-  html body .verse-stage .arabic-glow-verse span[class*="tafkh"],
-  html body .verse-stage .wbw-card-v110 [class*="idgham"],
-  html body .verse-stage .wbw-card-v110 [class*="laam_shams"],
-  html body .verse-stage .wbw-card-v110 [class*="tafkh"] {
-    color: #fbbf24 !important;
-    text-shadow: 0 0 10px rgba(251, 191, 36, 0.45) !important;
-    opacity: 1 !important;
+  html body .verse-stage [class*="idgham"], html body .verse-stage [class*="laam_shams"], html body .verse-stage [class*="tafkh"] {
+    color: #fbbf24 !important; text-shadow: 0 0 10px rgba(251, 191, 36, 0.45) !important; opacity: 1 !important;
   }
-
-  html body .verse-stage #arabicVerse tajweed[class*="ham_wasl"],
-  html body .verse-stage #arabicVerseEl tajweed[class*="ham_wasl"],
-  html body .verse-stage .arabic-glow-verse tajweed[class*="ham_wasl"],
-  html body .verse-stage #arabicVerse tajweed[class*="slnt"],
-  html body .verse-stage #arabicVerseEl tajweed[class*="slnt"],
-  html body .verse-stage .arabic-glow-verse tajweed[class*="slnt"],
-  html body .verse-stage #arabicVerse span[class*="ham_wasl"],
-  html body .verse-stage #arabicVerseEl span[class*="ham_wasl"],
-  html body .verse-stage .arabic-glow-verse span[class*="ham_wasl"],
-  html body .verse-stage #arabicVerse span[class*="slnt"],
-  html body .verse-stage #arabicVerseEl span[class*="slnt"],
-  html body .verse-stage .arabic-glow-verse span[class*="slnt"],
-  html body .verse-stage .wbw-card-v110 [class*="ham_wasl"],
-  html body .verse-stage .wbw-card-v110 [class*="slnt"] {
-    color: #94a3b8 !important;
-    text-shadow: none !important;
+  html body .verse-stage [class*="ham_wasl"], html body .verse-stage [class*="slnt"] {
+    color: #94a3b8 !important; text-shadow: none !important;
   }
 </style>
 <script id="wbw-colle-v110">
 (function() {
   window.__wbwBypassOrigCartes = true;
 
-  // =========================================================================
-  // 1. OCCULTATION TOTALE DES ÉTOILES DÈS QU'ELLES TOUCHENT LA LUNE OU LE SOLEIL
-  // =========================================================================
+  try {
+    if (localStorage.getItem('wbw_tr_purge_v116') !== '1') {
+      localStorage.removeItem('wbw_tr_cache_v110');
+      localStorage.removeItem('wbw_tr_cache_v111');
+      localStorage.removeItem('wbw_tr_cache_v113');
+      localStorage.removeItem('wbw_tr_cache_v114');
+      localStorage.removeItem('wbw_tr_cache_v115');
+      localStorage.setItem('wbw_tr_purge_v116', '1');
+    }
+  } catch (e) {}
+
+  var NOM_OFFICIEL_ASSOS = '« INSTITUT NUMÉRIQUE CULTURE, LANGUES ET TEXTES FONDAMENTAUX »';
+  var NUMERO_RNA_OFFICIEL = 'W343035331';
+  var NUMERO_SIRET_OFFICIEL = '13288669800019';
+
+  function mettreAJourMentionsLegalesGoogleGrants() {
+    var els = document.querySelectorAll('div, p, span, strong, h3, h4, footer');
+    for (var i = 0; i < els.length; i++) {
+      var d = els[i];
+      if (d.children.length > 0) continue;
+      var txt = (d.textContent || '').trim();
+      if (/Institut\s+Muhasiba|Institut\s+Num[ée]rique\s+Coran|INSTITUT\s+NUM[ÉE]RIQUE\s+CULTURE/i.test(txt)) {
+        if (d.textContent !== NOM_OFFICIEL_ASSOS) d.textContent = NOM_OFFICIEL_ASSOS;
+        d.style.cssText = 'color:#38bdf8;font-weight:800;font-size:0.96rem;margin:10px 0 6px 0;text-align:center;line-height:1.45;';
+        var parentModale = d.parentElement;
+        if (parentModale && !parentModale.querySelector('#wbw-legal-extra-v116')) {
+          var anciens = parentModale.querySelectorAll('[id^="wbw-legal-extra-v"]');
+          for (var a = 0; a < anciens.length; a++) anciens[a].remove();
+          var infoAssos = document.createElement('div');
+          infoAssos.id = 'wbw-legal-extra-v116';
+          infoAssos.style.cssText = 'font-size:0.82rem;color:#cbd5e1;margin-top:8px;margin-bottom:14px;line-height:1.6;text-align:center;padding:10px 12px;background:rgba(15,23,42,0.55);border:1px solid rgba(56,189,248,0.22);border-radius:12px;';
+          var adr = 'contact' + '@' + 'corantafsir.com';
+          infoAssos.innerHTML =
+            '<strong>Association loi 1901 à but non lucratif</strong> • RNA : <strong>' + NUMERO_RNA_OFFICIEL + '</strong> • SIRET : <strong>' + NUMERO_SIRET_OFFICIEL + '</strong><br>' +
+            '<strong>Objet :</strong> Rendre accessibles à tous la culture, les langues (français, anglais, espagnol, arabe, allemand, italien, indonésien, russe) ainsi que les études historiques et exégétiques des textes fondamentaux grâce à des supports numériques gratuits et sans publicité commerciale.<br>' +
+            '<strong>Siège :</strong> Montpellier, France • <strong>Hébergement :</strong> Cloudflare, Inc. (101 Townsend St, San Francisco, CA 94107, USA)<br>' +
+            '<strong>Contact officiel :</strong> <a href="mailto:' + adr + '" style="color:#38bdf8;text-decoration:none;font-weight:700;">' + adr + '</a>';
+          parentModale.insertBefore(infoAssos, d.nextSibling);
+        }
+      }
+    }
+  }
+
+  function desactiverModaleRacineMot() {
+    var tous = document.querySelectorAll('div, section, aside');
+    for (var i = 0; i < tous.length; i++) {
+      var el = tous[i];
+      var txt = el.textContent || '';
+      if (txt.indexOf('Mot coranique') !== -1 && (txt.indexOf('Lemme') !== -1 || txt.indexOf('Racine') !== -1)) {
+        var st = window.getComputedStyle(el);
+        if (st.position === 'fixed' || st.position === 'absolute' || el.id) {
+          el.classList.add('wbw-morph-hidden-v110');
+          forcer(el, 'display', 'none');
+        }
+      }
+    }
+  }
+
   function activerOccultationSoleilLune() {
     if (window.__skyOcclusionV110 || typeof CanvasRenderingContext2D === 'undefined') return;
     window.__skyOcclusionV110 = true;
-
     var proto = CanvasRenderingContext2D.prototype;
-    var origClearRect = proto.clearRect;
-    var origSave = proto.save;
-    var origRestore = proto.restore;
-    var origTranslate = proto.translate;
-    var origDrawImage = proto.drawImage;
-    var origArc = proto.arc;
-    var origFillText = proto.fillText;
-    var origFill = proto.fill;
+    var origClearRect = proto.clearRect, origSave = proto.save, origRestore = proto.restore;
+    var origTranslate = proto.translate, origDrawImage = proto.drawImage, origArc = proto.arc;
+    var origFillText = proto.fillText, origFill = proto.fill;
 
     function recenserOrbesSoleilLune(ctx) {
       var orbes = [];
       var els = document.querySelectorAll('#flatEarthSun, #flatEarthMoon, .flat-earth-sun, .flat-earth-moon, .astre-soleil-pur-v77, .astre-lune-pure-v77');
       for (var i = 0; i < els.length; i++) {
-        var el = els[i];
-        var st = window.getComputedStyle(el);
+        var el = els[i], st = window.getComputedStyle(el);
         if (st.display === 'none' || st.visibility === 'hidden' || parseFloat(st.opacity || '1') < 0.05) continue;
         var rect = el.getBoundingClientRect();
         if (rect.width >= 30 && rect.height >= 30 && rect.bottom > 0 && rect.right > 0 && rect.top < window.innerHeight && rect.left < window.innerWidth) {
-          orbes.push({
-            x: rect.left + rect.width * 0.5,
-            y: rect.top + rect.height * 0.5,
-            r: Math.max(rect.width, rect.height) * 0.5
-          });
+          orbes.push({ x: rect.left + rect.width * 0.5, y: rect.top + rect.height * 0.5, r: Math.max(rect.width, rect.height) * 0.5 });
         }
       }
       ctx.__orbesDomV110 = orbes;
     }
 
     function visibiliteEtoile(ctx, x, y, rayonEtoile) {
-      var liste = [];
-      if (ctx.__orbesDomV110 && ctx.__orbesDomV110.length) {
-        for (var i = 0; i < ctx.__orbesDomV110.length; i++) liste.push(ctx.__orbesDomV110[i]);
-      }
-      if (ctx.__orbesCanvasV110 && ctx.__orbesCanvasV110.length) {
-        for (var j = 0; j < ctx.__orbesCanvasV110.length; j++) liste.push(ctx.__orbesCanvasV110[j]);
-      }
+      var liste = (ctx.__orbesDomV110 || []).concat(ctx.__orbesCanvasV110 || []);
       if (liste.length === 0) return 1.0;
-
-      var pad = (rayonEtoile || 5) * 0.85;
-      var visMin = 1.0;
+      var pad = (rayonEtoile || 5) * 0.85, visMin = 1.0;
       for (var k = 0; k < liste.length; k++) {
-        var o = liste[k];
-        var dx = x - o.x;
-        var dy = y - o.y;
-        var dist = Math.sqrt(dx * dx + dy * dy);
-        var rOpaque = o.r * 1.12 + pad;
-        var rDoux = o.r * 1.38 + pad;
-        if (dist <= rOpaque) {
-          return 0.0;
-        } else if (dist < rDoux) {
-          var t = (dist - rOpaque) / (rDoux - rOpaque);
-          var v = t * t * (3 - 2 * t);
+        var o = liste[k], dx = x - o.x, dy = y - o.y, dist = Math.sqrt(dx * dx + dy * dy);
+        var rOpaque = o.r * 1.12 + pad, rDoux = o.r * 1.38 + pad;
+        if (dist <= rOpaque) return 0.0;
+        if (dist < rDoux) {
+          var t = (dist - rOpaque) / (rDoux - rOpaque), v = t * t * (3 - 2 * t);
           if (v < visMin) visMin = v;
         }
       }
@@ -476,15 +284,11 @@
 
     proto.clearRect = function(x, y, w, h) {
       if (this.canvas && w >= this.canvas.width * 0.8 && h >= this.canvas.height * 0.8) {
-        this.__orbesCanvasV110 = [];
-        this.__txV110 = 0;
-        this.__tyV110 = 0;
-        this.__stackTxV110 = [];
+        this.__orbesCanvasV110 = []; this.__txV110 = 0; this.__tyV110 = 0; this.__stackTxV110 = [];
         recenserOrbesSoleilLune(this);
       }
       return origClearRect.apply(this, arguments);
     };
-
     proto.save = function() {
       if (this.canvas && this.canvas.id === 'fullPageSkyCanvas') {
         if (!this.__stackTxV110) this.__stackTxV110 = [];
@@ -492,16 +296,12 @@
       }
       return origSave.apply(this, arguments);
     };
-
     proto.restore = function() {
       if (this.canvas && this.canvas.id === 'fullPageSkyCanvas' && this.__stackTxV110 && this.__stackTxV110.length > 0) {
-        var prev = this.__stackTxV110.pop();
-        this.__txV110 = prev.x;
-        this.__tyV110 = prev.y;
+        var prev = this.__stackTxV110.pop(); this.__txV110 = prev.x; this.__tyV110 = prev.y;
       }
       return origRestore.apply(this, arguments);
     };
-
     proto.translate = function(tx, ty) {
       if (this.canvas && this.canvas.id === 'fullPageSkyCanvas') {
         this.__txV110 = (this.__txV110 || 0) + (Number(tx) || 0);
@@ -509,80 +309,51 @@
       }
       return origTranslate.apply(this, arguments);
     };
-
     proto.drawImage = function(img, dx, dy, dw, dh) {
       if (this.canvas && (this.canvas.id === 'fullPageSkyCanvas' || this.canvas.width > 200)) {
         if (!this.__orbesDomV110) recenserOrbesSoleilLune(this);
         var w = typeof dw === 'number' ? dw : (img && img.width ? img.width : 0);
         var h = typeof dh === 'number' ? dh : (img && img.height ? img.height : 0);
-        var wx = (this.__txV110 || 0) + (Number(dx) || 0) + w * 0.5;
-        var wy = (this.__tyV110 || 0) + (Number(dy) || 0) + h * 0.5;
-
-        var vis = visibiliteEtoile(this, wx, wy, Math.max(w, h) * 0.5);
-        if (vis <= 0.02) {
-          return;
-        }
+        var vis = visibiliteEtoile(this, (this.__txV110 || 0) + (Number(dx) || 0) + w * 0.5, (this.__tyV110 || 0) + (Number(dy) || 0) + h * 0.5, Math.max(w, h) * 0.5);
+        if (vis <= 0.02) return;
         if (vis < 0.99) {
-          var oldAlpha = this.globalAlpha;
-          this.globalAlpha = oldAlpha * vis;
-          var res = origDrawImage.apply(this, arguments);
-          this.globalAlpha = oldAlpha;
-          return res;
+          var oldAlpha = this.globalAlpha; this.globalAlpha = oldAlpha * vis;
+          var res = origDrawImage.apply(this, arguments); this.globalAlpha = oldAlpha; return res;
         }
       }
       return origDrawImage.apply(this, arguments);
     };
-
     proto.arc = function(x, y, r, sa, ea, ccw) {
       if (r >= 22 && r <= 240 && this.canvas && this.canvas.width > 200) {
         if (!this.__orbesCanvasV110) this.__orbesCanvasV110 = [];
-        if (this.__orbesCanvasV110.length < 6) {
-          this.__orbesCanvasV110.push({ x: (this.__txV110 || 0) + x, y: (this.__tyV110 || 0) + y, r: r });
-        }
-        this.__skipNextStarFill = false;
-        this.__starFadeFactor = 1.0;
+        if (this.__orbesCanvasV110.length < 6) this.__orbesCanvasV110.push({ x: (this.__txV110 || 0) + x, y: (this.__tyV110 || 0) + y, r: r });
+        this.__skipNextStarFill = false; this.__starFadeFactor = 1.0;
       } else if (r > 0 && r <= 8 && this.canvas && this.canvas.width > 200) {
         if (!this.__orbesDomV110) recenserOrbesSoleilLune(this);
         var vis = visibiliteEtoile(this, (this.__txV110 || 0) + x, (this.__tyV110 || 0) + y, r);
-        if (vis <= 0.02) {
-          this.__skipNextStarFill = true;
-          return;
-        }
+        if (vis <= 0.02) { this.__skipNextStarFill = true; return; }
         this.__starFadeFactor = vis;
       } else {
-        this.__skipNextStarFill = false;
-        this.__starFadeFactor = 1.0;
+        this.__skipNextStarFill = false; this.__starFadeFactor = 1.0;
       }
       return origArc.apply(this, arguments);
     };
-
     proto.fill = function() {
-      if (this.__skipNextStarFill) {
-        this.__skipNextStarFill = false;
-        return;
-      }
+      if (this.__skipNextStarFill) { this.__skipNextStarFill = false; return; }
       if (typeof this.__starFadeFactor === 'number' && this.__starFadeFactor < 0.99) {
-        var oldAlpha = this.globalAlpha;
-        this.globalAlpha = oldAlpha * this.__starFadeFactor;
-        this.__starFadeFactor = 1.0;
-        var res = origFill.apply(this, arguments);
-        this.globalAlpha = oldAlpha;
-        return res;
+        var oldAlpha = this.globalAlpha; this.globalAlpha = oldAlpha * this.__starFadeFactor;
+        this.__starFadeFactor = 1.0; var res = origFill.apply(this, arguments); this.globalAlpha = oldAlpha; return res;
       }
       return origFill.apply(this, arguments);
     };
-
     proto.fillText = function(text, x, y) {
       if (this.canvas && this.canvas.width > 200 && typeof text === 'string' && text.length <= 3) {
         if (!this.__orbesDomV110) recenserOrbesSoleilLune(this);
         var vis = visibiliteEtoile(this, (this.__txV110 || 0) + x, (this.__tyV110 || 0) + y, 7);
         if (vis <= 0.02) return;
         if (vis < 0.99) {
-          var oldA = this.globalAlpha;
-          this.globalAlpha = oldA * vis;
-          var r = origFillText.apply(this, arguments);
-          this.globalAlpha = oldA;
-          return r;
+          var oldA = this.globalAlpha; this.globalAlpha = oldA * vis;
+          var r = origFillText.apply(this, arguments); this.globalAlpha = oldA; return r;
         }
       }
       return origFillText.apply(this, arguments);
@@ -591,42 +362,28 @@
   activerOccultationSoleilLune();
 
   function forcer(el, prop, val) {
-    if (el && el.style && el.style.getPropertyValue(prop) !== val) {
-      el.style.setProperty(prop, val, 'important');
-    }
+    if (el && el.style && el.style.getPropertyValue(prop) !== val) el.style.setProperty(prop, val, 'important');
   }
-
   function definirTexteSansBoucle(el, val) {
-    if (el && el.textContent !== val) {
-      el.textContent = val;
-    }
+    if (el && el.textContent !== val) el.textContent = val;
   }
-
   function contientArabe(str) {
     var s = str || '';
-    for (var i = 0; i < s.length; i++) {
-      var c = s.charCodeAt(i);
-      if (c >= 1536 && c <= 1791) return true;
-    }
+    for (var i = 0; i < s.length; i++) { var c = s.charCodeAt(i); if (c >= 1536 && c <= 1791) return true; }
     return false;
   }
-
   function estPetitNumero(str) {
     var s = (str || '').replace(/[\s\u200E\u200F\u061C#\.\-\(\):]/g, '');
     if (s.length < 1 || s.length > 3) return false;
     for (var i = 0; i < s.length; i++) {
       var c = s.charCodeAt(i);
-      var estLatin = (c >= 48 && c <= 57);
-      var estArabeInd = (c >= 1632 && c <= 1641) || (c >= 1776 && c <= 1785);
-      if (!estLatin && !estArabeInd) return false;
+      if (!(c >= 48 && c <= 57) && !((c >= 1632 && c <= 1641) || (c >= 1776 && c <= 1785))) return false;
     }
     return true;
   }
-
   function extraireValeurPetitNumero(str) {
     if (!estPetitNumero(str)) return 0;
-    var s = (str || '').replace(/[\s\u200E\u200F\u061C#\.\-\(\):]/g, '');
-    var out = '';
+    var s = (str || '').replace(/[\s\u200E\u200F\u061C#\.\-\(\):]/g, ''), out = '';
     for (var i = 0; i < s.length; i++) {
       var c = s.charCodeAt(i);
       if (c >= 48 && c <= 57) out += s[i];
@@ -635,76 +392,55 @@
     }
     return parseInt(out, 10) || 0;
   }
-
-  function courbeAppleMusic(x) {
-    var v = Math.max(0, Math.min(1, x || 0));
-    return v * v * (3 - 2 * v);
-  }
-
+  function courbeAppleMusic(x) { var v = Math.max(0, Math.min(1, x || 0)); return v * v * (3 - 2 * v); }
   function melangerRGB(r1, g1, b1, r2, g2, b2, t) {
     var k = Math.max(0, Math.min(1, t || 0));
-    return 'rgb(' +
-      Math.round(r1 + (r2 - r1) * k) + ', ' +
-      Math.round(g1 + (g2 - g1) * k) + ', ' +
-      Math.round(b1 + (b2 - b1) * k) + ')';
+    return 'rgb(' + Math.round(r1 + (r2 - r1) * k) + ', ' + Math.round(g1 + (g2 - g1) * k) + ', ' + Math.round(b1 + (b2 - b1) * k) + ')';
   }
-
-  function nettoyerArabeBrut(s) {
-    return (s || '').replace(/[\u064B-\u065F\u0670\u06D6-\u06ED\u0640\s]/g, '');
-  }
-
+  function nettoyerArabeBrut(s) { return (s || '').replace(/[\u064B-\u065F\u0670\u06D6-\u06ED\u0640\s]/g, ''); }
   function normaliserArabeCle(str) {
-    return nettoyerArabeBrut(str)
-      .replace(/[إأآٱ]/g, 'ا')
-      .replace(/ؤ/g, 'و')
-      .replace(/ئ/g, 'ي')
-      .replace(/ة/g, 'ه')
-      .replace(/ى/g, 'ي');
+    return nettoyerArabeBrut(str).replace(/[إأآٱ]/g, 'ا').replace(/ؤ/g, 'و').replace(/ئ/g, 'ي').replace(/ة/g, 'ه').replace(/ى/g, 'ي');
   }
 
   function obtenirCleVersetActuelDom() {
     var badge = document.getElementById('badgeNumEl');
-    if (badge) {
-      var m = (badge.textContent || '').match(/(\d+)\s*:\s*(\d+)/);
-      if (m) return m[1] + ':' + m[2];
-    }
-    if (typeof numSourateActuelle !== 'undefined' && typeof numVersetActuel !== 'undefined') {
-      return numSourateActuelle + ':' + numVersetActuel;
-    }
+    if (badge) { var m = (badge.textContent || '').match(/(\d+)\s*:\s*(\d+)/); if (m) return m[1] + ':' + m[2]; }
+    if (typeof numSourateActuelle !== 'undefined' && typeof numVersetActuel !== 'undefined') return numSourateActuelle + ':' + numVersetActuel;
     var u = window.location.pathname.match(/sourate-(\d+)-verset-(\d+)/i);
-    if (u) return u[1] + ':' + u[2];
-    return '';
+    return u ? (u[1] + ':' + u[2]) : '';
   }
 
   function obtenirInfosSourateEtVerset() {
-    var cle = obtenirCleVersetActuelDom();
-    var parts = cle ? cle.split(':') : [];
+    var cle = obtenirCleVersetActuelDom(), parts = cle ? cle.split(':') : [];
     var s = parts.length === 2 ? parseInt(parts[0], 10) : (typeof numSourateActuelle !== 'undefined' ? Number(numSourateActuelle) : 1);
     var v = parts.length === 2 ? parseInt(parts[1], 10) : (typeof numVersetActuel !== 'undefined' ? Number(numVersetActuel) : 1);
-    var totalV = 1;
-    if (window.SOURATE_DATA && window.SOURATE_DATA.nbVersets) {
-      totalV = Number(window.SOURATE_DATA.nbVersets);
-    } else {
-      var selJ = document.getElementById('verseJumperSelect');
-      if (selJ && selJ.options && selJ.options.length > 0) {
-        totalV = selJ.options.length;
-      }
-    }
+    var totalV = (window.SOURATE_DATA && window.SOURATE_DATA.nbVersets) ? Number(window.SOURATE_DATA.nbVersets) : (document.getElementById('verseJumperSelect')?.options?.length || 1);
     return { s: s || 1, v: v || 1, totalV: Math.max(1, totalV || 1) };
   }
 
-  // CORRECTION DU BUG MOT À MOT : vérifie l'opacité alpha (a >= 0.55) pour ne jamais confondre
-  // le fond bleu sombre transparent d'un bouton inactif (rgba(..., 0.12)) avec un bouton actif !
   function boutonEstActif(btn) {
     if (!btn) return false;
-    if (btn.classList.contains('active') || btn.getAttribute('aria-pressed') === 'true') return true;
-    var bg = window.getComputedStyle(btn).backgroundColor || '';
-    var mRgba = bg.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:\s*,\s*([0-9.]+))?\s*\)/i);
-    if (mRgba) {
-      var g = parseInt(mRgba[2], 10);
-      var b = parseInt(mRgba[3], 10);
-      var a = mRgba[4] !== undefined ? parseFloat(mRgba[4]) : 1.0;
-      if (a >= 0.55 && g >= 110 && b >= 180) return true;
+    if (btn.classList.contains('active') || btn.classList.contains('on') || btn.classList.contains('is-active') || btn.getAttribute('aria-pressed') === 'true') return true;
+    var st = window.getComputedStyle(btn);
+    var bg = (st.backgroundColor || '') + ' ' + (st.backgroundImage || '');
+    if (bg.indexOf('rgb(56, 189, 248)') !== -1 || bg.indexOf('rgb(14, 165, 233)') !== -1 || bg.indexOf('rgb(2, 132, 199)') !== -1 || bg.indexOf('rgb(125, 211, 252)') !== -1) {
+      return true;
+    }
+    var cNums = (st.color || '').split('(').pop().split(')')[0].split(',');
+    if (cNums.length >= 3 && parseInt(cNums[0], 10) < 35 && parseInt(cNums[1], 10) < 45 && parseInt(cNums[2], 10) < 55) {
+      return true;
+    }
+    return false;
+  }
+
+  function legendeTajwidEstVisible() {
+    var els = document.querySelectorAll('div, span');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (el.children.length <= 6 && (el.textContent || '').indexOf('Ghunnah') !== -1 && (el.textContent || '').indexOf('Qalqalah') !== -1) {
+        var r = el.getBoundingClientRect();
+        if (r.width > 40 && r.height > 8 && window.getComputedStyle(el).display !== 'none') return true;
+      }
     }
     return false;
   }
@@ -712,27 +448,18 @@
   function trouverBoutonParTexte(mots) {
     var boutons = document.querySelectorAll('button');
     for (var i = 0; i < boutons.length; i++) {
-      var b = boutons[i];
-      var t = (b.textContent || '').trim();
-      for (var k = 0; k < mots.length; k++) {
-        if (t.indexOf(mots[k]) !== -1) return b;
-      }
+      var b = boutons[i], t = (b.textContent || '').trim();
+      for (var k = 0; k < mots.length; k++) if (t.indexOf(mots[k]) !== -1) return b;
     }
     return null;
   }
-
   function trouverBoutonMotAMot() {
     return document.getElementById('wbwToggleBtn') || trouverBoutonParTexte(['Mot à mot', 'Word by Word', 'Пословный', 'Palabra por', 'Wort für', 'Parola per', 'Kata demi', 'كلمة بكلمة']);
   }
-
-  function trouverBoutonTajwid() {
-    return trouverBoutonParTexte(['Tajw', 'Таджвид', 'تجويد']);
-  }
-
+  function trouverBoutonTajwid() { return trouverBoutonParTexte(['Tajw', 'Таджвид', 'تجويد']); }
   function estModeMotAMotActif() {
     var btnWbw = trouverBoutonMotAMot();
-    if (btnWbw) return boutonEstActif(btnWbw);
-    return document.body.classList.contains('wbw-mode-on');
+    return btnWbw ? boutonEstActif(btnWbw) : document.body.classList.contains('wbw-mode-on');
   }
 
   var wbwFontScale = 1.0;
@@ -746,46 +473,34 @@
     var arFont = 'calc(clamp(2.15rem, 3.6vw, 2.75rem) * ' + wbwFontScale.toFixed(2) + ')';
     var trFont = (0.92 * Math.pow(wbwFontScale, 0.78)).toFixed(3) + 'rem';
     var trMaxW = Math.round(145 * wbwFontScale) + 'px';
-
     for (var i = 0; i < cacheMetaCartes.length; i++) {
       var m = cacheMetaCartes[i];
       if (!m) continue;
-      if (m.elAr) {
-        forcer(m.elAr, 'min-height', hRem);
-        forcer(m.elAr, 'line-height', hRem);
-        forcer(m.elAr, 'font-size', arFont);
-      }
-      if (m.elTrad) {
-        forcer(m.elTrad, 'font-size', trFont);
-        forcer(m.elTrad, 'max-width', trMaxW);
-      }
+      if (m.elAr) { forcer(m.elAr, 'min-height', hRem); forcer(m.elAr, 'line-height', hRem); forcer(m.elAr, 'font-size', arFont); }
+      if (m.elTrad) { forcer(m.elTrad, 'font-size', trFont); forcer(m.elTrad, 'max-width', trMaxW); }
     }
   }
 
   function estElementVersetNormal(el) {
     if (!el) return false;
-    if (el.id === 'arabicVerse' || el.id === 'arabicVerseEl' || el.id === 'frenchVerseEl') return true;
-    if (el.classList.contains('arabic-glow-verse') || el.classList.contains('french-glow-verse')) return true;
-    return false;
+    return el.id === 'arabicVerse' || el.id === 'arabicVerseEl' || el.id === 'frenchVerseEl' || el.classList.contains('arabic-glow-verse') || el.classList.contains('french-glow-verse');
   }
 
   function cacherGrilleMotAMotQuandInactif() {
+    document.body.classList.add('wbw-instant-off');
     var banner = document.getElementById('wbwSensLectureBanner');
     if (banner) {
       forcer(banner, 'display', 'none');
       var g = banner.nextElementSibling;
-      if (g && !estElementVersetNormal(g) && !g.classList.contains('stage-blue-nav')) {
-        forcer(g, 'display', 'none');
-      }
+      if (g && !estElementVersetNormal(g) && !g.classList.contains('stage-blue-nav')) forcer(g, 'display', 'none');
     }
     var stage = document.getElementById('wbwStageContainer');
-    if (stage) {
-      forcer(stage, 'display', 'none');
-    }
+    if (stage) forcer(stage, 'display', 'none');
     var cartesRestantes = document.querySelectorAll('.wbw-card-v110, .wbw-word-box, .wbw-card-unit');
     for (var i = 0; i < cartesRestantes.length; i++) {
       var p = cartesRestantes[i].parentElement;
       if (p && !estElementVersetNormal(p) && !p.classList.contains('verse-stage') && !p.classList.contains('stage-blue-nav')) {
+        p.classList.add('wbw-grid-container-v110');
         forcer(p, 'display', 'none');
       }
     }
@@ -805,31 +520,16 @@
     var tous = carte.querySelectorAll('*');
     for (var i = 0; i < tous.length; i++) {
       var v = extraireValeurPetitNumero(tous[i].textContent || '');
-      if (v > 0) {
-        carte.dataset.wbwOrd = String(v);
-        return v;
-      }
+      if (v > 0) { carte.dataset.wbwOrd = String(v); return v; }
     }
     return 0;
   }
 
   function ordonnerCartesSensLecture(liste) {
     if (!liste || liste.length <= 1) return liste || [];
-    var copie = liste.slice();
-
-    var tousOntOrdre = true;
-    for (var i = 0; i < copie.length; i++) {
-      if (!extraireIndiceOrdreCarte(copie[i])) {
-        tousOntOrdre = false;
-        break;
-      }
-    }
-    if (tousOntOrdre) {
-      copie.sort(function(a, b) {
-        return extraireIndiceOrdreCarte(a) - extraireIndiceOrdreCarte(b);
-      });
-      return copie;
-    }
+    var copie = liste.slice(), tousOntOrdre = true;
+    for (var i = 0; i < copie.length; i++) if (!extraireIndiceOrdreCarte(copie[i])) { tousOntOrdre = false; break; }
+    if (tousOntOrdre) copie.sort(function(a, b) { return extraireIndiceOrdreCarte(a) - extraireIndiceOrdreCarte(b); });
     return copie;
   }
 
@@ -837,10 +537,7 @@
     if (!cartes || cartes.length === 0) return false;
     var cleDom = obtenirCleVersetActuelDom();
     if (cleDom && cleDom !== '19:1' && cartes.length === 1) {
-      var arTxt = nettoyerArabeBrut(cartes[0].textContent || '');
-      if (arTxt.indexOf('كهيعص') !== -1) {
-        return false;
-      }
+      if (nettoyerArabeBrut(cartes[0].textContent || '').indexOf('كهيعص') !== -1) return false;
     }
     return true;
   }
@@ -850,16 +547,15 @@
       cacherGrilleMotAMotQuandInactif();
       return [];
     }
-
-    // Réaffiche les conteneurs de cartes quand le mode Mot à mot est actif
+    document.body.classList.remove('wbw-instant-off');
     var cartesDejaDom = document.querySelectorAll('.wbw-card-v110, .wbw-word-box, .wbw-card-unit');
     for (var k = 0; k < cartesDejaDom.length; k++) {
       var pk = cartesDejaDom[k].parentElement;
       if (pk && !estElementVersetNormal(pk) && !pk.classList.contains('verse-stage') && !pk.classList.contains('stage-blue-nav')) {
+        pk.classList.add('wbw-grid-container-v110');
         forcer(pk, 'display', 'flex');
       }
     }
-
     var stage = document.getElementById('wbwStageContainer');
     if (stage) {
       forcer(stage, 'display', 'flex');
@@ -869,30 +565,26 @@
         if (grilleCorrespondAuVersetActuel(arr)) return ordonnerCartesSensLecture(arr);
       }
     }
-
     var banner = document.getElementById('wbwSensLectureBanner');
     if (banner && banner.nextElementSibling) {
       var g = banner.nextElementSibling;
       if (!estElementVersetNormal(g) && !g.classList.contains('stage-blue-nav')) {
+        g.classList.add('wbw-grid-container-v110');
         forcer(g, 'display', 'flex');
         var ch = [];
         for (var i = 0; i < g.children.length; i++) {
           var c = g.children[i];
-          if (c.tagName !== 'SCRIPT' && c.tagName !== 'STYLE' && contientArabe(c.textContent || '')) {
-            ch.push(c);
-          }
+          if (c.tagName !== 'SCRIPT' && c.tagName !== 'STYLE' && contientArabe(c.textContent || '')) ch.push(c);
         }
         if (ch.length >= 1 && grilleCorrespondAuVersetActuel(ch)) return ordonnerCartesSensLecture(ch);
       }
     }
-
     if (typeof window.__obtenirCartesWBWOrig === 'function') {
       try {
         var orig = window.__obtenirCartesWBWOrig() || [];
         if (orig.length >= 1 && grilleCorrespondAuVersetActuel(orig)) return ordonnerCartesSensLecture(orig);
       } catch (e) {}
     }
-
     return [];
   }
   window.__obtenirCartesWBW = obtenirCartesMotAMotUniversel;
@@ -900,170 +592,84 @@
   var initDefautFait = false;
 
   function supprimerMaherEtForcerYasser() {
-    if (window.__userPickedReciterManuallyV110) return;
+    var rpElements = document.querySelectorAll('.rp-item, [data-reciter], .rp-panel div, .rp-panel li, .rp-panel button');
+    var itemYasser = null;
+    for (var i = 0; i < rpElements.length; i++) {
+      var it = rpElements[i];
+      var txtIt = (it.textContent || '') + ' ' + (it.getAttribute('data-reciter') || '');
+      if (it.children.length <= 4 && /maher|muaiqly|ماهر|Махер/i.test(txtIt)) {
+        it.classList.add('maher-item-removed-v110');
+        forcer(it, 'display', 'none');
+        if (it.parentNode) { try { it.parentNode.removeChild(it); } catch (e) {} }
+      } else if (!itemYasser && (it.classList.contains('rp-item') || it.hasAttribute('data-reciter')) && /yasser|dosari|dossary|dussary|الدوسري|Досари/i.test(txtIt)) {
+        itemYasser = it;
+      }
+    }
 
     var selects = document.querySelectorAll('select');
     for (var s = 0; s < selects.length; s++) {
       var sel = selects[s];
       if (sel.classList.contains('wbw-audio-select-v110') || sel.classList.contains('khatm-reciter-select') || sel.id === 'verseJumperSelect') continue;
-      var yasserIdx = -1;
       for (var o = sel.options.length - 1; o >= 0; o--) {
-        var opt = sel.options[o];
-        var optTxt = (opt.textContent || '') + ' ' + (opt.value || '');
-        if (/maher|muaiqly|ماهر|Махер/i.test(optTxt)) {
-          sel.remove(o);
+        var optTxt = (sel.options[o].textContent || '') + ' ' + (sel.options[o].value || '');
+        if (/maher|muaiqly|ماهر|Махер/i.test(optTxt)) sel.remove(o);
+      }
+      if (!window.__userPickedReciterManuallyV110) {
+        var yasserIdx = -1;
+        for (var y = 0; y < sel.options.length; y++) {
+          var yTxt = (sel.options[y].textContent || '') + ' ' + (sel.options[y].value || '');
+          if (/yasser|dosari|dossary|dussary|الدوسري|Досари/i.test(yTxt)) { yasserIdx = y; break; }
+        }
+        if (yasserIdx !== -1 && sel.selectedIndex !== yasserIdx) {
+          sel.selectedIndex = yasserIdx;
+          sel.dispatchEvent(new Event('change', { bubbles: true }));
         }
       }
-      for (var y = 0; y < sel.options.length; y++) {
-        var yTxt = (sel.options[y].textContent || '') + ' ' + (sel.options[y].value || '');
-        if (/yasser|dosari|dossary|dussary|الدوسري|Досари/i.test(yTxt)) {
-          yasserIdx = y;
-          break;
+    }
+
+    if (window.__userPickedReciterManuallyV110) return;
+
+    try {
+      for (var k = 0; k < localStorage.length; k++) {
+        var cle = localStorage.key(k);
+        if (cle && /recit|sheikh|qari|lecteur|audio/i.test(cle)) {
+          var val = localStorage.getItem(cle) || '';
+          if (!/yasser|dosari|dossary|dussary/i.test(val)) {
+            localStorage.setItem(cle, 'Yasser_Ad-Dussary_128kbps');
+          }
         }
       }
-      if (yasserIdx !== -1 && sel.selectedIndex !== yasserIdx) {
-        sel.selectedIndex = yasserIdx;
-        sel.dispatchEvent(new Event('change', { bubbles: true }));
+    } catch (e) {}
+
+    var rpBtn = document.querySelector('.rp-btn');
+    if (rpBtn && itemYasser) {
+      var txtBtn = rpBtn.textContent || '';
+      if (!/yasser|dosari|dossary|dussary|الدوسري|Досари/i.test(txtBtn)) {
+        itemYasser.click();
+        var rpPanel = document.querySelector('.rp-panel');
+        if (rpPanel) rpPanel.classList.remove('open');
+        rpBtn.setAttribute('aria-expanded', 'false');
       }
     }
   }
 
-  // =========================================================================
-  // RESTAURATION COMPLÈTE DU BOUTON & MODALE AUDIO : PLAGE & RÉPÉTITIONS
-  // =========================================================================
   var TEXTES_AUDIO_MODAL_I18N = {
-    fr: {
-      btn: '🔁 Plage & Répétition',
-      title: 'Audio',
-      start: 'Début de la plage',
-      end: 'Fin de la plage',
-      repSel: 'Répéter la sélection',
-      repAyah: 'Répéter le verset',
-      none: 'Aucune',
-      times: 'fois',
-      inf: '∞ Infini',
-      cancel: 'Annuler',
-      stop: 'Arrêter la boucle',
-      play: 'Lire'
-    },
-    en: {
-      btn: '🔁 Audio Range',
-      title: 'Audio',
-      start: 'Start Range',
-      end: 'End Range',
-      repSel: 'Repeat selection',
-      repAyah: 'Repeat Ayah',
-      none: 'None',
-      times: 'times',
-      inf: '∞ Infinite',
-      cancel: 'Cancel',
-      stop: 'Stop Loop',
-      play: 'Play'
-    },
-    es: {
-      btn: '🔁 Rango y Repetición',
-      title: 'Audio',
-      start: 'Inicio del rango',
-      end: 'Fin del rango',
-      repSel: 'Repetir selección',
-      repAyah: 'Repetir aleya',
-      none: 'Ninguna',
-      times: 'veces',
-      inf: '∞ Infinito',
-      cancel: 'Cancelar',
-      stop: 'Detener bucle',
-      play: 'Reproducir'
-    },
-    ar: {
-      btn: '🔁 نطاق التكرار',
-      title: 'الصوت والتكرار',
-      start: 'بداية النطاق',
-      end: 'نهاية النطاق',
-      repSel: 'تكرار المقطع',
-      repAyah: 'تكرار الآية',
-      none: 'بدون',
-      times: 'مرات',
-      inf: '∞ بلا حدود',
-      cancel: 'إلغاء',
-      stop: 'إيقاف التكرار',
-      play: 'تشغيل'
-    },
-    de: {
-      btn: '🔁 Bereich & Wiederholung',
-      title: 'Audio',
-      start: 'Startbereich',
-      end: 'Endbereich',
-      repSel: 'Auswahl wiederholen',
-      repAyah: 'Vers wiederholen',
-      none: 'Keine',
-      times: 'Mal',
-      inf: '∞ Unendlich',
-      cancel: 'Abbrechen',
-      stop: 'Stoppen',
-      play: 'Abspielen'
-    },
-    it: {
-      btn: '🔁 Intervallo Audio',
-      title: 'Audio',
-      start: 'Inizio intervallo',
-      end: 'Fine intervallo',
-      repSel: 'Ripeti selezione',
-      repAyah: 'Ripeti versetto',
-      none: 'Nessuna',
-      times: 'volte',
-      inf: '∞ Infinito',
-      cancel: 'Annulla',
-      stop: 'Ferma ciclo',
-      play: 'Riproduci'
-    },
-    id: {
-      btn: '🔁 Rentang & Ulangi',
-      title: 'Audio',
-      start: 'Mulai Rentang',
-      end: 'Akhir Rentang',
-      repSel: 'Ulangi pilihan',
-      repAyah: 'Ulangi Ayat',
-      none: 'Tidak ada',
-      times: 'kali',
-      inf: '∞ Tak terbatas',
-      cancel: 'Batal',
-      stop: 'Hentikan',
-      play: 'Putar'
-    },
-    ru: {
-      btn: '🔁 Диапазон и повтор',
-      title: 'Аудио',
-      start: 'Начало диапазона',
-      end: 'Конец диапазона',
-      repSel: 'Повтор выбора',
-      repAyah: 'Повтор аята',
-      none: 'Нет',
-      times: 'раз(а)',
-      inf: '∞ Бесконечно',
-      cancel: 'Отмена',
-      stop: 'Остановить',
-      play: 'Слушать'
-    }
+    fr: { btn: '🔁 Plage & Répétition', title: 'Audio', start: 'Début de la plage', end: 'Fin de la plage', repSel: 'Répéter la sélection', repAyah: 'Répéter le verset', none: 'Aucune', times: 'fois', inf: '∞ Infini', cancel: 'Annuler', stop: 'Arrêter la boucle', play: 'Lire' },
+    en: { btn: '🔁 Audio Range', title: 'Audio', start: 'Start Range', end: 'End Range', repSel: 'Repeat selection', repAyah: 'Repeat Ayah', none: 'None', times: 'times', inf: '∞ Infinite', cancel: 'Cancel', stop: 'Stop Loop', play: 'Play' },
+    es: { btn: '🔁 Rango y Repetición', title: 'Audio', start: 'Inicio del rango', end: 'Fin del rango', repSel: 'Repetir selección', repAyah: 'Repetir aleya', none: 'Ninguna', times: 'veces', inf: '∞ Infinito', cancel: 'Cancelar', stop: 'Detener bucle', play: 'Reproducir' },
+    ar: { btn: '🔁 نطاق التكرار', title: 'الصوت والتكرار', start: 'بداية النطاق', end: 'نهاية النطاق', repSel: 'تكرار المقطع', repAyah: 'تكرار الآية', none: 'بدون', times: 'مرات', inf: '∞ بلا حدود', cancel: 'إلغاء', stop: 'إيقاف التكرار', play: 'تشغيل' },
+    de: { btn: '🔁 Bereich & Wiederholung', title: 'Audio', start: 'Startbereich', end: 'Endbereich', repSel: 'Auswahl wiederholen', repAyah: 'Vers wiederholen', none: 'Keine', times: 'Mal', inf: '∞ Unendlich', cancel: 'Abbrechen', stop: 'Stoppen', play: 'Abspielen' },
+    it: { btn: '🔁 Intervallo Audio', title: 'Audio', start: 'Inizio intervallo', end: 'Fine intervallo', repSel: 'Ripeti selezione', repAyah: 'Ripeti versetto', none: 'Nessuna', times: 'volte', inf: '∞ Infinito', cancel: 'Annulla', stop: 'Ferma ciclo', play: 'Riproduci' },
+    id: { btn: '🔁 Rentang & Ulangi', title: 'Audio', start: 'Mulai Rentang', end: 'Akhir Rentang', repSel: 'Ulangi pilihan', repAyah: 'Ulangi Ayat', none: 'Tidak ada', times: 'kali', inf: '∞ Tak terbatas', cancel: 'Batal', stop: 'Hentikan', play: 'Putar' },
+    ru: { btn: '🔁 Диапазон и повтор', title: 'Аудио', start: 'Начало диапазона', end: 'Конец диапазона', repSel: 'Повтор выбора', repAyah: 'Повтор аята', none: 'Нет', times: 'раз(а)', inf: '∞ Бесконечно', cancel: 'Отмена', stop: 'Остановить', play: 'Слушать' }
   };
 
-  var etatAudioRange = {
-    actif: false,
-    sourate: 0,
-    startV: 1,
-    endV: 1,
-    repeatSelMax: 1,
-    repeatAyahMax: 1,
-    compteurSel: 1,
-    compteurAyah: 1
-  };
+  var etatAudioRange = { actif: false, sourate: 0, startV: 1, endV: 1, repeatSelMax: 1, repeatAyahMax: 1, compteurSel: 1, compteurAyah: 1 };
 
   function mettreAJourBoutonAudioRange() {
     var btn = document.getElementById('wbwAudioRangeBtnV110');
     if (!btn) return;
-    var lang = obtenirLanguePage();
-    var t = TEXTES_AUDIO_MODAL_I18N[lang] || TEXTES_AUDIO_MODAL_I18N.fr;
-    var info = obtenirInfosSourateEtVerset();
-
+    var lang = obtenirLanguePage(), t = TEXTES_AUDIO_MODAL_I18N[lang] || TEXTES_AUDIO_MODAL_I18N.fr, info = obtenirInfosSourateEtVerset();
     if (etatAudioRange.actif && etatAudioRange.sourate === info.s) {
       btn.classList.add('active');
       var lblAyah = etatAudioRange.repeatAyahMax === -1 ? '∞' : (etatAudioRange.repeatAyahMax > 1 ? (etatAudioRange.compteurAyah + '/' + etatAudioRange.repeatAyahMax) : '');
@@ -1077,22 +683,12 @@
   }
 
   function naviguerEtJouerVerset(numV) {
-    if (typeof window.allerAuVerset === 'function') {
-      window.allerAuVerset(numV, true);
-      return;
-    }
+    if (typeof window.allerAuVerset === 'function') { window.allerAuVerset(numV, true); return; }
     var selJ = document.getElementById('verseJumperSelect');
-    if (selJ && selJ.options.length >= numV) {
-      selJ.selectedIndex = numV - 1;
-      selJ.dispatchEvent(new Event('change', { bubbles: true }));
-    }
+    if (selJ && selJ.options.length >= numV) { selJ.selectedIndex = numV - 1; selJ.dispatchEvent(new Event('change', { bubbles: true })); }
     setTimeout(function() {
       var aud = document.getElementById('ayahAudio');
-      if (aud && aud.paused) {
-        var playBtn = document.getElementById('playSyncBtn');
-        if (playBtn) playBtn.click();
-        else aud.play().catch(function() {});
-      }
+      if (aud && aud.paused) { var playBtn = document.getElementById('playSyncBtn'); if (playBtn) playBtn.click(); else aud.play().catch(function() {}); }
     }, 90);
   }
 
@@ -1100,247 +696,129 @@
     var aud = document.getElementById('ayahAudio');
     if (!aud || aud.__wbwRangeHookedV110) return;
     aud.__wbwRangeHookedV110 = true;
-
     aud.addEventListener('ended', function(ev) {
       var info = obtenirInfosSourateEtVerset();
       if (!etatAudioRange.actif || etatAudioRange.sourate !== info.s) return;
-
       ev.stopImmediatePropagation();
-
-      var encoreAyah = (etatAudioRange.repeatAyahMax === -1) || (etatAudioRange.compteurAyah < etatAudioRange.repeatAyahMax);
-      if (encoreAyah) {
-        etatAudioRange.compteurAyah++;
-        mettreAJourBoutonAudioRange();
-        window.__wbwResetDemande = true;
-        aud.currentTime = 0;
-        aud.play().catch(function() {});
-        return;
+      if ((etatAudioRange.repeatAyahMax === -1) || (etatAudioRange.compteurAyah < etatAudioRange.repeatAyahMax)) {
+        etatAudioRange.compteurAyah++; mettreAJourBoutonAudioRange();
+        window.__wbwResetDemande = true; aud.currentTime = 0; aud.play().catch(function() {}); return;
       }
-
       etatAudioRange.compteurAyah = 1;
-      if (info.v < etatAudioRange.endV && info.v < info.totalV) {
-        mettreAJourBoutonAudioRange();
-        naviguerEtJouerVerset(info.v + 1);
+      if (info.v < etatAudioRange.endV && info.v < info.totalV) { mettreAJourBoutonAudioRange(); naviguerEtJouerVerset(info.v + 1); return; }
+      if ((etatAudioRange.repeatSelMax === -1) || (etatAudioRange.compteurSel < etatAudioRange.repeatSelMax)) {
+        etatAudioRange.compteurSel++; mettreAJourBoutonAudioRange();
+        if (info.v !== etatAudioRange.startV) naviguerEtJouerVerset(etatAudioRange.startV);
+        else { window.__wbwResetDemande = true; aud.currentTime = 0; aud.play().catch(function() {}); }
         return;
       }
-
-      var encoreSel = (etatAudioRange.repeatSelMax === -1) || (etatAudioRange.compteurSel < etatAudioRange.repeatSelMax);
-      if (encoreSel) {
-        etatAudioRange.compteurSel++;
-        mettreAJourBoutonAudioRange();
-        if (info.v !== etatAudioRange.startV) {
-          naviguerEtJouerVerset(etatAudioRange.startV);
-        } else {
-          window.__wbwResetDemande = true;
-          aud.currentTime = 0;
-          aud.play().catch(function() {});
-        }
-        return;
-      }
-
-      etatAudioRange.actif = false;
-      mettreAJourBoutonAudioRange();
-      if (typeof arreterVisuel === 'function') {
-        try { arreterVisuel(); } catch (e) {}
-      }
+      etatAudioRange.actif = false; mettreAJourBoutonAudioRange();
+      if (typeof arreterVisuel === 'function') { try { arreterVisuel(); } catch (e) {} }
     }, true);
   }
 
   function ouvrirModaleAudioRange() {
     var overlay = document.getElementById('wbwAudioRangeOverlayV110');
     if (!overlay) return;
-    var lang = obtenirLanguePage();
-    var t = TEXTES_AUDIO_MODAL_I18N[lang] || TEXTES_AUDIO_MODAL_I18N.fr;
-    var info = obtenirInfosSourateEtVerset();
-
-    var startDefaut = (etatAudioRange.actif && etatAudioRange.sourate === info.s) ? etatAudioRange.startV : info.v;
-    var endDefaut = (etatAudioRange.actif && etatAudioRange.sourate === info.s) ? etatAudioRange.endV : info.totalV;
-    var repSelDefaut = (etatAudioRange.actif && etatAudioRange.sourate === info.s) ? etatAudioRange.repeatSelMax : 1;
-    var repAyahDefaut = (etatAudioRange.actif && etatAudioRange.sourate === info.s) ? etatAudioRange.repeatAyahMax : 1;
-
-    var optsStart = '';
-    var optsEnd = '';
+    var lang = obtenirLanguePage(), t = TEXTES_AUDIO_MODAL_I18N[lang] || TEXTES_AUDIO_MODAL_I18N.fr, info = obtenirInfosSourateEtVerset();
+    var startDef = (etatAudioRange.actif && etatAudioRange.sourate === info.s) ? etatAudioRange.startV : info.v;
+    var endDef = (etatAudioRange.actif && etatAudioRange.sourate === info.s) ? etatAudioRange.endV : info.totalV;
+    var repSelDef = (etatAudioRange.actif && etatAudioRange.sourate === info.s) ? etatAudioRange.repeatSelMax : 1;
+    var repAyahDef = (etatAudioRange.actif && etatAudioRange.sourate === info.s) ? etatAudioRange.repeatAyahMax : 1;
+    var optsStart = '', optsEnd = '';
     for (var i = 1; i <= info.totalV; i++) {
-      optsStart += '<option value="' + i + '"' + (i === startDefaut ? ' selected' : '') + '>' + info.s + ':' + i + '</option>';
-      optsEnd += '<option value="' + i + '"' + (i === endDefaut ? ' selected' : '') + '>' + info.s + ':' + i + '</option>';
+      optsStart += '<option value="' + i + '"' + (i === startDef ? ' selected' : '') + '>' + info.s + ':' + i + '</option>';
+      optsEnd += '<option value="' + i + '"' + (i === endDef ? ' selected' : '') + '>' + info.s + ':' + i + '</option>';
     }
-
-    var valeursRep = [
-      { val: 1, txt: t.none },
-      { val: 2, txt: '2 ' + t.times },
-      { val: 3, txt: '3 ' + t.times },
-      { val: 5, txt: '5 ' + t.times },
-      { val: 10, txt: '10 ' + t.times },
-      { val: -1, txt: t.inf }
-    ];
-
-    var optsRepSel = '';
-    var optsRepAyah = '';
+    var valeursRep = [{ val: 1, txt: t.none }, { val: 2, txt: '2 ' + t.times }, { val: 3, txt: '3 ' + t.times }, { val: 5, txt: '5 ' + t.times }, { val: 10, txt: '10 ' + t.times }, { val: -1, txt: t.inf }];
+    var optsRepSel = '', optsRepAyah = '';
     for (var r = 0; r < valeursRep.length; r++) {
-      var item = valeursRep[r];
-      optsRepSel += '<option value="' + item.val + '"' + (item.val === repSelDefaut ? ' selected' : '') + '>' + item.txt + '</option>';
-      optsRepAyah += '<option value="' + item.val + '"' + (item.val === repAyahDefaut ? ' selected' : '') + '>' + item.txt + '</option>';
+      var it = valeursRep[r];
+      optsRepSel += '<option value="' + it.val + '"' + (it.val === repSelDef ? ' selected' : '') + '>' + it.txt + '</option>';
+      optsRepAyah += '<option value="' + it.val + '"' + (it.val === repAyahDef ? ' selected' : '') + '>' + it.txt + '</option>';
     }
-
     var sheet = overlay.querySelector('.wbw-audio-sheet-v110');
     sheet.style.direction = lang === 'ar' ? 'rtl' : 'ltr';
     sheet.innerHTML =
-      '<div class="wbw-audio-handle-v110"></div>' +
-      '<div class="wbw-audio-title-v110">' + t.title + '</div>' +
-      '<div class="wbw-audio-row-v110">' +
-        '<span class="wbw-audio-label-v110"><span class="wbw-audio-icon-v110">|&lt;</span> ' + t.start + '</span>' +
-        '<select id="wbwStartRangeSelV110" class="wbw-audio-select-v110">' + optsStart + '</select>' +
-      '</div>' +
-      '<div class="wbw-audio-row-v110">' +
-        '<span class="wbw-audio-label-v110"><span class="wbw-audio-icon-v110">&gt;|</span> ' + t.end + '</span>' +
-        '<select id="wbwEndRangeSelV110" class="wbw-audio-select-v110">' + optsEnd + '</select>' +
-      '</div>' +
-      '<div class="wbw-audio-row-v110">' +
-        '<span class="wbw-audio-label-v110"><span class="wbw-audio-icon-v110">↻</span> ' + t.repSel + '</span>' +
-        '<select id="wbwRepSelV110" class="wbw-audio-select-v110">' + optsRepSel + '</select>' +
-      '</div>' +
-      '<div class="wbw-audio-row-v110">' +
-        '<span class="wbw-audio-label-v110"><span class="wbw-audio-icon-v110">↺</span> ' + t.repAyah + '</span>' +
-        '<select id="wbwRepAyahV110" class="wbw-audio-select-v110">' + optsRepAyah + '</select>' +
-      '</div>' +
-      '<div class="wbw-audio-actions-v110">' +
-        '<button type="button" id="wbwAudioCancelBtnV110" class="wbw-audio-cancel-v110">' + (etatAudioRange.actif ? t.stop : t.cancel) + '</button>' +
-        '<button type="button" id="wbwAudioPlayBtnV110" class="wbw-audio-play-v110">' + t.play + '</button>' +
-      '</div>';
-
-    var selS = document.getElementById('wbwStartRangeSelV110');
-    var selE = document.getElementById('wbwEndRangeSelV110');
-    selS.addEventListener('change', function() {
-      if (parseInt(selE.value, 10) < parseInt(selS.value, 10)) {
-        selE.value = selS.value;
-      }
-    });
-    selE.addEventListener('change', function() {
-      if (parseInt(selE.value, 10) < parseInt(selS.value, 10)) {
-        selS.value = selE.value;
-      }
-    });
-
+      '<div class="wbw-audio-handle-v110"></div><div class="wbw-audio-title-v110">' + t.title + '</div>' +
+      '<div class="wbw-audio-row-v110"><span class="wbw-audio-label-v110"><span class="wbw-audio-icon-v110">|&lt;</span> ' + t.start + '</span><select id="wbwStartRangeSelV110" class="wbw-audio-select-v110">' + optsStart + '</select></div>' +
+      '<div class="wbw-audio-row-v110"><span class="wbw-audio-label-v110"><span class="wbw-audio-icon-v110">&gt;|</span> ' + t.end + '</span><select id="wbwEndRangeSelV110" class="wbw-audio-select-v110">' + optsEnd + '</select></div>' +
+      '<div class="wbw-audio-row-v110"><span class="wbw-audio-label-v110"><span class="wbw-audio-icon-v110">↻</span> ' + t.repSel + '</span><select id="wbwRepSelV110" class="wbw-audio-select-v110">' + optsRepSel + '</select></div>' +
+      '<div class="wbw-audio-row-v110"><span class="wbw-audio-label-v110"><span class="wbw-audio-icon-v110">↺</span> ' + t.repAyah + '</span><select id="wbwRepAyahV110" class="wbw-audio-select-v110">' + optsRepAyah + '</select></div>' +
+      '<div class="wbw-audio-actions-v110"><button type="button" id="wbwAudioCancelBtnV110" class="wbw-audio-cancel-v110">' + (etatAudioRange.actif ? t.stop : t.cancel) + '</button><button type="button" id="wbwAudioPlayBtnV110" class="wbw-audio-play-v110">' + t.play + '</button></div>';
+    var selS = document.getElementById('wbwStartRangeSelV110'), selE = document.getElementById('wbwEndRangeSelV110');
+    selS.addEventListener('change', function() { if (parseInt(selE.value, 10) < parseInt(selS.value, 10)) selE.value = selS.value; });
+    selE.addEventListener('change', function() { if (parseInt(selE.value, 10) < parseInt(selS.value, 10)) selS.value = selE.value; });
     document.getElementById('wbwAudioCancelBtnV110').addEventListener('click', function() {
-      if (etatAudioRange.actif) {
-        etatAudioRange.actif = false;
-        var aud = document.getElementById('ayahAudio');
-        if (aud && !aud.paused) aud.pause();
-        mettreAJourBoutonAudioRange();
-      }
+      if (etatAudioRange.actif) { etatAudioRange.actif = false; var aud = document.getElementById('ayahAudio'); if (aud && !aud.paused) aud.pause(); mettreAJourBoutonAudioRange(); }
       overlay.classList.remove('open');
     });
-
     document.getElementById('wbwAudioPlayBtnV110').addEventListener('click', function() {
-      var sVal = parseInt(selS.value, 10) || 1;
-      var eVal = parseInt(selE.value, 10) || sVal;
-      if (eVal < sVal) eVal = sVal;
-
-      etatAudioRange.actif = true;
-      etatAudioRange.sourate = info.s;
-      etatAudioRange.startV = sVal;
-      etatAudioRange.endV = eVal;
+      var sVal = parseInt(selS.value, 10) || 1, eVal = Math.max(sVal, parseInt(selE.value, 10) || sVal);
+      etatAudioRange.actif = true; etatAudioRange.sourate = info.s; etatAudioRange.startV = sVal; etatAudioRange.endV = eVal;
       etatAudioRange.repeatSelMax = parseInt(document.getElementById('wbwRepSelV110').value, 10) || 1;
       etatAudioRange.repeatAyahMax = parseInt(document.getElementById('wbwRepAyahV110').value, 10) || 1;
-      etatAudioRange.compteurSel = 1;
-      etatAudioRange.compteurAyah = 1;
-
-      overlay.classList.remove('open');
-      mettreAJourBoutonAudioRange();
-
+      etatAudioRange.compteurSel = 1; etatAudioRange.compteurAyah = 1;
+      overlay.classList.remove('open'); mettreAJourBoutonAudioRange();
       var aud = document.getElementById('ayahAudio');
-      if (info.v !== sVal) {
-        naviguerEtJouerVerset(sVal);
-      } else if (aud) {
-        window.__wbwResetDemande = true;
-        aud.currentTime = 0;
-        if (aud.paused) {
-          var playBtn = document.getElementById('playSyncBtn');
-          if (playBtn) playBtn.click();
-          else aud.play().catch(function() {});
-        }
+      if (info.v !== sVal) naviguerEtJouerVerset(sVal);
+      else if (aud) {
+        window.__wbwResetDemande = true; aud.currentTime = 0;
+        if (aud.paused) { var playBtn = document.getElementById('playSyncBtn'); if (playBtn) playBtn.click(); else aud.play().catch(function() {}); }
       }
     });
-
     overlay.classList.add('open');
   }
 
   function assurerBoutonEtModaleAudioRange() {
     var estPageSourate = /sourate-\d+/i.test(window.location.pathname) || Boolean(document.querySelector('#arabicVerse, #arabicVerseEl, .arabic-glow-verse'));
     if (!estPageSourate) return;
-
     installerIntercepteurFinAudio();
-
-    var oldBtns = document.querySelectorAll('#wbwAudioRangeBtnV109, #wbwAudioRangeBtnV111, #wbwAudioRangeBtnV112');
-    for (var b = 0; b < oldBtns.length; b++) {
-      if (oldBtns[b].parentNode) oldBtns[b].parentNode.removeChild(oldBtns[b]);
-    }
-    var oldOvs = document.querySelectorAll('#wbwAudioRangeOverlayV109, #wbwAudioRangeOverlayV111, #wbwAudioRangeOverlayV112');
-    for (var o = 0; o < oldOvs.length; o++) {
-      if (oldOvs[o].parentNode) oldOvs[o].parentNode.removeChild(oldOvs[o]);
-    }
-
     if (!document.getElementById('wbwAudioRangeOverlayV110')) {
-      var ov = document.createElement('div');
-      ov.id = 'wbwAudioRangeOverlayV110';
-      ov.innerHTML = '<div class="wbw-audio-sheet-v110"></div>';
-      ov.addEventListener('click', function(e) {
-        if (e.target === ov) ov.classList.remove('open');
-      });
+      var ov = document.createElement('div'); ov.id = 'wbwAudioRangeOverlayV110'; ov.innerHTML = '<div class="wbw-audio-sheet-v110"></div>';
+      ov.addEventListener('click', function(e) { if (e.target === ov) ov.classList.remove('open'); });
       document.body.appendChild(ov);
     }
-
     if (!document.getElementById('wbwAudioRangeBtnV110')) {
-      var btnSuivi = trouverBoutonParTexte(['Suivi', 'Follow', 'Слежение', 'Seguimiento', 'Verfolgen', 'Segui', 'Ikuti', 'تتبع']);
-      var btnTaj = trouverBoutonTajwid();
-      var cible = btnSuivi || btnTaj || document.getElementById('replaySyncBtn');
+      var cible = trouverBoutonParTexte(['Suivi', 'Follow', 'Слежение', 'Seguimiento', 'Verfolgen', 'Segui', 'Ikuti', 'تتبع']) || trouverBoutonTajwid() || document.getElementById('replaySyncBtn');
       if (cible && cible.parentElement) {
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.id = 'wbwAudioRangeBtnV110';
+        var btn = document.createElement('button'); btn.type = 'button'; btn.id = 'wbwAudioRangeBtnV110';
         btn.addEventListener('click', ouvrirModaleAudioRange);
         cible.parentElement.insertBefore(btn, cible.nextSibling);
       }
     }
-
     mettreAJourBoutonAudioRange();
   }
 
   function initialiserModesSurSourate() {
     supprimerMaherEtForcerYasser();
     assurerBoutonEtModaleAudioRange();
-
     if (initDefautFait) return;
-    var estPageSourate = /sourate-\d+/i.test(window.location.pathname) || Boolean(document.querySelector('#arabicVerse, #arabicVerseEl, .arabic-glow-verse'));
+    var estPageSourate = window.location.pathname.indexOf('sourate-') !== -1 || Boolean(document.querySelector('#arabicVerse, #arabicVerseEl, .arabic-glow-verse'));
     if (!estPageSourate) return;
-
-    var btnWbw = trouverBoutonMotAMot();
-    var btnTajwid = trouverBoutonTajwid();
+    var btnWbw = trouverBoutonMotAMot(), btnTajwid = trouverBoutonTajwid();
     var btnSuivi = trouverBoutonParTexte(['Suivi', 'Follow', 'Слежение', 'Seguimiento', 'Verfolgen', 'Segui', 'Ikuti', 'تتبع']);
-
     if (!btnSuivi || !btnTajwid) return;
     initDefautFait = true;
 
-    if (btnWbw && boutonEstActif(btnWbw)) {
-      btnWbw.click();
+    function forcerEtatInitial() {
+      if (window.__userClickedModeBtnV115) return;
+      supprimerMaherEtForcerYasser();
+      if (btnWbw && boutonEstActif(btnWbw)) btnWbw.click();
+      if (btnTajwid && (!boutonEstActif(btnTajwid) && !legendeTajwidEstVisible())) btnTajwid.click();
+      if (btnSuivi && !boutonEstActif(btnSuivi)) btnSuivi.click();
+      window.__wbwSuiviBoutonActif = true;
+      cacherGrilleMotAMotQuandInactif();
     }
-    if (btnTajwid && !boutonEstActif(btnTajwid)) {
-      btnTajwid.click();
-    }
-    if (btnSuivi && !boutonEstActif(btnSuivi)) {
-      btnSuivi.click();
-    }
-
-    cacherGrilleMotAMotQuandInactif();
+    forcerEtatInitial();
+    setTimeout(forcerEtatInitial, 80);
+    setTimeout(forcerEtatInitial, 260);
   }
 
   function masquerBlocProgressionSurSourate() {
-    var estPageSourate = /sourate-\d+/i.test(window.location.pathname) || Boolean(document.querySelector('#arabicVerse, #arabicVerseEl, .arabic-glow-verse'));
-    if (!estPageSourate) return;
     var kWidget = document.getElementById('khatmPlannerWidgetV77');
-    if (kWidget) {
-      kWidget.classList.add('wbw-hide-khatm-on-surah');
-      forcer(kWidget, 'display', 'none');
+    if (kWidget && (/sourate-\d+/i.test(window.location.pathname) || document.querySelector('#arabicVerse, #arabicVerseEl, .arabic-glow-verse'))) {
+      kWidget.classList.add('wbw-hide-khatm-on-surah'); forcer(kWidget, 'display', 'none');
     }
   }
 
@@ -1348,322 +826,227 @@
     var caches = document.querySelectorAll('.wbw-masquer-doublon-v104, .wbw-masquer-doublon-v105, .wbw-masquer-doublon-v106, .wbw-masquer-doublon-v107, .wbw-masquer-doublon-v108, .wbw-masquer-doublon-v109, .wbw-masquer-doublon-v110, .wbw-masquer-doublon-v111, .wbw-masquer-doublon-v112, .wbw-masquer-traduction-bas');
     if (!grilleVisible || !cartes || cartes.length < 1 || !estModeMotAMotActif()) {
       for (var c = 0; c < caches.length; c++) {
-        caches[c].classList.remove('wbw-masquer-doublon-v104', 'wbw-masquer-doublon-v105', 'wbw-masquer-doublon-v106', 'wbw-masquer-doublon-v107', 'wbw-masquer-doublon-v108', 'wbw-masquer-doublon-v109', 'wbw-masquer-doublon-v110', 'wbw-masquer-doublon-v111', 'wbw-masquer-doublon-v112', 'wbw-masquer-traduction-bas');
+        caches[c].classList.remove('wbw-masquer-doublon-v110', 'wbw-masquer-traduction-bas');
         caches[c].style.removeProperty('display');
       }
       var vNorms = document.querySelectorAll('#arabicVerseEl, #arabicVerse, .arabic-glow-verse');
-      for (var v = 0; v < vNorms.length; v++) {
-        vNorms[v].classList.remove('wbw-masquer-doublon-v110');
-        vNorms[v].style.removeProperty('display');
-        vNorms[v].style.removeProperty('transform');
-        forcer(vNorms[v], 'display', 'block');
-      }
-      var fNorms = document.querySelectorAll('#frenchVerseEl, .french-glow-verse');
+      for (var v = 0; v < vNorms.length; v++) { vNorms[v].classList.remove('wbw-masquer-doublon-v110'); forcer(vNorms[v], 'display', 'block'); }
       if (obtenirLanguePage() !== 'ar') {
-        for (var f = 0; f < fNorms.length; f++) {
-          fNorms[f].classList.remove('wbw-masquer-doublon-v110');
-          fNorms[f].style.removeProperty('display');
-          forcer(fNorms[f], 'display', 'block');
-        }
+        var fNorms = document.querySelectorAll('#frenchVerseEl, .french-glow-verse');
+        for (var f = 0; f < fNorms.length; f++) { fNorms[f].classList.remove('wbw-masquer-doublon-v110'); forcer(fNorms[f], 'display', 'block'); }
       }
       return;
     }
-
-    var grille = cartes[0].parentElement;
-    var boite = grille ? grille.parentElement : null;
+    var grille = cartes[0].parentElement, boite = grille ? grille.parentElement : null;
     if (!boite) return;
-
     var tous = boite.querySelectorAll('p, div, h1, h2, h3, h4');
     for (var i = 0; i < tous.length; i++) {
       var el = tous[i];
       if (el === grille || el.id === 'wbwSensLectureBanner' || el.contains(grille) || grille.contains(el)) continue;
       if (el.querySelector('button') || el.tagName === 'BUTTON' || el.classList.contains('stage-blue-nav') || el.classList.contains('sync-progress-track')) continue;
       var t = (el.textContent || '').trim();
-      if (
-        el.id === 'arabicVerse' ||
-        el.id === 'arabicVerseEl' ||
-        el.id === 'frenchVerseEl' ||
-        el.classList.contains('arabic-glow-verse') ||
-        el.classList.contains('french-glow-verse') ||
-        /^\d+\s*[\.:\-]/.test(t) ||
-        el.tagName === 'P'
-      ) {
-        el.classList.add('wbw-masquer-doublon-v110');
-        forcer(el, 'display', 'none');
+      if (estElementVersetNormal(el) || /^\d+\s*[\.:\-]/.test(t) || el.tagName === 'P') {
+        el.classList.add('wbw-masquer-doublon-v110'); forcer(el, 'display', 'none');
       }
     }
   }
 
-  var tableMuqattaat = {
-    'الم': 'Alif Lām Mīm',
-    'المص': 'Alif Lām Mīm Sād',
-    'الر': 'Alif Lām Rā',
-    'المر': 'Alif Lām Mīm Rā',
-    'كهيعص': 'Kāf Hā Yā ʿAyn Sād',
-    'طه': 'Tā Hā',
-    'طسم': 'Tā Sīn Mīm',
-    'طس': 'Tā Sīn',
-    'يس': 'Yā Sīn',
-    'ص': 'Sād',
-    'حم': 'Hā Mīm',
-    'عسق': 'ʿAyn Sīn Qāf',
-    'حمعسق': 'Hā Mīm ʿAyn Sīn Qāf',
-    'ق': 'Qāf',
-    'ن': 'Nūn'
-  };
+  var tableMuqattaat = { 'الم': 'Alif Lām Mīm', 'المص': 'Alif Lām Mīm Sād', 'الر': 'Alif Lām Rā', 'المر': 'Alif Lām Mīm Rā', 'كهيعص': 'Kāf Hā Yā ʿAyn Sād', 'طه': 'Tā Hā', 'طسم': 'Tā Sīn Mīm', 'طس': 'Tā Sīn', 'يس': 'Yā Sīn', 'ص': 'Sād', 'حم': 'Hā Mīm', 'عسق': 'ʿAyn Sīn Qāf', 'حمعسق': 'Hā Mīm ʿAyn Sīn Qāf', 'ق': 'Qāf', 'ن': 'Nūn' };
 
   var dicoArabeFr = {
-    'مني': 'de moi',
-    'واشتعل': 'et s’est embrasée',
-    'الراس': 'la tête',
-    'شيبا': 'de cheveux blancs',
-    'ولم': 'et je n’ai pas',
-    'اكن': 'été',
-    'بدعايك': 'en T’invoquant',
-    'شقيا': 'malheureux (déçu)',
-    'وهن': 's’est affaibli',
-    'العظم': 'l’os (mes os)',
-    'ذكر': 'Le rappel',
-    'رحمت': 'de la miséricorde',
-    'عبده': 'Son serviteur',
-    'زكريا': 'Zakariyyā',
-    'اذ': 'Quand',
-    'نادي': 'il invoqua',
-    'ربه': 'son Seigneur',
-    'نداء': 'd’un appel',
-    'خفيا': 'secret',
-    'والقلم': 'Par la plume',
-    'يسطرون': 'ils écrivent'
+    'من': 'de', 'عنه': 'de lui', 'عنهم': 'd’eux', 'دونهم': 'en dehors d’eux', 'دون': 'en dehors de',
+    'في': 'dans', 'علي': 'sur', 'الي': 'vers', 'اليها': 'vers elle', 'اليه': 'vers lui', 'اليهم': 'vers eux',
+    'لها': 'devant elle', 'له': 'pour lui', 'لهم': 'pour eux', 'لكم': 'pour vous', 'لنا': 'pour nous',
+    'فاتخذت': 'Puis elle prit', 'حجابا': 'un voile', 'فارسلنا': 'Nous envoyâmes alors', 'روحنا': 'Notre Esprit',
+    'فتمثل': 'et il se présenta', 'بشرا': 'sous la forme d’un homme', 'سويا': 'parfait',
+    'افرايت': 'As-tu vu', 'الذي': 'celui qui', 'كفر': 'a mécru', 'باياتنا': 'en Nos versets', 'اياتنا': 'Nos versets',
+    'بايات': 'aux versets', 'ايات': 'versets', 'وقال': 'et a dit', 'لاوتين': 'On me donnera certes', 'مالا': 'des biens', 'وولدا': 'et des enfants',
+    'وان': 'Et si', 'ان': 'si', 'كنتم': 'vous êtes', 'ريب': 'un doute', 'مما': 'sur ce que', 'نزلنا': 'Nous avons révélé',
+    'عبدنا': 'Notre serviteur', 'عبده': 'Son serviteur', 'فاتوا': 'apportez donc', 'بسوره': 'une sourate', 'سوره': 'une sourate',
+    'مثله': 'semblable à ceci', 'وادعوا': 'et appelez', 'شهداءكم': 'vos témoins', 'الله': 'd’Allāh', 'صادقين': 'véridiques',
+    'مني': 'de moi', 'واشتعل': 'et s’est embrasée', 'الراس': 'la tête', 'شيبا': 'de cheveux blancs',
+    'ولم': 'et je n’ai pas', 'اكن': 'été', 'بدعايك': 'en T’invoquant', 'شقيا': 'malheureux',
+    'وهن': 's’est affaibli', 'العظم': 'mes os', 'ذكر': 'Le rappel', 'رحمت': 'de la miséricorde',
+    'زكريا': 'Zakariyyā', 'اذ': 'Quand', 'نادي': 'il invoqua', 'ربه': 'son Seigneur', 'ربك': 'de ton Seigneur',
+    'نداء': 'd’un appel', 'خفيا': 'secret', 'والقلم': 'Par la plume', 'يسطرون': 'ils écrivent',
+    'بنعمه': 'par la grâce de', 'بمجنون': 'un possédé'
   };
 
   var dicoInstantaneFr = {
-    'when': 'Quand',
-    'nun': 'Nūn',
-    'by the pen': 'Par la plume',
-    'and what': 'et ce qu’',
-    'they inscribe': 'ils écrivent',
-    'stand': 'Lève-toi',
-    'stand (in prayer)': 'Lève-toi (en prière)',
-    'support': 'Lève-toi',
-    'and flared': 'et s’est embrasée',
-    'flared': 's’est embrasée',
-    'with white': 'de cheveux blancs',
-    '(with) white': 'de cheveux blancs',
-    'white hair': 'de cheveux blancs',
-    'unblessed': 'malheureux (déçu)',
-    'of me': 'de moi',
-    'from me': 'de moi',
-    'and not': 'et je n’ai pas',
-    'i have been': 'été',
-    'in my supplication to you': 'en T’invoquant',
-    'in (the) name': 'au nom',
-    'in the name': 'au nom',
-    'the one who': 'Celui qui',
-    'who': 'qui',
-    'created': 'a créé',
-    'read': 'Lis',
-    'recite': 'Lis',
-    'your lord': 'ton Seigneur',
-    'and your lord': 'Et ton Seigneur',
-    '(is) the most generous': 'est le Très Généreux',
-    'the most generous': 'le Très Généreux',
-    'taught': 'a enseigné',
-    'man': 'à l’homme',
-    'what': 'ce que',
-    'not': 'ne ... pas',
-    'he knew': 'il savait',
-    'from': 'd’une',
-    'a clinging substance': 'adhérence',
-    'clinging substance': 'adhérence'
+    'like it': 'semblable à ceci', '(the) like of it': 'semblable à ceci', 'the like of it': 'semblable à ceci',
+    'in our verses': 'en Nos versets', 'our verses': 'Nos versets', 'his verses': 'Ses versets', 'verses': 'versets',
+    'dans nos vers': 'en Nos versets', 'nos vers': 'Nos versets',
+    'our slave': 'Notre serviteur', 'his slave': 'Son serviteur', 'my slave': 'Mon serviteur', 'notre esclave': 'Notre serviteur',
+    'a chapter': 'une sourate', 'un chapitre': 'une sourate',
+    'then produce': 'apportez donc', 'puis produire': 'apportez donc',
+    'and call': 'et appelez', 'other than': 'en dehors de', 'autre que': 'en dehors de',
+    'truthful': 'véridiques', 'when': 'Quand', 'nun': 'Nūn', 'by the pen': 'Par la plume',
+    'and what': 'et ce qu’', 'they inscribe': 'ils écrivent', 'stand': 'Lève-toi', 'stand (in prayer)': 'Lève-toi (en prière)',
+    'support': 'Lève-toi', 'and flared': 'et s’est embrasée', 'flared': 's’est embrasée',
+    'with white': 'de cheveux blancs', '(with) white': 'de cheveux blancs', 'white hair': 'de cheveux blancs',
+    'unblessed': 'malheureux', 'of me': 'de moi', 'from me': 'de moi', 'and not': 'et je n’ai pas',
+    'i have been': 'été', 'in my supplication to you': 'en T’invoquant', 'in (the) name': 'au nom', 'in the name': 'au nom',
+    'the one who': 'Celui qui', 'who': 'qui', 'created': 'a créé', 'read': 'Lis', 'recite': 'Lis',
+    'your lord': 'ton Seigneur', 'and your lord': 'Et ton Seigneur', '(is) the most generous': 'est le Très Généreux',
+    'the most generous': 'le Très Généreux', 'taught': 'a enseigné', 'man': 'à l’homme',
+    'what': 'ce que', 'not': 'ne ... pas', 'he knew': 'il savait', 'from': 'de',
+    'a clinging substance': 'une adhérence', 'clinging substance': 'une adhérence'
   };
 
+  function estMotArabePluriel(arNorm) {
+    return /(تم|كم|وا|ون|ين|هم|هن|تن|نا)$/.test(arNorm);
+  }
+
+  function desambiguiserAnglaisCoranique(enBrut, arNorm) {
+    var s = (enBrut || '').replace(/^\(is\)\s*/i, '').replace(/[\[\]\(\)]/g, '').replace(/\s{2,}/g, ' ').trim();
+    if (/^(the\s+)?like(\s+of)?\s+(it|him|them|this|that)$/i.test(s)) return 'similar to it';
+    s = s.replace(/\bour\s+verses\b/gi, 'Our Quranic verses').replace(/\bverses\b/gi, 'Quranic verses');
+    s = s.replace(/\bour\s+slave\b/gi, 'Our servant').replace(/\bhis\s+slave\b/gi, 'His servant').replace(/\bslaves\b/gi, 'servants').replace(/\bslave\b/gi, 'servant');
+    s = s.replace(/\ba\s+chapter\b/gi, 'a Surah');
+    if (estMotArabePluriel(arNorm)) {
+      s = s.replace(/\byou\s+are\b/gi, 'you all are').replace(/\byou\s+were\b/gi, 'you all were');
+    }
+    return s;
+  }
+
+  function corrigerFrancaisSelonMorphologieArabe(tr, arNorm) {
+    var out = (tr || '').trim();
+    if (/^j.aime\s+ça$/i.test(out)) return 'semblable à ceci';
+    out = out.replace(/\bdans\s+nos\s+vers\b/gi, 'en Nos versets').replace(/\bnos\s+vers\b/gi, 'Nos versets');
+    out = out.replace(/\bnotre\s+esclave\b/gi, 'Notre serviteur').replace(/\bson\s+esclave\b/gi, 'Son serviteur');
+    out = out.replace(/\bun\s+chapitre\b/gi, 'une sourate');
+    if (estMotArabePluriel(arNorm)) {
+      if (/^tu\s+es$/i.test(out)) return 'vous êtes';
+      if (/^tu\s+étais$/i.test(out)) return 'vous étiez';
+      if (/^et\s+appelle$/i.test(out)) return 'et appelez';
+      if (/^véridique$/i.test(out)) return 'véridiques';
+      out = out.replace(/^tu\s+/i, 'vous ');
+    }
+    return out;
+  }
+
   var cacheTradMots = {};
-  try {
-    cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v110') || '{}');
-  } catch (e) {}
-  var enCoursTrad = {};
-  var prochainEssaiTrad = {};
+  try { cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v116') || '{}'); } catch (e) {}
+  var enCoursTrad = {}, prochainEssaiTrad = {};
 
   function obtenirLanguePage() {
     var p = new URLSearchParams(window.location.search).get('lang');
-    if (p) return p.slice(0, 2).toLowerCase();
-    var h = (document.documentElement.lang || 'fr').slice(0, 2).toLowerCase();
-    return h || 'fr';
+    return p ? p.slice(0, 2).toLowerCase() : ((document.documentElement.lang || 'fr').slice(0, 2).toLowerCase() || 'fr');
   }
 
   function nettoyerEtTraduireMotUneFois(elTrad, elAr, lang, forcerRetraduction) {
     if (!elTrad) return;
-    var brut = (elTrad.textContent || '').trim();
-    var txtAr = elAr ? (elAr.textContent || '') : '';
-    var arPur = nettoyerArabeBrut(txtAr);
-    var arNorm = normaliserArabeCle(txtAr);
-
-    if (tableMuqattaat[arPur]) {
-      definirTexteSansBoucle(elTrad, tableMuqattaat[arPur]);
-      elTrad.dataset.wbwTrOk = lang;
+    if (!forcerRetraduction && elTrad.dataset.wbwTrOk === lang && elTrad.dataset.wbwTrLock === '1') {
+      if (elTrad.dataset.wbwTrFinal && elTrad.textContent !== elTrad.dataset.wbwTrFinal) {
+        definirTexteSansBoucle(elTrad, elTrad.dataset.wbwTrFinal);
+      }
       return;
     }
 
-    if (lang === 'fr' && dicoArabeFr[arNorm]) {
-      definirTexteSansBoucle(elTrad, dicoArabeFr[arNorm]);
+    var brut = (elTrad.textContent || '').trim(), txtAr = elAr ? (elAr.textContent || '') : '';
+    var arPur = nettoyerArabeBrut(txtAr), arNorm = normaliserArabeCle(txtAr);
+
+    function figerTraduction(valFinale) {
+      definirTexteSansBoucle(elTrad, valFinale);
+      elTrad.dataset.wbwTrFinal = valFinale;
       elTrad.dataset.wbwTrOk = lang;
-      return;
+      elTrad.dataset.wbwTrLock = '1';
     }
 
+    if (tableMuqattaat[arPur]) { figerTraduction(tableMuqattaat[arPur]); return; }
+    if (lang === 'fr' && dicoArabeFr[arNorm]) { figerTraduction(dicoArabeFr[arNorm]); return; }
     if (!brut) return;
 
     if (brut.indexOf('_') !== -1) {
       brut = brut.split('_').join(' ').replace(/\s{2,}/g, ' ').trim();
       definirTexteSansBoucle(elTrad, brut);
-      elTrad.dataset.wbwTrOk = lang;
-      return;
     }
-
-    if (lang === 'en' || lang === 'ar') {
-      elTrad.dataset.wbwTrOk = lang;
-      return;
-    }
+    if (lang === 'en' || lang === 'ar') { figerTraduction(brut); return; }
 
     var cleMin = brut.toLowerCase().replace(/\s{2,}/g, ' ');
     if (lang === 'fr' && dicoInstantaneFr[cleMin]) {
-      definirTexteSansBoucle(elTrad, dicoInstantaneFr[cleMin]);
-      elTrad.dataset.wbwTrOk = lang;
+      figerTraduction(corrigerFrancaisSelonMorphologieArabe(dicoInstantaneFr[cleMin], arNorm));
       return;
     }
 
-    if (!forcerRetraduction && elTrad.dataset.wbwTrOk === lang) return;
+    if (lang === 'fr') {
+      var corrigeImmediate = corrigerFrancaisSelonMorphologieArabe(brut, arNorm);
+      if (corrigeImmediate !== brut) {
+        figerTraduction(corrigeImmediate);
+        return;
+      }
+    }
 
     var cle = lang + ':' + arNorm + ':' + cleMin;
     if (cacheTradMots[cle]) {
-      definirTexteSansBoucle(elTrad, cacheTradMots[cle]);
-      elTrad.dataset.wbwTrOk = lang;
+      var valCache = lang === 'fr' ? corrigerFrancaisSelonMorphologieArabe(cacheTradMots[cle], arNorm) : cacheTradMots[cle];
+      figerTraduction(valCache);
       return;
     }
 
-    if (!forcerRetraduction && /[àâäéèêëîïôöùûüçœæ]/i.test(brut) && lang === 'fr') {
-      elTrad.dataset.wbwTrOk = lang;
+    if (/[àâäéèêëîïôöùûüçœæ]/i.test(brut) && lang === 'fr') {
+      figerTraduction(corrigerFrancaisSelonMorphologieArabe(brut, arNorm));
       return;
     }
 
     if (enCoursTrad[cle] || Date.now() < (prochainEssaiTrad[cle] || 0)) return;
     enCoursTrad[cle] = true;
 
-    var propreEn = brut.replace(/^\(is\)\s*/i, '').replace(/[\(\)]/g, '').replace(/\s{2,}/g, ' ').trim() || brut;
-    var url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=' + encodeURIComponent(lang) + '&dt=t&q=' + encodeURIComponent(propreEn);
-    fetch(url)
+    var propreEn = desambiguiserAnglaisCoranique(brut, arNorm);
+    fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=' + encodeURIComponent(lang) + '&dt=t&q=' + encodeURIComponent(propreEn))
       .then(function(r) { return r.ok ? r.json() : Promise.reject(new Error('HTTP')); })
       .then(function(d) {
         if (d && d[0] && d[0][0] && d[0][0][0]) {
           var tr = d[0].map(function(x) { return x[0] || ''; }).join('').trim();
           if (tr) {
-            if (lang === 'fr' && dicoInstantaneFr[tr.toLowerCase()]) {
-              tr = dicoInstantaneFr[tr.toLowerCase()];
+            if (lang === 'fr') {
+              if (dicoInstantaneFr[tr.toLowerCase()]) tr = dicoInstantaneFr[tr.toLowerCase()];
+              tr = corrigerFrancaisSelonMorphologieArabe(tr, arNorm);
             }
             cacheTradMots[cle] = tr;
-            try { localStorage.setItem('wbw_tr_cache_v110', JSON.stringify(cacheTradMots)); } catch (e) {}
+            try { localStorage.setItem('wbw_tr_cache_v116', JSON.stringify(cacheTradMots)); } catch (e) {}
             if (elTrad && elTrad.isConnected && obtenirLanguePage() === lang) {
-              definirTexteSansBoucle(elTrad, tr);
-              elTrad.dataset.wbwTrOk = lang;
+              figerTraduction(tr);
             }
           }
         }
       })
-      .catch(function() {
-        prochainEssaiTrad[cle] = Date.now() + 15000;
-      })
-      .finally(function() {
-        delete enCoursTrad[cle];
-      });
+      .catch(function() { prochainEssaiTrad[cle] = Date.now() + 15000; })
+      .finally(function() { delete enCoursTrad[cle]; });
   }
 
-  var dernierMotCliqueTrad = '';
-  var dernierMotCliqueAr = '';
-
-  function traduireModaleRacineEnFrancais() {
-    var lang = obtenirLanguePage();
-    if (lang === 'en') return;
-
-    var tousEls = document.querySelectorAll('div, span, p, h3, h4');
-    var boiteInterneModale = null;
-
-    for (var i = 0; i < tousEls.length; i++) {
-      var el = tousEls[i];
-      if (el.children.length === 0) {
-        var txt = (el.textContent || '').trim();
-        if (txt === 'Racine (Root) :' && lang === 'fr') {
-          definirTexteSansBoucle(el, 'Racine :');
-        }
-        if (txt.indexOf('Mot coranique') !== -1 && el.parentElement) {
-          boiteInterneModale = el.parentElement;
-        }
-      }
-    }
-
-    if (!boiteInterneModale) return;
-
-    var elArModale = null;
-    var elTradModale = null;
-    var enfants = boiteInterneModale.children;
-
-    for (var c = 0; c < enfants.length; c++) {
-      var ch = enfants[c];
-      var t = (ch.textContent || '').trim();
-      if (!t || t.indexOf('Mot coranique') !== -1 || t.indexOf('Lemme') !== -1 || t.indexOf('Racine') !== -1) continue;
-      if (!elArModale && contientArabe(t)) {
-        elArModale = ch;
-      } else if (elArModale && !elTradModale && !contientArabe(t)) {
-        elTradModale = ch;
-        break;
-      }
-    }
-
-    if (elTradModale && elArModale) {
-      var arModPur = normaliserArabeCle(elArModale.textContent || '');
-      if (dernierMotCliqueTrad && dernierMotCliqueAr === arModPur) {
-        definirTexteSansBoucle(elTradModale, dernierMotCliqueTrad);
-      }
-      nettoyerEtTraduireMotUneFois(elTradModale, elArModale, lang, true);
-    }
-  }
-
-  var cacheMetaCartes = [];
-  var derniereSigPreparation = '';
-  var lissageE = [];
-  var lissageB = [];
-  var modeContrasteSuivi = 0;
-  var maxIdxAtteintVerset = -1;
-  var dernierTempsAudio = 0;
-  var derniereCleVersetVue = '';
-  var dernierTimestampRaf = 0;
-
-  var idxMotEnCoursCache = -1;
-  var debutTempsMotActuel = 0;
-  var finScrubTimestamp = 0;
-  var idxMotForceDebut = -1;
-  var expIdxMotForce = 0;
-  var tempsDebutReelObserve = {};
+  var cacheMetaCartes = [], derniereSigPreparation = '', lissageE = [], lissageB = [];
+  var modeContrasteSuivi = 0, maxIdxAtteintVerset = -1, dernierTempsAudio = 0, derniereCleVersetVue = '', dernierTimestampRaf = 0;
+  var idxMotEnCoursCache = -1, debutTempsMotActuel = 0, idxMotForceDebut = -1, expIdxMotForce = 0, tempsDebutReelObserve = {};
 
   if (!window.__captureClickScrubEtRacineV110) {
     window.__captureClickScrubEtRacineV110 = true;
-
     window.addEventListener('click', function(e) {
       var surScrub = e.target && e.target.closest && e.target.closest('.wbw-scrub-wrap');
-      if (surScrub || (Date.now() - finScrubTimestamp < 380)) {
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-        e.preventDefault();
+      if (surScrub) {
+        e.stopPropagation(); e.stopImmediatePropagation(); e.preventDefault();
         return false;
       }
-
-      if (e.isTrusted && e.target && e.target.closest) {
-        var rpItemClick = e.target.closest('.rp-item');
-        if (rpItemClick) {
-          window.__userPickedReciterManuallyV110 = true;
-        }
+      var carteCliquee = e.target && e.target.closest ? e.target.closest('.wbw-card-v110, .wbw-word-box, .wbw-card-unit') : null;
+      if (carteCliquee) {
+        e.stopPropagation(); e.stopImmediatePropagation(); e.preventDefault();
+        var idxCarte = (parseInt(carteCliquee.dataset.wbwOrd, 10) || 1) - 1;
+        allerAuDebutDuMot(idxCarte);
+        return false;
       }
-
+      var motNormalClique = e.target && e.target.closest ? e.target.closest('.inline-clickable-word, .ar-word-follow') : null;
+      if (motNormalClique) {
+        e.stopPropagation(); e.stopImmediatePropagation();
+        return false;
+      }
+      if (e.isTrusted && e.target && e.target.closest && e.target.closest('.rp-item')) {
+        window.__userPickedReciterManuallyV110 = true;
+      }
       var btn = e.target && e.target.closest ? e.target.closest('button') : null;
       if (btn) {
+        if (e.isTrusted && !btn.classList.contains('rp-btn')) {
+          window.__userClickedModeBtnV115 = true;
+        }
         var txt = (btn.textContent || '').replace(/\s+/g, '');
         if (txt === 'A+' || txt === 'A＋') {
           wbwFontScale = Math.min(1.75, Math.round((wbwFontScale + 0.12) * 100) / 100);
@@ -1675,30 +1058,16 @@
           appliquerTailleSurMetaCartes();
         }
       }
-
-      var carteCliquee = e.target && e.target.closest ? e.target.closest('.wbw-card-v110') : null;
-      if (carteCliquee) {
-        var trEl = carteCliquee.querySelector('.wbw-tr-v110, .wbw-tr');
-        var arEl = carteCliquee.querySelector('.wbw-ar-v110, .wbw-ar');
-        if (trEl && trEl.textContent) dernierMotCliqueTrad = trEl.textContent.trim();
-        if (arEl && arEl.textContent) dernierMotCliqueAr = normaliserArabeCle(arEl.textContent);
-      }
-
-      setTimeout(traduireModaleRacineEnFrancais, 15);
-      setTimeout(traduireModaleRacineEnFrancais, 70);
-      setTimeout(traduireModaleRacineEnFrancais, 180);
-      setTimeout(traduireModaleRacineEnFrancais, 380);
+      setTimeout(mettreAJourMentionsLegalesGoogleGrants, 10);
+      setTimeout(desactiverModaleRacineMot, 10);
     }, true);
   }
 
   function detruireNoeudNumero(el) {
     if (!el || el.classList.contains('wbw-ar-v110') || el.classList.contains('wbw-tr-v110') || el.classList.contains('wbw-ar') || el.classList.contains('wbw-tr')) return;
     el.dataset.wbwIsNum = '1';
-    if (el.textContent !== '') {
-      el.textContent = '';
-    }
-    el.classList.add('wbw-num-hidden-v110');
-    forcer(el, 'display', 'none');
+    if (el.textContent !== '') el.textContent = '';
+    el.classList.add('wbw-num-hidden-v110'); forcer(el, 'display', 'none');
   }
 
   function purgerTousLesChiffresDeLaCarte(carte, elAr, elTrad) {
@@ -1706,258 +1075,160 @@
     extraireIndiceOrdreCarte(carte);
     if (carte.hasAttribute('data-word-num')) carte.removeAttribute('data-word-num');
     if (carte.hasAttribute('data-index')) carte.removeAttribute('data-index');
-
     var tous = carte.querySelectorAll('*');
     for (var i = 0; i < tous.length; i++) {
       var sub = tous[i];
-      if (sub === elAr || sub === elTrad) continue;
-      if (sub.classList.contains('wbw-scrub-wrap') || (sub.closest && sub.closest('.wbw-scrub-wrap'))) continue;
+      if (sub === elAr || sub === elTrad || sub.classList.contains('wbw-scrub-wrap') || (sub.closest && sub.closest('.wbw-scrub-wrap'))) continue;
       if (sub.classList.contains('wbw-ar-v110') || sub.classList.contains('wbw-tr-v110') || sub.classList.contains('wbw-ar') || sub.classList.contains('wbw-tr')) continue;
-      if (elAr && elAr.contains(sub) && !estPetitNumero(sub.textContent)) continue;
-      if (elTrad && elTrad.contains(sub)) continue;
-      if (
-        sub.dataset.wbwIsNum === '1' ||
-        sub.tagName === 'SUP' ||
-        sub.tagName === 'SMALL' ||
-        (sub.children.length === 0 && estPetitNumero(sub.textContent))
-      ) {
-        detruireNoeudNumero(sub);
-      }
+      if ((elAr && elAr.contains(sub) && !estPetitNumero(sub.textContent)) || (elTrad && elTrad.contains(sub))) continue;
+      if (sub.dataset.wbwIsNum === '1' || sub.tagName === 'SUP' || sub.tagName === 'SMALL' || (sub.children.length === 0 && estPetitNumero(sub.textContent))) detruireNoeudNumero(sub);
     }
   }
 
   function calculerFenetresMots(dureeAudio) {
     var n = cacheMetaCartes.length;
     if (n === 0 || !dureeAudio || !isFinite(dureeAudio) || dureeAudio <= 0) return [];
-
     var segs = window.__wbwSegsActuels;
     if (segs && segs.length > 0) {
-      var fenetresQdc = new Array(n);
+      var fenetresQdc = new Array(n), nbTrouves = 0;
       for (var s = 0; s < segs.length; s++) {
         var sg = segs[s];
         if (sg && sg.length >= 3) {
           var wIdx = Number(sg[0]) - 1;
           if (wIdx >= 0 && wIdx < n) {
             fenetresQdc[wIdx] = { t0: Number(sg[1]) / 1000, t1: Number(sg[2]) / 1000 };
+            nbTrouves++;
           }
         }
       }
-      var tousPresents = true;
-      for (var k = 0; k < n; k++) {
-        if (!fenetresQdc[k]) { tousPresents = false; break; }
-      }
-      if (tousPresents) return fenetresQdc;
+      if (nbTrouves === n) return fenetresQdc;
     }
-
-    var poids = new Array(n);
-    var totalPoids = 0;
+    var poids = new Array(n), totalPoids = 0;
     for (var i = 0; i < n; i++) {
-      var m = cacheMetaCartes[i];
-      var arTxt = m && m.elAr ? nettoyerArabeBrut(m.elAr.textContent || '') : '';
-      var p = Math.max(2.2, arTxt.length * 1.15);
-      poids[i] = p;
-      totalPoids += p;
+      var m = cacheMetaCartes[i], arTxt = m && m.elAr ? nettoyerArabeBrut(m.elAr.textContent || '') : '';
+      poids[i] = Math.max(2.2, arTxt.length * 1.15); totalPoids += poids[i];
     }
-
-    var cumul = 0;
-    var fenetres = new Array(n);
-    var dureeUtile = Math.max(0.2, dureeAudio * 0.96);
+    var cumul = 0, fenetres = new Array(n), dureeUtile = Math.max(0.2, dureeAudio * 0.96);
     for (var j = 0; j < n; j++) {
       var dMot = (poids[j] / totalPoids) * dureeUtile;
-      fenetres[j] = { t0: cumul, t1: cumul + dMot };
-      cumul += dMot;
+      fenetres[j] = { t0: cumul, t1: cumul + dMot }; cumul += dMot;
     }
     return fenetres;
   }
 
   function detecterSensLectureGrille() {
     if (cacheMetaCartes.length >= 2 && cacheMetaCartes[0].carte && cacheMetaCartes[1].carte) {
-      var r0 = cacheMetaCartes[0].carte.getBoundingClientRect();
-      var r1 = cacheMetaCartes[1].carte.getBoundingClientRect();
-      if (Math.abs(r0.top - r1.top) < 35) {
-        return r0.left >= r1.left ? 'rtl' : 'ltr';
-      }
+      var r0 = cacheMetaCartes[0].carte.getBoundingClientRect(), r1 = cacheMetaCartes[1].carte.getBoundingClientRect();
+      if (Math.abs(r0.top - r1.top) < 35) return r0.left >= r1.left ? 'rtl' : 'ltr';
     }
     return 'rtl';
   }
 
   function allerAuDebutDuMot(idxMot) {
     if (idxMot < 0 || idxMot >= cacheMetaCartes.length) return;
-
-    finScrubTimestamp = Date.now();
     maxIdxAtteintVerset = idxMot;
     idxMotEnCoursCache = idxMot;
     debutTempsMotActuel = performance.now();
     idxMotForceDebut = idxMot;
-    expIdxMotForce = performance.now() + 260;
+    expIdxMotForce = performance.now() + 950;
 
     for (var r = 0; r < cacheMetaCartes.length; r++) {
-      if (r < idxMot) {
-        lissageE[r] = 0;
-        lissageB[r] = 1;
-      } else if (r === idxMot) {
-        lissageE[r] = 1;
-        lissageB[r] = 1;
-      } else {
-        lissageE[r] = 0;
-        lissageB[r] = 0;
-      }
+      lissageE[r] = (r === idxMot) ? 1 : 0;
+      lissageB[r] = (r <= idxMot) ? 1 : 0;
     }
 
     var aud = document.getElementById('ayahAudio') || window.__lecteurAudioActuel || document.querySelector('audio');
     if (!aud) return;
 
-    var positionnerAuDebutDuMot = function() {
+    var positionnerEtJouer = function() {
       var dur = aud.duration;
-      if (idxMot === 0) {
-        aud.currentTime = 0;
-        return;
-      }
-      if (dur && isFinite(dur) && dur > 0) {
+      var tCible = 0;
+      if (idxMot > 0 && dur && isFinite(dur) && dur > 0) {
         var fen = calculerFenetresMots(dur);
         if (fen[idxMot] && typeof fen[idxMot].t0 === 'number') {
-          aud.currentTime = Math.max(0, Math.min(dur - 0.05, fen[idxMot].t0));
+          tCible = Math.max(0, Math.min(dur - 0.08, fen[idxMot].t0));
         } else if (typeof tempsDebutReelObserve[idxMot] === 'number') {
-          aud.currentTime = Math.max(0, Math.min(dur - 0.05, tempsDebutReelObserve[idxMot]));
+          tCible = Math.max(0, Math.min(dur - 0.08, tempsDebutReelObserve[idxMot]));
         } else {
-          aud.currentTime = (idxMot / cacheMetaCartes.length) * dur;
+          tCible = (idxMot / cacheMetaCartes.length) * dur;
+        }
+      }
+      try { aud.currentTime = tCible; } catch (e) {}
+      if (aud.paused) {
+        var p = aud.play();
+        if (p && typeof p.catch === 'function') {
+          p.catch(function() {
+            var playBtn = document.getElementById('playSyncBtn');
+            if (playBtn) playBtn.click();
+          });
         }
       }
     };
 
     if (!aud.src || aud.readyState === 0) {
-      var playBtn = document.getElementById('playSyncBtn');
-      if (playBtn && aud.paused) playBtn.click();
+      var playBtnInit = document.getElementById('playSyncBtn');
+      if (playBtnInit && aud.paused) playBtnInit.click();
       aud.addEventListener('loadedmetadata', function onMeta() {
         aud.removeEventListener('loadedmetadata', onMeta);
-        positionnerAuDebutDuMot();
+        positionnerEtJouer();
       });
     } else {
-      positionnerAuDebutDuMot();
-      if (aud.paused) {
-        var playBtn2 = document.getElementById('playSyncBtn');
-        if (playBtn2) playBtn2.click();
-        else aud.play().catch(function() {});
-      }
+      positionnerEtJouer();
     }
 
-    if (window.__appliquerRubanColleWBW) {
-      window.__appliquerRubanColleWBW(performance.now());
-    }
+    if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW(performance.now());
   }
 
   function creerBarreScrubPourCarte(carte, idxMot) {
     var wrap = carte.querySelector('.wbw-scrub-wrap');
     if (!wrap) {
-      wrap = document.createElement('div');
-      wrap.className = 'wbw-scrub-wrap';
-      wrap.setAttribute('data-dir', 'rtl');
+      wrap = document.createElement('div'); wrap.className = 'wbw-scrub-wrap'; wrap.setAttribute('data-dir', 'rtl');
       wrap.innerHTML = '<div class="wbw-scrub-track"><div class="wbw-scrub-fill"></div></div>';
       carte.insertBefore(wrap, carte.firstChild);
-    } else {
-      var oldDot = wrap.querySelector('.wbw-scrub-dot');
-      if (oldDot) oldDot.remove();
     }
     wrap.dataset.wbwIdx = String(idxMot);
-
     if (!wrap.__scrubEventsAttached) {
       wrap.__scrubEventsAttached = true;
-
       ['click', 'dblclick', 'mousedown', 'mouseup', 'touchstart', 'touchend', 'pointerup'].forEach(function(evtName) {
         wrap.addEventListener(evtName, function(ev) {
-          finScrubTimestamp = Date.now();
-          ev.stopPropagation();
-          ev.stopImmediatePropagation();
+          ev.stopPropagation(); ev.stopImmediatePropagation();
           if (evtName === 'click') ev.preventDefault();
         }, false);
       });
-
       wrap.addEventListener('pointerdown', function(ev) {
-        finScrubTimestamp = Date.now();
-        ev.stopPropagation();
-        ev.stopImmediatePropagation();
-        ev.preventDefault();
-        var idx = parseInt(wrap.dataset.wbwIdx, 10) || 0;
-        allerAuDebutDuMot(idx);
+        ev.stopPropagation(); ev.stopImmediatePropagation(); ev.preventDefault();
+        allerAuDebutDuMot(parseInt(wrap.dataset.wbwIdx, 10) || 0);
       }, false);
     }
-
-    return {
-      wrap: wrap,
-      track: wrap.querySelector('.wbw-scrub-track'),
-      fill: wrap.querySelector('.wbw-scrub-fill')
-    };
+    return { wrap: wrap, track: wrap.querySelector('.wbw-scrub-track'), fill: wrap.querySelector('.wbw-scrub-fill') };
   }
 
   function preparerGrilleSiNecessaire(cartes) {
     if (!cartes || cartes.length < 1 || !estModeMotAMotActif()) {
-      cacheMetaCartes = [];
-      derniereSigPreparation = '';
-      cacherGrilleMotAMotQuandInactif();
-      gererMasquageDoublonVerset(null, false);
-      return false;
+      cacheMetaCartes = []; derniereSigPreparation = ''; cacherGrilleMotAMotQuandInactif(); gererMasquageDoublonVerset(null, false); return false;
     }
     var grille = cartes[0].parentElement;
-    if (!grille) {
-      gererMasquageDoublonVerset(null, false);
-      return false;
-    }
-
+    if (!grille) { gererMasquageDoublonVerset(null, false); return false; }
     gererMasquageDoublonVerset(cartes, true);
-
     var banner = document.getElementById('wbwSensLectureBanner');
-    if (banner) {
-      forcer(banner, 'display', cartes.length <= 1 ? 'none' : 'block');
-    }
-
-    var lang = obtenirLanguePage();
-    var cleDom = obtenirCleVersetActuelDom();
-    var dernierMotTxt = (cartes[cartes.length - 1].textContent || '').slice(0, 16);
-    var sig = cleDom + ':' + lang + ':' + cartes.length + ':' + (cartes[0].textContent || '').slice(0, 16) + ':' + dernierMotTxt;
-
-    var memeDom =
-      sig === derniereSigPreparation &&
-      cacheMetaCartes.length === cartes.length &&
-      cacheMetaCartes[0] &&
-      cacheMetaCartes[0].carte === cartes[0] &&
-      cacheMetaCartes[0].elAr &&
-      cacheMetaCartes[0].elAr.isConnected &&
-      cartes[0].classList.contains('wbw-card-v110');
-
-    if (memeDom) {
-      for (var u = 0; u < cacheMetaCartes.length; u++) {
-        var mu = cacheMetaCartes[u];
-        if (mu && mu.elTrad) nettoyerEtTraduireMotUneFois(mu.elTrad, mu.elAr, lang);
-      }
+    if (banner) forcer(banner, 'display', cartes.length <= 1 ? 'none' : 'block');
+    var lang = obtenirLanguePage(), cleDom = obtenirCleVersetActuelDom();
+    var sig = cleDom + ':' + lang + ':' + cartes.length;
+    if (sig === derniereSigPreparation && cacheMetaCartes.length === cartes.length && cacheMetaCartes[0] && cacheMetaCartes[0].carte === cartes[0] && cacheMetaCartes[0].elAr && cacheMetaCartes[0].elAr.isConnected && cartes[0].classList.contains('wbw-card-v110')) {
+      for (var u = 0; u < cacheMetaCartes.length; u++) if (cacheMetaCartes[u] && cacheMetaCartes[u].elTrad) nettoyerEtTraduireMotUneFois(cacheMetaCartes[u].elTrad, cacheMetaCartes[u].elAr, lang);
       return true;
     }
-
-    var changementVerset = (sig !== derniereSigPreparation);
-    derniereSigPreparation = sig;
-    if (changementVerset || lissageE.length !== cartes.length) {
-      maxIdxAtteintVerset = -1;
-      idxMotEnCoursCache = -1;
-      tempsDebutReelObserve = {};
-      modeContrasteSuivi = 0;
-      window.__wbwEnergies = [];
-      window.__wbwBleus = [];
-      lissageE = new Array(cartes.length).fill(0);
-      lissageB = new Array(cartes.length).fill(0);
+    if (sig !== derniereSigPreparation || lissageE.length !== cartes.length) {
+      maxIdxAtteintVerset = -1; idxMotEnCoursCache = -1; tempsDebutReelObserve = {}; modeContrasteSuivi = 0;
+      window.__wbwEnergies = []; window.__wbwBleus = [];
+      lissageE = new Array(cartes.length).fill(0); lissageB = new Array(cartes.length).fill(0);
     }
-    cacheMetaCartes = new Array(cartes.length);
-
-    forcer(grille, 'display', 'flex');
-    forcer(grille, 'flex-wrap', 'wrap');
-    forcer(grille, 'justify-content', 'center');
-    forcer(grille, 'align-items', 'flex-start');
-    forcer(grille, 'gap', '6px 4px');
-    forcer(grille, 'row-gap', '24px');
-    forcer(grille, 'margin-top', cartes.length === 1 ? '6px' : '20px');
-    forcer(grille, 'margin-bottom', '14px');
-    forcer(grille, 'padding', cartes.length === 1 ? '10px 10px' : '16px 10px');
-    forcer(grille, 'background', 'transparent');
-    forcer(grille, 'border', 'none');
-    forcer(grille, 'box-shadow', 'none');
+    derniereSigPreparation = sig; cacheMetaCartes = new Array(cartes.length);
+    forcer(grille, 'display', 'flex'); forcer(grille, 'flex-wrap', 'wrap'); forcer(grille, 'justify-content', 'center');
+    forcer(grille, 'align-items', 'flex-start'); forcer(grille, 'gap', '6px 4px'); forcer(grille, 'row-gap', '24px');
+    forcer(grille, 'margin-top', cartes.length === 1 ? '6px' : '20px'); forcer(grille, 'margin-bottom', '14px');
+    forcer(grille, 'padding', cartes.length === 1 ? '10px 10px' : '16px 10px'); forcer(grille, 'background', 'transparent');
+    forcer(grille, 'border', 'none'); forcer(grille, 'box-shadow', 'none');
 
     var hRem = (3.35 * wbwFontScale).toFixed(2) + 'rem';
     var arFont = 'calc(clamp(2.15rem, 3.6vw, 2.75rem) * ' + wbwFontScale.toFixed(2) + ')';
@@ -1966,94 +1237,37 @@
 
     for (var m = 0; m < cartes.length; m++) {
       var carte = cartes[m];
-      if (!carte.dataset.wbwOrd) carte.dataset.wbwOrd = String(m + 1);
-      carte.classList.remove('wbw-card-v104', 'wbw-card-v105', 'wbw-card-v106', 'wbw-card-v107', 'wbw-card-v108', 'wbw-card-v109', 'wbw-card-v111', 'wbw-card-v112');
+      carte.dataset.wbwOrd = String(m + 1);
       carte.classList.add('wbw-card-v110');
-
-      forcer(carte, 'margin', '0px');
-      forcer(carte, 'padding', '2px 8px 4px 8px');
-      forcer(carte, 'background', 'transparent');
-      forcer(carte, 'border', 'none');
-      forcer(carte, 'border-radius', '0px');
-      forcer(carte, 'box-shadow', 'none');
-      forcer(carte, 'outline', 'none');
-      forcer(carte, 'min-width', '0px');
-      forcer(carte, 'width', 'auto');
-      forcer(carte, 'height', 'auto');
-      forcer(carte, 'display', 'inline-flex');
-      forcer(carte, 'flex-direction', 'column');
-      forcer(carte, 'align-items', 'center');
-      forcer(carte, 'justify-content', 'flex-start');
-      forcer(carte, 'transform', 'none');
-
-      var elAr = null;
-      var elTrad = null;
-
-      var directs = carte.children;
+      forcer(carte, 'margin', '0px'); forcer(carte, 'padding', '2px 8px 4px 8px'); forcer(carte, 'background', 'transparent');
+      forcer(carte, 'border', 'none'); forcer(carte, 'box-shadow', 'none'); forcer(carte, 'display', 'inline-flex');
+      forcer(carte, 'flex-direction', 'column'); forcer(carte, 'align-items', 'center'); forcer(carte, 'transform', 'none');
+      var elAr = null, elTrad = null, directs = carte.children;
       for (var d = 0; d < directs.length; d++) {
         var ch = directs[d];
         if (ch.classList.contains('wbw-scrub-wrap')) continue;
         var tCh = (ch.textContent || '').trim();
-        if (estPetitNumero(tCh) || ch.tagName === 'SUP' || ch.tagName === 'SMALL') {
-          detruireNoeudNumero(ch);
-        } else if (!elAr && (ch.classList.contains('wbw-ar') || ch.classList.contains('wbw-ar-v110') || contientArabe(tCh))) {
-          elAr = ch;
-        } else if (ch !== elAr && (ch.classList.contains('wbw-tr') || ch.classList.contains('wbw-tr-v110') || tCh.length > 0)) {
-          elTrad = ch;
-        }
+        if (estPetitNumero(tCh) || ch.tagName === 'SUP' || ch.tagName === 'SMALL') detruireNoeudNumero(ch);
+        else if (!elAr && (ch.classList.contains('wbw-ar') || ch.classList.contains('wbw-ar-v110') || contientArabe(tCh))) elAr = ch;
+        else if (ch !== elAr && (ch.classList.contains('wbw-tr') || ch.classList.contains('wbw-tr-v110') || tCh.length > 0)) elTrad = ch;
       }
-
       if (elAr) {
-        elAr.classList.remove('wbw-num-hidden-v110', 'wbw-num-hidden-v111', 'wbw-num-hidden-v112');
-        delete elAr.dataset.wbwIsNum;
-        elAr.classList.add('wbw-ar-v110');
-        forcer(elAr, 'display', 'block');
-        forcer(elAr, 'visibility', 'visible');
-        forcer(elAr, 'opacity', '1');
-        forcer(elAr, 'min-height', hRem);
-        forcer(elAr, 'line-height', hRem);
-        forcer(elAr, 'text-align', 'center');
-        forcer(elAr, 'font-size', arFont);
-        forcer(elAr, 'white-space', 'nowrap');
-        forcer(elAr, 'border', 'none');
-        forcer(elAr, 'border-bottom', 'none');
-        forcer(elAr, 'border-top', 'none');
+        elAr.classList.remove('wbw-num-hidden-v110'); delete elAr.dataset.wbwIsNum; elAr.classList.add('wbw-ar-v110');
+        forcer(elAr, 'display', 'block'); forcer(elAr, 'min-height', hRem); forcer(elAr, 'line-height', hRem);
+        forcer(elAr, 'text-align', 'center'); forcer(elAr, 'font-size', arFont); forcer(elAr, 'white-space', 'nowrap');
+        forcer(elAr, 'border', 'none'); forcer(elAr, 'border-bottom', 'none');
       }
       if (elTrad) {
-        elTrad.classList.remove('wbw-num-hidden-v110', 'wbw-num-hidden-v111', 'wbw-num-hidden-v112');
-        delete elTrad.dataset.wbwIsNum;
-        elTrad.classList.add('wbw-tr-v110');
-        forcer(elTrad, 'display', 'block');
-        forcer(elTrad, 'visibility', 'visible');
-        forcer(elTrad, 'opacity', '1');
-        forcer(elTrad, 'width', 'auto');
-        forcer(elTrad, 'height', 'auto');
-        forcer(elTrad, 'max-width', cartes.length === 1 ? '220px' : trMaxW);
-        forcer(elTrad, 'text-align', 'center');
-        forcer(elTrad, 'line-height', '1.25');
-        forcer(elTrad, 'font-size', trFont);
-        forcer(elTrad, 'margin-top', '4px');
-        forcer(elTrad, 'padding-top', '0px');
-        forcer(elTrad, 'border', 'none');
-        forcer(elTrad, 'border-top', 'none');
-        forcer(elTrad, 'border-bottom', 'none');
-        nettoyerEtTraduireMotUneFois(elTrad, elAr, lang);
+        elTrad.classList.remove('wbw-num-hidden-v110'); delete elTrad.dataset.wbwIsNum; elTrad.classList.add('wbw-tr-v110');
+        forcer(elTrad, 'display', 'block'); forcer(elTrad, 'max-width', cartes.length === 1 ? '220px' : trMaxW);
+        forcer(elTrad, 'text-align', 'center'); forcer(elTrad, 'line-height', '1.25'); forcer(elTrad, 'font-size', trFont);
+        forcer(elTrad, 'margin-top', '4px'); forcer(elTrad, 'border', 'none'); forcer(elTrad, 'border-top', 'none');
+        nettoyerEtTraduireMotUneFois(elTrad, elAr, lang, true);
       }
-
       var scrubObj = creerBarreScrubPourCarte(carte, m);
       purgerTousLesChiffresDeLaCarte(carte, elAr, elTrad);
-
-      cacheMetaCartes[m] = {
-        carte: carte,
-        elAr: elAr,
-        elTrad: elTrad,
-        scrub: scrubObj,
-        lastE: -1,
-        lastB: -1,
-        lastContraste: -1
-      };
+      cacheMetaCartes[m] = { carte: carte, elAr: elAr, elTrad: elTrad, scrub: scrubObj };
     }
-
     return true;
   }
 
@@ -2061,207 +1275,131 @@
     var maintenant = (typeof ts === 'number' && ts > 0) ? ts : performance.now();
     var dt = dernierTimestampRaf ? Math.min(50, Math.max(1, maintenant - dernierTimestampRaf)) : (1000 / 60);
     dernierTimestampRaf = maintenant;
-
-    var alphaE = 1 - Math.pow(1 - 0.32, dt / (1000 / 60));
-    var alphaB = 1 - Math.pow(1 - 0.26, dt / (1000 / 60));
-    var alphaC = 1 - Math.pow(1 - 0.25, dt / (1000 / 60));
-
+    var alphaE = 1 - Math.pow(1 - 0.32, dt / (1000 / 60)), alphaB = 1 - Math.pow(1 - 0.26, dt / (1000 / 60)), alphaC = 1 - Math.pow(1 - 0.25, dt / (1000 / 60));
     var aud = document.getElementById('ayahAudio') || window.__lecteurAudioActuel || document.querySelector('audio');
-    var tActuel = aud ? (aud.currentTime || 0) : 0;
-    var durAudio = (aud && aud.duration && isFinite(aud.duration)) ? aud.duration : 0;
+    var tActuel = aud ? (aud.currentTime || 0) : 0, durAudio = (aud && aud.duration && isFinite(aud.duration)) ? aud.duration : 0;
     var audioJoue = Boolean(aud && !aud.paused && !aud.ended);
-
-    var cartes = obtenirCartesMotAMotUniversel();
-    var banner = document.getElementById('wbwSensLectureBanner');
-
-    if (!cartes || cartes.length < 1) {
+    var cartes = obtenirCartesMotAMotUniversel(), banner = document.getElementById('wbwSensLectureBanner');
+    if (!cartes || cartes.length < 1 || !preparerGrilleSiNecessaire(cartes)) {
       if (banner) forcer(banner, 'display', 'none');
-      gererMasquageDoublonVerset(null, false);
-      return;
+      gererMasquageDoublonVerset(null, false); return;
     }
 
-    if (!preparerGrilleSiNecessaire(cartes)) {
-      if (banner) forcer(banner, 'display', 'none');
-      return;
-    }
+    var suiviBoutonOn = window.__wbwSuiviBoutonActif !== false, energies = (suiviBoutonOn && audioJoue) ? (window.__wbwEnergies || []) : [];
+    var fenetres = durAudio > 0 ? calculerFenetresMots(durAudio) : [];
 
-    var suiviBoutonOn = window.__wbwSuiviBoutonActif !== false;
-    var energies = (suiviBoutonOn && audioJoue) ? (window.__wbwEnergies || []) : [];
-
-    var idxPic = -1;
-    var maxValE = 0.50;
+    var idxPic = -1, maxValE = 0.50;
     if (maintenant < expIdxMotForce && idxMotForceDebut >= 0) {
       idxPic = idxMotForceDebut;
     } else if (audioJoue) {
       for (var p = 0; p < cartes.length; p++) {
         var ev = energies[p] || 0;
-        if (ev > maxValE) {
-          maxValE = ev;
-          idxPic = p;
+        if (ev > maxValE) { maxValE = ev; idxPic = p; }
+      }
+      if (idxPic === -1 && fenetres.length === cartes.length) {
+        for (var f = 0; f < fenetres.length; f++) {
+          if (tActuel >= fenetres[f].t0 && tActuel <= fenetres[f].t1 + 0.08) {
+            idxPic = f;
+            break;
+          }
+        }
+        if (idxPic === -1 && tActuel >= fenetres[fenetres.length - 1].t0) {
+          idxPic = cartes.length - 1;
         }
       }
-      if (idxPic === -1 && tActuel < 0.45) {
-        idxPic = 0;
-      }
+      if (idxPic === -1 && tActuel < 0.45) idxPic = 0;
     }
 
-    if (window.__wbwResetDemande || (tActuel < 0.15 && dernierTempsAudio > 0.4 && maintenant >= expIdxMotForce) || (!audioJoue && tActuel < 0.08 && (!aud || !aud.ended) && maintenant >= expIdxMotForce)) {
-      window.__wbwResetDemande = false;
-      maxIdxAtteintVerset = -1;
-      idxMotEnCoursCache = -1;
-      for (var r = 0; r < cartes.length; r++) {
-        lissageE[r] = 0;
-        lissageB[r] = 0;
-        if (cacheMetaCartes[r]) {
-          cacheMetaCartes[r].lastE = -1;
-          cacheMetaCartes[r].lastB = -1;
-        }
-      }
+    if (window.__wbwResetDemande || (tActuel < 0.12 && dernierTempsAudio > 0.4 && maintenant >= expIdxMotForce) || (!audioJoue && tActuel < 0.08 && (!aud || !aud.ended) && maintenant >= expIdxMotForce)) {
+      window.__wbwResetDemande = false; maxIdxAtteintVerset = -1; idxMotEnCoursCache = -1;
+      for (var r = 0; r < cartes.length; r++) { lissageE[r] = 0; lissageB[r] = 0; }
     }
     dernierTempsAudio = tActuel;
 
-    if (suiviBoutonOn && audioJoue && idxPic >= 0) {
-      if (maintenant < expIdxMotForce) {
-        maxIdxAtteintVerset = idxPic;
-      } else if (idxPic <= maxIdxAtteintVerset + 1) {
-        if (idxPic > maxIdxAtteintVerset) maxIdxAtteintVerset = idxPic;
-      } else if (tActuel > 0.35) {
-        maxIdxAtteintVerset = idxPic;
-      }
+    if (suiviBoutonOn && (audioJoue || maintenant < expIdxMotForce) && idxPic >= 0) {
+      maxIdxAtteintVerset = idxPic;
     }
-    if (suiviBoutonOn && aud && aud.ended) {
+    if (suiviBoutonOn && aud && (aud.ended || (durAudio > 0 && tActuel >= durAudio - 0.12))) {
       maxIdxAtteintVerset = cartes.length - 1;
+      idxPic = cartes.length - 1;
     }
 
     var idxActuel = idxPic >= 0 ? idxPic : maxIdxAtteintVerset;
     if (idxActuel !== idxMotEnCoursCache) {
-      idxMotEnCoursCache = idxActuel;
-      debutTempsMotActuel = maintenant;
-      if (idxActuel >= 0 && audioJoue && typeof tempsDebutReelObserve[idxActuel] !== 'number') {
-        tempsDebutReelObserve[idxActuel] = tActuel;
-      }
+      idxMotEnCoursCache = idxActuel; debutTempsMotActuel = maintenant;
+      if (idxActuel >= 0 && audioJoue && typeof tempsDebutReelObserve[idxActuel] !== 'number') tempsDebutReelObserve[idxActuel] = tActuel;
     }
 
     var ratioMotActuel = 0;
-    if (audioJoue && idxActuel >= 0) {
-      var dureeMoyMotMs = durAudio > 0 ? Math.max(260, (durAudio * 920) / Math.max(1, cartes.length)) : 650;
-      ratioMotActuel = Math.max(0.04, Math.min(1.0, (maintenant - debutTempsMotActuel) / dureeMoyMotMs));
-    } else if (aud && aud.ended) {
+    if (aud && (aud.ended || (durAudio > 0 && tActuel >= durAudio - 0.12))) {
       ratioMotActuel = 1.0;
+    } else if ((audioJoue || maintenant < expIdxMotForce) && idxActuel >= 0) {
+      if (fenetres[idxActuel] && fenetres[idxActuel].t1 > fenetres[idxActuel].t0 && audioJoue) {
+        ratioMotActuel = Math.max(0.06, Math.min(1.0, (tActuel - fenetres[idxActuel].t0) / (fenetres[idxActuel].t1 - fenetres[idxActuel].t0)));
+      } else {
+        var dureeMoyMotMs = durAudio > 0 ? Math.max(260, (durAudio * 920) / Math.max(1, cartes.length)) : 650;
+        ratioMotActuel = Math.max(0.06, Math.min(1.0, (maintenant - debutTempsMotActuel) / dureeMoyMotMs));
+      }
     }
 
-    var dirLecture = detecterSensLectureGrille();
-    var audioActif = Boolean(suiviBoutonOn && (audioJoue || maxIdxAtteintVerset >= 0));
-    var cibleContraste = audioActif ? 1.0 : 0.0;
-    modeContrasteSuivi += (cibleContraste - modeContrasteSuivi) * alphaC;
+    var dirLecture = detecterSensLectureGrille(), audioActif = Boolean(suiviBoutonOn && (audioJoue || maxIdxAtteintVerset >= 0));
+    modeContrasteSuivi += ((audioActif ? 1.0 : 0.0) - modeContrasteSuivi) * alphaC;
+
+    var versetTermine = Boolean(aud && (aud.ended || (durAudio > 0 && !audioJoue && tActuel >= durAudio - 0.15)));
 
     for (var m = 0; m < cacheMetaCartes.length; m++) {
       var meta = cacheMetaCartes[m];
       if (!meta || !meta.carte) continue;
-
-      if (!meta.elAr || !meta.elAr.isConnected) {
-        derniereSigPreparation = '';
-        preparerGrilleSiNecessaire(cartes);
-        meta = cacheMetaCartes[m];
-        if (!meta || !meta.carte) continue;
+      purgerTousLesChiffresDeLaCarte(meta.carte, meta.elAr, meta.elTrad);
+      if (meta.elTrad && meta.elTrad.dataset.wbwTrFinal && meta.elTrad.textContent !== meta.elTrad.dataset.wbwTrFinal) {
+        definirTexteSansBoucle(meta.elTrad, meta.elTrad.dataset.wbwTrFinal);
       }
 
-      purgerTousLesChiffresDeLaCarte(meta.carte, meta.elAr, meta.elTrad);
-
-      var estMotActuel = suiviBoutonOn && audioJoue && (m === idxActuel || (cartes.length === 1 && (!aud || !aud.ended)));
-      var estDejaLu = suiviBoutonOn && (m < idxActuel || (aud && aud.ended));
+      var estMotActuel = !versetTermine && suiviBoutonOn && (audioJoue || maintenant < expIdxMotForce) && (m === idxActuel || (cartes.length === 1 && (!aud || !aud.ended)));
+      var estDejaLu = suiviBoutonOn && (versetTermine || m < idxActuel);
       var distanceFutur = idxActuel >= 0 ? (m - idxActuel) : (m + 1);
-
-      var eBrut = estMotActuel ? 1.0 : (audioJoue ? (energies[m] || 0) : 0);
-      var bBrut = (estDejaLu || estMotActuel) ? 1.0 : 0.0;
-
-      lissageE[m] += (eBrut - lissageE[m]) * alphaE;
-      lissageB[m] += (bBrut - lissageB[m]) * alphaB;
-      if (lissageE[m] < 0.002) lissageE[m] = 0;
-      if (lissageB[m] < 0.002) lissageB[m] = 0;
-
-      var e = courbeAppleMusic(lissageE[m]);
-      var b = courbeAppleMusic(lissageB[m]);
+      lissageE[m] += ((estMotActuel ? 1.0 : 0.0) - lissageE[m]) * alphaE;
+      lissageB[m] += (((estDejaLu || estMotActuel) ? 1.0 : 0.0) - lissageB[m]) * alphaB;
+      var e = courbeAppleMusic(lissageE[m]), b = courbeAppleMusic(lissageB[m]);
 
       if (meta.scrub && meta.scrub.wrap && meta.scrub.fill && meta.scrub.track) {
-        if (meta.scrub.wrap.getAttribute('data-dir') !== dirLecture) {
-          meta.scrub.wrap.setAttribute('data-dir', dirLecture);
-        }
-        var pctFill = 0;
-        if (estDejaLu) {
-          pctFill = 100;
-        } else if (estMotActuel) {
-          pctFill = Math.round(ratioMotActuel * 100);
-        }
-        forcer(meta.scrub.fill, 'width', pctFill + '%');
-
+        if (meta.scrub.wrap.getAttribute('data-dir') !== dirLecture) meta.scrub.wrap.setAttribute('data-dir', dirLecture);
+        forcer(meta.scrub.fill, 'width', (estDejaLu ? 100 : (estMotActuel ? Math.round(ratioMotActuel * 100) : 0)) + '%');
         if (estMotActuel) {
           meta.scrub.wrap.classList.add('wbw-scrub-active');
-          forcer(meta.scrub.track, 'background', 'rgba(186, 230, 253, 0.38)');
-          forcer(meta.scrub.track, 'opacity', '1');
+          forcer(meta.scrub.track, 'background', 'rgba(186, 230, 253, 0.38)'); forcer(meta.scrub.track, 'opacity', '1');
         } else {
           meta.scrub.wrap.classList.remove('wbw-scrub-active');
-          if (estDejaLu) {
-            forcer(meta.scrub.track, 'background', 'rgba(56, 189, 248, 0.28)');
-            forcer(meta.scrub.track, 'opacity', '0.95');
-          } else if (audioActif && distanceFutur === 1) {
-            forcer(meta.scrub.track, 'background', 'rgba(186, 230, 253, 0.34)');
-            forcer(meta.scrub.track, 'opacity', '0.68');
-          } else if (audioActif && distanceFutur === 2) {
-            forcer(meta.scrub.track, 'background', 'rgba(148, 163, 184, 0.26)');
-            forcer(meta.scrub.track, 'opacity', '0.45');
-          } else {
-            forcer(meta.scrub.track, 'background', 'rgba(148, 163, 184, 0.18)');
-            forcer(meta.scrub.track, 'opacity', audioActif ? '0.24' : '0.42');
-          }
+          if (estDejaLu) { forcer(meta.scrub.track, 'background', 'rgba(56, 189, 248, 0.28)'); forcer(meta.scrub.track, 'opacity', '0.95'); }
+          else if (audioActif && distanceFutur === 1) { forcer(meta.scrub.track, 'background', 'rgba(186, 230, 253, 0.34)'); forcer(meta.scrub.track, 'opacity', '0.68'); }
+          else if (audioActif && distanceFutur === 2) { forcer(meta.scrub.track, 'background', 'rgba(148, 163, 184, 0.26)'); forcer(meta.scrub.track, 'opacity', '0.45'); }
+          else { forcer(meta.scrub.track, 'background', 'rgba(148, 163, 184, 0.18)'); forcer(meta.scrub.track, 'opacity', audioActif ? '0.24' : '0.42'); }
         }
       }
 
-      var lum = Math.max(b, e);
-      var opReposBase = 0.96 - 0.54 * modeContrasteSuivi;
+      var lum = Math.max(b, e), opReposBase = 0.96 - 0.54 * modeContrasteSuivi;
       if (audioActif && !estDejaLu && !estMotActuel) {
         if (distanceFutur === 1) opReposBase = Math.max(opReposBase, 0.72);
         else if (distanceFutur === 2) opReposBase = Math.max(opReposBase, 0.56);
       }
       var opMot = (opReposBase + (1.0 - opReposBase) * lum).toFixed(3);
-
-      var yPx = (-6.5 * e).toFixed(2);
-      var sc = (1.0 + 0.11 * e).toFixed(3);
-      var transMot = 'translate3d(0px, ' + yPx + 'px, 0px) scale(' + sc + ')';
+      var transMot = 'translate3d(0px, ' + (-6.5 * e).toFixed(2) + 'px, 0px) scale(' + (1.0 + 0.11 * e).toFixed(3) + ')';
 
       if (meta.elAr) {
-        var ombreAr = 'none';
-        if (e > 0.015 || b > 0.02) {
-          var rBlanc = (10 + 12 * e + 4 * b).toFixed(1);
-          var aBlanc = (0.68 * b + 0.30 * e).toFixed(3);
-          var rGlace = (20 + 18 * e + 8 * b).toFixed(1);
-          var aGlace = (0.36 * b + 0.44 * e).toFixed(3);
-          ombreAr = '0 0 ' + rBlanc + 'px rgba(255, 255, 255, ' + aBlanc + '), 0 0 ' + rGlace + 'px rgba(186, 230, 253, ' + aGlace + ')';
-        } else if (modeContrasteSuivi < 0.2) {
-          ombreAr = '0 0 8px rgba(255, 255, 255, 0.14)';
-        }
-
-        forcer(meta.elAr, 'opacity', opMot);
-        forcer(meta.elAr, 'transform', transMot);
-        forcer(meta.elAr, 'color', '#f8fafc');
-        forcer(meta.elAr, 'text-shadow', ombreAr);
-        forcer(meta.elAr, 'border', 'none');
-        forcer(meta.elAr, 'border-bottom', 'none');
+        var ombreAr = (e > 0.015 || b > 0.02)
+          ? ('0 0 ' + (10 + 12 * e + 4 * b).toFixed(1) + 'px rgba(255, 255, 255, ' + (0.68 * b + 0.30 * e).toFixed(3) + '), 0 0 ' + (20 + 18 * e + 8 * b).toFixed(1) + 'px rgba(186, 230, 253, ' + (0.36 * b + 0.44 * e).toFixed(3) + ')')
+          : (modeContrasteSuivi < 0.2 ? '0 0 8px rgba(255, 255, 255, 0.14)' : 'none');
+        forcer(meta.elAr, 'opacity', opMot); forcer(meta.elAr, 'transform', transMot);
+        forcer(meta.elAr, 'color', '#f8fafc'); forcer(meta.elAr, 'text-shadow', ombreAr);
+        forcer(meta.elAr, 'border', 'none'); forcer(meta.elAr, 'border-bottom', 'none');
       }
-
       if (meta.elTrad) {
         var colTrRepos = melangerRGB(186, 230, 253, 148, 163, 184, modeContrasteSuivi);
         var colTrFinal = lum > 0.01 ? melangerRGB(148, 163, 184, 255, 255, 255, lum) : colTrRepos;
-        var ombreTr = (e > 0.02 || b > 0.08)
-          ? ('0 0 ' + (10 * e + 5 * b).toFixed(1) + 'px rgba(255, 255, 255, ' + (0.55 * e + 0.28 * b).toFixed(3) + ')')
-          : 'none';
-        forcer(meta.elTrad, 'opacity', opMot);
-        forcer(meta.elTrad, 'transform', transMot);
-        forcer(meta.elTrad, 'color', colTrFinal);
-        forcer(meta.elTrad, 'font-weight', e > 0.25 ? '600' : (b > 0.5 ? '500' : '400'));
-        forcer(meta.elTrad, 'text-shadow', ombreTr);
-        forcer(meta.elTrad, 'border', 'none');
-        forcer(meta.elTrad, 'border-top', 'none');
+        var ombreTr = (e > 0.02 || b > 0.08) ? ('0 0 ' + (10 * e + 5 * b).toFixed(1) + 'px rgba(255, 255, 255, ' + (0.55 * e + 0.28 * b).toFixed(3) + ')') : 'none';
+        forcer(meta.elTrad, 'opacity', opMot); forcer(meta.elTrad, 'transform', transMot);
+        forcer(meta.elTrad, 'color', colTrFinal); forcer(meta.elTrad, 'font-weight', e > 0.25 ? '600' : (b > 0.5 ? '500' : '400'));
+        forcer(meta.elTrad, 'text-shadow', ombreTr); forcer(meta.elTrad, 'border', 'none'); forcer(meta.elTrad, 'border-top', 'none');
       }
     }
   };
@@ -2269,45 +1407,23 @@
   function verifierChangementVersetEtPause() {
     initialiserModesSurSourate();
     masquerBlocProgressionSurSourate();
-    traduireModaleRacineEnFrancais();
-
+    mettreAJourMentionsLegalesGoogleGrants();
+    desactiverModaleRacineMot();
     var cleActuelle = obtenirCleVersetActuelDom();
     if (cleActuelle && derniereCleVersetVue && cleActuelle !== derniereCleVersetVue) {
-      derniereCleVersetVue = cleActuelle;
-      derniereSigPreparation = '';
-      maxIdxAtteintVerset = -1;
-      idxMotEnCoursCache = -1;
-      tempsDebutReelObserve = {};
-      modeContrasteSuivi = 0;
-      window.__wbwEnergies = [];
-      window.__wbwBleus = [];
-      gererMasquageDoublonVerset(null, false);
-      mettreAJourBoutonAudioRange();
-    } else if (cleActuelle) {
-      derniereCleVersetVue = cleActuelle;
-    }
-
-    if (window.__appliquerRubanColleWBW) {
-      window.__appliquerRubanColleWBW();
-    }
+      derniereCleVersetVue = cleActuelle; derniereSigPreparation = ''; maxIdxAtteintVerset = -1;
+      idxMotEnCoursCache = -1; tempsDebutReelObserve = {}; modeContrasteSuivi = 0;
+      window.__wbwEnergies = []; window.__wbwBleus = [];
+      gererMasquageDoublonVerset(null, false); mettreAJourBoutonAudioRange();
+    } else if (cleActuelle) derniereCleVersetVue = cleActuelle;
+    if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW();
   }
 
   setInterval(verifierChangementVersetEtPause, 180);
-
-  document.addEventListener('click', function() {
-    setTimeout(verifierChangementVersetEtPause, 15);
-    setTimeout(verifierChangementVersetEtPause, 75);
-  });
-  document.addEventListener('change', function() {
-    setTimeout(verifierChangementVersetEtPause, 15);
-    setTimeout(verifierChangementVersetEtPause, 75);
-  });
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', verifierChangementVersetEtPause);
-  } else {
-    verifierChangementVersetEtPause();
-  }
+  document.addEventListener('click', function() { setTimeout(verifierChangementVersetEtPause, 5); setTimeout(verifierChangementVersetEtPause, 60); });
+  document.addEventListener('change', function() { setTimeout(verifierChangementVersetEtPause, 5); setTimeout(verifierChangementVersetEtPause, 60); });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', verifierChangementVersetEtPause);
+  else verifierChangementVersetEtPause();
 })();
 </script>
 <!-- WBW_COLLE_V110_END -->

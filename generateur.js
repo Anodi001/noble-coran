@@ -9514,7 +9514,7 @@ html body #btnLangRuV77.active-ext-v77 {
     <div class="app-modal-card" id="legalModalCard" style="text-align:center;">
       <h3 id="legalModalTitleEl">⚖️ Mentions légales</h3>
       <p id="legalModalDescEl">Portail éducatif, linguistique et culturel gratuit (sans publicité commerciale) édité par l'Association Loi 1901 à but non lucratif :</p>
-      <p style="color:#7dd3fc; font-weight:800; font-size:0.98rem;">« Institut Muhasiba »</p>
+      <p style="color:#7dd3fc; font-weight:800; font-size:0.98rem;">« INSTITUT NUMÉRIQUE CULTURE, LANGUES ET TEXTES FONDAMENTAUX »</p>
       <button type="button" class="app-modal-close" id="legalModalCloseEl" onclick="document.getElementById('legalModal').classList.remove('open')">Fermer</button>
     </div>
   </div>
