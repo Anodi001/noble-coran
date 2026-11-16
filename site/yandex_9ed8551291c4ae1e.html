@@ -55,33 +55,35 @@
     overflow: visible !important;
   }
 
-  /* Ligne de progression style YouTube au-dessus de chaque rangée de mots */
+  /* Hitbox isolée de la ligne YouTube & du checkpoint (indépendante du mot) */
   .wbw-scrub-wrap {
     width: calc(100% + 12px) !important;
-    margin: 0 -6px 6px -6px !important;
-    padding: 7px 0 !important;
+    margin: 0 -6px 10px -6px !important;
+    padding: 10px 0 !important;
     cursor: pointer !important;
     user-select: none !important;
     -webkit-user-select: none !important;
-    touch-action: pan-y !important;
+    touch-action: none !important;
     position: relative !important;
     display: block !important;
-    z-index: 5 !important;
+    z-index: 30 !important;
+    pointer-events: auto !important;
   }
 
   .wbw-scrub-track {
     width: 100% !important;
-    height: 3.5px !important;
+    height: 4px !important;
     border-radius: 999px !important;
-    background: rgba(148, 163, 184, 0.20) !important;
+    background: rgba(148, 163, 184, 0.22) !important;
     position: relative !important;
     overflow: visible !important;
+    pointer-events: none !important;
     transition: height 0.16s ease, background-color 0.2s ease, box-shadow 0.2s ease !important;
   }
 
   .wbw-scrub-wrap:hover .wbw-scrub-track,
   .wbw-scrub-wrap.wbw-scrub-active .wbw-scrub-track {
-    height: 5.5px !important;
+    height: 6px !important;
   }
 
   .wbw-scrub-fill {
@@ -109,11 +111,11 @@
     top: 50% !important;
     left: 0% !important;
     transform: translate(-50%, -50%) scale(0) !important;
-    width: 11px !important;
-    height: 11px !important;
+    width: 13px !important;
+    height: 13px !important;
     border-radius: 50% !important;
     background: #ffffff !important;
-    border: 2px solid #38bdf8 !important;
+    border: 2.5px solid #38bdf8 !important;
     box-shadow: 0 0 12px rgba(255, 255, 255, 0.95), 0 0 18px rgba(56, 189, 248, 0.85) !important;
     pointer-events: none !important;
     transition: transform 0.14s ease !important;
@@ -388,28 +390,6 @@
     }
   }
 
-  document.addEventListener('click', function(e) {
-    if (e.isTrusted && e.target && e.target.closest) {
-      var rpItemClick = e.target.closest('.rp-item');
-      if (rpItemClick) {
-        window.__userPickedReciterManuallyV110 = true;
-      }
-    }
-
-    var btn = e.target && e.target.closest ? e.target.closest('button') : null;
-    if (!btn) return;
-    var txt = (btn.textContent || '').replace(/\s+/g, '');
-    if (txt === 'A+' || txt === 'A＋') {
-      wbwFontScale = Math.min(1.75, Math.round((wbwFontScale + 0.12) * 100) / 100);
-      try { localStorage.setItem('wbw_font_scale_v110', String(wbwFontScale)); } catch (err) {}
-      appliquerTailleSurMetaCartes();
-    } else if (txt === 'A-' || txt === 'A−' || txt === 'A–') {
-      wbwFontScale = Math.max(0.70, Math.round((wbwFontScale - 0.12) * 100) / 100);
-      try { localStorage.setItem('wbw_font_scale_v110', String(wbwFontScale)); } catch (err) {}
-      appliquerTailleSurMetaCartes();
-    }
-  }, true);
-
   function estElementVersetNormal(el) {
     if (!el) return false;
     if (el.id === 'arabicVerse' || el.id === 'arabicVerseEl' || el.id === 'frenchVerseEl') return true;
@@ -665,10 +645,17 @@
     'نادي': 'il invoqua',
     'ربه': 'son Seigneur',
     'نداء': 'd’un appel',
-    'خفيا': 'secret'
+    'خفيا': 'secret',
+    'والقلم': 'Par la plume',
+    'يسطرون': 'ils écrivent'
   };
 
   var dicoInstantaneFr = {
+    'when': 'Quand',
+    'nun': 'Nūn',
+    'by the pen': 'Par la plume',
+    'and what': 'et ce qu’',
+    'they inscribe': 'ils écrivent',
     'stand': 'Lève-toi',
     'stand (in prayer)': 'Lève-toi (en prière)',
     'support': 'Lève-toi',
@@ -695,7 +682,6 @@
     '(is) the most generous': 'est le Très Généreux',
     'the most generous': 'le Très Généreux',
     'taught': 'a enseigné',
-    'by the pen': 'Par la plume',
     'man': 'à l’homme',
     'what': 'ce que',
     'not': 'ne ... pas',
@@ -719,7 +705,7 @@
     return h || 'fr';
   }
 
-  function nettoyerEtTraduireMotUneFois(elTrad, elAr, lang) {
+  function nettoyerEtTraduireMotUneFois(elTrad, elAr, lang, forcerRetraduction) {
     if (!elTrad) return;
     var brut = (elTrad.textContent || '').trim();
     var txtAr = elAr ? (elAr.textContent || '') : '';
@@ -759,7 +745,7 @@
       return;
     }
 
-    if (elTrad.dataset.wbwTrOk === lang) return;
+    if (!forcerRetraduction && elTrad.dataset.wbwTrOk === lang) return;
 
     var cle = lang + ':' + arNorm + ':' + cleMin;
     if (cacheTradMots[cle]) {
@@ -768,7 +754,7 @@
       return;
     }
 
-    if (/[àâäéèêëîïôöùûüçœæ]/i.test(brut) && lang === 'fr') {
+    if (!forcerRetraduction && /[àâäéèêëîïôöùûüçœæ]/i.test(brut) && lang === 'fr') {
       elTrad.dataset.wbwTrOk = lang;
       return;
     }
@@ -804,6 +790,59 @@
       });
   }
 
+  // =========================================================================
+  // TRADUCTION AUTOMATIQUE EN FRANÇAIS DE LA MODALE DE RACINE (MORPHOLOGIE)
+  // =========================================================================
+  var dernierMotCliqueTrad = '';
+  var dernierMotCliqueAr = '';
+
+  function traduireModaleRacineEnFrancais() {
+    var lang = obtenirLanguePage();
+    if (lang === 'en') return;
+
+    var tousEls = document.querySelectorAll('div, span, p, h3, h4');
+    var boiteInterneModale = null;
+
+    for (var i = 0; i < tousEls.length; i++) {
+      var el = tousEls[i];
+      if (el.children.length === 0) {
+        var txt = (el.textContent || '').trim();
+        if (txt === 'Racine (Root) :' && lang === 'fr') {
+          definirTexteSansBoucle(el, 'Racine :');
+        }
+        if (txt.indexOf('Mot coranique') !== -1 && el.parentElement) {
+          boiteInterneModale = el.parentElement;
+        }
+      }
+    }
+
+    if (!boiteInterneModale) return;
+
+    var elArModale = null;
+    var elTradModale = null;
+    var enfants = boiteInterneModale.children;
+
+    for (var c = 0; c < enfants.length; c++) {
+      var ch = enfants[c];
+      var t = (ch.textContent || '').trim();
+      if (!t || t.indexOf('Mot coranique') !== -1 || t.indexOf('Lemme') !== -1 || t.indexOf('Racine') !== -1) continue;
+      if (!elArModale && contientArabe(t)) {
+        elArModale = ch;
+      } else if (elArModale && !elTradModale && !contientArabe(t)) {
+        elTradModale = ch;
+        break;
+      }
+    }
+
+    if (elTradModale && elArModale) {
+      var arModPur = normaliserArabeCle(elArModale.textContent || '');
+      if (dernierMotCliqueTrad && dernierMotCliqueAr === arModPur) {
+        definirTexteSansBoucle(elTradModale, dernierMotCliqueTrad);
+      }
+      nettoyerEtTraduireMotUneFois(elTradModale, elArModale, lang, true);
+    }
+  }
+
   var cacheMetaCartes = [];
   var derniereSigPreparation = '';
   var lissageE = [];
@@ -818,8 +857,61 @@
   var idxMotEnCoursCache = -1;
   var debutTempsMotActuel = 0;
   var scrubEnCours = false;
+  var finScrubTimestamp = 0;
   var idxMotScrub = -1;
   var ratioInterneScrub = 0;
+
+  // INTERCEPTEUR GLOBAL EN PHASE DE CAPTURE :
+  // 1) Bloque tout clic sur la ligne/checkpoint pour ne JAMAIS ouvrir la modale de racine
+  // 2) Traduit la modale de racine en français uniquement quand on clique sur la hitbox du mot
+  if (!window.__captureClickScrubEtRacineV110) {
+    window.__captureClickScrubEtRacineV110 = true;
+
+    window.addEventListener('click', function(e) {
+      var surScrub = e.target && e.target.closest && e.target.closest('.wbw-scrub-wrap');
+      if (surScrub || scrubEnCours || (Date.now() - finScrubTimestamp < 420)) {
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        e.preventDefault();
+        return false;
+      }
+
+      if (e.isTrusted && e.target && e.target.closest) {
+        var rpItemClick = e.target.closest('.rp-item');
+        if (rpItemClick) {
+          window.__userPickedReciterManuallyV110 = true;
+        }
+      }
+
+      var btn = e.target && e.target.closest ? e.target.closest('button') : null;
+      if (btn) {
+        var txt = (btn.textContent || '').replace(/\s+/g, '');
+        if (txt === 'A+' || txt === 'A＋') {
+          wbwFontScale = Math.min(1.75, Math.round((wbwFontScale + 0.12) * 100) / 100);
+          try { localStorage.setItem('wbw_font_scale_v110', String(wbwFontScale)); } catch (err) {}
+          appliquerTailleSurMetaCartes();
+        } else if (txt === 'A-' || txt === 'A−' || txt === 'A–') {
+          wbwFontScale = Math.max(0.70, Math.round((wbwFontScale - 0.12) * 100) / 100);
+          try { localStorage.setItem('wbw_font_scale_v110', String(wbwFontScale)); } catch (err) {}
+          appliquerTailleSurMetaCartes();
+        }
+      }
+
+      // Si l'utilisateur clique sur la hitbox du mot (et PAS sur la ligne), on prépare la traduction française de la modale de racine
+      var carteCliquee = e.target && e.target.closest ? e.target.closest('.wbw-card-v110') : null;
+      if (carteCliquee) {
+        var trEl = carteCliquee.querySelector('.wbw-tr-v110, .wbw-tr');
+        var arEl = carteCliquee.querySelector('.wbw-ar-v110, .wbw-ar');
+        if (trEl && trEl.textContent) dernierMotCliqueTrad = trEl.textContent.trim();
+        if (arEl && arEl.textContent) dernierMotCliqueAr = normaliserArabeCle(arEl.textContent);
+      }
+
+      setTimeout(traduireModaleRacineEnFrancais, 15);
+      setTimeout(traduireModaleRacineEnFrancais, 70);
+      setTimeout(traduireModaleRacineEnFrancais, 180);
+      setTimeout(traduireModaleRacineEnFrancais, 380);
+    }, true);
+  }
 
   function detruireNoeudNumero(el) {
     if (!el || el.classList.contains('wbw-ar-v110') || el.classList.contains('wbw-tr-v110') || el.classList.contains('wbw-ar') || el.classList.contains('wbw-tr')) return;
@@ -856,12 +948,10 @@
     }
   }
 
-  // Calcule la fenêtre temporelle [t0, t1] (en secondes) de chaque mot pour le seek YouTube
   function calculerFenetresMots(dureeAudio) {
     var n = cacheMetaCartes.length;
     if (n === 0 || !dureeAudio || !isFinite(dureeAudio) || dureeAudio <= 0) return [];
 
-    // Utilise les timestamps QDC exacts si disponibles
     var segs = window.__wbwSegsActuels;
     if (segs && segs.length > 0) {
       var fenetresQdc = new Array(n);
@@ -881,7 +971,6 @@
       if (tousPresents) return fenetresQdc;
     }
 
-    // Répartition pondérée par la longueur arabe de chaque mot
     var poids = new Array(n);
     var totalPoids = 0;
     for (var i = 0; i < n; i++) {
@@ -926,6 +1015,7 @@
     idxMotScrub = idxMot;
     ratioInterneScrub = ratioMot;
     maxIdxAtteintVerset = idxMot;
+    finScrubTimestamp = Date.now();
 
     var aud = document.getElementById('ayahAudio') || window.__lecteurAudioActuel || document.querySelector('audio');
     if (!aud) return;
@@ -963,6 +1053,11 @@
     }
   }
 
+  function bloquerPropagationVersCarte(ev) {
+    ev.stopPropagation();
+    ev.stopImmediatePropagation();
+  }
+
   function creerBarreScrubPourCarte(carte, idxMot) {
     var wrap = carte.querySelector('.wbw-scrub-wrap');
     if (!wrap) {
@@ -976,13 +1071,25 @@
 
     if (!wrap.__scrubEventsAttached) {
       wrap.__scrubEventsAttached = true;
+
+      // Bloque tous les événements de souris/tactile pour qu'ils n'atteignent JAMAIS la carte du mot
+      ['click', 'dblclick', 'mousedown', 'mouseup', 'touchstart', 'touchend', 'pointerup'].forEach(function(evtName) {
+        wrap.addEventListener(evtName, function(ev) {
+          finScrubTimestamp = Date.now();
+          ev.stopPropagation();
+          ev.stopImmediatePropagation();
+          if (evtName === 'click') ev.preventDefault();
+        }, false);
+      });
+
       wrap.addEventListener('pointerdown', function(ev) {
-        ev.stopPropagation();
+        finScrubTimestamp = Date.now();
+        bloquerPropagationVersCarte(ev);
         ev.preventDefault();
         scrubEnCours = true;
         var idx = parseInt(wrap.dataset.wbwIdx, 10) || 0;
         chercherTempsDepuisScrub(idx, ev.clientX, wrap);
-      });
+      }, false);
     }
 
     return {
@@ -997,6 +1104,7 @@
     window.__globalScrubMoveV110 = true;
     window.addEventListener('pointermove', function(ev) {
       if (!scrubEnCours || cacheMetaCartes.length === 0) return;
+      finScrubTimestamp = Date.now();
       var elSousPointeur = document.elementFromPoint(ev.clientX, ev.clientY);
       var carteCible = elSousPointeur && elSousPointeur.closest ? elSousPointeur.closest('.wbw-card-v110') : null;
       if (carteCible) {
@@ -1013,8 +1121,9 @@
     });
     window.addEventListener('pointerup', function() {
       if (scrubEnCours) {
+        finScrubTimestamp = Date.now();
         scrubEnCours = false;
-        setTimeout(function() { idxMotScrub = -1; }, 120);
+        setTimeout(function() { idxMotScrub = -1; }, 140);
       }
     });
     window.addEventListener('pointercancel', function() {
@@ -1265,7 +1374,6 @@
       debutTempsMotActuel = maintenant;
     }
 
-    // Progression interne fluide (0% -> 100%) sur le segment du mot en cours
     var ratioMotActuel = 0.5;
     if (idxMotScrub >= 0) {
       ratioMotActuel = Math.max(0.08, Math.min(1, ratioInterneScrub));
@@ -1309,7 +1417,6 @@
       var e = courbeAppleMusic(lissageE[m]);
       var b = courbeAppleMusic(lissageB[m]);
 
-      // Mise à jour de la ligne de progression style YouTube au-dessus du mot
       if (meta.scrub && meta.scrub.wrap && meta.scrub.fill && meta.scrub.track) {
         if (meta.scrub.wrap.getAttribute('data-dir') !== dirLecture) {
           meta.scrub.wrap.setAttribute('data-dir', dirLecture);
@@ -1332,11 +1439,9 @@
             forcer(meta.scrub.track, 'background', 'rgba(56, 189, 248, 0.28)');
             forcer(meta.scrub.track, 'opacity', '0.95');
           } else if (audioActif && distanceFutur === 1) {
-            // Prochain mot qu'on va entendre (+1) : opacité plus vive
             forcer(meta.scrub.track, 'background', 'rgba(186, 230, 253, 0.34)');
             forcer(meta.scrub.track, 'opacity', '0.68');
           } else if (audioActif && distanceFutur === 2) {
-            // Deuxième mot à venir (+2) : opacité intermédiaire
             forcer(meta.scrub.track, 'background', 'rgba(148, 163, 184, 0.26)');
             forcer(meta.scrub.track, 'opacity', '0.45');
           } else {
@@ -1347,7 +1452,6 @@
       }
 
       var lum = Math.max(b, e);
-      // Opacité graduée pour les mots qu'on va prochainement entendre (+1 et +2)
       var opReposBase = 0.96 - 0.54 * modeContrasteSuivi;
       if (audioActif && !estDejaLu && !estMotActuel) {
         if (distanceFutur === 1) opReposBase = Math.max(opReposBase, 0.72);
@@ -1395,6 +1499,7 @@
   function verifierChangementVersetEtPause() {
     initialiserModesSurSourate();
     masquerBlocProgressionSurSourate();
+    traduireModaleRacineEnFrancais();
 
     var cleActuelle = obtenirCleVersetActuelDom();
     if (cleActuelle && derniereCleVersetVue && cleActuelle !== derniereCleVersetVue) {
