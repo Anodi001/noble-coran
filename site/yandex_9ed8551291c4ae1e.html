@@ -55,7 +55,7 @@
     overflow: visible !important;
   }
 
-  /* Hitbox isolée de la ligne YouTube & du checkpoint (indépendante du mot) */
+  /* Ligne cliquable au-dessus de chaque mot (SANS curseur rond, 1 clic = début du mot) */
   .wbw-scrub-wrap {
     width: calc(100% + 12px) !important;
     margin: 0 -6px 10px -6px !important;
@@ -63,7 +63,7 @@
     cursor: pointer !important;
     user-select: none !important;
     -webkit-user-select: none !important;
-    touch-action: none !important;
+    touch-action: manipulation !important;
     position: relative !important;
     display: block !important;
     z-index: 30 !important;
@@ -76,14 +76,14 @@
     border-radius: 999px !important;
     background: rgba(148, 163, 184, 0.22) !important;
     position: relative !important;
-    overflow: visible !important;
+    overflow: hidden !important;
     pointer-events: none !important;
-    transition: height 0.16s ease, background-color 0.2s ease, box-shadow 0.2s ease !important;
+    transition: height 0.15s ease, background-color 0.2s ease, opacity 0.2s ease !important;
   }
 
   .wbw-scrub-wrap:hover .wbw-scrub-track,
   .wbw-scrub-wrap.wbw-scrub-active .wbw-scrub-track {
-    height: 6px !important;
+    height: 5.5px !important;
   }
 
   .wbw-scrub-fill {
@@ -97,7 +97,7 @@
     background: linear-gradient(90deg, #ffffff 0%, #bae6fd 35%, #38bdf8 100%) !important;
     box-shadow: 0 0 10px rgba(56, 189, 248, 0.65), 0 0 4px rgba(255, 255, 255, 0.8) !important;
     pointer-events: none !important;
-    transition: width 0.05s linear !important;
+    transition: width 0.06s linear !important;
   }
 
   .wbw-scrub-wrap[data-dir="ltr"] .wbw-scrub-fill {
@@ -106,35 +106,9 @@
     background: linear-gradient(90deg, #38bdf8 0%, #bae6fd 65%, #ffffff 100%) !important;
   }
 
+  /* Aucun curseur rond */
   .wbw-scrub-dot {
-    position: absolute !important;
-    top: 50% !important;
-    left: 0% !important;
-    transform: translate(-50%, -50%) scale(0) !important;
-    width: 13px !important;
-    height: 13px !important;
-    border-radius: 50% !important;
-    background: #ffffff !important;
-    border: 2.5px solid #38bdf8 !important;
-    box-shadow: 0 0 12px rgba(255, 255, 255, 0.95), 0 0 18px rgba(56, 189, 248, 0.85) !important;
-    pointer-events: none !important;
-    transition: transform 0.14s ease !important;
-  }
-
-  .wbw-scrub-wrap[data-dir="ltr"] .wbw-scrub-dot {
-    left: auto !important;
-    right: 0% !important;
-    transform: translate(50%, -50%) scale(0) !important;
-  }
-
-  .wbw-scrub-wrap:hover .wbw-scrub-dot,
-  .wbw-scrub-wrap.wbw-scrub-active .wbw-scrub-dot {
-    transform: translate(-50%, -50%) scale(1) !important;
-  }
-
-  .wbw-scrub-wrap[data-dir="ltr"]:hover .wbw-scrub-dot,
-  .wbw-scrub-wrap[data-dir="ltr"].wbw-scrub-active .wbw-scrub-dot {
-    transform: translate(50%, -50%) scale(1) !important;
+    display: none !important;
   }
 
   /* Couleurs du Tajwīd */
@@ -790,9 +764,7 @@
       });
   }
 
-  // =========================================================================
-  // TRADUCTION AUTOMATIQUE EN FRANÇAIS DE LA MODALE DE RACINE (MORPHOLOGIE)
-  // =========================================================================
+  // Traduction automatique en français de la modale de racine
   var dernierMotCliqueTrad = '';
   var dernierMotCliqueAr = '';
 
@@ -853,23 +825,19 @@
   var derniereCleVersetVue = '';
   var dernierTimestampRaf = 0;
 
-  // Variables pour la barre de progression style YouTube par ligne
   var idxMotEnCoursCache = -1;
   var debutTempsMotActuel = 0;
-  var scrubEnCours = false;
   var finScrubTimestamp = 0;
-  var idxMotScrub = -1;
-  var ratioInterneScrub = 0;
+  var idxMotForceDebut = -1;
+  var expIdxMotForce = 0;
+  var tempsDebutReelObserve = {};
 
-  // INTERCEPTEUR GLOBAL EN PHASE DE CAPTURE :
-  // 1) Bloque tout clic sur la ligne/checkpoint pour ne JAMAIS ouvrir la modale de racine
-  // 2) Traduit la modale de racine en français uniquement quand on clique sur la hitbox du mot
   if (!window.__captureClickScrubEtRacineV110) {
     window.__captureClickScrubEtRacineV110 = true;
 
     window.addEventListener('click', function(e) {
       var surScrub = e.target && e.target.closest && e.target.closest('.wbw-scrub-wrap');
-      if (surScrub || scrubEnCours || (Date.now() - finScrubTimestamp < 420)) {
+      if (surScrub || (Date.now() - finScrubTimestamp < 380)) {
         e.stopPropagation();
         e.stopImmediatePropagation();
         e.preventDefault();
@@ -892,12 +860,12 @@
           appliquerTailleSurMetaCartes();
         } else if (txt === 'A-' || txt === 'A−' || txt === 'A–') {
           wbwFontScale = Math.max(0.70, Math.round((wbwFontScale - 0.12) * 100) / 100);
+          try { localStorage.setItem('wbw_tr_cache_v110', JSON.stringify(cacheTradMots)); } catch (err) {}
           try { localStorage.setItem('wbw_font_scale_v110', String(wbwFontScale)); } catch (err) {}
           appliquerTailleSurMetaCartes();
         }
       }
 
-      // Si l'utilisateur clique sur la hitbox du mot (et PAS sur la ligne), on prépare la traduction française de la modale de racine
       var carteCliquee = e.target && e.target.closest ? e.target.closest('.wbw-card-v110') : null;
       if (carteCliquee) {
         var trEl = carteCliquee.querySelector('.wbw-tr-v110, .wbw-tr');
@@ -1003,31 +971,48 @@
     return 'rtl';
   }
 
-  function chercherTempsDepuisScrub(idxMot, clientX, wrapEl) {
-    if (idxMot < 0 || idxMot >= cacheMetaCartes.length || !wrapEl) return;
-    var rect = wrapEl.getBoundingClientRect();
-    if (rect.width <= 0) return;
+  // 1 CLIC SUR LA BARRE = REVIENT PILE AU DÉBUT (0%) DU MOT CHOISI ET LANCE LA LECTURE
+  function allerAuDebutDuMot(idxMot) {
+    if (idxMot < 0 || idxMot >= cacheMetaCartes.length) return;
 
-    var dir = detecterSensLectureGrille();
-    var xRel = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-    var ratioMot = dir === 'rtl' ? (1 - xRel) : xRel;
-
-    idxMotScrub = idxMot;
-    ratioInterneScrub = ratioMot;
-    maxIdxAtteintVerset = idxMot;
     finScrubTimestamp = Date.now();
+    maxIdxAtteintVerset = idxMot;
+    idxMotEnCoursCache = idxMot;
+    debutTempsMotActuel = performance.now();
+    idxMotForceDebut = idxMot;
+    expIdxMotForce = performance.now() + 260;
+
+    // Réinitialise l'animation des mots suivants pour repartir proprement de ce mot
+    for (var r = 0; r < cacheMetaCartes.length; r++) {
+      if (r < idxMot) {
+        lissageE[r] = 0;
+        lissageB[r] = 1;
+      } else if (r === idxMot) {
+        lissageE[r] = 1;
+        lissageB[r] = 1;
+      } else {
+        lissageE[r] = 0;
+        lissageB[r] = 0;
+      }
+    }
 
     var aud = document.getElementById('ayahAudio') || window.__lecteurAudioActuel || document.querySelector('audio');
     if (!aud) return;
 
-    var lancerEtPositionner = function() {
+    var positionnerAuDebutDuMot = function() {
       var dur = aud.duration;
+      if (idxMot === 0) {
+        aud.currentTime = 0;
+        return;
+      }
       if (dur && isFinite(dur) && dur > 0) {
         var fen = calculerFenetresMots(dur);
-        if (fen[idxMot]) {
-          aud.currentTime = Math.max(0, Math.min(dur - 0.05, fen[idxMot].t0 + ratioMot * (fen[idxMot].t1 - fen[idxMot].t0)));
+        if (fen[idxMot] && typeof fen[idxMot].t0 === 'number') {
+          aud.currentTime = Math.max(0, Math.min(dur - 0.05, fen[idxMot].t0));
+        } else if (typeof tempsDebutReelObserve[idxMot] === 'number') {
+          aud.currentTime = Math.max(0, Math.min(dur - 0.05, tempsDebutReelObserve[idxMot]));
         } else {
-          aud.currentTime = ((idxMot + ratioMot) / cacheMetaCartes.length) * dur;
+          aud.currentTime = (idxMot / cacheMetaCartes.length) * dur;
         }
       }
     };
@@ -1037,10 +1022,10 @@
       if (playBtn && aud.paused) playBtn.click();
       aud.addEventListener('loadedmetadata', function onMeta() {
         aud.removeEventListener('loadedmetadata', onMeta);
-        lancerEtPositionner();
+        positionnerAuDebutDuMot();
       });
     } else {
-      lancerEtPositionner();
+      positionnerAuDebutDuMot();
       if (aud.paused) {
         var playBtn2 = document.getElementById('playSyncBtn');
         if (playBtn2) playBtn2.click();
@@ -1053,26 +1038,23 @@
     }
   }
 
-  function bloquerPropagationVersCarte(ev) {
-    ev.stopPropagation();
-    ev.stopImmediatePropagation();
-  }
-
   function creerBarreScrubPourCarte(carte, idxMot) {
     var wrap = carte.querySelector('.wbw-scrub-wrap');
     if (!wrap) {
       wrap = document.createElement('div');
       wrap.className = 'wbw-scrub-wrap';
       wrap.setAttribute('data-dir', 'rtl');
-      wrap.innerHTML = '<div class="wbw-scrub-track"><div class="wbw-scrub-fill"><div class="wbw-scrub-dot"></div></div></div>';
+      wrap.innerHTML = '<div class="wbw-scrub-track"><div class="wbw-scrub-fill"></div></div>';
       carte.insertBefore(wrap, carte.firstChild);
+    } else {
+      var oldDot = wrap.querySelector('.wbw-scrub-dot');
+      if (oldDot) oldDot.remove();
     }
     wrap.dataset.wbwIdx = String(idxMot);
 
     if (!wrap.__scrubEventsAttached) {
       wrap.__scrubEventsAttached = true;
 
-      // Bloque tous les événements de souris/tactile pour qu'ils n'atteignent JAMAIS la carte du mot
       ['click', 'dblclick', 'mousedown', 'mouseup', 'touchstart', 'touchend', 'pointerup'].forEach(function(evtName) {
         wrap.addEventListener(evtName, function(ev) {
           finScrubTimestamp = Date.now();
@@ -1084,52 +1066,19 @@
 
       wrap.addEventListener('pointerdown', function(ev) {
         finScrubTimestamp = Date.now();
-        bloquerPropagationVersCarte(ev);
+        ev.stopPropagation();
+        ev.stopImmediatePropagation();
         ev.preventDefault();
-        scrubEnCours = true;
         var idx = parseInt(wrap.dataset.wbwIdx, 10) || 0;
-        chercherTempsDepuisScrub(idx, ev.clientX, wrap);
+        allerAuDebutDuMot(idx);
       }, false);
     }
 
     return {
       wrap: wrap,
       track: wrap.querySelector('.wbw-scrub-track'),
-      fill: wrap.querySelector('.wbw-scrub-fill'),
-      dot: wrap.querySelector('.wbw-scrub-dot')
+      fill: wrap.querySelector('.wbw-scrub-fill')
     };
-  }
-
-  if (!window.__globalScrubMoveV110) {
-    window.__globalScrubMoveV110 = true;
-    window.addEventListener('pointermove', function(ev) {
-      if (!scrubEnCours || cacheMetaCartes.length === 0) return;
-      finScrubTimestamp = Date.now();
-      var elSousPointeur = document.elementFromPoint(ev.clientX, ev.clientY);
-      var carteCible = elSousPointeur && elSousPointeur.closest ? elSousPointeur.closest('.wbw-card-v110') : null;
-      if (carteCible) {
-        for (var i = 0; i < cacheMetaCartes.length; i++) {
-          if (cacheMetaCartes[i] && cacheMetaCartes[i].carte === carteCible && cacheMetaCartes[i].scrub) {
-            chercherTempsDepuisScrub(i, ev.clientX, cacheMetaCartes[i].scrub.wrap);
-            return;
-          }
-        }
-      }
-      if (idxMotScrub >= 0 && cacheMetaCartes[idxMotScrub] && cacheMetaCartes[idxMotScrub].scrub) {
-        chercherTempsDepuisScrub(idxMotScrub, ev.clientX, cacheMetaCartes[idxMotScrub].scrub.wrap);
-      }
-    });
-    window.addEventListener('pointerup', function() {
-      if (scrubEnCours) {
-        finScrubTimestamp = Date.now();
-        scrubEnCours = false;
-        setTimeout(function() { idxMotScrub = -1; }, 140);
-      }
-    });
-    window.addEventListener('pointercancel', function() {
-      scrubEnCours = false;
-      idxMotScrub = -1;
-    });
   }
 
   function preparerGrilleSiNecessaire(cartes) {
@@ -1180,6 +1129,7 @@
     if (changementVerset || lissageE.length !== cartes.length) {
       maxIdxAtteintVerset = -1;
       idxMotEnCoursCache = -1;
+      tempsDebutReelObserve = {};
       modeContrasteSuivi = 0;
       window.__wbwEnergies = [];
       window.__wbwBleus = [];
@@ -1325,8 +1275,8 @@
 
     var idxPic = -1;
     var maxValE = 0.50;
-    if (idxMotScrub >= 0) {
-      idxPic = idxMotScrub;
+    if (maintenant < expIdxMotForce && idxMotForceDebut >= 0) {
+      idxPic = idxMotForceDebut;
     } else if (audioJoue) {
       for (var p = 0; p < cartes.length; p++) {
         var ev = energies[p] || 0;
@@ -1340,7 +1290,7 @@
       }
     }
 
-    if (window.__wbwResetDemande || (tActuel < 0.15 && dernierTempsAudio > 0.4 && idxMotScrub === -1) || (!audioJoue && tActuel < 0.08 && (!aud || !aud.ended) && idxMotScrub === -1)) {
+    if (window.__wbwResetDemande || (tActuel < 0.15 && dernierTempsAudio > 0.4 && maintenant >= expIdxMotForce) || (!audioJoue && tActuel < 0.08 && (!aud || !aud.ended) && maintenant >= expIdxMotForce)) {
       window.__wbwResetDemande = false;
       maxIdxAtteintVerset = -1;
       idxMotEnCoursCache = -1;
@@ -1355,12 +1305,12 @@
     }
     dernierTempsAudio = tActuel;
 
-    if (suiviBoutonOn && (audioJoue || idxMotScrub >= 0) && idxPic >= 0) {
-      if (idxMotScrub >= 0) {
+    if (suiviBoutonOn && audioJoue && idxPic >= 0) {
+      if (maintenant < expIdxMotForce) {
         maxIdxAtteintVerset = idxPic;
       } else if (idxPic <= maxIdxAtteintVerset + 1) {
         if (idxPic > maxIdxAtteintVerset) maxIdxAtteintVerset = idxPic;
-      } else if (tActuel > 1.2) {
+      } else if (tActuel > 0.35) {
         maxIdxAtteintVerset = idxPic;
       }
     }
@@ -1372,14 +1322,16 @@
     if (idxActuel !== idxMotEnCoursCache) {
       idxMotEnCoursCache = idxActuel;
       debutTempsMotActuel = maintenant;
+      if (idxActuel >= 0 && audioJoue && typeof tempsDebutReelObserve[idxActuel] !== 'number') {
+        tempsDebutReelObserve[idxActuel] = tActuel;
+      }
     }
 
-    var ratioMotActuel = 0.5;
-    if (idxMotScrub >= 0) {
-      ratioMotActuel = Math.max(0.08, Math.min(1, ratioInterneScrub));
-    } else if (audioJoue && idxActuel >= 0) {
+    // Remplissage fluide de 0% à 100% depuis le début du mot
+    var ratioMotActuel = 0;
+    if (audioJoue && idxActuel >= 0) {
       var dureeMoyMotMs = durAudio > 0 ? Math.max(260, (durAudio * 920) / Math.max(1, cartes.length)) : 650;
-      ratioMotActuel = Math.max(0.12, Math.min(0.96, (maintenant - debutTempsMotActuel) / dureeMoyMotMs));
+      ratioMotActuel = Math.max(0.04, Math.min(1.0, (maintenant - debutTempsMotActuel) / dureeMoyMotMs));
     } else if (aud && aud.ended) {
       ratioMotActuel = 1.0;
     }
@@ -1402,7 +1354,7 @@
 
       purgerTousLesChiffresDeLaCarte(meta.carte, meta.elAr, meta.elTrad);
 
-      var estMotActuel = suiviBoutonOn && (audioJoue || idxMotScrub >= 0) && (m === idxActuel || (cartes.length === 1 && (!aud || !aud.ended)));
+      var estMotActuel = suiviBoutonOn && audioJoue && (m === idxActuel || (cartes.length === 1 && (!aud || !aud.ended)));
       var estDejaLu = suiviBoutonOn && (m < idxActuel || (aud && aud.ended));
       var distanceFutur = idxActuel >= 0 ? (m - idxActuel) : (m + 1);
 
@@ -1507,6 +1459,7 @@
       derniereSigPreparation = '';
       maxIdxAtteintVerset = -1;
       idxMotEnCoursCache = -1;
+      tempsDebutReelObserve = {};
       modeContrasteSuivi = 0;
       window.__wbwEnergies = [];
       window.__wbwBleus = [];
