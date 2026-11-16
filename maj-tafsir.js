@@ -2360,7 +2360,7 @@ function codeClientV77() {
 
   function obtenirCartesMotAMotVisibles() {
     var cartes = [];
-    var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v111, .wbw-card, .wbw-word, .wbw-item");
+    var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v110, .wbw-card, .wbw-word, .wbw-item");
     for (var i = 0; i < c1.length; i++) {
       var r1 = c1[i].getBoundingClientRect();
       if (r1.width > 4 && r1.height > 4) {
@@ -2461,7 +2461,7 @@ function codeClientV77() {
         }
       }
 
-      if (tradFinale && elTr.textContent !== tradFinale) elTr.textContent = tradFinale;
+      if (tradFinale && !elTr.dataset.wbwTrOk && elTr.textContent !== tradFinale) elTr.textContent = tradFinale;
     }
 
     var grilleParente = cartes[0].parentElement;

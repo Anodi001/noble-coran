@@ -4,823 +4,7 @@ const path = require('path');
 
 const dossierSite = path.join(__dirname, 'site');
 
-// ============================================================================
-// 1. MISE À JOUR SÉCURISÉE DE site/_worker.js, site/_headers ET site/404.html (V111)
-// ============================================================================
-const WORKER_SECURISE_V111 = `function escapeHtmlText(value) {
-  return String(value ?? "").replace(/[&<>"']/g, c => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", "\\"": "&quot;", "'": "&#39;"
-  }[c]));
-}
-
-const QURAN_API_IDS = { en: 20, es: 83, de: 27, it: 153, id: 33, ru: 45, ar: 16 };
-
-// Nombre officiel de versets pour chacune des 114 sourates (index 1 à 114)
-const NB_VERSETS_PAR_SOURATE = [
-  0,
-  7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,135,
-  112,78,118,64,77,227,93,88,69,60,34,30,73,54,45,83,182,88,75,85,
-  54,53,89,59,37,35,38,29,18,45,60,49,62,55,78,96,29,22,24,13,
-  14,11,11,18,12,12,30,52,52,44,28,28,20,56,40,31,50,40,46,42,
-  29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,
-  11,8,3,9,5,4,7,3,6,3,5,4,5,6
-];
-
-// Noms courts des 114 sourates pour générer un <title> unique par verset
-const NOMS_SOURATES_COURT = [
-  "",
-  "Al-Fātihah","Al-Baqarah","Āl 'Imrān","An-Nisā'","Al-Mā'idah","Al-An'ām","Al-A'rāf","Al-Anfāl","At-Tawbah","Yūnus",
-  "Hūd","Yūsuf","Ar-Ra'd","Ibrāhīm","Al-Hijr","An-Nahl","Al-Isrā'","Al-Kahf","Maryam","Tā-Hā",
-  "Al-Anbiyā'","Al-Hajj","Al-Mu'minūn","An-Nūr","Al-Furqān","Ash-Shu'arā'","An-Naml","Al-Qasas","Al-'Ankabūt","Ar-Rūm",
-  "Luqmān","As-Sajdah","Al-Ahzāb","Saba'","Fātir","Yā-Sīn","As-Sāffāt","Sād","Az-Zumar","Ghāfir",
-  "Fussilat","Ash-Shūrā","Az-Zukhruf","Ad-Dukhān","Al-Jāthiyah","Al-Ahqāf","Muhammad","Al-Fath","Al-Hujurāt","Qāf",
-  "Adh-Dhāriyāt","At-Tūr","An-Najm","Al-Qamar","Ar-Rahmān","Al-Wāqi'ah","Al-Hadīd","Al-Mujādilah","Al-Hashr","Al-Mumtahanah",
-  "As-Saff","Al-Jumu'ah","Al-Munāfiqūn","At-Taghābun","At-Talāq","At-Tahrīm","Al-Mulk","Al-Qalam","Al-Hāqqah","Al-Ma'ārij",
-  "Nūh","Al-Jinn","Al-Muzzammil","Al-Muddaththir","Al-Qiyāmah","Al-Insān","Al-Mursalāt","An-Naba'","An-Nāzi'āt","'Abasa",
-  "At-Takwīr","Al-Infitār","Al-Mutaffifīn","Al-Inshiqāq","Al-Burūj","At-Tāriq","Al-A'lā","Al-Ghāshiyah","Al-Fajr","Al-Balad",
-  "Ash-Shams","Al-Layl","Ad-Duhā","Ash-Sharh","At-Tīn","Al-'Alaq","Al-Qadr","Al-Bayyinah","Az-Zalzalah","Al-'Ādiyāt",
-  "Al-Qāri'ah","At-Takāthur","Al-'Asr","Al-Humazah","Al-Fīl","Quraysh","Al-Mā'ūn","Al-Kawthar","Al-Kāfirūn","An-Nasr",
-  "Al-Masad","Al-Ikhlās","Al-Falaq","An-Nās"
-];
-
-function verifierVersetValide(pathname) {
-  const m = (pathname || "").trim().match(/^\\/?sourate-(\\d+)-verset-(\\d+)(?:\\.html)?\\/?$/i);
-  if (!m) return null;
-  const s = Number(m[1]), v = Number(m[2]);
-  return Number.isInteger(s) && s >= 1 && s <= 114 && Number.isInteger(v) && v >= 1 && v <= NB_VERSETS_PAR_SOURATE[s];
-}
-
-const BROWSER_HEADERS = {
-  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-  "Accept": "application/json, text/plain, */*"
-};
-
-let MEM_STATIC_TAFSIR_CACHE = null;
-
-const ATTRIBUTIONS_BAS = {
-  fr: "Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
-  en: "Translation by Saheeh International • Exegesis (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
-  es: "Traducción de Sheikh Isa García • Exégesis (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
-  de: "Deutsche Übersetzung von Frank Bubenheim & Nadeem Elyas • Exegese (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
-  it: "Traduzione italiana di Hamza Roberto Piccardo • Esegesi (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
-  id: "Terjemahan Kementerian Agama RI (Kemenag) • Tafsir Al-Mukhtasar & Ibnu Katsir",
-  ru: "Смысловой перевод Эльмира Кулиева • Тафсир аль-Мухтасар и Ибн Касир",
-  ar: "النص القرآني بالرسم العثماني • التفسير المختصر وتفسير ابن كثير وأسباب النزول"
-};
-
-const ATTRIBUTIONS_HAUT = {
-  fr: "Traduction Muhammad Hamidullah (1977) & Exégèse",
-  en: "Saheeh International & Exegesis",
-  es: "Traducción Sheikh Isa García y Exégesis",
-  de: "Übersetzung Bubenheim & Elyas & Exegese (Tafsīr)",
-  it: "Traduzione Hamza Roberto Piccardo & Esegesi (Tafsīr)",
-  id: "Terjemahan Kemenag RI & Tafsir Al-Mukhtasar",
-  ru: "Перевод Э. Кулиева и Тафсир аль-Мухтасар",
-  ar: "التفسير المختصر وتفسير ابن كثير وأسباب النزول"
-};
-
-const UI_TEXTES = {
-  en: {
-    "LE NOBLE CORAN & TAFSĪR": "THE NOBLE QURAN & TAFSĪR",
-    "‹ Retour aux 114 Sourates": "‹ Back to 114 Surahs",
-    "SOURATE MÉDINOISE": "MEDINAN SURAH",
-    "SOURATE MECQUOISE": "MAKKAN SURAH",
-    "Sourate Médinoise": "Medinan Surah",
-    "Sourate Mecquoise": "Makkan Surah",
-    "📖 Mot à mot": "📖 Word by Word",
-    "🌊 Bruit Brun": "🌊 Brown Noise",
-    "✨ Suivi": "✨ Follow",
-    "Enchaîner automatiquement": "Auto-advance",
-    "‹ Précédent": "‹ Previous",
-    "Suivant ›": "Next ›",
-    "▶ Écouter le verset": "▶ Listen to verse",
-    "↺ Rejouer": "↺ Replay",
-    "TAFSĪR & EXPLICATION DU VERSET": "TAFSĪR & VERSE EXPLANATION",
-    "Qu'est-ce qu'une Sourate Mecquoise ?": "What is a Meccan Surah?",
-    "Qu’est-ce qu’une Sourate Mecquoise ?": "What is a Meccan Surah?",
-    "Qu'est-ce qu'une Sourate Médinoise ?": "What is a Medinan Surah?",
-    "Qu’est-ce qu’une Sourate Médinoise ?": "What is a Medinan Surah?",
-    "MECQUOISE • 86 SOURATES": "MECCAN • 86 SURAHS",
-    "MÉDINOISE • 28 SOURATES": "MEDINAN • 28 SURAHS",
-    "1. Ordre de Révélation (1 à 114)": "1. Revelation Order (1 to 114)",
-    "2. Ordre classique (1 à 114)": "2. Traditional Order (1 to 114)",
-    "3. ⭐ Les Miracles du Coran": "3. ⭐ Miracles of the Quran",
-    "Les Miracles du Coran": "Miracles of the Quran",
-    "Mettre le site en application sur téléphone (Safari / Android)": "Add website as an App on phone (Safari / Android)",
-    "Rechercher une sourate ou un verset direct (ex: 30:1, 54:1, 2:255...)": "Search a surah or direct verse (e.g., 30:1, 54:1, 2:255...)"
-  },
-  es: {
-    "LE NOBLE CORAN & TAFSĪR": "EL NOBLE CORÁN Y TAFSĪR",
-    "‹ Retour aux 114 Sourates": "‹ Volver a las 114 Suras",
-    "SOURATE MÉDINOISE": "SURA MEDINENSE",
-    "SOURATE MECQUOISE": "SURA MEQUÍ",
-    "Sourate Médinoise": "Sura Medinense",
-    "Sourate Mecquoise": "Sura Mequí",
-    "📖 Mot à mot": "📖 Palabra por palabra",
-    "🌊 Bruit Brun": "🌊 Ruido Marrón",
-    "✨ Suivi": "✨ Seguimiento",
-    "Enchaîner automatiquement": "Avance automático",
-    "‹ Précédent": "‹ Anterior",
-    "Suivant ›": "Siguiente ›",
-    "▶ Écouter le verset": "▶ Escuchar aleya",
-    "⏸ Pause": "⏸ Pausa",
-    "↺ Rejouer": "↺ Repetir",
-    "TAFSĪR & EXPLICATION DU VERSET": "TAFSĪR Y EXPLICACIÓN DE LA ALEYA",
-    "Qu'est-ce qu'une Sourate Mecquoise ?": "¿Qué es una Sura Mequí?",
-    "Qu’est-ce qu’une Sourate Mecquoise ?": "¿Qué es una Sura Mequí?",
-    "Qu'est-ce qu'une Sourate Médinoise ?": "¿Qué es una Sura Medinense?",
-    "Qu’est-ce qu’une Sourate Médinoise ?": "¿Qué es una Sura Medinense?",
-    "MECQUOISE • 86 SOURATES": "MEQUÍ • 86 SURAS",
-    "MÉDINOISE • 28 SOURATES": "MEDINENSE • 28 SURAS",
-    "1. Ordre de Révélation (1 à 114)": "1. Orden de Revelación (1 a 114)",
-    "2. Ordre classique (1 à 114)": "2. Orden tradicional (1 a 114)",
-    "3. ⭐ Les Miracles du Coran": "3. ⭐ Milagros del Corán",
-    "Les Miracles du Coran": "Milagros del Corán",
-    "Mettre le site en application sur téléphone (Safari / Android)": "Instalar como aplicación en el móvil (Safari / Android)",
-    "Rechercher une sourate ou un verset direct (ex: 30:1, 54:1, 2:255...)": "Buscar una sura o aleya directa (ej: 30:1, 54:1, 2:255...)"
-  },
-  ar: {
-    "LE NOBLE CORAN & TAFSĪR": "القرآن الكريم والتفسير المختصر",
-    "‹ Retour aux 114 Sourates": "‹ العودة إلى 114 سورة",
-    "SOURATE MÉDINOISE": "سورة مدنية",
-    "SOURATE MECQUOISE": "سورة مكية",
-    "Sourate Médinoise": "سورة مدنية",
-    "Sourate Mecquoise": "سورة مكية",
-    "📖 Mot à mot": "📖 كلمة بكلمة",
-    "🌊 Bruit Brun": "🌊 ضوضاء بنية",
-    "✨ Suivi": "✨ تتبع",
-    "Enchaîner automatiquement": "تشغيل تلقائي",
-    "‹ Précédent": "‹ السابق",
-    "Suivant ›": "التالي ›",
-    "▶ Écouter le verset": "▶ استمع للآية",
-    "⏸ Pause": "⏸ إيقاف مؤقت",
-    "↺ Rejouer": "↺ إعادة",
-    "TAFSĪR & EXPLICATION DU VERSET": "تفسير الآية وبيان معانيها",
-    "Qu'est-ce qu'une Sourate Mecquoise ?": "ما هي السورة المكية؟",
-    "Qu’est-ce qu’une Sourate Mecquoise ?": "ما هي السورة المكية؟",
-    "Qu'est-ce qu'une Sourate Médinoise ?": "ما هي السورة المدنية؟",
-    "Qu’est-ce qu’une Sourate Médinoise ?": "ما هي السورة المدنية؟",
-    "MECQUOISE • 86 SOURATES": "مكية • 86 سورة",
-    "MÉDINOISE • 28 SOURATES": "مدنية • 28 سورة",
-    "1. Ordre de Révélation (1 à 114)": "1. ترتيب النزول (1 إلى 114)",
-    "2. Ordre classique (1 à 114)": "2. ترتيب المصحف (1 إلى 114)",
-    "3. ⭐ Les Miracles du Coran": "3. ⭐ آيات الإعجاز القرآني",
-    "Les Miracles du Coran": "آيات الإعجاز القرآني",
-    "Mettre le site en application sur téléphone (Safari / Android)": "تثبيت الموقع كتطبيق على الهاتف (آيفون / أندرويد)",
-    "Rechercher une sourate ou un verset direct (ex: 30:1, 54:1, 2:255...)": "ابحث عن سورة أو آية مباشرة (مثال: 30:1، 54:1، 2:255...)"
-  },
-  de: {
-    "LE NOBLE CORAN & TAFSĪR": "DER EDLE KORAN & TAFSĪR",
-    "‹ Retour aux 114 Sourates": "‹ Zurück zu den 114 Suren",
-    "SOURATE MÉDINOISE": "MEDINENSISCHE SURE",
-    "SOURATE MECQUOISE": "MEKKANISCHE SURE",
-    "Sourate Médinoise": "Medinensische Sure",
-    "Sourate Mecquoise": "Mekkanische Sure",
-    "📖 Mot à mot": "📖 Wort für Wort",
-    "🌊 Bruit Brun": "🌊 Braunes Rauschen",
-    "✨ Suivi": "✨ Verfolgung",
-    "Enchaîner automatiquement": "Automatisch weiter",
-    "‹ Précédent": "‹ Zurück",
-    "Suivant ›": "Weiter ›",
-    "▶ Écouter le verset": "▶ Vers anhören",
-    "↺ Rejouer": "↺ Wiederholen",
-    "TAFSĪR & EXPLICATION DU VERSET": "TAFSĪR & ERKLÄRUNG DES VERSES",
-    "Qu'est-ce qu'une Sourate Mecquoise ?": "Was ist eine mekkanische Sure?",
-    "Qu’est-ce qu’une Sourate Mecquoise ?": "Was ist eine mekkanische Sure?",
-    "Qu'est-ce qu'une Sourate Médinoise ?": "Was ist eine medinensische Sure?",
-    "Qu’est-ce qu’une Sourate Médinoise ?": "Was ist eine medinensische Sure?",
-    "MECQUOISE • 86 SOURATES": "MEKKANISCH • 86 SUREN",
-    "MÉDINOISE • 28 SOURATES": "MEDINENSISCH • 28 SUREN",
-    "1. Ordre de Révélation (1 à 114)": "1. Offenbarungsreihenfolge (1–114)",
-    "2. Ordre classique (1 à 114)": "2. Klassische Reihenfolge (1–114)",
-    "3. ⭐ Les Miracles du Coran": "3. ⭐ Wunder des Korans",
-    "Les Miracles du Coran": "Wunder des Korans",
-    "Mettre le site en application sur téléphone (Safari / Android)": "App auf Ihrem Telefon installieren (iPhone / Android)",
-    "Rechercher une sourate ou un verset direct (ex: 30:1, 54:1, 2:255...)": "Suche nach einer Sure oder einem Vers (z.B. 2:255, 30:1, Al-Kahf...)"
-  },
-  it: {
-    "LE NOBLE CORAN & TAFSĪR": "IL NOBILE CORANO E TAFSĪR",
-    "‹ Retour aux 114 Sourates": "‹ Torna alle 114 Sure",
-    "SOURATE MÉDINOISE": "SURA MEDINESE",
-    "SOURATE MECQUOISE": "SURA MECCANA",
-    "Sourate Médinoise": "Sura Medinese",
-    "Sourate Mecquoise": "Sura Meccana",
-    "📖 Mot à mot": "📖 Parola per parola",
-    "🌊 Bruit Brun": "🌊 Rumore Marrone",
-    "✨ Suivi": "✨ Seguito",
-    "Enchaîner automatiquement": "Riproduzione automatica",
-    "‹ Précédent": "‹ Precedente",
-    "Suivant ›": "Successivo ›",
-    "▶ Écouter le verset": "▶ Ascolta il versetto",
-    "⏸ Pause": "⏸ Pausa",
-    "↺ Rejouer": "↺ Riascolta",
-    "TAFSĪR & EXPLICATION DU VERSET": "TAFSĪR E SPIEGAZIONE DEL VERSETTO",
-    "Qu'est-ce qu'une Sourate Mecquoise ?": "Cos'è una Sura Meccana?",
-    "Qu’est-ce qu’une Sourate Mecquoise ?": "Cos'è una Sura Meccana?",
-    "Qu'est-ce qu'une Sourate Médinoise ?": "Cos'è una Sura Medinese?",
-    "Qu’est-ce qu’une Sourate Médinoise ?": "Cos'è una Sura Medinese?",
-    "MECQUOISE • 86 SOURATES": "MECCANA • 86 SURE",
-    "MÉDINOISE • 28 SOURATES": "MEDINESE • 28 SURE",
-    "1. Ordre de Révélation (1 à 114)": "1. Ordine di Rivelazione (1–114)",
-    "2. Ordre classique (1 à 114)": "2. Ordine Classico (1–114)",
-    "3. ⭐ Les Miracles du Coran": "3. ⭐ I Miracoli del Corano",
-    "Les Miracles du Coran": "I Miracoli del Corano",
-    "Mettre le site en application sur téléphone (Safari / Android)": "Installa l'App sul tuo telefono (iPhone / Android)",
-    "Rechercher une sourate ou un verset direct (ex: 30:1, 54:1, 2:255...)": "Cerca una Sura o un versetto (es. 2:255, 30:1, Al-Kahf...)"
-  },
-  id: {
-    "LE NOBLE CORAN & TAFSĪR": "AL-QUR'AN MULIA & TAFSĪR",
-    "‹ Retour aux 114 Sourates": "‹ Kembali ke 114 Surah",
-    "SOURATE MÉDINOISE": "SURAH MADANIYAH",
-    "SOURATE MECQUOISE": "SURAH MAKKIYAH",
-    "Sourate Médinoise": "Surah Madaniyah",
-    "Sourate Mecquoise": "Surah Makkiyah",
-    "📖 Mot à mot": "📖 Kata demi Kata",
-    "🌊 Bruit Brun": "🌊 Derau Cokelat",
-    "✨ Suivi": "✨ Ikuti Bacaan",
-    "Enchaîner automatiquement": "Putar otomatis",
-    "‹ Précédent": "‹ Sebelumnya",
-    "Suivant ›": "Berikutnya ›",
-    "▶ Écouter le verset": "▶ Dengarkan Ayat",
-    "⏸ Pause": "⏸ Jeda",
-    "↺ Rejouer": "↺ Ulangi",
-    "TAFSĪR & EXPLICATION DU VERSET": "TAFSĪR & PENJELASAN AYAT",
-    "Qu'est-ce qu'une Sourate Mecquoise ?": "Apa itu Surah Makkiyah?",
-    "Qu’est-ce qu’une Sourate Mecquoise ?": "Apa itu Surah Makkiyah?",
-    "Qu'est-ce qu'une Sourate Médinoise ?": "Apa itu Surah Madaniyah?",
-    "Qu’est-ce qu’une Sourate Médinoise ?": "Apa itu Surah Madaniyah?",
-    "MECQUOISE • 86 SOURATES": "MAKKIYAH • 86 SURAH",
-    "MÉDINOISE • 28 SOURATES": "MADANIYAH • 28 SURAH",
-    "1. Ordre de Révélation (1 à 114)": "1. Urutan Turunnya Wahyu (1–114)",
-    "2. Ordre classique (1 à 114)": "2. Urutan Mushaf (1–114)",
-    "3. ⭐ Les Miracles du Coran": "3. ⭐ Mukjizat Al-Qur'an",
-    "Les Miracles du Coran": "Mukjizat Al-Qur'an",
-    "Mettre le site en application sur téléphone (Safari / Android)": "Pasang Aplikasi di ponsel Anda (iPhone / Android)",
-    "Rechercher une sourate ou un verset direct (ex: 30:1, 54:1, 2:255...)": "Cari Surah atau ayat (misal: 2:255, 30:1, Al-Kahf...)"
-  },
-  ru: {
-    "LE NOBLE CORAN & TAFSĪR": "СВЯЩЕННЫЙ КОРАН И ТАФСИР",
-    "‹ Retour aux 114 Sourates": "‹ Назад к 114 сурам",
-    "SOURATE MÉDINOISE": "МЕДИНСКАЯ СУРА",
-    "SOURATE MECQUOISE": "МЕККАНСКАЯ СУРА",
-    "Sourate Médinoise": "Мединская сура",
-    "Sourate Mecquoise": "Мекканская сура",
-    "📖 Mot à mot": "📖 Пословный перевод",
-    "🌊 Bruit Brun": "🌊 Коричневый шум",
-    "✨ Suivi": "✨ Слежение",
-    "Enchaîner automatiquement": "Автопереход",
-    "‹ Précédent": "‹ Назад",
-    "Suivant ›": "Далее ›",
-    "▶ Écouter le verset": "▶ Слушать аят",
-    "⏸ Pause": "⏸ Пауза",
-    "↺ Rejouer": "↺ Повторить",
-    "TAFSĪR & EXPLICATION DU VERSET": "ТАФСИР И ТОЛКОВАНИЕ АЯТА",
-    "Qu'est-ce qu'une Sourate Mecquoise ?": "Что такое мекканская сура?",
-    "Qu’est-ce qu’une Sourate Mecquoise ?": "Что такое мекканская сура?",
-    "Qu'est-ce qu'une Sourate Médinoise ?": "Что такое мединская сура?",
-    "Qu’est-ce qu’une Sourate Médinoise ?": "Что такое мединская сура?",
-    "MECQUOISE • 86 SOURATES": "МЕККАНСКАЯ • 86 СУР",
-    "MÉDINOISE • 28 SOURATES": "МЕДИНСКАЯ • 28 СУР",
-    "1. Ordre de Révélation (1 à 114)": "1. По порядку ниспослания (1–114)",
-    "2. Ordre classique (1 à 114)": "2. По порядку Мусхафа (1–114)",
-    "3. ⭐ Les Miracles du Coran": "3. ⭐ Чудеса Корана",
-    "Les Miracles du Coran": "Чудеса Корана",
-    "Mettre le site en application sur téléphone (Safari / Android)": "Установить приложение на телефон (iPhone / Android)",
-    "Rechercher une sourate ou un verset direct (ex: 30:1, 54:1, 2:255...)": "Поиск суры или аята (например: 2:255, 30:1, Аль-Кахф...)"
-  }
-};
-
-const INTRO_HOME = {
-  en: {
-    mecq: "Revealed at the beginning of prophethood (before the Hijrah), when the believers were still few in Makkah: establishes the pure Oneness of Allāh (Tawhīd), proofs of faith, the Hereafter, and the stories of the Prophets.",
-    med: "Revealed after the Hijrah, when the Muslims grew numerous and united in Madinah, victorious in major battles (like Badr) up to the Conquest of Makkah: details worship, social laws, and justice."
-  },
-  es: {
-    mecq: "Revelada al inicio de la profecía (antes de la Hégira), cuando los creyentes aún eran pocos en La Meca: establece el Monoteísmo puro de Allāh (Tawhīd), las pruebas de la fe, el Juicio Final y las historias de los Profetas.",
-    med: "Revelada después de la Hégira, cuando los musulmanes se hicieron numerosos y unidos en Medina, victoriosos en las grandes batallas (como Badr) hasta la conquista de La Meca: detalla las adoraciones, las leyes sociales y la justicia."
-  },
-  ar: {
-    mecq: "نزلت في بداية الوحي (قبل الهجرة) حين كان المسلمون قلة مستضعفين بمكة: ترسخ التوحيد الخالص لله، ودلائل الإيمان، والبعث والحساب، وقصص الأنبياء.",
-    med: "نزلت بعد الهجرة حين كثر المسلمون وقويت شوكتهم بالمدينة وانتصروا في الغزوات (كبدر) وحتى فتح مكة: تفصل العبادات والشرائع والمعاملات والعدل."
-  },
-  de: {
-    mecq: "Offenbart zu Beginn der Prophetie (vor der Hidschra), als die Gläubigen in Mekka noch wenige waren: begründet die reine Einheit Allāhs (Tawhīd), die Beweise des Glaubens, das Jüngste Gericht und die Geschichten der Propheten.",
-    med: "Offenbart nach der Hidschra, als die Muslime zahlreich wurden, vereint in Medina, siegreich in den großen Schlachten (wie Badr) bis zur Eroberung Mekkas: regelt die Gottesdienste, die sozialen Gesetze und die Gerechtigkeit."
-  },
-  it: {
-    mecq: "Rivelata all'inizio della profezia (prima dell'Egira), quando i credenti erano ancora pochi alla Mecca: fonda la pura Unicità di Allāh (Tawhīd), le prove della fede, il Giudizio Finale e la storia dei Profeti.",
-    med: "Rivelata dopo l'Egira, quando i musulmani divennero numerosi, uniti a Medina, vittoriosi nelle grandi battaglie (come Badr) fino alla conquista della Mecca: dettaglia le adorazioni, le leggi sociali e la giustizia."
-  },
-  id: {
-    mecq: "Diturunkan pada awal kenabian (sebelum Hijrah), ketika kaum mukminin masih sedikit di Mekkah: menegakkan kemurnian Tauhid kepada Allah, bukti-bukti keimanan, Hari Kiamat, dan kisah para Nabi.",
-    med: "Diturunkan setelah Hijrah, ketika umat Islam telah banyak dan bersatu di Madinah, menang dalam pertempuran besar (seperti Badar) hingga penaklukan Mekkah: merinci ibadah, hukum sosial, dan keadilan."
-  },
-  ru: {
-    mecq: "Ниспослана в начале пророчества (до Хиджры), когда верующих в Мекке было ещё мало: утверждает чистое Единобожие Аллаха (Таухид), доказательства веры, Судный день и истории Пророков.",
-    med: "Ниспослана после Хиджры, когда мусульмане стали многочисленными и объединились в Медине, одержав победу в великих битвах (как при Бадре) вплоть до открытия Мекки: разъясняет поклонение, общественные законы и справедливость."
-  }
-};
-
-function nettoyerVersetApi(raw) {
-  if (!raw) return "";
-  return raw
-    .replace(/<sup[^>]*>[\\s\\S]*?<\\/sup>/gi, "")
-    .replace(/<[^>]+>/g, "")
-    .replace(/\\[\\d+\\]|\\(\\d+\\)/g, "")
-    .replace(/\\s{2,}/g, " ")
-    .trim();
-}
-
-async function obtenirVersetOfficiel(sNum, vNum, lang) {
-  if (!sNum || !vNum || !QURAN_API_IDS[lang]) return { ok: false, text: null };
-  const url = "https://api.quran.com/api/v4/quran/translations/" + QURAN_API_IDS[lang] + "?verse_key=" + sNum + ":" + vNum;
-  try {
-    const r = await fetch(url, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(2800), cf: { cacheTtl: 2592000, cacheEverything: true } });
-    if (!r.ok) return { ok: false, text: null };
-    const d = await r.json();
-    if (d && d.translations && d.translations[0] && d.translations[0].text) {
-      const clean = nettoyerVersetApi(d.translations[0].text);
-      return { ok: Boolean(clean), text: clean || null };
-    }
-  } catch (e) {}
-  return { ok: false, text: null };
-}
-
-async function traduireTexteServeur(texte, lang) {
-  if (!texte || lang === "fr") return { ok: true, text: texte, provider: "fr" };
-
-  try {
-    const url1 = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=fr&tl=" + lang + "&dt=t&q=" + encodeURIComponent(texte);
-    const r1 = await fetch(url1, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(2800), cf: { cacheTtl: 2592000, cacheEverything: true } });
-    if (r1.ok) {
-      const d1 = await r1.json();
-      if (d1 && Array.isArray(d1[0])) {
-        let out = "";
-        for (let i = 0; i < d1[0].length; i++) {
-          if (d1[0][i] && d1[0][i][0]) out += d1[0][i][0];
-        }
-        if (out.trim()) return { ok: true, text: out.trim(), provider: "gtx" };
-      }
-    }
-  } catch (e1) {}
-
-  try {
-    const url2 = "https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl=fr&tl=" + lang + "&q=" + encodeURIComponent(texte);
-    const r2 = await fetch(url2, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(2800), cf: { cacheTtl: 2592000, cacheEverything: true } });
-    if (r2.ok) {
-      const d2 = await r2.json();
-      let out2 = "";
-      if (Array.isArray(d2)) {
-        if (typeof d2[0] === "string") out2 = d2[0];
-        else if (Array.isArray(d2[0]) && typeof d2[0][0] === "string") out2 = d2.map(x => x[0]).join("");
-      } else if (d2 && Array.isArray(d2.sentences)) {
-        out2 = d2.sentences.map(s => s.trans || "").join("");
-      }
-      if (out2.trim()) return { ok: true, text: out2.trim(), provider: "clients5" };
-    }
-  } catch (e2) {}
-
-  if (texte.length <= 490) {
-    try {
-      const endpoint = new URL("https://api.mymemory.translated.net/get");
-      endpoint.searchParams.set("q", texte);
-      endpoint.searchParams.set("langpair", "fr|" + lang);
-      const r3 = await fetch(endpoint, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(2800), redirect: "error" });
-      if (r3.ok) {
-        const d3 = await r3.json();
-        const text = d3?.responseData?.translatedText;
-        const errorText = /MYMEMORY WARNING|QUERY LENGTH LIMIT|FREE TRANSLATIONS|PLEASE SELECT/i;
-        if (Number(d3?.responseStatus) === 200 && typeof text === "string" && text.trim() && !errorText.test(text)) {
-          return { ok: true, text: text.trim(), provider: "mymemory" };
-        }
-      }
-    } catch (e3) {}
-  }
-
-  return { ok: false, text: texte, provider: "failed" };
-}
-
-async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
-  if (!innerHtml || lang === "fr") return { ok: true, html: innerHtml, diag: "fr" };
-  const parts = innerHtml.split(/(<[^>]+>)/g);
-  const idxs = [];
-  const segs = [];
-
-  for (let i = 0; i < parts.length; i += 2) {
-    const rawTxt = parts[i];
-    const cleanTxt = rawTxt.replace(/&nbsp;/g, " ").trim();
-    if (cleanTxt.length >= 2 && /[a-zA-ZÀ-ÿ]/.test(cleanTxt)) {
-      idxs.push(i);
-      segs.push(cleanTxt);
-    }
-  }
-
-  if (segs.length === 0) return { ok: false, html: innerHtml, diag: "empty-segs" };
-
-  const joined = segs.join("\\n\\n");
-  const batchRes = await traduireTexteServeur(joined, lang);
-  if (batchRes.ok && batchRes.text) {
-    const splitTr = batchRes.text.split(/\\n\\s*\\n/);
-    if (splitTr.length === idxs.length) {
-      for (let j = 0; j < idxs.length; j++) {
-        const idx = idxs[j];
-        const rawOrig = parts[idx];
-        const lead = (rawOrig.match(/^\\s*/) || [""])[0];
-        const trail = (rawOrig.match(/\\s*$/) || [""])[0];
-        parts[idx] = lead + escapeHtmlText(splitTr[j].trim()) + trail;
-      }
-      return { ok: true, html: parts.join(""), diag: "batch-" + batchRes.provider };
-    }
-  }
-
-  let okCount = 0;
-  let lastProv = batchRes.provider || "err";
-  for (let j = 0; j < idxs.length; j++) {
-    const idx = idxs[j];
-    const rawOrig = parts[idx];
-    const lead = (rawOrig.match(/^\\s*/) || [""])[0];
-    const trail = (rawOrig.match(/\\s*$/) || [""])[0];
-    const r = await traduireTexteServeur(segs[j], lang);
-    if (r.ok && r.text) {
-      parts[idx] = lead + escapeHtmlText(r.text) + trail;
-      okCount++;
-      lastProv = r.provider;
-    }
-  }
-
-  return {
-    ok: okCount === idxs.length,
-    html: parts.join(""),
-    diag: okCount === idxs.length ? ("seq-" + lastProv) : ("partial-" + okCount + "-of-" + idxs.length)
-  };
-}
-
-async function obtenirTafsirDepuisCachesDurablesOuTraduire(innerHtml, sNum, vNum, lang, env, ctx) {
-  const vk = sNum + ":" + vNum;
-  try {
-    if (!MEM_STATIC_TAFSIR_CACHE && env && env.ASSETS && typeof env.ASSETS.fetch === "function") {
-      const rStatic = await env.ASSETS.fetch(new Request("https://corantafsir.com/tafsir-cache.json"));
-      if (rStatic.ok) MEM_STATIC_TAFSIR_CACHE = await rStatic.json();
-    }
-    if (MEM_STATIC_TAFSIR_CACHE && MEM_STATIC_TAFSIR_CACHE[vk] && MEM_STATIC_TAFSIR_CACHE[vk][lang]) {
-      return { ok: true, html: MEM_STATIC_TAFSIR_CACHE[vk][lang], diag: "static-cache" };
-    }
-  } catch (e) {}
-
-  const cache = typeof caches !== "undefined" && caches.default ? caches.default : null;
-  const edgeCacheReq = new Request("https://corantafsir.com/_tafsir_edge_v105/" + sNum + "-" + vNum + "-" + lang);
-  if (cache) {
-    try {
-      const cachedTaf = await cache.match(edgeCacheReq);
-      if (cachedTaf) {
-        const txt = await cachedTaf.text();
-        if (txt && txt.length > 10) return { ok: true, html: txt, diag: "edge-cache" };
-      }
-    } catch (e) {}
-  }
-
-  const liveRes = await traduireHtmlEnPreservantBalises(innerHtml, lang);
-  if (liveRes.ok && liveRes.html && cache) {
-    try {
-      const respToStore = new Response(liveRes.html, {
-        headers: {
-          "content-type": "text/html; charset=utf-8",
-          "cache-control": "public, max-age=31536000, immutable"
-        }
-      });
-      if (ctx && ctx.waitUntil) ctx.waitUntil(cache.put(edgeCacheReq, respToStore));
-      else await cache.put(edgeCacheReq, respToStore);
-    } catch (e) {}
-  }
-  return liveRes;
-}
-
-function construireBlocHreflangHarmonise(urlBaseFr) {
-  const langs = ["fr", "en", "es", "ar", "de", "it", "id", "ru"];
-  const lignes = langs.map(l => {
-    const href = l === "fr" ? urlBaseFr : (urlBaseFr + "?lang=" + l);
-    return '<link rel="alternate" hreflang="' + l + '" href="' + href + '">';
-  });
-  lignes.push('<link rel="alternate" hreflang="x-default" href="' + urlBaseFr + '">');
-  return lignes.join("\\n");
-}
-
-function remplacerHorsScriptsEtStyles(html, fnRemplacement) {
-  const blocs = html.split(/(<script\\b[^>]*>[\\s\\S]*?<\\/script>|<style\\b[^>]*>[\\s\\S]*?<\\/style>)/gi);
-  for (let i = 0; i < blocs.length; i += 2) {
-    blocs[i] = fnRemplacement(blocs[i]);
-  }
-  return blocs.join("");
-}
-
-export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname, env, ctx) {
-  const cleanPath = (pathname || "/").trim();
-  const mVerse = cleanPath.match(/^\\/?sourate-(\\d+)-verset-(\\d+)(?:\\.html)?\\/?$/i);
-  const isHome = !mVerse && /^\\/?(?:index(?:\\.html)?)?\\/?$/i.test(cleanPath);
-
-  const sNum = mVerse ? mVerse[1] : "";
-  const vNum = mVerse ? mVerse[2] : "";
-  const nomS = sNum && NOMS_SOURATES_COURT[Number(sNum)] ? NOMS_SOURATES_COURT[Number(sNum)] : "";
-  const pathClean = mVerse
-    ? ("/sourate-" + sNum + "-verset-" + vNum)
-    : (isHome ? "/" : cleanPath.replace(/\\.html$/i, ""));
-
-  const urlBaseFr = "https://corantafsir.com" + pathClean;
-  const canonicalHref = (!lang || lang === "fr") ? urlBaseFr : (urlBaseFr + "?lang=" + lang);
-
-  let out = html;
-  let diagTafsir = "none";
-
-  out = out.replace(/<link rel="canonical" href="[^"]*">/gi, '<link rel="canonical" href="' + canonicalHref + '">');
-  out = out.replace(/<link rel="alternate" hreflang="[^"]*"[^>]*>\\s*/gi, "");
-  out = out.replace(/(<link rel="canonical" href="[^"]*">)/i, "$1\\n" + construireBlocHreflangHarmonise(urlBaseFr));
-
-  if (!lang || lang === "fr") {
-    if (mVerse) {
-      const titleFr = "Sourate " + nomS + " (" + sNum + ":" + vNum + ") — Coran, Audio, Mot à Mot & Tafsīr";
-      out = out.replace(/<title>[\\s\\S]*?<\\/title>/i, () => "<title>" + escapeHtmlText(titleFr) + "</title>");
-    }
-    out = remplacerHorsScriptsEtStyles(out, segment =>
-      segment
-        .replace(/href="\\/?sourate-(\\d+)-verset-(\\d+)(?:\\.html)?"/gi, 'href="/sourate-$1-verset-$2"')
-        .replace(/href="\\/?index(?:\\.html)?"/gi, 'href="/"')
-    );
-    return { html: out, complete: Boolean(isHome || mVerse), diag: "fr" };
-  }
-
-  let traductionComplete = true;
-
-  out = out.replace(/<html([^>]*)lang="[^"]*"([^>]*)>/i, '<html$1lang="' + lang + '" dir="' + (lang === "ar" ? "rtl" : "ltr") + '"$2>');
-
-  const titles = {
-    en: mVerse ? ("Surah " + nomS + " (" + sNum + ":" + vNum + ") — Noble Quran, Audio, Word by Word & Tafsīr") : "The Noble Quran & Tafsīr Al-Mukhtasar — Audio, Tajwīd & Word by Word (8 Languages)",
-    es: mVerse ? ("Sura " + nomS + " (" + sNum + ":" + vNum + ") — El Noble Corán, Audio, Palabra por Palabra y Tafsīr") : "El Noble Corán y Tafsīr Al-Mukhtasar — Audio, Tajwīd y Palabra por Palabra (8 Idiomas)",
-    ar: mVerse ? ("سورة " + nomS + " (" + sNum + ":" + vNum + ") — القرآن الكريم والتفسير المختصر") : "القرآن الكريم والتفسير المختصر — تلاوة، تجويد وترجمة كلمة بكلمة (8 لغات)",
-    de: mVerse ? ("Sure " + nomS + " (" + sNum + ":" + vNum + ") — Der Edle Koran, Audio, Wort für Wort & Tafsīr") : "Der Edle Koran & Tafsīr Al-Mukhtasar — Audio, Tajwīd & Wort für Wort (Bubenheim & Elyas)",
-    it: mVerse ? ("Sura " + nomS + " (" + sNum + ":" + vNum + ") — Il Nobile Corano, Audio, Parola per Parola e Tafsīr") : "Il Nobile Corano e Tafsīr Al-Mukhtasar — Audio, Tajwīd e Parola per Parola (Piccardo)",
-    id: mVerse ? ("Surah " + nomS + " (" + sNum + ":" + vNum + ") — Al-Qur'an Mulia, Audio, Kata demi Kata & Tafsir") : "Al-Qur'an Mulia & Tafsir Al-Mukhtasar — Audio, Tajwid & Kata demi Kata (Kemenag RI)",
-    ru: mVerse ? ("Сура " + nomS + " (" + sNum + ":" + vNum + ") — Священный Коран, Аудио, Пословный перевод и Тафсир") : "Священный Коран и Тафсир аль-Мухтасар — Аудио, Таджвид и Пословный перевод (Э. Кулиев)"
-  };
-  const descriptions = {
-    en: "Read and listen to the Noble Quran (6,236 verses) with word-by-word audio tracking, color Tajwīd, Khatm planner and Tafsīr Al-Mukhtasar & Ibn Kathīr in 8 languages.",
-    es: "Lea y escuche el Noble Corán (6.236 aleyas) con seguimiento de audio palabra por palabra, Tajwīd, planificador Khatm y Tafsīr Al-Mukhtasar en 8 idiomas.",
-    ar: "اقرأ واستمع إلى القرآن الكريم (6236 آية) مع التتبع الصوتي كلمة بكلمة، التجويد المصور، برنامج ختم القرآن والتفسير المختصر وابن كثير بـ 8 لغات.",
-    de: "Lesen und hören Sie den Edlen Koran (6.236 Verse, Übersetzung Bubenheim & Elyas) mit Wort-für-Wort-Audioverfolgung, Tajwīd, Leseplaner und Tafsīr Al-Mukhtasar.",
-    it: "Leggi e ascolta il Nobile Corano (6.236 versetti, traduzione Hamza Roberto Piccardo) con seguito audio parola per parola, Tajwīd, pianificatore Khatm e Tafsīr.",
-    id: "Baca dan dengarkan Al-Qur'an Mulia (6.236 ayat, Terjemahan Kemenag RI) dengan pelacakan audio kata demi kata, Tajwid, perencana Khatam, dan Tafsir Al-Mukhtasar.",
-    ru: "Читайте и слушайте Священный Коран (6 236 аятов, перевод Эльмира Кулиева) с пословным аудио-слежением, Таджвидом, планом чтения и Тафсиром аль-Мухтасар."
-  };
-
-  if (titles[lang]) {
-    out = out.replace(/<title>[\\s\\S]*?<\\/title>/i, () => "<title>" + escapeHtmlText(titles[lang]) + "</title>");
-  }
-  if (descriptions[lang]) {
-    if (/<meta name="description" content="[^"]*">/i.test(out)) {
-      out = out.replace(/<meta name="description" content="[^"]*">/i, () => '<meta name="description" content="' + escapeHtmlText(descriptions[lang]) + '">');
-    } else {
-      out = out.replace(/<\\/title>/i, () => '</title>\\n  <meta name="description" content="' + escapeHtmlText(descriptions[lang]) + '">');
-    }
-  }
-
-  const mapUi = UI_TEXTES[lang] || {};
-  out = remplacerHorsScriptsEtStyles(out, segment => {
-    let s = segment;
-    for (const [kFr, vTr] of Object.entries(mapUi)) {
-      s = s.split(kFr).join(vTr);
-    }
-    if (ATTRIBUTIONS_BAS[lang]) s = s.split(ATTRIBUTIONS_BAS.fr).join(ATTRIBUTIONS_BAS[lang]);
-    if (ATTRIBUTIONS_HAUT[lang]) s = s.split(ATTRIBUTIONS_HAUT.fr).join(ATTRIBUTIONS_HAUT[lang]);
-    return s;
-  });
-
-  if (isHome) {
-    if (INTRO_HOME[lang]) {
-      out = remplacerHorsScriptsEtStyles(out, segment =>
-        segment
-          .replace(/Révélée au début de la révélation[^<]+/i, () => INTRO_HOME[lang].mecq)
-          .replace(/Révélée après l['’]Hégire[^<]+/i, () => INTRO_HOME[lang].med)
-      );
-      const mecqOk = out.includes(INTRO_HOME[lang].mecq);
-      const medOk = out.includes(INTRO_HOME[lang].med);
-      if (!mecqOk || !medOk) traductionComplete = false;
-      diagTafsir = mecqOk && medOk ? "home-ok" : "home-incomplete";
-    } else {
-      traductionComplete = false;
-    }
-  } else if (mVerse) {
-    const prefS = { en: "Surah ", es: "Sura ", ar: "سورة ", de: "Sure ", it: "Sura ", id: "Surah ", ru: "Сура " }[lang] || "Sourate ";
-    const prefV = { en: " — Verse ", es: " — Aleya ", ar: " — الآية ", de: " — Vers ", it: " — Versetto ", id: " — Ayat ", ru: " — Аят " }[lang] || " — Verset ";
-    out = out.replace(/(<h1[^>]*>\\s*)Sourate ([^<]+?) — Verset (\\d+)/i, "$1" + prefS + "$2" + prefV + "$3");
-
-    let versetTraiteOk = false;
-    const regVersetFr = new RegExp("(>)(\\\\s*" + vNum + "\\\\s*[\\\\.-]\\\\s+)([^<]{2,})(<\\\\/)", "i");
-    if (lang === "ar") {
-      versetTraiteOk = true;
-    } else if (QURAN_API_IDS[lang] && regVersetFr.test(out)) {
-      const versetRes = await obtenirVersetOfficiel(sNum, vNum, lang);
-      if (versetRes.ok && versetRes.text) {
-        out = out.replace(regVersetFr, (_, p1, p2, _p3, p4) => p1 + p2 + escapeHtmlText(versetRes.text) + p4);
-        versetTraiteOk = true;
-      }
-    }
-
-    let tafsirTraiteOk = false;
-    const regMainExp = /(<([a-z0-9]+)[^>]*\\bid=["']mainExplanationEl["'][^>]*>)([\\s\\S]*?)(<\\/\\2>)/i;
-    const mMainExp = out.match(regMainExp);
-    if (mMainExp && mMainExp[3]) {
-      const expRes = await obtenirTafsirDepuisCachesDurablesOuTraduire(mMainExp[3], sNum, vNum, lang, env, ctx);
-      diagTafsir = expRes.diag || "unknown";
-      if (expRes.ok && expRes.html) {
-        out = out.replace(regMainExp, (_, openTag, _tag, _inner, closeTag) => openTag + expRes.html + closeTag);
-        tafsirTraiteOk = true;
-      }
-    } else {
-      diagTafsir = "selector-not-found";
-    }
-
-    if (!versetTraiteOk || !tafsirTraiteOk) {
-      traductionComplete = false;
-    }
-  } else {
-    traductionComplete = false;
-  }
-
-  out = remplacerHorsScriptsEtStyles(out, segment =>
-    segment
-      .replace(/href="\\/?sourate-(\\d+)-verset-(\\d+)(?:\\.html)?(?:\\?[^"]*)?"/gi, 'href="/sourate-$1-verset-$2?lang=' + lang + '"')
-      .replace(/href="\\/?index(?:\\.html)?(?:\\?[^"]*)?"/gi, 'href="/?lang=' + lang + '"')
-      .replace(/href="\\/"/g, 'href="/?lang=' + lang + '"')
-  );
-
-  return { html: out, complete: traductionComplete, diag: diagTafsir };
-}
-
-export async function transformerHtmlCompletSSR(html, lang, pathname, env, ctx) {
-  const res = await transformerHtmlCompletSSRWithStatus(html, lang, pathname, env, ctx);
-  return res.html;
-}
-
-async function recupererFichierStatiquePages(request, env) {
-  if (env && env.ASSETS && typeof env.ASSETS.fetch === "function") {
-    return env.ASSETS.fetch(request);
-  }
-  return fetch(request);
-}
-
-const SSR_VERSION = "v111";
-function construireCleCache(request, lang) {
-  const key = new URL(request.url);
-  key.pathname = key.pathname.replace(/\\.html$/i, "");
-  if (key.pathname === "/index") key.pathname = "/";
-  key.search = "";
-  if (lang !== "fr") key.searchParams.set("lang", lang);
-  key.searchParams.set("_ssr_v", SSR_VERSION);
-  return new Request(key.toString(), { method: "GET" });
-}
-
-const CSP_COMPATIBLE = [
-  "default-src 'self'", "base-uri 'none'", "object-src 'none'",
-  "frame-ancestors 'none'", "form-action 'self'",
-  "script-src 'self' 'unsafe-inline'",
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-  "font-src 'self' https://fonts.gstatic.com", "img-src 'self' data:",
-  "media-src 'self' blob: https://everyayah.com https://audio.qurancdn.com",
-  "connect-src 'self' https://api.quran.com https://api.qurancdn.com https://translate.googleapis.com https://everyayah.com https://audio.qurancdn.com",
-  "worker-src 'self' blob:", "upgrade-insecure-requests"
-].join("; ");
-
-function securiserReponse(response) {
-  const headers = new Headers(response.headers);
-  headers.set("Content-Security-Policy", CSP_COMPATIBLE);
-  headers.set("Strict-Transport-Security", "max-age=31536000");
-  headers.set("X-Frame-Options", "DENY");
-  headers.set("X-Content-Type-Options", "nosniff");
-  headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
-  headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=(), usb=(), autoplay=(self)");
-  return new Response(response.body, {
-    status: response.status,
-    statusText: response.statusText,
-    headers
-  });
-}
-
-const application = {
-  async fetch(request, env, ctx) {
-    if (!["GET", "HEAD"].includes(request.method)) {
-      return new Response("Method Not Allowed", { status: 405, headers: { Allow: "GET, HEAD" } });
-    }
-
-    const url = new URL(request.url);
-    const validiteVerset = verifierVersetValide(url.pathname);
-    if (validiteVerset === false) {
-      return new Response("<!DOCTYPE html><html lang='fr'><head><meta charset='UTF-8'><meta name='robots' content='noindex'><title>404 - Verset introuvable</title></head><body style='background:#020406;color:#f8fafc;font-family:sans-serif;text-align:center;padding:80px 20px;'><h1>404 — Ce verset n'existe pas</h1><p><a href='/' style='color:#38bdf8;'>Retour aux 114 Sourates</a></p></body></html>", {
-        status: 404,
-        headers: { "content-type": "text/html; charset=utf-8", "x-robots-tag": "noindex" }
-      });
-    }
-
-    const langParam = (url.searchParams.get("lang") || "fr").split("-")[0].toLowerCase();
-    const supported = ["fr", "en", "es", "ar", "de", "it", "id", "ru"];
-    const lang = supported.includes(langParam) ? langParam : "fr";
-
-    if (lang === "fr") {
-      return recupererFichierStatiquePages(request, env);
-    }
-
-    const cache = typeof caches !== "undefined" && caches.default ? caches.default : null;
-    const cacheKey = construireCleCache(request, lang);
-
-    if (cache && request.method === "GET") {
-      const cachedResp = await cache.match(cacheKey);
-      if (cachedResp) return cachedResp;
-    }
-
-    const response = await recupererFichierStatiquePages(request, env);
-    if (!response.ok) return response;
-
-    const contentType = response.headers.get("content-type") || "";
-    if (!contentType.includes("text/html")) return response;
-
-    const htmlOrig = await response.text();
-    const { html: htmlTraduit, complete: traductionComplete, diag } = await transformerHtmlCompletSSRWithStatus(htmlOrig, lang, url.pathname, env, ctx);
-
-    const headers = new Headers(response.headers);
-    headers.set("content-type", "text/html; charset=utf-8");
-    headers.set("content-language", lang);
-    headers.set("x-translation-status", traductionComplete ? "complete" : "incomplete");
-    headers.set("x-tafsir-diag", diag || "none");
-
-    if (!traductionComplete) {
-      headers.set("cache-control", "no-store, no-cache, must-revalidate");
-    }
-
-    const finalResponse = new Response(request.method === "HEAD" ? null : htmlTraduit, {
-      status: response.status,
-      statusText: response.statusText,
-      headers
-    });
-
-    if (request.method === "GET" && traductionComplete && cache && ctx && ctx.waitUntil) {
-      ctx.waitUntil(cache.put(cacheKey, finalResponse.clone()));
-    }
-    return finalResponse;
-  }
-};
-
-export default {
-  async fetch(request, env, ctx) {
-    return securiserReponse(await application.fetch(request, env, ctx));
-  }
-};
-`;
-
-const HEADERS_CONTENU_V111 = `/*
-  Content-Security-Policy: default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self' blob: https://everyayah.com https://audio.qurancdn.com; connect-src 'self' https://api.quran.com https://api.qurancdn.com https://translate.googleapis.com https://everyayah.com https://audio.qurancdn.com; worker-src 'self' blob:; upgrade-insecure-requests
-  Strict-Transport-Security: max-age=31536000
-  X-Frame-Options: DENY
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), autoplay=(self)
-`;
-
-const PAGE_404_V111 = `<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex">
-  <title>404 — Page introuvable | Le Noble Coran & Tafsīr</title>
-  <style>
-    body { background:#020406; color:#f8fafc; font-family:'Plus Jakarta Sans',system-ui,sans-serif; display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; padding:20px; text-align:center; }
-    .box { max-width:460px; background:rgba(8,14,22,0.9); border:1px solid rgba(56,189,248,0.35); border-radius:22px; padding:32px 24px; }
-    h1 { color:#38bdf8; font-size:1.5rem; margin-bottom:12px; }
-    p { color:#cbd5e1; font-size:0.95rem; margin-bottom:22px; line-height:1.6; }
-    a { display:inline-block; background:linear-gradient(135deg,#38bdf8,#0ea5e9); color:#021019; font-weight:800; text-decoration:none; padding:10px 22px; border-radius:99px; }
-  </style>
-</head>
-<body>
-  <div class="box">
-    <h1>404 — Page ou verset introuvable</h1>
-    <p>La page demandée n'existe pas parmi les 114 sourates et 6 236 versets du Noble Coran.</p>
-    <a href="/">‹ Retour aux 114 Sourates</a>
-  </div>
-</body>
-</html>`;
-
-if (fs.existsSync(dossierSite)) {
-  fs.writeFileSync(path.join(dossierSite, '_worker.js'), WORKER_SECURISE_V111, 'utf8');
-  fs.writeFileSync(path.join(dossierSite, '_headers'), HEADERS_CONTENU_V111, 'utf8');
-  fs.writeFileSync(path.join(dossierSite, '404.html'), PAGE_404_V111, 'utf8');
-}
-if (fs.existsSync(path.join(__dirname, 'cloudflare-worker-seo.js'))) {
-  fs.writeFileSync(path.join(__dirname, 'cloudflare-worker-seo.js'), WORKER_SECURISE_V111, 'utf8');
-}
-
-// ============================================================================
-// 2. STYLE & CODE CLIENT V111 (ORIGINAL SYNCHRONISÉ AVEC LE RÉCITATEUR)
-// ============================================================================
-const styleV111 = `<style id="wbw-style-v111">
-  /* 0. Soleil et Lune 100% opaques pour ne laisser passer aucune étoile */
+const styleStable = `<style id="wbw-style-v110">
   html body #flatEarthSun,
   html body .flat-earth-sun,
   html body .astre-soleil-pur-v77 {
@@ -834,23 +18,21 @@ const styleV111 = `<style id="wbw-style-v111">
     background-color: #f1f5f9 !important;
   }
 
-  /* 1. Masquage du bloc de progression (Khatm) et des doublons sur les sourates */
   .wbw-hide-khatm-on-surah,
-  .wbw-masquer-doublon-v111,
-  .maher-item-removed-v111 {
+  .wbw-masquer-doublon-v110,
+  .maher-item-removed-v110 {
     display: none !important;
   }
 
-  /* 2. Suppression ciblée des petits numéros (1, 2, 3...) sans toucher à la traduction */
-  .wbw-num-hidden-v111,
-  .wbw-card-v111 sup,
-  .wbw-card-v111 small,
+  .wbw-num-hidden-v110,
+  .wbw-card-v110 sup,
+  .wbw-card-v110 small,
   html body .wbw-card-unit::before,
   html body .wbw-card-unit::after,
   html body .wbw-word-box::before,
   html body .wbw-word-box::after,
-  html body .wbw-card-v111::before,
-  html body .wbw-card-v111::after {
+  html body .wbw-card-v110::before,
+  html body .wbw-card-v110::after {
     content: none !important;
     display: none !important;
     visibility: hidden !important;
@@ -865,8 +47,7 @@ const styleV111 = `<style id="wbw-style-v111">
     pointer-events: none !important;
   }
 
-  /* 3. Garantie d'affichage de la traduction sous chaque mot en Mot à mot */
-  html body .wbw-card-v111 .wbw-tr-v111,
+  html body .wbw-card-v110 .wbw-tr-v110,
   html body .wbw-word-box .wbw-tr {
     display: block !important;
     visibility: visible !important;
@@ -875,7 +56,6 @@ const styleV111 = `<style id="wbw-style-v111">
     overflow: visible !important;
   }
 
-  /* 4. Priorité absolue des couleurs du Tajwīd (mode Normal ET mode Mot à mot) */
   html body .verse-stage #arabicVerse tajweed[class*="ghunnah"],
   html body .verse-stage #arabicVerseEl tajweed[class*="ghunnah"],
   html body .verse-stage .arabic-glow-verse tajweed[class*="ghunnah"],
@@ -894,9 +74,9 @@ const styleV111 = `<style id="wbw-style-v111">
   html body .verse-stage #arabicVerse span[class*="iqlab"],
   html body .verse-stage #arabicVerseEl span[class*="iqlab"],
   html body .verse-stage .arabic-glow-verse span[class*="iqlab"],
-  html body .verse-stage .wbw-card-v111 [class*="ghunnah"],
-  html body .verse-stage .wbw-card-v111 [class*="ikhf"],
-  html body .verse-stage .wbw-card-v111 [class*="iqlab"] {
+  html body .verse-stage .wbw-card-v110 [class*="ghunnah"],
+  html body .verse-stage .wbw-card-v110 [class*="ikhf"],
+  html body .verse-stage .wbw-card-v110 [class*="iqlab"] {
     color: #4ade80 !important;
     text-shadow: 0 0 10px rgba(74, 222, 128, 0.45) !important;
     opacity: 1 !important;
@@ -914,8 +94,8 @@ const styleV111 = `<style id="wbw-style-v111">
   html body .verse-stage #arabicVerse span[class*="qalaq"],
   html body .verse-stage #arabicVerseEl span[class*="qalaq"],
   html body .verse-stage .arabic-glow-verse span[class*="qalaq"],
-  html body .verse-stage .wbw-card-v111 [class*="qalq"],
-  html body .verse-stage .wbw-card-v111 [class*="qalaq"] {
+  html body .verse-stage .wbw-card-v110 [class*="qalq"],
+  html body .verse-stage .wbw-card-v110 [class*="qalaq"] {
     color: #38bdf8 !important;
     text-shadow: 0 0 10px rgba(56, 189, 248, 0.5) !important;
     opacity: 1 !important;
@@ -927,7 +107,7 @@ const styleV111 = `<style id="wbw-style-v111">
   html body .verse-stage #arabicVerse span[class*="madd"],
   html body .verse-stage #arabicVerseEl span[class*="madd"],
   html body .verse-stage .arabic-glow-verse span[class*="madd"],
-  html body .verse-stage .wbw-card-v111 [class*="madd"] {
+  html body .verse-stage .wbw-card-v110 [class*="madd"] {
     color: #f87171 !important;
     text-shadow: 0 0 12px rgba(248, 113, 113, 0.5) !important;
     opacity: 1 !important;
@@ -951,9 +131,9 @@ const styleV111 = `<style id="wbw-style-v111">
   html body .verse-stage #arabicVerse span[class*="tafkh"],
   html body .verse-stage #arabicVerseEl span[class*="tafkh"],
   html body .verse-stage .arabic-glow-verse span[class*="tafkh"],
-  html body .verse-stage .wbw-card-v111 [class*="idgham"],
-  html body .verse-stage .wbw-card-v111 [class*="laam_shams"],
-  html body .verse-stage .wbw-card-v111 [class*="tafkh"] {
+  html body .verse-stage .wbw-card-v110 [class*="idgham"],
+  html body .verse-stage .wbw-card-v110 [class*="laam_shams"],
+  html body .verse-stage .wbw-card-v110 [class*="tafkh"] {
     color: #fbbf24 !important;
     text-shadow: 0 0 10px rgba(251, 191, 36, 0.45) !important;
     opacity: 1 !important;
@@ -971,208 +151,26 @@ const styleV111 = `<style id="wbw-style-v111">
   html body .verse-stage #arabicVerse span[class*="slnt"],
   html body .verse-stage #arabicVerseEl span[class*="slnt"],
   html body .verse-stage .arabic-glow-verse span[class*="slnt"],
-  html body .verse-stage .wbw-card-v111 [class*="ham_wasl"],
-  html body .verse-stage .wbw-card-v111 [class*="slnt"] {
+  html body .verse-stage .wbw-card-v110 [class*="ham_wasl"],
+  html body .verse-stage .wbw-card-v110 [class*="slnt"] {
     color: #94a3b8 !important;
     text-shadow: none !important;
   }
-
-  /* 5. MODALE AUDIO : PLAGE DE VERSETS & RÉPÉTITIONS (STYLE QURAN.COM) */
-  #wbwAudioRangeBtnV111 {
-    background: rgba(14, 165, 233, 0.14);
-    color: #7dd3fc;
-    border: 1px solid rgba(56, 189, 248, 0.42);
-    padding: 6px 13px;
-    border-radius: 11px;
-    font-family: inherit;
-    font-size: 0.81rem;
-    font-weight: 800;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  #wbwAudioRangeBtnV111:hover,
-  #wbwAudioRangeBtnV111.active {
-    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-    color: #021019;
-    border-color: #7dd3fc;
-    box-shadow: 0 0 16px rgba(56, 189, 248, 0.48);
-  }
-
-  #wbwAudioRangeOverlayV111 {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.72);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    z-index: 10050;
-    display: none;
-    align-items: flex-end;
-    justify-content: center;
-    padding: 0;
-  }
-  @media (min-width: 640px) {
-    #wbwAudioRangeOverlayV111 {
-      align-items: center;
-      padding: 16px;
-    }
-  }
-  #wbwAudioRangeOverlayV111.open {
-    display: flex;
-  }
-
-  .wbw-audio-sheet-v111 {
-    width: 100%;
-    max-width: 440px;
-    background: #14171c;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 24px 24px 0 0;
-    padding: 12px 20px 22px 20px;
-    color: #f8fafc;
-    box-shadow: 0 -10px 45px rgba(0, 0, 0, 0.85);
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    animation: wbwSheetUpV111 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  @media (min-width: 640px) {
-    .wbw-audio-sheet-v111 {
-      border-radius: 24px;
-      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.9);
-    }
-  }
-  @keyframes wbwSheetUpV111 {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .wbw-audio-handle-v111 {
-    width: 40px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.25);
-    border-radius: 99px;
-    margin: 0 auto 12px auto;
-  }
-  .wbw-audio-title-v111 {
-    text-align: center;
-    font-size: 1.02rem;
-    font-weight: 800;
-    color: #ffffff;
-    margin-bottom: 14px;
-    letter-spacing: 0.01em;
-  }
-  .wbw-audio-row-v111 {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 13px 4px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  }
-  .wbw-audio-row-v111:last-of-type {
-    border-bottom: none;
-  }
-  .wbw-audio-label-v111 {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.93rem;
-    font-weight: 600;
-    color: #e2e8f0;
-  }
-  .wbw-audio-icon-v111 {
-    width: 22px;
-    text-align: center;
-    font-size: 1rem;
-    color: #94a3b8;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .wbw-audio-select-v111 {
-    background: #1e232b;
-    color: #f8fafc;
-    border: 1px solid rgba(56, 189, 248, 0.28);
-    border-radius: 10px;
-    padding: 7px 12px;
-    font-family: inherit;
-    font-size: 0.9rem;
-    font-weight: 700;
-    cursor: pointer;
-    outline: none;
-    min-width: 118px;
-    text-align: right;
-  }
-  .wbw-audio-select-v111:focus {
-    border-color: #38bdf8;
-    box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
-  }
-  .wbw-audio-actions-v111 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 18px;
-    padding-top: 14px;
-    border-top: 1px solid rgba(255, 255, 255, 0.09);
-  }
-  .wbw-audio-cancel-v111 {
-    background: transparent;
-    color: #e2e8f0;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 999px;
-    padding: 11px 16px;
-    font-family: inherit;
-    font-size: 0.94rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.18s;
-  }
-  .wbw-audio-cancel-v111:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: #ffffff;
-  }
-  .wbw-audio-play-v111 {
-    background: linear-gradient(135deg, #56a8f5, #38bdf8);
-    color: #ffffff;
-    border: none;
-    border-radius: 999px;
-    padding: 11px 16px;
-    font-family: inherit;
-    font-size: 0.95rem;
-    font-weight: 800;
-    cursor: pointer;
-    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.38);
-    transition: 0.18s;
-  }
-  .wbw-audio-play-v111:hover {
-    filter: brightness(1.08);
-    transform: translateY(-1px);
-  }
-
-  /* 6. Optimisation GPU mobile : désactive backdrop-filter coûteux sur petits écrans */
-  @media (max-width: 820px) {
-    *, *::before, *::after {
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-    }
-    body::before, body::after,
-    .bg-orb, .glow-orb, .moon-orb, .sun-orb, [class*="orb" i] {
-      display: none !important;
-      animation: none !important;
-      filter: none !important;
-    }
-  }
 </style>`;
 
-const codeClientV111 = `
+const codeClientStable = `
 (function() {
   window.__wbwBypassOrigCartes = true;
-
-  var NUMERO_RNA = 'RNA : W343000000 • SIRET en cours d’attribution INSEE';
 
   function forcer(el, prop, val) {
     if (el && el.style && el.style.getPropertyValue(prop) !== val) {
       el.style.setProperty(prop, val, 'important');
+    }
+  }
+
+  function definirTexteSansBoucle(el, val) {
+    if (el && el.textContent !== val) {
+      el.textContent = val;
     }
   }
 
@@ -1250,23 +248,6 @@ const codeClientV111 = `
     return '';
   }
 
-  function obtenirInfosSourateEtVerset() {
-    var cle = obtenirCleVersetActuelDom();
-    var parts = cle ? cle.split(':') : [];
-    var s = parts.length === 2 ? parseInt(parts[0], 10) : (typeof numSourateActuelle !== 'undefined' ? Number(numSourateActuelle) : 1);
-    var v = parts.length === 2 ? parseInt(parts[1], 10) : (typeof numVersetActuel !== 'undefined' ? Number(numVersetActuel) : 1);
-    var totalV = 1;
-    if (window.SOURATE_DATA && window.SOURATE_DATA.nbVersets) {
-      totalV = Number(window.SOURATE_DATA.nbVersets);
-    } else {
-      var selJ = document.getElementById('verseJumperSelect');
-      if (selJ && selJ.options && selJ.options.length > 0) {
-        totalV = selJ.options.length;
-      }
-    }
-    return { s: s || 1, v: v || 1, totalV: Math.max(1, totalV || 1) };
-  }
-
   function boutonEstActif(btn) {
     if (!btn) return false;
     if (btn.classList.contains('active') || btn.getAttribute('aria-pressed') === 'true') return true;
@@ -1301,200 +282,9 @@ const codeClientV111 = `
     return document.body.classList.contains('wbw-mode-on');
   }
 
-  function estModeTajwidActif() {
-    var btnTaj = trouverBoutonTajwid();
-    if (btnTaj) return boutonEstActif(btnTaj);
-    return true;
-  }
-
-  // =========================================================================
-  // 1. OCCULTATION EXACTE DES ÉTOILES SOUS LE SOLEIL ET LA LUNE (DOM + CANVAS)
-  // =========================================================================
-  function activerOccultationSoleilLune() {
-    if (window.__skyOcclusionV111 || typeof CanvasRenderingContext2D === 'undefined') return;
-    window.__skyOcclusionV111 = true;
-
-    var proto = CanvasRenderingContext2D.prototype;
-    var origClearRect = proto.clearRect;
-    var origSave = proto.save;
-    var origRestore = proto.restore;
-    var origTranslate = proto.translate;
-    var origDrawImage = proto.drawImage;
-    var origArc = proto.arc;
-    var origFillText = proto.fillText;
-    var origFill = proto.fill;
-
-    function recenserOrbesSoleilLune(ctx) {
-      var orbes = [];
-      var els = document.querySelectorAll('#flatEarthSun, #flatEarthMoon, .flat-earth-sun, .flat-earth-moon, .astre-soleil-pur-v77, .astre-lune-pure-v77');
-      for (var i = 0; i < els.length; i++) {
-        var el = els[i];
-        var st = window.getComputedStyle(el);
-        if (st.display === 'none' || st.visibility === 'hidden' || parseFloat(st.opacity || '1') < 0.05) continue;
-        var rect = el.getBoundingClientRect();
-        if (rect.width >= 30 && rect.height >= 30 && rect.bottom > 0 && rect.right > 0 && rect.top < window.innerHeight && rect.left < window.innerWidth) {
-          orbes.push({
-            x: rect.left + rect.width * 0.5,
-            y: rect.top + rect.height * 0.5,
-            r: Math.max(rect.width, rect.height) * 0.5
-          });
-        }
-      }
-      ctx.__orbesDomV111 = orbes;
-    }
-
-    function visibiliteEtoile(ctx, x, y, rayonEtoile) {
-      var liste = [];
-      if (ctx.__orbesDomV111 && ctx.__orbesDomV111.length) {
-        for (var i = 0; i < ctx.__orbesDomV111.length; i++) liste.push(ctx.__orbesDomV111[i]);
-      }
-      if (ctx.__orbesCanvasV111 && ctx.__orbesCanvasV111.length) {
-        for (var j = 0; j < ctx.__orbesCanvasV111.length; j++) liste.push(ctx.__orbesCanvasV111[j]);
-      }
-      if (liste.length === 0) return 1.0;
-
-      var pad = (rayonEtoile || 4) * 0.5;
-      var visMin = 1.0;
-      for (var k = 0; k < liste.length; k++) {
-        var o = liste[k];
-        var dx = x - o.x;
-        var dy = y - o.y;
-        var dist = Math.sqrt(dx * dx + dy * dy);
-        var rOpaque = o.r * 0.94 + pad;
-        var rDoux = o.r * 1.15 + pad;
-        if (dist <= rOpaque) {
-          return 0.0;
-        } else if (dist < rDoux) {
-          var t = (dist - rOpaque) / (rDoux - rOpaque);
-          var v = t * t * (3 - 2 * t);
-          if (v < visMin) visMin = v;
-        }
-      }
-      return visMin;
-    }
-
-    proto.clearRect = function(x, y, w, h) {
-      if (this.canvas && w >= this.canvas.width * 0.8 && h >= this.canvas.height * 0.8) {
-        this.__orbesCanvasV111 = [];
-        this.__txV111 = 0;
-        this.__tyV111 = 0;
-        this.__stackTxV111 = [];
-        recenserOrbesSoleilLune(this);
-      }
-      return origClearRect.apply(this, arguments);
-    };
-
-    proto.save = function() {
-      if (this.canvas && this.canvas.id === 'fullPageSkyCanvas') {
-        if (!this.__stackTxV111) this.__stackTxV111 = [];
-        this.__stackTxV111.push({ x: this.__txV111 || 0, y: this.__tyV111 || 0 });
-      }
-      return origSave.apply(this, arguments);
-    };
-
-    proto.restore = function() {
-      if (this.canvas && this.canvas.id === 'fullPageSkyCanvas' && this.__stackTxV111 && this.__stackTxV111.length > 0) {
-        var prev = this.__stackTxV111.pop();
-        this.__txV111 = prev.x;
-        this.__tyV111 = prev.y;
-      }
-      return origRestore.apply(this, arguments);
-    };
-
-    proto.translate = function(tx, ty) {
-      if (this.canvas && this.canvas.id === 'fullPageSkyCanvas') {
-        this.__txV111 = (this.__txV111 || 0) + (Number(tx) || 0);
-        this.__tyV111 = (this.__tyV111 || 0) + (Number(ty) || 0);
-      }
-      return origTranslate.apply(this, arguments);
-    };
-
-    proto.drawImage = function(img, dx, dy, dw, dh) {
-      if (this.canvas && (this.canvas.id === 'fullPageSkyCanvas' || this.canvas.width > 200)) {
-        if (!this.__orbesDomV111) recenserOrbesSoleilLune(this);
-        var w = typeof dw === 'number' ? dw : (img && img.width ? img.width : 0);
-        var h = typeof dh === 'number' ? dh : (img && img.height ? img.height : 0);
-        var wx = (this.__txV111 || 0) + (Number(dx) || 0) + w * 0.5;
-        var wy = (this.__tyV111 || 0) + (Number(dy) || 0) + h * 0.5;
-
-        var vis = visibiliteEtoile(this, wx, wy, Math.max(w, h) * 0.45);
-        if (vis <= 0.02) {
-          return;
-        }
-        if (vis < 0.99) {
-          var oldAlpha = this.globalAlpha;
-          this.globalAlpha = oldAlpha * vis;
-          var res = origDrawImage.apply(this, arguments);
-          this.globalAlpha = oldAlpha;
-          return res;
-        }
-      }
-      return origDrawImage.apply(this, arguments);
-    };
-
-    proto.arc = function(x, y, r, sa, ea, ccw) {
-      if (r >= 22 && r <= 240 && this.canvas && this.canvas.width > 200) {
-        if (!this.__orbesCanvasV111) this.__orbesCanvasV111 = [];
-        if (this.__orbesCanvasV111.length < 6) {
-          this.__orbesCanvasV111.push({ x: (this.__txV111 || 0) + x, y: (this.__tyV111 || 0) + y, r: r });
-        }
-        this.__skipNextStarFill = false;
-        this.__starFadeFactor = 1.0;
-      } else if (r > 0 && r <= 6.5 && this.canvas && this.canvas.width > 200) {
-        if (!this.__orbesDomV111) recenserOrbesSoleilLune(this);
-        var vis = visibiliteEtoile(this, (this.__txV111 || 0) + x, (this.__tyV111 || 0) + y, r);
-        if (vis <= 0.02) {
-          this.__skipNextStarFill = true;
-          return;
-        }
-        this.__starFadeFactor = vis;
-      } else {
-        this.__skipNextStarFill = false;
-        this.__starFadeFactor = 1.0;
-      }
-      return origArc.apply(this, arguments);
-    };
-
-    proto.fill = function() {
-      if (this.__skipNextStarFill) {
-        this.__skipNextStarFill = false;
-        return;
-      }
-      if (typeof this.__starFadeFactor === 'number' && this.__starFadeFactor < 0.99) {
-        var oldAlpha = this.globalAlpha;
-        this.globalAlpha = oldAlpha * this.__starFadeFactor;
-        this.__starFadeFactor = 1.0;
-        var res = origFill.apply(this, arguments);
-        this.globalAlpha = oldAlpha;
-        return res;
-      }
-      return origFill.apply(this, arguments);
-    };
-
-    proto.fillText = function(text, x, y) {
-      if (this.canvas && this.canvas.width > 200 && typeof text === 'string' && text.length <= 3) {
-        if (!this.__orbesDomV111) recenserOrbesSoleilLune(this);
-        var vis = visibiliteEtoile(this, (this.__txV111 || 0) + x, (this.__tyV111 || 0) + y, 6);
-        if (vis <= 0.02) return;
-        if (vis < 0.99) {
-          var oldA = this.globalAlpha;
-          this.globalAlpha = oldA * vis;
-          var r = origFillText.apply(this, arguments);
-          this.globalAlpha = oldA;
-          return r;
-        }
-      }
-      return origFillText.apply(this, arguments);
-    };
-  }
-  activerOccultationSoleilLune();
-
-  // =========================================================================
-  // 2. GESTION DE LA TAILLE DU MOT À MOT AVEC LES BOUTONS A- ET A+
-  // =========================================================================
   var wbwFontScale = 1.0;
   try {
-    var savedScale = parseFloat(localStorage.getItem('wbw_font_scale_v111') || '1.0');
+    var savedScale = parseFloat(localStorage.getItem('wbw_font_scale_v110') || '1.0');
     if (savedScale >= 0.65 && savedScale <= 1.85) wbwFontScale = savedScale;
   } catch (e) {}
 
@@ -1523,7 +313,7 @@ const codeClientV111 = `
     if (e.isTrusted && e.target && e.target.closest) {
       var rpItemClick = e.target.closest('.rp-item');
       if (rpItemClick) {
-        window.__userPickedReciterManuallyV111 = true;
+        window.__userPickedReciterManuallyV110 = true;
       }
     }
 
@@ -1532,25 +322,15 @@ const codeClientV111 = `
     var txt = (btn.textContent || '').replace(/\\s+/g, '');
     if (txt === 'A+' || txt === 'A＋') {
       wbwFontScale = Math.min(1.75, Math.round((wbwFontScale + 0.12) * 100) / 100);
-      try { localStorage.setItem('wbw_font_scale_v111', String(wbwFontScale)); } catch (err) {}
+      try { localStorage.setItem('wbw_font_scale_v110', String(wbwFontScale)); } catch (err) {}
       appliquerTailleSurMetaCartes();
     } else if (txt === 'A-' || txt === 'A−' || txt === 'A–') {
       wbwFontScale = Math.max(0.70, Math.round((wbwFontScale - 0.12) * 100) / 100);
-      try { localStorage.setItem('wbw_font_scale_v111', String(wbwFontScale)); } catch (err) {}
+      try { localStorage.setItem('wbw_font_scale_v110', String(wbwFontScale)); } catch (err) {}
       appliquerTailleSurMetaCartes();
     }
   }, true);
 
-  if (!window.__popstateV111) {
-    window.__popstateV111 = true;
-    window.addEventListener('popstate', function() {
-      window.location.reload();
-    });
-  }
-
-  // =========================================================================
-  // 3. DÉTECTION & ORDRE DE LECTURE CORANIQUE (SANS SAUTER LES PETITS MOTS)
-  // =========================================================================
   function estElementVersetNormal(el) {
     if (!el) return false;
     if (el.id === 'arabicVerse' || el.id === 'arabicVerseEl' || el.id === 'frenchVerseEl') return true;
@@ -1612,46 +392,7 @@ const codeClientV111 = `
       });
       return copie;
     }
-
-    var vNormal = document.querySelector('#arabicVerseEl, #arabicVerse, .arabic-glow-verse');
-    var texteVerset = '';
-    if (window.SOURATE_DATA && typeof numVersetActuel !== 'undefined' && window.SOURATE_DATA.versets[numVersetActuel - 1]) {
-      texteVerset = window.SOURATE_DATA.versets[numVersetActuel - 1].texteArabe || '';
-    } else if (vNormal) {
-      texteVerset = vNormal.textContent || '';
-    }
-    var motsVerset = texteVerset.trim().split(/\\s+/);
-    if (motsVerset.length >= 2) {
-      var premierMot = nettoyerArabeBrut(motsVerset[0]);
-      var dernierMot = nettoyerArabeBrut(motsVerset[motsVerset.length - 1]);
-      var carte0Ar = nettoyerArabeBrut(copie[0].textContent || '');
-      var carteFinAr = nettoyerArabeBrut(copie[copie.length - 1].textContent || '');
-      if (premierMot && dernierMot && premierMot !== dernierMot) {
-        if (carte0Ar.indexOf(dernierMot) !== -1 && carteFinAr.indexOf(premierMot) !== -1) {
-          return copie.reverse();
-        }
-      }
-    }
-
-    var r0 = copie[0].getBoundingClientRect();
-    var rFin = copie[copie.length - 1].getBoundingClientRect();
-    if (r0.width > 0 && rFin.width > 0 && Math.abs(r0.top - rFin.top) < 35 && r0.left < rFin.left) {
-      return copie.reverse();
-    }
-
     return copie;
-  }
-
-  function grilleCorrespondAuVersetActuel(cartes) {
-    if (!cartes || cartes.length === 0) return false;
-    var cleDom = obtenirCleVersetActuelDom();
-    if (cleDom && cleDom !== '19:1' && cartes.length === 1) {
-      var arTxt = nettoyerArabeBrut(cartes[0].textContent || '');
-      if (arTxt.indexOf('كهيعص') !== -1) {
-        return false;
-      }
-    }
-    return true;
   }
 
   function obtenirCartesMotAMotUniversel() {
@@ -1663,10 +404,9 @@ const codeClientV111 = `
     var stage = document.getElementById('wbwStageContainer');
     if (stage) {
       forcer(stage, 'display', 'flex');
-      var boxes = stage.querySelectorAll('.wbw-word-box, .wbw-card-unit, .wbw-card-v111');
+      var boxes = stage.querySelectorAll('.wbw-word-box, .wbw-card-unit, .wbw-card-v110');
       if (boxes && boxes.length >= 1) {
-        var arr = Array.prototype.slice.call(boxes);
-        if (grilleCorrespondAuVersetActuel(arr)) return ordonnerCartesSensLecture(arr);
+        return ordonnerCartesSensLecture(Array.prototype.slice.call(boxes));
       }
     }
 
@@ -1682,19 +422,14 @@ const codeClientV111 = `
             ch.push(c);
           }
         }
-        if (ch.length >= 1 && grilleCorrespondAuVersetActuel(ch)) {
-          return ordonnerCartesSensLecture(ch);
-        } else if (ch.length >= 1 && !grilleCorrespondAuVersetActuel(ch)) {
-          g.innerHTML = '';
-          forcer(g, 'display', 'none');
-        }
+        if (ch.length >= 1) return ordonnerCartesSensLecture(ch);
       }
     }
 
     if (typeof window.__obtenirCartesWBWOrig === 'function') {
       try {
         var orig = window.__obtenirCartesWBWOrig() || [];
-        if (orig.length >= 1 && grilleCorrespondAuVersetActuel(orig)) return ordonnerCartesSensLecture(orig);
+        if (orig.length >= 1) return ordonnerCartesSensLecture(orig);
       } catch (e) {}
     }
 
@@ -1702,103 +437,15 @@ const codeClientV111 = `
   }
   window.__obtenirCartesWBW = obtenirCartesMotAMotUniversel;
 
-  // =========================================================================
-  // 4. RECHARGEMENT AUTOMATIQUE DU TAJWĪD DEPUIS L'API QURAN.COM SI MANQUANT
-  // =========================================================================
-  var cacheTajwidVerset = {};
-  var enCoursTajwidVerset = {};
-
-  function appliquerTajwidDepuisApiSiNecessaire() {
-    if (!estModeTajwidActif()) return;
-    var cle = obtenirCleVersetActuelDom();
-    if (!cle) return;
-
-    var vNormal = document.querySelector('#arabicVerseEl, #arabicVerse, .arabic-glow-verse');
-    var normalADejaTajwid = Boolean(vNormal && vNormal.querySelector('tajweed, [class*="ghunnah"], [class*="madd"], [class*="qalq"], [class*="idgham"], [class*="ikhf"], [class*="tafkh"], [class*="laam_shams"]'));
-
-    if (normalADejaTajwid && (!cacheMetaCartes.length || (cacheMetaCartes[0].elAr && cacheMetaCartes[0].elAr.querySelector('tajweed, [class*="madd"], [class*="ghunnah"], [class*="qalq"], [class*="idgham"], [class*="ikhf"]')))) {
-      return;
-    }
-
-    function injecterHtmlTajwid(htmlComplet) {
-      if (!htmlComplet || obtenirCleVersetActuelDom() !== cle) return;
-      var temp = document.createElement('div');
-      temp.innerHTML = htmlComplet;
-      var ends = temp.querySelectorAll('.end, span.end');
-      for (var e = 0; e < ends.length; e++) ends[e].remove();
-      var htmlPropre = temp.innerHTML.replace(/[\\u0660-\\u06690-9]+\\s*$/g, '').trim();
-      var motsHtml = htmlPropre.split(/\\s+/).filter(Boolean);
-
-      if (vNormal && !normalADejaTajwid) {
-        var spans = vNormal.querySelectorAll('span.ar-word-follow, span.inline-clickable-word');
-        if (spans.length === motsHtml.length && spans.length > 0) {
-          for (var s = 0; s < spans.length; s++) {
-            spans[s].innerHTML = motsHtml[s];
-          }
-        } else if (spans.length === 0) {
-          vNormal.innerHTML = motsHtml.map(function(m) {
-            return '<span class="ar-word-follow">' + m + '</span>';
-          }).join(' ');
-        }
-      }
-
-      if (cacheMetaCartes.length === motsHtml.length) {
-        for (var c = 0; c < cacheMetaCartes.length; c++) {
-          var meta = cacheMetaCartes[c];
-          if (meta && meta.elAr && !meta.elAr.querySelector('tajweed')) {
-            meta.elAr.innerHTML = motsHtml[c];
-          }
-        }
-      }
-    }
-
-    if (cacheTajwidVerset[cle]) {
-      injecterHtmlTajwid(cacheTajwidVerset[cle]);
-      return;
-    }
-
-    if (enCoursTajwidVerset[cle]) return;
-    enCoursTajwidVerset[cle] = true;
-
-    fetch('https://api.quran.com/api/v4/quran/verses/uthmani_tajweed?verse_key=' + encodeURIComponent(cle))
-      .then(function(r) { return r.ok ? r.json() : Promise.reject(new Error('HTTP')); })
-      .then(function(d) {
-        var v = d && d.verses && d.verses[0] && d.verses[0].text_uthmani_tajweed;
-        if (v) {
-          cacheTajwidVerset[cle] = v;
-          injecterHtmlTajwid(v);
-        }
-      })
-      .catch(function() {})
-      .finally(function() {
-        delete enCoursTajwidVerset[cle];
-      });
-  }
-
-  // =========================================================================
-  // 5. FORÇAGE DE YASSER AL-DOSARI EN PREMIER PAR DÉFAUT (REMPLACE AYYUB/MAHER)
-  // =========================================================================
   var initDefautFait = false;
 
   function supprimerMaherEtForcerYasser() {
-    if (window.__userPickedReciterManuallyV111) return;
-
-    try {
-      for (var k = 0; k < localStorage.length; k++) {
-        var cle = localStorage.key(k);
-        if (cle && /recit|sheikh|qari|lecteur|audio/i.test(cle)) {
-          var val = localStorage.getItem(cle) || '';
-          if (!/yasser|dosari|dossary|dussary/i.test(val)) {
-            localStorage.setItem(cle, 'Yasser_Ad-Dussary_128kbps');
-          }
-        }
-      }
-    } catch (e) {}
+    if (window.__userPickedReciterManuallyV110) return;
 
     var selects = document.querySelectorAll('select');
     for (var s = 0; s < selects.length; s++) {
       var sel = selects[s];
-      if (sel.classList.contains('wbw-audio-select-v111') || sel.classList.contains('khatm-reciter-select') || sel.id === 'verseJumperSelect') continue;
+      if (sel.classList.contains('khatm-reciter-select') || sel.id === 'verseJumperSelect') continue;
       var yasserIdx = -1;
       for (var o = sel.options.length - 1; o >= 0; o--) {
         var opt = sel.options[o];
@@ -1819,413 +466,10 @@ const codeClientV111 = `
         sel.dispatchEvent(new Event('change', { bubbles: true }));
       }
     }
-
-    var rpItems = document.querySelectorAll('.rp-item, [data-reciter]');
-    var itemYasser = null;
-    for (var i = 0; i < rpItems.length; i++) {
-      var it = rpItems[i];
-      var txtIt = (it.textContent || '') + ' ' + (it.getAttribute('data-reciter') || '');
-      if (/maher|muaiqly|ماهر|Махер/i.test(txtIt)) {
-        it.classList.add('maher-item-removed-v111');
-        if (it.parentNode) it.parentNode.removeChild(it);
-      } else if (!itemYasser && /yasser|dosari|dossary|dussary|الدوسري|Досари/i.test(txtIt)) {
-        itemYasser = it;
-      }
-    }
-
-    var rpBtn = document.querySelector('.rp-btn');
-    if (rpBtn && itemYasser) {
-      var txtBtn = (rpBtn.textContent || '');
-      if (!/yasser|dosari|dossary|dussary|الدوسري|Досари/i.test(txtBtn)) {
-        itemYasser.click();
-        var rpPanel = document.querySelector('.rp-panel');
-        if (rpPanel) rpPanel.classList.remove('open');
-        rpBtn.setAttribute('aria-expanded', 'false');
-      }
-    }
-  }
-
-  // =========================================================================
-  // 6. MODE AUDIO : PLAGE DE VERSETS (START/END RANGE) & RÉPÉTITIONS (QURAN.COM)
-  // =========================================================================
-  var TEXTES_AUDIO_MODAL_I18N = {
-    fr: {
-      btn: '🔁 Plage & Répétition',
-      title: 'Audio',
-      start: 'Début de la plage',
-      end: 'Fin de la plage',
-      repSel: 'Répéter la sélection',
-      repAyah: 'Répéter le verset',
-      none: 'Aucune',
-      times: 'fois',
-      inf: '∞ Infini',
-      cancel: 'Annuler',
-      stop: 'Arrêter la boucle',
-      play: 'Lire'
-    },
-    en: {
-      btn: '🔁 Audio Range',
-      title: 'Audio',
-      start: 'Start Range',
-      end: 'End Range',
-      repSel: 'Repeat selection',
-      repAyah: 'Repeat Ayah',
-      none: 'None',
-      times: 'times',
-      inf: '∞ Infinite',
-      cancel: 'Cancel',
-      stop: 'Stop Loop',
-      play: 'Play'
-    },
-    es: {
-      btn: '🔁 Rango y Repetición',
-      title: 'Audio',
-      start: 'Inicio del rango',
-      end: 'Fin del rango',
-      repSel: 'Repetir selección',
-      repAyah: 'Repetir aleya',
-      none: 'Ninguna',
-      times: 'veces',
-      inf: '∞ Infinito',
-      cancel: 'Cancelar',
-      stop: 'Detener bucle',
-      play: 'Reproducir'
-    },
-    ar: {
-      btn: '🔁 نطاق التكرار',
-      title: 'الصوت والتكرار',
-      start: 'بداية النطاق',
-      end: 'نهاية النطاق',
-      repSel: 'تكرار المقطع',
-      repAyah: 'تكرار الآية',
-      none: 'بدون',
-      times: 'مرات',
-      inf: '∞ بلا حدود',
-      cancel: 'إلغاء',
-      stop: 'إيقاف التكرار',
-      play: 'تشغيل'
-    },
-    de: {
-      btn: '🔁 Bereich & Wiederholung',
-      title: 'Audio',
-      start: 'Startbereich',
-      end: 'Endbereich',
-      repSel: 'Auswahl wiederholen',
-      repAyah: 'Vers wiederholen',
-      none: 'Keine',
-      times: 'Mal',
-      inf: '∞ Unendlich',
-      cancel: 'Abbrechen',
-      stop: 'Stoppen',
-      play: 'Abspielen'
-    },
-    it: {
-      btn: '🔁 Intervallo Audio',
-      title: 'Audio',
-      start: 'Inizio intervallo',
-      end: 'Fine intervallo',
-      repSel: 'Ripeti selezione',
-      repAyah: 'Ripeti versetto',
-      none: 'Nessuna',
-      times: 'volte',
-      inf: '∞ Infinito',
-      cancel: 'Annulla',
-      stop: 'Ferma ciclo',
-      play: 'Riproduci'
-    },
-    id: {
-      btn: '🔁 Rentang & Ulangi',
-      title: 'Audio',
-      start: 'Mulai Rentang',
-      end: 'Akhir Rentang',
-      repSel: 'Ulangi pilihan',
-      repAyah: 'Ulangi Ayat',
-      none: 'Tidak ada',
-      times: 'kali',
-      inf: '∞ Tak terbatas',
-      cancel: 'Batal',
-      stop: 'Hentikan',
-      play: 'Putar'
-    },
-    ru: {
-      btn: '🔁 Диапазон и повтор',
-      title: 'Аудио',
-      start: 'Начало диапазона',
-      end: 'Конец диапазона',
-      repSel: 'Повтор выбора',
-      repAyah: 'Повтор аята',
-      none: 'Нет',
-      times: 'раз(а)',
-      inf: '∞ Бесконечно',
-      cancel: 'Отмена',
-      stop: 'Остановить',
-      play: 'Слушать'
-    }
-  };
-
-  var etatAudioRange = {
-    actif: false,
-    sourate: 0,
-    startV: 1,
-    endV: 1,
-    repeatSelMax: 1,
-    repeatAyahMax: 1,
-    compteurSel: 1,
-    compteurAyah: 1
-  };
-
-  function mettreAJourBoutonAudioRange() {
-    var btn = document.getElementById('wbwAudioRangeBtnV111');
-    if (!btn) return;
-    var lang = obtenirLanguePage();
-    var t = TEXTES_AUDIO_MODAL_I18N[lang] || TEXTES_AUDIO_MODAL_I18N.fr;
-    var info = obtenirInfosSourateEtVerset();
-
-    if (etatAudioRange.actif && etatAudioRange.sourate === info.s) {
-      btn.classList.add('active');
-      var lblAyah = etatAudioRange.repeatAyahMax === -1 ? '∞' : (etatAudioRange.repeatAyahMax > 1 ? (etatAudioRange.compteurAyah + '/' + etatAudioRange.repeatAyahMax) : '');
-      var lblSel = etatAudioRange.repeatSelMax === -1 ? '∞' : (etatAudioRange.repeatSelMax > 1 ? (etatAudioRange.compteurSel + '/' + etatAudioRange.repeatSelMax) : '');
-      var details = [lblAyah ? ('v.' + lblAyah) : '', lblSel ? ('↻' + lblSel) : ''].filter(Boolean).join(' ');
-      btn.textContent = '🔁 ' + info.s + ':' + etatAudioRange.startV + '➔' + etatAudioRange.endV + (details ? (' (' + details + ')') : '');
-    } else {
-      btn.classList.remove('active');
-      btn.textContent = t.btn;
-    }
-  }
-
-  function naviguerEtJouerVerset(numV) {
-    if (typeof window.allerAuVerset === 'function') {
-      window.allerAuVerset(numV, true);
-      return;
-    }
-    var selJ = document.getElementById('verseJumperSelect');
-    if (selJ && selJ.options.length >= numV) {
-      selJ.selectedIndex = numV - 1;
-      selJ.dispatchEvent(new Event('change', { bubbles: true }));
-    }
-    setTimeout(function() {
-      var aud = document.getElementById('ayahAudio');
-      if (aud && aud.paused) {
-        var playBtn = document.getElementById('playSyncBtn');
-        if (playBtn) playBtn.click();
-        else aud.play().catch(function() {});
-      }
-    }, 90);
-  }
-
-  function installerIntercepteurFinAudio() {
-    var aud = document.getElementById('ayahAudio');
-    if (!aud || aud.__wbwRangeHookedV111) return;
-    aud.__wbwRangeHookedV111 = true;
-
-    aud.addEventListener('ended', function(ev) {
-      var info = obtenirInfosSourateEtVerset();
-      if (!etatAudioRange.actif || etatAudioRange.sourate !== info.s) return;
-
-      ev.stopImmediatePropagation();
-
-      var encoreAyah = (etatAudioRange.repeatAyahMax === -1) || (etatAudioRange.compteurAyah < etatAudioRange.repeatAyahMax);
-      if (encoreAyah) {
-        etatAudioRange.compteurAyah++;
-        mettreAJourBoutonAudioRange();
-        window.__wbwResetDemande = true;
-        aud.currentTime = 0;
-        aud.play().catch(function() {});
-        return;
-      }
-
-      etatAudioRange.compteurAyah = 1;
-      if (info.v < etatAudioRange.endV && info.v < info.totalV) {
-        mettreAJourBoutonAudioRange();
-        naviguerEtJouerVerset(info.v + 1);
-        return;
-      }
-
-      var encoreSel = (etatAudioRange.repeatSelMax === -1) || (etatAudioRange.compteurSel < etatAudioRange.repeatSelMax);
-      if (encoreSel) {
-        etatAudioRange.compteurSel++;
-        mettreAJourBoutonAudioRange();
-        if (info.v !== etatAudioRange.startV) {
-          naviguerEtJouerVerset(etatAudioRange.startV);
-        } else {
-          window.__wbwResetDemande = true;
-          aud.currentTime = 0;
-          aud.play().catch(function() {});
-        }
-        return;
-      }
-
-      etatAudioRange.actif = false;
-      mettreAJourBoutonAudioRange();
-      if (typeof arreterVisuel === 'function') {
-        try { arreterVisuel(); } catch (e) {}
-      }
-    }, true);
-  }
-
-  function ouvrirModaleAudioRange() {
-    var overlay = document.getElementById('wbwAudioRangeOverlayV111');
-    if (!overlay) return;
-    var lang = obtenirLanguePage();
-    var t = TEXTES_AUDIO_MODAL_I18N[lang] || TEXTES_AUDIO_MODAL_I18N.fr;
-    var info = obtenirInfosSourateEtVerset();
-
-    var startDefaut = (etatAudioRange.actif && etatAudioRange.sourate === info.s) ? etatAudioRange.startV : info.v;
-    var endDefaut = (etatAudioRange.actif && etatAudioRange.sourate === info.s) ? etatAudioRange.endV : info.totalV;
-    var repSelDefaut = (etatAudioRange.actif && etatAudioRange.sourate === info.s) ? etatAudioRange.repeatSelMax : 1;
-    var repAyahDefaut = (etatAudioRange.actif && etatAudioRange.sourate === info.s) ? etatAudioRange.repeatAyahMax : 1;
-
-    var optsStart = '';
-    var optsEnd = '';
-    for (var i = 1; i <= info.totalV; i++) {
-      optsStart += '<option value="' + i + '"' + (i === startDefaut ? ' selected' : '') + '>' + info.s + ':' + i + '</option>';
-      optsEnd += '<option value="' + i + '"' + (i === endDefaut ? ' selected' : '') + '>' + info.s + ':' + i + '</option>';
-    }
-
-    var valeursRep = [
-      { val: 1, txt: t.none },
-      { val: 2, txt: '2 ' + t.times },
-      { val: 3, txt: '3 ' + t.times },
-      { val: 5, txt: '5 ' + t.times },
-      { val: 10, txt: '10 ' + t.times },
-      { val: -1, txt: t.inf }
-    ];
-
-    var optsRepSel = '';
-    var optsRepAyah = '';
-    for (var r = 0; r < valeursRep.length; r++) {
-      var item = valeursRep[r];
-      optsRepSel += '<option value="' + item.val + '"' + (item.val === repSelDefaut ? ' selected' : '') + '>' + item.txt + '</option>';
-      optsRepAyah += '<option value="' + item.val + '"' + (item.val === repAyahDefaut ? ' selected' : '') + '>' + item.txt + '</option>';
-    }
-
-    var sheet = overlay.querySelector('.wbw-audio-sheet-v111');
-    sheet.style.direction = lang === 'ar' ? 'rtl' : 'ltr';
-    sheet.innerHTML =
-      '<div class="wbw-audio-handle-v111"></div>' +
-      '<div class="wbw-audio-title-v111">' + t.title + '</div>' +
-      '<div class="wbw-audio-row-v111">' +
-        '<span class="wbw-audio-label-v111"><span class="wbw-audio-icon-v111">|&lt;</span> ' + t.start + '</span>' +
-        '<select id="wbwStartRangeSelV111" class="wbw-audio-select-v111">' + optsStart + '</select>' +
-      '</div>' +
-      '<div class="wbw-audio-row-v111">' +
-        '<span class="wbw-audio-label-v111"><span class="wbw-audio-icon-v111">&gt;|</span> ' + t.end + '</span>' +
-        '<select id="wbwEndRangeSelV111" class="wbw-audio-select-v111">' + optsEnd + '</select>' +
-      '</div>' +
-      '<div class="wbw-audio-row-v111">' +
-        '<span class="wbw-audio-label-v111"><span class="wbw-audio-icon-v111">↻</span> ' + t.repSel + '</span>' +
-        '<select id="wbwRepSelV111" class="wbw-audio-select-v111">' + optsRepSel + '</select>' +
-      '</div>' +
-      '<div class="wbw-audio-row-v111">' +
-        '<span class="wbw-audio-label-v111"><span class="wbw-audio-icon-v111">↺</span> ' + t.repAyah + '</span>' +
-        '<select id="wbwRepAyahV111" class="wbw-audio-select-v111">' + optsRepAyah + '</select>' +
-      '</div>' +
-      '<div class="wbw-audio-actions-v111">' +
-        '<button type="button" id="wbwAudioCancelBtnV111" class="wbw-audio-cancel-v111">' + (etatAudioRange.actif ? t.stop : t.cancel) + '</button>' +
-        '<button type="button" id="wbwAudioPlayBtnV111" class="wbw-audio-play-v111">' + t.play + '</button>' +
-      '</div>';
-
-    var selS = document.getElementById('wbwStartRangeSelV111');
-    var selE = document.getElementById('wbwEndRangeSelV111');
-    selS.addEventListener('change', function() {
-      if (parseInt(selE.value, 10) < parseInt(selS.value, 10)) {
-        selE.value = selS.value;
-      }
-    });
-    selE.addEventListener('change', function() {
-      if (parseInt(selE.value, 10) < parseInt(selS.value, 10)) {
-        selS.value = selE.value;
-      }
-    });
-
-    document.getElementById('wbwAudioCancelBtnV111').addEventListener('click', function() {
-      if (etatAudioRange.actif) {
-        etatAudioRange.actif = false;
-        var aud = document.getElementById('ayahAudio');
-        if (aud && !aud.paused) aud.pause();
-        mettreAJourBoutonAudioRange();
-      }
-      overlay.classList.remove('open');
-    });
-
-    document.getElementById('wbwAudioPlayBtnV111').addEventListener('click', function() {
-      var sVal = parseInt(selS.value, 10) || 1;
-      var eVal = parseInt(selE.value, 10) || sVal;
-      if (eVal < sVal) eVal = sVal;
-
-      etatAudioRange.actif = true;
-      etatAudioRange.sourate = info.s;
-      etatAudioRange.startV = sVal;
-      etatAudioRange.endV = eVal;
-      etatAudioRange.repeatSelMax = parseInt(document.getElementById('wbwRepSelV111').value, 10) || 1;
-      etatAudioRange.repeatAyahMax = parseInt(document.getElementById('wbwRepAyahV111').value, 10) || 1;
-      etatAudioRange.compteurSel = 1;
-      etatAudioRange.compteurAyah = 1;
-
-      overlay.classList.remove('open');
-      mettreAJourBoutonAudioRange();
-
-      var aud = document.getElementById('ayahAudio');
-      if (info.v !== sVal) {
-        naviguerEtJouerVerset(sVal);
-      } else if (aud) {
-        window.__wbwResetDemande = true;
-        aud.currentTime = 0;
-        if (aud.paused) {
-          var playBtn = document.getElementById('playSyncBtn');
-          if (playBtn) playBtn.click();
-          else aud.play().catch(function() {});
-        }
-      }
-    });
-
-    overlay.classList.add('open');
-  }
-
-  function assurerBoutonEtModaleAudioRange() {
-    var estPageSourate = /sourate-\\d+/i.test(window.location.pathname) || Boolean(document.querySelector('#arabicVerse, #arabicVerseEl, .arabic-glow-verse'));
-    if (!estPageSourate) return;
-
-    installerIntercepteurFinAudio();
-
-    var oldBtns = document.querySelectorAll('#wbwAudioRangeBtnV109, #wbwAudioRangeBtnV110, #wbwAudioRangeBtnV112');
-    for (var b = 0; b < oldBtns.length; b++) {
-      if (oldBtns[b].parentNode) oldBtns[b].parentNode.removeChild(oldBtns[b]);
-    }
-    var oldOvs = document.querySelectorAll('#wbwAudioRangeOverlayV109, #wbwAudioRangeOverlayV110, #wbwAudioRangeOverlayV112');
-    for (var o = 0; o < oldOvs.length; o++) {
-      if (oldOvs[o].parentNode) oldOvs[o].parentNode.removeChild(oldOvs[o]);
-    }
-
-    if (!document.getElementById('wbwAudioRangeOverlayV111')) {
-      var ov = document.createElement('div');
-      ov.id = 'wbwAudioRangeOverlayV111';
-      ov.innerHTML = '<div class="wbw-audio-sheet-v111"></div>';
-      ov.addEventListener('click', function(e) {
-        if (e.target === ov) ov.classList.remove('open');
-      });
-      document.body.appendChild(ov);
-    }
-
-    if (!document.getElementById('wbwAudioRangeBtnV111')) {
-      var btnSuivi = trouverBoutonParTexte(['Suivi', 'Follow', 'Слежение', 'Seguimiento', 'Verfolgen', 'Segui', 'Ikuti', 'تتبع']);
-      var btnTaj = trouverBoutonTajwid();
-      var cible = btnSuivi || btnTaj || document.getElementById('replaySyncBtn');
-      if (cible && cible.parentElement) {
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.id = 'wbwAudioRangeBtnV111';
-        btn.addEventListener('click', ouvrirModaleAudioRange);
-        cible.parentElement.insertBefore(btn, cible.nextSibling);
-      }
-    }
-
-    mettreAJourBoutonAudioRange();
   }
 
   function initialiserModesSurSourate() {
     supprimerMaherEtForcerYasser();
-    assurerBoutonEtModaleAudioRange();
 
     if (initDefautFait) return;
     var estPageSourate = /sourate-\\d+/i.test(window.location.pathname) || Boolean(document.querySelector('#arabicVerse, #arabicVerseEl, .arabic-glow-verse'));
@@ -2249,54 +493,11 @@ const codeClientV111 = `
     }
 
     cacherGrilleMotAMotQuandInactif();
-    setTimeout(supprimerMaherEtForcerYasser, 40);
-    setTimeout(supprimerMaherEtForcerYasser, 180);
-    setTimeout(supprimerMaherEtForcerYasser, 450);
-  }
-
-  // Mentions légales sans code postal (Montpellier, France)
-  function mettreAJourMentionsLegalesGoogleGrants() {
-    var divs = document.querySelectorAll('div, p, footer');
-    for (var i = 0; i < divs.length; i++) {
-      var d = divs[i];
-      if (d.dataset.legalV111 === '1') continue;
-      var txt = d.textContent || '';
-      if ((txt.indexOf('Institut Muhasiba') !== -1 || txt.indexOf('Institut Numérique Coran') !== -1) && d.children.length === 0) {
-        d.dataset.legalV111 = '1';
-        d.textContent = '« Institut Muhasiba »';
-        var parentModale = d.parentElement;
-        if (parentModale && !parentModale.querySelector('#wbw-legal-extra-v111')) {
-          var anciens = parentModale.querySelectorAll('[id^="wbw-legal-extra-v"]');
-          for (var a = 0; a < anciens.length; a++) anciens[a].remove();
-
-          var infoAssos = document.createElement('div');
-          infoAssos.id = 'wbw-legal-extra-v111';
-          infoAssos.style.cssText = 'font-size:0.83rem;color:#cbd5e1;margin-top:8px;margin-bottom:12px;line-height:1.55;text-align:center;';
-          var adr = 'contact' + '@' + 'corantafsir.com';
-          infoAssos.innerHTML =
-            '<strong>Association loi 1901 à but non lucratif</strong> • ' + NUMERO_RNA + '<br>' +
-            'Siège social : Montpellier, France • Hébergement : Cloudflare, Inc. (101 Townsend St, San Francisco, CA 94107, USA)<br>' +
-            'Contact officiel : <a href="mailto:' + adr + '" style="color:#38bdf8;text-decoration:none;font-weight:600;">' + adr + '</a>';
-          parentModale.insertBefore(infoAssos, d.nextSibling);
-        }
-      }
-    }
-  }
-
-  function nettoyerTexteOrdreRevelation() {
-    var els = document.querySelectorAll('button, option, span, div, label, a');
-    for (var i = 0; i < els.length; i++) {
-      var el = els[i];
-      if (el.children.length === 0 && el.textContent && el.textContent.indexOf('96') !== -1 && el.textContent.indexOf('110') !== -1) {
-        el.textContent = el.textContent.replace(/\\s*\\(96\\s*[^)]*\\s*110\\)/g, '').trim();
-      }
-    }
   }
 
   function masquerBlocProgressionSurSourate() {
     var estPageSourate = /sourate-\\d+/i.test(window.location.pathname) || Boolean(document.querySelector('#arabicVerse, #arabicVerseEl, .arabic-glow-verse'));
     if (!estPageSourate) return;
-
     var kWidget = document.getElementById('khatmPlannerWidgetV77');
     if (kWidget) {
       kWidget.classList.add('wbw-hide-khatm-on-surah');
@@ -2342,7 +543,7 @@ const codeClientV111 = `
         /^\\d+\\s*[\\.:\\-]/.test(t) ||
         el.tagName === 'P'
       ) {
-        el.classList.add('wbw-masquer-doublon-v111');
+        el.classList.add('wbw-masquer-doublon-v110');
         forcer(el, 'display', 'none');
       }
     }
@@ -2394,31 +595,15 @@ const codeClientV111 = `
     'support': 'Lève-toi',
     'and flared': 'et s’est embrasée',
     'flared': 's’est embrasée',
-    'et évasé': 'et s’est embrasée',
-    'évasé': 's’est embrasée',
     'with white': 'de cheveux blancs',
     '(with) white': 'de cheveux blancs',
     'white hair': 'de cheveux blancs',
-    'avec du blanc': 'de cheveux blancs',
     'unblessed': 'malheureux (déçu)',
-    'non béni': 'malheureux (déçu)',
     'of me': 'de moi',
     'from me': 'de moi',
     'and not': 'et je n’ai pas',
     'i have been': 'été',
     'in my supplication to you': 'en T’invoquant',
-    'in the night': 'la nuit',
-    'the night': 'la nuit',
-    'except': 'sauf',
-    'a little': 'un peu',
-    'half of it': 'la moitié',
-    'or lessen': 'ou retranche',
-    'from it': 'd’elle',
-    'or add': 'ou ajoute',
-    'to it': 'à elle',
-    'and recite': 'et récite',
-    'the quran': 'le Coran',
-    'with measured recitation': 'avec mesure (Tartīl)',
     'in (the) name': 'au nom',
     'in the name': 'au nom',
     'the one who': 'Celui qui',
@@ -2426,18 +611,12 @@ const codeClientV111 = `
     'created': 'a créé',
     'read': 'Lis',
     'recite': 'Lis',
-    'lire': 'Lis',
     'your lord': 'ton Seigneur',
     'and your lord': 'Et ton Seigneur',
     '(is) the most generous': 'est le Très Généreux',
     'the most generous': 'le Très Généreux',
     'taught': 'a enseigné',
     'by the pen': 'Par la plume',
-    'and what': 'et ce qu’',
-    'they inscribe': 'ils écrivent',
-    'which of you': 'lequel d’entre vous',
-    '(is) the afflicted': 'est le dément',
-    'the afflicted': 'le dément',
     'man': 'à l’homme',
     'what': 'ce que',
     'not': 'ne ... pas',
@@ -2449,7 +628,7 @@ const codeClientV111 = `
 
   var cacheTradMots = {};
   try {
-    cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v111') || '{}');
+    cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v110') || '{}');
   } catch (e) {}
   var enCoursTrad = {};
   var prochainEssaiTrad = {};
@@ -2461,8 +640,6 @@ const codeClientV111 = `
     return h || 'fr';
   }
 
-  var motsFrConnus = /^(il|elle|ils|elles|je|tu|nous|vous|le|la|les|un|une|des|de|du|au|aux|en|dans|sur|sous|avec|sans|pour|par|vers|chez|entre|contre|et|ou|mais|donc|car|ni|ne|pas|plus|moins|très|tout|tous|toute|toutes|ce|cet|cette|ces|mon|ton|son|ma|ta|sa|mes|tes|ses|notre|votre|leur|leurs|qui|que|quoi|dont|où|oui|non|bien|mal|comme|alors|puis|ainsi|aussi|encore|déjà|toujours|jamais|rien|personne|aucun|autre|même|tel|chaque|allah|seigneur|livre|guidée|pieux|croyants|prière|enfer|paradis|jour|nuit|terre|ciel|cieux|eau|feu|coeur|coeurs|lis|quand|secret|créé|sauf|plume|rappel|miséricorde|serviteur)$/i;
-
   function nettoyerEtTraduireMotUneFois(elTrad, elAr, lang) {
     if (!elTrad) return;
     var brut = (elTrad.textContent || '').trim();
@@ -2471,17 +648,13 @@ const codeClientV111 = `
     var arNorm = normaliserArabeCle(txtAr);
 
     if (tableMuqattaat[arPur]) {
-      if (elTrad.textContent !== tableMuqattaat[arPur]) {
-        elTrad.textContent = tableMuqattaat[arPur];
-      }
+      definirTexteSansBoucle(elTrad, tableMuqattaat[arPur]);
       elTrad.dataset.wbwTrOk = lang;
       return;
     }
 
     if (lang === 'fr' && dicoArabeFr[arNorm]) {
-      if (elTrad.textContent !== dicoArabeFr[arNorm]) {
-        elTrad.textContent = dicoArabeFr[arNorm];
-      }
+      definirTexteSansBoucle(elTrad, dicoArabeFr[arNorm]);
       elTrad.dataset.wbwTrOk = lang;
       return;
     }
@@ -2490,7 +663,7 @@ const codeClientV111 = `
 
     if (brut.indexOf('_') !== -1) {
       brut = brut.split('_').join(' ').replace(/\\s{2,}/g, ' ').trim();
-      elTrad.textContent = brut;
+      definirTexteSansBoucle(elTrad, brut);
       elTrad.dataset.wbwTrOk = lang;
       return;
     }
@@ -2502,27 +675,21 @@ const codeClientV111 = `
 
     var cleMin = brut.toLowerCase().replace(/\\s{2,}/g, ' ');
     if (lang === 'fr' && dicoInstantaneFr[cleMin]) {
-      elTrad.textContent = dicoInstantaneFr[cleMin];
+      definirTexteSansBoucle(elTrad, dicoInstantaneFr[cleMin]);
       elTrad.dataset.wbwTrOk = lang;
       return;
     }
 
     if (elTrad.dataset.wbwTrOk === lang) return;
 
-    if (/[àâäéèêëîïôöùûüçœæ]/i.test(brut) && lang === 'fr') {
-      elTrad.dataset.wbwTrOk = lang;
-      return;
-    }
-    var motsSplit = brut.split(/\\s+/);
-    var premierMot = motsSplit[0].replace(/[^a-zA-Z]/g, '');
-    if (lang === 'fr' && motsSplit.length === 1 && motsFrConnus.test(premierMot)) {
+    var cle = lang + ':' + arNorm + ':' + cleMin;
+    if (cacheTradMots[cle]) {
+      definirTexteSansBoucle(elTrad, cacheTradMots[cle]);
       elTrad.dataset.wbwTrOk = lang;
       return;
     }
 
-    var cle = lang + ':' + arNorm + ':' + cleMin;
-    if (cacheTradMots[cle]) {
-      elTrad.textContent = cacheTradMots[cle];
+    if (/[àâäéèêëîïôöùûüçœæ]/i.test(brut) && lang === 'fr') {
       elTrad.dataset.wbwTrOk = lang;
       return;
     }
@@ -2541,13 +708,10 @@ const codeClientV111 = `
             if (lang === 'fr' && dicoInstantaneFr[tr.toLowerCase()]) {
               tr = dicoInstantaneFr[tr.toLowerCase()];
             }
-            if (lang === 'fr' && tr.toLowerCase() === 'support' && arPur.indexOf('قم') !== -1) {
-              tr = 'Lève-toi';
-            }
             cacheTradMots[cle] = tr;
-            try { localStorage.setItem('wbw_tr_cache_v111', JSON.stringify(cacheTradMots)); } catch (e) {}
+            try { localStorage.setItem('wbw_tr_cache_v110', JSON.stringify(cacheTradMots)); } catch (e) {}
             if (elTrad && elTrad.isConnected && obtenirLanguePage() === lang) {
-              elTrad.textContent = tr;
+              definirTexteSansBoucle(elTrad, tr);
               elTrad.dataset.wbwTrOk = lang;
             }
           }
@@ -2571,16 +735,13 @@ const codeClientV111 = `
   var derniereCleVersetVue = '';
   var dernierTimestampRaf = 0;
 
-  // =========================================================================
-  // 7. ÉLIMINATION CIBLÉE DES PETITS CHIFFRES (NE TOUCHE JAMAIS AU TEXTE TRADUIT)
-  // =========================================================================
   function detruireNoeudNumero(el) {
-    if (!el || el.classList.contains('wbw-ar-v111') || el.classList.contains('wbw-tr-v111') || el.classList.contains('wbw-ar') || el.classList.contains('wbw-tr')) return;
+    if (!el || el.classList.contains('wbw-ar-v110') || el.classList.contains('wbw-tr-v110') || el.classList.contains('wbw-ar') || el.classList.contains('wbw-tr')) return;
     el.dataset.wbwIsNum = '1';
     if (el.textContent !== '') {
       el.textContent = '';
     }
-    el.classList.add('wbw-num-hidden-v111');
+    el.classList.add('wbw-num-hidden-v110');
     forcer(el, 'display', 'none');
   }
 
@@ -2594,7 +755,7 @@ const codeClientV111 = `
     for (var i = 0; i < tous.length; i++) {
       var sub = tous[i];
       if (sub === elAr || sub === elTrad) continue;
-      if (sub.classList.contains('wbw-ar-v111') || sub.classList.contains('wbw-tr-v111') || sub.classList.contains('wbw-ar') || sub.classList.contains('wbw-tr')) continue;
+      if (sub.classList.contains('wbw-ar-v110') || sub.classList.contains('wbw-tr-v110') || sub.classList.contains('wbw-ar') || sub.classList.contains('wbw-tr')) continue;
       if (elAr && elAr.contains(sub) && !estPetitNumero(sub.textContent)) continue;
       if (elTrad && elTrad.contains(sub)) continue;
       if (
@@ -2606,41 +767,7 @@ const codeClientV111 = `
         detruireNoeudNumero(sub);
       }
     }
-
-    var noeuds = carte.childNodes;
-    for (var n = 0; n < noeuds.length; n++) {
-      var nd = noeuds[n];
-      if (nd.nodeType === 3 && estPetitNumero(nd.nodeValue)) {
-        nd.nodeValue = '';
-      }
-    }
   }
-
-  var obsEnCours = false;
-  var observerMutationsGrille = typeof MutationObserver !== 'undefined' ? new MutationObserver(function(mutations) {
-    if (obsEnCours) return;
-    obsEnCours = true;
-    try {
-      var lang = obtenirLanguePage();
-      for (var i = 0; i < mutations.length; i++) {
-        var mut = mutations[i];
-        var cible = mut.target && mut.target.nodeType === 1 ? mut.target : (mut.target ? mut.target.parentElement : null);
-        if (!cible) continue;
-        var carte = cible.closest ? cible.closest('.wbw-card-v111') : null;
-        if (carte) {
-          var ar = carte.querySelector('.wbw-ar-v111, .wbw-ar');
-          var tr = carte.querySelector('.wbw-tr-v111, .wbw-tr');
-          purgerTousLesChiffresDeLaCarte(carte, ar, tr);
-          if (tr) {
-            delete tr.dataset.wbwTrOk;
-            nettoyerEtTraduireMotUneFois(tr, ar, lang);
-          }
-        }
-      }
-    } catch (e) {}
-    obsEnCours = false;
-  }) : null;
-  var derniereGrilleObservee = null;
 
   function preparerGrilleSiNecessaire(cartes) {
     if (!cartes || cartes.length < 1 || !estModeMotAMotActif()) {
@@ -2657,20 +784,6 @@ const codeClientV111 = `
     }
 
     gererMasquageDoublonVerset(cartes, true);
-
-    if (observerMutationsGrille && derniereGrilleObservee !== grille) {
-      try {
-        observerMutationsGrille.disconnect();
-        observerMutationsGrille.observe(grille, {
-          childList: true,
-          subtree: true,
-          characterData: true,
-          attributes: true,
-          attributeFilter: ['data-word-num', 'data-index']
-        });
-        derniereGrilleObservee = grille;
-      } catch (e) {}
-    }
 
     var banner = document.getElementById('wbwSensLectureBanner');
     if (banner) {
@@ -2689,7 +802,7 @@ const codeClientV111 = `
       cacheMetaCartes[0].carte === cartes[0] &&
       cacheMetaCartes[0].elAr &&
       cacheMetaCartes[0].elAr.isConnected &&
-      cartes[0].classList.contains('wbw-card-v111');
+      cartes[0].classList.contains('wbw-card-v110');
 
     if (memeDom) {
       for (var u = 0; u < cacheMetaCartes.length; u++) {
@@ -2732,9 +845,8 @@ const codeClientV111 = `
     for (var m = 0; m < cartes.length; m++) {
       var carte = cartes[m];
       if (!carte.dataset.wbwOrd) carte.dataset.wbwOrd = String(m + 1);
-      carte.classList.remove('wbw-card-v104', 'wbw-card-v105', 'wbw-card-v106', 'wbw-card-v107', 'wbw-card-v108', 'wbw-card-v109', 'wbw-card-v110', 'wbw-card-v112');
-      carte.classList.add('wbw-card-v111');
-      if (carte.hasAttribute('data-word-num')) carte.removeAttribute('data-word-num');
+      carte.classList.remove('wbw-card-v104', 'wbw-card-v105', 'wbw-card-v106', 'wbw-card-v107', 'wbw-card-v108', 'wbw-card-v109', 'wbw-card-v111', 'wbw-card-v112');
+      carte.classList.add('wbw-card-v110');
 
       forcer(carte, 'margin', '0px');
       forcer(carte, 'padding', '2px 8px 4px 8px');
@@ -2760,17 +872,17 @@ const codeClientV111 = `
         var tCh = (ch.textContent || '').trim();
         if (estPetitNumero(tCh) || ch.tagName === 'SUP' || ch.tagName === 'SMALL') {
           detruireNoeudNumero(ch);
-        } else if (!elAr && (ch.classList.contains('wbw-ar') || ch.classList.contains('wbw-ar-v111') || contientArabe(tCh))) {
+        } else if (!elAr && (ch.classList.contains('wbw-ar') || ch.classList.contains('wbw-ar-v110') || contientArabe(tCh))) {
           elAr = ch;
-        } else if (ch !== elAr && (ch.classList.contains('wbw-tr') || ch.classList.contains('wbw-tr-v111') || tCh.length > 0)) {
+        } else if (ch !== elAr && (ch.classList.contains('wbw-tr') || ch.classList.contains('wbw-tr-v110') || tCh.length > 0)) {
           elTrad = ch;
         }
       }
 
       if (elAr) {
-        elAr.classList.remove('wbw-num-hidden-v111', 'wbw-num-hidden-v112', 'wbw-ar-v112');
+        elAr.classList.remove('wbw-num-hidden-v110', 'wbw-num-hidden-v111', 'wbw-num-hidden-v112');
         delete elAr.dataset.wbwIsNum;
-        elAr.classList.add('wbw-ar-v111');
+        elAr.classList.add('wbw-ar-v110');
         forcer(elAr, 'display', 'block');
         forcer(elAr, 'visibility', 'visible');
         forcer(elAr, 'opacity', '1');
@@ -2781,9 +893,9 @@ const codeClientV111 = `
         forcer(elAr, 'white-space', 'nowrap');
       }
       if (elTrad) {
-        elTrad.classList.remove('wbw-num-hidden-v111', 'wbw-num-hidden-v112', 'wbw-tr-v112');
+        elTrad.classList.remove('wbw-num-hidden-v110', 'wbw-num-hidden-v111', 'wbw-num-hidden-v112');
         delete elTrad.dataset.wbwIsNum;
-        elTrad.classList.add('wbw-tr-v111');
+        elTrad.classList.add('wbw-tr-v110');
         forcer(elTrad, 'display', 'block');
         forcer(elTrad, 'visibility', 'visible');
         forcer(elTrad, 'opacity', '1');
@@ -2809,7 +921,6 @@ const codeClientV111 = `
       };
     }
 
-    appliquerTajwidDepuisApiSiNecessaire();
     return true;
   }
 
@@ -2966,10 +1077,7 @@ const codeClientV111 = `
 
   function verifierChangementVersetEtPause() {
     initialiserModesSurSourate();
-    nettoyerTexteOrdreRevelation();
     masquerBlocProgressionSurSourate();
-    mettreAJourMentionsLegalesGoogleGrants();
-    appliquerTajwidDepuisApiSiNecessaire();
 
     var cleActuelle = obtenirCleVersetActuelDom();
     if (cleActuelle && derniereCleVersetVue && cleActuelle !== derniereCleVersetVue) {
@@ -2980,7 +1088,6 @@ const codeClientV111 = `
       window.__wbwEnergies = [];
       window.__wbwBleus = [];
       gererMasquageDoublonVerset(null, false);
-      mettreAJourBoutonAudioRange();
     } else if (cleActuelle) {
       derniereCleVersetVue = cleActuelle;
     }
@@ -3000,10 +1107,6 @@ const codeClientV111 = `
     setTimeout(verifierChangementVersetEtPause, 20);
     setTimeout(verifierChangementVersetEtPause, 90);
   });
-  document.addEventListener('visibilitychange', function() {
-    dernierTimestampRaf = 0;
-    if (!document.hidden) verifierChangementVersetEtPause();
-  });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', verifierChangementVersetEtPause);
@@ -3013,15 +1116,14 @@ const codeClientV111 = `
 })();
 `;
 
-new Function(codeClientV111);
+new Function(codeClientStable);
 
-const blocHtmlV111 = '<!-- WBW_COLLE_V111_START -->\n' + styleV111 + '\n<script id="wbw-colle-v111">' + codeClientV111 + '</script>\n<!-- WBW_COLLE_V111_END -->';
+const blocHtmlStable = '<!-- WBW_COLLE_V110_START -->\n' + styleStable + '\n<script id="wbw-colle-v110">' + codeClientStable + '</script>\n<!-- WBW_COLLE_V110_END -->';
 
 function patcherContenu(c) {
-  // Nettoyage de tous les blocs (y compris V112)
   c = c.replace(/<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93|COLLE_V94|COLLE_V95|COLLE_V96|COLLE_V97|COLLE_V98|COLLE_V99|COLLE_V100|COLLE_V101|COLLE_V102|COLLE_V103|COLLE_V104|COLLE_V105|COLLE_V106|COLLE_V107|COLLE_V108|COLLE_V109|COLLE_V110|COLLE_V111|COLLE_V112)_START -->[\s\S]*?<!-- WBW_(?:RIBBON_V83|UNIFIED_V84|CLEAN_V85|COLLE_V86|COLLE_V87|COLLE_V88|COLLE_V89|COLLE_V90|COLLE_V91|COLLE_V92|COLLE_V93|COLLE_V94|COLLE_V95|COLLE_V96|COLLE_V97|COLLE_V98|COLLE_V99|COLLE_V100|COLLE_V101|COLLE_V102|COLLE_V103|COLLE_V104|COLLE_V105|COLLE_V106|COLLE_V107|COLLE_V108|COLLE_V109|COLLE_V110|COLLE_V111|COLLE_V112)_END -->\s*/g, '');
 
-  // Restauration exacte des IDs QDC et fonctions de synchronisation V111 (annule les modifications V112)
+  // Remet toutes les fonctions audio et QDC à leur état d'origine
   c = c.replace(
     /dosari:\s*\[13,\s*174,\s*168\],\s*dossari:\s*\[13,\s*174,\s*168\],\s*yasser:\s*\[13,\s*174,\s*168\]/g,
     'dosari: [174, 168], dossari: [174, 168], yasser: [174, 168]'
@@ -3036,48 +1138,18 @@ function patcherContenu(c) {
     'c.setAttribute("data-word-num", String(i + 1));'
   );
   c = c.replace(
+    /if\s*\(tradFinale\s*&&\s*elTr\.textContent\s*!==\s*tradFinale\)\s*elTr\.textContent\s*=\s*tradFinale;/g,
+    'if (tradFinale && !elTr.dataset.wbwTrOk && elTr.textContent !== tradFinale) elTr.textContent = tradFinale;'
+  );
+  c = c.replace(
     /if\s*\(!window\.__wbwBypassOrigCartes\s*&&\s*tradFinale\s*&&\s*elTr\.textContent\s*!==\s*tradFinale\)\s*elTr\.textContent\s*=\s*tradFinale;/g,
-    'if (tradFinale && elTr.textContent !== tradFinale) elTr.textContent = tradFinale;'
-  );
-  c = c.replace(
-    /word_fields=text_uthmani,text_uthmani_tajweed,audio_url,translation/g,
-    'word_fields=text_uthmani,text_uthmani_tajweed,audio_url'
-  );
-  c = c.replace(
-    /const temp = document\.createElement\('div'\);\s*temp\.innerHTML = window\.__assainirHtmlTajwidV112 \? window\.__assainirHtmlTajwidV112\(htmlTajweedComplet\) : htmlTajweedComplet;/g,
-    "const temp = document.createElement('div'); temp.innerHTML = htmlTajweedComplet;"
+    'if (tradFinale && !elTr.dataset.wbwTrOk && elTr.textContent !== tradFinale) elTr.textContent = tradFinale;'
   );
 
-  // Retrait du code postal 34000 partout dans les fichiers
-  c = c.replace(/34000\s+Montpellier/g, 'Montpellier');
-
-  c = c.replace(/<link\s+rel="preconnect"\s+href="\[https:\/\/[^"]+"\s*crossorigin>\s*/gi, '');
-  c = c.replace(
-    /if\s*\(\(langCible\s*===\s*'fr'\s*\|\|\s*langCible\s*===\s*'es'\)\s*&&\s*phrase\s*&&\s*mots\.length\s*>\s*0\)/g,
-    "if (false && (langCible === 'fr' || langCible === 'es') && phrase && mots.length > 0)"
-  );
   c = c.replace(
     /var c1 = document\.querySelectorAll\("\.wbw-word-box, \.wbw-card-v11[012], \.wbw-card, \.wbw-word, \.wbw-item"\);/g,
-    'var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v111, .wbw-card, .wbw-word, .wbw-item");'
+    'var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v110, .wbw-card, .wbw-word, .wbw-item");'
   );
-  c = c.replace(
-    /var c1 = document\.querySelectorAll\("\.wbw-card, \.wbw-word, \.wbw-item"\);/g,
-    'var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v111, .wbw-card, .wbw-word, .wbw-item");'
-  );
-  c = c.replace(/if\s*\(\s*r1\.width\s*>\s*25\s*&&\s*r1\.height\s*>\s*25\s*\)/g, 'if (r1.width > 4 && r1.height > 4)');
-  c = c.replace(/if\s*\(\s*r\.width\s*>=\s*48\s*&&\s*r\.width\s*<=\s*280\s*&&\s*r\.height\s*>=\s*48\s*&&\s*r\.height\s*<=\s*220\s*\)/g, 'if (r.width >= 10 && r.width <= 320 && r.height >= 18 && r.height <= 240)');
-  c = c.replace(/«\s*Institut Numérique Coran,\s*Langues\s*&(?:amp;)?\s*Tafsīr\s*»/g, '« Institut Muhasiba »');
-
-  const idxObtenir = c.indexOf('function obtenirCartesMotAMotVisibles()');
-  const idxMasquer = c.indexOf('function masquerTraductionBasSiMotAMot()');
-  if (idxObtenir !== -1 && idxMasquer !== -1 && idxMasquer > idxObtenir) {
-    let blocObtenir = c.slice(idxObtenir, idxMasquer);
-    blocObtenir = blocObtenir
-      .replace(/\.length\s*<\s*2\b/g, '.length < 1')
-      .replace(/\.length\s*>=\s*2\b/g, '.length >= 1')
-      .replace(/\.length\s*>\s*1\b/g, '.length >= 1');
-    c = c.slice(0, idxObtenir) + blocObtenir + c.slice(idxMasquer);
-  }
 
   c = c.replace(
     /window\.__obtenirCartesWBW\s*=\s*obtenirCartesMotAMotVisibles;/g,
@@ -3105,7 +1177,7 @@ let nb = 0;
 for (const f of fichiers) {
   const p = path.join(dossierSite, f);
   let c = patcherContenu(fs.readFileSync(p, 'utf8'));
-  c = c.replace('</body>', function() { return blocHtmlV111 + '\n</body>'; });
+  c = c.replace('</body>', function() { return blocHtmlStable + '\n</body>'; });
   fs.writeFileSync(p, c, 'utf8');
   nb++;
 }
@@ -3115,10 +1187,10 @@ for (const racineF of ['index.html', 'generateur.js', 'maj-tafsir.js']) {
   if (fs.existsSync(pRacine)) {
     let cr = patcherContenu(fs.readFileSync(pRacine, 'utf8'));
     if (racineF.endsWith('.html') && cr.indexOf('</body>') !== -1) {
-      cr = cr.replace('</body>', function() { return blocHtmlV111 + '\n</body>'; });
+      cr = cr.replace('</body>', function() { return blocHtmlStable + '\n</body>'; });
     }
     fs.writeFileSync(pRacine, cr, 'utf8');
   }
 }
 
-console.log('✅ Retour complet à la V111 appliqué sur ' + nb + ' pages (synchronisation du mode Suivi avec Yasser Al-Dosari restaurée) !');
+console.log('✅ Version stable restaurée sur ' + nb + ' pages (MutationObserver supprimé = 0 crash, Suivi 100% synchronisé) !');

@@ -3052,7 +3052,7 @@ html body #btnLangRuV77.active-ext-v77 {
 
   function obtenirCartesMotAMotVisibles() {
     var cartes = [];
-    var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v111, .wbw-card, .wbw-word, .wbw-item");
+    var c1 = document.querySelectorAll(".wbw-word-box, .wbw-card-v110, .wbw-card, .wbw-word, .wbw-item");
     for (var i = 0; i < c1.length; i++) {
       var r1 = c1[i].getBoundingClientRect();
       if (r1.width > 4 && r1.height > 4) {
@@ -3153,7 +3153,7 @@ html body #btnLangRuV77.active-ext-v77 {
         }
       }
 
-      if (tradFinale && elTr.textContent !== tradFinale) elTr.textContent = tradFinale;
+      if (tradFinale && !elTr.dataset.wbwTrOk && elTr.textContent !== tradFinale) elTr.textContent = tradFinale;
     }
 
     var grilleParente = cartes[0].parentElement;
@@ -4869,9 +4869,8 @@ html body #btnLangRuV77.active-ext-v77 {
     });
 </script>
 
-<!-- WBW_COLLE_V111_START -->
-<style id="wbw-style-v111">
-  /* 0. Soleil et Lune 100% opaques pour ne laisser passer aucune étoile */
+<!-- WBW_COLLE_V110_START -->
+<style id="wbw-style-v110">
   html body #flatEarthSun,
   html body .flat-earth-sun,
   html body .astre-soleil-pur-v77 {
@@ -4885,23 +4884,21 @@ html body #btnLangRuV77.active-ext-v77 {
     background-color: #f1f5f9 !important;
   }
 
-  /* 1. Masquage du bloc de progression (Khatm) et des doublons sur les sourates */
   .wbw-hide-khatm-on-surah,
-  .wbw-masquer-doublon-v111,
-  .maher-item-removed-v111 {
+  .wbw-masquer-doublon-v110,
+  .maher-item-removed-v110 {
     display: none !important;
   }
 
-  /* 2. Suppression ciblée des petits numéros (1, 2, 3...) sans toucher à la traduction */
-  .wbw-num-hidden-v111,
-  .wbw-card-v111 sup,
-  .wbw-card-v111 small,
+  .wbw-num-hidden-v110,
+  .wbw-card-v110 sup,
+  .wbw-card-v110 small,
   html body .wbw-card-unit::before,
   html body .wbw-card-unit::after,
   html body .wbw-word-box::before,
   html body .wbw-word-box::after,
-  html body .wbw-card-v111::before,
-  html body .wbw-card-v111::after {
+  html body .wbw-card-v110::before,
+  html body .wbw-card-v110::after {
     content: none !important;
     display: none !important;
     visibility: hidden !important;
@@ -4916,8 +4913,7 @@ html body #btnLangRuV77.active-ext-v77 {
     pointer-events: none !important;
   }
 
-  /* 3. Garantie d'affichage de la traduction sous chaque mot en Mot à mot */
-  html body .wbw-card-v111 .wbw-tr-v111,
+  html body .wbw-card-v110 .wbw-tr-v110,
   html body .wbw-word-box .wbw-tr {
     display: block !important;
     visibility: visible !important;
@@ -4926,7 +4922,6 @@ html body #btnLangRuV77.active-ext-v77 {
     overflow: visible !important;
   }
 
-  /* 4. Priorité absolue des couleurs du Tajwīd (mode Normal ET mode Mot à mot) */
   html body .verse-stage #arabicVerse tajweed[class*="ghunnah"],
   html body .verse-stage #arabicVerseEl tajweed[class*="ghunnah"],
   html body .verse-stage .arabic-glow-verse tajweed[class*="ghunnah"],
@@ -4945,9 +4940,9 @@ html body #btnLangRuV77.active-ext-v77 {
   html body .verse-stage #arabicVerse span[class*="iqlab"],
   html body .verse-stage #arabicVerseEl span[class*="iqlab"],
   html body .verse-stage .arabic-glow-verse span[class*="iqlab"],
-  html body .verse-stage .wbw-card-v111 [class*="ghunnah"],
-  html body .verse-stage .wbw-card-v111 [class*="ikhf"],
-  html body .verse-stage .wbw-card-v111 [class*="iqlab"] {
+  html body .verse-stage .wbw-card-v110 [class*="ghunnah"],
+  html body .verse-stage .wbw-card-v110 [class*="ikhf"],
+  html body .verse-stage .wbw-card-v110 [class*="iqlab"] {
     color: #4ade80 !important;
     text-shadow: 0 0 10px rgba(74, 222, 128, 0.45) !important;
     opacity: 1 !important;
@@ -4965,8 +4960,8 @@ html body #btnLangRuV77.active-ext-v77 {
   html body .verse-stage #arabicVerse span[class*="qalaq"],
   html body .verse-stage #arabicVerseEl span[class*="qalaq"],
   html body .verse-stage .arabic-glow-verse span[class*="qalaq"],
-  html body .verse-stage .wbw-card-v111 [class*="qalq"],
-  html body .verse-stage .wbw-card-v111 [class*="qalaq"] {
+  html body .verse-stage .wbw-card-v110 [class*="qalq"],
+  html body .verse-stage .wbw-card-v110 [class*="qalaq"] {
     color: #38bdf8 !important;
     text-shadow: 0 0 10px rgba(56, 189, 248, 0.5) !important;
     opacity: 1 !important;
@@ -4978,7 +4973,7 @@ html body #btnLangRuV77.active-ext-v77 {
   html body .verse-stage #arabicVerse span[class*="madd"],
   html body .verse-stage #arabicVerseEl span[class*="madd"],
   html body .verse-stage .arabic-glow-verse span[class*="madd"],
-  html body .verse-stage .wbw-card-v111 [class*="madd"] {
+  html body .verse-stage .wbw-card-v110 [class*="madd"] {
     color: #f87171 !important;
     text-shadow: 0 0 12px rgba(248, 113, 113, 0.5) !important;
     opacity: 1 !important;
@@ -5002,9 +4997,9 @@ html body #btnLangRuV77.active-ext-v77 {
   html body .verse-stage #arabicVerse span[class*="tafkh"],
   html body .verse-stage #arabicVerseEl span[class*="tafkh"],
   html body .verse-stage .arabic-glow-verse span[class*="tafkh"],
-  html body .verse-stage .wbw-card-v111 [class*="idgham"],
-  html body .verse-stage .wbw-card-v111 [class*="laam_shams"],
-  html body .verse-stage .wbw-card-v111 [class*="tafkh"] {
+  html body .verse-stage .wbw-card-v110 [class*="idgham"],
+  html body .verse-stage .wbw-card-v110 [class*="laam_shams"],
+  html body .verse-stage .wbw-card-v110 [class*="tafkh"] {
     color: #fbbf24 !important;
     text-shadow: 0 0 10px rgba(251, 191, 36, 0.45) !important;
     opacity: 1 !important;
@@ -5022,207 +5017,25 @@ html body #btnLangRuV77.active-ext-v77 {
   html body .verse-stage #arabicVerse span[class*="slnt"],
   html body .verse-stage #arabicVerseEl span[class*="slnt"],
   html body .verse-stage .arabic-glow-verse span[class*="slnt"],
-  html body .verse-stage .wbw-card-v111 [class*="ham_wasl"],
-  html body .verse-stage .wbw-card-v111 [class*="slnt"] {
+  html body .verse-stage .wbw-card-v110 [class*="ham_wasl"],
+  html body .verse-stage .wbw-card-v110 [class*="slnt"] {
     color: #94a3b8 !important;
     text-shadow: none !important;
   }
-
-  /* 5. MODALE AUDIO : PLAGE DE VERSETS & RÉPÉTITIONS (STYLE QURAN.COM) */
-  #wbwAudioRangeBtnV111 {
-    background: rgba(14, 165, 233, 0.14);
-    color: #7dd3fc;
-    border: 1px solid rgba(56, 189, 248, 0.42);
-    padding: 6px 13px;
-    border-radius: 11px;
-    font-family: inherit;
-    font-size: 0.81rem;
-    font-weight: 800;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  #wbwAudioRangeBtnV111:hover,
-  #wbwAudioRangeBtnV111.active {
-    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-    color: #021019;
-    border-color: #7dd3fc;
-    box-shadow: 0 0 16px rgba(56, 189, 248, 0.48);
-  }
-
-  #wbwAudioRangeOverlayV111 {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.72);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    z-index: 10050;
-    display: none;
-    align-items: flex-end;
-    justify-content: center;
-    padding: 0;
-  }
-  @media (min-width: 640px) {
-    #wbwAudioRangeOverlayV111 {
-      align-items: center;
-      padding: 16px;
-    }
-  }
-  #wbwAudioRangeOverlayV111.open {
-    display: flex;
-  }
-
-  .wbw-audio-sheet-v111 {
-    width: 100%;
-    max-width: 440px;
-    background: #14171c;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 24px 24px 0 0;
-    padding: 12px 20px 22px 20px;
-    color: #f8fafc;
-    box-shadow: 0 -10px 45px rgba(0, 0, 0, 0.85);
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    animation: wbwSheetUpV111 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  @media (min-width: 640px) {
-    .wbw-audio-sheet-v111 {
-      border-radius: 24px;
-      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.9);
-    }
-  }
-  @keyframes wbwSheetUpV111 {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .wbw-audio-handle-v111 {
-    width: 40px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.25);
-    border-radius: 99px;
-    margin: 0 auto 12px auto;
-  }
-  .wbw-audio-title-v111 {
-    text-align: center;
-    font-size: 1.02rem;
-    font-weight: 800;
-    color: #ffffff;
-    margin-bottom: 14px;
-    letter-spacing: 0.01em;
-  }
-  .wbw-audio-row-v111 {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 13px 4px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  }
-  .wbw-audio-row-v111:last-of-type {
-    border-bottom: none;
-  }
-  .wbw-audio-label-v111 {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.93rem;
-    font-weight: 600;
-    color: #e2e8f0;
-  }
-  .wbw-audio-icon-v111 {
-    width: 22px;
-    text-align: center;
-    font-size: 1rem;
-    color: #94a3b8;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .wbw-audio-select-v111 {
-    background: #1e232b;
-    color: #f8fafc;
-    border: 1px solid rgba(56, 189, 248, 0.28);
-    border-radius: 10px;
-    padding: 7px 12px;
-    font-family: inherit;
-    font-size: 0.9rem;
-    font-weight: 700;
-    cursor: pointer;
-    outline: none;
-    min-width: 118px;
-    text-align: right;
-  }
-  .wbw-audio-select-v111:focus {
-    border-color: #38bdf8;
-    box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
-  }
-  .wbw-audio-actions-v111 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 18px;
-    padding-top: 14px;
-    border-top: 1px solid rgba(255, 255, 255, 0.09);
-  }
-  .wbw-audio-cancel-v111 {
-    background: transparent;
-    color: #e2e8f0;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 999px;
-    padding: 11px 16px;
-    font-family: inherit;
-    font-size: 0.94rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.18s;
-  }
-  .wbw-audio-cancel-v111:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: #ffffff;
-  }
-  .wbw-audio-play-v111 {
-    background: linear-gradient(135deg, #56a8f5, #38bdf8);
-    color: #ffffff;
-    border: none;
-    border-radius: 999px;
-    padding: 11px 16px;
-    font-family: inherit;
-    font-size: 0.95rem;
-    font-weight: 800;
-    cursor: pointer;
-    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.38);
-    transition: 0.18s;
-  }
-  .wbw-audio-play-v111:hover {
-    filter: brightness(1.08);
-    transform: translateY(-1px);
-  }
-
-  /* 6. Optimisation GPU mobile : désactive backdrop-filter coûteux sur petits écrans */
-  @media (max-width: 820px) {
-    *, *::before, *::after {
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-    }
-    body::before, body::after,
-    .bg-orb, .glow-orb, .moon-orb, .sun-orb, [class*="orb" i] {
-      display: none !important;
-      animation: none !important;
-      filter: none !important;
-    }
-  }
 </style>
-<script id="wbw-colle-v111">
+<script id="wbw-colle-v110">
 (function() {
   window.__wbwBypassOrigCartes = true;
-
-  var NUMERO_RNA = 'RNA : W343000000 • SIRET en cours d’attribution INSEE';
 
   function forcer(el, prop, val) {
     if (el && el.style && el.style.getPropertyValue(prop) !== val) {
       el.style.setProperty(prop, val, 'important');
+    }
+  }
+
+  function definirTexteSansBoucle(el, val) {
+    if (el && el.textContent !== val) {
+      el.textContent = val;
     }
   }
 
@@ -5300,23 +5113,6 @@ html body #btnLangRuV77.active-ext-v77 {
     return '';
   }
 
-  function obtenirInfosSourateEtVerset() {
-    var cle = obtenirCleVersetActuelDom();
-    var parts = cle ? cle.split(':') : [];
-    var s = parts.length === 2 ? parseInt(parts[0], 10) : (typeof numSourateActuelle !== 'undefined' ? Number(numSourateActuelle) : 1);
-    var v = parts.length === 2 ? parseInt(parts[1], 10) : (typeof numVersetActuel !== 'undefined' ? Number(numVersetActuel) : 1);
-    var totalV = 1;
-    if (window.SOURATE_DATA && window.SOURATE_DATA.nbVersets) {
-      totalV = Number(window.SOURATE_DATA.nbVersets);
-    } else {
-      var selJ = document.getElementById('verseJumperSelect');
-      if (selJ && selJ.options && selJ.options.length > 0) {
-        totalV = selJ.options.length;
-      }
-    }
-    return { s: s || 1, v: v || 1, totalV: Math.max(1, totalV || 1) };
-  }
-
   function boutonEstActif(btn) {
     if (!btn) return false;
     if (btn.classList.contains('active') || btn.getAttribute('aria-pressed') === 'true') return true;
@@ -5351,200 +5147,9 @@ html body #btnLangRuV77.active-ext-v77 {
     return document.body.classList.contains('wbw-mode-on');
   }
 
-  function estModeTajwidActif() {
-    var btnTaj = trouverBoutonTajwid();
-    if (btnTaj) return boutonEstActif(btnTaj);
-    return true;
-  }
-
-  // =========================================================================
-  // 1. OCCULTATION EXACTE DES ÉTOILES SOUS LE SOLEIL ET LA LUNE (DOM + CANVAS)
-  // =========================================================================
-  function activerOccultationSoleilLune() {
-    if (window.__skyOcclusionV111 || typeof CanvasRenderingContext2D === 'undefined') return;
-    window.__skyOcclusionV111 = true;
-
-    var proto = CanvasRenderingContext2D.prototype;
-    var origClearRect = proto.clearRect;
-    var origSave = proto.save;
-    var origRestore = proto.restore;
-    var origTranslate = proto.translate;
-    var origDrawImage = proto.drawImage;
-    var origArc = proto.arc;
-    var origFillText = proto.fillText;
-    var origFill = proto.fill;
-
-    function recenserOrbesSoleilLune(ctx) {
-      var orbes = [];
-      var els = document.querySelectorAll('#flatEarthSun, #flatEarthMoon, .flat-earth-sun, .flat-earth-moon, .astre-soleil-pur-v77, .astre-lune-pure-v77');
-      for (var i = 0; i < els.length; i++) {
-        var el = els[i];
-        var st = window.getComputedStyle(el);
-        if (st.display === 'none' || st.visibility === 'hidden' || parseFloat(st.opacity || '1') < 0.05) continue;
-        var rect = el.getBoundingClientRect();
-        if (rect.width >= 30 && rect.height >= 30 && rect.bottom > 0 && rect.right > 0 && rect.top < window.innerHeight && rect.left < window.innerWidth) {
-          orbes.push({
-            x: rect.left + rect.width * 0.5,
-            y: rect.top + rect.height * 0.5,
-            r: Math.max(rect.width, rect.height) * 0.5
-          });
-        }
-      }
-      ctx.__orbesDomV111 = orbes;
-    }
-
-    function visibiliteEtoile(ctx, x, y, rayonEtoile) {
-      var liste = [];
-      if (ctx.__orbesDomV111 && ctx.__orbesDomV111.length) {
-        for (var i = 0; i < ctx.__orbesDomV111.length; i++) liste.push(ctx.__orbesDomV111[i]);
-      }
-      if (ctx.__orbesCanvasV111 && ctx.__orbesCanvasV111.length) {
-        for (var j = 0; j < ctx.__orbesCanvasV111.length; j++) liste.push(ctx.__orbesCanvasV111[j]);
-      }
-      if (liste.length === 0) return 1.0;
-
-      var pad = (rayonEtoile || 4) * 0.5;
-      var visMin = 1.0;
-      for (var k = 0; k < liste.length; k++) {
-        var o = liste[k];
-        var dx = x - o.x;
-        var dy = y - o.y;
-        var dist = Math.sqrt(dx * dx + dy * dy);
-        var rOpaque = o.r * 0.94 + pad;
-        var rDoux = o.r * 1.15 + pad;
-        if (dist <= rOpaque) {
-          return 0.0;
-        } else if (dist < rDoux) {
-          var t = (dist - rOpaque) / (rDoux - rOpaque);
-          var v = t * t * (3 - 2 * t);
-          if (v < visMin) visMin = v;
-        }
-      }
-      return visMin;
-    }
-
-    proto.clearRect = function(x, y, w, h) {
-      if (this.canvas && w >= this.canvas.width * 0.8 && h >= this.canvas.height * 0.8) {
-        this.__orbesCanvasV111 = [];
-        this.__txV111 = 0;
-        this.__tyV111 = 0;
-        this.__stackTxV111 = [];
-        recenserOrbesSoleilLune(this);
-      }
-      return origClearRect.apply(this, arguments);
-    };
-
-    proto.save = function() {
-      if (this.canvas && this.canvas.id === 'fullPageSkyCanvas') {
-        if (!this.__stackTxV111) this.__stackTxV111 = [];
-        this.__stackTxV111.push({ x: this.__txV111 || 0, y: this.__tyV111 || 0 });
-      }
-      return origSave.apply(this, arguments);
-    };
-
-    proto.restore = function() {
-      if (this.canvas && this.canvas.id === 'fullPageSkyCanvas' && this.__stackTxV111 && this.__stackTxV111.length > 0) {
-        var prev = this.__stackTxV111.pop();
-        this.__txV111 = prev.x;
-        this.__tyV111 = prev.y;
-      }
-      return origRestore.apply(this, arguments);
-    };
-
-    proto.translate = function(tx, ty) {
-      if (this.canvas && this.canvas.id === 'fullPageSkyCanvas') {
-        this.__txV111 = (this.__txV111 || 0) + (Number(tx) || 0);
-        this.__tyV111 = (this.__tyV111 || 0) + (Number(ty) || 0);
-      }
-      return origTranslate.apply(this, arguments);
-    };
-
-    proto.drawImage = function(img, dx, dy, dw, dh) {
-      if (this.canvas && (this.canvas.id === 'fullPageSkyCanvas' || this.canvas.width > 200)) {
-        if (!this.__orbesDomV111) recenserOrbesSoleilLune(this);
-        var w = typeof dw === 'number' ? dw : (img && img.width ? img.width : 0);
-        var h = typeof dh === 'number' ? dh : (img && img.height ? img.height : 0);
-        var wx = (this.__txV111 || 0) + (Number(dx) || 0) + w * 0.5;
-        var wy = (this.__tyV111 || 0) + (Number(dy) || 0) + h * 0.5;
-
-        var vis = visibiliteEtoile(this, wx, wy, Math.max(w, h) * 0.45);
-        if (vis <= 0.02) {
-          return;
-        }
-        if (vis < 0.99) {
-          var oldAlpha = this.globalAlpha;
-          this.globalAlpha = oldAlpha * vis;
-          var res = origDrawImage.apply(this, arguments);
-          this.globalAlpha = oldAlpha;
-          return res;
-        }
-      }
-      return origDrawImage.apply(this, arguments);
-    };
-
-    proto.arc = function(x, y, r, sa, ea, ccw) {
-      if (r >= 22 && r <= 240 && this.canvas && this.canvas.width > 200) {
-        if (!this.__orbesCanvasV111) this.__orbesCanvasV111 = [];
-        if (this.__orbesCanvasV111.length < 6) {
-          this.__orbesCanvasV111.push({ x: (this.__txV111 || 0) + x, y: (this.__tyV111 || 0) + y, r: r });
-        }
-        this.__skipNextStarFill = false;
-        this.__starFadeFactor = 1.0;
-      } else if (r > 0 && r <= 6.5 && this.canvas && this.canvas.width > 200) {
-        if (!this.__orbesDomV111) recenserOrbesSoleilLune(this);
-        var vis = visibiliteEtoile(this, (this.__txV111 || 0) + x, (this.__tyV111 || 0) + y, r);
-        if (vis <= 0.02) {
-          this.__skipNextStarFill = true;
-          return;
-        }
-        this.__starFadeFactor = vis;
-      } else {
-        this.__skipNextStarFill = false;
-        this.__starFadeFactor = 1.0;
-      }
-      return origArc.apply(this, arguments);
-    };
-
-    proto.fill = function() {
-      if (this.__skipNextStarFill) {
-        this.__skipNextStarFill = false;
-        return;
-      }
-      if (typeof this.__starFadeFactor === 'number' && this.__starFadeFactor < 0.99) {
-        var oldAlpha = this.globalAlpha;
-        this.globalAlpha = oldAlpha * this.__starFadeFactor;
-        this.__starFadeFactor = 1.0;
-        var res = origFill.apply(this, arguments);
-        this.globalAlpha = oldAlpha;
-        return res;
-      }
-      return origFill.apply(this, arguments);
-    };
-
-    proto.fillText = function(text, x, y) {
-      if (this.canvas && this.canvas.width > 200 && typeof text === 'string' && text.length <= 3) {
-        if (!this.__orbesDomV111) recenserOrbesSoleilLune(this);
-        var vis = visibiliteEtoile(this, (this.__txV111 || 0) + x, (this.__tyV111 || 0) + y, 6);
-        if (vis <= 0.02) return;
-        if (vis < 0.99) {
-          var oldA = this.globalAlpha;
-          this.globalAlpha = oldA * vis;
-          var r = origFillText.apply(this, arguments);
-          this.globalAlpha = oldA;
-          return r;
-        }
-      }
-      return origFillText.apply(this, arguments);
-    };
-  }
-  activerOccultationSoleilLune();
-
-  // =========================================================================
-  // 2. GESTION DE LA TAILLE DU MOT À MOT AVEC LES BOUTONS A- ET A+
-  // =========================================================================
   var wbwFontScale = 1.0;
   try {
-    var savedScale = parseFloat(localStorage.getItem('wbw_font_scale_v111') || '1.0');
+    var savedScale = parseFloat(localStorage.getItem('wbw_font_scale_v110') || '1.0');
     if (savedScale >= 0.65 && savedScale <= 1.85) wbwFontScale = savedScale;
   } catch (e) {}
 
@@ -5573,7 +5178,7 @@ html body #btnLangRuV77.active-ext-v77 {
     if (e.isTrusted && e.target && e.target.closest) {
       var rpItemClick = e.target.closest('.rp-item');
       if (rpItemClick) {
-        window.__userPickedReciterManuallyV111 = true;
+        window.__userPickedReciterManuallyV110 = true;
       }
     }
 
@@ -5582,25 +5187,15 @@ html body #btnLangRuV77.active-ext-v77 {
     var txt = (btn.textContent || '').replace(/\s+/g, '');
     if (txt === 'A+' || txt === 'A＋') {
       wbwFontScale = Math.min(1.75, Math.round((wbwFontScale + 0.12) * 100) / 100);
-      try { localStorage.setItem('wbw_font_scale_v111', String(wbwFontScale)); } catch (err) {}
+      try { localStorage.setItem('wbw_font_scale_v110', String(wbwFontScale)); } catch (err) {}
       appliquerTailleSurMetaCartes();
     } else if (txt === 'A-' || txt === 'A−' || txt === 'A–') {
       wbwFontScale = Math.max(0.70, Math.round((wbwFontScale - 0.12) * 100) / 100);
-      try { localStorage.setItem('wbw_font_scale_v111', String(wbwFontScale)); } catch (err) {}
+      try { localStorage.setItem('wbw_font_scale_v110', String(wbwFontScale)); } catch (err) {}
       appliquerTailleSurMetaCartes();
     }
   }, true);
 
-  if (!window.__popstateV111) {
-    window.__popstateV111 = true;
-    window.addEventListener('popstate', function() {
-      window.location.reload();
-    });
-  }
-
-  // =========================================================================
-  // 3. DÉTECTION & ORDRE DE LECTURE CORANIQUE (SANS SAUTER LES PETITS MOTS)
-  // =========================================================================
   function estElementVersetNormal(el) {
     if (!el) return false;
     if (el.id === 'arabicVerse' || el.id === 'arabicVerseEl' || el.id === 'frenchVerseEl') return true;
@@ -5662,46 +5257,7 @@ html body #btnLangRuV77.active-ext-v77 {
       });
       return copie;
     }
-
-    var vNormal = document.querySelector('#arabicVerseEl, #arabicVerse, .arabic-glow-verse');
-    var texteVerset = '';
-    if (window.SOURATE_DATA && typeof numVersetActuel !== 'undefined' && window.SOURATE_DATA.versets[numVersetActuel - 1]) {
-      texteVerset = window.SOURATE_DATA.versets[numVersetActuel - 1].texteArabe || '';
-    } else if (vNormal) {
-      texteVerset = vNormal.textContent || '';
-    }
-    var motsVerset = texteVerset.trim().split(/\s+/);
-    if (motsVerset.length >= 2) {
-      var premierMot = nettoyerArabeBrut(motsVerset[0]);
-      var dernierMot = nettoyerArabeBrut(motsVerset[motsVerset.length - 1]);
-      var carte0Ar = nettoyerArabeBrut(copie[0].textContent || '');
-      var carteFinAr = nettoyerArabeBrut(copie[copie.length - 1].textContent || '');
-      if (premierMot && dernierMot && premierMot !== dernierMot) {
-        if (carte0Ar.indexOf(dernierMot) !== -1 && carteFinAr.indexOf(premierMot) !== -1) {
-          return copie.reverse();
-        }
-      }
-    }
-
-    var r0 = copie[0].getBoundingClientRect();
-    var rFin = copie[copie.length - 1].getBoundingClientRect();
-    if (r0.width > 0 && rFin.width > 0 && Math.abs(r0.top - rFin.top) < 35 && r0.left < rFin.left) {
-      return copie.reverse();
-    }
-
     return copie;
-  }
-
-  function grilleCorrespondAuVersetActuel(cartes) {
-    if (!cartes || cartes.length === 0) return false;
-    var cleDom = obtenirCleVersetActuelDom();
-    if (cleDom && cleDom !== '19:1' && cartes.length === 1) {
-      var arTxt = nettoyerArabeBrut(cartes[0].textContent || '');
-      if (arTxt.indexOf('كهيعص') !== -1) {
-        return false;
-      }
-    }
-    return true;
   }
 
   function obtenirCartesMotAMotUniversel() {
@@ -5713,10 +5269,9 @@ html body #btnLangRuV77.active-ext-v77 {
     var stage = document.getElementById('wbwStageContainer');
     if (stage) {
       forcer(stage, 'display', 'flex');
-      var boxes = stage.querySelectorAll('.wbw-word-box, .wbw-card-unit, .wbw-card-v111');
+      var boxes = stage.querySelectorAll('.wbw-word-box, .wbw-card-unit, .wbw-card-v110');
       if (boxes && boxes.length >= 1) {
-        var arr = Array.prototype.slice.call(boxes);
-        if (grilleCorrespondAuVersetActuel(arr)) return ordonnerCartesSensLecture(arr);
+        return ordonnerCartesSensLecture(Array.prototype.slice.call(boxes));
       }
     }
 
@@ -5732,19 +5287,14 @@ html body #btnLangRuV77.active-ext-v77 {
             ch.push(c);
           }
         }
-        if (ch.length >= 1 && grilleCorrespondAuVersetActuel(ch)) {
-          return ordonnerCartesSensLecture(ch);
-        } else if (ch.length >= 1 && !grilleCorrespondAuVersetActuel(ch)) {
-          g.innerHTML = '';
-          forcer(g, 'display', 'none');
-        }
+        if (ch.length >= 1) return ordonnerCartesSensLecture(ch);
       }
     }
 
     if (typeof window.__obtenirCartesWBWOrig === 'function') {
       try {
         var orig = window.__obtenirCartesWBWOrig() || [];
-        if (orig.length >= 1 && grilleCorrespondAuVersetActuel(orig)) return ordonnerCartesSensLecture(orig);
+        if (orig.length >= 1) return ordonnerCartesSensLecture(orig);
       } catch (e) {}
     }
 
@@ -5752,103 +5302,15 @@ html body #btnLangRuV77.active-ext-v77 {
   }
   window.__obtenirCartesWBW = obtenirCartesMotAMotUniversel;
 
-  // =========================================================================
-  // 4. RECHARGEMENT AUTOMATIQUE DU TAJWĪD DEPUIS L'API QURAN.COM SI MANQUANT
-  // =========================================================================
-  var cacheTajwidVerset = {};
-  var enCoursTajwidVerset = {};
-
-  function appliquerTajwidDepuisApiSiNecessaire() {
-    if (!estModeTajwidActif()) return;
-    var cle = obtenirCleVersetActuelDom();
-    if (!cle) return;
-
-    var vNormal = document.querySelector('#arabicVerseEl, #arabicVerse, .arabic-glow-verse');
-    var normalADejaTajwid = Boolean(vNormal && vNormal.querySelector('tajweed, [class*="ghunnah"], [class*="madd"], [class*="qalq"], [class*="idgham"], [class*="ikhf"], [class*="tafkh"], [class*="laam_shams"]'));
-
-    if (normalADejaTajwid && (!cacheMetaCartes.length || (cacheMetaCartes[0].elAr && cacheMetaCartes[0].elAr.querySelector('tajweed, [class*="madd"], [class*="ghunnah"], [class*="qalq"], [class*="idgham"], [class*="ikhf"]')))) {
-      return;
-    }
-
-    function injecterHtmlTajwid(htmlComplet) {
-      if (!htmlComplet || obtenirCleVersetActuelDom() !== cle) return;
-      var temp = document.createElement('div');
-      temp.innerHTML = htmlComplet;
-      var ends = temp.querySelectorAll('.end, span.end');
-      for (var e = 0; e < ends.length; e++) ends[e].remove();
-      var htmlPropre = temp.innerHTML.replace(/[\u0660-\u06690-9]+\s*$/g, '').trim();
-      var motsHtml = htmlPropre.split(/\s+/).filter(Boolean);
-
-      if (vNormal && !normalADejaTajwid) {
-        var spans = vNormal.querySelectorAll('span.ar-word-follow, span.inline-clickable-word');
-        if (spans.length === motsHtml.length && spans.length > 0) {
-          for (var s = 0; s < spans.length; s++) {
-            spans[s].innerHTML = motsHtml[s];
-          }
-        } else if (spans.length === 0) {
-          vNormal.innerHTML = motsHtml.map(function(m) {
-            return '<span class="ar-word-follow">' + m + '</span>';
-          }).join(' ');
-        }
-      }
-
-      if (cacheMetaCartes.length === motsHtml.length) {
-        for (var c = 0; c < cacheMetaCartes.length; c++) {
-          var meta = cacheMetaCartes[c];
-          if (meta && meta.elAr && !meta.elAr.querySelector('tajweed')) {
-            meta.elAr.innerHTML = motsHtml[c];
-          }
-        }
-      }
-    }
-
-    if (cacheTajwidVerset[cle]) {
-      injecterHtmlTajwid(cacheTajwidVerset[cle]);
-      return;
-    }
-
-    if (enCoursTajwidVerset[cle]) return;
-    enCoursTajwidVerset[cle] = true;
-
-    fetch('https://api.quran.com/api/v4/quran/verses/uthmani_tajweed?verse_key=' + encodeURIComponent(cle))
-      .then(function(r) { return r.ok ? r.json() : Promise.reject(new Error('HTTP')); })
-      .then(function(d) {
-        var v = d && d.verses && d.verses[0] && d.verses[0].text_uthmani_tajweed;
-        if (v) {
-          cacheTajwidVerset[cle] = v;
-          injecterHtmlTajwid(v);
-        }
-      })
-      .catch(function() {})
-      .finally(function() {
-        delete enCoursTajwidVerset[cle];
-      });
-  }
-
-  // =========================================================================
-  // 5. FORÇAGE DE YASSER AL-DOSARI EN PREMIER PAR DÉFAUT (REMPLACE AYYUB/MAHER)
-  // =========================================================================
   var initDefautFait = false;
 
   function supprimerMaherEtForcerYasser() {
-    if (window.__userPickedReciterManuallyV111) return;
-
-    try {
-      for (var k = 0; k < localStorage.length; k++) {
-        var cle = localStorage.key(k);
-        if (cle && /recit|sheikh|qari|lecteur|audio/i.test(cle)) {
-          var val = localStorage.getItem(cle) || '';
-          if (!/yasser|dosari|dossary|dussary/i.test(val)) {
-            localStorage.setItem(cle, 'Yasser_Ad-Dussary_128kbps');
-          }
-        }
-      }
-    } catch (e) {}
+    if (window.__userPickedReciterManuallyV110) return;
 
     var selects = document.querySelectorAll('select');
     for (var s = 0; s < selects.length; s++) {
       var sel = selects[s];
-      if (sel.classList.contains('wbw-audio-select-v111') || sel.classList.contains('khatm-reciter-select') || sel.id === 'verseJumperSelect') continue;
+      if (sel.classList.contains('khatm-reciter-select') || sel.id === 'verseJumperSelect') continue;
       var yasserIdx = -1;
       for (var o = sel.options.length - 1; o >= 0; o--) {
         var opt = sel.options[o];
@@ -5869,413 +5331,10 @@ html body #btnLangRuV77.active-ext-v77 {
         sel.dispatchEvent(new Event('change', { bubbles: true }));
       }
     }
-
-    var rpItems = document.querySelectorAll('.rp-item, [data-reciter]');
-    var itemYasser = null;
-    for (var i = 0; i < rpItems.length; i++) {
-      var it = rpItems[i];
-      var txtIt = (it.textContent || '') + ' ' + (it.getAttribute('data-reciter') || '');
-      if (/maher|muaiqly|ماهر|Махер/i.test(txtIt)) {
-        it.classList.add('maher-item-removed-v111');
-        if (it.parentNode) it.parentNode.removeChild(it);
-      } else if (!itemYasser && /yasser|dosari|dossary|dussary|الدوسري|Досари/i.test(txtIt)) {
-        itemYasser = it;
-      }
-    }
-
-    var rpBtn = document.querySelector('.rp-btn');
-    if (rpBtn && itemYasser) {
-      var txtBtn = (rpBtn.textContent || '');
-      if (!/yasser|dosari|dossary|dussary|الدوسري|Досари/i.test(txtBtn)) {
-        itemYasser.click();
-        var rpPanel = document.querySelector('.rp-panel');
-        if (rpPanel) rpPanel.classList.remove('open');
-        rpBtn.setAttribute('aria-expanded', 'false');
-      }
-    }
-  }
-
-  // =========================================================================
-  // 6. MODE AUDIO : PLAGE DE VERSETS (START/END RANGE) & RÉPÉTITIONS (QURAN.COM)
-  // =========================================================================
-  var TEXTES_AUDIO_MODAL_I18N = {
-    fr: {
-      btn: '🔁 Plage & Répétition',
-      title: 'Audio',
-      start: 'Début de la plage',
-      end: 'Fin de la plage',
-      repSel: 'Répéter la sélection',
-      repAyah: 'Répéter le verset',
-      none: 'Aucune',
-      times: 'fois',
-      inf: '∞ Infini',
-      cancel: 'Annuler',
-      stop: 'Arrêter la boucle',
-      play: 'Lire'
-    },
-    en: {
-      btn: '🔁 Audio Range',
-      title: 'Audio',
-      start: 'Start Range',
-      end: 'End Range',
-      repSel: 'Repeat selection',
-      repAyah: 'Repeat Ayah',
-      none: 'None',
-      times: 'times',
-      inf: '∞ Infinite',
-      cancel: 'Cancel',
-      stop: 'Stop Loop',
-      play: 'Play'
-    },
-    es: {
-      btn: '🔁 Rango y Repetición',
-      title: 'Audio',
-      start: 'Inicio del rango',
-      end: 'Fin del rango',
-      repSel: 'Repetir selección',
-      repAyah: 'Repetir aleya',
-      none: 'Ninguna',
-      times: 'veces',
-      inf: '∞ Infinito',
-      cancel: 'Cancelar',
-      stop: 'Detener bucle',
-      play: 'Reproducir'
-    },
-    ar: {
-      btn: '🔁 نطاق التكرار',
-      title: 'الصوت والتكرار',
-      start: 'بداية النطاق',
-      end: 'نهاية النطاق',
-      repSel: 'تكرار المقطع',
-      repAyah: 'تكرار الآية',
-      none: 'بدون',
-      times: 'مرات',
-      inf: '∞ بلا حدود',
-      cancel: 'إلغاء',
-      stop: 'إيقاف التكرار',
-      play: 'تشغيل'
-    },
-    de: {
-      btn: '🔁 Bereich & Wiederholung',
-      title: 'Audio',
-      start: 'Startbereich',
-      end: 'Endbereich',
-      repSel: 'Auswahl wiederholen',
-      repAyah: 'Vers wiederholen',
-      none: 'Keine',
-      times: 'Mal',
-      inf: '∞ Unendlich',
-      cancel: 'Abbrechen',
-      stop: 'Stoppen',
-      play: 'Abspielen'
-    },
-    it: {
-      btn: '🔁 Intervallo Audio',
-      title: 'Audio',
-      start: 'Inizio intervallo',
-      end: 'Fine intervallo',
-      repSel: 'Ripeti selezione',
-      repAyah: 'Ripeti versetto',
-      none: 'Nessuna',
-      times: 'volte',
-      inf: '∞ Infinito',
-      cancel: 'Annulla',
-      stop: 'Ferma ciclo',
-      play: 'Riproduci'
-    },
-    id: {
-      btn: '🔁 Rentang & Ulangi',
-      title: 'Audio',
-      start: 'Mulai Rentang',
-      end: 'Akhir Rentang',
-      repSel: 'Ulangi pilihan',
-      repAyah: 'Ulangi Ayat',
-      none: 'Tidak ada',
-      times: 'kali',
-      inf: '∞ Tak terbatas',
-      cancel: 'Batal',
-      stop: 'Hentikan',
-      play: 'Putar'
-    },
-    ru: {
-      btn: '🔁 Диапазон и повтор',
-      title: 'Аудио',
-      start: 'Начало диапазона',
-      end: 'Конец диапазона',
-      repSel: 'Повтор выбора',
-      repAyah: 'Повтор аята',
-      none: 'Нет',
-      times: 'раз(а)',
-      inf: '∞ Бесконечно',
-      cancel: 'Отмена',
-      stop: 'Остановить',
-      play: 'Слушать'
-    }
-  };
-
-  var etatAudioRange = {
-    actif: false,
-    sourate: 0,
-    startV: 1,
-    endV: 1,
-    repeatSelMax: 1,
-    repeatAyahMax: 1,
-    compteurSel: 1,
-    compteurAyah: 1
-  };
-
-  function mettreAJourBoutonAudioRange() {
-    var btn = document.getElementById('wbwAudioRangeBtnV111');
-    if (!btn) return;
-    var lang = obtenirLanguePage();
-    var t = TEXTES_AUDIO_MODAL_I18N[lang] || TEXTES_AUDIO_MODAL_I18N.fr;
-    var info = obtenirInfosSourateEtVerset();
-
-    if (etatAudioRange.actif && etatAudioRange.sourate === info.s) {
-      btn.classList.add('active');
-      var lblAyah = etatAudioRange.repeatAyahMax === -1 ? '∞' : (etatAudioRange.repeatAyahMax > 1 ? (etatAudioRange.compteurAyah + '/' + etatAudioRange.repeatAyahMax) : '');
-      var lblSel = etatAudioRange.repeatSelMax === -1 ? '∞' : (etatAudioRange.repeatSelMax > 1 ? (etatAudioRange.compteurSel + '/' + etatAudioRange.repeatSelMax) : '');
-      var details = [lblAyah ? ('v.' + lblAyah) : '', lblSel ? ('↻' + lblSel) : ''].filter(Boolean).join(' ');
-      btn.textContent = '🔁 ' + info.s + ':' + etatAudioRange.startV + '➔' + etatAudioRange.endV + (details ? (' (' + details + ')') : '');
-    } else {
-      btn.classList.remove('active');
-      btn.textContent = t.btn;
-    }
-  }
-
-  function naviguerEtJouerVerset(numV) {
-    if (typeof window.allerAuVerset === 'function') {
-      window.allerAuVerset(numV, true);
-      return;
-    }
-    var selJ = document.getElementById('verseJumperSelect');
-    if (selJ && selJ.options.length >= numV) {
-      selJ.selectedIndex = numV - 1;
-      selJ.dispatchEvent(new Event('change', { bubbles: true }));
-    }
-    setTimeout(function() {
-      var aud = document.getElementById('ayahAudio');
-      if (aud && aud.paused) {
-        var playBtn = document.getElementById('playSyncBtn');
-        if (playBtn) playBtn.click();
-        else aud.play().catch(function() {});
-      }
-    }, 90);
-  }
-
-  function installerIntercepteurFinAudio() {
-    var aud = document.getElementById('ayahAudio');
-    if (!aud || aud.__wbwRangeHookedV111) return;
-    aud.__wbwRangeHookedV111 = true;
-
-    aud.addEventListener('ended', function(ev) {
-      var info = obtenirInfosSourateEtVerset();
-      if (!etatAudioRange.actif || etatAudioRange.sourate !== info.s) return;
-
-      ev.stopImmediatePropagation();
-
-      var encoreAyah = (etatAudioRange.repeatAyahMax === -1) || (etatAudioRange.compteurAyah < etatAudioRange.repeatAyahMax);
-      if (encoreAyah) {
-        etatAudioRange.compteurAyah++;
-        mettreAJourBoutonAudioRange();
-        window.__wbwResetDemande = true;
-        aud.currentTime = 0;
-        aud.play().catch(function() {});
-        return;
-      }
-
-      etatAudioRange.compteurAyah = 1;
-      if (info.v < etatAudioRange.endV && info.v < info.totalV) {
-        mettreAJourBoutonAudioRange();
-        naviguerEtJouerVerset(info.v + 1);
-        return;
-      }
-
-      var encoreSel = (etatAudioRange.repeatSelMax === -1) || (etatAudioRange.compteurSel < etatAudioRange.repeatSelMax);
-      if (encoreSel) {
-        etatAudioRange.compteurSel++;
-        mettreAJourBoutonAudioRange();
-        if (info.v !== etatAudioRange.startV) {
-          naviguerEtJouerVerset(etatAudioRange.startV);
-        } else {
-          window.__wbwResetDemande = true;
-          aud.currentTime = 0;
-          aud.play().catch(function() {});
-        }
-        return;
-      }
-
-      etatAudioRange.actif = false;
-      mettreAJourBoutonAudioRange();
-      if (typeof arreterVisuel === 'function') {
-        try { arreterVisuel(); } catch (e) {}
-      }
-    }, true);
-  }
-
-  function ouvrirModaleAudioRange() {
-    var overlay = document.getElementById('wbwAudioRangeOverlayV111');
-    if (!overlay) return;
-    var lang = obtenirLanguePage();
-    var t = TEXTES_AUDIO_MODAL_I18N[lang] || TEXTES_AUDIO_MODAL_I18N.fr;
-    var info = obtenirInfosSourateEtVerset();
-
-    var startDefaut = (etatAudioRange.actif && etatAudioRange.sourate === info.s) ? etatAudioRange.startV : info.v;
-    var endDefaut = (etatAudioRange.actif && etatAudioRange.sourate === info.s) ? etatAudioRange.endV : info.totalV;
-    var repSelDefaut = (etatAudioRange.actif && etatAudioRange.sourate === info.s) ? etatAudioRange.repeatSelMax : 1;
-    var repAyahDefaut = (etatAudioRange.actif && etatAudioRange.sourate === info.s) ? etatAudioRange.repeatAyahMax : 1;
-
-    var optsStart = '';
-    var optsEnd = '';
-    for (var i = 1; i <= info.totalV; i++) {
-      optsStart += '<option value="' + i + '"' + (i === startDefaut ? ' selected' : '') + '>' + info.s + ':' + i + '</option>';
-      optsEnd += '<option value="' + i + '"' + (i === endDefaut ? ' selected' : '') + '>' + info.s + ':' + i + '</option>';
-    }
-
-    var valeursRep = [
-      { val: 1, txt: t.none },
-      { val: 2, txt: '2 ' + t.times },
-      { val: 3, txt: '3 ' + t.times },
-      { val: 5, txt: '5 ' + t.times },
-      { val: 10, txt: '10 ' + t.times },
-      { val: -1, txt: t.inf }
-    ];
-
-    var optsRepSel = '';
-    var optsRepAyah = '';
-    for (var r = 0; r < valeursRep.length; r++) {
-      var item = valeursRep[r];
-      optsRepSel += '<option value="' + item.val + '"' + (item.val === repSelDefaut ? ' selected' : '') + '>' + item.txt + '</option>';
-      optsRepAyah += '<option value="' + item.val + '"' + (item.val === repAyahDefaut ? ' selected' : '') + '>' + item.txt + '</option>';
-    }
-
-    var sheet = overlay.querySelector('.wbw-audio-sheet-v111');
-    sheet.style.direction = lang === 'ar' ? 'rtl' : 'ltr';
-    sheet.innerHTML =
-      '<div class="wbw-audio-handle-v111"></div>' +
-      '<div class="wbw-audio-title-v111">' + t.title + '</div>' +
-      '<div class="wbw-audio-row-v111">' +
-        '<span class="wbw-audio-label-v111"><span class="wbw-audio-icon-v111">|&lt;</span> ' + t.start + '</span>' +
-        '<select id="wbwStartRangeSelV111" class="wbw-audio-select-v111">' + optsStart + '</select>' +
-      '</div>' +
-      '<div class="wbw-audio-row-v111">' +
-        '<span class="wbw-audio-label-v111"><span class="wbw-audio-icon-v111">&gt;|</span> ' + t.end + '</span>' +
-        '<select id="wbwEndRangeSelV111" class="wbw-audio-select-v111">' + optsEnd + '</select>' +
-      '</div>' +
-      '<div class="wbw-audio-row-v111">' +
-        '<span class="wbw-audio-label-v111"><span class="wbw-audio-icon-v111">↻</span> ' + t.repSel + '</span>' +
-        '<select id="wbwRepSelV111" class="wbw-audio-select-v111">' + optsRepSel + '</select>' +
-      '</div>' +
-      '<div class="wbw-audio-row-v111">' +
-        '<span class="wbw-audio-label-v111"><span class="wbw-audio-icon-v111">↺</span> ' + t.repAyah + '</span>' +
-        '<select id="wbwRepAyahV111" class="wbw-audio-select-v111">' + optsRepAyah + '</select>' +
-      '</div>' +
-      '<div class="wbw-audio-actions-v111">' +
-        '<button type="button" id="wbwAudioCancelBtnV111" class="wbw-audio-cancel-v111">' + (etatAudioRange.actif ? t.stop : t.cancel) + '</button>' +
-        '<button type="button" id="wbwAudioPlayBtnV111" class="wbw-audio-play-v111">' + t.play + '</button>' +
-      '</div>';
-
-    var selS = document.getElementById('wbwStartRangeSelV111');
-    var selE = document.getElementById('wbwEndRangeSelV111');
-    selS.addEventListener('change', function() {
-      if (parseInt(selE.value, 10) < parseInt(selS.value, 10)) {
-        selE.value = selS.value;
-      }
-    });
-    selE.addEventListener('change', function() {
-      if (parseInt(selE.value, 10) < parseInt(selS.value, 10)) {
-        selS.value = selE.value;
-      }
-    });
-
-    document.getElementById('wbwAudioCancelBtnV111').addEventListener('click', function() {
-      if (etatAudioRange.actif) {
-        etatAudioRange.actif = false;
-        var aud = document.getElementById('ayahAudio');
-        if (aud && !aud.paused) aud.pause();
-        mettreAJourBoutonAudioRange();
-      }
-      overlay.classList.remove('open');
-    });
-
-    document.getElementById('wbwAudioPlayBtnV111').addEventListener('click', function() {
-      var sVal = parseInt(selS.value, 10) || 1;
-      var eVal = parseInt(selE.value, 10) || sVal;
-      if (eVal < sVal) eVal = sVal;
-
-      etatAudioRange.actif = true;
-      etatAudioRange.sourate = info.s;
-      etatAudioRange.startV = sVal;
-      etatAudioRange.endV = eVal;
-      etatAudioRange.repeatSelMax = parseInt(document.getElementById('wbwRepSelV111').value, 10) || 1;
-      etatAudioRange.repeatAyahMax = parseInt(document.getElementById('wbwRepAyahV111').value, 10) || 1;
-      etatAudioRange.compteurSel = 1;
-      etatAudioRange.compteurAyah = 1;
-
-      overlay.classList.remove('open');
-      mettreAJourBoutonAudioRange();
-
-      var aud = document.getElementById('ayahAudio');
-      if (info.v !== sVal) {
-        naviguerEtJouerVerset(sVal);
-      } else if (aud) {
-        window.__wbwResetDemande = true;
-        aud.currentTime = 0;
-        if (aud.paused) {
-          var playBtn = document.getElementById('playSyncBtn');
-          if (playBtn) playBtn.click();
-          else aud.play().catch(function() {});
-        }
-      }
-    });
-
-    overlay.classList.add('open');
-  }
-
-  function assurerBoutonEtModaleAudioRange() {
-    var estPageSourate = /sourate-\d+/i.test(window.location.pathname) || Boolean(document.querySelector('#arabicVerse, #arabicVerseEl, .arabic-glow-verse'));
-    if (!estPageSourate) return;
-
-    installerIntercepteurFinAudio();
-
-    var oldBtns = document.querySelectorAll('#wbwAudioRangeBtnV109, #wbwAudioRangeBtnV110, #wbwAudioRangeBtnV112');
-    for (var b = 0; b < oldBtns.length; b++) {
-      if (oldBtns[b].parentNode) oldBtns[b].parentNode.removeChild(oldBtns[b]);
-    }
-    var oldOvs = document.querySelectorAll('#wbwAudioRangeOverlayV109, #wbwAudioRangeOverlayV110, #wbwAudioRangeOverlayV112');
-    for (var o = 0; o < oldOvs.length; o++) {
-      if (oldOvs[o].parentNode) oldOvs[o].parentNode.removeChild(oldOvs[o]);
-    }
-
-    if (!document.getElementById('wbwAudioRangeOverlayV111')) {
-      var ov = document.createElement('div');
-      ov.id = 'wbwAudioRangeOverlayV111';
-      ov.innerHTML = '<div class="wbw-audio-sheet-v111"></div>';
-      ov.addEventListener('click', function(e) {
-        if (e.target === ov) ov.classList.remove('open');
-      });
-      document.body.appendChild(ov);
-    }
-
-    if (!document.getElementById('wbwAudioRangeBtnV111')) {
-      var btnSuivi = trouverBoutonParTexte(['Suivi', 'Follow', 'Слежение', 'Seguimiento', 'Verfolgen', 'Segui', 'Ikuti', 'تتبع']);
-      var btnTaj = trouverBoutonTajwid();
-      var cible = btnSuivi || btnTaj || document.getElementById('replaySyncBtn');
-      if (cible && cible.parentElement) {
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.id = 'wbwAudioRangeBtnV111';
-        btn.addEventListener('click', ouvrirModaleAudioRange);
-        cible.parentElement.insertBefore(btn, cible.nextSibling);
-      }
-    }
-
-    mettreAJourBoutonAudioRange();
   }
 
   function initialiserModesSurSourate() {
     supprimerMaherEtForcerYasser();
-    assurerBoutonEtModaleAudioRange();
 
     if (initDefautFait) return;
     var estPageSourate = /sourate-\d+/i.test(window.location.pathname) || Boolean(document.querySelector('#arabicVerse, #arabicVerseEl, .arabic-glow-verse'));
@@ -6299,54 +5358,11 @@ html body #btnLangRuV77.active-ext-v77 {
     }
 
     cacherGrilleMotAMotQuandInactif();
-    setTimeout(supprimerMaherEtForcerYasser, 40);
-    setTimeout(supprimerMaherEtForcerYasser, 180);
-    setTimeout(supprimerMaherEtForcerYasser, 450);
-  }
-
-  // Mentions légales sans code postal (Montpellier, France)
-  function mettreAJourMentionsLegalesGoogleGrants() {
-    var divs = document.querySelectorAll('div, p, footer');
-    for (var i = 0; i < divs.length; i++) {
-      var d = divs[i];
-      if (d.dataset.legalV111 === '1') continue;
-      var txt = d.textContent || '';
-      if ((txt.indexOf('Institut Muhasiba') !== -1 || txt.indexOf('Institut Numérique Coran') !== -1) && d.children.length === 0) {
-        d.dataset.legalV111 = '1';
-        d.textContent = '« Institut Muhasiba »';
-        var parentModale = d.parentElement;
-        if (parentModale && !parentModale.querySelector('#wbw-legal-extra-v111')) {
-          var anciens = parentModale.querySelectorAll('[id^="wbw-legal-extra-v"]');
-          for (var a = 0; a < anciens.length; a++) anciens[a].remove();
-
-          var infoAssos = document.createElement('div');
-          infoAssos.id = 'wbw-legal-extra-v111';
-          infoAssos.style.cssText = 'font-size:0.83rem;color:#cbd5e1;margin-top:8px;margin-bottom:12px;line-height:1.55;text-align:center;';
-          var adr = 'contact' + '@' + 'corantafsir.com';
-          infoAssos.innerHTML =
-            '<strong>Association loi 1901 à but non lucratif</strong> • ' + NUMERO_RNA + '<br>' +
-            'Siège social : Montpellier, France • Hébergement : Cloudflare, Inc. (101 Townsend St, San Francisco, CA 94107, USA)<br>' +
-            'Contact officiel : <a href="mailto:' + adr + '" style="color:#38bdf8;text-decoration:none;font-weight:600;">' + adr + '</a>';
-          parentModale.insertBefore(infoAssos, d.nextSibling);
-        }
-      }
-    }
-  }
-
-  function nettoyerTexteOrdreRevelation() {
-    var els = document.querySelectorAll('button, option, span, div, label, a');
-    for (var i = 0; i < els.length; i++) {
-      var el = els[i];
-      if (el.children.length === 0 && el.textContent && el.textContent.indexOf('96') !== -1 && el.textContent.indexOf('110') !== -1) {
-        el.textContent = el.textContent.replace(/\s*\(96\s*[^)]*\s*110\)/g, '').trim();
-      }
-    }
   }
 
   function masquerBlocProgressionSurSourate() {
     var estPageSourate = /sourate-\d+/i.test(window.location.pathname) || Boolean(document.querySelector('#arabicVerse, #arabicVerseEl, .arabic-glow-verse'));
     if (!estPageSourate) return;
-
     var kWidget = document.getElementById('khatmPlannerWidgetV77');
     if (kWidget) {
       kWidget.classList.add('wbw-hide-khatm-on-surah');
@@ -6392,7 +5408,7 @@ html body #btnLangRuV77.active-ext-v77 {
         /^\d+\s*[\.:\-]/.test(t) ||
         el.tagName === 'P'
       ) {
-        el.classList.add('wbw-masquer-doublon-v111');
+        el.classList.add('wbw-masquer-doublon-v110');
         forcer(el, 'display', 'none');
       }
     }
@@ -6444,31 +5460,15 @@ html body #btnLangRuV77.active-ext-v77 {
     'support': 'Lève-toi',
     'and flared': 'et s’est embrasée',
     'flared': 's’est embrasée',
-    'et évasé': 'et s’est embrasée',
-    'évasé': 's’est embrasée',
     'with white': 'de cheveux blancs',
     '(with) white': 'de cheveux blancs',
     'white hair': 'de cheveux blancs',
-    'avec du blanc': 'de cheveux blancs',
     'unblessed': 'malheureux (déçu)',
-    'non béni': 'malheureux (déçu)',
     'of me': 'de moi',
     'from me': 'de moi',
     'and not': 'et je n’ai pas',
     'i have been': 'été',
     'in my supplication to you': 'en T’invoquant',
-    'in the night': 'la nuit',
-    'the night': 'la nuit',
-    'except': 'sauf',
-    'a little': 'un peu',
-    'half of it': 'la moitié',
-    'or lessen': 'ou retranche',
-    'from it': 'd’elle',
-    'or add': 'ou ajoute',
-    'to it': 'à elle',
-    'and recite': 'et récite',
-    'the quran': 'le Coran',
-    'with measured recitation': 'avec mesure (Tartīl)',
     'in (the) name': 'au nom',
     'in the name': 'au nom',
     'the one who': 'Celui qui',
@@ -6476,18 +5476,12 @@ html body #btnLangRuV77.active-ext-v77 {
     'created': 'a créé',
     'read': 'Lis',
     'recite': 'Lis',
-    'lire': 'Lis',
     'your lord': 'ton Seigneur',
     'and your lord': 'Et ton Seigneur',
     '(is) the most generous': 'est le Très Généreux',
     'the most generous': 'le Très Généreux',
     'taught': 'a enseigné',
     'by the pen': 'Par la plume',
-    'and what': 'et ce qu’',
-    'they inscribe': 'ils écrivent',
-    'which of you': 'lequel d’entre vous',
-    '(is) the afflicted': 'est le dément',
-    'the afflicted': 'le dément',
     'man': 'à l’homme',
     'what': 'ce que',
     'not': 'ne ... pas',
@@ -6499,7 +5493,7 @@ html body #btnLangRuV77.active-ext-v77 {
 
   var cacheTradMots = {};
   try {
-    cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v111') || '{}');
+    cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v110') || '{}');
   } catch (e) {}
   var enCoursTrad = {};
   var prochainEssaiTrad = {};
@@ -6511,8 +5505,6 @@ html body #btnLangRuV77.active-ext-v77 {
     return h || 'fr';
   }
 
-  var motsFrConnus = /^(il|elle|ils|elles|je|tu|nous|vous|le|la|les|un|une|des|de|du|au|aux|en|dans|sur|sous|avec|sans|pour|par|vers|chez|entre|contre|et|ou|mais|donc|car|ni|ne|pas|plus|moins|très|tout|tous|toute|toutes|ce|cet|cette|ces|mon|ton|son|ma|ta|sa|mes|tes|ses|notre|votre|leur|leurs|qui|que|quoi|dont|où|oui|non|bien|mal|comme|alors|puis|ainsi|aussi|encore|déjà|toujours|jamais|rien|personne|aucun|autre|même|tel|chaque|allah|seigneur|livre|guidée|pieux|croyants|prière|enfer|paradis|jour|nuit|terre|ciel|cieux|eau|feu|coeur|coeurs|lis|quand|secret|créé|sauf|plume|rappel|miséricorde|serviteur)$/i;
-
   function nettoyerEtTraduireMotUneFois(elTrad, elAr, lang) {
     if (!elTrad) return;
     var brut = (elTrad.textContent || '').trim();
@@ -6521,17 +5513,13 @@ html body #btnLangRuV77.active-ext-v77 {
     var arNorm = normaliserArabeCle(txtAr);
 
     if (tableMuqattaat[arPur]) {
-      if (elTrad.textContent !== tableMuqattaat[arPur]) {
-        elTrad.textContent = tableMuqattaat[arPur];
-      }
+      definirTexteSansBoucle(elTrad, tableMuqattaat[arPur]);
       elTrad.dataset.wbwTrOk = lang;
       return;
     }
 
     if (lang === 'fr' && dicoArabeFr[arNorm]) {
-      if (elTrad.textContent !== dicoArabeFr[arNorm]) {
-        elTrad.textContent = dicoArabeFr[arNorm];
-      }
+      definirTexteSansBoucle(elTrad, dicoArabeFr[arNorm]);
       elTrad.dataset.wbwTrOk = lang;
       return;
     }
@@ -6540,7 +5528,7 @@ html body #btnLangRuV77.active-ext-v77 {
 
     if (brut.indexOf('_') !== -1) {
       brut = brut.split('_').join(' ').replace(/\s{2,}/g, ' ').trim();
-      elTrad.textContent = brut;
+      definirTexteSansBoucle(elTrad, brut);
       elTrad.dataset.wbwTrOk = lang;
       return;
     }
@@ -6552,27 +5540,21 @@ html body #btnLangRuV77.active-ext-v77 {
 
     var cleMin = brut.toLowerCase().replace(/\s{2,}/g, ' ');
     if (lang === 'fr' && dicoInstantaneFr[cleMin]) {
-      elTrad.textContent = dicoInstantaneFr[cleMin];
+      definirTexteSansBoucle(elTrad, dicoInstantaneFr[cleMin]);
       elTrad.dataset.wbwTrOk = lang;
       return;
     }
 
     if (elTrad.dataset.wbwTrOk === lang) return;
 
-    if (/[àâäéèêëîïôöùûüçœæ]/i.test(brut) && lang === 'fr') {
-      elTrad.dataset.wbwTrOk = lang;
-      return;
-    }
-    var motsSplit = brut.split(/\s+/);
-    var premierMot = motsSplit[0].replace(/[^a-zA-Z]/g, '');
-    if (lang === 'fr' && motsSplit.length === 1 && motsFrConnus.test(premierMot)) {
+    var cle = lang + ':' + arNorm + ':' + cleMin;
+    if (cacheTradMots[cle]) {
+      definirTexteSansBoucle(elTrad, cacheTradMots[cle]);
       elTrad.dataset.wbwTrOk = lang;
       return;
     }
 
-    var cle = lang + ':' + arNorm + ':' + cleMin;
-    if (cacheTradMots[cle]) {
-      elTrad.textContent = cacheTradMots[cle];
+    if (/[àâäéèêëîïôöùûüçœæ]/i.test(brut) && lang === 'fr') {
       elTrad.dataset.wbwTrOk = lang;
       return;
     }
@@ -6591,13 +5573,10 @@ html body #btnLangRuV77.active-ext-v77 {
             if (lang === 'fr' && dicoInstantaneFr[tr.toLowerCase()]) {
               tr = dicoInstantaneFr[tr.toLowerCase()];
             }
-            if (lang === 'fr' && tr.toLowerCase() === 'support' && arPur.indexOf('قم') !== -1) {
-              tr = 'Lève-toi';
-            }
             cacheTradMots[cle] = tr;
-            try { localStorage.setItem('wbw_tr_cache_v111', JSON.stringify(cacheTradMots)); } catch (e) {}
+            try { localStorage.setItem('wbw_tr_cache_v110', JSON.stringify(cacheTradMots)); } catch (e) {}
             if (elTrad && elTrad.isConnected && obtenirLanguePage() === lang) {
-              elTrad.textContent = tr;
+              definirTexteSansBoucle(elTrad, tr);
               elTrad.dataset.wbwTrOk = lang;
             }
           }
@@ -6621,16 +5600,13 @@ html body #btnLangRuV77.active-ext-v77 {
   var derniereCleVersetVue = '';
   var dernierTimestampRaf = 0;
 
-  // =========================================================================
-  // 7. ÉLIMINATION CIBLÉE DES PETITS CHIFFRES (NE TOUCHE JAMAIS AU TEXTE TRADUIT)
-  // =========================================================================
   function detruireNoeudNumero(el) {
-    if (!el || el.classList.contains('wbw-ar-v111') || el.classList.contains('wbw-tr-v111') || el.classList.contains('wbw-ar') || el.classList.contains('wbw-tr')) return;
+    if (!el || el.classList.contains('wbw-ar-v110') || el.classList.contains('wbw-tr-v110') || el.classList.contains('wbw-ar') || el.classList.contains('wbw-tr')) return;
     el.dataset.wbwIsNum = '1';
     if (el.textContent !== '') {
       el.textContent = '';
     }
-    el.classList.add('wbw-num-hidden-v111');
+    el.classList.add('wbw-num-hidden-v110');
     forcer(el, 'display', 'none');
   }
 
@@ -6644,7 +5620,7 @@ html body #btnLangRuV77.active-ext-v77 {
     for (var i = 0; i < tous.length; i++) {
       var sub = tous[i];
       if (sub === elAr || sub === elTrad) continue;
-      if (sub.classList.contains('wbw-ar-v111') || sub.classList.contains('wbw-tr-v111') || sub.classList.contains('wbw-ar') || sub.classList.contains('wbw-tr')) continue;
+      if (sub.classList.contains('wbw-ar-v110') || sub.classList.contains('wbw-tr-v110') || sub.classList.contains('wbw-ar') || sub.classList.contains('wbw-tr')) continue;
       if (elAr && elAr.contains(sub) && !estPetitNumero(sub.textContent)) continue;
       if (elTrad && elTrad.contains(sub)) continue;
       if (
@@ -6656,41 +5632,7 @@ html body #btnLangRuV77.active-ext-v77 {
         detruireNoeudNumero(sub);
       }
     }
-
-    var noeuds = carte.childNodes;
-    for (var n = 0; n < noeuds.length; n++) {
-      var nd = noeuds[n];
-      if (nd.nodeType === 3 && estPetitNumero(nd.nodeValue)) {
-        nd.nodeValue = '';
-      }
-    }
   }
-
-  var obsEnCours = false;
-  var observerMutationsGrille = typeof MutationObserver !== 'undefined' ? new MutationObserver(function(mutations) {
-    if (obsEnCours) return;
-    obsEnCours = true;
-    try {
-      var lang = obtenirLanguePage();
-      for (var i = 0; i < mutations.length; i++) {
-        var mut = mutations[i];
-        var cible = mut.target && mut.target.nodeType === 1 ? mut.target : (mut.target ? mut.target.parentElement : null);
-        if (!cible) continue;
-        var carte = cible.closest ? cible.closest('.wbw-card-v111') : null;
-        if (carte) {
-          var ar = carte.querySelector('.wbw-ar-v111, .wbw-ar');
-          var tr = carte.querySelector('.wbw-tr-v111, .wbw-tr');
-          purgerTousLesChiffresDeLaCarte(carte, ar, tr);
-          if (tr) {
-            delete tr.dataset.wbwTrOk;
-            nettoyerEtTraduireMotUneFois(tr, ar, lang);
-          }
-        }
-      }
-    } catch (e) {}
-    obsEnCours = false;
-  }) : null;
-  var derniereGrilleObservee = null;
 
   function preparerGrilleSiNecessaire(cartes) {
     if (!cartes || cartes.length < 1 || !estModeMotAMotActif()) {
@@ -6707,20 +5649,6 @@ html body #btnLangRuV77.active-ext-v77 {
     }
 
     gererMasquageDoublonVerset(cartes, true);
-
-    if (observerMutationsGrille && derniereGrilleObservee !== grille) {
-      try {
-        observerMutationsGrille.disconnect();
-        observerMutationsGrille.observe(grille, {
-          childList: true,
-          subtree: true,
-          characterData: true,
-          attributes: true,
-          attributeFilter: ['data-word-num', 'data-index']
-        });
-        derniereGrilleObservee = grille;
-      } catch (e) {}
-    }
 
     var banner = document.getElementById('wbwSensLectureBanner');
     if (banner) {
@@ -6739,7 +5667,7 @@ html body #btnLangRuV77.active-ext-v77 {
       cacheMetaCartes[0].carte === cartes[0] &&
       cacheMetaCartes[0].elAr &&
       cacheMetaCartes[0].elAr.isConnected &&
-      cartes[0].classList.contains('wbw-card-v111');
+      cartes[0].classList.contains('wbw-card-v110');
 
     if (memeDom) {
       for (var u = 0; u < cacheMetaCartes.length; u++) {
@@ -6782,9 +5710,8 @@ html body #btnLangRuV77.active-ext-v77 {
     for (var m = 0; m < cartes.length; m++) {
       var carte = cartes[m];
       if (!carte.dataset.wbwOrd) carte.dataset.wbwOrd = String(m + 1);
-      carte.classList.remove('wbw-card-v104', 'wbw-card-v105', 'wbw-card-v106', 'wbw-card-v107', 'wbw-card-v108', 'wbw-card-v109', 'wbw-card-v110', 'wbw-card-v112');
-      carte.classList.add('wbw-card-v111');
-      if (carte.hasAttribute('data-word-num')) carte.removeAttribute('data-word-num');
+      carte.classList.remove('wbw-card-v104', 'wbw-card-v105', 'wbw-card-v106', 'wbw-card-v107', 'wbw-card-v108', 'wbw-card-v109', 'wbw-card-v111', 'wbw-card-v112');
+      carte.classList.add('wbw-card-v110');
 
       forcer(carte, 'margin', '0px');
       forcer(carte, 'padding', '2px 8px 4px 8px');
@@ -6810,17 +5737,17 @@ html body #btnLangRuV77.active-ext-v77 {
         var tCh = (ch.textContent || '').trim();
         if (estPetitNumero(tCh) || ch.tagName === 'SUP' || ch.tagName === 'SMALL') {
           detruireNoeudNumero(ch);
-        } else if (!elAr && (ch.classList.contains('wbw-ar') || ch.classList.contains('wbw-ar-v111') || contientArabe(tCh))) {
+        } else if (!elAr && (ch.classList.contains('wbw-ar') || ch.classList.contains('wbw-ar-v110') || contientArabe(tCh))) {
           elAr = ch;
-        } else if (ch !== elAr && (ch.classList.contains('wbw-tr') || ch.classList.contains('wbw-tr-v111') || tCh.length > 0)) {
+        } else if (ch !== elAr && (ch.classList.contains('wbw-tr') || ch.classList.contains('wbw-tr-v110') || tCh.length > 0)) {
           elTrad = ch;
         }
       }
 
       if (elAr) {
-        elAr.classList.remove('wbw-num-hidden-v111', 'wbw-num-hidden-v112', 'wbw-ar-v112');
+        elAr.classList.remove('wbw-num-hidden-v110', 'wbw-num-hidden-v111', 'wbw-num-hidden-v112');
         delete elAr.dataset.wbwIsNum;
-        elAr.classList.add('wbw-ar-v111');
+        elAr.classList.add('wbw-ar-v110');
         forcer(elAr, 'display', 'block');
         forcer(elAr, 'visibility', 'visible');
         forcer(elAr, 'opacity', '1');
@@ -6831,9 +5758,9 @@ html body #btnLangRuV77.active-ext-v77 {
         forcer(elAr, 'white-space', 'nowrap');
       }
       if (elTrad) {
-        elTrad.classList.remove('wbw-num-hidden-v111', 'wbw-num-hidden-v112', 'wbw-tr-v112');
+        elTrad.classList.remove('wbw-num-hidden-v110', 'wbw-num-hidden-v111', 'wbw-num-hidden-v112');
         delete elTrad.dataset.wbwIsNum;
-        elTrad.classList.add('wbw-tr-v111');
+        elTrad.classList.add('wbw-tr-v110');
         forcer(elTrad, 'display', 'block');
         forcer(elTrad, 'visibility', 'visible');
         forcer(elTrad, 'opacity', '1');
@@ -6859,7 +5786,6 @@ html body #btnLangRuV77.active-ext-v77 {
       };
     }
 
-    appliquerTajwidDepuisApiSiNecessaire();
     return true;
   }
 
@@ -7016,10 +5942,7 @@ html body #btnLangRuV77.active-ext-v77 {
 
   function verifierChangementVersetEtPause() {
     initialiserModesSurSourate();
-    nettoyerTexteOrdreRevelation();
     masquerBlocProgressionSurSourate();
-    mettreAJourMentionsLegalesGoogleGrants();
-    appliquerTajwidDepuisApiSiNecessaire();
 
     var cleActuelle = obtenirCleVersetActuelDom();
     if (cleActuelle && derniereCleVersetVue && cleActuelle !== derniereCleVersetVue) {
@@ -7030,7 +5953,6 @@ html body #btnLangRuV77.active-ext-v77 {
       window.__wbwEnergies = [];
       window.__wbwBleus = [];
       gererMasquageDoublonVerset(null, false);
-      mettreAJourBoutonAudioRange();
     } else if (cleActuelle) {
       derniereCleVersetVue = cleActuelle;
     }
@@ -7050,10 +5972,6 @@ html body #btnLangRuV77.active-ext-v77 {
     setTimeout(verifierChangementVersetEtPause, 20);
     setTimeout(verifierChangementVersetEtPause, 90);
   });
-  document.addEventListener('visibilitychange', function() {
-    dernierTimestampRaf = 0;
-    if (!document.hidden) verifierChangementVersetEtPause();
-  });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', verifierChangementVersetEtPause);
@@ -7062,6 +5980,6 @@ html body #btnLangRuV77.active-ext-v77 {
   }
 })();
 </script>
-<!-- WBW_COLLE_V111_END -->
+<!-- WBW_COLLE_V110_END -->
 </body>
 </html>
