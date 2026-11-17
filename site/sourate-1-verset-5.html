@@ -6534,6 +6534,7 @@ html body #btnLangRuV77.active-ext-v77 {
 </script>
 <!-- WBW_COLLE_V110_END -->
 
+
 <script id="wbw-certifie-s1">
 window.WBW_SOURATE_1 = {
   "1:1": [
@@ -6844,7 +6845,9 @@ window.WBW_SOURATE_1 = {
 
 (function(){
   var mapIdx={fr:1,en:2,es:3,de:4,it:5,id:6,ru:7,ar:0};
+  var busy=false;
   function injecterWbwCertifieS1(){
+    if(busy)return;
     var badge=document.getElementById('badgeNumEl');
     var vk=badge?(badge.textContent||'').replace(/\s+/g,''):'';
     if(!vk||!window.WBW_SOURATE_1||!window.WBW_SOURATE_1[vk])return;
@@ -6853,6 +6856,8 @@ window.WBW_SOURATE_1 = {
     var lg=p?p.slice(0,2).toLowerCase():((document.documentElement.lang||'fr').slice(0,2).toLowerCase()||'fr');
     var idx=mapIdx[lg]!==undefined?mapIdx[lg]:1;
     var cartes=document.querySelectorAll('.wbw-word-box, .wbw-card-v110, .wbw-card-unit');
+    if(!cartes.length)return;
+    busy=true;
     for(var i=0;i<cartes.length&&i<mots.length;i++){
       var trEl=cartes[i].querySelector('.wbw-tr, .wbw-tr-v110')||cartes[i].children[cartes[i].children.length-1];
       if(trEl){
@@ -6863,9 +6868,15 @@ window.WBW_SOURATE_1 = {
         trEl.dataset.wbwTrLock='1';
       }
     }
+    busy=false;
   }
-  setInterval(injecterWbwCertifieS1,80);
-  document.addEventListener('click',function(){setTimeout(injecterWbwCertifieS1,15);});
+  var obs=new MutationObserver(function(){injecterWbwCertifieS1();});
+  window.addEventListener('DOMContentLoaded',function(){
+    injecterWbwCertifieS1();
+    var target=document.getElementById('arabicTextEl')||document.body;
+    obs.observe(target,{childList:true,subtree:true});
+  });
+  document.addEventListener('click',function(){setTimeout(injecterWbwCertifieS1,30);});
 })();
 </script>
 </body>
