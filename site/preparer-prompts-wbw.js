@@ -84,7 +84,7 @@ RÈGLES ABSOLUES DE PRÉCISION :
 2. Morphologie arabe stricte :
    - Respecte rigoureusement le singulier, le duel et le pluriel (ex: كُنتُمْ / شُهَدَاءَكُمْ = "vous êtes" / "vos témoins", JAMAIS "tu es" / "tes témoins").
    - Traduis toutes les particules et pronoms attachés (وَ = "et", فَبِـ = "alors par", ـهُمْ = "eux/leurs", ـكُمْ = "vous/vos").
-   - Lettres isolées (Muqatta'at comme الم) : garde la translittération ("Alif, Lām, Mīm" en FR/EN/ES/DE/IT, "Alif Lam Mim" en ID, "Алиф, Лам, Мим" en RU).
+   - Lettres isolées (Muqatta'at comme الم) : garde la translittération ("Alif, Lam, Mim" en FR/EN/ES/DE/IT, "Alif Lam Mim" en ID, "Алиф, Лам, Мим" en RU).
 3. Nombre exact de mots :
    - Le tableau de chaque verset DOIT contenir EXACTEMENT le même nombre d'éléments que la liste "mots" fournie en entrée. Ne fusionne jamais deux mots arabes et n'en saute aucun.
 

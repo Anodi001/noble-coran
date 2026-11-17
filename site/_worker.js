@@ -20,18 +20,18 @@ const NB_VERSETS_PAR_SOURATE = [
 // Noms courts des 114 sourates pour générer un <title> unique par verset
 const NOMS_SOURATES_COURT = [
   "",
-  "Al-Fātihah","Al-Baqarah","Āl 'Imrān","An-Nisā'","Al-Mā'idah","Al-An'ām","Al-A'rāf","Al-Anfāl","At-Tawbah","Yūnus",
-  "Hūd","Yūsuf","Ar-Ra'd","Ibrāhīm","Al-Hijr","An-Nahl","Al-Isrā'","Al-Kahf","Maryam","Tā-Hā",
-  "Al-Anbiyā'","Al-Hajj","Al-Mu'minūn","An-Nūr","Al-Furqān","Ash-Shu'arā'","An-Naml","Al-Qasas","Al-'Ankabūt","Ar-Rūm",
-  "Luqmān","As-Sajdah","Al-Ahzāb","Saba'","Fātir","Yā-Sīn","As-Sāffāt","Sād","Az-Zumar","Ghāfir",
-  "Fussilat","Ash-Shūrā","Az-Zukhruf","Ad-Dukhān","Al-Jāthiyah","Al-Ahqāf","Muhammad","Al-Fath","Al-Hujurāt","Qāf",
-  "Adh-Dhāriyāt","At-Tūr","An-Najm","Al-Qamar","Ar-Rahmān","Al-Wāqi'ah","Al-Hadīd","Al-Mujādilah","Al-Hashr","Al-Mumtahanah",
-  "As-Saff","Al-Jumu'ah","Al-Munāfiqūn","At-Taghābun","At-Talāq","At-Tahrīm","Al-Mulk","Al-Qalam","Al-Hāqqah","Al-Ma'ārij",
-  "Nūh","Al-Jinn","Al-Muzzammil","Al-Muddaththir","Al-Qiyāmah","Al-Insān","Al-Mursalāt","An-Naba'","An-Nāzi'āt","'Abasa",
-  "At-Takwīr","Al-Infitār","Al-Mutaffifīn","Al-Inshiqāq","Al-Burūj","At-Tāriq","Al-A'lā","Al-Ghāshiyah","Al-Fajr","Al-Balad",
-  "Ash-Shams","Al-Layl","Ad-Duhā","Ash-Sharh","At-Tīn","Al-'Alaq","Al-Qadr","Al-Bayyinah","Az-Zalzalah","Al-'Ādiyāt",
-  "Al-Qāri'ah","At-Takāthur","Al-'Asr","Al-Humazah","Al-Fīl","Quraysh","Al-Mā'ūn","Al-Kawthar","Al-Kāfirūn","An-Nasr",
-  "Al-Masad","Al-Ikhlās","Al-Falaq","An-Nās"
+  "Al-Fatihah","Al-Baqarah","Al 'Imran","An-Nisa'","Al-Ma'idah","Al-An'am","Al-A'raf","Al-Anfal","At-Tawbah","Yunus",
+  "Hud","Yusuf","Ar-Ra'd","Ibrahim","Al-Hijr","An-Nahl","Al-Isra'","Al-Kahf","Maryam","Ta-Ha",
+  "Al-Anbiya'","Al-Hajj","Al-Mu'minun","An-Nur","Al-Furqan","Ash-Shu'ara'","An-Naml","Al-Qasas","Al-'Ankabut","Ar-Rum",
+  "Luqman","As-Sajdah","Al-Ahzab","Saba'","Fatir","Ya-Sin","As-Saffat","Sad","Az-Zumar","Ghafir",
+  "Fussilat","Ash-Shura","Az-Zukhruf","Ad-Dukhan","Al-Jathiyah","Al-Ahqaf","Muhammad","Al-Fath","Al-Hujurat","Qaf",
+  "Adh-Dhariyat","At-Tur","An-Najm","Al-Qamar","Ar-Rahman","Al-Waqi'ah","Al-Hadid","Al-Mujadilah","Al-Hashr","Al-Mumtahanah",
+  "As-Saff","Al-Jumu'ah","Al-Munafiqun","At-Taghabun","At-Talaq","At-Tahrim","Al-Mulk","Al-Qalam","Al-Haqqah","Al-Ma'arij",
+  "Nuh","Al-Jinn","Al-Muzzammil","Al-Muddaththir","Al-Qiyamah","Al-Insan","Al-Mursalat","An-Naba'","An-Nazi'at","'Abasa",
+  "At-Takwir","Al-Infitar","Al-Mutaffifin","Al-Inshiqaq","Al-Buruj","At-Tariq","Al-A'la","Al-Ghashiyah","Al-Fajr","Al-Balad",
+  "Ash-Shams","Al-Layl","Ad-Duha","Ash-Sharh","At-Tin","Al-'Alaq","Al-Qadr","Al-Bayyinah","Az-Zalzalah","Al-'Adiyat",
+  "Al-Qari'ah","At-Takathur","Al-'Asr","Al-Humazah","Al-Fil","Quraysh","Al-Ma'un","Al-Kawthar","Al-Kafirun","An-Nasr",
+  "Al-Masad","Al-Ikhlas","Al-Falaq","An-Nas"
 ];
 
 function verifierVersetValide(pathname) {
@@ -49,11 +49,11 @@ const BROWSER_HEADERS = {
 let MEM_STATIC_TAFSIR_CACHE = null;
 
 const ATTRIBUTIONS_BAS = {
-  fr: "Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
-  en: "Translation by Saheeh International • Exegesis (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
-  es: "Traducción de Sheikh Isa García • Exégesis (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
-  de: "Deutsche Übersetzung von Frank Bubenheim & Nadeem Elyas • Exegese (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
-  it: "Traduzione italiana di Hamza Roberto Piccardo • Esegesi (Tafsīr) Al-Mukhtasar & Ibn Kathīr",
+  fr: "Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsir) Al-Mukhtasar & Ibn Kathir",
+  en: "Translation by Saheeh International • Exegesis (Tafsir) Al-Mukhtasar & Ibn Kathir",
+  es: "Traducción de Sheikh Isa García • Exégesis (Tafsir) Al-Mukhtasar & Ibn Kathir",
+  de: "Deutsche Übersetzung von Frank Bubenheim & Nadeem Elyas • Exegese (Tafsir) Al-Mukhtasar & Ibn Kathir",
+  it: "Traduzione italiana di Hamza Roberto Piccardo • Esegesi (Tafsir) Al-Mukhtasar & Ibn Kathir",
   id: "Terjemahan Kementerian Agama RI (Kemenag) • Tafsir Al-Mukhtasar & Ibnu Katsir",
   ru: "Смысловой перевод Эльмира Кулиева • Тафсир аль-Мухтасар и Ибн Касир",
   ar: "النص القرآني بالرسم العثماني • التفسير المختصر وتفسير ابن كثير وأسباب النزول"
@@ -63,8 +63,8 @@ const ATTRIBUTIONS_HAUT = {
   fr: "Traduction Muhammad Hamidullah (1977) & Exégèse",
   en: "Saheeh International & Exegesis",
   es: "Traducción Sheikh Isa García y Exégesis",
-  de: "Übersetzung Bubenheim & Elyas & Exegese (Tafsīr)",
-  it: "Traduzione Hamza Roberto Piccardo & Esegesi (Tafsīr)",
+  de: "Übersetzung Bubenheim & Elyas & Exegese (Tafsir)",
+  it: "Traduzione Hamza Roberto Piccardo & Esegesi (Tafsir)",
   id: "Terjemahan Kemenag RI & Tafsir Al-Mukhtasar",
   ru: "Перевод Э. Кулиева и Тафсир аль-Мухтасар",
   ar: "التفسير المختصر وتفسير ابن كثير وأسباب النزول"
@@ -72,7 +72,7 @@ const ATTRIBUTIONS_HAUT = {
 
 const UI_TEXTES = {
   en: {
-    "LE NOBLE CORAN & TAFSĪR": "THE NOBLE QURAN & TAFSĪR",
+    "LE NOBLE CORAN & TAFSIR": "THE NOBLE QURAN & TAFSIR",
     "‹ Retour aux 114 Sourates": "‹ Back to 114 Surahs",
     "SOURATE MÉDINOISE": "MEDINAN SURAH",
     "SOURATE MECQUOISE": "MAKKAN SURAH",
@@ -86,7 +86,7 @@ const UI_TEXTES = {
     "Suivant ›": "Next ›",
     "▶ Écouter le verset": "▶ Listen to verse",
     "↺ Rejouer": "↺ Replay",
-    "TAFSĪR & EXPLICATION DU VERSET": "TAFSĪR & VERSE EXPLANATION",
+    "TAFSIR & EXPLICATION DU VERSET": "TAFSIR & VERSE EXPLANATION",
     "Qu'est-ce qu'une Sourate Mecquoise ?": "What is a Meccan Surah?",
     "Qu’est-ce qu’une Sourate Mecquoise ?": "What is a Meccan Surah?",
     "Qu'est-ce qu'une Sourate Médinoise ?": "What is a Medinan Surah?",
@@ -101,7 +101,7 @@ const UI_TEXTES = {
     "Rechercher une sourate ou un verset direct (ex: 30:1, 54:1, 2:255...)": "Search a surah or direct verse (e.g., 30:1, 54:1, 2:255...)"
   },
   es: {
-    "LE NOBLE CORAN & TAFSĪR": "EL NOBLE CORÁN Y TAFSĪR",
+    "LE NOBLE CORAN & TAFSIR": "EL NOBLE CORÁN Y TAFSIR",
     "‹ Retour aux 114 Sourates": "‹ Volver a las 114 Suras",
     "SOURATE MÉDINOISE": "SURA MEDINENSE",
     "SOURATE MECQUOISE": "SURA MEQUÍ",
@@ -116,7 +116,7 @@ const UI_TEXTES = {
     "▶ Écouter le verset": "▶ Escuchar aleya",
     "⏸ Pause": "⏸ Pausa",
     "↺ Rejouer": "↺ Repetir",
-    "TAFSĪR & EXPLICATION DU VERSET": "TAFSĪR Y EXPLICACIÓN DE LA ALEYA",
+    "TAFSIR & EXPLICATION DU VERSET": "TAFSIR Y EXPLICACIÓN DE LA ALEYA",
     "Qu'est-ce qu'une Sourate Mecquoise ?": "¿Qué es una Sura Mequí?",
     "Qu’est-ce qu’une Sourate Mecquoise ?": "¿Qué es una Sura Mequí?",
     "Qu'est-ce qu'une Sourate Médinoise ?": "¿Qué es una Sura Medinense?",
@@ -131,7 +131,7 @@ const UI_TEXTES = {
     "Rechercher une sourate ou un verset direct (ex: 30:1, 54:1, 2:255...)": "Buscar una sura o aleya directa (ej: 30:1, 54:1, 2:255...)"
   },
   ar: {
-    "LE NOBLE CORAN & TAFSĪR": "القرآن الكريم والتفسير المختصر",
+    "LE NOBLE CORAN & TAFSIR": "القرآن الكريم والتفسير المختصر",
     "‹ Retour aux 114 Sourates": "‹ العودة إلى 114 سورة",
     "SOURATE MÉDINOISE": "سورة مدنية",
     "SOURATE MECQUOISE": "سورة مكية",
@@ -146,7 +146,7 @@ const UI_TEXTES = {
     "▶ Écouter le verset": "▶ استمع للآية",
     "⏸ Pause": "⏸ إيقاف مؤقت",
     "↺ Rejouer": "↺ إعادة",
-    "TAFSĪR & EXPLICATION DU VERSET": "تفسير الآية وبيان معانيها",
+    "TAFSIR & EXPLICATION DU VERSET": "تفسير الآية وبيان معانيها",
     "Qu'est-ce qu'une Sourate Mecquoise ?": "ما هي السورة المكية؟",
     "Qu’est-ce qu’une Sourate Mecquoise ?": "ما هي السورة المكية؟",
     "Qu'est-ce qu'une Sourate Médinoise ?": "ما هي السورة المدنية؟",
@@ -161,7 +161,7 @@ const UI_TEXTES = {
     "Rechercher une sourate ou un verset direct (ex: 30:1, 54:1, 2:255...)": "ابحث عن سورة أو آية مباشرة (مثال: 30:1، 54:1، 2:255...)"
   },
   de: {
-    "LE NOBLE CORAN & TAFSĪR": "DER EDLE KORAN & TAFSĪR",
+    "LE NOBLE CORAN & TAFSIR": "DER EDLE KORAN & TAFSIR",
     "‹ Retour aux 114 Sourates": "‹ Zurück zu den 114 Suren",
     "SOURATE MÉDINOISE": "MEDINENSISCHE SURE",
     "SOURATE MECQUOISE": "MEKKANISCHE SURE",
@@ -175,7 +175,7 @@ const UI_TEXTES = {
     "Suivant ›": "Weiter ›",
     "▶ Écouter le verset": "▶ Vers anhören",
     "↺ Rejouer": "↺ Wiederholen",
-    "TAFSĪR & EXPLICATION DU VERSET": "TAFSĪR & ERKLÄRUNG DES VERSES",
+    "TAFSIR & EXPLICATION DU VERSET": "TAFSIR & ERKLÄRUNG DES VERSES",
     "Qu'est-ce qu'une Sourate Mecquoise ?": "Was ist eine mekkanische Sure?",
     "Qu’est-ce qu’une Sourate Mecquoise ?": "Was ist eine mekkanische Sure?",
     "Qu'est-ce qu'une Sourate Médinoise ?": "Was ist eine medinensische Sure?",
@@ -190,7 +190,7 @@ const UI_TEXTES = {
     "Rechercher une sourate ou un verset direct (ex: 30:1, 54:1, 2:255...)": "Suche nach einer Sure oder einem Vers (z.B. 2:255, 30:1, Al-Kahf...)"
   },
   it: {
-    "LE NOBLE CORAN & TAFSĪR": "IL NOBILE CORANO E TAFSĪR",
+    "LE NOBLE CORAN & TAFSIR": "IL NOBILE CORANO E TAFSIR",
     "‹ Retour aux 114 Sourates": "‹ Torna alle 114 Sure",
     "SOURATE MÉDINOISE": "SURA MEDINESE",
     "SOURATE MECQUOISE": "SURA MECCANA",
@@ -205,7 +205,7 @@ const UI_TEXTES = {
     "▶ Écouter le verset": "▶ Ascolta il versetto",
     "⏸ Pause": "⏸ Pausa",
     "↺ Rejouer": "↺ Riascolta",
-    "TAFSĪR & EXPLICATION DU VERSET": "TAFSĪR E SPIEGAZIONE DEL VERSETTO",
+    "TAFSIR & EXPLICATION DU VERSET": "TAFSIR E SPIEGAZIONE DEL VERSETTO",
     "Qu'est-ce qu'une Sourate Mecquoise ?": "Cos'è una Sura Meccana?",
     "Qu’est-ce qu’une Sourate Mecquoise ?": "Cos'è una Sura Meccana?",
     "Qu'est-ce qu'une Sourate Médinoise ?": "Cos'è una Sura Medinese?",
@@ -220,7 +220,7 @@ const UI_TEXTES = {
     "Rechercher une sourate ou un verset direct (ex: 30:1, 54:1, 2:255...)": "Cerca una Sura o un versetto (es. 2:255, 30:1, Al-Kahf...)"
   },
   id: {
-    "LE NOBLE CORAN & TAFSĪR": "AL-QUR'AN MULIA & TAFSĪR",
+    "LE NOBLE CORAN & TAFSIR": "AL-QUR'AN MULIA & TAFSIR",
     "‹ Retour aux 114 Sourates": "‹ Kembali ke 114 Surah",
     "SOURATE MÉDINOISE": "SURAH MADANIYAH",
     "SOURATE MECQUOISE": "SURAH MAKKIYAH",
@@ -235,7 +235,7 @@ const UI_TEXTES = {
     "▶ Écouter le verset": "▶ Dengarkan Ayat",
     "⏸ Pause": "⏸ Jeda",
     "↺ Rejouer": "↺ Ulangi",
-    "TAFSĪR & EXPLICATION DU VERSET": "TAFSĪR & PENJELASAN AYAT",
+    "TAFSIR & EXPLICATION DU VERSET": "TAFSIR & PENJELASAN AYAT",
     "Qu'est-ce qu'une Sourate Mecquoise ?": "Apa itu Surah Makkiyah?",
     "Qu’est-ce qu’une Sourate Mecquoise ?": "Apa itu Surah Makkiyah?",
     "Qu'est-ce qu'une Sourate Médinoise ?": "Apa itu Surah Madaniyah?",
@@ -250,7 +250,7 @@ const UI_TEXTES = {
     "Rechercher une sourate ou un verset direct (ex: 30:1, 54:1, 2:255...)": "Cari Surah atau ayat (misal: 2:255, 30:1, Al-Kahf...)"
   },
   ru: {
-    "LE NOBLE CORAN & TAFSĪR": "СВЯЩЕННЫЙ КОРАН И ТАФСИР",
+    "LE NOBLE CORAN & TAFSIR": "СВЯЩЕННЫЙ КОРАН И ТАФСИР",
     "‹ Retour aux 114 Sourates": "‹ Назад к 114 сурам",
     "SOURATE MÉDINOISE": "МЕДИНСКАЯ СУРА",
     "SOURATE MECQUOISE": "МЕККАНСКАЯ СУРА",
@@ -265,7 +265,7 @@ const UI_TEXTES = {
     "▶ Écouter le verset": "▶ Слушать аят",
     "⏸ Pause": "⏸ Пауза",
     "↺ Rejouer": "↺ Повторить",
-    "TAFSĪR & EXPLICATION DU VERSET": "ТАФСИР И ТОЛКОВАНИЕ АЯТА",
+    "TAFSIR & EXPLICATION DU VERSET": "ТАФСИР И ТОЛКОВАНИЕ АЯТА",
     "Qu'est-ce qu'une Sourate Mecquoise ?": "Что такое мекканская сура?",
     "Qu’est-ce qu’une Sourate Mecquoise ?": "Что такое мекканская сура?",
     "Qu'est-ce qu'une Sourate Médinoise ?": "Что такое мединская сура?",
@@ -283,11 +283,11 @@ const UI_TEXTES = {
 
 const INTRO_HOME = {
   en: {
-    mecq: "Revealed at the beginning of prophethood (before the Hijrah), when the believers were still few in Makkah: establishes the pure Oneness of Allāh (Tawhīd), proofs of faith, the Hereafter, and the stories of the Prophets.",
+    mecq: "Revealed at the beginning of prophethood (before the Hijrah), when the believers were still few in Makkah: establishes the pure Oneness of Allah (Tawhid), proofs of faith, the Hereafter, and the stories of the Prophets.",
     med: "Revealed after the Hijrah, when the Muslims grew numerous and united in Madinah, victorious in major battles (like Badr) up to the Conquest of Makkah: details worship, social laws, and justice."
   },
   es: {
-    mecq: "Revelada al inicio de la profecía (antes de la Hégira), cuando los creyentes aún eran pocos en La Meca: establece el Monoteísmo puro de Allāh (Tawhīd), las pruebas de la fe, el Juicio Final y las historias de los Profetas.",
+    mecq: "Revelada al inicio de la profecía (antes de la Hégira), cuando los creyentes aún eran pocos en La Meca: establece el Monoteísmo puro de Allah (Tawhid), las pruebas de la fe, el Juicio Final y las historias de los Profetas.",
     med: "Revelada después de la Hégira, cuando los musulmanes se hicieron numerosos y unidos en Medina, victoriosos en las grandes batallas (como Badr) hasta la conquista de La Meca: detalla las adoraciones, las leyes sociales y la justicia."
   },
   ar: {
@@ -295,11 +295,11 @@ const INTRO_HOME = {
     med: "نزلت بعد الهجرة حين كثر المسلمون وقويت شوكتهم بالمدينة وانتصروا في الغزوات (كبدر) وحتى فتح مكة: تفصل العبادات والشرائع والمعاملات والعدل."
   },
   de: {
-    mecq: "Offenbart zu Beginn der Prophetie (vor der Hidschra), als die Gläubigen in Mekka noch wenige waren: begründet die reine Einheit Allāhs (Tawhīd), die Beweise des Glaubens, das Jüngste Gericht und die Geschichten der Propheten.",
+    mecq: "Offenbart zu Beginn der Prophetie (vor der Hidschra), als die Gläubigen in Mekka noch wenige waren: begründet die reine Einheit Allahs (Tawhid), die Beweise des Glaubens, das Jüngste Gericht und die Geschichten der Propheten.",
     med: "Offenbart nach der Hidschra, als die Muslime zahlreich wurden, vereint in Medina, siegreich in den großen Schlachten (wie Badr) bis zur Eroberung Mekkas: regelt die Gottesdienste, die sozialen Gesetze und die Gerechtigkeit."
   },
   it: {
-    mecq: "Rivelata all'inizio della profezia (prima dell'Egira), quando i credenti erano ancora pochi alla Mecca: fonda la pura Unicità di Allāh (Tawhīd), le prove della fede, il Giudizio Finale e la storia dei Profeti.",
+    mecq: "Rivelata all'inizio della profezia (prima dell'Egira), quando i credenti erano ancora pochi alla Mecca: fonda la pura Unicità di Allah (Tawhid), le prove della fede, il Giudizio Finale e la storia dei Profeti.",
     med: "Rivelata dopo l'Egira, quando i musulmani divennero numerosi, uniti a Medina, vittoriosi nelle grandi battaglie (come Badr) fino alla conquista della Mecca: dettaglia le adorazioni, le leggi sociali e la giustizia."
   },
   id: {
@@ -528,7 +528,7 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname, 
 
   if (!lang || lang === "fr") {
     if (mVerse) {
-      const titleFr = "Sourate " + nomS + " (" + sNum + ":" + vNum + ") — Coran, Audio, Mot à Mot & Tafsīr";
+      const titleFr = "Sourate " + nomS + " (" + sNum + ":" + vNum + ") — Coran, Audio, Mot à Mot & Tafsir";
       out = out.replace(/<title>[\s\S]*?<\/title>/i, () => "<title>" + escapeHtmlText(titleFr) + "</title>");
     }
     out = remplacerHorsScriptsEtStyles(out, segment =>
@@ -544,20 +544,20 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname, 
   out = out.replace(/<html([^>]*)lang="[^"]*"([^>]*)>/i, '<html$1lang="' + lang + '" dir="' + (lang === "ar" ? "rtl" : "ltr") + '"$2>');
 
   const titles = {
-    en: mVerse ? ("Surah " + nomS + " (" + sNum + ":" + vNum + ") — Noble Quran, Audio, Word by Word & Tafsīr") : "The Noble Quran & Tafsīr Al-Mukhtasar — Audio, Tajwīd & Word by Word (8 Languages)",
-    es: mVerse ? ("Sura " + nomS + " (" + sNum + ":" + vNum + ") — El Noble Corán, Audio, Palabra por Palabra y Tafsīr") : "El Noble Corán y Tafsīr Al-Mukhtasar — Audio, Tajwīd y Palabra por Palabra (8 Idiomas)",
+    en: mVerse ? ("Surah " + nomS + " (" + sNum + ":" + vNum + ") — Noble Quran, Audio, Word by Word & Tafsir") : "The Noble Quran & Tafsir Al-Mukhtasar — Audio, Tajwid & Word by Word (8 Languages)",
+    es: mVerse ? ("Sura " + nomS + " (" + sNum + ":" + vNum + ") — El Noble Corán, Audio, Palabra por Palabra y Tafsir") : "El Noble Corán y Tafsir Al-Mukhtasar — Audio, Tajwid y Palabra por Palabra (8 Idiomas)",
     ar: mVerse ? ("سورة " + nomS + " (" + sNum + ":" + vNum + ") — القرآن الكريم والتفسير المختصر") : "القرآن الكريم والتفسير المختصر — تلاوة، تجويد وترجمة كلمة بكلمة (8 لغات)",
-    de: mVerse ? ("Sure " + nomS + " (" + sNum + ":" + vNum + ") — Der Edle Koran, Audio, Wort für Wort & Tafsīr") : "Der Edle Koran & Tafsīr Al-Mukhtasar — Audio, Tajwīd & Wort für Wort (Bubenheim & Elyas)",
-    it: mVerse ? ("Sura " + nomS + " (" + sNum + ":" + vNum + ") — Il Nobile Corano, Audio, Parola per Parola e Tafsīr") : "Il Nobile Corano e Tafsīr Al-Mukhtasar — Audio, Tajwīd e Parola per Parola (Piccardo)",
+    de: mVerse ? ("Sure " + nomS + " (" + sNum + ":" + vNum + ") — Der Edle Koran, Audio, Wort für Wort & Tafsir") : "Der Edle Koran & Tafsir Al-Mukhtasar — Audio, Tajwid & Wort für Wort (Bubenheim & Elyas)",
+    it: mVerse ? ("Sura " + nomS + " (" + sNum + ":" + vNum + ") — Il Nobile Corano, Audio, Parola per Parola e Tafsir") : "Il Nobile Corano e Tafsir Al-Mukhtasar — Audio, Tajwid e Parola per Parola (Piccardo)",
     id: mVerse ? ("Surah " + nomS + " (" + sNum + ":" + vNum + ") — Al-Qur'an Mulia, Audio, Kata demi Kata & Tafsir") : "Al-Qur'an Mulia & Tafsir Al-Mukhtasar — Audio, Tajwid & Kata demi Kata (Kemenag RI)",
     ru: mVerse ? ("Сура " + nomS + " (" + sNum + ":" + vNum + ") — Священный Коран, Аудио, Пословный перевод и Тафсир") : "Священный Коран и Тафсир аль-Мухтасар — Аудио, Таджвид и Пословный перевод (Э. Кулиев)"
   };
   const descriptions = {
-    en: "Read and listen to the Noble Quran (6,236 verses) with word-by-word audio tracking, color Tajwīd, Khatm planner and Tafsīr Al-Mukhtasar & Ibn Kathīr in 8 languages.",
-    es: "Lea y escuche el Noble Corán (6.236 aleyas) con seguimiento de audio palabra por palabra, Tajwīd, planificador Khatm y Tafsīr Al-Mukhtasar en 8 idiomas.",
+    en: "Read and listen to the Noble Quran (6,236 verses) with word-by-word audio tracking, color Tajwid, Khatm planner and Tafsir Al-Mukhtasar & Ibn Kathir in 8 languages.",
+    es: "Lea y escuche el Noble Corán (6.236 aleyas) con seguimiento de audio palabra por palabra, Tajwid, planificador Khatm y Tafsir Al-Mukhtasar en 8 idiomas.",
     ar: "اقرأ واستمع إلى القرآن الكريم (6236 آية) مع التتبع الصوتي كلمة بكلمة، التجويد المصور، برنامج ختم القرآن والتفسير المختصر وابن كثير بـ 8 لغات.",
-    de: "Lesen und hören Sie den Edlen Koran (6.236 Verse, Übersetzung Bubenheim & Elyas) mit Wort-für-Wort-Audioverfolgung, Tajwīd, Leseplaner und Tafsīr Al-Mukhtasar.",
-    it: "Leggi e ascolta il Nobile Corano (6.236 versetti, traduzione Hamza Roberto Piccardo) con seguito audio parola per parola, Tajwīd, pianificatore Khatm e Tafsīr.",
+    de: "Lesen und hören Sie den Edlen Koran (6.236 Verse, Übersetzung Bubenheim & Elyas) mit Wort-für-Wort-Audioverfolgung, Tajwid, Leseplaner und Tafsir Al-Mukhtasar.",
+    it: "Leggi e ascolta il Nobile Corano (6.236 versetti, traduzione Hamza Roberto Piccardo) con seguito audio parola per parola, Tajwid, pianificatore Khatm e Tafsir.",
     id: "Baca dan dengarkan Al-Qur'an Mulia (6.236 ayat, Terjemahan Kemenag RI) dengan pelacakan audio kata demi kata, Tajwid, perencana Khatam, dan Tafsir Al-Mukhtasar.",
     ru: "Читайте и слушайте Священный Коран (6 236 аятов, перевод Эльмира Кулиева) с пословным аудио-слежением, Таджвидом, планом чтения и Тафсиром аль-Мухтасар."
   };

@@ -145,7 +145,7 @@ function mettreAJourGenerateur() {
       "1:5": ["C'est Toi [Seul]", "que nous adorons", "et c'est Toi [Seul]", "dont nous implorons secours"],
       "1:6": ["Guide-nous", "dans le droit", "chemin"],
       "1:7": ["le chemin", "de ceux que", "Tu as comblés de faveurs", "sur eux", "non pas de ceux", "qui ont encouru Ta colère", "sur eux", "ni", "des égarés"],
-      "2:1": ["Alif, Lām, Mīm"],
+      "2:1": ["Alif, Lam, Mim"],
       "2:2": ["C'est", "le Livre", "au sujet duquel il n'y a aucun", "doute", "en lui", "c'est un guide", "pour les pieux"],
       "2:3": ["qui", "croient", "à l'inconnaissable", "et accomplissent", "la Salât", "et de ce que", "Nous leur avons attribué", "dépensent"],
       "2:4": ["et qui", "croient", "à ce qui", "a été descendu (révélé)", "vers toi", "et à ce qui", "a été descendu", "avant", "toi", "et quant à l'au-delà", "ils", "ont la certitude"],
