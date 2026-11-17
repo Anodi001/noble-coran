@@ -1,0 +1,85 @@
+// generer-wbw-local.js
+// Usage : node generer-wbw-local.js <numSourate>
+// Exemple : node generer-wbw-local.js 68
+
+const fs = require('fs');
+const path = require('path');
+
+const numSourate = parseInt(process.argv[2] || '68', 10);
+
+// Traduction contextuelle d'un verset entier en gardant l'alignement exact mot par mot
+// et en s'appuyant sur la traduction officielle du verset
+async function traduireMotsAvecContexte(motsEn, phraseRef, lang) {
+  if (lang === 'en') return motsEn;
+  
+  // Astuce : on numérote chaque mot [1] ... [2] ... pour que le traducteur
+  // voie la phrase complète (le contexte grammatical) tout en gardant chaque mot séparé !
+  const phraseBalisee = motsEn.map((m, idx) => `[${idx + 1}] ${m.replace(/[\(\)\[\]]/g, '').trim()}`).join(' | ');
+  const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${lang}&dt=t&q=${encodeURIComponent(phraseBalisee)}`;
+  
+  const res = await fetch(url);
+  const data = await res.json();
+  const texteTraduit = data[0].map(x => x[0]).join('');
+  
+  // Extraction propre par balise [1], [2], etc.
+  const resultat = new Array(motsEn.length).fill('');
+  const regex = /\[(\d+)\]\s*([^|\[\]]+)/g;
+  let match;
+  while ((match = regex.exec(texteTraduit)) !== null) {
+    const idx = parseInt(match[1], 10) - 1;
+    if (idx >= 0 && idx < resultat.length) {
+      resultat[idx] = match[2].trim();
+    }
+  }
+  return resultat.map((r, i) => r || motsEn[i]);
+}
+
+async function genererSourate(s) {
+  console.log(`⏳ Récupération des mots de la sourate ${s}...`);
+  let page = 1, totalPages = 1;
+  const versetsQdc = [];
+
+  // Récupération de l'arabe + anglais + indonésien + russe + allemand natifs sur Quran.com
+  while (page <= totalPages) {
+    const url = `https://api.quran.com/api/v4/verses/by_chapter/${s}?language=en&words=true&word_fields=text_uthmani,translation&per_page=50&page=${page}`;
+    const r = await fetch(url);
+    const d = await r.json();
+    if (d.verses) versetsQdc.push(...d.verses);
+    totalPages = d.pagination ? d.pagination.total_pages : 1;
+    page++;
+  }
+
+  const baseFinale = {};
+  const languesCibles = ['fr', 'en', 'es', 'de', 'it', 'id', 'ru'];
+
+  for (const v of versetsQdc) {
+    const vk = v.verse_key;
+    const vraisMots = v.words.filter(w => w.char_type_name === 'word');
+    const motsAr = vraisMots.map(w => w.text_uthmani);
+    const motsEn = vraisMots.map(w => (w.translation && w.translation.text) ? w.translation.text : '');
+
+    const tradParLangue = { en: motsEn };
+    for (const lg of ['fr', 'es', 'de', 'it', 'id', 'ru']) {
+      tradParLangue[lg] = await traduireMotsAvecContexte(motsEn, '', lg);
+    }
+
+    // Format ultra-compact : [ar, fr, en, es, de, it, id, ru]
+    baseFinale[vk] = motsAr.map((ar, idx) => [
+      ar,
+      tradParLangue.fr[idx],
+      tradParLangue.en[idx],
+      tradParLangue.es[idx],
+      tradParLangue.de[idx],
+      tradParLangue.it[idx],
+      tradParLangue.id[idx],
+      tradParLangue.ru[idx]
+    ]);
+    console.log(`✅ Verset ${vk} aligné (${motsAr.length} mots)`);
+  }
+
+  const outFile = path.join(__dirname, `wbw-sourate-${s}.js`);
+  fs.writeFileSync(outFile, `window.WBW_SOURATE_${s} = ${JSON.stringify(baseFinale, null, 2)};\n`, 'utf8');
+  console.log(`🎉 Fichier généré : ${outFile}`);
+}
+
+genererSourate(numSourate).catch(console.error);
