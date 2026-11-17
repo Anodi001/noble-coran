@@ -16,7 +16,7 @@ async function main() {
   let versetsLocaux = {};
   if (fs.existsSync(dataFile)) {
     const raw = fs.readFileSync(dataFile, 'utf8');
-    const jsonStr = raw.replace(/^\s*window\.SOURATE_DATA\s*=\s*/, '').replace(/;\s*$/, '');
+    const jsonStr = raw.replace(/^\s<em>window\.SOURATE_DATA\s</em>=\s<em>/, '').replace(/;\s</em>$/, '');
     const parsed = JSON.parse(jsonStr);
     for (const v of parsed.versets) {
       versetsLocaux[v.numVerset] = {

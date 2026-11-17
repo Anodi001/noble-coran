@@ -61,12 +61,12 @@
   .wbw-hide-khatm-on-surah, .wbw-masquer-doublon-v110, .maher-item-removed-v110 {
     display: none !important;
   }
-  /* Désactivation totale de la modale de racine / morphologie au clic sur un mot */
+  /<em> Désactivation totale de la modale de racine / morphologie au clic sur un mot </em>/
   #wordMorphModal, #morphModal, #wordRootModal, #quranWordModal,
   .word-morph-modal, .morph-modal-overlay, .wbw-morph-hidden-v110 {
     display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;
   }
-  /* Bascule instantanée quand Mot à mot est désactivé */
+  /<em> Bascule instantanée quand Mot à mot est désactivé </em>/
   body.wbw-instant-off #wbwSensLectureBanner,
   body.wbw-instant-off #wbwStageContainer,
   body.wbw-instant-off .wbw-grid-container-v110,
@@ -91,7 +91,7 @@
     height: 0px !important; margin: 0px !important; padding: 0px !important;
     border: none !important; overflow: hidden !important; pointer-events: none !important;
   }
-  /* Suppression totale de la ligne entre le mot arabe et le mot traduit */
+  /<em> Suppression totale de la ligne entre le mot arabe et le mot traduit </em>/
   html body .wbw-card-v110, html body .wbw-word-box, html body .wbw-card-unit,
   html body .wbw-card-v110 .wbw-ar-v110, html body .wbw-card-v110 .wbw-tr-v110,
   html body .wbw-card-v110 .wbw-ar, html body .wbw-card-v110 .wbw-tr,
@@ -105,7 +105,7 @@
     display: block !important; visibility: visible !important; height: auto !important;
     max-height: none !important; overflow: visible !important;
   }
-  /* Ligne cliquable au-dessus de chaque mot */
+  /<em> Ligne cliquable au-dessus de chaque mot </em>/
   .wbw-scrub-wrap {
     width: calc(100% + 12px) !important; margin: 0 -6px 10px -6px !important;
     padding: 10px 0 !important; cursor: pointer !important; user-select: none !important;
@@ -136,7 +136,7 @@
   }
   .wbw-scrub-dot { display: none !important; }
 
-  /* Bouton & Modale Audio : Plage & Répétition (texte parfaitement lisible) */
+  /<em> Bouton & Modale Audio : Plage & Répétition (texte parfaitement lisible) </em>/
   html body #wbwAudioRangeBtnV110 {
     background: rgba(14, 165, 233, 0.16) !important;
     color: #e0f2fe !important;
@@ -213,20 +213,20 @@
     font-weight: 800; cursor: pointer; box-shadow: 0 6px 20px rgba(56, 189, 248, 0.38);
   }
 
-  /* Couleurs du Tajwid */
-  html body .verse-stage [class*="ghunnah"], html body .verse-stage [class*="ikhf"], html body .verse-stage [class*="iqlab"] {
+  /<em> Couleurs du Tajwid </em>/
+  html body .verse-stage [class<em>="ghunnah"], html body .verse-stage [class</em>="ikhf"], html body .verse-stage [class<em>="iqlab"] {
     color: #4ade80 !important; text-shadow: 0 0 10px rgba(74, 222, 128, 0.45) !important; opacity: 1 !important;
   }
-  html body .verse-stage [class*="qalq"], html body .verse-stage [class*="qalaq"] {
+  html body .verse-stage [class</em>="qalq"], html body .verse-stage [class<em>="qalaq"] {
     color: #38bdf8 !important; text-shadow: 0 0 10px rgba(56, 189, 248, 0.5) !important; opacity: 1 !important;
   }
-  html body .verse-stage [class*="madd"] {
+  html body .verse-stage [class</em>="madd"] {
     color: #f87171 !important; text-shadow: 0 0 12px rgba(248, 113, 113, 0.5) !important; opacity: 1 !important;
   }
-  html body .verse-stage [class*="idgham"], html body .verse-stage [class*="laam_shams"], html body .verse-stage [class*="tafkh"] {
+  html body .verse-stage [class<em>="idgham"], html body .verse-stage [class</em>="laam_shams"], html body .verse-stage [class<em>="tafkh"] {
     color: #fbbf24 !important; text-shadow: 0 0 10px rgba(251, 191, 36, 0.45) !important; opacity: 1 !important;
   }
-  html body .verse-stage [class*="ham_wasl"], html body .verse-stage [class*="slnt"] {
+  html body .verse-stage [class</em>="ham_wasl"], html body .verse-stage [class*="slnt"] {
     color: #94a3b8 !important; text-shadow: none !important;
   }
 </style>
@@ -308,7 +308,7 @@
         if (st.display === 'none' || st.visibility === 'hidden' || parseFloat(st.opacity || '1') < 0.05) continue;
         var rect = el.getBoundingClientRect();
         if (rect.width >= 30 && rect.height >= 30 && rect.bottom > 0 && rect.right > 0 && rect.top < window.innerHeight && rect.left < window.innerWidth) {
-          orbes.push({ x: rect.left + rect.width * 0.5, y: rect.top + rect.height * 0.5, r: Math.max(rect.width, rect.height) * 0.5 });
+          orbes.push({ x: rect.left + rect.width <em> 0.5, y: rect.top + rect.height </em> 0.5, r: Math.max(rect.width, rect.height) <em> 0.5 });
         }
       }
       ctx.__orbesDomV110 = orbes;
@@ -317,13 +317,13 @@
     function visibiliteEtoile(ctx, x, y, rayonEtoile) {
       var liste = (ctx.__orbesDomV110 || []).concat(ctx.__orbesCanvasV110 || []);
       if (liste.length === 0) return 1.0;
-      var pad = (rayonEtoile || 5) * 0.85, visMin = 1.0;
+      var pad = (rayonEtoile || 5) </em> 0.85, visMin = 1.0;
       for (var k = 0; k < liste.length; k++) {
-        var o = liste[k], dx = x - o.x, dy = y - o.y, dist = Math.sqrt(dx * dx + dy * dy);
-        var rOpaque = o.r * 1.12 + pad, rDoux = o.r * 1.38 + pad;
+        var o = liste[k], dx = x - o.x, dy = y - o.y, dist = Math.sqrt(dx <em> dx + dy </em> dy);
+        var rOpaque = o.r <em> 1.12 + pad, rDoux = o.r </em> 1.38 + pad;
         if (dist <= rOpaque) return 0.0;
         if (dist < rDoux) {
-          var t = (dist - rOpaque) / (rDoux - rOpaque), v = t * t * (3 - 2 * t);
+          var t = (dist - rOpaque) / (rDoux - rOpaque), v = t <em> t </em> (3 - 2 * t);
           if (v < visMin) visMin = v;
         }
       }
@@ -362,7 +362,7 @@
         if (!this.__orbesDomV110) recenserOrbesSoleilLune(this);
         var w = typeof dw === 'number' ? dw : (img && img.width ? img.width : 0);
         var h = typeof dh === 'number' ? dh : (img && img.height ? img.height : 0);
-        var vis = visibiliteEtoile(this, (this.__txV110 || 0) + (Number(dx) || 0) + w * 0.5, (this.__tyV110 || 0) + (Number(dy) || 0) + h * 0.5, Math.max(w, h) * 0.5);
+        var vis = visibiliteEtoile(this, (this.__txV110 || 0) + (Number(dx) || 0) + w <em> 0.5, (this.__tyV110 || 0) + (Number(dy) || 0) + h </em> 0.5, Math.max(w, h) * 0.5);
         if (vis <= 0.02) return;
         if (vis < 0.99) {
           var oldAlpha = this.globalAlpha; this.globalAlpha = oldAlpha * vis;
@@ -440,10 +440,10 @@
     }
     return parseInt(out, 10) || 0;
   }
-  function courbeAppleMusic(x) { var v = Math.max(0, Math.min(1, x || 0)); return v * v * (3 - 2 * v); }
+  function courbeAppleMusic(x) { var v = Math.max(0, Math.min(1, x || 0)); return v <em> v </em> (3 - 2 <em> v); }
   function melangerRGB(r1, g1, b1, r2, g2, b2, t) {
     var k = Math.max(0, Math.min(1, t || 0));
-    return 'rgb(' + Math.round(r1 + (r2 - r1) * k) + ', ' + Math.round(g1 + (g2 - g1) * k) + ', ' + Math.round(b1 + (b2 - b1) * k) + ')';
+    return 'rgb(' + Math.round(r1 + (r2 - r1) </em> k) + ', ' + Math.round(g1 + (g2 - g1) <em> k) + ', ' + Math.round(b1 + (b2 - b1) </em> k) + ')';
   }
   function nettoyerArabeBrut(s) { return (s || '').replace(/[\u064B-\u065F\u0670\u06D6-\u06ED\u0640\s]/g, ''); }
   function normaliserArabeCle(str) {
@@ -452,7 +452,7 @@
 
   function obtenirCleVersetActuelDom() {
     var badge = document.getElementById('badgeNumEl');
-    if (badge) { var m = (badge.textContent || '').match(/(\d+)\s*:\s*(\d+)/); if (m) return m[1] + ':' + m[2]; }
+    if (badge) { var m = (badge.textContent || '').match(/(\d+)\s<em>:\s</em>(\d+)/); if (m) return m[1] + ':' + m[2]; }
     if (typeof numSourateActuelle !== 'undefined' && typeof numVersetActuel !== 'undefined') return numSourateActuelle + ':' + numVersetActuel;
     var u = window.location.pathname.match(/sourate-(\d+)-verset-(\d+)/i);
     return u ? (u[1] + ':' + u[2]) : '';
@@ -517,10 +517,10 @@
   } catch (e) {}
 
   function appliquerTailleSurMetaCartes() {
-    var hRem = (3.35 * wbwFontScale).toFixed(2) + 'rem';
-    var arFont = 'calc(clamp(2.15rem, 3.6vw, 2.75rem) * ' + wbwFontScale.toFixed(2) + ')';
-    var trFont = (0.92 * Math.pow(wbwFontScale, 0.78)).toFixed(3) + 'rem';
-    var trMaxW = Math.round(145 * wbwFontScale) + 'px';
+    var hRem = (3.35 <em> wbwFontScale).toFixed(2) + 'rem';
+    var arFont = 'calc(clamp(2.15rem, 3.6vw, 2.75rem) </em> ' + wbwFontScale.toFixed(2) + ')';
+    var trFont = (0.92 <em> Math.pow(wbwFontScale, 0.78)).toFixed(3) + 'rem';
+    var trMaxW = Math.round(145 </em> wbwFontScale) + 'px';
     for (var i = 0; i < cacheMetaCartes.length; i++) {
       var m = cacheMetaCartes[i];
       if (!m) continue;
@@ -893,7 +893,7 @@
       if (el === grille || el.id === 'wbwSensLectureBanner' || el.contains(grille) || grille.contains(el)) continue;
       if (el.querySelector('button') || el.tagName === 'BUTTON' || el.classList.contains('stage-blue-nav') || el.classList.contains('sync-progress-track')) continue;
       var t = (el.textContent || '').trim();
-      if (estElementVersetNormal(el) || /^\d+\s*[\.:\-]/.test(t) || el.tagName === 'P') {
+      if (estElementVersetNormal(el) || /^\d+\s<em>[\.:\-]/.test(t) || el.tagName === 'P') {
         el.classList.add('wbw-masquer-doublon-v110'); forcer(el, 'display', 'none');
       }
     }
@@ -946,7 +946,7 @@
   }
 
   function desambiguiserAnglaisCoranique(enBrut, arNorm) {
-    var s = (enBrut || '').replace(/^\(is\)\s*/i, '').replace(/[\[\]\(\)]/g, '').replace(/\s{2,}/g, ' ').trim();
+    var s = (enBrut || '').replace(/^\(is\)\s</em>/i, '').replace(/[\[\]\(\)]/g, '').replace(/\s{2,}/g, ' ').trim();
     if (/^(the\s+)?like(\s+of)?\s+(it|him|them|this|that)$/i.test(s)) return 'similar to it';
     s = s.replace(/\bour\s+verses\b/gi, 'Our Quranic verses').replace(/\bverses\b/gi, 'Quranic verses');
     s = s.replace(/\bour\s+slave\b/gi, 'Our servant').replace(/\bhis\s+slave\b/gi, 'His servant').replace(/\bslaves\b/gi, 'servants').replace(/\bslave\b/gi, 'servant');
@@ -1097,11 +1097,11 @@
         }
         var txt = (btn.textContent || '').replace(/\s+/g, '');
         if (txt === 'A+' || txt === 'A＋') {
-          wbwFontScale = Math.min(1.75, Math.round((wbwFontScale + 0.12) * 100) / 100);
+          wbwFontScale = Math.min(1.75, Math.round((wbwFontScale + 0.12) <em> 100) / 100);
           try { localStorage.setItem('wbw_font_scale_v110', String(wbwFontScale)); } catch (err) {}
           appliquerTailleSurMetaCartes();
         } else if (txt === 'A-' || txt === 'A−' || txt === 'A–') {
-          wbwFontScale = Math.max(0.70, Math.round((wbwFontScale - 0.12) * 100) / 100);
+          wbwFontScale = Math.max(0.70, Math.round((wbwFontScale - 0.12) </em> 100) / 100);
           try { localStorage.setItem('wbw_font_scale_v110', String(wbwFontScale)); } catch (err) {}
           appliquerTailleSurMetaCartes();
         }
@@ -1154,9 +1154,9 @@
     var poids = new Array(n), totalPoids = 0;
     for (var i = 0; i < n; i++) {
       var m = cacheMetaCartes[i], arTxt = m && m.elAr ? nettoyerArabeBrut(m.elAr.textContent || '') : '';
-      poids[i] = Math.max(2.2, arTxt.length * 1.15); totalPoids += poids[i];
+      poids[i] = Math.max(2.2, arTxt.length <em> 1.15); totalPoids += poids[i];
     }
-    var cumul = 0, fenetres = new Array(n), dureeUtile = Math.max(0.2, dureeAudio * 0.96);
+    var cumul = 0, fenetres = new Array(n), dureeUtile = Math.max(0.2, dureeAudio </em> 0.96);
     for (var j = 0; j < n; j++) {
       var dMot = (poids[j] / totalPoids) * dureeUtile;
       fenetres[j] = { t0: cumul, t1: cumul + dMot }; cumul += dMot;
@@ -1278,10 +1278,10 @@
     forcer(grille, 'padding', cartes.length === 1 ? '10px 10px' : '16px 10px'); forcer(grille, 'background', 'transparent');
     forcer(grille, 'border', 'none'); forcer(grille, 'box-shadow', 'none');
 
-    var hRem = (3.35 * wbwFontScale).toFixed(2) + 'rem';
-    var arFont = 'calc(clamp(2.15rem, 3.6vw, 2.75rem) * ' + wbwFontScale.toFixed(2) + ')';
-    var trFont = (0.92 * Math.pow(wbwFontScale, 0.78)).toFixed(3) + 'rem';
-    var trMaxW = Math.round(145 * wbwFontScale) + 'px';
+    var hRem = (3.35 <em> wbwFontScale).toFixed(2) + 'rem';
+    var arFont = 'calc(clamp(2.15rem, 3.6vw, 2.75rem) </em> ' + wbwFontScale.toFixed(2) + ')';
+    var trFont = (0.92 <em> Math.pow(wbwFontScale, 0.78)).toFixed(3) + 'rem';
+    var trMaxW = Math.round(145 </em> wbwFontScale) + 'px';
 
     for (var m = 0; m < cartes.length; m++) {
       var carte = cartes[m];
@@ -1406,13 +1406,13 @@
       var estMotActuel = !versetTermine && suiviBoutonOn && (audioJoue || maintenant < expIdxMotForce) && (m === idxActuel || (cartes.length === 1 && (!aud || !aud.ended)));
       var estDejaLu = suiviBoutonOn && (versetTermine || m < idxActuel);
       var distanceFutur = idxActuel >= 0 ? (m - idxActuel) : (m + 1);
-      lissageE[m] += ((estMotActuel ? 1.0 : 0.0) - lissageE[m]) * alphaE;
-      lissageB[m] += (((estDejaLu || estMotActuel) ? 1.0 : 0.0) - lissageB[m]) * alphaB;
+      lissageE[m] += ((estMotActuel ? 1.0 : 0.0) - lissageE[m]) <em> alphaE;
+      lissageB[m] += (((estDejaLu || estMotActuel) ? 1.0 : 0.0) - lissageB[m]) </em> alphaB;
       var e = courbeAppleMusic(lissageE[m]), b = courbeAppleMusic(lissageB[m]);
 
       if (meta.scrub && meta.scrub.wrap && meta.scrub.fill && meta.scrub.track) {
         if (meta.scrub.wrap.getAttribute('data-dir') !== dirLecture) meta.scrub.wrap.setAttribute('data-dir', dirLecture);
-        forcer(meta.scrub.fill, 'width', (estDejaLu ? 100 : (estMotActuel ? Math.round(ratioMotActuel * 100) : 0)) + '%');
+        forcer(meta.scrub.fill, 'width', (estDejaLu ? 100 : (estMotActuel ? Math.round(ratioMotActuel <em> 100) : 0)) + '%');
         if (estMotActuel) {
           meta.scrub.wrap.classList.add('wbw-scrub-active');
           forcer(meta.scrub.track, 'background', 'rgba(186, 230, 253, 0.38)'); forcer(meta.scrub.track, 'opacity', '1');
@@ -1425,17 +1425,17 @@
         }
       }
 
-      var lum = Math.max(b, e), opReposBase = 0.96 - 0.54 * modeContrasteSuivi;
+      var lum = Math.max(b, e), opReposBase = 0.96 - 0.54 </em> modeContrasteSuivi;
       if (audioActif && !estDejaLu && !estMotActuel) {
         if (distanceFutur === 1) opReposBase = Math.max(opReposBase, 0.72);
         else if (distanceFutur === 2) opReposBase = Math.max(opReposBase, 0.56);
       }
-      var opMot = (opReposBase + (1.0 - opReposBase) * lum).toFixed(3);
-      var transMot = 'translate3d(0px, ' + (-6.5 * e).toFixed(2) + 'px, 0px) scale(' + (1.0 + 0.11 * e).toFixed(3) + ')';
+      var opMot = (opReposBase + (1.0 - opReposBase) <em> lum).toFixed(3);
+      var transMot = 'translate3d(0px, ' + (-6.5 </em> e).toFixed(2) + 'px, 0px) scale(' + (1.0 + 0.11 * e).toFixed(3) + ')';
 
       if (meta.elAr) {
         var ombreAr = (e > 0.015 || b > 0.02)
-          ? ('0 0 ' + (10 + 12 * e + 4 * b).toFixed(1) + 'px rgba(255, 255, 255, ' + (0.68 * b + 0.30 * e).toFixed(3) + '), 0 0 ' + (20 + 18 * e + 8 * b).toFixed(1) + 'px rgba(186, 230, 253, ' + (0.36 * b + 0.44 * e).toFixed(3) + ')')
+          ? ('0 0 ' + (10 + 12 <em> e + 4 </em> b).toFixed(1) + 'px rgba(255, 255, 255, ' + (0.68 <em> b + 0.30 </em> e).toFixed(3) + '), 0 0 ' + (20 + 18 <em> e + 8 </em> b).toFixed(1) + 'px rgba(186, 230, 253, ' + (0.36 <em> b + 0.44 </em> e).toFixed(3) + ')')
           : (modeContrasteSuivi < 0.2 ? '0 0 8px rgba(255, 255, 255, 0.14)' : 'none');
         forcer(meta.elAr, 'opacity', opMot); forcer(meta.elAr, 'transform', transMot);
         forcer(meta.elAr, 'color', '#f8fafc'); forcer(meta.elAr, 'text-shadow', ombreAr);
@@ -1444,7 +1444,7 @@
       if (meta.elTrad) {
         var colTrRepos = melangerRGB(186, 230, 253, 148, 163, 184, modeContrasteSuivi);
         var colTrFinal = lum > 0.01 ? melangerRGB(148, 163, 184, 255, 255, 255, lum) : colTrRepos;
-        var ombreTr = (e > 0.02 || b > 0.08) ? ('0 0 ' + (10 * e + 5 * b).toFixed(1) + 'px rgba(255, 255, 255, ' + (0.55 * e + 0.28 * b).toFixed(3) + ')') : 'none';
+        var ombreTr = (e > 0.02 || b > 0.08) ? ('0 0 ' + (10 <em> e + 5 </em> b).toFixed(1) + 'px rgba(255, 255, 255, ' + (0.55 <em> e + 0.28 </em> b).toFixed(3) + ')') : 'none';
         forcer(meta.elTrad, 'opacity', opMot); forcer(meta.elTrad, 'transform', transMot);
         forcer(meta.elTrad, 'color', colTrFinal); forcer(meta.elTrad, 'font-weight', e > 0.25 ? '600' : (b > 0.5 ? '500' : '400'));
         forcer(meta.elTrad, 'text-shadow', ombreTr); forcer(meta.elTrad, 'border', 'none'); forcer(meta.elTrad, 'border-top', 'none');
@@ -1457,7 +1457,7 @@
   
   
   
-  /* === LIENS A PROPOS & MENTIONS MULTILINGUES V122 (SANS TIKTOK) === */
+  /<em> === LIENS A PROPOS & MENTIONS MULTILINGUES V122 (SANS TIKTOK) === </em>/
   (function moduleInstitutionnelMultilingueV122() {
   var TRAD_LEGAL_8 = {
     fr: {
@@ -1580,7 +1580,7 @@
   }
 
   function trouverBoutonMentionsLegales() {
-    var byId = document.getElementById('legalBtn') || document.getElementById('openLegalBtn') || document.querySelector('[onclick*="legal"], [onclick*="Legal"]');
+    var byId = document.getElementById('legalBtn') || document.getElementById('openLegalBtn') || document.querySelector('[onclick<em>="legal"], [onclick</em>="Legal"]');
     if (byId) return byId;
     var btns = document.querySelectorAll('button, a');
     var cles = ['Mentions l', 'Legal Notice', 'Aviso legal', 'الإشعار القانوني', 'Impressum', 'Note legali', 'Catatan hukum', 'Правовая информация'];

@@ -230,7 +230,7 @@ function mettreAJourGenerateur() {
     // Découpe la phrase de Muhammad Hamidullah en groupes grammaticaux naturels (ex: ["C'est", "le Livre", "au sujet duquel", ...])
     function segmenterPhraseHamidullah(phraseBrute, nbCible) {
       let propre = decoderEntitesHtml(phraseBrute)
-        .replace(/^\s*\d+\s*[\.\-]\s*/, '')
+        .replace(/^\s<em>\d+\s</em>[\.\-]\s*/, '')
         .replace(/\s+/g, ' ')
         .trim();
       if (!propre) return [];
@@ -351,7 +351,7 @@ function mettreAJourGenerateur() {
       // 3. En Français (et Espagnol), on découpe directement la traduction de Muhammad Hamidullah (ou Isa García) pour utiliser 100% son lexique !
       if ((langCible === 'fr' || langCible === 'es') && phraseOfficielle && mots.length > 0) {
         if (mots.length === 1) {
-          mots[0].tradLocalisee = decoderEntitesHtml(phraseOfficielle).replace(/^\s*\d+\s*[\.\-]\s*/, '').trim();
+          mots[0].tradLocalisee = decoderEntitesHtml(phraseOfficielle).replace(/^\s<em>\d+\s</em>[\.\-]\s*/, '').trim();
           return;
         }
 
@@ -369,8 +369,8 @@ function mettreAJourGenerateur() {
             // Cherche dans les segments de la phrase de Hamidullah celui qui correspond au mot arabe (dans une fenêtre locale autour de sa position)
             let meilleurIdx = -1;
             let meilleurScore = -1;
-            const centreSeg = Math.round(posNormMot * (nbSegs - 1));
-            const rayon = Math.max(2, Math.ceil(nbSegs * 0.35));
+            const centreSeg = Math.round(posNormMot <em> (nbSegs - 1));
+            const rayon = Math.max(2, Math.ceil(nbSegs </em> 0.35));
             const debutFenetre = Math.max(0, centreSeg - rayon);
             const finFenetre = Math.min(nbSegs - 1, centreSeg + rayon);
 

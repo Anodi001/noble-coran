@@ -2,43 +2,43 @@ window.WBW_SOURATE_112={
   "112:1": [
     [
       "قُلْ",
-      "Dites",
+      "Dis",
       "Say",
-      "Decir",
-      "Say",
-      "Dire",
+      "Di",
+      "Sagen Sie",
+      "Di'",
       "katakanlah",
-      "Say"
+      "Скажи"
     ],
     [
       "هُوَ",
       "Il",
       "He",
       "Él",
-      "He",
-      "Lui",
+      "Er",
+      "Egli",
       "Dia",
-      "He"
+      "Он"
     ],
     [
       "ٱللَّهُ",
       "est Allah",
-      "(is) Allah",
-      "es Alá",
-      "(is) Allah",
+      "is Allah",
+      "es Allah",
+      "ist Allah",
       "è Allah",
       "Allah",
-      "(is) Allah"
+      "Аллах"
     ],
     [
       "أَحَدٌ",
-      "l'Un",
+      "l'Unique",
       "the One",
-      "el uno",
-      "the One",
-      "L'Uno",
+      "El Único",
+      "der Eine",
+      "l'Uno",
       "Esa",
-      "the One"
+      "Единый"
     ]
   ],
   "112:2": [
@@ -46,21 +46,21 @@ window.WBW_SOURATE_112={
       "ٱللَّهُ",
       "Allah",
       "Allah",
-      "Alá",
       "Allah",
       "Allah",
       "Allah",
-      "Allah"
+      "Allah",
+      "Аллах"
     ],
     [
       "ٱلصَّمَدُ",
       "l'Éternel, l'Absolu",
       "the Eternal, the Absolute",
-      "lo Eterno, lo Absoluto",
-      "the Eternal, the Absolute",
+      "el Eterno, el Absoluto",
+      "der Ewige, der Absolute",
       "l'Eterno, l'Assoluto",
       "tempat bergantung",
-      "the Eternal, the Absolute"
+      "Вечный, Абсолютный"
     ]
   ],
   "112:3": [
@@ -69,40 +69,40 @@ window.WBW_SOURATE_112={
       "Non",
       "Not",
       "No",
-      "Not",
+      "Nicht",
       "Non",
       "tidak",
-      "Not"
+      "Нет"
     ],
     [
       "يَلِدْ",
       "Il engendre",
       "He begets",
       "Él engendra",
-      "He begets",
-      "Genera",
+      "Er zeugt",
+      "Egli genera",
       "beranak",
-      "He begets"
+      "Он рождает"
     ],
     [
       "وَلَمْ",
       "et non",
       "and not",
       "y no",
-      "and not",
+      "und nicht",
       "e non",
       "dan tidak",
-      "and not"
+      "и нет"
     ],
     [
       "يُولَدْ",
       "Il est engendré",
       "He is begotten",
       "Él es engendrado",
-      "He is begotten",
+      "Er ist gezeugt",
       "Egli è generato",
       "diperanakkan",
-      "He is begotten"
+      "Он рожден"
     ]
   ],
   "112:4": [
@@ -111,17 +111,17 @@ window.WBW_SOURATE_112={
       "Et non",
       "And not",
       "Y no",
-      "And not",
+      "Und nicht",
       "E non",
       "dan tidak",
-      "And not"
+      "А не"
     ],
     [
       "يَكُن",
-      "est",
+      "n'est",
       "is",
       "es",
-      "is",
+      "ist",
       "è",
       "ada",
       "is"
@@ -131,30 +131,30 @@ window.WBW_SOURATE_112={
       "pour Lui",
       "for Him",
       "para Él",
-      "for Him",
+      "für Ihn",
       "per Lui",
       "baginya",
-      "for Him"
+      "для Него"
     ],
     [
       "كُفُوًا",
       "équivalent",
       "equivalent",
       "equivalente",
-      "equivalent",
-      "equivalente",
+      "gleichbedeutend mit",
+      "equivalente a",
       "menyamai/setara",
-      "equivalent"
+      "равносильно"
     ],
     [
       "أَحَدٌۢ",
       "n'importe qui",
-      "any [one]",
+      "any one",
       "cualquiera",
-      "any [one]",
-      "nessuno",
+      "irgendjemandem",
+      "qualcuno",
       "seorang",
-      "any [one]"
+      "любому одному"
     ]
   ]
 };
