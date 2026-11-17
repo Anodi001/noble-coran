@@ -2548,8 +2548,8 @@ html body #btnLangRuV77.active-ext-v77 {
       var el = pEls[i];
       if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV77")) continue;
       var t = el.textContent || "";
-      if (t.indexOf("y e temen") !== -1) {
-        el.textContent = t.replace("y e temen", "y le temen");
+      if (t.indexOf("y le temen") !== -1) {
+        el.textContent = t.replace("y le temen", "y le temen");
       }
       if ((lang === "es" || lang === "it") && t.trim() === "⏸ Pause") {
         el.textContent = "⏸ Pausa";

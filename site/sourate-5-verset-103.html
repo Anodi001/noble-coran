@@ -2630,8 +2630,8 @@ html body #btnLangRuV77.active-ext-v77 {
       var el = pEls[i];
       if (el.children.length > 0 || el.closest("#khatmPlannerWidgetV77")) continue;
       var t = el.textContent || "";
-      if (t.indexOf("y e temen") !== -1) {
-        el.textContent = t.replace("y e temen", "y le temen");
+      if (t.indexOf("y le temen") !== -1) {
+        el.textContent = t.replace("y le temen", "y le temen");
       }
       if ((lang === "es" || lang === "it") && t.trim() === "⏸ Pause") {
         el.textContent = "⏸ Pausa";
@@ -3805,7 +3805,7 @@ html body #btnLangRuV77.active-ext-v77 {
           <div class="arabic-glow-verse" id="arabicVerseEl">مَا جَعَلَ اللَّهُ مِن بَحِيرَةٖ وَلَا سَآئِبَةٖ وَلَا وَصِيلَةٖ وَلَا حَامٖ وَلَٰكِنَّ الَّذِينَ كَفَرُواْ يَفْتَرُونَ عَلَى اللَّهِ الْكَذِبَ وَأَكْثَرُهُمْ لَا يَعْقِلُونَ</div>
           <div id="wbwStageContainer" class="wbw-stage-grid" style="display:none;"></div>
           
-          <div class="french-glow-verse" id="frenchVerseEl">103. Allah n'a pas institué la Bahira, la Sâïba, la Wasîlani le Hâm. Mais ceux qui ont mécru ont inventé ce mensonge contre Allah, et la plupart d'entre eux ne raisonnent pas.</div>
+          <div class="french-glow-verse" id="frenchVerseEl">103. Allah n'a pas institué la Bahira, la Sâïba, la Wasîla ni le Hâm. Mais ceux qui ont mécru ont inventé ce mensonge contre Allah, et la plupart d'entre eux ne raisonnent pas.</div>
           <div class="stage-blue-nav">
             <a href="sourate-5-verset-102.html" id="prevVerseLink" class="btn-blue-nav" onclick="return naviguerVerset(event, this.getAttribute('href'), false)">‹ Précédent</a>
             <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
