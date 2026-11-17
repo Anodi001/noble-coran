@@ -1,306 +1,306 @@
-window.WBW_SOURATE_1={
+window.WBW_SOURATE_1 = {
   "1:1": [
     [
       "بِسْمِ",
       "Au nom",
-      "In (the) name",
+      "In the name",
       "En el nombre",
       "Im Namen",
       "Nel nome",
-      "Atas nama",
+      "Dengan nama",
       "Во имя"
     ],
     [
       "ٱللَّهِ",
-      "d'Allah",
-      "(of) Allah",
-      "de Alá",
-      "von Allah",
+      "d’Allah",
+      "of Allah",
+      "de Dios",
+      "Allahs",
       "di Allah",
-      "dari Allah",
+      "Allah",
       "Аллаха"
     ],
     [
       "ٱلرَّحْمَـٰنِ",
-      "le Très Miséricordieux",
-      "the Most Gracious",
-      "el Más Misericordioso",
-      "der Gnädigste",
+      "le Tout Miséricordieux",
+      "the Entirely Merciful",
+      "el Compasivo",
+      "des Allerbarmers",
       "il Compassionevole",
-      "Yang Maha Pemurah",
-      "Милостивый"
+      "Yang Maha Pengasih",
+      "Милостивого"
     ],
     [
       "ٱلرَّحِيمِ",
       "le Très Miséricordieux",
-      "the Most Merciful",
-      "el más misericordioso",
-      "der Barmherzige",
+      "the Especially Merciful",
+      "el Misericordioso",
+      "des Barmherzigen",
       "il Misericordioso",
-      "Yang Maha Penyayang",
-      "Самый Милосердный"
+      "Maha Penyayang",
+      "Милосердного"
     ]
   ],
   "1:2": [
     [
       "ٱلْحَمْدُ",
-      "Toutes les louanges et remerciements",
-      "All praises and thanks",
-      "Todos los elogios y agradecimientos",
-      "Alles Lob und Dank",
-      "Tutte le lodi e i ringraziamenti",
-      "Segala pujian dan terima kasih",
-      "Вся хвала и благодарность"
+      "Louange",
+      "All praise",
+      "Todas las alabanzas",
+      "Alles Lob",
+      "La lode",
+      "Segala puji",
+      "Хвала"
     ],
     [
       "لِلَّهِ",
-      "soit à Allah",
-      "(be) to Allah",
-      "sea para Allah",
-      "sei Allah",
-      "sia verso Allah",
-      "hanya kepada Allah",
-      "да будет Аллаху"
+      "à Allah",
+      "is due to Allah",
+      "son para Dios",
+      "gebührt Allah",
+      "appartiene ad Allah",
+      "bagi Allah",
+      "Аллаху"
     ],
     [
       "رَبِّ",
-      "le Seigneur",
-      "the Lord",
-      "el Señor",
-      "der Herr",
-      "il Signore",
+      "Seigneur",
+      "Lord",
+      "Señor",
+      "dem Herrn",
+      "Signore",
       "Tuhan",
-      "Лорд"
+      "Господу"
     ],
     [
       "ٱلْعَـٰلَمِينَ",
-      "de l'univers",
-      "of the universe",
-      "del universo",
-      "des Universums",
-      "dell'universo",
-      "alam semesta",
-      "Вселенной"
+      "des mondes",
+      "of the worlds",
+      "de los mundos",
+      "der Welten",
+      "dei mondi",
+      "semesta alam",
+      "миров"
     ]
   ],
   "1:3": [
     [
       "ٱلرَّحْمَـٰنِ",
-      "Le Très Miséricordieux",
-      "The Most Gracious",
-      "El más misericordioso",
-      "Der Gnädigste",
-      "Il più gentile",
-      "Yang Maha Pemurah",
-      "Милостивейший"
+      "Le Tout Miséricordieux",
+      "The Entirely Merciful",
+      "El Compasivo",
+      "Dem Allerbarmer",
+      "Il Compassionevole",
+      "Yang Maha Pengasih",
+      "Милостивому"
     ],
     [
       "ٱلرَّحِيمِ",
       "le Très Miséricordieux",
-      "the Most Merciful",
-      "el más misericordioso",
-      "der Barmherzige",
+      "the Especially Merciful",
+      "el Misericordioso",
+      "dem Barmherzigen",
       "il Misericordioso",
-      "Yang Maha Penyayang",
-      "Самый Милосердный"
+      "Maha Penyayang",
+      "Милосердному"
     ]
   ],
   "1:4": [
     [
       "مَـٰلِكِ",
-      "Le Maître",
-      "(The) Master",
-      "El Maestro",
-      "Der Meister",
-      "Il Maestro",
-      "Sang Guru",
-      "Мастер"
+      "Maître",
+      "Sovereign",
+      "Soberano",
+      "Dem Herrscher",
+      "Sovrano",
+      "Pemilik",
+      "Властелину"
     ],
     [
       "يَوْمِ",
-      "du jour",
-      "(of the) Day",
-      "del día",
-      "des Tages",
-      "del giorno",
-      "Hari Ini",
-      "дня"
+      "du Jour",
+      "of the Day",
+      "del Día",
+      "am Tag",
+      "del Giorno",
+      "hari",
+      "Дня"
     ],
     [
       "ٱلدِّينِ",
-      "du jugement",
-      "(of the) Judgment",
-      "de la Sentencia",
-      "des Urteils",
-      "della sentenza",
-      "Penghakiman",
-      "Решения"
+      "de la rétribution",
+      "of Recompense",
+      "del Juicio",
+      "des Gerichts",
+      "del Giudizio",
+      "pembalasan",
+      "воздаяния"
     ]
   ],
   "1:5": [
     [
       "إِيَّاكَ",
-      "Toi seul",
+      "C’est Toi [Seul]",
       "You Alone",
-      "Tú solo",
-      "Du allein",
-      "Tu solo",
-      "Kamu Sendiri",
-      "Ты один"
+      "Solo a Ti",
+      "Dir allein",
+      "Te solo",
+      "Hanya kepada-Mu",
+      "Тебе одному"
     ],
     [
       "نَعْبُدُ",
-      "nous adorons",
+      "que nous adorons",
       "we worship",
-      "adoramos",
-      "wir beten",
+      "te adoramos",
+      "dienen wir",
       "adoriamo",
-      "kami beribadah",
+      "kami menyembah",
       "мы поклоняемся"
     ],
     [
       "وَإِيَّاكَ",
-      "et toi seul",
+      "et c’est Toi [Seul]",
       "and You Alone",
-      "y tú solo",
-      "und Du allein",
-      "e tu solo",
-      "dan Kamu Sendiri",
-      "и ты один"
+      "y solo de Ti",
+      "und Dich allein",
+      "e a Te solo",
+      "dan hanya kepada-Mu",
+      "и Тебя одного"
     ],
     [
       "نَسْتَعِينُ",
-      "nous demandons de l'aide",
+      "dont nous implorons secours",
       "we ask for help",
-      "pedimos ayuda",
-      "Wir bitten um Hilfe",
+      "imploramos ayuda",
+      "bitten wir um Hilfe",
       "chiediamo aiuto",
-      "kami meminta bantuan",
-      "мы просим о помощи"
+      "kami mohon pertolongan",
+      "мы молим о помощи"
     ]
   ],
   "1:6": [
     [
       "ٱهْدِنَا",
-      "Guidez-nous",
+      "Guide-nous",
       "Guide us",
       "Guíanos",
-      "Führe uns",
+      "Leite uns",
       "Guidaci",
-      "Bimbing kami",
-      "Путеводите нас"
+      "Tunjukilah kami",
+      "Веди нас"
     ],
     [
       "ٱلصِّرَٰطَ",
-      "au chemin",
-      "(to) the path",
-      "al camino",
-      "zum Pfad",
-      "al sentiero",
-      "ke jalan",
-      "на путь"
+      "dans le chemin",
+      "to the path",
+      "por el camino",
+      "den Weg",
+      "sulla retta",
+      "jalan",
+      "путём"
     ],
     [
       "ٱلْمُسْتَقِيمَ",
-      "la ligne droite",
+      "droit",
       "the straight",
-      "la recta",
-      "die Gerade",
-      "il dritto",
+      "recto",
+      "den geraden",
+      "via",
       "yang lurus",
-      "прямой"
+      "прямым"
     ]
   ],
   "1:7": [
     [
       "صِرَٰطَ",
-      "Le chemin",
-      "(The) path",
+      "le chemin",
+      "The path",
       "El camino",
-      "Der Weg",
-      "Il sentiero",
-      "Jalan",
-      "Путь"
+      "den Weg",
+      "la via",
+      "(yaitu) jalan",
+      "путём"
     ],
     [
       "ٱلَّذِينَ",
-      "d'entre eux",
-      "(of) those",
-      "de esos",
-      "davon",
-      "di quelli",
-      "di antaranya",
-      "из них"
+      "de ceux que",
+      "of those",
+      "de los que",
+      "derjenigen",
+      "di coloro",
+      "orang-orang yang",
+      "тех"
     ],
     [
       "أَنْعَمْتَ",
-      "Vous avez accordé vos faveurs",
-      "You have bestowed (Your) Favors",
-      "Has concedido Tus favores",
-      "Du hast Deine Gunst gewährt",
-      "Hai elargito i tuoi favori",
-      "Engkau Telah Menganugerahkan Nikmatmu",
-      "Вы оказали свою милость"
+      "Tu as comblés de faveurs",
+      "You have bestowed favor",
+      "has colmado de favores",
+      "denen Du Gunst erwiesen hast",
+      "che hai colmato di grazia",
+      "telah Engkau beri nikmat",
+      "которых Ты облагодетельствовал"
     ],
     [
       "عَلَيْهِمْ",
       "sur eux",
-      "on them",
+      "upon them",
       "sobre ellos",
       "auf ihnen",
       "su di loro",
-      "pada mereka",
+      "kepada mereka",
       "на них"
     ],
     [
       "غَيْرِ",
-      "pas de",
-      "not (of)",
-      "no de",
-      "nicht von",
+      "non pas de",
+      "not of",
+      "no el de",
+      "nicht",
       "non di",
-      "bukan dari",
-      "не из"
+      "bukan (jalan)",
+      "не"
     ],
     [
       "ٱلْمَغْضُوبِ",
-      "ceux qui ont gagné Ta colère",
-      "those who earned (Your) wrath",
-      "aquellos que ganaron Tu ira",
-      "diejenigen, die Deinen Zorn verdient haben",
-      "coloro che meritarono la tua ira",
-      "mereka yang menerima murka-Mu",
-      "те, кто заслужил Ваш гнев"
+      "ceux qui ont encouru Ta colère",
+      "those who evoked Your anger",
+      "los que cayeron en Tu ira",
+      "derer, denen gezürnt wird",
+      "coloro che sono incorsi nella Tua ira",
+      "mereka yang dimurkai",
+      "тех, на кого пал гнев"
     ],
     [
       "عَلَيْهِمْ",
-      "sur eux-mêmes",
-      "on themselves",
-      "sobre sí mismos",
-      "über sich selbst",
-      "su se stessi",
-      "pada diri mereka sendiri",
-      "на себя"
+      "sur eux",
+      "upon them",
+      "sobre ellos",
+      "auf ihnen",
+      "su di loro",
+      "atas mereka",
+      "на них"
     ],
     [
       "وَلَا",
-      "et non",
+      "ni",
       "and not",
-      "y no",
+      "ni",
       "und nicht",
-      "e non",
-      "dan bukan",
+      "né",
+      "dan bukan (pula jalan)",
       "и не"
     ],
     [
       "ٱلضَّآلِّينَ",
-      "de ceux qui s'égarent",
-      "(of) those who go astray",
-      "de los que se extravían",
-      "von denen, die in die Irre gehen",
-      "di coloro che si smarriscono",
-      "orang-orang yang sesat",
-      "из тех, кто сбивается с пути"
+      "des égarés",
+      "of those who are astray",
+      "el de los extraviados",
+      "der Irrenden",
+      "degli sviati",
+      "mereka yang sesat",
+      "заблудших"
     ]
   ]
 };
