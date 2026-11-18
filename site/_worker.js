@@ -15,16 +15,18 @@ const QURANENC_TAFSIR_KEYS = {
   ru: "russian_mokhtasar"
 };
 
-function nettoyerTafsirQuranEnc(raw) {
+function nettoyerTafsirQuranEncTexte(raw) {
   if (!raw) return "";
-  return escapeHtmlText(
-    String(raw)
-      .replace(/^\s*\d+\s*[\)\.\-]\s*/, "")
-      .replace(/\[\d+\]/g, "")
-      .replace(/\x60/g, "’")
-      .replace(/\s{2,}/g, " ")
-      .trim()
-  );
+  return String(raw)
+    .replace(/^\s*\d+\s*[\)\.\-]\s*/, "")
+    .replace(/\[\d+\]/g, "")
+    .replace(/\x60/g, "’")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+function nettoyerTafsirQuranEnc(raw) {
+  return escapeHtmlText(nettoyerTafsirQuranEncTexte(raw));
 }
 
 async function obtenirTafsirOfficielQuranEnc(sNum, vNum, lang) {
@@ -773,7 +775,7 @@ const application = {
         if (dQ && Array.isArray(dQ.result)) {
           for (let i = 0; i < dQ.result.length; i++) {
             const it = dQ.result[i];
-            if (it && it.aya && it.translation) map[String(it.aya)] = nettoyerTafsirQuranEnc(it.translation);
+            if (it && it.aya && it.translation) map[String(it.aya)] = nettoyerTafsirQuranEncTexte(it.translation);
           }
         }
         return new Response(JSON.stringify(map), {

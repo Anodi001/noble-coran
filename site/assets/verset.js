@@ -1084,7 +1084,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   var cacheTafsirQenc = {};
   var reqTafsirQenc = {};
   try {
-    var sauvQenc = localStorage.getItem("cache_tafsir_qenc_v112");
+    var sauvQenc = localStorage.getItem("cache_tafsir_qenc_v113");
     if (sauvQenc) cacheTafsirQenc = JSON.parse(sauvQenc);
   } catch (e) {}
 
@@ -1107,7 +1107,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
 
     var estHttp = (window.location.protocol === "http:" || window.location.protocol === "https:");
     var url = estHttp
-      ? ("/api/tafsir?lang=" + encodeURIComponent(codeLang) + "&s=" + encodeURIComponent(chap))
+      ? ("/api/tafsir?lang=" + encodeURIComponent(codeLang) + "&s=" + encodeURIComponent(chap) + "&v=2")
       : ("https://quranenc.com/api/v1/translation/sura/" + qKey + "/" + chap);
 
     fetch(url)
@@ -1125,7 +1125,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         }
         if (Object.keys(map).length > 0) {
           cacheTafsirQenc[cle] = map;
-          try { localStorage.setItem("cache_tafsir_qenc_v112", JSON.stringify(cacheTafsirQenc)); } catch (e) {}
+          try { localStorage.setItem("cache_tafsir_qenc_v113", JSON.stringify(cacheTafsirQenc)); } catch (e) {}
           if (langExtActive === codeLang) appliquerInterfaceEtContenuExt();
         }
       })
@@ -2586,8 +2586,9 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         var tafOff = cacheTafsirQenc[cleTafQ][String(numV)];
         var mExplQ = document.getElementById("mainExplanationEl");
         if (tafOff && mExplQ) {
+          var tafPropre = String(tafOff).replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, '&');
           mExplQ.setAttribute("data-qenc-official", codeL);
-          if (mExplQ.textContent !== tafOff) mExplQ.textContent = tafOff;
+          if (mExplQ.textContent !== tafPropre) mExplQ.textContent = tafPropre;
         }
       }
     }
@@ -2692,6 +2693,16 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         continue;
       }
 
+      var mRev = val.match(/^(\d+)e\s+Sourate\s+révélée\s+\(n°(\d+)\)$/i);
+      if (mRev) {
+        var fmtRev = {
+          de: "Offenbarung Nr. " + mRev[1] + " (Sure Nr. " + mRev[2] + ")",
+          it: mRev[1] + "ª Sura rivelata (n°" + mRev[2] + ")",
+          id: "Wahyu ke-" + mRev[1] + " (Surah ke-" + mRev[2] + ")",
+          ru: mRev[1] + "-я по ниспосланию (Сура №" + mRev[2] + ")"
+        }[codeL];
+        if (fmtRev) { modifierNoeudTexteSeul(node, fmtRev); continue; }
+      }
       var mMirBadge = val.match(/(?:Miracle|Milagro)\s*[:\(]\s*(?:V\.?|A\.?|Verset|Verse)\s*(\d+)\)?/i);
       if (mMirBadge) {
         var vNumMir = mMirBadge[1];
@@ -3013,7 +3024,19 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         var parts = txt.split("•");
         if (parts.length >= 2) {
           var lieu = parts[0].trim();
-          var nv = lieu + " • " + textesHaut[lang];
+          var estMecLieu = /mecqu|mecc|makk|мекк|مكية/i.test(lieu);
+          var mapLieu = {
+            fr: estMecLieu ? "Sourate Mecquoise (La Mecque)" : "Sourate Médinoise (Médine)",
+            en: estMecLieu ? "Meccan Surah (Makkah)" : "Medinan Surah (Madinah)",
+            es: estMecLieu ? "Sura Mequí (La Meca)" : "Sura Medinense (Medina)",
+            ar: estMecLieu ? "سورة مكية (مكة المكرمة)" : "سورة مدنية (المدينة المنورة)",
+            de: estMecLieu ? "Mekkanische Sure (Mekka)" : "Medinensische Sure (Medina)",
+            it: estMecLieu ? "Sura Meccana (La Mecca)" : "Sura Medinese (Medina)",
+            id: estMecLieu ? "Surah Makkiyah (Mekkah)" : "Surah Madaniyah (Madinah)",
+            ru: estMecLieu ? "Мекканская сура (Мекка)" : "Мединская сура (Медина)"
+          };
+          var traduireLieuEtOrdreExt = mapLieu[lang] || lieu;
+          var nv = traduireLieuEtOrdreExt + " • " + textesHaut[lang];
           if (el.textContent !== nv) el.textContent = nv;
         }
       }
@@ -3712,6 +3735,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       appliquerVraiMotAMotSurDOM();
       appliquerZoomMotAMot();
       synchroniserUrlEtSeoAvecLangueEtVerset();
+      if (typeof window.__verifierV110 === "function") window.__verifierV110();
       var cleRec = obtenirCleRecitateurSelectionne();
       var vk = obtenirCleVerset();
       if (cleRec && vk) chargerTimestampsQdc(cleRec, vk);
@@ -5426,6 +5450,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   })();
   document.addEventListener('click', function() { setTimeout(verifierChangementVersetEtPause, 5); setTimeout(verifierChangementVersetEtPause, 60); });
   document.addEventListener('change', function() { setTimeout(verifierChangementVersetEtPause, 5); setTimeout(verifierChangementVersetEtPause, 60); });
+  window.__verifierV110 = verifierChangementVersetEtPause;
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', verifierChangementVersetEtPause);
   else verifierChangementVersetEtPause();
 })();
