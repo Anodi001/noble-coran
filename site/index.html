@@ -1682,9 +1682,9 @@ html body #btnLangRuV77.active-ext-v77 {
   var noeudsTextesModifies = [];
 
   try {
-    var sauvChapExt = localStorage.getItem("cache_ext_chap_v64");
+    var sauvChapExt = localStorage.getItem("cache_ext_chap_v66");
     if (sauvChapExt) cacheChapitresExt = JSON.parse(sauvChapExt);
-    var sauvTxtExt = localStorage.getItem("cache_txt_unit_ext_v64");
+    var sauvTxtExt = localStorage.getItem("cache_txt_unit_ext_v66");
     if (sauvTxtExt) cacheTexteUnitaireExt = JSON.parse(sauvTxtExt);
   } catch (e) {}
 
@@ -1961,7 +1961,7 @@ html body #btnLangRuV77.active-ext-v77 {
             var vk = chap + ":" + (j + 1);
             cacheChapitresExt[cle][vk] = nettoyerVersetBrutApi(d.translations[j].text || "");
           }
-          try { localStorage.setItem("cache_ext_chap_v64", JSON.stringify(cacheChapitresExt)); } catch (e) {}
+          try { localStorage.setItem("cache_ext_chap_v66", JSON.stringify(cacheChapitresExt)); } catch (e) {}
           if (langExtActive === codeLang) appliquerInterfaceEtContenuExt();
         }
       })
@@ -1997,7 +1997,7 @@ html body #btnLangRuV77.active-ext-v77 {
           tr = affinerTraductionTheologique(tr, codeLang);
           if (tr) {
             cacheTexteUnitaireExt[cle] = tr;
-            try { localStorage.setItem("cache_txt_unit_ext_v64", JSON.stringify(cacheTexteUnitaireExt)); } catch (e) {}
+            try { localStorage.setItem("cache_txt_unit_ext_v66", JSON.stringify(cacheTexteUnitaireExt)); } catch (e) {}
             if (langExtActive === codeLang) {
               modifierNoeudTexteSeul(textNode, esp1 + tr + esp2);
             }
@@ -4385,13 +4385,13 @@ html body #btnLangRuV77.active-ext-v77 {
   window.__wbwBypassOrigCartes = true;
 
   try {
-    if (localStorage.getItem('wbw_tr_purge_v116') !== '1') {
+    if (localStorage.getItem('wbw_tr_purge_v117') !== '1') {
       localStorage.removeItem('wbw_tr_cache_v110');
       localStorage.removeItem('wbw_tr_cache_v111');
       localStorage.removeItem('wbw_tr_cache_v113');
       localStorage.removeItem('wbw_tr_cache_v114');
       localStorage.removeItem('wbw_tr_cache_v115');
-      localStorage.setItem('wbw_tr_purge_v116', '1');
+      localStorage.setItem('wbw_tr_purge_v117', '1');
     }
   } catch (e) {}
 
@@ -5124,7 +5124,7 @@ html body #btnLangRuV77.active-ext-v77 {
   }
 
   var cacheTradMots = {};
-  try { cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v116') || '{}'); } catch (e) {}
+  try { cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v117') || '{}'); } catch (e) {}
   var enCoursTrad = {}, prochainEssaiTrad = {};
 
   function obtenirLanguePage() {
@@ -5190,7 +5190,104 @@ html body #btnLangRuV77.active-ext-v77 {
     if (enCoursTrad[cle] || Date.now() < (prochainEssaiTrad[cle] || 0)) return;
     enCoursTrad[cle] = true;
 
-    var propreEn = desambiguiserAnglaisCoranique(brut, arNorm);
+    var propreEn = desambiguiserAnglaisCoranique(brut, arNorm)
+      .replace(/\bthou art\b/gi, 'you are')
+      .replace(/\bthou hast\b/gi, 'you have')
+      .replace(/\bthou\b/gi, 'you')
+      .replace(/\bthee\b/gi, 'you')
+      .replace(/\bthy\b/gi, 'your')
+      .replace(/\bthine\b/gi, 'yours')
+      .replace(/\bye\b/gi, 'you')
+      .replace(/\bhath\b/gi, 'has')
+      .replace(/\bhast\b/gi, 'have')
+      .replace(/\bunto\b/gi, 'to')
+      .replace(/\bverily\b/gi, 'truly');
+    var glossaireTheologiqueFr = {
+      'the most gracious': 'le Tout Miséricordieux',
+      'the most merciful': 'le Très Miséricordieux',
+      'the entirely merciful': 'le Tout Miséricordieux',
+      'the especially merciful': 'le Très Miséricordieux',
+      'lord of the worlds': 'Seigneur des mondes',
+      'day of judgment': 'Jour du Jugement',
+      'day of judgement': 'Jour du Jugement',
+      'day of resurrection': 'Jour de la Résurrection',
+      'the hereafter': "l'Au-delà",
+      'hereafter': 'Au-delà',
+      'the unseen': "l'Invisible",
+      'unseen': 'Invisible',
+      'the disbelievers': 'les mécréants',
+      'disbelievers': 'mécréants',
+      'the believers': 'les croyants',
+      'believers': 'croyants',
+      'the righteous': 'les pieux',
+      'the hypocrites': 'les hypocrites',
+      'the polytheists': 'les polythéistes',
+      'the wrongdoers': 'les injustes',
+      'wrongdoers': 'injustes',
+      'hellfire': "le Feu de l'Enfer",
+      'paradise': 'le Paradis',
+      'gardens': 'Jardins',
+      'prayer': 'la prière',
+      'almstax': 'la Zakât',
+      'zakah': 'la Zakât',
+      'charity': "l'aumône",
+      'covenant': 'le pacte',
+      'forgiveness': 'le pardon',
+      'repentance': 'le repentir',
+      'guidance': 'la guidée',
+      'revelation': 'la Révélation',
+      'messenger': 'Messager',
+      'messengers': 'Messagers',
+      'prophet': 'Prophète',
+      'angels': 'les Anges',
+      'almighty': 'le Tout-Puissant',
+      'all-wise': 'le Très-Sage',
+      'all-knowing': "l'Omniscient",
+      'omniscient': "l'Omniscient"
+    };
+    if (lang === 'fr' && glossaireTheologiqueFr[propreEn.toLowerCase()]) {
+      var trGl = corrigerFrancaisSelonMorphologieArabe(glossaireTheologiqueFr[propreEn.toLowerCase()], arNorm);
+      cacheTradMots[cle] = trGl;
+      figerTraduction(trGl);
+      enCoursTrad[cle] = false;
+      return;
+    }
+    if ((lang === 'ru' || lang === 'de' || lang === 'id') && typeof numSourateActuelle !== 'undefined' && typeof numVersetActuel !== 'undefined') {
+      window.__qdcNativeWbw = window.__qdcNativeWbw || {};
+      var vkNat = numSourateActuelle + ':' + numVersetActuel + ':' + lang;
+      if (window.__qdcNativeWbw[vkNat] && window.__qdcNativeWbw[vkNat][arNorm]) {
+        var trNat = window.__qdcNativeWbw[vkNat][arNorm];
+        cacheTradMots[cle] = trNat;
+        figerTraduction(trNat);
+        enCoursTrad[cle] = false;
+        return;
+      }
+      if (!window.__qdcNativeWbw['req_' + vkNat]) {
+        window.__qdcNativeWbw['req_' + vkNat] = fetch('https://api.quran.com/api/v4/verses/by_key/' + numSourateActuelle + ':' + numVersetActuel + '?language=' + lang + '&words=true&word_fields=text_uthmani,translation')
+          .then(function(r) { return r.ok ? r.json() : null; })
+          .then(function(dNat) {
+            var mapNat = {};
+            if (dNat && dNat.verse && Array.isArray(dNat.verse.words)) {
+              dNat.verse.words.forEach(function(wNat) {
+                if (wNat && wNat.text_uthmani && wNat.translation && wNat.translation.text) {
+                  mapNat[normaliserArabeCle(wNat.text_uthmani)] = wNat.translation.text.trim();
+                }
+              });
+            }
+            window.__qdcNativeWbw[vkNat] = mapNat;
+            return mapNat;
+          }).catch(function() { return {}; });
+      }
+      window.__qdcNativeWbw['req_' + vkNat].then(function(mapNat) {
+        if (mapNat && mapNat[arNorm]) {
+          var trOfficiel = mapNat[arNorm];
+          cacheTradMots[cle] = trOfficiel;
+          try { localStorage.setItem('wbw_tr_cache_v117', JSON.stringify(cacheTradMots)); } catch (e) {}
+          if (elTrad && elTrad.isConnected && obtenirLanguePage() === lang) figerTraduction(trOfficiel);
+          enCoursTrad[cle] = false;
+        }
+      });
+    }
     fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=' + encodeURIComponent(lang) + '&dt=t&q=' + encodeURIComponent(propreEn))
       .then(function(r) { return r.ok ? r.json() : Promise.reject(new Error('HTTP')); })
       .then(function(d) {
@@ -5202,7 +5299,7 @@ html body #btnLangRuV77.active-ext-v77 {
               tr = corrigerFrancaisSelonMorphologieArabe(tr, arNorm);
             }
             cacheTradMots[cle] = tr;
-            try { localStorage.setItem('wbw_tr_cache_v116', JSON.stringify(cacheTradMots)); } catch (e) {}
+            try { localStorage.setItem('wbw_tr_cache_v117', JSON.stringify(cacheTradMots)); } catch (e) {}
             if (elTrad && elTrad.isConnected && obtenirLanguePage() === lang) {
               figerTraduction(tr);
             }
