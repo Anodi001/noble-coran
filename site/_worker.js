@@ -417,7 +417,7 @@ async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
         const idx = idxs[j];
         const rawOrig = parts[idx];
         const lead = (rawOrig.match(/^\s<em>/) || [""])[0];
-        const trail = (rawOrig.match(/\s</em>$/) || [""])[0];
+        const trail = (rawOrig.match(/<\/em>$/) || [""])[0];
         parts[idx] = lead + escapeHtmlText(splitTr[j].trim()) + trail;
       }
       return { ok: true, html: parts.join(""), diag: "batch-" + batchRes.provider };
