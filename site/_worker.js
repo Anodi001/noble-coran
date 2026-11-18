@@ -6,6 +6,42 @@ function escapeHtmlText(value) {
 
 const QURAN_API_IDS = { en: 20, es: 83, de: 27, it: 153, id: 33, ru: 45, ar: 16 };
 
+const QURANENC_TAFSIR_KEYS = {
+  en: "english_mokhtasar",
+  es: "spanish_mokhtasar",
+  ar: "arabic_mokhtasar",
+  it: "italian_mokhtasar",
+  id: "indonesian_mokhtasar",
+  ru: "russian_mokhtasar"
+};
+
+function nettoyerTafsirQuranEnc(raw) {
+  if (!raw) return "";
+  return escapeHtmlText(
+    String(raw)
+      .replace(/^\s*\d+\s*[\)\.\-]\s*/, "")
+      .replace(/\[\d+\]/g, "")
+      .replace(/\x60/g, "’")
+      .replace(/\s{2,}/g, " ")
+      .trim()
+  );
+}
+
+async function obtenirTafsirOfficielQuranEnc(sNum, vNum, lang) {
+  const key = QURANENC_TAFSIR_KEYS[lang];
+  if (!key || !sNum || !vNum) return { ok: false, html: null };
+  const url = "https://quranenc.com/api/v1/translation/aya/" + key + "/" + sNum + "/" + vNum;
+  try {
+    const r = await fetch(url, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(3000), cf: { cacheTtl: 2592000, cacheEverything: true } });
+    if (!r.ok) return { ok: false, html: null };
+    const d = await r.json();
+    const raw = d && d.result && d.result.translation ? d.result.translation : "";
+    const clean = nettoyerTafsirQuranEnc(raw);
+    if (clean) return { ok: true, html: clean };
+  } catch (e) {}
+  return { ok: false, html: null };
+}
+
 // Nombre officiel de versets pour chacune des 114 sourates (index 1 à 114)
 const NB_VERSETS_PAR_SOURATE = [
   0,
@@ -448,6 +484,37 @@ async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
 
 async function obtenirTafsirDepuisCachesDurablesOuTraduire(innerHtml, sNum, vNum, lang, env, ctx) {
   const vk = sNum + ":" + vNum;
+  const cache = typeof caches !== "undefined" && caches.default ? caches.default : null;
+  const edgeCacheReq = new Request("https://corantafsir.com/_tafsir_edge_v112/" + sNum + "-" + vNum + "-" + lang);
+
+  if (cache) {
+    try {
+      const cachedTaf = await cache.match(edgeCacheReq);
+      if (cachedTaf) {
+        const txt = await cachedTaf.text();
+        if (txt && txt.length > 10) return { ok: true, html: txt, diag: "edge-cache-v112" };
+      }
+    } catch (e) {}
+  }
+
+  // 1. Source officielle relue (QuranEnc Al-Mukhtasar : EN, ES, AR, IT, ID, RU)
+  if (QURANENC_TAFSIR_KEYS[lang]) {
+    const qencRes = await obtenirTafsirOfficielQuranEnc(sNum, vNum, lang);
+    if (qencRes.ok && qencRes.html) {
+      if (cache) {
+        try {
+          const respToStore = new Response(qencRes.html, {
+            headers: { "content-type": "text/html; charset=utf-8", "cache-control": "public, max-age=31536000, immutable" }
+          });
+          if (ctx && ctx.waitUntil) ctx.waitUntil(cache.put(edgeCacheReq, respToStore));
+          else await cache.put(edgeCacheReq, respToStore);
+        } catch (e) {}
+      }
+      return { ok: true, html: qencRes.html, diag: "quranenc-official" };
+    }
+  }
+
+  // 2. Fallback cache statique puis traduction auto (uniquement DE ou panne QuranEnc)
   try {
     if (!MEM_STATIC_TAFSIR_CACHE && env && env.ASSETS && typeof env.ASSETS.fetch === "function") {
       const rStatic = await env.ASSETS.fetch(new Request("https://corantafsir.com/tafsir-cache.json"));
@@ -458,26 +525,11 @@ async function obtenirTafsirDepuisCachesDurablesOuTraduire(innerHtml, sNum, vNum
     }
   } catch (e) {}
 
-  const cache = typeof caches !== "undefined" && caches.default ? caches.default : null;
-  const edgeCacheReq = new Request("https://corantafsir.com/_tafsir_edge_v105/" + sNum + "-" + vNum + "-" + lang);
-  if (cache) {
-    try {
-      const cachedTaf = await cache.match(edgeCacheReq);
-      if (cachedTaf) {
-        const txt = await cachedTaf.text();
-        if (txt && txt.length > 10) return { ok: true, html: txt, diag: "edge-cache" };
-      }
-    } catch (e) {}
-  }
-
   const liveRes = await traduireHtmlEnPreservantBalises(innerHtml, lang);
   if (liveRes.ok && liveRes.html && cache) {
     try {
       const respToStore = new Response(liveRes.html, {
-        headers: {
-          "content-type": "text/html; charset=utf-8",
-          "cache-control": "public, max-age=31536000, immutable"
-        }
+        headers: { "content-type": "text/html; charset=utf-8", "cache-control": "public, max-age=31536000, immutable" }
       });
       if (ctx && ctx.waitUntil) ctx.waitUntil(cache.put(edgeCacheReq, respToStore));
       else await cache.put(edgeCacheReq, respToStore);
@@ -658,7 +710,7 @@ async function recupererFichierStatiquePages(request, env) {
   return fetch(request);
 }
 
-const SSR_VERSION = "v111";
+const SSR_VERSION = "v112";
 function construireCleCache(request, lang) {
   const key = new URL(request.url);
   key.pathname = key.pathname.replace(/\.html$/i, "");
@@ -702,6 +754,35 @@ const application = {
     }
 
     const url = new URL(request.url);
+    if (url.pathname === "/api/tafsir") {
+      const l = (url.searchParams.get("lang") || "").slice(0, 2).toLowerCase();
+      const s = Number(url.searchParams.get("s") || 0);
+      const qKey = QURANENC_TAFSIR_KEYS[l];
+      if (!qKey || !Number.isInteger(s) || s < 1 || s > 114) {
+        return new Response(JSON.stringify({ error: "invalid_params" }), { status: 400, headers: { "content-type": "application/json; charset=utf-8" } });
+      }
+      try {
+        const rQ = await fetch("https://quranenc.com/api/v1/translation/sura/" + qKey + "/" + s, {
+          headers: BROWSER_HEADERS,
+          signal: AbortSignal.timeout(4500),
+          cf: { cacheTtl: 2592000, cacheEverything: true }
+        });
+        if (!rQ.ok) return new Response(JSON.stringify({ error: "upstream" }), { status: 502, headers: { "content-type": "application/json; charset=utf-8" } });
+        const dQ = await rQ.json();
+        const map = {};
+        if (dQ && Array.isArray(dQ.result)) {
+          for (let i = 0; i < dQ.result.length; i++) {
+            const it = dQ.result[i];
+            if (it && it.aya && it.translation) map[String(it.aya)] = nettoyerTafsirQuranEnc(it.translation);
+          }
+        }
+        return new Response(JSON.stringify(map), {
+          headers: { "content-type": "application/json; charset=utf-8", "cache-control": "public, max-age=2592000" }
+        });
+      } catch (e) {
+        return new Response(JSON.stringify({ error: "timeout" }), { status: 504, headers: { "content-type": "application/json; charset=utf-8" } });
+      }
+    }
     const validiteVerset = verifierVersetValide(url.pathname);
     if (validiteVerset === false) {
       return new Response("<!DOCTYPE html><html lang='fr'><head><meta charset='UTF-8'><meta name='robots' content='noindex'><title>404 - Verset introuvable</title></head><body style='background:#020406;color:#f8fafc;font-family:sans-serif;text-align:center;padding:80px 20px;'><h1>404 — Ce verset n'existe pas</h1><p><a href='/' style='color:#38bdf8;'>Retour aux 114 Sourates</a></p></body></html>", {

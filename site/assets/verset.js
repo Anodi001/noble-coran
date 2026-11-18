@@ -1073,6 +1073,58 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
 ;
 (function codeClientV77() {
   var LANGUES_EXT_SUPPORTEES = { de: 27, it: 153, id: 33, ru: 45 };
+  var QURANENC_EXT_KEYS = { it: "italian_mokhtasar", id: "indonesian_mokhtasar", ru: "russian_mokhtasar" };
+  var cacheTafsirQenc = {};
+  var reqTafsirQenc = {};
+  try {
+    var sauvQenc = localStorage.getItem("cache_tafsir_qenc_v112");
+    if (sauvQenc) cacheTafsirQenc = JSON.parse(sauvQenc);
+  } catch (e) {}
+
+  function nettoyerTafsirQencClient(raw) {
+    if (!raw) return "";
+    return String(raw)
+      .replace(/^\s*\d+\s*[\)\.\-]\s*/, "")
+      .replace(/\[\d+\]/g, "")
+      .replace(/\x60/g, "’")
+      .replace(/\s{2,}/g, " ")
+      .trim();
+  }
+
+  function chargerTafsirOfficielExt(codeLang, chap) {
+    var qKey = QURANENC_EXT_KEYS[codeLang];
+    if (!qKey || !chap) return;
+    var cle = codeLang + "_" + chap;
+    if (cacheTafsirQenc[cle] || reqTafsirQenc[cle]) return;
+    reqTafsirQenc[cle] = true;
+
+    var estHttp = (window.location.protocol === "http:" || window.location.protocol === "https:");
+    var url = estHttp
+      ? ("/api/tafsir?lang=" + encodeURIComponent(codeLang) + "&s=" + encodeURIComponent(chap))
+      : ("https://quranenc.com/api/v1/translation/sura/" + qKey + "/" + chap);
+
+    fetch(url)
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d) return;
+        var map = {};
+        if (Array.isArray(d.result)) {
+          for (var i = 0; i < d.result.length; i++) {
+            var it = d.result[i];
+            if (it && it.aya && it.translation) map[String(it.aya)] = nettoyerTafsirQencClient(it.translation);
+          }
+        } else if (typeof d === "object" && !d.error) {
+          map = d;
+        }
+        if (Object.keys(map).length > 0) {
+          cacheTafsirQenc[cle] = map;
+          try { localStorage.setItem("cache_tafsir_qenc_v112", JSON.stringify(cacheTafsirQenc)); } catch (e) {}
+          if (langExtActive === codeLang) appliquerInterfaceEtContenuExt();
+        }
+      })
+      .catch(function () {})
+      .finally(function () { reqTafsirQenc[cle] = false; });
+  }
   var TOUTES_LANGUES_8 = { fr: true, en: true, es: true, ar: true, de: true, it: true, id: true, ru: true };
   var langExtActive = "";
   var langueNativeCible = "";
@@ -1825,6 +1877,11 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   } catch (e) {}
 
   function restaurerTextesOriginauxDepuisExt() {
+    var mExplRest = document.getElementById("mainExplanationEl");
+    if (mExplRest && mExplRest.hasAttribute("data-qenc-official")) {
+      mExplRest.removeAttribute("data-qenc-official");
+      if (typeof appliquerLangueVerset === "function") appliquerLangueVerset();
+    }
     for (var i = 0; i < noeudsTextesModifies.length; i++) {
       var item = noeudsTextesModifies[i];
       if (item.node && item.orig !== undefined) {
@@ -2514,6 +2571,19 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     if (numS && !cacheChapitresExt[cleChap]) {
       chargerChapitreOfficielExt(codeL, numS);
     }
+    if (numS && numV && QURANENC_EXT_KEYS[codeL]) {
+      var cleTafQ = codeL + "_" + numS;
+      if (!cacheTafsirQenc[cleTafQ]) {
+        chargerTafsirOfficielExt(codeL, numS);
+      } else {
+        var tafOff = cacheTafsirQenc[cleTafQ][String(numV)];
+        var mExplQ = document.getElementById("mainExplanationEl");
+        if (tafOff && mExplQ) {
+          mExplQ.setAttribute("data-qenc-official", codeL);
+          if (mExplQ.textContent !== tafOff) mExplQ.textContent = tafOff;
+        }
+      }
+    }
     var texteOfficielVerset = (numS && cacheChapitresExt[cleChap]) ? cacheChapitresExt[cleChap][vk] : null;
     var dicoUi = DICO_UI_PAR_LANG[codeL];
     var noms114 = NOMS_114_ACCUEIL[codeL] || {};
@@ -2568,7 +2638,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       if (!pEl) continue;
       var tag = pEl.tagName;
       if (tag === "SCRIPT" || tag === "STYLE") continue;
-      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate") || pEl.closest("#khatmPlannerWidgetV77")) continue;
+      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate") || pEl.closest("#khatmPlannerWidgetV77") || (QURANENC_EXT_KEYS[codeL] && pEl.closest("#mainExplanationEl"))) continue;
 
       var val = (node.__origExtV77 !== undefined ? node.__origExtV77 : node.nodeValue || "").replace(/\u00A0/g, " ").trim();
       if (!val || /[\u0600-\u06FF]/.test(val)) continue;

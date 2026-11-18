@@ -689,7 +689,7 @@ Object.assign(MIRACLES_DE_BASE, {
     "developpementAr": "\n      <div class=\"miracle-pillars-grid\">\n        <div class=\"miracle-pillar-card\">\n          <div class=\"pillar-badge\">الدليل الأول • حكمٌ قاطع بالمواجهة العلنية في مكة</div>\n          <h4>🔥 سورة تتلى في مجالس قريش عشر سنين كاملة</h4>\n          <p>لما صعد النبي ﷺ على الصفا يدعو قريشًا (<em>صحيح البخاري 4770</em>) قال أبو لهب: «تبًّا لك سائر اليوم، ألهذا جمعتنا؟»، فأنزل الله سورة المسد تحكم بأنه وامرأته سيموتان على الكفر ويصليان نارًا ذات لهب.</p>\n        </div>\n        <div class=\"miracle-pillar-card\">\n          <div class=\"pillar-badge\">الدليل الثاني • التحدي التاريخي الذي أبرزه أئمة التفسير</div>\n          <h4>⚖️ كان يكفيه التظاهر بالإسلام بكلمةٍ واحدة ليزعم معارضة القرآن</h4>\n          <p>بيّن الأئمة <strong>القرطبي والفخر الرازي وابن كثير</strong> أن كثيرًا من أشد صناديد قريش (كخالد بن الوليد وعمرو بن العاص وعكرمة بن أبي جهل وأبي سفيان) أسلموا لاحقًا، إلا أبا لهب فقد أخبر العليم الخبير أنه لن يؤمن أبدًا؛ ومضت عشر سنين وهو يحاول تكذيب النبي ﷺ فلم يخطر بباله ولا قدر لسانه على النطق بالشهادتين ولو نفاقًا.</p>\n        </div>\n        <div class=\"miracle-pillar-card\">\n          <div class=\"pillar-badge\">الدليل الثالث • تحقق النبوءة بعد غزوة بدر الكبرى (624م)</div>\n          <h4>⚔️ هلاكه بمرض العدسة بعد سبع ليالٍ من هزيمة قريش</h4>\n          <p>في السنة الثانية للهجرة (<strong>624م</strong>) وبعد هزيمة المشركين في بدر، أُصيب أبو لهب بمرض «العدسة» الخبيث فمات شرّ ميتة على الكفر كما أخبر القرآن حرفيًّا.</p>\n        </div>\n      </div>"
   }
 });
-Object.assign(memoireGlobale.miracles, MIRACLES_DE_BASE);
+memoireGlobale.miracles = Object.assign({}, MIRACLES_DE_BASE, memoireGlobale.miracles);
 const TAFSIR_SOURATE_96_FR = {
   "96:1": "<strong style='color:#ffffff;'>Ô Messager, lis ce qu’Allāh te révèle en commençant par le Nom de ton Seigneur qui a créé toutes les créatures.</strong><br><br>📜 <strong>Hadith du début de la Révélation (1re sourate révélée) :</strong> ‘Ā’ishah, la Mère des croyants (qu’Allāh l’agrée), rapporte : <em>« Le début de la révélation au Messager d’Allāh ﷺ prit la forme de visions pieuses durant son sommeil, aussi claires que l’aube. Puis l’amour de la retraite lui fut inspiré et il se retirait seul dans la <strong>grotte de Hirā’</strong> pour adorer Allāh durant plusieurs nuits avant de revenir s’approvisionner auprès de Khadījah. »</em><br><br>Un jour, l’Ange <strong>Jibrīl (Gabriel)</strong> vint à lui dans la grotte et dit : <em>« Lis ! (Iqra’) »</em>. Le Prophète ﷺ répondit : <em>« Je ne sais pas lire. »</em> Il raconte : <em>« L’Ange me saisit et me serra jusqu’à me faire perdre toute force, puis me relâcha et dit : “Lis !” Je répondis : “Je ne sais pas lire.” Il me serra une deuxième fois puis une troisième fois avant de me relâcher en disant : “Lis, au nom de ton Seigneur qui a créé, qui a créé l’homme d’une adhérence. Lis ! Ton Seigneur est le Très Noble.” »</em><br><br>Le Messager d’Allāh ﷺ rentra avec ces versets, le cœur tremblant, auprès de <strong>Khadījah bint Khuwaylid</strong> et dit : <em>« Enveloppez-moi ! Enveloppez-moi ! »</em>. Khadījah le rassura : <em>« Non ! Par Allāh, Allāh ne t’humiliera jamais : tu maintiens les liens de parenté, tu portes le fardeau du faible, tu donnes au démuni et tu secours les victimes des épreuves. »</em> Elle l’emmena ensuite chez son cousin <strong>Waraqah ibn Nawfal</strong>, qui s’écria : <em>« C’est le Nāmūs (l’Ange Jibrīl) qu’Allāh a envoyé à Moïse ! »</em> (<em>Rapporté par Al-Bukhārī n°3 et Muslim n°160</em>).",
   "96:2": "<strong style='color:#ffffff;'>C’est Lui qui a créé l’être humain à partir d’une « ‘Alaqah » (une adhérence suspendue et irriguée de sang)</strong>, après le stade de la goutte séminale (<em>Nutfah</em>).<br><br>Après avoir proclamé au verset 1 qu’Allāh est le Créateur de tout l’univers, ce verset rappelle à l’homme l’humilité de son origine biologique : formé à partir d’une minuscule adhérence accrochée à la paroi utérine, il a été élevé par la grâce d’Allāh au rang de créature douée d’intelligence, de parole et de discernement.",
@@ -791,7 +791,7 @@ const MIRACLE_CHAMEAU_88_17 = {
   }
 };
 Object.assign(MIRACLES_DE_BASE, MIRACLE_CHAMEAU_88_17);
-Object.assign(memoireGlobale.miracles, MIRACLES_DE_BASE);
+memoireGlobale.miracles = Object.assign({}, MIRACLES_DE_BASE, memoireGlobale.miracles);
 
 const TAFSIR_SOURATES_68_73_FR = {
   "68:1": "<strong style='color:#ffffff;'>Nūn (Lettre détachée). Par la plume et ce qu'ils écrivent !</strong><br><br>📜 <strong>1. Le défi de la lettre détachée :</strong> Allāh commence cette sourate par une lettre détachée (<em>Nūn</em>) pour mettre les Arabes au défi : ce Coran est composé des mêmes lettres que votre alphabet, essayez donc de produire une œuvre semblable !<br><br>📜 <strong>2. La Plume céleste (Al-Qalam) et les Anges scribes :</strong> Quant à <em>« la plume et ce qu'ils écrivent »</em>, <strong>As-Suddī</strong> a dit qu'il s'agit des Anges qui consignent toutes les actions des hommes. D'autres exégètes ont expliqué qu'il s'agit de la Plume céleste (<em>Al-Qalam</em>) à laquelle Allāh a ordonné d'écrire tout ce qu'Il a prédestiné et tout ce qui sera de toutes les créatures <strong>cinquante mille ans avant la création des cieux et de la terre</strong>, conformément au Hadith authentique rapporté par <em>Muslim (n°2653), Abū Dāwūd (n°4700) et At-Tirmidhī (n°2155)</em>.",
@@ -912,10 +912,10 @@ const TAFSIR_SOURATES_68_73_AR = {
   "73:20": "<strong style='color:#ffffff;'>﴿إِنَّ رَبَّكَ يَعْلَمُ أَنَّكَ تَقُومُ أَدْنَىٰ مِن ثُلُثَيِ اللَّيْلِ وَنِصْفَهُ وَثُلُثَهُ وَطَائِفَةٌ مِّنَ الَّذِينَ مَعَكَ...﴾</strong><br><br>📜 <strong>حديث عائشة رضي الله عنها في صحيح مسلم (746) :</strong> قالت عائشة رضي الله عنها: إن الله افترض قيام الليل في أول هذه السورة، فقام نبي الله ﷺ وأصحابه <strong>حولًا كاملًا</strong> حتى انتفخت أقدامهم، وأمسك الله خاتمتها في السماء اثني عشر شهرًا، ثم أنزل الله التخفيف في آخر هذه السورة فصار قيام الليل تطوّعًا بعد فريضة.<br><br>⚖️ <strong>فوائد الآية العظيمة :</strong> رحم الله الأمة لعلمه بعجزهم عن إحصاء ساعات الليل، ولوجود الأعذار كـ<strong>المرض</strong>، و<strong>السفر في الأرض للتجارة وطلب الرزق الحلال</strong>، و<strong>الجهاد في سبيل الله</strong>، فأمرهم بقراءة ما تيسّر من القرآن، وإقام الصلاة وإيتاء <strong>الزكاة</strong> (مما يدل على أن أصل فرض الزكاة شُرع بمكة ثم فُصّلت أنصبتها ومقاديرها بالمدينة)، وإقراض الله قرضًا حسنًا بالصدقة، وكثرة الاستغفار."
 };
 
-Object.assign(memoireGlobale.tafsirFr, TAFSIR_INTEGRAL_DE_BASE_FR, TAFSIR_SOURATE_96_FR, TAFSIR_SOURATES_68_73_FR);
-Object.assign(memoireGlobale.tafsirEn, TAFSIR_SOURATE_96_EN, TAFSIR_SOURATES_68_73_EN);
-Object.assign(memoireGlobale.tafsirEs, TAFSIR_SOURATE_96_ES, TAFSIR_SOURATES_68_73_ES);
-Object.assign(memoireGlobale.tafsirAr, TAFSIR_SOURATE_96_AR, TAFSIR_SOURATES_68_73_AR);
+memoireGlobale.tafsirFr = Object.assign({}, TAFSIR_INTEGRAL_DE_BASE_FR, TAFSIR_SOURATE_96_FR, TAFSIR_SOURATES_68_73_FR, memoireGlobale.tafsirFr);
+memoireGlobale.tafsirEn = Object.assign({}, TAFSIR_SOURATE_96_EN, TAFSIR_SOURATES_68_73_EN, memoireGlobale.tafsirEn);
+memoireGlobale.tafsirEs = Object.assign({}, TAFSIR_SOURATE_96_ES, TAFSIR_SOURATES_68_73_ES, memoireGlobale.tafsirEs);
+memoireGlobale.tafsirAr = Object.assign({}, TAFSIR_SOURATE_96_AR, TAFSIR_SOURATES_68_73_AR, memoireGlobale.tafsirAr);
 try {
   fs.writeFileSync(cheminMemoire, JSON.stringify(memoireGlobale, null, 2), 'utf8');
 } catch (e) {}
@@ -1091,7 +1091,7 @@ const LETTRES_MYSTERIEUSES_EXACTES = {
 
 function nettoyerArabe(cle, tBrut) {
   if (LETTRES_MYSTERIEUSES_EXACTES[cle]) return LETTRES_MYSTERIEUSES_EXACTES[cle];
-  return String(tBrut || '').replace(/\u0671/g, '\u0627').replace(/\u06E1/g, '\u0652').replace(/[\u06D6-\u06DC\u06DF\u06E0\u06E2\u06E3\u06E5\u06E6\u06E7\u06E8\u06EA\u06EB\u06EC\u06ED]/g, '').replace(/\s+/g, ' ').trim();
+  return String(tBrut || '').replace(/\s+/g, ' ').trim();
 }
 
 function restaurerHamidullah1977(cle, texte) {
@@ -1118,21 +1118,8 @@ function echapperHTML(t) {
 
 let compteurDoublonsRepares = 0;
 function separerDoublonsConsecutifs(listeTafsirBrut) {
-  const copie = listeTafsirBrut.map(item => Object.assign({}, item));
-  for (let i = 0; i < copie.length - 1; i++) {
-    const t1 = String(copie[i]?.translation || '').trim();
-    const t2 = String(copie[i + 1]?.translation || '').trim();
-    if (t1.length > 120 && t1 === t2) {
-      const phrases = t1.match(/[^.!?]+[.!?]+/g);
-      if (phrases && phrases.length >= 2) {
-        const milieu = Math.ceil(phrases.length / 2);
-        copie[i].translation = phrases.slice(0, milieu).join(' ').trim();
-        copie[i + 1].translation = phrases.slice(milieu).join(' ').trim();
-        compteurDoublonsRepares++;
-      }
-    }
-  }
-  return copie;
+  // Ne plus couper mécaniquement les tafsirs groupés au milieu des phrases
+  return (listeTafsirBrut || []).map(item => Object.assign({}, item));
 }
 
 function structurerEtMettreEnValeurTafsir(textePropre) {
@@ -1163,14 +1150,9 @@ function nettoyerEtSimplifierGrandTafsirFr(cle, tBrut) {
   if (TAFSIR_INTEGRAL_CORRIGE_FR[cle]) return TAFSIR_INTEGRAL_CORRIGE_FR[cle];
   let t = String(tBrut || '').replace(/\[\d+\]/g, '');
 
-  for (let p = 0; p < 6; p++) {
-    t = t.replace(/\s*\([^()]*[ṣḍṭḥḏẓāīūâîûĥĵšğ`ʼ'’_-][^()]*\)/gi, '');
-    t = t.replace(/\s*\([a-zA-Z\u00C0-\u024F\u1E00-\u1EFF\s'-]{1,30}\)/g, function(m) {
-      const interieur = m.slice(1, -1).trim();
-      if (/^(pluriel|singulier|ou|c'est-à-dire|littéralement)/i.test(interieur)) return m;
-      if (interieur.includes('-') || /[ṣḍṭḥḏẓāīūâîûĥĵ]/i.test(interieur)) return '';
-      return m;
-    });
+  for (let p = 0; p < 3; p++) {
+    // Cible uniquement la translittération académique arabe, jamais les parenthèses françaises (', ’, -, â, î, û)
+    t = t.replace(/\s*\([^()]*[ṣḍṭḥḏẓāīūĥĵšğʿʾ][^()]*\)/gi, '');
     t = t.replace(/\s*\(\s*\)/g, '');
   }
 
