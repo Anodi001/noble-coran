@@ -150,7 +150,7 @@ function mettreAJourGenerateur() {
       "2:3": ["qui", "croient", "à l'inconnaissable", "et accomplissent", "la Salât", "et de ce que", "Nous leur avons attribué", "dépensent"],
       "2:4": ["et qui", "croient", "à ce qui", "a été descendu (révélé)", "vers toi", "et à ce qui", "a été descendu", "avant", "toi", "et quant à l'au-delà", "ils", "ont la certitude"],
       "2:5": ["Ceux-là", "sont sur", "le bon chemin", "de", "leur Seigneur", "et ceux-là", "ce sont eux", "qui réussissent"],
-      "10:92": ["Nous allons aujourd'hui", "épargner", "ton corps", "afin que tu deviennes", "pour ceux qui", "sont tes successeurs", "un signe", "Cependant", "beaucoup", "de", "gens", "à", "Nos signes (d'avertissement)", "ne prêtent aucune attention"]
+      "10:92": ["Nous allons aujourd'hui", "épargner", "ton corps", "afin que tu deviennes", "pour ceux qui", "sont tes successeurs", "un signe", "Cependant", "beaucoup", "de", "gens", "à", "Nos signes (d'avertissement)", "ne prêtent aucune attention."]
     };
 
     // Stop-words et outils grammaticaux français qui restent rattachés au mot porteur de sens suivant dans la phrase de Hamidullah
