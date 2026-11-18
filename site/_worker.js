@@ -430,7 +430,7 @@ async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
     const idx = idxs[j];
     const rawOrig = parts[idx];
     const lead = (rawOrig.match(/^\s<em>/) || [""])[0];
-    const trail = (rawOrig.match(/\s</em>$/) || [""])[0];
+    const trail = (rawOrig.match(/\s\x3c\/em\x3e$/) || [""])[0];
     const r = await traduireTexteServeur(segs[j], lang);
     if (r.ok && r.text) {
       parts[idx] = lead + escapeHtmlText(r.text) + trail;
