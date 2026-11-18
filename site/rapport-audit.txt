@@ -1,0 +1,246 @@
+ANOMALIES (0):
+
+
+SUSPECTS (242):
+3:163 FR court vs EN (169 vs 390)
+4:99 FR court vs AR (81 vs 263)
+6:49 FR court vs EN (88 vs 243)
+6:76 FR court vs EN (234 vs 535)
+19:59 FR court vs AR (129 vs 307)
+19:59 FR court vs EN (129 vs 438)
+25:1 FR court vs EN (178 vs 382)
+26:61 FR court vs EN (168 vs 360)
+26:110 doublon FR avec 26:108
+26:126 doublon FR avec 26:110
+26:131 doublon FR avec 26:126
+26:140 doublon FR avec 26:122
+26:143 doublon FR avec 26:125
+26:144 doublon FR avec 26:131
+26:145 doublon FR avec 26:109
+26:150 doublon FR avec 26:144
+26:159 doublon FR avec 26:140
+26:162 doublon FR avec 26:143
+26:163 doublon FR avec 26:150
+26:164 doublon FR avec 26:127
+26:175 doublon FR avec 26:159
+26:178 doublon FR avec 26:162
+26:179 doublon FR avec 26:163
+26:180 doublon FR avec 26:164
+26:191 doublon FR avec 26:175
+26:206 FR court vs EN (97 vs 248)
+27:27 FR court vs EN (75 vs 206)
+27:30 FR court vs EN (91 vs 237)
+35:28 FR court vs EN (131 vs 345)
+36:1 FR court vs AR (104 vs 331)
+36:1 FR court vs EN (104 vs 469)
+36:26 FR court vs AR (66 vs 221)
+37:23 doublon FR avec 37:22
+37:33 FR court vs EN (88 vs 196)
+37:34 FR court vs EN (99 vs 223)
+37:166 doublon FR avec 37:165
+37:168 FR court vs AR (88 vs 265)
+37:168 FR court vs EN (88 vs 205)
+37:169 doublon FR avec 37:167
+37:170 doublon FR avec 37:168
+37:170 FR court vs AR (88 vs 265)
+37:170 FR court vs EN (88 vs 205)
+37:172 doublon FR avec 37:171
+37:173 doublon FR avec 37:172
+49:4 FR court vs EN (122 vs 452)
+50:18 FR court vs EN (85 vs 187)
+50:26 FR court vs EN (103 vs 215)
+50:39 FR court vs EN (128 vs 411)
+53:1 FR court vs EN (240 vs 520)
+53:3 FR court vs EN (74 vs 202)
+53:5 FR court vs EN (75 vs 211)
+53:8 FR court vs EN (72 vs 205)
+53:11 FR court vs EN (78 vs 188)
+53:13 FR court vs EN (135 vs 360)
+53:19 FR court vs EN (82 vs 296)
+53:36 FR court vs AR (75 vs 223)
+53:36 FR court vs EN (75 vs 477)
+53:40 FR court vs EN (62 vs 184)
+53:57 FR court vs AR (99 vs 273)
+53:57 FR court vs EN (99 vs 462)
+54:30 doublon FR avec 54:21
+54:32 doublon FR avec 54:22
+54:40 doublon FR avec 54:32
+55:16 doublon FR avec 55:13
+55:18 doublon FR avec 55:16
+55:21 doublon FR avec 55:18
+55:23 doublon FR avec 55:21
+55:25 doublon FR avec 55:23
+55:28 doublon FR avec 55:25
+55:30 doublon FR avec 55:28
+55:32 doublon FR avec 55:30
+55:34 doublon FR avec 55:32
+55:36 doublon FR avec 55:34
+55:38 doublon FR avec 55:36
+55:40 doublon FR avec 55:38
+55:42 doublon FR avec 55:40
+55:45 doublon FR avec 55:42
+55:47 doublon FR avec 55:45
+55:49 doublon FR avec 55:47
+55:51 doublon FR avec 55:49
+55:53 doublon FR avec 55:51
+55:55 doublon FR avec 55:53
+55:57 doublon FR avec 55:55
+55:59 doublon FR avec 55:57
+55:61 doublon FR avec 55:59
+55:63 doublon FR avec 55:61
+55:65 doublon FR avec 55:63
+55:67 doublon FR avec 55:65
+55:69 doublon FR avec 55:67
+55:71 doublon FR avec 55:69
+55:73 doublon FR avec 55:71
+55:75 doublon FR avec 55:73
+55:77 doublon FR avec 55:75
+56:91 doublon FR avec 56:90
+67:12 FR court vs EN (123 vs 293)
+68:52 FR court vs AR (73 vs 280)
+68:52 FR court vs EN (73 vs 398)
+70:11 FR court vs EN (148 vs 349)
+72:8 FR court vs EN (91 vs 386)
+72:18 FR court vs EN (92 vs 257)
+73:19 FR court vs EN (85 vs 194)
+74:2 FR court vs EN (199 vs 452)
+74:3 FR court vs EN (116 vs 253)
+74:5 FR court vs EN (94 vs 277)
+74:7 FR court vs EN (75 vs 193)
+74:8 FR court vs AR (68 vs 249)
+74:8 FR court vs EN (68 vs 359)
+74:10 FR court vs EN (59 vs 229)
+74:12 FR court vs EN (70 vs 228)
+74:13 FR court vs AR (92 vs 235)
+74:13 FR court vs EN (92 vs 278)
+74:15 FR court vs EN (73 vs 183)
+74:16 FR court vs AR (72 vs 192)
+74:16 FR court vs EN (72 vs 317)
+74:19 FR court vs EN (64 vs 190)
+74:20 FR court vs EN (69 vs 186)
+74:21 FR court vs AR (46 vs 184)
+74:21 FR court vs EN (46 vs 285)
+74:24 FR court vs EN (56 vs 325)
+74:25 FR court vs EN (30 vs 182)
+74:28 FR court vs EN (46 vs 193)
+74:38 FR court vs EN (60 vs 212)
+74:39 FR court vs EN (60 vs 216)
+74:42 FR court vs EN (92 vs 239)
+74:43 FR court vs EN (72 vs 194)
+74:44 FR court vs EN (60 vs 188)
+74:47 FR court vs EN (67 vs 224)
+74:51 FR court vs EN (56 vs 209)
+74:52 FR court vs AR (89 vs 235)
+74:52 FR court vs EN (89 vs 371)
+74:56 FR court vs EN (120 vs 374)
+75:16 FR court vs EN (191 vs 431)
+75:18 FR court vs EN (67 vs 259)
+75:22 FR court vs AR (46 vs 221)
+75:22 FR court vs EN (46 vs 383)
+77:7 FR court vs EN (103 vs 299)
+77:48 FR court vs EN (94 vs 261)
+77:50 FR court vs EN (78 vs 227)
+79:41 doublon FR avec 79:40
+80:2 FR court vs AR (82 vs 446)
+80:2 FR court vs EN (82 vs 641)
+80:8 FR court vs EN (56 vs 192)
+80:10 FR court vs EN (122 vs 264)
+80:15 FR court vs AR (61 vs 176)
+80:15 FR court vs EN (61 vs 324)
+80:34 FR court vs EN (42 vs 202)
+80:37 FR court vs EN (90 vs 405)
+81:4 FR court vs EN (108 vs 280)
+81:5 FR court vs AR (85 vs 203)
+81:5 FR court vs EN (85 vs 345)
+81:6 FR court vs EN (67 vs 185)
+81:7 FR court vs EN (106 vs 257)
+81:8 FR court vs AR (62 vs 191)
+81:8 FR court vs EN (62 vs 329)
+81:14 FR court vs AR (76 vs 172)
+81:14 FR court vs EN (76 vs 232)
+81:15 FR court vs EN (157 vs 342)
+81:17 FR court vs EN (61 vs 226)
+81:20 FR court vs EN (76 vs 182)
+81:21 FR court vs EN (82 vs 209)
+81:22 FR court vs EN (75 vs 245)
+81:23 FR court vs AR (75 vs 197)
+81:23 FR court vs EN (75 vs 360)
+81:24 FR court vs EN (65 vs 231)
+81:25 FR court vs EN (60 vs 199)
+81:29 FR court vs AR (101 vs 299)
+81:29 FR court vs EN (101 vs 468)
+84:7 FR court vs EN (69 vs 189)
+85:1 FR court vs AR (64 vs 381)
+85:1 FR court vs EN (64 vs 428)
+85:2 FR court vs EN (48 vs 240)
+85:3 FR court vs EN (118 vs 251)
+85:7 FR court vs EN (66 vs 187)
+85:9 FR court vs EN (90 vs 201)
+85:17 FR court vs EN (73 vs 227)
+86:1 FR court vs AR (87 vs 218)
+86:1 FR court vs EN (87 vs 202)
+86:11 FR court vs EN (133 vs 280)
+87:2 FR court vs EN (76 vs 220)
+87:3 FR court vs EN (90 vs 288)
+87:5 FR court vs EN (60 vs 188)
+87:6 FR court vs EN (90 vs 405)
+87:7 FR court vs EN (93 vs 222)
+87:8 FR court vs EN (97 vs 253)
+87:9 FR court vs EN (74 vs 234)
+87:12 FR court vs EN (52 vs 279)
+87:13 FR court vs AR (74 vs 190)
+87:13 FR court vs EN (74 vs 289)
+87:14 FR court vs EN (87 vs 314)
+87:16 FR court vs EN (86 vs 289)
+87:17 FR court vs AR (55 vs 179)
+87:17 FR court vs EN (55 vs 251)
+88:17 FR court vs EN (110 vs 452)
+89:2 FR court vs EN (96 vs 295)
+89:3 FR court vs EN (125 vs 305)
+89:10 FR court vs EN (100 vs 225)
+89:17 FR court vs EN (68 vs 302)
+89:27 FR court vs AR (80 vs 236)
+89:27 FR court vs EN (80 vs 410)
+91:10 FR court vs EN (81 vs 213)
+91:11 FR court vs EN (80 vs 264)
+92:2 FR court vs EN (46 vs 187)
+92:3 FR court vs EN (47 vs 231)
+92:4 FR court vs EN (104 vs 253)
+92:5 FR court vs AR (73 vs 213)
+92:5 FR court vs EN (73 vs 352)
+92:7 FR court vs EN (69 vs 273)
+92:8 FR court vs EN (74 vs 267)
+92:12 FR court vs EN (97 vs 203)
+92:18 FR court vs AR (56 vs 201)
+92:18 FR court vs EN (56 vs 312)
+92:21 FR court vs EN (86 vs 197)
+93:2 FR court vs EN (68 vs 204)
+93:4 FR court vs EN (87 vs 232)
+93:5 FR court vs EN (164 vs 417)
+94:5 FR court vs EN (172 vs 366)
+95:4 FR court vs AR (71 vs 173)
+95:4 FR court vs EN (71 vs 273)
+95:6 FR court vs EN (114 vs 283)
+100:2 FR court vs EN (82 vs 195)
+100:9 FR court vs EN (93 vs 223)
+100:10 FR court vs EN (112 vs 241)
+101:4 FR court vs EN (64 vs 220)
+101:11 FR court vs EN (34 vs 217)
+102:3 FR court vs EN (98 vs 218)
+104:2 FR court vs AR (58 vs 220)
+104:2 FR court vs EN (58 vs 338)
+104:4 FR court vs EN (83 vs 208)
+106:1 FR court vs AR (65 vs 205)
+106:1 FR court vs EN (65 vs 250)
+106:3 FR court vs EN (82 vs 190)
+107:2 FR court vs AR (82 vs 225)
+107:2 FR court vs EN (82 vs 350)
+107:4 FR court vs AR (67 vs 248)
+107:4 FR court vs EN (67 vs 364)
+109:4 FR court vs AR (61 vs 216)
+109:4 FR court vs EN (61 vs 259)
+111:2 FR court vs EN (132 vs 394)
+111:3 FR court vs AR (56 vs 174)
+111:3 FR court vs EN (56 vs 256)
+111:4 FR court vs EN (107 vs 315)
+114:2 FR court vs EN (81 vs 212)

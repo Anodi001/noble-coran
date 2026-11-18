@@ -4926,13 +4926,7 @@ html body #btnLangRuV77.active-ext-v77 {
     max-height: none !important; overflow: visible !important;
   }
   /* Ligne cliquable au-dessus de chaque mot */
-  .wbw-scrub-wrap {
-    width: calc(100% + 12px) !important; margin: 0 -6px 10px -6px !important;
-    padding: 10px 0 !important; cursor: pointer !important; user-select: none !important;
-    -webkit-user-select: none !important; touch-action: manipulation !important;
-    position: relative !important; display: block !important; z-index: 30 !important;
-    pointer-events: auto !important;
-  }
+  .wbw-scrub-wrap { display: none !important; }
   .wbw-scrub-track {
     width: 100% !important; height: 4px !important; border-radius: 999px !important;
     background: rgba(148, 163, 184, 0.22) !important; position: relative !important;
@@ -5902,11 +5896,7 @@ html body #btnLangRuV77.active-ext-v77 {
         allerAuDebutDuMot(idxCarte);
         return false;
       }
-      var motNormalClique = e.target && e.target.closest ? e.target.closest('.inline-clickable-word, .ar-word-follow') : null;
-      if (motNormalClique) {
-        e.stopPropagation(); e.stopImmediatePropagation();
-        return false;
-      }
+      var motNormalClique = e.target && e.target.closest ? e.target.closest('.inline-clickable-word, .ar-word-follow') : null; if (motNormalClique) { e.stopPropagation(); e.stopImmediatePropagation(); e.preventDefault(); var pCont = motNormalClique.parentElement; var tousM = pCont ? Array.prototype.slice.call(pCont.querySelectorAll('.inline-clickable-word, .ar-word-follow')) : []; var idxM = tousM.indexOf(motNormalClique); if (idxM >= 0) { var audM = document.getElementById('ayahAudio'); if (audM && audM.duration) { audM.currentTime = (idxM / Math.max(1, tousM.length)) * audM.duration * 0.94; if (audM.paused) { var pB = document.getElementById('playSyncBtn'); if (pB) pB.click(); else audM.play().catch(function(){}); } } } return false; }
       if (e.isTrusted && e.target && e.target.closest && e.target.closest('.rp-item')) {
         window.__userPickedReciterManuallyV110 = true;
       }
