@@ -1,0 +1,5 @@
+Total pages analysées : 6236
+Avec V110 (style Al-Qalam) : 6236
+Sans V110 (style Al-Alaq / Al-Baqarah / Al-Muzzammil) : 0
+
+Détail par sourate présentant un décalage :
