@@ -1,0 +1,29 @@
+[33mcommit 301d773539a0dda93a5c8d578d9985fe15530326[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Anodi001 <cadanouar@gmail.com>
+Date:   Wed Nov 18 17:17:22 2026 +0100
+
+    Activation du mot-a-mot officiel Quran.com (RU/DE/ID) et glossaire theologique enrichi
+
+[33mcommit abbb43ae3b1a6be137e241c67a5fd1e654283322[m
+Author: Anodi001 <cadanouar@gmail.com>
+Date:   Wed Nov 18 16:56:59 2026 +0100
+
+    Activation du cache-busting v2 pour mise a jour instantanee mobile et PC
+
+[33mcommit ff4d258044dddd80595f2eaea00752eee5544567[m
+Author: Anodi001 <cadanouar@gmail.com>
+Date:   Wed Nov 18 16:50:39 2026 +0100
+
+    Score parfait 0/6236 sur l'ensemble des 114 sourates
+
+[33mcommit 16cf51347d4b755ff5f8966e5e3948bc09e47bd1[m
+Author: Anodi001 <cadanouar@gmail.com>
+Date:   Wed Nov 18 16:37:57 2026 +0100
+
+    Enrichissement final des hadiths FR sur les 6236 versets
+
+[33mcommit d7b2f8cf0b125c0040a4a9f64741e174d2e58c9a[m
+Author: Anodi001 <cadanouar@gmail.com>
+Date:   Wed Nov 18 16:28:21 2026 +0100
+
+    Enrichissement integral des sourates 100 a 114
