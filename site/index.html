@@ -3563,13 +3563,34 @@ html body #btnLangRuV77.active-ext-v77 {
     setTimeout(synchroniserTout, 80);
   });
 
-  setInterval(function () {
-    synchroniserTout();
-    var aud = trouverAudioActif();
-    if (aud && !aud.paused && !rafId) {
-      lancerBoucleSuivi();
+  (function attacherDeclencheursV77() {
+    var timerInputV77 = null;
+    document.addEventListener("change", function () {
+      setTimeout(synchroniserTout, 20);
+    });
+    document.addEventListener("input", function () {
+      clearTimeout(timerInputV77);
+      timerInputV77 = setTimeout(synchroniserTout, 120);
+    });
+    window.addEventListener("popstate", function () {
+      setTimeout(synchroniserTout, 20);
+    });
+    window.addEventListener("load", function () {
+      synchroniserTout();
+    });
+    var badgeEl = document.getElementById("badgeNumEl");
+    if (badgeEl && typeof MutationObserver !== "undefined") {
+      new MutationObserver(function () {
+        setTimeout(synchroniserTout, 25);
+      }).observe(badgeEl, { childList: true, characterData: true, subtree: true });
     }
-  }, 300);
+    var audInit = document.getElementById("ayahAudio");
+    if (audInit) {
+      audInit.addEventListener("play", function () { if (!rafId) lancerBoucleSuivi(); });
+      audInit.addEventListener("playing", function () { if (!rafId) lancerBoucleSuivi(); });
+    }
+    setTimeout(synchroniserTout, 250);
+  })();
 
   synchroniserTout();
 })();</script>
@@ -3975,237 +3996,6 @@ html body #btnLangRuV77.active-ext-v77 {
   </script>
 
 <div style="text-align:center;margin:25px 0 15px 0;font-size:0.85rem;color:#94a3b8;border-top:1px solid rgba(255,255,255,0.07);padding-top:15px;"><a href="/a-propos.html" style="color:#38bdf8;text-decoration:none;margin:0 12px;font-weight:600;">À propos</a> • <a href="/contact.html" style="color:#38bdf8;text-decoration:none;margin:0 12px;font-weight:600;">Contact</a></div>
-<script id="wbwInstitutionnelAccueilV122">(function moduleInstitutionnelMultilingueV122() {
-  var TRAD_LEGAL_8 = {
-    fr: {
-      btnLegal: "Mentions légales",
-      btnAbout: "🏛️ À propos",
-      btnContact: "✉️ Contact",
-      title: "⚖️ Mentions légales",
-      intro: "Portail éducatif, linguistique et culturel gratuit (sans publicité commerciale) édité par l'Association Loi 1901 à but non lucratif :",
-      status: "<strong>Association loi 1901 à but non lucratif</strong> • RNA : <strong>W343035331</strong> • SIRET : <strong>13288669800019</strong>",
-      objet: "<strong>Objet :</strong> Rendre accessibles à tous la culture, les langues (français, anglais, espagnol, arabe, allemand, italien, indonésien, russe) ainsi que les études historiques et exégétiques des textes fondamentaux grâce à des supports numériques gratuits et sans publicité commerciale.",
-      siege: "<strong>Siège :</strong> Montpellier, France • <strong>Hébergement :</strong> Cloudflare, Inc. (101 Townsend St, San Francisco, CA 94107, USA)",
-      contact: "<strong>Contact officiel :</strong> <a href='mailto:contact@corantafsir.com' style='color:#38bdf8;text-decoration:none;font-weight:700;'>contact@corantafsir.com</a>",
-      close: "Fermer"
-    },
-    en: {
-      btnLegal: "Legal Notice",
-      btnAbout: "🏛️ About",
-      btnContact: "✉️ Contact",
-      title: "⚖️ Legal Notice",
-      intro: "Free educational, linguistic, and cultural portal (without commercial advertising) published by the non-profit organization:",
-      status: "<strong>Non-profit organization (French Law 1901)</strong> • RNA: <strong>W343035331</strong> • SIRET: <strong>13288669800019</strong>",
-      objet: "<strong>Purpose:</strong> To make culture, languages (French, English, Spanish, Arabic, German, Italian, Indonesian, Russian), as well as historical and exegetical studies of foundational texts accessible to everyone through free, ad-free digital resources.",
-      siege: "<strong>Headquarters:</strong> Montpellier, France • <strong>Hosting:</strong> Cloudflare, Inc. (101 Townsend St, San Francisco, CA 94107, USA)",
-      contact: "<strong>Official Contact:</strong> <a href='mailto:contact@corantafsir.com' style='color:#38bdf8;text-decoration:none;font-weight:700;'>contact@corantafsir.com</a>",
-      close: "Close"
-    },
-    es: {
-      btnLegal: "Aviso legal",
-      btnAbout: "🏛️ Acerca de",
-      btnContact: "✉️ Contacto",
-      title: "⚖️ Aviso legal",
-      intro: "Portal educativo, lingüístico y cultural gratuito (sin publicidad comercial) editado por la asociación sin ánimo de lucro:",
-      status: "<strong>Asociación sin ánimo de lucro (Ley 1901)</strong> • RNA: <strong>W343035331</strong> • SIRET: <strong>13288669800019</strong>",
-      objet: "<strong>Objeto:</strong> Hacer accesibles a todos la cultura, los idiomas (francés, inglés, español, árabe, alemán, italiano, indonesio, ruso), así como los estudios históricos y exegéticos de los textos fundamentales mediante soportes digitales gratuitos y sin publicidad comercial.",
-      siege: "<strong>Sede:</strong> Montpellier, Francia • <strong>Alojamiento:</strong> Cloudflare, Inc. (101 Townsend St, San Francisco, CA 94107, USA)",
-      contact: "<strong>Contacto oficial:</strong> <a href='mailto:contact@corantafsir.com' style='color:#38bdf8;text-decoration:none;font-weight:700;'>contact@corantafsir.com</a>",
-      close: "Cerrar"
-    },
-    ar: {
-      dir: "rtl",
-      btnLegal: "الإشعار القانوني",
-      btnAbout: "🏛️ من نحن",
-      btnContact: "✉️ اتصل بنا",
-      title: "⚖️ الإشعار القانوني",
-      intro: "بوابة تعليمية ولغوية وثقافية مجانية (بدون إعلانات تجارية) تصدرها الجمعية غير الربحية:",
-      status: "<strong>جمعية غير ربحية (قانون 1901 الفرنسي)</strong> • RNA: <strong>W343035331</strong> • SIRET: <strong>13288669800019</strong>",
-      objet: "<strong>الهدف:</strong> إتاحة الثقافة واللغات (الفرنسية، الإنجليزية، الإسبانية، العربية، الألمانية، الإيطالية، الإندونيسية، الروسية) والدراسات التاريخية والتفسيرية للنصوص الأساسية للجميع عبر وسائط رقمية مجانية وبدون إعلانات تجارية.",
-      siege: "<strong>المقر:</strong> مونبلييه، فرنسا • <strong>الاستضافة:</strong> Cloudflare, Inc. (101 Townsend St, San Francisco, CA 94107, USA)",
-      contact: "<strong>التواصل الرسمي:</strong> <a href='mailto:contact@corantafsir.com' style='color:#38bdf8;text-decoration:none;font-weight:700;'>contact@corantafsir.com</a>",
-      close: "إغلاق"
-    },
-    de: {
-      btnLegal: "Impressum",
-      btnAbout: "🏛️ Über uns",
-      btnContact: "✉️ Kontakt",
-      title: "⚖️ Impressum",
-      intro: "Kostenloses Bildungs-, Sprach- und Kulturportal (ohne kommerzielle Werbung), herausgegeben vom gemeinnützigen Verein:",
-      status: "<strong>Gemeinnütziger Verein (Gesetz 1901)</strong> • RNA: <strong>W343035331</strong> • SIRET: <strong>13288669800019</strong>",
-      objet: "<strong>Zweck:</strong> Kultur, Sprachen (Französisch, Englisch, Spanisch, Arabisch, Deutsch, Italienisch, Indonesisch, Russisch) sowie historische und exegetische Studien grundlegender Texte durch kostenlose und werbefreie digitale Medien für alle zugänglich zu machen.",
-      siege: "<strong>Sitz:</strong> Montpellier, Frankreich • <strong>Hosting:</strong> Cloudflare, Inc. (101 Townsend St, San Francisco, CA 94107, USA)",
-      contact: "<strong>Offizieller Kontakt:</strong> <a href='mailto:contact@corantafsir.com' style='color:#38bdf8;text-decoration:none;font-weight:700;'>contact@corantafsir.com</a>",
-      close: "Schließen"
-    },
-    it: {
-      btnLegal: "Note legali",
-      btnAbout: "🏛️ Chi siamo",
-      btnContact: "✉️ Contatto",
-      title: "⚖️ Note legali",
-      intro: "Portale educativo, linguistico e culturale gratuito (senza pubblicità commerciale) edito dall'associazione senza scopo di lucro:",
-      status: "<strong>Associazione senza scopo di lucro (Legge 1901)</strong> • RNA: <strong>W343035331</strong> • SIRET: <strong>13288669800019</strong>",
-      objet: "<strong>Oggetto:</strong> Rendere accessibili a tutti la cultura, le lingue (francese, inglese, spagnolo, arabo, tedesco, italiano, indonesiano, russo) e gli studi storici ed esegetici dei testi fondamentali tramite supporti digitali gratuiti e senza pubblicità commerciale.",
-      siege: "<strong>Sede:</strong> Montpellier, Francia • <strong>Hosting:</strong> Cloudflare, Inc. (101 Townsend St, San Francisco, CA 94107, USA)",
-      contact: "<strong>Contatto ufficiale:</strong> <a href='mailto:contact@corantafsir.com' style='color:#38bdf8;text-decoration:none;font-weight:700;'>contact@corantafsir.com</a>",
-      close: "Chiudi"
-    },
-    id: {
-      btnLegal: "Catatan hukum",
-      btnAbout: "🏛️ Tentang kami",
-      btnContact: "✉️ Kontak",
-      title: "⚖️ Catatan hukum",
-      intro: "Portal pendidikan, bahasa, dan budaya gratis (tanpa iklan komersial) yang diterbitkan oleh organisasi nirlaba:",
-      status: "<strong>Organisasi nirlaba (UU 1901 Prancis)</strong> • RNA: <strong>W343035331</strong> • SIRET: <strong>13288669800019</strong>",
-      objet: "<strong>Tujuan:</strong> Menjadikan budaya, bahasa (Prancis, Inggris, Spanyol, Arab, Jerman, Italia, Indonesia, Rusia), serta studi sejarah dan tafsir teks-teks dasar dapat diakses oleh semua orang melalui media digital gratis tanpa iklan komersial.",
-      siege: "<strong>Kantor Pusat:</strong> Montpellier, Prancis • <strong>Hosting:</strong> Cloudflare, Inc. (101 Townsend St, San Francisco, CA 94107, USA)",
-      contact: "<strong>Kontak resmi:</strong> <a href='mailto:contact@corantafsir.com' style='color:#38bdf8;text-decoration:none;font-weight:700;'>contact@corantafsir.com</a>",
-      close: "Tutup"
-    },
-    ru: {
-      btnLegal: "Правовая информация",
-      btnAbout: "🏛️ О нас",
-      btnContact: "✉️ Контакты",
-      title: "⚖️ Правовая информация",
-      intro: "Бесплатный образовательный, лингвистический и культурный портал (без коммерческой рекламы), издаваемый некоммерческой организацией:",
-      status: "<strong>Некоммерческая ассоциация (Закон 1901 г.)</strong> • RNA: <strong>W343035331</strong> • SIRET: <strong>13288669800019</strong>",
-      objet: "<strong>Цель:</strong> Сделать культуру, языки (французский, английский, испанский, арабский, немецкий, итальянский, индонезийский, русский), а также исторические и экзегетические исследования фундаментальных текстов доступными для всех с помощью бесплатных цифровых ресурсов без рекламы.",
-      siege: "<strong>Штаб-квартира:</strong> Монпелье, Франция • <strong>Хостинг:</strong> Cloudflare, Inc. (101 Townsend St, San Francisco, CA 94107, USA)",
-      contact: "<strong>Официальный контакт:</strong> <a href='mailto:contact@corantafsir.com' style='color:#38bdf8;text-decoration:none;font-weight:700;'>contact@corantafsir.com</a>",
-      close: "Закрыть"
-    }
-  };
-
-  function detecterLangueActive() {
-    if (window.__coranLangOverride && TRAD_LEGAL_8[window.__coranLangOverride]) {
-      return window.__coranLangOverride;
-    }
-    var h1 = document.querySelector('h1');
-    var t = h1 ? (h1.textContent || '') : '';
-    if (t.indexOf('THE NOBLE QURAN') !== -1) return 'en';
-    if (t.indexOf('EL NOBLE COR') !== -1) return 'es';
-    if (t.indexOf('القرآن') !== -1) return 'ar';
-    if (t.indexOf('DER EDLE') !== -1) return 'de';
-    if (t.indexOf('IL NOBILE CORANO') !== -1) return 'it';
-    if (t.indexOf('AL-QUR') !== -1 && t.indexOf('MULIA') !== -1) return 'id';
-    if (t.indexOf('СВЯЩЕННЫЙ') !== -1) return 'ru';
-    if (t.indexOf('LE NOBLE CORAN') !== -1) return 'fr';
-
-    var htmlLang = (document.documentElement.lang || '').toLowerCase().slice(0, 2);
-    if (TRAD_LEGAL_8[htmlLang]) return htmlLang;
-    return 'fr';
-  }
-
-  function trouverBoutonMentionsLegales() {
-    var byId = document.getElementById('legalBtn') || document.getElementById('openLegalBtn') || document.querySelector('[onclick*="legal"], [onclick*="Legal"]');
-    if (byId) return byId;
-    var btns = document.querySelectorAll('button, a');
-    var cles = ['Mentions l', 'Legal Notice', 'Aviso legal', 'الإشعار القانوني', 'Impressum', 'Note legali', 'Catatan hukum', 'Правовая информация'];
-    for (var i = 0; i < btns.length; i++) {
-      var b = btns[i];
-      if (b.id === 'wbwAboutLinkV122' || b.id === 'wbwContactLinkV122') continue;
-      var txt = (b.textContent || '').trim();
-      for (var k = 0; k < cles.length; k++) {
-        if (txt.indexOf(cles[k]) !== -1) return b;
-      }
-    }
-    return null;
-  }
-
-  function ouvrirModaleMentionsLegalesV122(e) {
-    if (e && e.preventDefault) e.preventDefault();
-    if (e && e.stopPropagation) e.stopPropagation();
-
-    // Fermer toute ancienne modale cassée si elle était ouverte
-    var oldModals = document.querySelectorAll('#legalModal, .legal-modal-overlay, #wbwLegalModalV122');
-    for (var m = 0; m < oldModals.length; m++) {
-      if (oldModals[m].id === 'wbwLegalModalV122') oldModals[m].remove();
-      else oldModals[m].style.display = 'none';
-    }
-
-    var lang = detecterLangueActive();
-    var d = TRAD_LEGAL_8[lang] || TRAD_LEGAL_8.fr;
-
-    var overlay = document.createElement('div');
-    overlay.id = 'wbwLegalModalV122';
-    overlay.dir = d.dir || 'ltr';
-    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(2,6,23,0.82);backdrop-filter:blur(8px);z-index:100200;display:flex;align-items:center;justify-content:center;padding:18px;font-family:"Plus Jakarta Sans",system-ui,sans-serif;';
-
-    overlay.innerHTML =
-      '<div style="width:100%;max-width:520px;background:#081121;border:1px solid rgba(56,189,248,0.38);border-radius:24px;padding:28px 26px;text-align:center;color:#f8fafc;box-shadow:0 25px 60px rgba(0,0,0,0.85);">' +
-        '<h2 style="margin:0 0 14px 0;color:#38bdf8;font-size:1.3rem;font-weight:800;">' + d.title + '</h2>' +
-        '<p style="margin:0 0 12px 0;color:#cbd5e1;font-size:0.9rem;line-height:1.6;">' + d.intro + '</p>' +
-        '<div style="color:#38bdf8;font-weight:800;font-size:0.98rem;margin-bottom:14px;line-height:1.45;">« INSTITUT NUMÉRIQUE CULTURE, LANGUES ET TEXTES FONDAMENTAUX »</div>' +
-        '<div style="background:rgba(15,23,42,0.75);border:1px solid rgba(56,189,248,0.22);border-radius:16px;padding:16px;font-size:0.83rem;color:#cbd5e1;line-height:1.65;margin-bottom:20px;">' +
-          '<div>' + d.status + '</div>' +
-          '<div style="margin-top:6px;">' + d.objet + '</div>' +
-          '<div style="margin-top:6px;">' + d.siege + '</div>' +
-          '<div style="margin-top:6px;">' + d.contact + '</div>' +
-        '</div>' +
-        '<button type="button" id="wbwCloseLegalV122" style="width:100%;background:linear-gradient(135deg,#38bdf8,#0284c7);color:#021019;border:none;border-radius:12px;padding:11px;font-weight:800;font-size:0.92rem;cursor:pointer;">' + d.close + '</button>' +
-      '</div>';
-
-    document.body.appendChild(overlay);
-    document.getElementById('wbwCloseLegalV122').onclick = function() { overlay.remove(); };
-    overlay.onclick = function(ev) { if (ev.target === overlay) overlay.remove(); };
-  }
-
-  function synchroniserFooterEtBoutonsLangue() {
-    // Nettoyer tout ancien bouton TikTok ou ancien conteneur s'il en reste dans le DOM
-    var restesTikTok = document.querySelectorAll('#wbwTikTokStudioBtnV121, #wbwTikTokStudioBtnV120, #wbwTikTokBtnV119, #wbwVideoGenBtnV118, #wbwInstitutionalLinksV120, #wbwInstitutionalLinksV121');
-    for (var r = 0; r < restesTikTok.length; r++) restesTikTok[r].remove();
-
-    // Surveiller le clic sur les boutons de langue du header (FR, EN, ES, AR, DE, IT, ID, RU)
-    var codeLangues = ['fr', 'en', 'es', 'ar', 'de', 'it', 'id', 'ru'];
-    var tousElements = document.querySelectorAll('button, a, span');
-    for (var i = 0; i < tousElements.length; i++) {
-      var el = tousElements[i];
-      if (el.__wbwLangBoundV122) continue;
-      var txt = (el.textContent || '').trim().toLowerCase();
-      for (var c = 0; c < codeLangues.length; c++) {
-        var code = codeLangues[c];
-        if (txt === code || txt.indexOf(' ' + code) !== -1) {
-          el.__wbwLangBoundV122 = true;
-          (function(codeChoisi) {
-            el.addEventListener('click', function() {
-              window.__coranLangOverride = codeChoisi;
-              try { localStorage.setItem('coran_lang', codeChoisi); } catch (e) {}
-              setTimeout(synchroniserFooterEtBoutonsLangue, 40);
-            });
-          })(code);
-          break;
-        }
-      }
-    }
-
-    var lang = detecterLangueActive();
-    try { localStorage.setItem('coran_lang', lang); } catch (e) {}
-    var d = TRAD_LEGAL_8[lang] || TRAD_LEGAL_8.fr;
-
-    var btnMentions = trouverBoutonMentionsLegales();
-    if (!btnMentions || !btnMentions.parentElement) return;
-
-    btnMentions.textContent = d.btnLegal;
-    btnMentions.onclick = ouvrirModaleMentionsLegalesV122;
-
-    var wrap = document.getElementById('wbwInstitutionalLinksV122');
-    if (!wrap) {
-      wrap = document.createElement('span');
-      wrap.id = 'wbwInstitutionalLinksV122';
-      wrap.style.cssText = 'display:inline-flex;align-items:center;gap:10px;margin-left:10px;flex-wrap:wrap;justify-content:center;';
-      btnMentions.parentElement.insertBefore(wrap, btnMentions.nextSibling);
-    }
-
-    var stylePill = 'background:rgba(15,23,42,0.78);color:#cbd5e1;border:1px solid rgba(56,189,248,0.3);padding:6px 14px;border-radius:999px;font-size:0.78rem;font-weight:700;text-decoration:none;transition:all 0.2s ease;display:inline-flex;align-items:center;gap:5px;';
-    wrap.innerHTML =
-      '<a id="wbwAboutLinkV122" href="a-propos.html?lang=' + lang + '" style="' + stylePill + '">' + d.btnAbout + '</a>' +
-      '<a id="wbwContactLinkV122" href="contact.html?lang=' + lang + '" style="' + stylePill + '">' + d.btnContact + '</a>';
-  }
-
-  window.__wbwInitInstitutionnelV122 = synchroniserFooterEtBoutonsLangue;
-  synchroniserFooterEtBoutonsLangue();
-  setInterval(synchroniserFooterEtBoutonsLangue, 900);
-})();</script>
 <!-- WBW_COLLE_V110_START -->
 <style id="wbw-style-v110">
   html body #flatEarthSun, html body .flat-earth-sun, html body .astre-soleil-pur-v77 {
@@ -5930,7 +5720,7 @@ html body #btnLangRuV77.active-ext-v77 {
 
   window.__wbwInitInstitutionnelV122 = synchroniserFooterEtBoutonsLangue;
   synchroniserFooterEtBoutonsLangue();
-  setInterval(synchroniserFooterEtBoutonsLangue, 900);
+  document.addEventListener('DOMContentLoaded', synchroniserFooterEtBoutonsLangue);
 })();
   function verifierChangementVersetEtPause() {
     if (window.__wbwInitInstitutionnelV122) window.__wbwInitInstitutionnelV122();
@@ -5948,7 +5738,23 @@ html body #btnLangRuV77.active-ext-v77 {
     if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW();
   }
 
-  setInterval(verifierChangementVersetEtPause, 180);
+  (function attacherDeclencheursV110() {
+    window.addEventListener('popstate', function() { setTimeout(verifierChangementVersetEtPause, 20); });
+    window.addEventListener('load', function() { verifierChangementVersetEtPause(); });
+    var aud110 = document.getElementById('ayahAudio');
+    if (aud110) {
+      ['play', 'pause', 'ended', 'seeked'].forEach(function(ev) {
+        aud110.addEventListener(ev, function() { verifierChangementVersetEtPause(); });
+      });
+    }
+    var badge110 = document.getElementById('badgeNumEl');
+    if (badge110 && typeof MutationObserver !== 'undefined') {
+      new MutationObserver(function() {
+        setTimeout(verifierChangementVersetEtPause, 25);
+      }).observe(badge110, { childList: true, characterData: true, subtree: true });
+    }
+    setTimeout(verifierChangementVersetEtPause, 220);
+  })();
   document.addEventListener('click', function() { setTimeout(verifierChangementVersetEtPause, 5); setTimeout(verifierChangementVersetEtPause, 60); });
   document.addEventListener('change', function() { setTimeout(verifierChangementVersetEtPause, 5); setTimeout(verifierChangementVersetEtPause, 60); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', verifierChangementVersetEtPause);

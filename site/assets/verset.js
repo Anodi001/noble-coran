@@ -1061,13 +1061,20 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         else if (e.code === 'ArrowLeft') { const p = document.getElementById('prevVerseLink'); if (p) p.click(); }
       });
 
-      setInterval(() => {
+      const verifierMajWbw = () => {
         const lg = (typeof currentLang !== 'undefined' && ['fr','en','es','ar'].includes(currentLang)) ? currentLang : 'fr';
         const signatureActuelle = numSourateActuelle + ':' + numVersetActuel + '_' + lg + '_' + (modeMotAMotActif ? '1' : '0') + '_' + (modeTajweedActif ? '1' : '0');
         const arEl = document.getElementById('arabicVerseEl');
         const besoinMaj = (signatureActuelle !== dernierVersetCharge) || (!modeMotAMotActif && arEl && arEl.children.length === 0 && motsActuelsDuVerset.length > 0);
         if (besoinMaj) chargerDonneesMotAMotEtTajweed();
-      }, 400);
+      };
+      document.addEventListener('click', () => setTimeout(verifierMajWbw, 25));
+      document.addEventListener('change', () => setTimeout(verifierMajWbw, 25));
+      window.addEventListener('popstate', () => setTimeout(verifierMajWbw, 25));
+      const badgeObsEl = document.getElementById('badgeNumEl');
+      if (badgeObsEl && typeof MutationObserver !== 'undefined') {
+        new MutationObserver(() => setTimeout(verifierMajWbw, 20)).observe(badgeObsEl, { childList: true, characterData: true, subtree: true });
+      }
     });
 
 ;
@@ -3793,13 +3800,34 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     setTimeout(synchroniserTout, 80);
   });
 
-  setInterval(function () {
-    synchroniserTout();
-    var aud = trouverAudioActif();
-    if (aud && !aud.paused && !rafId) {
-      lancerBoucleSuivi();
+  (function attacherDeclencheursV77() {
+    var timerInputV77 = null;
+    document.addEventListener("change", function () {
+      setTimeout(synchroniserTout, 20);
+    });
+    document.addEventListener("input", function () {
+      clearTimeout(timerInputV77);
+      timerInputV77 = setTimeout(synchroniserTout, 120);
+    });
+    window.addEventListener("popstate", function () {
+      setTimeout(synchroniserTout, 20);
+    });
+    window.addEventListener("load", function () {
+      synchroniserTout();
+    });
+    var badgeEl = document.getElementById("badgeNumEl");
+    if (badgeEl && typeof MutationObserver !== "undefined") {
+      new MutationObserver(function () {
+        setTimeout(synchroniserTout, 25);
+      }).observe(badgeEl, { childList: true, characterData: true, subtree: true });
     }
-  }, 300);
+    var audInit = document.getElementById("ayahAudio");
+    if (audInit) {
+      audInit.addEventListener("play", function () { if (!rafId) lancerBoucleSuivi(); });
+      audInit.addEventListener("playing", function () { if (!rafId) lancerBoucleSuivi(); });
+    }
+    setTimeout(synchroniserTout, 250);
+  })();
 
   synchroniserTout();
 })();
@@ -5361,7 +5389,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
 
   window.__wbwInitInstitutionnelV122 = synchroniserFooterEtBoutonsLangue;
   synchroniserFooterEtBoutonsLangue();
-  setInterval(synchroniserFooterEtBoutonsLangue, 900);
+  document.addEventListener('DOMContentLoaded', synchroniserFooterEtBoutonsLangue);
 })();
   function verifierChangementVersetEtPause() {
     if (window.__wbwInitInstitutionnelV122) window.__wbwInitInstitutionnelV122();
@@ -5379,7 +5407,23 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW();
   }
 
-  setInterval(verifierChangementVersetEtPause, 180);
+  (function attacherDeclencheursV110() {
+    window.addEventListener('popstate', function() { setTimeout(verifierChangementVersetEtPause, 20); });
+    window.addEventListener('load', function() { verifierChangementVersetEtPause(); });
+    var aud110 = document.getElementById('ayahAudio');
+    if (aud110) {
+      ['play', 'pause', 'ended', 'seeked'].forEach(function(ev) {
+        aud110.addEventListener(ev, function() { verifierChangementVersetEtPause(); });
+      });
+    }
+    var badge110 = document.getElementById('badgeNumEl');
+    if (badge110 && typeof MutationObserver !== 'undefined') {
+      new MutationObserver(function() {
+        setTimeout(verifierChangementVersetEtPause, 25);
+      }).observe(badge110, { childList: true, characterData: true, subtree: true });
+    }
+    setTimeout(verifierChangementVersetEtPause, 220);
+  })();
   document.addEventListener('click', function() { setTimeout(verifierChangementVersetEtPause, 5); setTimeout(verifierChangementVersetEtPause, 60); });
   document.addEventListener('change', function() { setTimeout(verifierChangementVersetEtPause, 5); setTimeout(verifierChangementVersetEtPause, 60); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', verifierChangementVersetEtPause);
