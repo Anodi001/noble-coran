@@ -1,16 +1,11 @@
 === RAPPORT D'AUDIT CORANTAFSIR (6236 versets analysés) ===
-Total d'anomalies détectées : 341
+Total d'anomalies détectées : 328
 
-[HADITH SANS SOURCE] 1:4
-[HADITH SANS SOURCE] 1:7
 [TAFSIR TRONQUÉ ?] 5:78 -> finit par "...ansgressions qu’ils ont commis"
 [TAFSIR TRONQUÉ ?] 5:119 -> finit par "...ui n’est égalé par aucun autre"
-[HADITH SANS SOURCE] 6:151
 [TAFSIR TRONQUÉ ?] 7:121 -> finit par "...gneur de toutes les créatures,"
 [DÉBUT COUPÉ] 7:122 -> "le Seigneur de Moïse et d’Aaron, Lui Seul mér..."
 [DÉBUT COUPÉ] 7:173 -> "ou que vous protestiez que ce sont vos ancêtr..."
-[PARENTHÈSE CASSÉE] 7:180
-[PARENTHÈSE CASSÉE] 9:29
 [TAFSIR TRONQUÉ ?] 9:51 -> finit par "... a pas meilleur garant que Lui"
 [TAFSIR TRONQUÉ ?] 9:106 -> finit par "...ibn Mâlik et Hilâl ibn Umayyah"
 [TAFSIR TRONQUÉ ?] 11:80 -> finit par "... entre ces gens et mes invités"
@@ -58,7 +53,6 @@ Total d'anomalies détectées : 341
 [TAFSIR TRONQUÉ ?] 31:4 -> finit par "...ls seront récompensés ou punis"
 [TAFSIR TRONQUÉ ?] 34:6 -> finit par "...le bas monde et dans l’au-delà"
 [TAFSIR TRONQUÉ ?] 34:11 -> finit par "... rétribuerai selon leur nature"
-[HADITH SANS SOURCE] 35:32
 [TAFSIR TRONQUÉ ?] 37:22 -> finit par "...i que tout ce qu’ils adoraient"
 [DÉBUT COUPÉ] 37:23 -> "en dehors d’Allah (leurs idoles), puis condui..."
 [TAFSIR TRONQUÉ ?] 37:28 -> finit par "...apportaient de la part d’Allah"
@@ -94,7 +88,6 @@ Total d'anomalies détectées : 341
 [DÉBUT COUPÉ] 53:7 -> "alors qu'il se trouvait à l'horizon suprême d..."
 [DÉBUT COUPÉ] 53:16 -> "au moment où le Jujubier était enveloppé d'un..."
 [DÉBUT COUPÉ] 53:20 -> "ainsi que Manat, la troisième autre :📜 Exégè..."
-[HADITH SANS SOURCE] 53:42
 [TAFSIR TRONQUÉ ?] 56:49 -> finit par "...énérations comme les dernières"
 [DÉBUT COUPÉ] 56:50 -> "seront sans aucun doute rassemblées le Jour d..."
 [TAFSIR TRONQUÉ ?] 56:60 -> finit par "...rci, et rien ne Nous empêchera"
@@ -112,8 +105,6 @@ Total d'anomalies détectées : 341
 [TAFSIR TRONQUÉ ?] 56:93 -> finit par "...u bouillante qu’on lui servira"
 [DÉBUT COUPÉ] 56:93 -> "il sera accueilli par une eau bouillante qu’o..."
 [DÉBUT COUPÉ] 56:94 -> "et il se consumera dans le Feu de l’Enfer...."
-[MARKDOWN BRUT] 60:10
-[MARKDOWN BRUT] 67:15
 [DÉBUT COUPÉ] 68:13 -> "au cœur dur (‘Utullin), et en plus de cela « ..."
 [DÉBUT COUPÉ] 68:38 -> "et où il serait décrété que vous obtiendrez d..."
 [DÉBUT COUPÉ] 68:43 -> "leurs regards seront abaissés, et l'avilissem..."
@@ -162,7 +153,6 @@ Total d'anomalies détectées : 341
 [TAFSIR TRONQUÉ ?] 71:22 -> finit par "...s faibles d’esprit contre Noé,"
 [DÉBUT COUPÉ] 71:23 -> "et dirent à leurs suiveurs: Ne cessez pas d’a..."
 [DÉBUT COUPÉ] 73:4 -> "ou un peu plus (jusqu'aux deux tiers). Et réc..."
-[HADITH SANS SOURCE] 74:17
 [TAFSIR TRONQUÉ ?] 74:33 -> finit par "...ent par la nuit qui se retire,"
 [DÉBUT COUPÉ] 74:34 -> "et par l’aube qui apparaît...."
 [TAFSIR TRONQUÉ ?] 74:35 -> finit par "...st un des plus grands malheurs"
@@ -175,7 +165,6 @@ Total d'anomalies détectées : 341
 [DÉBUT COUPÉ] 75:9 -> "et que le soleil et la lune seront réunis...."
 [TAFSIR TRONQUÉ ?] 75:14 -> finit par "...ont des péchés qu’il a commis,"
 [DÉBUT COUPÉ] 75:15 -> "quand bien même il présenterait des excuses p..."
-[HADITH SANS SOURCE] 75:23
 [DÉBUT COUPÉ] 75:23 -> "regardant avec émerveillement vers leur Seign..."
 [TAFSIR TRONQUÉ ?] 75:24 -> finit par "...eront, ce Jour-là, renfrognés,"
 [DÉBUT COUPÉ] 75:25 -> "s’attendant avec certitude à subir une puniti..."
@@ -297,7 +286,6 @@ Total d'anomalies détectées : 341
 [TAFSIR TRONQUÉ ?] 88:23 -> finit par "...t en Allah et en Son Messager,"
 [TAFSIR TRONQUÉ ?] 88:25 -> finit par "... retourneront après leur mort,"
 [DÉBUT COUPÉ] 88:26 -> "puis c’est à Nous Seul qu’il appartient de le..."
-[MARKDOWN BRUT] 89:24
 [DÉBUT COUPÉ] 90:9 -> "ainsi qu’une langue et deux lèvres pour parle..."
 [TAFSIR TRONQUÉ ?] 90:13 -> finit par "...ir un esclave, homme ou femme,"
 [TAFSIR TRONQUÉ ?] 90:14 -> finit par "...ourriture en un jour de famine"
@@ -325,7 +313,6 @@ Total d'anomalies détectées : 341
 [DÉBUT COUPÉ] 91:7 -> "par toute âme et sa création harmonieuse par ..."
 [DÉBUT COUPÉ] 91:8 -> "et lui a alors inspiré (et fait connaître) la..."
 [DÉBUT COUPÉ] 91:12 -> "lorsque le plus misérable d'entre eux (Qudar ..."
-[HADITH SANS SOURCE] 93:4
 [TAFSIR TRONQUÉ ?] 95:2 -> finit par "...ah parla à Son prophète Moïse,"
 [DÉBUT COUPÉ] 95:2 -> "par le Mont Sinaï où Allah parla à Son prophè..."
 [DÉBUT COUPÉ] 95:3 -> "et par La Mecque, la Cité Sacrée où quiconque..."
