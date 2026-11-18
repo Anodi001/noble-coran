@@ -43,7 +43,7 @@ function verifierVersetValide(pathname) {
 
 const BROWSER_HEADERS = {
   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-  "Accept": "application/json, text/plain, <em>/</em>"
+  "Accept": "application/json, text/plain, */*"
 };
 
 let MEM_STATIC_TAFSIR_CACHE = null;
@@ -416,8 +416,8 @@ async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
       for (let j = 0; j < idxs.length; j++) {
         const idx = idxs[j];
         const rawOrig = parts[idx];
-        const lead = (rawOrig.match(/^\s<em>/) || [""])[0];
-        const trail = (rawOrig.match(/<\/em>$/) || [""])[0];
+        const lead = (rawOrig.match(/^\s*/) || [""])[0];
+        const trail = (rawOrig.match(/\s*$/) || [""])[0];
         parts[idx] = lead + escapeHtmlText(splitTr[j].trim()) + trail;
       }
       return { ok: true, html: parts.join(""), diag: "batch-" + batchRes.provider };
@@ -429,8 +429,8 @@ async function traduireHtmlEnPreservantBalises(innerHtml, lang) {
   for (let j = 0; j < idxs.length; j++) {
     const idx = idxs[j];
     const rawOrig = parts[idx];
-    const lead = (rawOrig.match(/^\s<em>/) || [""])[0];
-    const trail = (rawOrig.match(/\s\x3c\/em\x3e$/) || [""])[0];
+    const lead = (rawOrig.match(/^\s*/) || [""])[0];
+    const trail = (rawOrig.match(/\s*$/) || [""])[0];
     const r = await traduireTexteServeur(segs[j], lang);
     if (r.ok && r.text) {
       parts[idx] = lead + escapeHtmlText(r.text) + trail;
@@ -541,7 +541,7 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname, 
 
   let traductionComplete = true;
 
-  out = out.replace(/<html([^>]<em>)lang="[^"]</em>"([^>]*)>/i, '<html$1lang="' + lang + '" dir="' + (lang === "ar" ? "rtl" : "ltr") + '"$2>');
+  out = out.replace(/<html([^>]*)lang="[^"]*"([^>]*)>/i, '<html$1lang="' + lang + '" dir="' + (lang === "ar" ? "rtl" : "ltr") + '"$2>');
 
   const titles = {
     en: mVerse ? ("Surah " + nomS + " (" + sNum + ":" + vNum + ") — Noble Quran, Audio, Word by Word & Tafsir") : "The Noble Quran & Tafsir Al-Mukhtasar — Audio, Tajwid & Word by Word (8 Languages)",
@@ -604,7 +604,7 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname, 
     out = out.replace(/(<h1[^>]*>\s*)Sourate ([^<]+?) — Verset (\d+)/i, "$1" + prefS + "$2" + prefV + "$3");
 
     let versetTraiteOk = false;
-    const regVersetFr = new RegExp("(>)(\\s<em>" + vNum + "\\s</em>[\\.-]\\s+)([^<]{2,})(<\\/)", "i");
+    const regVersetFr = new RegExp("(>)(\\s*" + vNum + "\\s*[\\.-]\\s+)([^<]{2,})(<\\/)", "i");
     if (lang === "ar") {
       versetTraiteOk = true;
     } else if (QURAN_API_IDS[lang] && regVersetFr.test(out)) {
@@ -638,8 +638,8 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname, 
 
   out = remplacerHorsScriptsEtStyles(out, segment =>
     segment
-      .replace(/href="\/?sourate-(\d+)-verset-(\d+)(?:\.html)?(?:\?[^"]<em>)?"/gi, 'href="/sourate-$1-verset-$2?lang=' + lang + '"')
-      .replace(/href="\/?index(?:\.html)?(?:\?[^"]</em>)?"/gi, 'href="/?lang=' + lang + '"')
+      .replace(/href="\/?sourate-(\d+)-verset-(\d+)(?:\.html)?(?:\?[^"]*)?"/gi, 'href="/sourate-$1-verset-$2?lang=' + lang + '"')
+      .replace(/href="\/?index(?:\.html)?(?:\?[^"]*)?"/gi, 'href="/?lang=' + lang + '"')
       .replace(/href="\/"/g, 'href="/?lang=' + lang + '"')
   );
 
