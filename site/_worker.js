@@ -85,6 +85,48 @@ const BROWSER_HEADERS = {
 };
 
 let MEM_STATIC_TAFSIR_CACHE = null;
+let MEM_ASBAB_INDEX = null;
+
+const ASBAB_TITRES_SSR = {
+  fr: "📜 Contexte de révélation (Sabab an-Nuzūl)",
+  en: "📜 Occasion of Revelation (Sabab an-Nuzūl)",
+  es: "📜 Contexto de revelación (Sabab an-Nuzūl)",
+  ar: "📜 سبب النزول الصحيح",
+  de: "📜 Offenbarungsanlass (Sabab an-Nuzūl)",
+  it: "📜 Circostanza della rivelazione (Sabab an-Nuzūl)",
+  id: "📜 Asbabun Nuzul (Sebab Turunnya Ayat)",
+  ru: "📜 Причина ниспослания (Сабаб ан-нузуль)"
+};
+
+async function obtenirAsbabSSR(sNum, vNum, lang, env) {
+  try {
+    if (!MEM_ASBAB_INDEX && env && env.ASSETS && typeof env.ASSETS.fetch === "function") {
+      const rA = await env.ASSETS.fetch(new Request("https://corantafsir.com/asbab-nuzul.json"));
+      if (rA.ok) {
+        const dA = await rA.json();
+        const idx = {};
+        for (const [k, rec] of Object.entries(dA.recits || {})) {
+          idx[k] = rec;
+          if (Array.isArray(rec.versets)) rec.versets.forEach(vk => { idx[vk] = rec; });
+        }
+        MEM_ASBAB_INDEX = idx;
+      }
+    }
+    const rec = MEM_ASBAB_INDEX ? MEM_ASBAB_INDEX[sNum + ":" + vNum] : null;
+    if (!rec || !rec.texte || !rec.texte[lang]) return "";
+    const isAr = lang === "ar";
+    const titre = (ASBAB_TITRES_SSR[lang] || ASBAB_TITRES_SSR.fr) + (rec.plage ? " (" + rec.plage + ")" : "");
+    const degre = rec.degre || "Sahīh";
+    const clsDeg = /hasan/i.test(degre) ? " hasan" : "";
+    return '<div id="asbabNuzulContainer" class="notranslate" translate="no" data-asbab-sig="' + sNum + ':' + vNum + '|' + lang + '">' +
+      '<div class="asbab-nuzul-card" dir="' + (isAr ? "rtl" : "ltr") + '">' +
+      '<div class="asbab-nuzul-head"><span class="asbab-nuzul-title">' + escapeHtmlText(titre) + '</span>' +
+      '<span class="asbab-nuzul-badges"><span class="asbab-badge-degre' + clsDeg + '">✓ ' + escapeHtmlText(degre) + '</span></span></div>' +
+      '<div class="asbab-nuzul-body">' + escapeHtmlText(rec.texte[lang]) + '</div>' +
+      '<div class="asbab-nuzul-source">' + escapeHtmlText(rec.source || "") + '</div></div></div>';
+  } catch (e) {}
+  return "";
+}
 
 const ATTRIBUTIONS_BAS = {
   fr: "Traduction originale de Muhammad Hamidullah (1977) • Exégèse (Tafsir) Al-Mukhtasar & Ibn Kathir",
@@ -683,6 +725,11 @@ export async function transformerHtmlCompletSSRWithStatus(html, lang, pathname, 
       diagTafsir = "selector-not-found";
     }
 
+    const asbabHtml = await obtenirAsbabSSR(sNum, vNum, lang, env);
+    if (asbabHtml) {
+      out = out.replace('<div id="extraNotesContainer"></div>', '<div id="extraNotesContainer"></div>' + asbabHtml);
+    }
+
     if (!versetTraiteOk || !tafsirTraiteOk) {
       traductionComplete = false;
     }
@@ -712,7 +759,7 @@ async function recupererFichierStatiquePages(request, env) {
   return fetch(request);
 }
 
-const SSR_VERSION = "v112";
+const SSR_VERSION = "v113";
 function construireCleCache(request, lang) {
   const key = new URL(request.url);
   key.pathname = key.pathname.replace(/\.html$/i, "");

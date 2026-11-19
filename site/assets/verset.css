@@ -1104,3 +1104,71 @@ html body #btnLangRuV77.active-ext-v77 {
   html body .verse-stage [class*="ham_wasl"], html body .verse-stage [class*="slnt"] {
     color: #94a3b8 !important; text-shadow: none !important;
   }
+
+
+/* === ENCADRÉ ASBĀB AN-NUZŪL (8 LANGUES) === */
+.asbab-nuzul-card {
+  margin-top: 16px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.11), rgba(16, 185, 129, 0.08));
+  border: 1px solid rgba(56, 189, 248, 0.34);
+  border-left: 3.5px solid #38bdf8;
+  color: #e2e8f0;
+  font-size: 0.96rem;
+  line-height: 1.75;
+}
+.asbab-nuzul-card[dir="rtl"] {
+  border-left: 1px solid rgba(56, 189, 248, 0.34);
+  border-right: 3.5px solid #38bdf8;
+  text-align: right;
+  font-family: 'Scheherazade New', 'Amiri', serif;
+  font-size: 1.24rem;
+}
+.asbab-nuzul-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.asbab-nuzul-title {
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #7dd3fc;
+}
+.asbab-nuzul-card[dir="rtl"] .asbab-nuzul-title {
+  text-transform: none;
+  font-size: 1.08rem;
+}
+.asbab-nuzul-badges {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.asbab-badge-degre {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 2px 9px;
+  border-radius: 99px;
+  background: rgba(16, 185, 129, 0.22);
+  color: #6ee7b7;
+  border: 1px solid rgba(52, 211, 153, 0.5);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.asbab-badge-degre.hasan {
+  background: rgba(56, 189, 248, 0.2);
+  color: #bae6fd;
+  border-color: rgba(56, 189, 248, 0.5);
+}
+.asbab-nuzul-source {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  font-style: italic;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}

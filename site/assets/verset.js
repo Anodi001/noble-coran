@@ -1951,8 +1951,8 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       if (t === "SAAR" || /AR$/.test(t)) btnSaAr = c;
     }
 
-    var arEstActif = btnSaAr && btnSaAr.classList.contains("active");
-    if (arEstActif && btnFr) {
+    var frEstActif = btnFr && btnFr.classList.contains("active");
+    if (!frEstActif && btnFr) {
       IgnoreClicInterneFr = true;
       btnFr.click();
       IgnoreClicInterneFr = false;
@@ -2650,7 +2650,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       if (!pEl) continue;
       var tag = pEl.tagName;
       if (tag === "SCRIPT" || tag === "STYLE") continue;
-      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate") || pEl.closest("#khatmPlannerWidgetV77") || (QURANENC_EXT_KEYS[codeL] && pEl.closest("#mainExplanationEl"))) continue;
+      if (pEl.closest(".wbw-card-unit") || pEl.id === "wbwSensLectureBanner" || pEl.closest(".notranslate") || pEl.closest("#khatmPlannerWidgetV77") || pEl.closest("#asbabNuzulContainer") || (QURANENC_EXT_KEYS[codeL] && pEl.closest("#mainExplanationEl"))) continue;
 
       var val = (node.__origExtV77 !== undefined ? node.__origExtV77 : node.nodeValue || "").replace(/\u00A0/g, " ").trim();
       if (!val || /[\u0600-\u06FF]/.test(val)) continue;
@@ -2990,60 +2990,31 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       ar: "التفسير المختصر وتفسير ابن كثير وأسباب النزول"
     };
 
-    var tous = document.querySelectorAll("p, div, span, small, footer");
-    for (var i = 0; i < tous.length; i++) {
-      var el = tous[i];
-      if (el.children.length > 0) continue;
-      var txt = (el.textContent || "").trim();
-      if (!txt) continue;
-
-      if (
-        txt.indexOf("Traduction originale de Muhammad Hamidullah") !== -1 ||
-        txt.indexOf("Translation by Saheeh International") !== -1 ||
-        txt.indexOf("Traducción de Abdel Ghani Melara") !== -1 ||
-        txt.indexOf("Traducción de Sheikh Isa García") !== -1 ||
-        txt.indexOf("Deutsche Übersetzung von Frank Bubenheim") !== -1 ||
-        txt.indexOf("Traduzione italiana di Hamza Roberto Piccardo") !== -1 ||
-        txt.indexOf("Terjemahan Kementerian Agama RI") !== -1 ||
-        txt.indexOf("Смысловой перевод Эльмира Кулиева") !== -1 ||
-        txt.indexOf("النص القرآني بالرسم العثماني") !== -1
-      ) {
-        if (el.textContent !== textesBas[lang]) {
-          el.textContent = textesBas[lang];
-          el.style.setProperty("direction", lang === "ar" ? "rtl" : "ltr", "important");
-        }
+    var srcEl = document.getElementById("sourcesLineEl");
+    if (srcEl && textesBas[lang]) {
+      if (srcEl.textContent !== textesBas[lang]) {
+        srcEl.textContent = textesBas[lang];
       }
+      srcEl.style.setProperty("direction", lang === "ar" ? "rtl" : "ltr", "important");
+    }
 
-      if (
-        txt.indexOf("Traduction Muhammad Hamidullah") !== -1 ||
-        txt.indexOf("Saheeh International & Exegesis") !== -1 ||
-        txt.indexOf("Traducción Abdel Ghani Melara") !== -1 ||
-        txt.indexOf("Traducción Sheikh Isa García") !== -1 ||
-        txt.indexOf("Übersetzung Bubenheim & Elyas") !== -1 ||
-        txt.indexOf("Traduzione Hamza Roberto Piccardo") !== -1 ||
-        txt.indexOf("Terjemahan Kemenag RI") !== -1 ||
-        txt.indexOf("Перевод Э. Кулиева") !== -1 ||
-        txt.indexOf("التفسير المختصر وتفسير ابن كثير") !== -1
-      ) {
-        var parts = txt.split("•");
-        if (parts.length >= 2) {
-          var lieu = parts[0].trim();
-          var estMecLieu = /mecqu|mecc|makk|мекк|مكية/i.test(lieu);
-          var mapLieu = {
-            fr: estMecLieu ? "Sourate Mecquoise (La Mecque)" : "Sourate Médinoise (Médine)",
-            en: estMecLieu ? "Meccan Surah (Makkah)" : "Medinan Surah (Madinah)",
-            es: estMecLieu ? "Sura Mequí (La Meca)" : "Sura Medinense (Medina)",
-            ar: estMecLieu ? "سورة مكية (مكة المكرمة)" : "سورة مدنية (المدينة المنورة)",
-            de: estMecLieu ? "Mekkanische Sure (Mekka)" : "Medinensische Sure (Medina)",
-            it: estMecLieu ? "Sura Meccana (La Mecca)" : "Sura Medinese (Medina)",
-            id: estMecLieu ? "Surah Makkiyah (Mekkah)" : "Surah Madaniyah (Madinah)",
-            ru: estMecLieu ? "Мекканская сура (Мекка)" : "Мединская сура (Медина)"
-          };
-          var traduireLieuEtOrdreExt = mapLieu[lang] || lieu;
-          var nv = traduireLieuEtOrdreExt + " • " + textesHaut[lang];
-          if (el.textContent !== nv) el.textContent = nv;
-        }
-      }
+    var subEl = document.getElementById("subHeaderInfoEl");
+    if (subEl && textesHaut[lang]) {
+      var estMec = window.SOURATE_DATA
+        ? (window.SOURATE_DATA.typeSourateClasse === "mecquoise")
+        : /mecqu|mecc|makk|мекк|مكية/i.test(subEl.textContent || "");
+      var mapLieu = {
+        fr: estMec ? "Sourate Mecquoise (La Mecque)" : "Sourate Médinoise (Médine)",
+        en: estMec ? "Meccan Surah (Makkah)" : "Medinan Surah (Madinah)",
+        es: estMec ? "Sura Mequí (La Meca)" : "Sura Medinense (Medina)",
+        ar: estMec ? "سورة مكية (مكة المكرمة)" : "سورة مدنية (المدينة المنورة)",
+        de: estMec ? "Mekkanische Sure (Mekka)" : "Medinensische Sure (Medina)",
+        it: estMec ? "Sura Meccana (La Mecca)" : "Sura Medinese (Medina)",
+        id: estMec ? "Surah Makkiyah (Mekkah)" : "Surah Madaniyah (Madinah)",
+        ru: estMec ? "Мекканская сура (Мекка)" : "Мединская сура (Медина)"
+      };
+      var nvSub = (mapLieu[lang] || "") + " • " + textesHaut[lang];
+      if (subEl.textContent !== nvSub) subEl.textContent = nvSub;
     }
   }
 
@@ -5453,4 +5424,154 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   window.__verifierV110 = verifierChangementVersetEtPause;
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', verifierChangementVersetEtPause);
   else verifierChangementVersetEtPause();
+})();
+
+
+/* === MODULE ASBĀB AN-NUZŪL 8 LANGUES === */
+(function __moduleAsbabNuzulV1() {
+  var TITRES_ASBAB = {
+    fr: "📜 Contexte de révélation (Sabab an-Nuzūl)",
+    en: "📜 Occasion of Revelation (Sabab an-Nuzūl)",
+    es: "📜 Contexto de revelación (Sabab an-Nuzūl)",
+    ar: "📜 سبب النزول الصحيح",
+    de: "📜 Offenbarungsanlass (Sabab an-Nuzūl)",
+    it: "📜 Circostanza della rivelazione (Sabab an-Nuzūl)",
+    id: "📜 Asbabun Nuzul (Sebab Turunnya Ayat)",
+    ru: "📜 Причина ниспослания (Сабаб ан-нузуль)"
+  };
+  var LABELS_SOURCE = {
+    fr: "Source :", en: "Source:", es: "Fuente:", ar: "المصدر:",
+    de: "Quelle:", it: "Fonte:", id: "Sumber:", ru: "Источник:"
+  };
+
+  var asbabIndex = null;
+  var asbabLoading = false;
+
+  function detecterLangue8() {
+    var extMap = { btnLangDeV77: "de", btnLangItV77: "it", btnLangIdV77: "id", btnLangRuV77: "ru" };
+    for (var id in extMap) {
+      var b = document.getElementById(id);
+      if (b && b.classList.contains("active-ext-v77")) return extMap[id];
+    }
+    var hl = (document.documentElement.getAttribute("lang") || "").slice(0, 2).toLowerCase();
+    if (TITRES_ASBAB[hl]) return hl;
+    if (typeof currentLang === "string" && TITRES_ASBAB[currentLang]) return currentLang;
+    var p = new URLSearchParams(window.location.search).get("lang");
+    if (p && TITRES_ASBAB[p.slice(0, 2).toLowerCase()]) return p.slice(0, 2).toLowerCase();
+    return "fr";
+  }
+
+  function obtenirCleActuelle() {
+    var badge = document.getElementById("badgeNumEl");
+    if (badge) {
+      var m = (badge.textContent || "").match(/(\d+)\s*:\s*(\d+)/);
+      if (m) return m[1] + ":" + m[2];
+    }
+    if (typeof numSourateActuelle !== "undefined" && typeof numVersetActuel !== "undefined") {
+      return numSourateActuelle + ":" + numVersetActuel;
+    }
+    return "";
+  }
+
+  function construireIndex(data) {
+    var idx = {};
+    var recits = (data && data.recits) ? data.recits : {};
+    for (var cle in recits) {
+      var r = recits[cle];
+      if (!r) continue;
+      idx[cle] = r;
+      if (Array.isArray(r.versets)) {
+        for (var i = 0; i < r.versets.length; i++) idx[r.versets[i]] = r;
+      }
+    }
+    return idx;
+  }
+
+  function chargerAsbabSiNecessaire() {
+    if (asbabIndex || asbabLoading) return;
+    asbabLoading = true;
+    var url = (window.location.protocol === "http:" || window.location.protocol === "https:")
+      ? "/asbab-nuzul.json?v=1"
+      : "asbab-nuzul.json";
+    fetch(url)
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (d && d.recits) {
+          asbabIndex = construireIndex(d);
+          afficherAsbabNuzul();
+        }
+      })
+      .catch(function () {})
+      .finally(function () { asbabLoading = false; });
+  }
+
+  function afficherAsbabNuzul() {
+    if (!asbabIndex) { chargerAsbabSiNecessaire(); return; }
+    var extra = document.getElementById("extraNotesContainer");
+    if (!extra || !extra.parentElement) return;
+
+    var cont = document.getElementById("asbabNuzulContainer");
+    if (!cont) {
+      cont = document.createElement("div");
+      cont.id = "asbabNuzulContainer";
+      cont.className = "notranslate";
+      cont.setAttribute("translate", "no");
+      extra.parentElement.insertBefore(cont, extra.nextSibling);
+    }
+
+    var cle = obtenirCleActuelle();
+    var lang = detecterLangue8();
+    var recit = cle ? asbabIndex[cle] : null;
+
+    if (!recit || !recit.texte) {
+      if (cont.innerHTML !== "") cont.innerHTML = "";
+      return;
+    }
+
+    // Anti-doublon propre : si l'ancien bloc 📜 est collé dans #mainExplanationEl, on le retire à l'affichage
+    var mExpl = document.getElementById("mainExplanationEl");
+    if (mExpl && mExpl.innerHTML.indexOf("<br><br>📜") !== -1) {
+      mExpl.innerHTML = mExpl.innerHTML.split("<br><br>📜")[0];
+    }
+
+    var sig = cle + "|" + lang;
+    if (cont.getAttribute("data-asbab-sig") === sig) return;
+    cont.setAttribute("data-asbab-sig", sig);
+
+    var txt = recit.texte[lang] || recit.texte.fr || "";
+    var isAr = lang === "ar";
+    var titre = TITRES_ASBAB[lang] || TITRES_ASBAB.fr;
+    var lblSrc = LABELS_SOURCE[lang] || "Source :";
+    var degre = recit.degre || "Sahīh";
+    var clsDeg = /hasan/i.test(degre) ? " hasan" : "";
+    var plage = recit.plage ? (" (" + recit.plage + ")") : "";
+
+    cont.innerHTML =
+      '<div class="asbab-nuzul-card" dir="' + (isAr ? "rtl" : "ltr") + '">' +
+        '<div class="asbab-nuzul-head">' +
+          '<span class="asbab-nuzul-title">' + titre + plage + '</span>' +
+          '<span class="asbab-nuzul-badges"><span class="asbab-badge-degre' + clsDeg + '">✓ ' + degre + '</span></span>' +
+        '</div>' +
+        '<div class="asbab-nuzul-body"></div>' +
+        '<div class="asbab-nuzul-source">' + lblSrc + ' ' + (recit.source || "") + '</div>' +
+      '</div>';
+    var bodyEl = cont.querySelector(".asbab-nuzul-body");
+    if (bodyEl) bodyEl.textContent = txt;
+  }
+
+  window.__majAsbabNuzul = afficherAsbabNuzul;
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", afficherAsbabNuzul);
+  } else {
+    afficherAsbabNuzul();
+  }
+  document.addEventListener("click", function () { setTimeout(afficherAsbabNuzul, 40); setTimeout(afficherAsbabNuzul, 150); });
+  document.addEventListener("change", function () { setTimeout(afficherAsbabNuzul, 40); });
+  window.addEventListener("popstate", function () { setTimeout(afficherAsbabNuzul, 40); });
+  if (typeof MutationObserver !== "undefined") {
+    var badge = document.getElementById("badgeNumEl");
+    if (badge) new MutationObserver(function () { setTimeout(afficherAsbabNuzul, 30); }).observe(badge, { childList: true, characterData: true, subtree: true });
+    if (document.documentElement) new MutationObserver(function () { setTimeout(afficherAsbabNuzul, 30); }).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+  }
 })();
