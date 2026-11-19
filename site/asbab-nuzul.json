@@ -1,5 +1,5 @@
 {
-  "version": 9,
+  "version": 13,
   "recits": {
     "96:1": {
       "versets": [
@@ -2771,6 +2771,1468 @@
         "it": "Abū Hurayrah narrò che alla rivelazione della fine di questo versetto i Compagni chiesero chi fosse quell'altro popolo; il Profeta ﷺ posò la mano sulla spalla di Salmān Al-Fārisī e disse: «Costui e il suo popolo! Anche se la fede fosse sospesa alle Pleiadi, uomini di Persia la raggiungerebbero».",
         "id": "Abu Hurairah meriwayatkan bahwa saat akhir ayat ini turun, para sahabat bertanya siapakah kaum pengganti itu; Nabi ﷺ menepuk bahu Salman Al-Farisi seraya bersabda: “Orang ini dan kaumnya; seandainya agama berada di bintang Tsurayya, niscaya orang-orang dari Persia akan meraihnya.”",
         "ru": "Абу Хурайра передал, что после ниспослания окончания этого аята сподвижники спросили, кто же этот другой народ; Пророк ﷺ положил руку на плечо Сальмана аль-Фариси и сказал: «Этот человек и его народ! Даже если бы вера была у Плеяд, люди из Персии достигли бы её»."
+      }
+    },
+    "48:1": {
+      "type": "sabab",
+      "versets": [
+        "48:1",
+        "48:2"
+      ],
+      "plage": "48:1–2",
+      "source": "Sahīh Al-Bukhārī n°4177, n°4833 & Sahīh Muslim n°1786",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Umar ibn Al-Khattāb et Anas ibn Mālik (qu'Allāh les agrée) rapportent que la Sourate Al-Fath fut révélée sur le chemin du retour d'Al-Hudaybiyah (an 6 de l'Hégire), alors que certains Compagnons éprouvaient de la tristesse face aux clauses apparentes du traité de paix. Le Messager d'Allāh ﷺ annonça avec joie à ‘Umar : « Cette nuit m'a été révélée une sourate qui m'est plus chère que tout ce sur quoi se lève le soleil ! », qualifiant la trêve d'Al-Hudaybiyah de « victoire éclatante » (Fathan mubīnan).",
+        "en": "‘Umar ibn Al-Khattāb and Anas ibn Mālik narrated that Sūrah Al-Fath was revealed on the return journey from Al-Hudaybiyah (6 AH), while some Companions felt saddened by the treaty's outward terms. The Messenger of Allāh ﷺ joyfully told ‘Umar: 'Tonight a surah has been revealed to me that is dearer to me than everything upon which the sun rises!'—calling the truce of Al-Hudaybiyah a 'clear victory.'",
+        "es": "‘Umar ibn Al-Khattāb y Anas ibn Mālik relataron que la Sura Al-Fath descendió al regresar de Al-Hudaybiyah (año 6 H.), cuando algunos Compañeros sentían tristeza por las cláusulas aparentes del pacto. El Profeta ﷺ anunció alegremente a ‘Umar que esa noche le había sido revelada una sura más querida para él que cuanto ilumina el sol.",
+        "ar": "عن عمر بن الخطاب وأنس بن مالك رضي الله عنهما أن سورة الفتح نزلت في طريق العودة من صلح الحديبية (سنة ٦ هـ) حين حزن بعض الصحابة من ظاهر شروط الصلح، فبشّر النبي ﷺ عمر قائلًا: «لقد أُنزلت عليّ الليلة سورة لهي أحب إليّ مما طلعت عليه الشمس»، وسمّى الله صلح الحديبية فتحًا مبينًا.",
+        "de": "‘Umar ibn Al-Khattāb und Anas ibn Mālik berichteten, dass Sure Al-Fath auf dem Rückweg von Al-Hudaybiyah (6 n. H.) offenbart wurde, als einige Gefährten über die Bedingungen des Vertrags betrübt waren. Der Prophet ﷺ sagte erfreut zu ‘Umar: „Mir wurde heute Nacht eine Sure offenbart, die mir lieber ist als alles, worüber die Sonne aufgeht!“",
+        "it": "‘Umar ibn Al-Khattāb e Anas ibn Mālik narrarono che Sura Al-Fath fu rivelata sulla via del ritorno da Al-Hudaybiyah (anno 6 E.), mentre alcuni Compagni erano rattristati dai termini apparenti del patto. Il Profeta ﷺ annunciò con gioia a ‘Umar che quella notte gli era scesa una sura più cara di tutto ciò su cui sorge il sole.",
+        "id": "‘Umar bin Al-Khaththab dan Anas bin Malik meriwayatkan bahwa Surah Al-Fath turun dalam perjalanan pulang dari Perjanjian Hudaibiyah (6 H) ketika sebagian sahabat bersedih melihat syarat perjanjian. Nabi ﷺ dengan gembira mengabarkan kepada ‘Umar bahwa malam itu turun surah yang lebih beliau cintai daripada seluruh dunia dan isinya.",
+        "ru": "‘Умар ибн аль-Хаттаб и Анас ибн Малик передали, что сура «Аль-Фатх» была ниспослана на обратном пути из аль-Худайбии (6 г. хиджры), когда некоторые сподвижники опечалились условиями договора. Пророк ﷺ радостно сказал ‘Умару: «Этой ночью мне была ниспослана сура, которая дороже для меня всего, над чем восходит солнце!»"
+      }
+    },
+    "48:18": {
+      "type": "sabab",
+      "versets": [
+        "48:18",
+        "48:19"
+      ],
+      "plage": "48:18–19",
+      "source": "Sahīh Al-Bukhārī n°4154, n°4839 & Sahīh Muslim n°1856",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Jābir ibn ‘Abdillāh (qu'Allāh les agrée) rapporte que ce verset fut révélé au sujet des quelque mille quatre cents Compagnons qui prêtèrent le Serment d'Agrément (Bay‘at ar-Ridwān) au Prophète ﷺ sous un arbre à Al-Hudaybiyah, lorsque courut la rumeur de l'assassinat de ‘Uthmān ibn ‘Affān envoyé comme émissaire à La Mecque. Le Prophète ﷺ annonça que nul parmi ceux qui avaient prêté ce serment sous l'arbre n'entrerait en Enfer.",
+        "en": "Jābir ibn ‘Abdillāh narrated that this verse was revealed regarding the roughly fourteen hundred Companions who pledged allegiance to the Prophet ﷺ under the tree at Al-Hudaybiyah (Bay‘at ar-Ridwān) upon hearing a rumor that ‘Uthmān ibn ‘Affān had been killed in Makkah. The Prophet ﷺ announced that none of those who gave that pledge under the tree would enter Hellfire.",
+        "es": "Yābir ibn ‘Abdillāh relató que esta aleya fue revelada respecto a los cerca de mil cuatrocientos Compañeros que prestaron el Juramento de Complacencia (Bay‘at ar-Ridwān) bajo el árbol en Al-Hudaybiyah, anunciando el Profeta ﷺ que ninguno de ellos entraría en el Fuego.",
+        "ar": "عن جابر بن عبد الله رضي الله عنهما أن هذه الآية نزلت في قرابة ألف وأربعمائة صحابي بايعوا النبي ﷺ تحت الشجرة بالحديبية (بيعة الرضوان) حين شاع خبر مقتل عثمان بن عفان رضي الله عنه، وبشّرهم النبي ﷺ بأنه لن يدخل النار أحد ممن بايع تحت الشجرة.",
+        "de": "Dschābir ibn ‘Abdillāh berichtete, dass dieser Vers über die rund eintausendvierhundert Gefährten offenbart wurde, die dem Propheten ﷺ bei Al-Hudaybiyah unter dem Baum den Treueeid (Bay‘at ar-Ridwān) leisteten; der Prophet ﷺ verkündete, dass niemand von ihnen ins Höllenfeuer eingehen werde.",
+        "it": "Jābir ibn ‘Abdillāh narrò che questo versetto fu rivelato riguardo ai circa millequattrocento Compagni che prestarono il Giuramento del Compiacimento (Bay‘at ar-Ridwān) sotto l'albero ad Al-Hudaybiyah; il Profeta ﷺ annunciò che nessuno di loro sarebbe entrato nel Fuoco.",
+        "id": "Jabir bin ‘Abdillah meriwayatkan bahwa ayat ini turun berkenaan dengan sekitar seribu empat ratus sahabat yang berbaiat kepada Nabi ﷺ di bawah pohon di Hudaibiyah (Bai‘atur Ridhwan), dan Nabi ﷺ memberi kabar gembira bahwa tak seorang pun dari mereka akan masuk neraka.",
+        "ru": "Джабир ибн ‘Абдуллах передал, что этот аят был ниспослан о примерно тысяче четырёхстах сподвижниках, принесших присягу Довольства (Бай‘ат ар-Ридван) Пророку ﷺ под деревом в аль-Худайбии; Пророк ﷺ возвестил, что никто из присягнувших под деревом не войдёт в Огонь."
+      }
+    },
+    "48:24": {
+      "type": "sabab",
+      "versets": [
+        "48:24"
+      ],
+      "plage": "48:24",
+      "source": "Sahīh Muslim n°1808",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Anas ibn Mālik (qu'Allāh l'agrée) rapporte qu'à Al-Hudaybiyah, quatre-vingts hommes armés descendirent du mont At-Tan‘īm vers le camp musulman à l'heure de la prière de l'aube dans l'intention de tuer le Prophète ﷺ et ses Compagnons. Ils furent capturés sans combat ; le Messager d'Allāh ﷺ fit preuve de clémence en leur laissant la vie sauve et en les libérant, et Allāh révéla ce verset rappelant qu'Il avait retenu leurs mains les uns des autres au cœur de la vallée de La Mecque.",
+        "en": "Anas ibn Mālik narrated that at Al-Hudaybiyah, eighty armed men descended from Mount At-Tan‘īm toward the Muslim camp at Fajr intending to ambush the Prophet ﷺ and his Companions. They were captured peacefully, and the Messenger of Allāh ﷺ pardoned and released them, upon which Allāh revealed this verse reminding them how He withheld both sides' hands in the valley of Makkah.",
+        "es": "Anas ibn Mālik relató que en Al-Hudaybiyah ochenta hombres armados bajaron del monte At-Tan‘īm al alba para emboscar al Profeta ﷺ, pero fueron capturados sin derramamiento de sangre y el Profeta ﷺ los perdonó y liberó, revelándose entonces esta aleya.",
+        "ar": "عن أنس بن مالك رضي الله عنه أن ثمانين رجلًا من أهل مكة هبطوا من جبل التنعيم متسلحين عند صلاة الفجر يريدون غرّة النبي ﷺ وأصحابه فأُخذوا سلمًا، فاستحياهم النبي ﷺ وعفا عنهم وأطلقهم، فأنزل الله هذه الآية في كفّ الأيدي ببطن مكة.",
+        "de": "Anas ibn Mālik berichtete, dass achtzig bewaffnete Männer bei Al-Hudaybiyah im Morgengrauen vom Berg At-Tan‘īm herabstiegen, um den Propheten ﷺ zu überfallen; sie wurden kampflos gefasst und vom Propheten ﷺ begnadigt und freigelassen, woraufhin Allah diesen Vers offenbarte.",
+        "it": "Anas ibn Mālik narrò che ad Al-Hudaybiyah ottanta uomini armati scesero dal monte At-Tan‘īm all'alba per tendere un agguato al Profeta ﷺ; furono catturati pacificamente e il Profeta ﷺ li graziò e li liberò, e Allāh rivelò questo versetto.",
+        "id": "Anas bin Malik meriwayatkan bahwa di Hudaibiyah delapan puluh orang bersenjata turun dari Bukit Tan‘im saat Subuh untuk menyergap Nabi ﷺ, namun berhasil ditangkap tanpa pertumpahan darah lalu dibebaskan oleh Nabi ﷺ, maka turunlah ayat ini.",
+        "ru": "Анас ибн Малик передал, что в аль-Худайбии восемьдесят вооружённых мекканцев спустились на рассвете с горы ат-Тан‘им, чтобы напасть на Пророка ﷺ; их взяли в плен без боя, Пророк ﷺ помиловал и отпустил их, и Аллах ниспослал этот аят."
+      }
+    },
+    "49:1": {
+      "type": "sabab",
+      "versets": [
+        "49:1",
+        "49:2",
+        "49:3"
+      ],
+      "plage": "49:1–3",
+      "source": "Sahīh Al-Bukhārī n°4845, n°4846, n°4847 & Sahīh Muslim n°119",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Ibn Az-Zubayr rapporte qu'à l'arrivée de la délégation des Banū Tamīm, Abū Bakr et ‘Umar divergèrent sur l'homme à nommer à leur tête et leurs voix s'élevèrent en présence du Prophète ﷺ, ce qui entraîna la révélation de ces versets ordonnant de ne jamais devancer Allāh et Son Messager ni d'élever la voix au-dessus de la sienne. Anas ibn Mālik ajoute que Thābit ibn Qays, qui avait naturellement une voix très puissante, s'enferma chez lui en pleurant par crainte que ses œuvres ne soient annulées ; le Prophète ﷺ lui fit alors annoncer qu'il faisait partie des gens du Paradis.",
+        "en": "Ibn Az-Zubayr narrated that when the Banū Tamīm delegation arrived, Abū Bakr and ‘Umar disagreed over who should be appointed leader and raised their voices before the Prophet ﷺ, prompting these verses commanding utmost reverence. Anas ibn Mālik added that Thābit ibn Qays—who had a naturally loud voice—stayed home weeping out of fear his deeds were voided, until the Prophet ﷺ sent him glad tidings that he was among the people of Paradise.",
+        "es": "Ibn Az-Zubayr relató que al llegar la delegación de Banū Tamīm, Abū Bakr y ‘Umar alzaron la voz discrepando ante el Profeta ﷺ, descendiendo estas aleyas sobre el máximo respeto hacia él. Anas añadió que Thābit ibn Qays, de voz naturalmente potente, temió haber perdido sus obras hasta que el Profeta ﷺ le dio la buena nueva del Paraíso.",
+        "ar": "عن ابن الزبير أنه لما قدم وفد بني تميم اختلف أبو بكر وعمر فيمن يُؤمّر عليهم وارتفعت أصواتهما عند النبي ﷺ فنزلت هذه الآيات في الأدب معه ﷺ؛ وزاد أنس بن مالك أن ثابت بن قيس كان جهوري الصوت فجلس في بيته يبكي خشية حبوط عمله، فبشّره النبي ﷺ بأنه من أهل الجنة.",
+        "de": "Ibn Az-Zubayr berichtete, dass Abū Bakr und ‘Umar beim Eintreffen der Delegation der Banū Tamīm vor dem Propheten ﷺ ihre Stimmen erhoben, worauf diese Verse über die Ehrerbietung offenbart wurden. Anas ergänzte, dass der von Natur aus lautstarke Thābit ibn Qays weinend zu Hause blieb, bis der Prophet ﷺ ihm das Paradies verhieß.",
+        "it": "Ibn Az-Zubayr narrò che all'arrivo della delegazione dei Banū Tamīm, Abū Bakr e ‘Umar alzarono la voce davanti al Profeta ﷺ, provocando la rivelazione di questi versetti sul rispetto dovutogli. Anas aggiunse che Thābit ibn Qays, di voce naturalmente forte, pianse in casa finché il Profeta ﷺ gli annunciò il Paradiso.",
+        "id": "Ibnu Az-Zubair meriwayatkan bahwa saat delegasi Bani Tamim datang, suara Abu Bakar dan ‘Umar meninggi di hadapan Nabi ﷺ sehingga turun ayat-ayat adab ini. Anas menambahkan bahwa Tsabit bin Qais yang bersuara lantang mengurung diri menangis karena takut amalnya gugur, lalu Nabi ﷺ memberinya kabar gembira sebagai penghuni Surga.",
+        "ru": "Ибн аз-Зубайр передал, что при прибытии делегации Бану Тамим Абу Бакр и ‘Умар повысили голоса в присутствии Пророка ﷺ, после чего были ниспосланы эти аяты о почтении к нему. Анас добавил, что Сабит ибн Кайс, обладавший от природы громким голосом, заплакал дома из страха за свои деяния, но Пророк ﷺ обрадовал его вестью о Рае."
+      }
+    },
+    "49:9": {
+      "type": "sabab",
+      "versets": [
+        "49:9"
+      ],
+      "plage": "49:9",
+      "source": "Sahīh Al-Bukhārī n°2691 & Sahīh Muslim n°1799",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Anas ibn Mālik (qu'Allāh l'agrée) rapporte qu'un jour, alors que le Prophète ﷺ se rendait à dos d'âne pour rendre visite à ‘Abdullāh ibn Ubayy, une vive altercation éclata entre les partisans d'Ibn Ubayy et des Compagnons au point qu'ils se frappèrent avec des branches de palmier et des sandales. Ce verset fut révélé à cette occasion pour établir le devoir impératif de réconciliation équitable dès qu'un conflit éclate entre deux groupes de croyants.",
+        "en": "Anas ibn Mālik narrated that when the Prophet ﷺ rode to visit ‘Abdullāh ibn Ubayy, a heated altercation broke out between Ibn Ubayy's followers and some Companions, exchanging blows with palm branches and sandals. This verse was revealed establishing the imperative duty of fair reconciliation whenever conflict arises between two groups of believers.",
+        "es": "Anas ibn Mālik relató que durante una visita del Profeta ﷺ a ‘Abdullāh ibn Ubayy estalló una riña entre partidarios de este y algunos Compañeros, revelándose esta aleya que ordena reconciliar con justicia a dos grupos enfrentados de creyentes.",
+        "ar": "عن أنس بن مالك رضي الله عنه أنه لما ركب النبي ﷺ حمارًا ليعود عبد الله بن أُبيّ وقعت مشاجرة بالأيدي والجريد والنعال بين بعض الصحابة وقوم ابن أُبيّ، فبلغنا أن هذه الآية نزلت في وجوب الإصلاح بالعدل بين الفئتين المتقاتلتين.",
+        "de": "Anas ibn Mālik berichtete, dass bei einem Besuch des Propheten ﷺ bei ‘Abdullāh ibn Ubayy ein handfester Streit zwischen dessen Anhängern und einigen Gefährten ausbrach, woraufhin dieser Vers über die Pflicht zur gerechten Versöhnung zwischen zerstrittenen Gläubigen offenbart wurde.",
+        "it": "Anas ibn Mālik narrò che durante una visita del Profeta ﷺ ad ‘Abdullāh ibn Ubayy scoppiò un alterco tra i sostenitori di quest'ultimo e alcuni Compagni; fu quindi rivelato questo versetto che impone la riconciliazione equa tra credenti in conflitto.",
+        "id": "Anas bin Malik meriwayatkan bahwa saat Nabi ﷺ mengunjungi ‘Abdullah bin Ubay terjadi pertikaian fisik antara pengikutnya dan beberapa sahabat, lalu turunlah ayat yang mewajibkan pendamaian secara adil antara dua golongan mukmin yang bertikai.",
+        "ru": "Анас ибн Малик передал, что во время визита Пророка ﷺ к ‘Абдуллаху ибн Убайю между его сторонниками и сподвижниками вспыхнула стычка, и по этому случаю был ниспослан данный аят о долге справедливого примирения между враждующими группами верующих."
+      }
+    },
+    "49:11": {
+      "type": "sabab",
+      "versets": [
+        "49:11"
+      ],
+      "plage": "49:11",
+      "source": "Sunan Abī Dāwūd n°4962 & Sunan At-Tirmidhī n°3268",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Abū Jabīrah ibn Ad-Dahhāk (qu'Allāh l'agrée) rapporte qu'à l'arrivée du Messager d'Allāh ﷺ à Médine, la plupart des Ansār portaient deux ou trois noms et surnoms. Un jour, le Prophète ﷺ interpella un homme par l'un de ces surnoms, et les gens l'avertirent aussitôt : « Ô Messager d'Allāh, il déteste qu'on l'appelle ainsi ! » Allāh révéla alors ce verset interdisant les moqueries, les médisances et le fait d'affubler autrui de sobriquets blessants.",
+        "en": "Abū Jabīrah ibn Ad-Dahhāk narrated that when the Messenger of Allāh ﷺ arrived in Madinah, many Ansār had two or three nicknames. Once he called a man by a nickname, and people told him: 'O Messenger of Allāh, he dislikes that name!' Allāh then revealed this verse forbidding mockery and calling one another by offensive nicknames.",
+        "es": "Abū Yabīrah relató que al llegar el Profeta ﷺ a Medina muchos habitantes tenían varios apodos; al llamar una vez a un hombre por un apodo que le disgustaba, los presentes se lo advirtieron y Allah reveló esta aleya prohibiendo las burlas y los motes ofensivos.",
+        "ar": "عن أبي جبيرة بن الضحاك رضي الله عنه أنه لما قدم النبي ﷺ المدينة كان للرجل من الأنصار الاسمان والثلاثة، فدعا النبي ﷺ رجلًا بأحد ألقابه فقيل له: يا رسول الله إنه يكره هذا الاسم! فنزلت هذه الآية في تحريم السخرية والتنابز بالألقاب.",
+        "de": "Abū Dschabīrah berichtete, dass bei der Ankunft des Propheten ﷺ in Medina viele Menschen mehrere Spitznamen trugen; als er jemanden versehentlich mit einem ungeliebten Beinamen rief, wurde dieser Vers offenbart, der Spott und verletzende Spitznamen verbietet.",
+        "it": "Abū Jabīrah narrò che all'arrivo del Profeta ﷺ a Medina molti avevano vari soprannomi; avendo chiamato un uomo con un nomignolo che questi non gradiva, Allāh rivelò questo versetto che vieta lo scherno e i soprannomi offensivi.",
+        "id": "Abu Jabirah meriwayatkan bahwa setibanya Nabi ﷺ di Madinah banyak warga memiliki beberapa gelar; ketika beliau memanggil seseorang dengan julukan yang tidak disukainya, turunlah ayat larangan saling mengejek dan memanggil dengan gelar buruk.",
+        "ru": "Абу Джабира передал, что по прибытии Пророка ﷺ в Медину у многих жителей было по несколько прозвищ; когда он позвал одного человека прозвищем, которое тому не нравилось, Аллах ниспослал этот аят, запретив насмешки и обидные клички."
+      }
+    },
+    "50:30": {
+      "type": "hadith",
+      "versets": [
+        "50:30"
+      ],
+      "plage": "50:30",
+      "source": "Sahīh Al-Bukhārī n°4848, n°4849 & Sahīh Muslim n°2846",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Anas ibn Mālik et Abū Hurayrah rapportent que le Messager d'Allāh ﷺ commenta ce dialogue au Jour du Jugement : l'Enfer ne cessera d'absorber ses damnés en répétant « Y en a-t-il encore davantage ? » jusqu'à ce que le Seigneur de la Majesté pose Son Pied sur lui ; il se repliera alors aussitôt sur lui-même en s'écriant : « Assez ! Assez ! Par Ta Puissance et Ta Générosité ! » Tandis que le Paradis gardera encore de la place libre jusqu'à ce qu'Allāh crée des êtres pour l'habiter.",
+        "en": "Anas ibn Mālik and Abū Hurayrah narrated that the Messenger of Allāh ﷺ explained this Judgment Day dialogue: Hellfire will keep asking 'Are there any more?' until the Lord of Majesty places His Foot over it, whereupon it will contract and cry 'Enough! Enough!'—whereas Paradise will still have abundant space remaining.",
+        "es": "Anas ibn Mālik y Abū Hurayrah relataron la explicación del Profeta ﷺ sobre este diálogo del Día del Juicio: el Infierno seguirá preguntando «¿Hay más?» hasta que el Señor de la Majestad ponga Su Pie sobre él y exclame «¡Basta, basta!», mientras que en el Paraíso sobrará espacio.",
+        "ar": "عن أنس بن مالك وأبي هريرة رضي الله عنهما أن النبي ﷺ بيّن أن جهنم لا تزال تقول «هل من مزيد» حتى يضع رب العزة عليها قدمه فينزوي بعضها إلى بعض وتقول: «قط قط بعزتك وكرمك»، بينما يبقى في الجنة فضلٌ وسعة.",
+        "de": "Anas ibn Mālik und Abū Hurayrah berichteten die Erklärung des Propheten ﷺ zu diesem Dialog am Jüngsten Tag: Die Hölle wird immer wieder fragen „Gibt es noch mehr?“, bis der Herr der Erhabenheit Seinen Fuß auf sie setzt und sie „Genug, genug!“ ruft, während im Paradies stets reichlich Raum bleibt.",
+        "it": "Anas ibn Mālik e Abū Hurayrah narrarono la spiegazione del Profeta ﷺ su questo dialogo del Giorno del Giudizio: l'Inferno continuerà a chiedere «Ce ne sono ancora?» finché il Signore della Maestà porrà il Suo Piede su di esso ed esclamerà «Basta, basta!», mentre il Paradiso conserverà ampio spazio.",
+        "id": "Anas bin Malik dan Abu Hurairah meriwayatkan penjelasan Nabi ﷺ atas dialog Hari Kiamat ini: Neraka terus bertanya “Masih adakah tambahan?” hingga Allah meletakkan kaki-Nya di atasnya lalu ia berseru “Cukup, cukup!”, sedangkan di Surga masih tersisa ruang luas.",
+        "ru": "Анас ибн Малик и Абу Хурайра передали разъяснение Пророка ﷺ об этом диалоге Судного дня: Ад будет спрашивать «Нет ли ещё добавки?», пока Господь Величия не наступит на него Своей Стопой, и тогда он сожмётся и воскликнет «Довольно, довольно!», тогда как в Раю останется простор."
+      }
+    },
+    "52:35": {
+      "type": "hadith",
+      "versets": [
+        "52:35",
+        "52:36",
+        "52:37"
+      ],
+      "plage": "52:35–37",
+      "source": "Sahīh Al-Bukhārī n°4854",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Jubayr ibn Mut‘im (qu'Allāh l'agrée) raconte qu'alors qu'il était encore polythéiste (venu à Médine négocier la rançon des captifs de Badr), il entendit le Messager d'Allāh ﷺ réciter la Sourate At-Tūr durant la prière du Maghrib. Lorsque le Prophète ﷺ parvint à ces trois questions rationnelles bouleversantes (« Ont-ils été créés à partir de rien, ou sont-ils eux-mêmes les créateurs ? »), Jubayr avoua : « Mon cœur a failli s'envoler ! » — et ce fut la toute première fois que la foi s'enracina dans son cœur.",
+        "en": "Jubayr ibn Mut‘im narrated that while still a polytheist visiting Madinah regarding the captives of Badr, he heard the Messenger of Allāh ﷺ reciting Sūrah At-Tūr during Maghrib prayer. When he reached these piercing rational questions ('Or were they created by nothing, or were they the creators of themselves?'), Jubayr said: 'My heart nearly took flight!'—the first moment faith entered his heart.",
+        "es": "Yubayr ibn Mut‘im relató que siendo aún politeísta escuchó al Profeta ﷺ recitar la Sura At-Tūr en la oración del Maghrib; al llegar a estas preguntas racionales sobre la creación, confesó: «¡Mi corazón estuvo a punto de echar a volar!», siendo ese el primer instante en que la fe penetró en su pecho.",
+        "ar": "عن جبير بن مطعم رضي الله عنه أنه سمع النبي ﷺ يقرأ في المغرب بسورة الطور وهو يومئذٍ مشرك، فلما بلغ هذه الآيات العقلية القاطعة (٣٥–٣٧) قال جبير: «كاد قلبي أن يطير»، فكان ذلك أول ما وقر الإيمان في قلبه.",
+        "de": "Dschubayr ibn Mut‘im berichtete, dass er noch als Polytheist den Propheten ﷺ beim Abendgebet Sure At-Tūr rezitieren hörte; als dieser diese eindringlichen Vernunftfragen zur Schöpfung erreichte, sagte Dschubayr: „Mein Herz wäre beinahe davongeflogen!“ – und erstmals fand der Glaube Eingang in sein Herz.",
+        "it": "Jubayr ibn Mut‘im narrò che, ancora politeista, udì il Profeta ﷺ recitare Sura At-Tūr durante la preghiera del Maghrib; giunto a queste domande razionali sulla creazione, confessò: «Il mio cuore stava per spiccare il volo!», segnando il primo ingresso della fede nel suo cuore.",
+        "id": "Jubair bin Muth‘im meriwayatkan bahwa saat masih musyrik ia mendengar Nabi ﷺ membaca Surah Ath-Thur dalam shalat Magrib; ketika sampai pada ayat-ayat argumen penciptaan ini, ia berkata: “Hatiku hampir saja terbang!”, dan sejak itulah iman pertama kali meresap di hatinya.",
+        "ru": "Джубайр ибн Мут‘им рассказал, что ещё будучи многобожником услышал, как Пророк ﷺ читает суру «Ат-Тур» в вечерней молитве; когда прозвучали эти потрясающие доводы разума о сотворении, Джубайр сказал: «Моё сердце едва не вылетело из груди!» — и впервые вера вошла в его сердце."
+      }
+    },
+    "53:7": {
+      "type": "hadith",
+      "versets": [
+        "53:7",
+        "53:8",
+        "53:9",
+        "53:10",
+        "53:11",
+        "53:12",
+        "53:13",
+        "53:14",
+        "53:15",
+        "53:16",
+        "53:17",
+        "53:18"
+      ],
+      "plage": "53:7–18",
+      "source": "Sahīh Al-Bukhārī n°4855, n°4856, n°4857 & Sahīh Muslim n°174, n°177",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Ā’ishah et ‘Abdullāh ibn Mas‘ūd (qu'Allāh les agrée) clarifient que celui que le Prophète Muhammad ﷺ vit « à l'horizon suprême » puis « près du Jujubier de la Limite » (Sidrat al-Muntahā, lors de l'Ascension nocturne) était l'Ange Jibrīl (Gabriel) sous sa véritable forme angélique originelle, doté de six cents ailes qui recouvraient l'horizon entier — et non Allāh vu de ses yeux terrestres, confirmant la transcendance absolue d'Allāh.",
+        "en": "‘Ā’ishah and ‘Abdullāh ibn Mas‘ūd clarified that the one Prophet Muhammad ﷺ saw 'on the highest horizon' and again 'near the Lote Tree of the Utmost Boundary' (Sidrat al-Muntahā during Al-Mi‘rāj) was Angel Jibrīl in his true original angelic form, having six hundred wings filling the horizon—not Allāh seen with earthly eyes.",
+        "es": "‘Ā’ishah e Ibn Mas‘ūd aclararon que a quien vio el Profeta ﷺ «en el horizonte supremo» y luego «junto al Azufaifo del Límite» (en el Mi‘rāy) fue al Ángel Yibrīl en su forma angélica original con seiscientas alas que cubrían el horizonte, y no a Allah con ojos terrenales.",
+        "ar": "عن عائشة وعبد الله بن مسعود رضي الله عنهما أن المقصود بالرؤية في الأفق الأعلى وعند سدرة المنتهى هو رؤية النبي ﷺ لجبريل عليه السلام على صورته الحقيقية التي خُلق عليها، له ستمائة جناح قد سدّ بها الأفق، وليس رؤية الله بالعين في الدنيا.",
+        "de": "‘Ā’ishah und ‘Abdullāh ibn Mas‘ūd stellten klar, dass der Prophet ﷺ „am höchsten Horizont“ und am „Lotosbaum der äußersten Grenze“ (Sidrat al-Muntahā) den Engel Dschibrīl in seiner wahren Gestalt mit sechshundert Flügeln sah, die den gesamten Horizont füllten.",
+        "it": "‘Ā’ishah e Ibn Mas‘ūd chiarirono che colui che il Profeta ﷺ vide «all'orizzonte supremo» e poi «presso il Loto del Limite» (durante il Mi‘rāj) era l'Angelo Jibrīl nella sua vera forma angelica con seicento ali che colmavano l'orizzonte.",
+        "id": "‘Aisyah dan ‘Abdullah bin Mas‘ud menjelaskan bahwa sosok yang dilihat Nabi ﷺ di ufuk tertinggi dan di Sidratul Muntaha (saat Mi‘raj) adalah Malaikat Jibril dalam wujud aslinya yang memiliki enam ratus sayap yang memenuhi cakrawala.",
+        "ru": "‘Аиша и ‘Абдуллах ибн Мас‘уд разъяснили, что тот, кого Пророк ﷺ увидел «на высшем горизонте» и у «Лотоса крайнего предела» (Сидрат аль-Мунтаха во время Вознесения), был ангел Джибриль в его истинном облике с шестьюстами крыльями, закрывавшими весь горизонт."
+      }
+    },
+    "53:62": {
+      "type": "hadith",
+      "versets": [
+        "53:62"
+      ],
+      "plage": "53:62",
+      "source": "Sahīh Al-Bukhārī n°1071, n°4862, n°4863",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Abdullāh ibn Mas‘ūd et Ibn ‘Abbās rapportent que la Sourate An-Najm fut la toute première sourate contenant un verset de prosternation (Sajdah) à être révélée. Lorsque le Prophète ﷺ la récita publiquement à La Mecque et se prosterna à ce verset final, toute l'assemblée — musulmans et polythéistes confondus — fut si saisie par la majesté du Coran que tous se prosternèrent avec lui, à l'exception d'un vieillard orgueilleux qui porta une poignée de terre à son front et mourut plus tard dans l'incrédulité à Badr.",
+        "en": "‘Abdullāh ibn Mas‘ūd and Ibn ‘Abbās narrated that Sūrah An-Najm was the very first surah revealed with a verse of prostration. When the Prophet ﷺ recited it aloud in Makkah and prostrated at this closing verse, everyone present—Muslims and polytheists alike—was so overwhelmed by the Qur'an's majesty that all prostrated with him, save one arrogant elder who lifted dust to his forehead.",
+        "es": "Ibn Mas‘ūd e Ibn ‘Abbās relataron que An-Najm fue la primera sura revelada con una aleya de postración: al recitarla el Profeta ﷺ en La Meca y postrarse al final, todos los presentes —musulmanes y politeístas— quedaron tan sobrecogidos que se postraron con él, salvo un anciano arrogante.",
+        "ar": "عن عبد الله بن مسعود وابن عباس رضي الله عنهما أن سورة النجم هي أول سورة أُنزلت فيها سجدة؛ فلما قرأها النبي ﷺ بمكة وسجد في آخرها سجد معه كل من حضر من المسلمين والمشركين رهبةً من عظمة القرآن، إلا شيخًا متكبرًا رفع كفًّا من تراب إلى جبهته فقُتل كافرًا يوم بدر.",
+        "de": "‘Abdullāh ibn Mas‘ūd und Ibn ‘Abbās berichteten, dass An-Najm die erste Sure mit einem Niederwerfungsvers war: Als der Prophet ﷺ sie in Mekka rezitierte und sich am Ende niederwarf, warfen sich Muslime wie Polytheisten überwältigt mit ihm nieder – bis auf einen hochmütigen Ältesten.",
+        "it": "Ibn Mas‘ūd e Ibn ‘Abbās narrarono che An-Najm fu la prima sura rivelata con una prosternazione: quando il Profeta ﷺ la recitò alla Mecca e si prosternò alla fine, tutti i presenti — musulmani e politeisti — rimasero così colpiti da prosternarsi con lui, salvo un anziano superbo.",
+        "id": "Ibnu Mas‘ud dan Ibnu ‘Abbas meriwayatkan bahwa An-Najm adalah surah pertama yang memiliki ayat sajadah; saat Nabi ﷺ membacanya di Makkah lalu bersujud, seluruh hadirin baik muslim maupun musyrik ikut bersujud karena takjub akan keagungan Al-Qur'an, kecuali seorang tokoh sombong.",
+        "ru": "Ибн Мас‘уд и Ибн ‘Аббас передали, что «Ан-Наджм» стала первой сурой с аятом земного поклона: когда Пророк ﷺ прочёл её в Мекке и совершил земной поклон в конце, все присутствующие — и мусульмане, и многобожники — потрясённые величием Корана, склонились вместе с ним, кроме одного высокомерного старейшины."
+      }
+    },
+    "54:1": {
+      "type": "sabab",
+      "versets": [
+        "54:1",
+        "54:2"
+      ],
+      "plage": "54:1–2",
+      "source": "Sahīh Al-Bukhārī n°3637, n°4864, n°4865 & Sahīh Muslim n°2800, n°2802",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Anas ibn Mālik et ‘Abdullāh ibn Mas‘ūd (qu'Allāh les agrée) rapportent que les habitants de La Mecque réclamèrent au Messager d'Allāh ﷺ un signe miraculeux tangible. Allāh fendit alors la lune en deux moitiés bien distinctes sous leurs yeux — Ibn Mas‘ūd témoigna avoir vu le mont Hirā' entre les deux moitiés ! Malgré ce signe éclatant, les obstinés s'écrièrent « C'est de la magie ! », et Allāh révéla ces deux versets d'ouverture.",
+        "en": "Anas ibn Mālik and ‘Abdullāh ibn Mas‘ūd narrated that the people of Makkah demanded a visible miracle from the Messenger of Allāh ﷺ. Allāh then split the moon into two distinct halves before their eyes—Ibn Mas‘ūd witnessed Mount Hirā' between the two halves. Despite this clear sign, the stubborn dismissed it as 'magic,' and Allāh revealed these opening verses.",
+        "es": "Anas ibn Mālik e Ibn Mas‘ūd relataron que los habitantes de La Meca exigieron un milagro visible al Profeta ﷺ, y Allah hendió la luna en dos mitades nítidas —Ibn Mas‘ūd vio el monte Hirā' entre ambas—; pese a ello los obstinados lo llamaron magia, revelándose estas dos aleyas.",
+        "ar": "عن أنس بن مالك وعبد الله بن مسعود رضي الله عنهما أن أهل مكة سألوا رسول الله ﷺ أن يريهم آيةً فأراهم انشقاق القمر فرقتين واضحتين حتى رأى ابن مسعود جبل حراء بينهما، ومع ذلك كذّب المعاندون وقالوا: سحر مستمر، فأنزل الله هاتين الآيتين.",
+        "de": "Anas ibn Mālik und ‘Abdullāh ibn Mas‘ūd berichteten, dass die Mekkaner vom Propheten ﷺ ein sichtbares Wunder verlangten, worauf Allah den Mond vor ihren Augen in zwei klare Hälften spaltete – Ibn Mas‘ūd sah den Berg Hirā' dazwischen. Dennoch nannten die Verstockten es Magie, und diese Verse wurden offenbart.",
+        "it": "Anas ibn Mālik e Ibn Mas‘ūd narrarono che i Meccani chiesero un segno visibile al Profeta ﷺ, e Allāh spaccò la luna in due metà distinte — Ibn Mas‘ūd vide il monte Hirā' tra le due metà. Nonostante ciò gli ostinati gridarono alla magia, e scesero questi due versetti.",
+        "id": "Anas bin Malik dan Ibnu Mas‘ud meriwayatkan bahwa penduduk Makkah meminta mukjizat nyata dari Nabi ﷺ, lalu Allah membelah bulan menjadi dua bagian jelas hingga Ibnu Mas‘ud melihat Gua Hira di antara keduanya; namun kaum musyrik tetap menuduhnya sihir hingga turun dua ayat ini.",
+        "ru": "Анас ибн Малик и Ибн Мас‘уд передали, что мекканцы потребовали от Пророка ﷺ явного знамения, и Аллах расколол луну на две отчётливые половины — Ибн Мас‘уд видел гору Хира между ними. Упорствующие назвали это колдовством, и Аллах ниспослал эти два аята."
+      }
+    },
+    "54:45": {
+      "type": "hadith",
+      "versets": [
+        "54:45"
+      ],
+      "plage": "54:45",
+      "source": "Sahīh Al-Bukhārī n°4875",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Ibn ‘Abbās (qu'Allāh les agrée) rapporte que lorsque ce verset mecquois (« Leur rassemblement sera bientôt mis en déroute et ils tourneront le dos ») fut révélé alors que les musulmans étaient encore faibles et persécutés à La Mecque, ‘Umar ibn Al-Khattāb s'interrogeait : « Quel rassemblement sera mis en déroute ? » Des années plus tard, le jour de la bataille de Badr, il vit le Prophète ﷺ revêtir sa cuirasse en récitant exactement ce verset, et comprit alors l'accomplissement éclatant de la prophétie.",
+        "en": "Ibn ‘Abbās narrated that when this Makkan verse ('Their assembly will be defeated, and they will turn their backs') was revealed while Muslims were still oppressed in Makkah, ‘Umar wondered which assembly it meant. Years later on the Day of Badr, he saw the Prophet ﷺ stepping forth in his armor reciting this very verse, witnessing its exact fulfillment.",
+        "es": "Ibn ‘Abbās relató que al revelarse esta aleya en La Meca cuando los musulmanes eran débiles, ‘Umar se preguntaba qué multitud sería derrotada; años después, el día de Badr, vio al Profeta ﷺ recitar precisamente esta aleya al ponerse su cota de malla, comprendiendo el cumplimiento exacto de la profecía.",
+        "ar": "عن ابن عباس رضي الله عنهما أنه لما نزلت هذه الآية بمكة والمسلمون مستضعفون كان عمر بن الخطاب يتساءل: أي جمع يُهزم؟ فلما كان يوم بدر رأى النبي ﷺ يثب في الدرع وهو يتلو هذه الآية فعرف يومئذٍ تأويلها وتحقق النبوءة.",
+        "de": "Ibn ‘Abbās berichtete, dass ‘Umar sich bei der Offenbarung dieses mekkanischen Verses fragte, welche Schar besiegt werden würde; Jahre später, am Tag von Badr, sah er den Propheten ﷺ genau diesen Vers rezitieren und erkannte die exakte Erfüllung der Verheißung.",
+        "it": "Ibn ‘Abbās narrò che alla rivelazione di questo versetto alla Mecca ‘Umar si chiedeva quale schiera sarebbe stata sconfitta; anni dopo, il giorno di Badr, vide il Profeta ﷺ recitare proprio questo versetto indossando la corazza e ne comprese l'esatto compimento.",
+        "id": "Ibnu ‘Abbas meriwayatkan bahwa saat ayat Makkiyah ini turun, ‘Umar sempat bertanya-tanya pasukan mana yang akan dikalahkan; bertahun-tahun kemudian pada Perang Badar ia melihat Nabi ﷺ keluar memakai baju besi sembari membaca ayat ini dan menyaksikan nubuat itu terbukti nyata.",
+        "ru": "Ибн ‘Аббас передал, что после ниспослания этого мекканского аята ‘Умар недоумевал, какое же полчище будет разбито; спустя годы в день битвы при Бадре он увидел, как Пророк ﷺ выходит в кольчуге, читая именно этот аят, и понял точное исполнение пророчества."
+      }
+    },
+    "54:49": {
+      "type": "sabab",
+      "versets": [
+        "54:48",
+        "54:49"
+      ],
+      "plage": "54:48–49",
+      "source": "Sahīh Muslim n°2656",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Abū Hurayrah (qu'Allāh l'agrée) rapporte que les polythéistes de Quraysh vinrent polémiquer avec le Messager d'Allāh ﷺ au sujet de la Prédestination (Al-Qadar). C'est à cette occasion que descendirent ces versets : « Goûtez au contact de Saqar ! Nous avons certes créé toute chose selon une mesure déterminée (bi-qadar). »",
+        "en": "Abū Hurayrah narrated that the polytheists of Quraysh came disputing with the Messenger of Allāh ﷺ over Divine Decree (Al-Qadar), whereupon these verses were revealed: 'Taste the touch of Hellfire! Indeed, all things We created with predestination (bi-qadar).'",
+        "es": "Abū Hurayrah relató que los politeístas de Quraysh acudieron a discutir con el Profeta ﷺ acerca del Decreto divino (Al-Qadar), y en respuesta descendieron estas aleyas afirmando que Allah creó todas las cosas con una medida determinada.",
+        "ar": "عن أبي هريرة رضي الله عنه قال: جاء مشركو قريش يخاصمون رسول الله ﷺ في القدر، فنزلت هاتان الآيتان: ﴿ذُوقُوا مَسَّ سَقَرَ * إِنَّا كُلَّ شَيْءٍ خَلَقْنَاهُ بِقَدَرٍ﴾.",
+        "de": "Abū Hurayrah berichtete, dass die Polytheisten der Quraisch zum Propheten ﷺ kamen, um mit ihm über die göttliche Bestimmung (Al-Qadar) zu streiten, woraufhin diese Verse offenbart wurden: „Wahrlich, Wir haben alle Dinge nach einem bestimmten Maß erschaffen.“",
+        "it": "Abū Hurayrah narrò che i politeisti di Quraysh vennero a disputare con il Profeta ﷺ sul Decreto divino (Al-Qadar), e furono rivelati questi versetti: «In verità Noi abbiamo creato ogni cosa secondo una misura determinata».",
+        "id": "Abu Hurairah meriwayatkan bahwa kaum musyrik Quraisy datang mendebat Nabi ﷺ mengenai takdir (Al-Qadar), lalu turunlah dua ayat ini yang menegaskan bahwa segala sesuatu diciptakan Allah menurut ukuran dan ketetapan-Nya.",
+        "ru": "Абу Хурайра передал, что многобожники курайшиты пришли спорить с Пророком ﷺ о предопределении (аль-Кадар), и по этому поводу были ниспосланы эти аяты: «Воистину, Мы сотворили всякую вещь согласно предопределению»."
+      }
+    },
+    "55:62": {
+      "type": "hadith",
+      "versets": [
+        "55:46",
+        "55:62"
+      ],
+      "plage": "55:46 & 55:62",
+      "source": "Sahīh Al-Bukhārī n°4878, n°4880 & Sahīh Muslim n°180",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Abū Mūsā Al-Ash‘arī (qu'Allāh l'agrée) rapporte que le Messager d'Allāh ﷺ décrivit les quatre jardins promis aux pieux dans la Sourate Ar-Rahmān (v.46 et v.62) : « Il y a deux jardins dont les coupes et tout ce qu'ils contiennent sont d'argent, et deux jardins dont les coupes et tout ce qu'ils contiennent sont d'or ; et rien ne sépare les gens du Paradis de la contemplation de leur Seigneur sinon le Voile de Majesté sur Sa Face dans le Jardin d'Éden. »",
+        "en": "Abū Mūsā Al-Ash‘arī narrated that the Messenger of Allāh ﷺ described the four gardens mentioned in Sūrah Ar-Rahmān (v.46 and v.62): 'There are two gardens whose vessels and contents are of silver, and two gardens whose vessels and contents are of gold; and nothing stands between the people of Paradise and gazing upon their Lord except the Veil of Majesty upon His Face in the Garden of Eden.'",
+        "es": "Abū Mūsā Al-Ash‘arī relató que el Profeta ﷺ describió los cuatro jardines mencionados en Ar-Rahmān (v.46 y v.62): dos jardines cuyos recipientes y ornamentos son de plata y dos de oro, y nada separa a los moradores del Jardín del Edén de contemplar a su Señor sino el Velo de Majestad.",
+        "ar": "عن أبي موسى الأشعري رضي الله عنه أن النبي ﷺ وصف الجنات الأربع المذكورة في سورة الرحمن (الآيتان ٤٦ و٦٢) فقال: «جنتان من فضة آنيتهما وما فيهما، وجنتان من ذهب آنيتهما وما فيهما، وما بين القوم وبين أن ينظروا إلى ربهم إلا رداء الكبرياء على وجهه في جنة عدن».",
+        "de": "Abū Mūsā Al-Ash‘arī berichtete, dass der Prophet ﷺ die vier Gärten aus Sure Ar-Rahmān (V. 46 und 62) beschrieb: zwei Gärten mit Gefäßen aus Silber und zwei aus Gold, und nichts trennt die Bewohner des Paradieses vom Anblick ihres Herrn außer dem Schleier der Majestät.",
+        "it": "Abū Mūsā Al-Ash‘arī narrò che il Profeta ﷺ descrisse i quattro giardini citati in Ar-Rahmān (v.46 e v.62): due giardini con vasi d'argento e due d'oro, e nulla separa gli abitanti del Paradiso dal contemplare il loro Signore se non il Velo della Maestà.",
+        "id": "Abu Musa Al-Asy‘ari meriwayatkan penjelasan Nabi ﷺ tentang empat surga dalam Surah Ar-Rahman (ayat 46 dan 62): dua surga yang bejana dan isinya dari perak dan dua surga dari emas, serta tidak ada penghalang bagi penghuni Surga ‘Adn melihat Tuhannya selain tabir keagungan-Nya.",
+        "ru": "Абу Муса аль-Аш‘ари передал слова Пророка ﷺ о четырёх садах, упомянутых в суре «Ар-Рахман» (аяты 46 и 62): два сада с сосудами и убранством из серебра и два — из золота, и ничто не отделяет обитателей Рая от лицезрения их Господа, кроме Завесы Величия в Саду Эдема."
+      }
+    },
+    "56:82": {
+      "type": "sabab",
+      "versets": [
+        "56:75",
+        "56:76",
+        "56:77",
+        "56:78",
+        "56:79",
+        "56:80",
+        "56:81",
+        "56:82"
+      ],
+      "plage": "56:75–82",
+      "source": "Sahīh Muslim n°73 & Sahīh Al-Bukhārī n°846",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Ibn ‘Abbās (qu'Allāh les agrée) rapporte qu'après une pluie tombée à l'époque du Prophète ﷺ, certains dirent : « Nous avons reçu la pluie grâce à telle et telle étoile (Anwā') ! » — attribuant le bienfait d'Allāh aux astres plutôt qu'au Créateur. Allāh fit aussitôt descendre ces versets (v.75–82) blâmant le fait de répondre à Sa subsistance par l'ingratitude et le démenti. Le Prophète ﷺ rappela après la pluie d'Al-Hudaybiyah que le croyant dit : « Nous avons reçu la pluie par la grâce et la miséricorde d'Allāh. »",
+        "en": "Ibn ‘Abbās narrated that after rain fell during the Prophet's ﷺ time, some people credited it to certain stars rather than to Allāh. Allāh then revealed these verses (v.75–82) reproaching them for meeting His provision with ingratitude and denial. As the Prophet ﷺ taught after rain at Al-Hudaybiyah, the believer says: 'We have been given rain by the grace and mercy of Allāh.'",
+        "es": "Ibn ‘Abbās relató que tras una lluvia en tiempos del Profeta ﷺ algunos atribuyeron la lluvia a las estrellas en lugar de a Allah, por lo que descendieron estas aleyas (v.75–82) censurando responder al sustento divino con ingratitud; el creyente dice: «Nos ha llovido por la gracia y misericordia de Allah».",
+        "ar": "عن ابن عباس رضي الله عنهما أن الناس مُطروا على عهد النبي ﷺ فقال بعضهم: مُطرنا بنوء كذا وكذا (نسبةً للنجوم)، فأنزل الله هذه الآيات (٧٥–٨٢) توبيخًا على جعل شكر الرزق تكذيبًا، وبيّن النبي ﷺ أن المؤمن يقول: «مُطرنا بفضل الله ورحمته».",
+        "de": "Ibn ‘Abbās berichtete, dass manche nach einem Regen die Sterne dafür verantwortlich machten statt Allah; daraufhin offenbarte Allah diese Verse (V. 75–82) als Tadel für Undankbarkeit gegenüber Seiner Versorgung, und der Prophet ﷺ lehrte zu sagen: „Wir erhielten Regen durch Allahs Huld und Barmherzigkeit.“",
+        "it": "Ibn ‘Abbās narrò che dopo una pioggia alcuni l'attribuirono agli astri anziché ad Allāh; scesero così questi versetti (v.75–82) che biasimano l'ingratitudine di fronte ai Suoi doni, mentre il credente dice: «Abbiamo avuto la pioggia per grazia e misericordia di Allāh».",
+        "id": "Ibnu ‘Abbas meriwayatkan bahwa setelah turun hujan sebagian orang menisbatkannya kepada bintang-bintang, lalu turunlah ayat-ayat ini (75–82) yang mencela sikap mengingkari nikmat; Nabi ﷺ mengajarkan kaum mukmin untuk mengucapkan: “Kita diberi hujan karena karunia dan rahmat Allah.”",
+        "ru": "Ибн ‘Аббас передал, что после дождя некоторые люди приписали его восходу звёзд, а не Аллаху; тогда Аллах ниспослал эти аяты (75–82), порицая неблагодарность за Его удел, а Пророк ﷺ научил верующих говорить: «Нам был дарован дождь по милости и милосердию Аллаха»."
+      }
+    },
+    "57:16": {
+      "type": "sabab",
+      "versets": [
+        "57:16"
+      ],
+      "plage": "57:16",
+      "source": "Sahīh Muslim n°3027",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Abdullāh ibn Mas‘ūd (qu'Allāh l'agrée) rapporte : « Il ne s'était écoulé que quatre années entre notre entrée en Islam et le moment où Allāh nous adressa ce doux rappel solennel : “Le moment n'est-il pas venu pour ceux qui ont cru que leurs cœurs s'humilient à l'évocation d'Allāh et devant ce qui est descendu de la vérité ?” » — un avertissement permanent contre l'endurcissement progressif des cœurs avec le temps.",
+        "en": "‘Abdullāh ibn Mas‘ūd remarked: 'There were only four years between our embracing Islam and when Allāh gently admonished us with this verse: “Has the time not come for those who have believed that their hearts should become humbly submissive at the remembrance of Allāh and what has come down of the truth?”'—a timeless warning against gradual hardening of the heart.",
+        "es": "‘Abdullāh ibn Mas‘ūd señaló: «Solo habían pasado cuatro años desde nuestra entrada en el Islam cuando Allah nos dirigió este llamado: “¿No ha llegado aún el momento de que se humillen los corazones de los creyentes ante el recuerdo de Allah?”», advertencia eterna contra el endurecimiento del corazón.",
+        "ar": "عن عبد الله بن مسعود رضي الله عنه قال: «ما كان بين إسلامنا وبين أن عاتبنا الله بهذه الآية: ﴿أَلَمْ يَأْنِ لِلَّذِينَ آمَنُوا أَن تَخْشَعَ قُلُوبُهُمْ لِذِكْرِ اللَّهِ﴾ إلا أربع سنين»، تحذيرًا دائمًا من قسوة القلوب بطول الأمد.",
+        "de": "‘Abdullāh ibn Mas‘ūd sagte: „Zwischen unserer Annahme des Islams und dem Zeitpunkt, als Allah uns mit diesem Vers sanft ermahnte, lagen nur vier Jahre“ – eine bleibende Mahnung vor dem allmählichen Verhärten der Herzen.",
+        "it": "‘Abdullāh ibn Mas‘ūd riferì: «Non erano passati che quattro anni dal nostro ingresso nell'Islam quando Allāh ci rivolse questo richiamo solenne affinché i cuori si umilino al Suo ricordo», monito perenne contro l'indurimento del cuore.",
+        "id": "‘Abdullah bin Mas‘ud bertutur: “Hanya berselang empat tahun sejak keislaman kami hingga Allah menegur kami dengan ayat ini agar hati orang-orang beriman tunduk khusyuk mengingat Allah”, sebagai pengingat abadi agar hati tidak mengeras seiring waktu.",
+        "ru": "‘Абдуллах ибн Мас‘уд сказал: «Между принятием нами ислама и тем, как Аллах мягко упрекнул нас этим аятом — “Разве не пришло время для того, чтобы сердца верующих смирились при упоминании Аллаха?” — прошло всего четыре года»."
+      }
+    },
+    "58:1": {
+      "type": "sabab",
+      "versets": [
+        "58:1",
+        "58:2",
+        "58:3",
+        "58:4"
+      ],
+      "plage": "58:1–4",
+      "source": "Sahīh Al-Bukhārī (Kitāb at-Tawhīd), Sunan Abī Dāwūd n°2214 & Sunan Ibn Mājah n°2063",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Ā’ishah (qu'Allāh l'agrée) rapporte : « Louange à Celui dont l'Ouïe embrasse toutes les voix ! Khawlah bint Tha‘labah vint se plaindre à voix basse au Messager d'Allāh ﷺ au sujet de son mari (Aws ibn As-Sāmit) qui avait prononcé contre elle la formule préislamique du Zihār. Bien que je fusse dans un coin de la même pièce, certaines de ses paroles m'échappaient — et pourtant Allāh l'entendit du haut des sept cieux et révéla aussitôt ces quatre versets abolissant cette pratique injuste et fixant son expiation ! »",
+        "en": "‘Ā’ishah exclaimed: 'Praise be to the One whose Hearing encompasses all voices! Khawlah bint Tha‘labah came pleading softly to the Messenger of Allāh ﷺ about her husband (Aws ibn As-Sāmit), who had pronounced the pre-Islamic oath of Zihār against her. Though I was in a corner of the same room and missed parts of her speech, Allāh heard her from above the seven heavens and immediately revealed these four verses abolishing that injustice.'",
+        "es": "‘Ā’ishah exclamó: «¡Alabado sea Aquel cuyo Oído abarca todas las voces! Khawlah bint Tha‘labah acudió a quejarse en voz baja al Profeta ﷺ por su esposo que pronunció el Zihār; aunque yo estaba en la misma habitación sin oírlo todo, Allah la escuchó desde lo alto de los siete cielos y reveló al instante estas cuatro aleyas».",
+        "ar": "عن عائشة رضي الله عنها قالت: «الحمد لله الذي وسع سمعه الأصوات؛ لقد جاءت المجادِلة (خولة بنت ثعلبة) تشكو زوجها إلى رسول الله ﷺ وأنا في ناحية البيت ما أسمع بعض كلامها، فأنزل الله من فوق سبع سماوات هذه الآيات الأربع في إبطال الظهار وبيان كفارته».",
+        "de": "‘Ā’ishah sagte: „Lob sei Dem, Dessen Hören alle Stimmen umfasst! Khawlah bint Tha‘labah klagte dem Propheten ﷺ leise über ihren Ehemann, der den Zihār ausgesprochen hatte; selbst im selben Raum entging mir manches, doch Allah hörte sie über den sieben Himmeln und offenbarte sogleich diese vier Verse.“",
+        "it": "‘Ā’ishah esclamò: «Lode a Colui il cui Udito abbraccia tutte le voci! Khawlah bint Tha‘labah venne a confidarsi a bassa voce con il Profeta ﷺ per il torto del marito (Zihār); persino nella stessa stanza mi sfuggivano alcune parole, eppure Allāh l'udì dall'alto dei sette cieli rivelando subito questi quattro versetti!».",
+        "id": "‘Aisyah berkata: “Segala puji bagi Allah yang pendengaran-Nya meliputi segala suara; Khaulah binti Tsa‘labah mengadu pelan kepada Nabi ﷺ soal zihar suaminya hingga sebagian ucapannya tak kudengar di sudut ruangan, namun Allah mendengarnya dari atas tujuh langit lalu segera menurunkan empat ayat ini.”",
+        "ru": "‘Аиша сказала: «Хвала Тому, Чей Слух объемлет все голоса! Хауля бинт Са‘ляба тихо жаловалась Пророку ﷺ на своего мужа, произнёсшего зихар, так что даже в той же комнате я не расслышала части её слов, но Аллах услышал её свыше семи небес и сразу ниспослал эти четыре аята!»"
+      }
+    },
+    "59:1": {
+      "type": "sabab",
+      "versets": [
+        "59:1",
+        "59:2",
+        "59:3",
+        "59:4",
+        "59:5"
+      ],
+      "plage": "59:1–5",
+      "source": "Sahīh Al-Bukhārī n°4882, n°4884 & Sahīh Muslim n°1746, n°3031",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Ibn ‘Abbās et ‘Abdullāh ibn ‘Umar rapportent que ces versets d'ouverture furent révélés lors de l'expulsion de la tribu des Banū An-Nadīr en l'an 4 de l'Hégire (Ibn ‘Abbās disait même : « Appelez-la Sourate Banū An-Nadīr ! ») après leur rupture de pacte et leur tentative d'attentat contre le Prophète ﷺ. Durant le siège, lorsque des palmiers furent abattus par nécessité stratégique, les assiégés crièrent à la corruption ; Allāh révéla alors le verset 5 confirmant que cela s'était fait avec Sa permission.",
+        "en": "Ibn ‘Abbās and ‘Abdullāh ibn ‘Umar narrated that these opening verses were revealed during the expulsion of Banū An-Nadīr in 4 AH (Ibn ‘Abbās even called it 'Sūrah Banū An-Nadīr') following their treaty breach and plot against the Prophet's ﷺ life. When palm trees were cut for tactical reasons during the siege and they protested, Allāh revealed verse 5 confirming it was done by His leave.",
+        "es": "Ibn ‘Abbās e Ibn ‘Umar relataron que estas aleyas iniciales descendieron durante la expulsión de Banū An-Nadīr en el año 4 H. tras romper su pacto y conspirar contra el Profeta ﷺ; cuando durante el asedio se cortaron algunas palmeras por necesidad táctica, Allah reveló la aleya 5 confirmando que fue con Su permiso.",
+        "ar": "عن ابن عباس وعبد الله بن عمر رضي الله عنهم أن مطلع هذه السورة نزل في إجلاء بني النضير سنة ٤ هـ بعد نقضهم العهد ومحاولة الغدر بالنبي ﷺ — حتى كان ابن عباس يسميها «سورة بني النضير» — ولما قُطع بعض النخل أثناء الحصار نزل قوله تعالى في الآية ٥ مبينًا أن ذلك بإذن الله.",
+        "de": "Ibn ‘Abbās und ‘Abdullāh ibn ‘Umar berichteten, dass diese Eingangsverse bei der Vertreibung der Banū An-Nadīr im Jahr 4 n. H. nach deren Vertragsbruch offenbart wurden (Ibn ‘Abbās nannte sie sogar „Sure Banū An-Nadīr“); Vers 5 bestätigte zudem, dass das Fällen einzelner Palmen während der Belagerung mit Allahs Erlaubnis geschah.",
+        "it": "Ibn ‘Abbās e Ibn ‘Umar narrarono che questi versetti iniziali scesero durante l'espulsione dei Banū An-Nadīr nell'anno 4 E. dopo la rottura del patto (Ibn ‘Abbās la chiamava persino «Sura Banū An-Nadīr»), e il versetto 5 confermò che il taglio di alcune palme durante l'assedio avvenne con il permesso di Allāh.",
+        "id": "Ibnu ‘Abbas dan Ibnu ‘Umar meriwayatkan bahwa ayat-ayat awal ini turun mengenai pengusiran Bani Nadhir pada tahun 4 H setelah mereka melanggar perjanjian (Ibnu ‘Abbas bahkan menyebutnya Surah Bani Nadhir), dan ayat 5 menegaskan penebangan sebagian kurma saat pengepungan terjadi atas izin Allah.",
+        "ru": "Ибн ‘Аббас и Ибн ‘Умар передали, что начало этой суры было ниспослано в связи с изгнанием племени Бану ан-Надир в 4 г. хиджры после нарушения ими договора (Ибн ‘Аббас даже называл её «сурой Бану ан-Надир»), а 5-й аят подтвердил, что вырубка части пальм во время осады произошла с дозволения Аллаха."
+      }
+    },
+    "59:9": {
+      "type": "sabab",
+      "versets": [
+        "59:9"
+      ],
+      "plage": "59:9",
+      "source": "Sahīh Al-Bukhārī n°3798, n°4889 & Sahīh Muslim n°2054",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Abū Hurayrah (qu'Allāh l'agrée) rapporte qu'un voyageur affamé vint chez le Prophète ﷺ, mais ses épouses n'avaient que de l'eau à la maison. Un Compagnon des Ansār (Abū Talhah) l'invita chez lui alors qu'il ne restait que le repas de ses jeunes enfants. Avec son épouse (Umm Sulaym), ils endormirent les enfants, éteignirent la lampe et firent semblant de manger dans l'obscurité pour que l'invité puisse manger à sa faim. Au matin, le Prophète ﷺ leur annonça qu'Allāh s'était émerveillé de leur geste, et révéla ce verset louant ceux qui préfèrent autrui à eux-mêmes malgré leur propre besoin.",
+        "en": "Abū Hurayrah narrated that a hungry guest came to the Prophet ﷺ, whose household had only water. An Ansārī Companion (Abū Talhah) took him home where only enough food for his children remained; he and his wife put the children to sleep, dimmed the lamp, and pretended to eat in the dark so the guest could eat his fill. The next morning the Prophet ﷺ told them Allāh marvelled at their selflessness and revealed this verse praising those who prefer others over themselves despite their own need.",
+        "es": "Abū Hurayrah relató que un huésped hambriento acudió al Profeta ﷺ y un Compañero de los Ansār (Abū Talhah) lo alojó pese a tener solo la cena de sus hijos: acostaron a los niños, apagaron la lámpara y fingieron comer a oscuras para que el invitado se saciara. Al amanecer, el Profeta ﷺ les anunció la complacencia de Allah y reveló esta aleya sobre el altruismo.",
+        "ar": "عن أبي هريرة رضي الله عنه أن ضيفًا جائعًا نزل برسول الله ﷺ فلم يجد في بيوته إلا الماء، فاستضافه رجل من الأنصار (أبو طلحة) ولم يكن عنده إلا قوت صبيانه، فنوّما الصبيان وأطفآ السراج وتظاهرا بالأكل في الظلام حتى شبع الضيف، فلما أصبح أخبرهما النبي ﷺ بعجب الله من صنيعهما وأنزل الله: ﴿وَيُؤْثِرُونَ عَلَىٰ أَنفُسِهِمْ وَلَوْ كَانَ بِهِمْ خَصَاصَةٌ﴾.",
+        "de": "Abū Hurayrah berichtete, dass ein hungriger Gast zum Propheten ﷺ kam und ein Mann der Ansār (Abū Talhah) ihn aufnahm, obwohl nur noch Essen für seine Kinder da war: Er und seine Frau legten die Kinder schlafen, löschten die Lampe und taten im Dunkeln so, als äßen sie mit, damit der Gast satt wurde. Daraufhin offenbarte Allah diesen Vers über selbstlose Großzügigkeit.",
+        "it": "Abū Hurayrah narrò che un ospite affamato giunse dal Profeta ﷺ e un Compagno degli Ansār (Abū Talhah) lo accolse pur avendo solo il pasto dei figli: misero a letto i bambini, spensero la lampada e finsero di mangiare al buio affinché l'ospite si saziasse. Allāh rivelò allora questo versetto elogiando chi antepone gli altri a sé stesso.",
+        "id": "Abu Hurairah meriwayatkan bahwa seorang tamu lapar datang kepada Nabi ﷺ lalu dijamu seorang sahabat Anshar (Abu Thalhah) yang hanya memiliki makanan anak-anaknya; bersama istrinya ia menidurkan anak-anak, mematikan lampu, dan berpura-pura makan dalam gelap agar sang tamu kenyang, hingga Allah menurunkan ayat pujian itsar ini.",
+        "ru": "Абу Хурайра передал, что голодного гостя Пророка ﷺ приютил один из ансаров (Абу Тальха), у которого оставалась еда лишь для детей: они с женой уложили детей спать, погасили светильник и в темноте делали вид, что едят, чтобы гость наелся досыта. Утром Пророк ﷺ сообщил, что Аллах восхитился их поступком, и был ниспослан этот аят о самоотверженности."
+      }
+    },
+    "61:2": {
+      "type": "sabab",
+      "versets": [
+        "61:2",
+        "61:3",
+        "61:4"
+      ],
+      "plage": "61:2–4",
+      "source": "Sunan At-Tirmidhī n°3309 & Musnad Ahmad",
+      "degre": "Hasan",
+      "texte": {
+        "fr": "‘Abdullāh ibn Salām (qu'Allāh l'agrée) rapporte qu'un groupe de Compagnons se réunirent et se dirent : « Si seulement nous savions quelle est l'œuvre la plus aimée d'Allāh afin que nous l'accomplissions ! » Allāh fit alors descendre le début de la Sourate As-Saff (v.1–4), les exhortant à l'accord parfait entre la parole et l'acte et à la fermeté en rangs serrés dans Son sentier.",
+        "en": "‘Abdullāh ibn Salām narrated that a group of Companions gathered and said: 'If only we knew which deed is most beloved to Allāh so that we could perform it!' Allāh then revealed the opening of Sūrah As-Saff (v.1–4), urging harmony between words and actions and steadfastness in solid ranks in His cause.",
+        "es": "‘Abdullāh ibn Salām relató que un grupo de Compañeros comentaron que deseaban conocer la obra más amada por Allah para practicarla; entonces descendió el comienzo de la Sura As-Saff (v.1–4), exhortándolos a la coherencia entre palabra y obra y a la firmeza en filas cerradas.",
+        "ar": "عن عبد الله بن سلام رضي الله عنه أن نفرًا من الصحابة تذاكروا فقالوا: لو نعلم أي الأعمال أحب إلى الله لعملناه، فأنزل الله مطلع سورة الصف (١–٤) حثًّا على مطابقة القول للعمل والثبات صفًّا واحدًا في سبيله.",
+        "de": "‘Abdullāh ibn Salām berichtete, dass eine Gruppe von Gefährten wünschte zu erfahren, welche Tat bei Allah am beliebtesten sei, um sie auszuführen; daraufhin offenbarte Allah den Beginn von Sure As-Saff (V. 1–4) über die Übereinstimmung von Wort und Tat.",
+        "it": "‘Abdullāh ibn Salām narrò che un gruppo di Compagni si disse: «Se solo sapessimo qual è l'opera più amata da Allāh per compierla!». Allāh rivelò allora l'inizio di Sura As-Saff (v.1–4), esortandoli alla coerenza tra parole e azioni.",
+        "id": "‘Abdullah bin Salam meriwayatkan bahwa sekelompok sahabat berbincang ingin mengetahui amal yang paling dicintai Allah agar dapat mengamalkannya; maka Allah menurunkan awal Surah Ash-Shaff (ayat 1–4) tentang keselarasan ucapan dan perbuatan.",
+        "ru": "‘Абдуллах ибн Салям передал, что группа сподвижников сказала: «Если бы мы знали, какое деяние любимее всего для Аллаха, мы бы совершили его!» Тогда Аллах ниспослал начало суры «Ас-Сафф» (аяты 1–4), призывая к единству слов и дел."
+      }
+    },
+    "62:11": {
+      "type": "sabab",
+      "versets": [
+        "62:11"
+      ],
+      "plage": "62:11",
+      "source": "Sahīh Al-Bukhārī n°936, n°4899 & Sahīh Muslim n°863",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Jābir ibn ‘Abdillāh (qu'Allāh les agrée) rapporte qu'un vendredi, alors que le Messager d'Allāh ﷺ prononçait le sermon (Khutbah) debout dans la mosquée, une caravane marchande venue du Shām arriva à Médine. Les gens se précipitèrent dehors vers la caravane jusqu'à ce qu'il ne reste plus que douze hommes avec le Prophète ﷺ. Allāh révéla aussitôt ce verset rappelant que ce qui est auprès d'Allāh est infiniment meilleur que tout divertissement et tout commerce.",
+        "en": "Jābir ibn ‘Abdillāh narrated that on a Friday while the Messenger of Allāh ﷺ was delivering the sermon (Khutbah) standing in the mosque, a trade caravan arrived from Syria and the congregation rushed out toward it until only twelve men remained with him. Allāh immediately revealed this verse reminding believers that what is with Allāh is far better than amusement or trade.",
+        "es": "Yābir ibn ‘Abdillāh relató que un viernes, mientras el Profeta ﷺ pronunciaba el sermón de pie, llegó una caravana comercial desde Siria y la gente salió apresurada hasta quedar solo doce hombres con él; Allah reveló enseguida esta aleya recordando que lo que está junto a Él es mejor que cualquier distracción o comercio.",
+        "ar": "عن جابر بن عبد الله رضي الله عنهما أنه بينما كان النبي ﷺ يخطب قائمًا يوم الجمعة أقبلت عير تجارة من الشام فانفتل الناس إليها حتى لم يبقَ مع النبي ﷺ إلا اثنا عشر رجلًا، فنزلت هذه الآية تذكيرًا بأن ما عند الله خير من اللهو ومن التجارة.",
+        "de": "Dschābir ibn ‘Abdillāh berichtete, dass während der Freitagspredigt des Propheten ﷺ eine Handelskarawane aus Syrien eintraf und die Menge hinausströmte, bis nur zwölf Männer bei ihm blieben; sogleich offenbarte Allah diesen Vers, dass das, was bei Ihm ist, besser ist als Zerstreuung und Handel.",
+        "it": "Jābir ibn ‘Abdillāh narrò che un venerdì, mentre il Profeta ﷺ teneva il sermone in piedi, giunse una carovana commerciale dalla Siria e la gente uscì di corsa finché rimasero solo dodici uomini con lui; Allāh rivelò subito questo versetto ricordando che ciò che è presso di Lui è migliore del commercio.",
+        "id": "Jabir bin ‘Abdillah meriwayatkan bahwa saat Nabi ﷺ sedang berdiri menyampaikan khutbah Jumat, rombongan kafilah dagang tiba dari Syam sehingga jamaah berhamburan keluar hingga tersisa dua belas orang saja; seketika Allah menurunkan ayat teguran ini.",
+        "ru": "Джабир ибн ‘Абдуллах передал, что в пятницу, когда Пророк ﷺ стоя произносил проповедь, прибыл торговый караван из Шама, и люди поспешили к нему, оставив с Пророком ﷺ лишь двенадцать человек; тогда Аллах немедленно ниспослал этот аят."
+      }
+    },
+    "63:1": {
+      "type": "sabab",
+      "versets": [
+        "63:1",
+        "63:2",
+        "63:3",
+        "63:4",
+        "63:5",
+        "63:6",
+        "63:7",
+        "63:8"
+      ],
+      "plage": "63:1–8",
+      "source": "Sahīh Al-Bukhārī n°4900, n°4901, n°4905 & Sahīh Muslim n°2772",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Zayd ibn Arqam (qu'Allāh l'agrée), alors jeune adolescent, rapporte qu'au cours d'une expédition il entendit le chef des hypocrites ‘Abdullāh ibn Ubayy dire : « Ne dépensez rien pour ceux qui entourent le Messager d'Allāh afin qu'ils se dispersent ! Si nous retournons à Médine, le plus puissant en chassera certes le plus faible ! » Zayd en informa le Prophète ﷺ, mais Ibn Ubayy jura par Allāh n'avoir rien dit de tel, plongeant Zayd dans une grande tristesse jusqu'à ce qu'Allāh révèle ces versets confirmant intégralement sa parole. Le Prophète ﷺ lui prit alors doucement l'oreille en disant : « Allāh a confirmé ta véracité, ô garçon ! »",
+        "en": "Zayd ibn Arqam narrated that during an expedition he overheard the hypocrite leader ‘Abdullāh ibn Ubayy say: 'Do not spend on those with the Messenger of Allāh so they disperse; if we return to Madinah, the mightier will surely expel the weaker.' When Zayd reported this, Ibn Ubayy swore he never said it, distressing Zayd deeply until Allāh revealed these verses completely vindicating him. The Prophet ﷺ gently held his ear saying: 'Allāh has confirmed your truthfulness!'",
+        "es": "Zayd ibn Arqam relató que durante una expedición oyó al hipócrita ‘Abdullāh ibn Ubayy pronunciar las palabras citadas en los versículos 7 y 8; al negarlo aquel bajo juramento, Zayd quedó afligido hasta que Allah reveló estas aleyas confirmando su veracidad, y el Profeta ﷺ le tomó suavemente de la oreja diciendo: «¡Allah ha confirmado tu verdad!».",
+        "ar": "عن زيد بن أرقم رضي الله عنه أنه سمع عبد الله بن أُبيّ يقول في غزوة: لا تنفقوا على من عند رسول الله حتى ينفضوا، ولئن رجعنا إلى المدينة ليخرجن الأعز منها الأذل؛ فلما أخبر النبي ﷺ حلف ابن أُبيّ أنه لم يقل، فحزن زيد حتى أنزل الله سورة المنافقين تصديقًا لزيد، فأخذ النبي ﷺ بأذنه وقال: «إن الله قد صدّقك يا غلام».",
+        "de": "Zayd ibn Arqam berichtete, dass er auf einem Feldzug hörte, wie der Heuchler ‘Abdullāh ibn Ubayy die in den Versen 7–8 zitierten Worte sprach; dieser schwor jedoch, sie nie gesagt zu haben, sodass Zayd betrübt war, bis Allah diese Verse zu seiner Bestätigung offenbarte und der Prophet ﷺ ihn für seine Wahrhaftigkeit lobte.",
+        "it": "Zayd ibn Arqam narrò di aver udito durante una spedizione l'ipocrita ‘Abdullāh ibn Ubayy pronunciare le parole riportate nei versetti 7–8; quando costui giurò il falso, Zayd si rattristò finché Allāh rivelò questi versetti confermando pienamente la sua veridicità.",
+        "id": "Zaid bin Arqam meriwayatkan bahwa dalam sebuah perjalanan perang ia mendengar tokoh munafik ‘Abdullah bin Ubay mengucapkan perkataan pada ayat 7–8; saat ia melaporkannya, Ibnu Ubay bersumpah mengingkarinya hingga Zaid bersedih, lalu Allah menurunkan ayat-ayat ini membenarkan Zaid.",
+        "ru": "Зайд ибн Аркам передал, что в походе услышал от лицемера ‘Абдуллаха ибн Убайя слова, приведённые в 7–8 аятах; тот поклялся, что не говорил этого, чем сильно опечалил Зайда, но Аллах ниспослал эти аяты, полностью подтвердив его правоту, и Пророк ﷺ похвалил его за правдивость."
+      }
+    },
+    "64:14": {
+      "type": "sabab",
+      "versets": [
+        "64:14"
+      ],
+      "plage": "64:14",
+      "source": "Sunan At-Tirmidhī n°3317",
+      "degre": "Hasan",
+      "texte": {
+        "fr": "Ibn ‘Abbās (qu'Allāh les agrée) rapporte que ce verset fut révélé au sujet d'hommes de La Mecque qui avaient embrassé l'Islam et voulaient émigrer vers le Prophète ﷺ à Médine, mais que leurs épouses et leurs enfants retinrent par attachement. Lorsqu'ils purent enfin émigrer plus tard et constatèrent combien leurs compagnons les avaient devancés dans la science religieuse, ils songèrent à sévir contre leurs proches ; Allāh révéla alors la fin du verset les exhortant au pardon et à l'indulgence.",
+        "en": "Ibn ‘Abbās narrated that this verse was revealed regarding men in Makkah who embraced Islam and wished to migrate to Madinah, but whose wives and children held them back. When they finally migrated later and saw how others had surpassed them in religious learning, they considered punishing their families, so Allāh revealed the end of the verse urging them to pardon and forgive.",
+        "es": "Ibn ‘Abbās relató que esta aleya descendió sobre hombres de La Meca cuyas esposas e hijos les impidieron emigrar a tiempo a Medina; cuando luego emigraron y quisieron reprender severamente a sus familias por haberlos retrasado, Allah reveló el final de la aleya exhortándolos al perdón.",
+        "ar": "عن ابن عباس رضي الله عنهما أن هذه الآية نزلت في رجال أسلموا بمكة وأرادوا الهجرة إلى النبي ﷺ فأبى أزواجهم وأولادهم أن يدعوهم، فلما هاجروا لاحقًا ورأوا الناس قد فقهوا في الدين همّوا بمعاقبتهم، فأنزل الله آخر الآية حثًّا على العفو والصفح والمغفرة.",
+        "de": "Ibn ‘Abbās berichtete, dass dieser Vers über Männer aus Mekka offenbart wurde, die von ihren Familien an einer früheren Auswanderung nach Medina gehindert wurden; als sie später nachkamen und ihre Angehörigen streng maßregeln wollten, rief Allah sie am Ende des Verses zu Nachsicht und Vergebung auf.",
+        "it": "Ibn ‘Abbās narrò che questo versetto scese riguardo ad uomini della Mecca trattenuti dai familiari dall'emigrare a Medina; quando poi emigrarono e pensarono di punire i propri cari, Allāh rivelò la fine del versetto invitandoli al perdono e all'indulgenza.",
+        "id": "Ibnu ‘Abbas meriwayatkan bahwa ayat ini turun mengenai beberapa pria di Makkah yang ditahan istri dan anak-anaknya untuk berhijrah ke Madinah; ketika akhirnya mereka berhijrah dan berniat menghukum keluarganya, Allah menurunkan akhir ayat yang menganjurkan pemaafan.",
+        "ru": "Ибн ‘Аббас передал, что этот аят был ниспослан о мекканцах, которых жёны и дети удержали от переселения в Медину; когда же они всё-таки переселились позже и задумали наказать свои семьи, Аллах в конце аята призвал их к прощению и снисходительности."
+      }
+    },
+    "65:1": {
+      "type": "sabab",
+      "versets": [
+        "65:1"
+      ],
+      "plage": "65:1",
+      "source": "Sahīh Al-Bukhārī n°4908, n°5251 & Sahīh Muslim n°1471",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Abdullāh ibn ‘Umar (qu'Allāh les agrée) raconte qu'il divorça son épouse alors qu'elle avait ses menstrues. Son père ‘Umar consulta aussitôt le Messager d'Allāh ﷺ, qui s'en montra vivement contrarié et lui ordonna de la reprendre jusqu'à ce qu'elle soit purifiée, puis qu'elle ait un nouveau cycle et soit de nouveau purifiée — lui rappelant alors cet ordre coranique : « Divorcez-les en respectant leur délai prescrit (li-‘iddatihinna) ! »",
+        "en": "‘Abdullāh ibn ‘Umar narrated that he divorced his wife during her menstrual period. When ‘Umar informed the Messenger of Allāh ﷺ, he was displeased and ordered Ibn ‘Umar to take her back until she became pure, went through another cycle, and became pure again—reminding him of this Qur'anic rule: 'Divorce them for their prescribed waiting period.'",
+        "es": "‘Abdullāh ibn ‘Umar relató que divorció a su esposa durante su menstruación; al saberlo, el Profeta ﷺ se disgustó y le ordenó retomarla hasta que se purificara conforme a la regla de esta aleya sobre respetar el plazo prescrito de espera.",
+        "ar": "عن عبد الله بن عمر رضي الله عنهما أنه طلق امرأته وهي حائض، فسأل عمر رسول الله ﷺ فتغيّظ فيه وأمره أن يراجعها حتى تطهر ثم تحيض ثم تطهر، تلاوةً وتطبيقًا لقوله تعالى: ﴿فَطَلِّقُوهُنَّ لِعِدَّتِهِنَّ﴾.",
+        "de": "‘Abdullāh ibn ‘Umar berichtete, dass er sich während der Menstruation von seiner Frau schied; der Prophet ﷺ war darüber verstimmt und wies ihn an, sie zurückzunehmen und erst in einem Zustand der Reinheit gemäß der Regel dieses Verses über die vorgeschriebene Wartezeit zu verfahren.",
+        "it": "‘Abdullāh ibn ‘Umar narrò di aver divorziato la moglie durante le mestruazioni; il Profeta ﷺ se ne rammaricò e gli ordinò di riprenderla fino a quando fosse purificata, in applicazione della norma di questo versetto sul rispetto del termine prescritto.",
+        "id": "‘Abdullah bin ‘Umar meriwayatkan bahwa ia menceraikan istrinya saat sedang haid; Nabi ﷺ menegurnya dan menyuruhnya merujuk kembali hingga istrinya suci sesuai ketentuan ayat ini agar menceraikan pada waktu yang tepat untuk masa iddah.",
+        "ru": "‘Абдуллах ибн ‘Умар рассказал, что развёлся с женой во время менструации; Пророк ﷺ разгневался и велел ему вернуть её до наступления периода чистоты, указав на предписание этого аята соблюдать установленный срок ожидания."
+      }
+    },
+    "66:1": {
+      "type": "sabab",
+      "versets": [
+        "66:1",
+        "66:2",
+        "66:3",
+        "66:4",
+        "66:5"
+      ],
+      "plage": "66:1–5",
+      "source": "Sahīh Al-Bukhārī n°4912, n°4913, n°5267 & Sahīh Muslim n°1474, n°1479",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Ā’ishah et ‘Umar ibn Al-Khattāb (qu'Allāh les agrée) rapportent que le Messager d'Allāh ﷺ avait l'habitude de rester un moment chez son épouse Zaynab bint Jahsh où elle lui servait du miel. Par jalousie, ‘Ā’ishah et Hafsah se mirent d'accord pour lui dire qu'il sentait l'odeur du Maghāfīr (une gomme d'arbre à l'odeur forte que le Prophète ﷺ détestait). Pour leur faire plaisir, il jura alors de ne plus jamais boire de miel. Allāh fit descendre ces versets lui demandant pourquoi il s'interdisait ce qu'Allāh lui avait rendu licite, tout en exhortant ses épouses au repentir.",
+        "en": "‘Ā’ishah and ‘Umar ibn Al-Khattāb narrated that the Messenger of Allāh ﷺ used to spend extra time at Zaynab bint Jahsh's home drinking honey. Out of jealousy, ‘Ā’ishah and Hafsah agreed to tell him he smelled of Maghāfīr (a pungent tree resin he disliked), so he vowed never to drink honey again to please them. Allāh then revealed these verses asking why he forbade what Allāh made lawful for him.",
+        "es": "‘Ā’ishah y ‘Umar relataron que el Profeta ﷺ solía tomar miel en casa de Zaynab bint Yahsh; por celos, ‘Ā’ishah y Hafsah acordaron decirle que olía a resina de Maghāfīr, por lo que él juró no volver a probar miel. Entonces Allah reveló estas aleyas preguntándole por qué se prohibía lo que Allah le había hecho lícito.",
+        "ar": "عن عائشة وعمر بن الخطاب رضي الله عنهما أن النبي ﷺ كان يمكث عند زينب بنت جحش ويشرب عندها عسلًا، فتواطأت عائشة وحفصة غيرةً أن تقولا له إنه أكل مغافير (صمغ ذو رائحة يكرهها ﷺ)، فحلف ﷺ ألا يشرب العسل إرضاءً لهن، فأنزل الله هذه الآيات عتابًا لطيفًا: ﴿لِمَ تُحَرِّمُ مَا أَحَلَّ اللَّهُ لَكَ﴾.",
+        "de": "‘Ā’ishah und ‘Umar berichteten, dass der Prophet ﷺ bei Zaynab bint Dschahsch gern Honig trank; aus Eifersucht verabredeten ‘Ā’ishah und Hafsah, ihm zu sagen, er rieche nach Maghāfīr-Harz, woraufhin er schwor, keinen Honig mehr zu trinken. Daraufhin offenbarte Allah diese Verse, warum er sich verbiete, was Allah ihm erlaubt hat.",
+        "it": "‘Ā’ishah e ‘Umar narrarono che il Profeta ﷺ era solito bere miele da Zaynab bint Jahsh; per gelosia, ‘Ā’ishah e Hafsah si accordarono per dirgli che sapeva di resina Maghāfīr, inducendolo a giurare di non berne più. Allāh rivelò allora questi versetti chiedendogli perché si proibisse ciò che Gli era lecito.",
+        "id": "‘Aisyah dan ‘Umar meriwayatkan bahwa Nabi ﷺ biasa meminum madu di rumah Zainab binti Jahsy; karena cemburu, ‘Aisyah dan Hafshah sepakat mengatakan tercium bau getah Maghafir sehingga Nabi ﷺ bersumpah tidak meminum madu lagi. Allah pun menurunkan ayat-ayat ini.",
+        "ru": "‘Аиша и ‘Умар передали, что Пророк ﷺ любил пить мёд у Зайнаб бинт Джахш; из ревности ‘Аиша и Хафса сговорились сказать ему, что от него пахнет смолой магафир, после чего он поклялся больше не пить мёд. Тогда Аллах ниспослал эти аяты, спрашивая, зачем он запрещает себе дозволенное Аллахом."
+      }
+    },
+    "66:11": {
+      "type": "hadith",
+      "versets": [
+        "66:11",
+        "66:12"
+      ],
+      "plage": "66:11–12",
+      "source": "Sahīh Al-Bukhārī n°3411, n°3769 & Sahīh Muslim n°2431",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Abū Mūsā Al-Ash‘arī (qu'Allāh l'agrée) rapporte que le Messager d'Allāh ﷺ a honoré les deux figures féminines citées en modèles universels pour tous les croyants dans ces deux versets finaux : « Beaucoup d'hommes ont atteint la perfection, mais parmi les femmes seules Āsiyah, l'épouse de Pharaon, et Maryam, fille de ‘Imrān, l'ont atteinte ; et la supériorité de ‘Ā’ishah sur les autres femmes est comparable à celle du plat de Tharīd sur les autres mets. »",
+        "en": "Abū Mūsā Al-Ash‘arī narrated that the Messenger of Allāh ﷺ honored the two believing women presented as timeless models in these closing verses: 'Many among men have attained perfection, yet among women only Āsiyah the wife of Pharaoh and Maryam daughter of ‘Imrān attained it; and the excellence of ‘Ā’ishah over other women is like that of Tharīd over all other foods.'",
+        "es": "Abū Mūsā Al-Ash‘arī relató que el Profeta ﷺ ensalzó a las dos mujeres presentadas como modelos universales en estas aleyas finales: «Muchos hombres alcanzaron la perfección, pero entre las mujeres solo la alcanzaron Āsiyah, esposa de Faraón, y Maryam, hija de ‘Imrān».",
+        "ar": "عن أبي موسى الأشعري رضي الله عنه أن النبي ﷺ أشاد بالمرأتين اللتين ضربهما الله مثلًا للمؤمنين في ختام هذه السورة فقال: «كمل من الرجال كثير، ولم يكمل من النساء إلا آسية امرأة فرعون ومريم بنت عمران، وإن فضل عائشة على النساء كفضل الثريد على سائر الطعام».",
+        "de": "Abū Mūsā Al-Ash‘arī berichtete, dass der Prophet ﷺ die beiden in diesen Schlussversen als Vorbilder genannten Frauen rühmte: „Viele unter den Männern erreichten Vollkommenheit, doch unter den Frauen erreichten sie nur Āsiyah, die Frau Pharaos, und Maryam, die Tochter ‘Imrāns.“",
+        "it": "Abū Mūsā Al-Ash‘arī narrò che il Profeta ﷺ esaltò le due figure femminili additate a modello in questi versetti finali: «Molti uomini hanno raggiunto la perfezione, ma tra le donne l'hanno raggiunta solo Āsiyah moglie del Faraone e Maria figlia di ‘Imrān».",
+        "id": "Abu Musa Al-Asy‘ari meriwayatkan sabda Nabi ﷺ yang memuji dua teladan agung pada penutup surah ini: “Banyak laki-laki yang mencapai kesempurnaan, namun dari kalangan wanita tidak ada yang sempurna kecuali Asiyah istri Fir‘aun dan Maryam putri ‘Imran.”",
+        "ru": "Абу Муса аль-Аш‘ари передал слова Пророка ﷺ о двух женщинах, приведённых в пример верующим в этих аятах: «Многие из мужчин достигли совершенства, а из женщин совершенства достигли лишь Асия, жена Фараона, и Марьям, дочь ‘Имрана»."
+      }
+    },
+    "67:1": {
+      "type": "hadith",
+      "versets": [
+        "67:1"
+      ],
+      "plage": "67:1",
+      "source": "Sunan At-Tirmidhī n°2891 & Sunan Abī Dāwūd n°1400",
+      "degre": "Hasan",
+      "texte": {
+        "fr": "Abū Hurayrah (qu'Allāh l'agrée) rapporte que le Messager d'Allāh ﷺ a dit au sujet du mérite immense de cette sourate : « Il y a dans le Coran une sourate de trente versets qui a intercédé en faveur d'un homme jusqu'à ce qu'il lui soit pardonné : c'est “Béni soit Celui dans la Main de qui est la Royauté” (Sourate Al-Mulk). »",
+        "en": "Abū Hurayrah narrated that the Messenger of Allāh ﷺ said regarding the great virtue of this surah: 'There is a surah in the Qur'an of thirty verses that interceded for a man until he was forgiven: “Blessed is He in whose hand is dominion” (Sūrah Al-Mulk).'",
+        "es": "Abū Hurayrah relató que el Mensajero de Allah ﷺ dijo sobre la gran virtud de esta sura: «Hay en el Corán una sura de treinta aleyas que intercedió por un hombre hasta que le fue perdonado: es la Sura Al-Mulk».",
+        "ar": "عن أبي هريرة رضي الله عنه أن النبي ﷺ قال في فضل هذه السورة: «إن سورةً من القرآن ثلاثون آية شفعت لرجل حتى غُفر له، وهي: ﴿تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ﴾».",
+        "de": "Abū Hurayrah berichtete, dass der Gesandte Allahs ﷺ über den Vorzug dieser Sure sagte: „Es gibt eine Sure im Koran mit dreißig Versen, die für einen Menschen Fürsprache einlegte, bis ihm vergeben wurde: Sure Al-Mulk.“",
+        "it": "Abū Hurayrah narrò che il Messaggero di Allāh ﷺ disse sul merito di questa sura: «Vi è nel Corano una sura di trenta versetti che intercedette per un uomo finché non gli fu perdonato: è Sura Al-Mulk».",
+        "id": "Abu Hurairah meriwayatkan sabda Rasulullah ﷺ tentang keutamaan surah ini: “Sesungguhnya ada satu surah dalam Al-Qur'an berisi tiga puluh ayat yang memberi syafaat bagi seseorang hingga ia diampuni, yaitu Surah Al-Mulk.”",
+        "ru": "Абу Хурайра передал слова Посланника Аллаха ﷺ о великом достоинстве этой суры: «Поистине, есть в Коране сура из тридцати аятов, которая заступилась за человека, пока ему не было прощено — это сура “Аль-Мульк”»."
+      }
+    },
+    "68:1": {
+      "type": "hadith",
+      "versets": [
+        "68:1"
+      ],
+      "plage": "68:1",
+      "source": "Sahīh Muslim n°2653 & Sunan Abī Dāwūd n°4700",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Ubādah ibn As-Sāmit et ‘Abdullāh ibn ‘Amr rapportent deux Hadiths authentiques éclairant le serment par la Plume (Al-Qalam) : le Messager d'Allāh ﷺ a enseigné que la première créature qu'Allāh créa parmi les instruments du décret fut la Plume, à laquelle Il ordonna d'écrire tout ce qui doit advenir jusqu'au Jour de la Résurrection — et qu'Allāh inscrivit les destinées de toutes les créatures cinquante mille ans avant la création des cieux et de la terre.",
+        "en": "‘Ubādah ibn As-Sāmit and ‘Abdullāh ibn ‘Amr narrated two authentic Hadiths illuminating the oath by the Pen (Al-Qalam): the Messenger of Allāh ﷺ taught that Allāh commanded the Pen to write everything destined to occur until the Day of Resurrection, and that Allāh recorded the decrees of all creation fifty thousand years before creating the heavens and the earth.",
+        "es": "‘Ubādah ibn As-Sāmit y ‘Abdullāh ibn ‘Amr relataron dos hadices auténticos sobre la Pluma (Al-Qalam): el Profeta ﷺ enseñó que Allah ordenó a la Pluma escribir todo cuanto acontecería hasta el Día de la Resurrección, y que decretó el destino de la creación cincuenta mil años antes de crear los cielos y la tierra.",
+        "ar": "عن عبادة بن الصامت وعبد الله بن عمرو رضي الله عنهما في بيان شأن القلم الذي أقسم الله به: أن الله أمر القلم أن يكتب مقادير كل شيء حتى تقوم الساعة، وأن الله كتب مقادير الخلائق قبل أن يخلق السماوات والأرض بخمسين ألف سنة.",
+        "de": "‘Ubādah ibn As-Sāmit und ‘Abdullāh ibn ‘Amr überlieferten zwei authentische Hadithe zum Schwur bei dem Schreibrohr (Al-Qalam): Allah gebot dem Schreibrohr, alles bis zum Tag der Auferstehung niederzuschreiben, und verzeichnete die Bestimmungen der Geschöpfe fünfzigtausend Jahre vor der Erschaffung der Himmel und der Erde.",
+        "it": "‘Ubādah ibn As-Sāmit e ‘Abdullāh ibn ‘Amr narrarono due Hadith autentici sul giuramento per il Calamo (Al-Qalam): Allāh ordinò al Calamo di scrivere tutto ciò che sarebbe accaduto fino al Giorno della Resurrezione, e fissò i decreti del creato cinquantamila anni prima della creazione dei cieli e della terra.",
+        "id": "‘Ubadah bin Ash-Shamit dan ‘Abdullah bin ‘Amr meriwayatkan dua hadits shahih tentang Pena (Al-Qalam): Allah memerintahkan Pena mencatat segala ketetapan hingga Hari Kiamat, dan Allah menuliskan takdir seluruh makhluk lima puluh ribu tahun sebelum penciptaan langit dan bumi.",
+        "ru": "‘Убада ибн ас-Самит и ‘Абдуллах ибн ‘Амр передали два достоверных хадиса о Письменной трости (аль-Калам): Аллах повелел ей записать всё, что произойдёт до Судного дня, и предопределения всех творений были записаны за пятьдесят тысяч лет до сотворения небес и земли."
+      }
+    },
+    "68:4": {
+      "type": "hadith",
+      "versets": [
+        "68:4"
+      ],
+      "plage": "68:4",
+      "source": "Sahīh Muslim n°746",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Sa‘d ibn Hishām interrogea la Mère des Croyants ‘Ā’ishah (qu'Allāh l'agrée) au sujet du caractère du Messager d'Allāh ﷺ — auquel Allāh rend cet hommage sublime (« Et tu es certes d'une moralité éminente »). Elle répondit par cette formule célèbre : « Ne lis-tu donc pas le Coran ? En vérité, le caractère du Prophète d'Allāh ﷺ était le Coran lui-même ! » — mettant en pratique chacun de ses ordres, de ses interdits et de ses vertus.",
+        "en": "When Sa‘d ibn Hishām asked ‘Ā’ishah about the character of the Messenger of Allāh ﷺ—praised here as 'of an exalted standard of character'—she replied with her famous words: 'Do you not read the Qur'an? Indeed, the character of the Prophet of Allāh ﷺ was the Qur'an!'—living out every command, prohibition, and virtue within it.",
+        "es": "Al preguntar Sa‘d ibn Hishām a ‘Ā’ishah por el carácter del Mensajero de Allah ﷺ —elogiado en esta aleya—, ella respondió con sus célebres palabras: «¿Acaso no lees el Corán? Su carácter era el Corán mismo», encarnando en su vida cada enseñanza y virtud del Libro.",
+        "ar": "سأل سعد بن هشام أم المؤمنين عائشة رضي الله عنها عن خُلق رسول الله ﷺ الذي أثنى الله عليه في هذه الآية، فقالت قولتها الشهيرة: «ألست تقرأ القرآن؟ فإن خُلق نبي الله ﷺ كان القرآن»، امتثالًا تامًّا لأوامره وآدابه ومكارمه.",
+        "de": "Auf die Frage von Sa‘d ibn Hishām nach dem Charakter des Gesandten Allahs ﷺ – den dieser Vers als gewaltig rühmt – antwortete ‘Ā’ishah mit den berühmten Worten: „Liest du denn nicht den Koran? Wahrlich, der Charakter des Propheten ﷺ war der Koran!“",
+        "it": "Quando Sa‘d ibn Hishām chiese ad ‘Ā’ishah quale fosse il carattere del Messaggero di Allāh ﷺ — lodato in questo versetto — ella rispose con le sue celebri parole: «Non leggi forse il Corano? In verità il carattere del Profeta ﷺ era il Corano stesso!».",
+        "id": "Ketika Sa‘d bin Hisyam bertanya kepada ‘Aisyah tentang akhlak Rasulullah ﷺ yang dipuji agung dalam ayat ini, beliau menjawab dengan ungkapan masyhur: “Bukankah engkau membaca Al-Qur'an? Sesungguhnya akhlak Nabi Allah ﷺ adalah Al-Qur'an!”",
+        "ru": "Когда Са‘д ибн Хишам спросил ‘Аишу о нраве Посланника Аллаха ﷺ, восхваляемом в этом аяте, она произнесла свои знаменитые слова: «Разве ты не читаешь Коран? Поистине, нравом Пророка Аллаха ﷺ был сам Коран!»"
+      }
+    },
+    "68:42": {
+      "type": "hadith",
+      "versets": [
+        "68:42"
+      ],
+      "plage": "68:42",
+      "source": "Sahīh Al-Bukhārī n°4919 & Sahīh Muslim n°183",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Abū Sa‘īd Al-Khudrī (qu'Allāh l'agrée) rapporte que le Messager d'Allāh ﷺ décrivit ce moment décisif du Jour de la Résurrection (« Le jour où la Jambe sera découverte et où ils seront appelés à la prosternation ») : chaque croyant et chaque croyante se prosternera aussitôt spontanément devant son Seigneur, tandis que quiconque se prosternait ici-bas par ostentation ou pour se faire remarquer verra son dos se figer comme une seule vertèbre rigide, incapable de s'incliner.",
+        "en": "Abū Sa‘īd Al-Khudrī narrated that the Messenger of Allāh ﷺ described this decisive moment of Judgment Day ('The Day the Shin will be uncovered and they are invited to prostrate'): every sincere believing man and woman will spontaneously fall into prostration, while whoever used to pray merely for show in this world will find their back stiffened like a single rigid bone, unable to bow.",
+        "es": "Abū Sa‘īd Al-Khudrī relató que el Profeta ﷺ describió este instante del Día del Juicio: todo creyente y creyente sincero se postrará de inmediato ante su Señor, mientras que quien se postraba en este mundo por ostentación verá su espalda volverse rígida e incapaz de inclinarse.",
+        "ar": "عن أبي سعيد الخدري رضي الله عنه أن النبي ﷺ وصف هذا المشهد العظيم يوم القيامة: فيسجد كل مؤمن ومؤمنة لله طوعًا، أما من كان يسجد في الدنيا رياءً وسمعةً فيذهب ليسجد فيعود ظهره طبقًا واحدًا فلا يستطيع السجود.",
+        "de": "Abū Sa‘īd Al-Khudrī berichtete, dass der Prophet ﷺ diesen Moment am Jüngsten Tag beschrieb: Jeder aufrichtige Gläubige wird sich mühelos niederwerfen, während demjenigen, der im Diesseits nur aus Augendienerei betete, der Rücken wie ein einziges starres Stück wird.",
+        "it": "Abū Sa‘īd Al-Khudrī narrò che il Profeta ﷺ descrisse questo momento del Giorno del Giudizio: ogni credente sincero si prosternerà spontaneamente, mentre chi pregava in questo mondo per ostentazione avrà la schiena irrigidita come un solo osso, incapace di chinarsi.",
+        "id": "Abu Sa‘id Al-Khudri meriwayatkan penjelasan Nabi ﷺ atas momen Hari Kiamat ini: setiap mukmin dan mukminah yang tulus langsung bersujud, sedangkan orang yang dahulu shalat karena riya punggungnya menjadi kaku seperti satu tulang sehingga tak mampu bersujud.",
+        "ru": "Абу Са‘ид аль-Худри передал описание Пророком ﷺ этого момента Судного дня: каждый искренний верующий и верующая легко падут ниц, тогда как у того, кто молился в земной жизни напоказ, спина станет твёрдой, словно единая кость, и он не сможет склониться."
+      }
+    },
+    "68:51": {
+      "type": "hadith",
+      "versets": [
+        "68:51"
+      ],
+      "plage": "68:51",
+      "source": "Sahīh Al-Bukhārī n°5740 & Sahīh Muslim n°2187, n°2188",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Abū Hurayrah et Ibn ‘Abbās (qu'Allāh les agrée) rapportent que le Messager d'Allāh ﷺ a confirmé la réalité du mauvais œil (« Al-‘aynu haqq ») — illustrant l'hostilité des regards envieux décrits dans ce verset (« Peu s'en faut que les mécréants ne te fassent glisser par leurs regards ») — tout en rappelant que rien ne peut nuire sans la permission d'Allāh et en enseignant de rechercher protection auprès d'Allāh et de prononcer des bénédictions (Al-Barakah).",
+        "en": "Abū Hurayrah and Ibn ‘Abbās narrated that the Messenger of Allāh ﷺ affirmed that the evil eye is real ('Al-‘aynu haqq')—echoing the hostile gazes described in this verse ('Those who disbelieve would almost make you slip with their eyes')—while teaching believers that nothing harms except by Allāh's leave and instructing them to seek refuge in Allāh.",
+        "es": "Abū Hurayrah e Ibn ‘Abbās relataron que el Profeta ﷺ confirmó la realidad del mal de ojo («Al-‘aynu haqq») —en alusión a las miradas envidiosas mencionadas en esta aleya—, recordando siempre que nada daña sin el permiso de Allah y enseñando a buscar refugio en Él.",
+        "ar": "عن أبي هريرة وابن عباس رضي الله عنهما أن النبي ﷺ أثبت حقيقة العين بقوله: «العين حق» — وهو ما يوافق ذكر نظرات الحسد في هذه الآية — مع بيان أن شيئًا لا يضر إلا بإذن الله والأمر بالاستعاذة والتبريك.",
+        "de": "Abū Hurayrah und Ibn ‘Abbās berichteten, dass der Gesandte Allahs ﷺ die Wirklichkeit des bösen Blicks („Al-‘aynu haqq“) bestätigte – passend zu den feindseligen Blicken in diesem Vers – und zugleich betonte, dass nichts ohne Allahs Erlaubnis schaden kann.",
+        "it": "Abū Hurayrah e Ibn ‘Abbās narrarono che il Profeta ﷺ confermò la realtà del malocchio («Al-‘aynu haqq») — in sintonia con gli sguardi ostili evocati in questo versetto — ricordando che nulla nuoce senza il permesso di Allāh e insegnando a chiedere la Sua protezione.",
+        "id": "Abu Hurairah dan Ibnu ‘Abbas meriwayatkan sabda Nabi ﷺ bahwa ‘ain (pandangan mata yang hasad) itu benar adanya — selaras dengan tatapan tajam kaum kafir pada ayat ini — sembari menegaskan bahwa tidak ada mudarat kecuali atas izin Allah serta anjuran memohon perlindungan kepada-Nya.",
+        "ru": "Абу Хурайра и Ибн ‘Аббас передали слова Пророка ﷺ о том, что сглаз — истина («аль-‘айну хакк»), что соотносится со злобными взглядами из этого аята, при неизменном напоминании, что ничто не вредит без воли Аллаха, и повелении прибегать к Его защите."
+      }
+    },
+    "71:23": {
+      "type": "hadith",
+      "versets": [
+        "71:23"
+      ],
+      "plage": "71:23",
+      "source": "Sahīh Al-Bukhārī n°4920",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Ibn ‘Abbās (qu'Allāh les agrée) dévoile l'origine historique des cinq idoles mentionnées dans ce verset (Wadd, Suwā‘, Yaghūth, Ya‘ūq et Nasr) : c'étaient à l'origine les noms d'hommes vertueux du peuple de Nūh (Noé). Après leur décès, Satan insuffla à leurs contemporains d'ériger des statues portant leurs noms sur leurs lieux de réunion en guise de simple souvenir ; celles-ci ne furent pas adorées au début, mais lorsque cette génération disparut et que la science fut oubliée, les générations suivantes se mirent à les adorer en dehors d'Allāh.",
+        "en": "Ibn ‘Abbās explained the historical origin of the five idols named here (Wadd, Suwā‘, Yaghūth, Ya‘ūq, and Nasr): they were originally the names of righteous men among the people of Nūh (Noah). After their deaths, Satan inspired people to erect statues in their memory; they were not worshipped at first, but once that generation passed and knowledge faded, later generations began worshipping them alongside Allāh.",
+        "es": "Ibn ‘Abbās explicó el origen histórico de los cinco ídolos citados aquí (Wadd, Suwā‘, Yaghūth, Ya‘ūq y Nasr): eran originalmente nombres de hombres virtuosos del pueblo de Noé; tras su muerte se erigieron estatuas en su recuerdo y, al olvidarse el saber con las generaciones siguientes, acabaron siendo adoradas.",
+        "ar": "عن ابن عباس رضي الله عنهما في أصل الأصنام الخمسة (ودّ وسواع ويغوث ويعوق ونسر): كانت أسماء رجال صالحين من قوم نوح، فلما هلكوا أوحى الشيطان إلى قومهم أن انصبوا إلى مجالسهم أنصابًا وسمّوها بأسمائهم ففعلوا ولم تُعبد، حتى إذا هلك أولئك وتنسّخ العلم عُبدت من دون الله.",
+        "de": "Ibn ‘Abbās erläuterte den Ursprung der fünf hier genannten Götzen (Wadd, Suwā‘, Yaghūth, Ya‘ūq und Nasr): Ursprünglich waren dies Namen rechtschaffener Männer aus dem Volk Noahs, zu deren Gedenken Statuen errichtet wurden; als das Wissen in späteren Generationen schwand, begann man, sie anzubeten.",
+        "it": "Ibn ‘Abbās spiegò l'origine storica dei cinque idoli citati qui (Wadd, Suwā‘, Yaghūth, Ya‘ūq e Nasr): erano in origine nomi di uomini pii del popolo di Noè; dopo la loro morte furono erette statue in loro memoria che, dimenticata la scienza nelle generazioni successive, finirono per essere adorate.",
+        "id": "Ibnu ‘Abbas menjelaskan asal-usul lima berhala (Wadd, Suwa‘, Yaghuts, Ya‘uq, dan Nasr): awalnya itu adalah nama orang-orang saleh kaum Nabi Nuh; setelah wafat dibuatlah patung untuk mengenang mereka, lalu ketika generasi berilmu punah patung-patung itu mulai disembah.",
+        "ru": "Ибн ‘Аббас разъяснил происхождение пяти идолов (Вадд, Сува‘, Ягус, Я‘ук и Наср): первоначально это были имена праведников из народа Нуха; после их смерти в память о них поставили изваяния, а когда знание угасло в следующих поколениях, им стали поклоняться помимо Аллаха."
+      }
+    },
+    "72:1": {
+      "type": "sabab",
+      "versets": [
+        "72:1",
+        "72:2"
+      ],
+      "plage": "72:1–2",
+      "source": "Sahīh Al-Bukhārī n°773, n°4921 & Sahīh Muslim n°449",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Ibn ‘Abbās (qu'Allāh les agrée) rapporte qu'au début de la mission prophétique, lorsque les démons furent empêchés d'écouter aux portes du ciel par des étoiles filantes, ils parcoururent la terre d'est en ouest pour découvrir quel grand événement venait de survenir. Un groupe passant par Nakhlah entendit le Prophète ﷺ réciter le Coran durant la prière de l'aube : ils comprirent aussitôt que c'était là la cause de ce bouleversement, crurent au Coran et retournèrent avertir leur peuple — et Allāh révéla au Prophète ﷺ le début de cette sourate pour l'en informer.",
+        "en": "Ibn ‘Abbās narrated that when devils were blocked from eavesdropping on heaven by shooting stars, they searched the earth to learn what major event had occurred. A group passing through Nakhlah heard the Prophet ﷺ reciting the Qur'an in Fajr prayer, realized this was the cause, embraced faith immediately, and returned to warn their people—upon which Allāh revealed this opening to inform the Prophet ﷺ.",
+        "es": "Ibn ‘Abbās relató que al verse impedidos de espiar el cielo por meteoros, los genios recorrieron la tierra buscando la causa; un grupo pasó por Nakhlah, oyó al Profeta ﷺ recitar el Corán al alba, creyó al instante y regresó a advertir a los suyos, revelando Allah al Profeta ﷺ el inicio de esta sura.",
+        "ar": "عن ابن عباس رضي الله عنهما أنه لما حيل بين الشياطين وبين خبر السماء وأُرسلت عليهم الشهب، ضربوا مشارق الأرض ومغاربها يبحثون عن السبب، فمرّ نفر منهم بنخلة فسمعوا النبي ﷺ يقرأ القرآن في الفجر فآمنوا وعادوا لقومهم، فأنزل الله على نبيه ﷺ مطلع هذه السورة إخبارًا بذلك.",
+        "de": "Ibn ‘Abbās berichtete, dass die Dschinn die Erde durchstreiften, als Sternschnuppen das Belauschen des Himmels verhinderten; eine Gruppe hörte bei Nakhlah die Koranrezitation des Propheten ﷺ im Morgengebet, glaubte sofort und kehrte als Warner zu ihrem Volk zurück, worüber Allah den Propheten ﷺ in diesen Versen unterrichtete.",
+        "it": "Ibn ‘Abbās narrò che quando le stelle cadenti impedirono di origliare il cielo, i jinn perlustrarono la terra; un gruppo udì a Nakhlah il Profeta ﷺ recitare il Corano all'alba, credette subito e tornò ad ammonire il proprio popolo, e Allāh ne informò il Profeta ﷺ rivelando l'inizio di questa sura.",
+        "id": "Ibnu ‘Abbas meriwayatkan bahwa ketika setan terhalang mencuri berita langit oleh panah-panah api, serombongan jin menjelajahi bumi lalu mendengar Nabi ﷺ membaca Al-Qur'an saat shalat Subuh di Nakhlah; mereka seketika beriman dan Allah mengabarkan peristiwa ini melalui awal surah ini.",
+        "ru": "Ибн ‘Аббас передал, что когда падающие звёзды преградили подслушивание небес, джинны разошлись по земле искать причину; группа из них в Нахле услышала чтение Корана Пророком ﷺ на утренней молитве, сразу уверовала и вернулась к своему народу, о чём Аллах возвестил Пророку ﷺ в начале этой суры."
+      }
+    },
+    "73:20": {
+      "type": "sabab",
+      "versets": [
+        "73:20"
+      ],
+      "plage": "73:20",
+      "source": "Sahīh Muslim n°746",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Ā’ishah (qu'Allāh l'agrée) rapporte qu'après la révélation du début de la Sourate Al-Muzzammil, le Prophète ﷺ et ses Compagnons accomplirent assidûment la prière nocturne (Qiyām al-layl) durant une année entière jusqu'à ce que leurs pieds enflent, tandis qu'Allāh retint la fin de la sourate pendant douze mois. Puis Allāh révéla ce verset final d'allègement, transformant la prière nocturne d'une obligation stricte en un acte surérogatoire volontaire selon la capacité de chacun.",
+        "en": "‘Ā’ishah narrated that after the opening of Sūrah Al-Muzzammil was revealed, the Prophet ﷺ and his Companions stood in night prayer (Qiyām al-layl) for an entire year until their feet swelled while Allāh held back the ending of the surah for twelve months. Then Allāh revealed this closing verse of mercy, easing night prayer from a strict obligation into a voluntary act according to one's ability.",
+        "es": "‘Ā’ishah relató que tras descender el inicio de Al-Muzzammil, el Profeta ﷺ y sus Compañeros mantuvieron la oración nocturna durante un año entero hasta hinchárseles los pies; luego Allah reveló esta última aleya de alivio, convirtiendo la oración nocturna de obligación estricta en acto voluntario.",
+        "ar": "عن عائشة رضي الله عنها أنه لما نزل أول سورة المزمل قام النبي ﷺ وأصحابه ليلهم حولًا كاملًا حتى انتفخت أقدامهم، وأمسك الله خاتمتها اثني عشر شهرًا، ثم أنزل الله التخفيف في هذه الآية الأخيرة فصار قيام الليل تطوعًا بعد أن كان فريضة.",
+        "de": "‘Ā’ishah berichtete, dass der Prophet ﷺ und seine Gefährten nach der Offenbarung des Beginns von Al-Muzzammil ein ganzes Jahr lang nachts beteten, bis ihre Füße anschwollen; zwölf Monate später offenbarte Allah diesen erleichternden Schlussvers und machte das Nachtgebet von einer Pflicht zu einer freiwilligen Handlung.",
+        "it": "‘Ā’ishah narrò che dopo l'inizio di Al-Muzzammil il Profeta ﷺ e i Compagni pregarono la notte per un anno intero fino ad avere i piedi gonfi; dodici mesi dopo Allāh rivelò questo versetto finale di alleviamento, trasformando la preghiera notturna da obbligo in atto volontario.",
+        "id": "‘Aisyah meriwayatkan bahwa setelah awal Surah Al-Muzzammil turun, Nabi ﷺ dan para sahabat mendirikan shalat malam selama setahun penuh hingga kaki mereka bengkak; dua belas bulan kemudian Allah menurunkan ayat penutup keringanan ini sehingga shalat malam menjadi sunnah.",
+        "ru": "‘Аиша передала, что после ниспослания начала суры «Аль-Муззаммиль» Пророк ﷺ и его сподвижники целый год выстаивали ночные молитвы до опухания ног; спустя двенадцать месяцев Аллах ниспослал этот облегчающий аят, сделав ночную молитву добровольной."
+      }
+    },
+    "74:1": {
+      "type": "sabab",
+      "versets": [
+        "74:1",
+        "74:2",
+        "74:3",
+        "74:4",
+        "74:5"
+      ],
+      "plage": "74:1–5",
+      "source": "Sahīh Al-Bukhārī n°4, n°4922, n°4925 & Sahīh Muslim n°161",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Jābir ibn ‘Abdillāh (qu'Allāh les agrée) rapporte d'après le Prophète ﷺ qu'après la première pause de la Révélation (Fatrat al-Wahy), alors qu'il marchait, il entendit une voix venant du ciel : en levant les yeux, il aperçut le même Ange qui lui était apparu dans la grotte de Hirā', assis sur un siège entre le ciel et la terre. Saisi d'une vive frayeur, il rentra aussitôt chez lui en disant : « Enveloppez-moi ! Couvrez-moi ! » Allāh révéla alors ces cinq premiers versets (« Ô toi, le revêtu d'un manteau ! Lève-toi et avertis ! »), inaugurant la phase d'appel public et la reprise continue de la Révélation.",
+        "en": "Jābir ibn ‘Abdillāh narrated from the Prophet ﷺ that following the initial pause in Revelation, while walking he heard a voice from the sky and looked up to see the very Angel who had appeared to him in Hirā' seated on a throne between heaven and earth. Overwhelmed with awe, he rushed home saying 'Wrap me up! Cover me!'—whereupon Allāh revealed these opening five verses ('O you who covers himself, arise and warn!'), launching his public mission.",
+        "es": "Yābir ibn ‘Abdillāh relató del Profeta ﷺ que tras la primera pausa de la Revelación oyó una voz del cielo y vio al Ángel de Hirā' sentado entre el cielo y la tierra; sobrecogido regresó a casa pidiendo que lo cubrieran con un manto, y entonces Allah reveló estas cinco primeras aleyas («¡Oh el envuelto en su manto! Levántate y advierte»).",
+        "ar": "عن جابر بن عبد الله رضي الله عنهما عن النبي ﷺ أنه بعد فترة الوحي سمع صوتًا من السماء فرفع بصره فإذا الملك الذي جاءه بحراء جالس على كرسي بين السماء والأرض، فرُعب ورجع يقول: «زمّلوني دثّروني»، فأنزل الله هذه الآيات الخمس الأولى: ﴿يَا أَيُّهَا الْمُدَّثِّرُ * قُمْ فَأَنذِرْ﴾، ثم حمي الوحي وتتابع.",
+        "de": "Dschābir ibn ‘Abdillāh überlieferte vom Propheten ﷺ, dass er nach der ersten Offenbarungspause eine Stimme vom Himmel hörte und den Engel von Hirā' zwischen Himmel und Erde erblickte; erschüttert eilte er heim und bat, ihn einzuhüllen, worauf Allah diese ersten fünf Verse („O du Zugedeckter, steh auf und warne!“) offenbarte.",
+        "it": "Jābir ibn ‘Abdillāh narrò dal Profeta ﷺ che dopo la prima pausa della Rivelazione udì una voce dal cielo e vide l'Angelo di Hirā' assiso tra cielo e terra; scosso rientrò chiedendo di essere avvolto in un mantello, e Allāh rivelò questi cinque versetti («O avvolto nel mantello, alzati e ammonisci!»).",
+        "id": "Jabir bin ‘Abdillah meriwayatkan dari Nabi ﷺ bahwa seusai masa jeda wahyu beliau mendengar suara dari langit dan melihat Malaikat Jibril yang datang di Gua Hira duduk di kursi antara langit dan bumi; beliau pulang meminta diselimuti, lalu turunlah lima ayat pertama ini.",
+        "ru": "Джабир ибн ‘Абдуллах передал от Пророка ﷺ, что после первого перерыва в откровении он услышал голос с неба и увидел ангела из пещеры Хира на троне между небом и землёй; потрясённый, он вернулся домой со словами «Укройте меня!», и Аллах ниспослал эти пять первых аятов («О завернувшийся! Встань и увещевай!»)."
+      }
+    },
+    "75:16": {
+      "type": "sabab",
+      "versets": [
+        "75:16",
+        "75:17",
+        "75:18",
+        "75:19"
+      ],
+      "plage": "75:16–19",
+      "source": "Sahīh Al-Bukhārī n°5, n°4927, n°4928 & Sahīh Muslim n°448",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Ibn ‘Abbās (qu'Allāh les agrée) rapporte qu'au début de la mission, lorsque Jibrīl descendait avec la Révélation, le Messager d'Allāh ﷺ remuait précipitamment sa langue et ses lèvres par crainte d'en oublier le moindre mot. Allāh révéla alors ces quatre versets pour l'apaiser : « Ne remue pas ta langue pour hâter la récitation ; c'est à Nous qu'incombent son rassemblement dans ton cœur et sa récitation. » Dès lors, le Prophète ﷺ écoutait Jibrīl dans un silence recueilli puis récitait le Coran avec une parfaite maîtrise.",
+        "en": "Ibn ‘Abbās narrated that whenever Jibrīl brought Revelation, the Messenger of Allāh ﷺ used to move his tongue rapidly out of intense eagerness to memorize every word. Allāh then revealed these four verses reassuring him: 'Move not your tongue with it to hasten it; upon Us is its collection in your heart and its recitation.' Thereafter, he listened quietly until Jibrīl finished, then recited it effortlessly.",
+        "es": "Ibn ‘Abbās relató que al recibir la Revelación de Yibrīl, el Profeta ﷺ movía deprisa los labios temiendo olvidar alguna palabra; entonces Allah reveló estas cuatro aleyas tranquilizándolo y garantizando que Él mismo reuniría el Corán en su pecho y facilitaría su recitación.",
+        "ar": "عن ابن عباس رضي الله عنهما أن النبي ﷺ كان يعالج من التنزيل شدة وكان يحرّك به شفتيه ولسانه حرصًا على حفظه، فأنزل الله هذه الآيات الأربع طمأنةً له بأن الله تكفّل بجمعه في صدره وتيسير قراءته وبيانه، فكان بعد ذلك يستمع لجبريل صامتًا ثم يقرؤه كما أقرأه.",
+        "de": "Ibn ‘Abbās berichtete, dass der Prophet ﷺ bei der Offenbarung eilig die Lippen bewegte, aus Sorge, etwas zu vergessen; daraufhin offenbarte Allah diese vier Verse mit der Zusage, den Koran selbst in seinem Herzen zu bewahren, sodass er fortan still zuhörte und ihn mühelos rezitierte.",
+        "it": "Ibn ‘Abbās narrò che quando Jibrīl portava la Rivelazione, il Profeta ﷺ muoveva rapidamente le labbra per timore di dimenticare una parola; Allāh rivelò allora questi quattro versetti rassicurandolo che Egli stesso avrebbe custodito il Corano nel suo cuore.",
+        "id": "Ibnu ‘Abbas meriwayatkan bahwa setiap kali Jibril membawa wahyu, Nabi ﷺ menggerakkan lidahnya dengan cepat karena takut lupa; maka Allah menurunkan empat ayat ini untuk menenangkan bahwa Allah sendiri yang menjamin pengumpulan dan pembacaannya di dada beliau.",
+        "ru": "Ибн ‘Аббас передал, что при получении откровения от Джибриля Пророк ﷺ поспешно шевелил языком и губами из опасения забыть хоть слово; тогда Аллах ниспослал эти четыре аята, заверив, что Сам соберёт Коран в его сердце и облегчит чтение."
+      }
+    },
+    "75:22": {
+      "type": "hadith",
+      "versets": [
+        "75:22",
+        "75:23"
+      ],
+      "plage": "75:22–23",
+      "source": "Sahīh Al-Bukhārī n°7434, n°7435 & Sahīh Muslim n°182, n°633",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Jarīr ibn ‘Abdillāh et Abū Hurayrah (qu'Allāh les agrée) rapportent que le Messager d'Allāh ﷺ confirma de manière explicite la réalité de la vision béatifique promise dans ces deux versets (« Ce jour-là, il y aura des visages resplendissants, qui regarderont vers leur Seigneur ») : les croyants contempleront leur Seigneur au Paradis avec une clarté parfaite, sans aucune peine ni bousculade, à l'image de la pleine lune dans un ciel sans nuage.",
+        "en": "Jarīr ibn ‘Abdillāh and Abū Hurayrah narrated that the Messenger of Allāh ﷺ explicitly confirmed the beatific vision promised in these two verses ('Faces that Day will be radiant, looking at their Lord'): the believers will gaze upon their Lord in Paradise with utter clarity, as clearly as seeing the full moon on a cloudless night.",
+        "es": "Yarīr ibn ‘Abdillāh y Abū Hurayrah relataron que el Profeta ﷺ confirmó explícitamente la visión beatífica prometida en estas dos aleyas: los creyentes contemplarán a su Señor en el Paraíso con total claridad, sin dificultad alguna, como se contempla la luna llena en una noche despejada.",
+        "ar": "عن جرير بن عبد الله وأبي هريرة رضي الله عنهما أن النبي ﷺ أكّد بوضوح حقيقة رؤية المؤمنين لربهم في الجنة الموعودة في هاتين الآيتين، وأنهم يرونه سبحانه رؤيةً واضحة لا يُضامّون فيها كما يُرى القمر ليلة البدر ليس دونه سحاب.",
+        "de": "Dscharīr ibn ‘Abdillāh und Abū Hurayrah berichteten, dass der Gesandte Allahs ﷺ die in diesen Versen verheißene Schau Allahs im Paradies ausdrücklich bestätigte: Die Gläubigen werden ihren Herrn so klar sehen wie den Vollmond in einer wolkenlosen Nacht.",
+        "it": "Jarīr ibn ‘Abdillāh e Abū Hurayrah narrarono che il Profeta ﷺ confermò esplicitamente la visione beatifica promessa in questi versetti: i credenti contempleranno il loro Signore in Paradiso con piena chiarezza, come la luna piena in una notte limpida.",
+        "id": "Jarir bin ‘Abdillah dan Abu Hurairah meriwayatkan penegasan Nabi ﷺ atas nikmat melihat wajah Allah yang dijanjikan dua ayat ini: kaum mukminin akan memandang Tuhan mereka di Surga dengan sangat jelas seperti melihat bulan purnama di malam tak berawan.",
+        "ru": "Джарир ибн ‘Абдуллах и Абу Хурайра передали, что Пророк ﷺ прямо подтвердил обещанное в этих аятах лицезрение Аллаха в Раю: верующие увидят своего Господа столь же ясно, как полную луну на безоблачном небе."
+      }
+    },
+    "77:1": {
+      "type": "sabab",
+      "versets": [
+        "77:1",
+        "77:2",
+        "77:3",
+        "77:4",
+        "77:5",
+        "77:6",
+        "77:7"
+      ],
+      "plage": "77:1–7",
+      "source": "Sahīh Al-Bukhārī n°4930 & Sahīh Muslim n°2234",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Abdullāh ibn Mas‘ūd (qu'Allāh l'agrée) raconte les circonstances précises de la descente de cette sourate : « Alors que nous étions avec le Messager d'Allāh ﷺ dans une grotte à Minā, la Sourate Al-Mursalāt lui fut révélée ; je la recueillais directement de sa bouche alors qu'elle était toute fraîche, lorsqu'un serpent surgit soudainement vers nous ! Le Prophète ﷺ ordonna : “Tuez-le !”, mais il se glissa dans son trou avant que nous ne l'atteignions, et le Prophète ﷺ dit : “Il a été préservé de votre mal, comme vous avez été préservés du sien.” »",
+        "en": "‘Abdullāh ibn Mas‘ūd recounted the exact moment this surah descended: 'While we were with the Messenger of Allāh ﷺ in a cave at Minā, Sūrah Al-Mursalāt was revealed to him, and I was learning it fresh from his lips when a snake suddenly emerged! The Prophet ﷺ said “Kill it,” but it slipped into its hole, and he remarked: “It has been saved from your harm just as you have been saved from its harm.”'",
+        "es": "‘Abdullāh ibn Mas‘ūd relató el momento preciso de esta revelación: estando con el Profeta ﷺ en una cueva de Minā descendió la Sura Al-Mursalāt y él la aprendía recién recitada de sus labios cuando apareció una serpiente que logró escapar, comentando el Profeta ﷺ que ambos habían quedado a salvo el uno del otro.",
+        "ar": "عن عبد الله بن مسعود رضي الله عنه قال: «بينما نحن مع رسول الله ﷺ في غار بمنى إذ نزلت عليه سورة المرسلات، وإنه ليتلوها وإني لأتلقاها من فيه وإن فاه لرطب بها، إذ وثبت علينا حية فقال النبي ﷺ: اقتلوها، فسبقناها إلى جحرها فقال ﷺ: وُقيت شركم كما وُقيتم شرها».",
+        "de": "‘Abdullāh ibn Mas‘ūd schilderte den genauen Augenblick dieser Offenbarung: In einer Höhle bei Minā empfing der Prophet ﷺ Sure Al-Mursalāt, während Ibn Mas‘ūd sie frisch von seinen Lippen lernte, als plötzlich eine Schlange hervorkam und wieder entkam, worauf der Prophet ﷺ sagte, beide Seiten seien voreinander bewahrt worden.",
+        "it": "‘Abdullāh ibn Mas‘ūd narrò il momento preciso della discesa di questa sura: trovandosi con il Profeta ﷺ in una grotta a Minā, gli fu rivelata Al-Mursalāt e la apprendeva fresca dalle sue labbra quando spuntò un serpente che fuggì via, e il Profeta ﷺ osservò che entrambi erano stati preservati dal male reciproco.",
+        "id": "‘Abdullah bin Mas‘ud menuturkan momen turunnya surah ini: ketika bersama Nabi ﷺ di sebuah gua di Mina, Surah Al-Mursalat turun dan ia langsung menghafalnya dari lisan beliau saat seekor ular tiba-tiba muncul lalu melesat kabur; Nabi ﷺ bersabda bahwa ular itu selamat dari mereka sebagaimana mereka selamat darinya.",
+        "ru": "‘Абдуллах ибн Мас‘уд рассказал о моменте ниспослания этой суры: когда они были с Пророком ﷺ в пещере в Мине, была ниспослана сура «Аль-Мурсалят», и он заучивал её прямо с уст Пророка ﷺ, как вдруг выползла змея и скрылась в норе, а Пророк ﷺ сказал, что они и она были убережены от вреда друг друга."
+      }
+    },
+    "80:1": {
+      "type": "sabab",
+      "versets": [
+        "80:1",
+        "80:2",
+        "80:3",
+        "80:4",
+        "80:5",
+        "80:6",
+        "80:7",
+        "80:8",
+        "80:9",
+        "80:10"
+      ],
+      "plage": "80:1–10",
+      "source": "Sunan At-Tirmidhī n°3331 & Al-Muwatta'",
+      "degre": "Hasan",
+      "texte": {
+        "fr": "‘Ā’ishah (qu'Allāh l'agrée) rapporte que ces dix versets furent révélés au sujet du Compagnon aveugle ‘Abdullāh ibn Umm Maktūm : alors que le Messager d'Allāh ﷺ s'entretenait avec des chefs polythéistes de Quraysh dans l'espoir qu'ils embrassent l'Islam, Ibn Umm Maktūm arriva en demandant : « Ô Messager d'Allāh, enseigne-moi ce qu'Allāh t'a appris ! » Absorbé par son échange, le Prophète ﷺ fronça les sourcils et se détourna. Allāh fit aussitôt descendre ce doux reproche rappelant que celui qui accourt avec sincérité et crainte révérencielle mérite la priorité absolue. Par la suite, le Prophète ﷺ accueillait toujours Ibn Umm Maktūm en disant : « Bienvenue à celui pour qui mon Seigneur m'a adressé un reproche ! »",
+        "en": "‘Ā’ishah narrated that these ten verses were revealed concerning the blind Companion ‘Abdullāh ibn Umm Maktūm: while the Messenger of Allāh ﷺ was speaking with polytheist leaders of Quraysh hoping they would embrace Islam, Ibn Umm Maktūm arrived asking to be taught. Preoccupied with the leaders, the Prophet ﷺ frowned and turned away. Allāh immediately revealed this gentle admonition affirming that the sincere seeker deserves utmost attention; thereafter the Prophet ﷺ warmly greeted him saying: 'Welcome to the one on whose account my Lord admonished me!'",
+        "es": "‘Ā’ishah relató que estas diez aleyas descendieron respecto al Compañero ciego ‘Abdullāh ibn Umm Maktūm: mientras el Profeta ﷺ dialogaba con jefes de Quraysh esperando su conversión, aquel llegó pidiendo enseñanza y el Profeta ﷺ frunció el ceño y se volvió. Allah reveló enseguida este reproche recordando que el creyente sincero merece total prioridad.",
+        "ar": "عن عائشة رضي الله عنها أن هذه الآيات العشر نزلت في الصحابي الأعمى عبد الله بن أم مكتوم؛ إذ أقبل على النبي ﷺ يطلب العلم بينما كان ﷺ منشغلًا بدعوة كبراء قريش فأعرض عنه وعبس، فعاتبه الله عتابًا لطيفًا وبيّن أن الصادق المقبل على الهداية أحق بالإقبال، فكان النبي ﷺ بعد ذلك يكرمه ويقول: «مرحبًا بمن عاتبني فيه ربي».",
+        "de": "‘Ā’ishah berichtete, dass diese zehn Verse wegen des blinden Gefährten ‘Abdullāh ibn Umm Maktūm offenbart wurden: Während der Prophet ﷺ mit Führern der Quraisch sprach, bat dieser um Belehrung, und der Prophet ﷺ runzelte die Stirn und wandte sich ab. Allah ermahnte ihn sanft, dass dem aufrichtigen Suchenden der Vorrang gebührt, woraufhin der Prophet ﷺ ihn fortan besonders herzlich begrüßte.",
+        "it": "‘Ā’ishah narrò che questi dieci versetti furono rivelati riguardo al Compagno cieco ‘Abdullāh ibn Umm Maktūm: mentre il Profeta ﷺ parlava con i capi dei Quraysh sperando nella loro conversione, egli chiese istruzione e il Profeta ﷺ aggrottò la fronte. Allāh lo rimproverò con dolcezza ricordando che chi cerca la guida con sincerità ha la priorità assoluta.",
+        "id": "‘Aisyah meriwayatkan bahwa sepuluh ayat ini turun berkenaan dengan sahabat tunanetra ‘Abdullah bin Ummi Maktum yang datang meminta bimbingan saat Nabi ﷺ sedang mendakwahi pemuka Quraisy sehingga beliau bermuka masam. Allah segera menegur dengan lembut bahwa pencari kebenaran yang tulus lebih berhak diutamakan.",
+        "ru": "‘Аиша передала, что эти десять аятов были ниспосланы по поводу слепого сподвижника ‘Абдуллаха ибн Умм Мактума: когда он попросил наставления во время беседы Пророка ﷺ с вождями курайшитов, Пророк ﷺ нахмурился и отвернулся. Аллах мягко упрекнул его, указав, что искренне стремящийся к вере заслуживает первоочередного внимания."
+      }
+    },
+    "80:15": {
+      "type": "hadith",
+      "versets": [
+        "80:15",
+        "80:16"
+      ],
+      "plage": "80:15–16",
+      "source": "Sahīh Al-Bukhārī n°4937 & Sahīh Muslim n°798",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Ā’ishah (qu'Allāh l'agrée) rapporte que le Messager d'Allāh ﷺ a relié le rang des lecteurs du Coran aux Anges évoqués dans ces deux versets : « Celui qui récite le Coran avec maîtrise sera en compagnie des nobles et obéissants Anges scribes (As-Safarah al-Kirām al-Bararah) ; quant à celui qui le récite avec peine et hésitation, il obtient une double récompense » (l'une pour sa lecture, l'autre pour son effort).",
+        "en": "‘Ā’ishah narrated that the Messenger of Allāh ﷺ linked reciters of the Qur'an to the angels described in these verses: 'The one who is proficient in reciting the Qur'an will be with the noble and righteous angelic scribes (As-Safarah al-Kirām al-Bararah), while the one who recites it with difficulty and stammering receives a double reward.'",
+        "es": "‘Ā’ishah relató que el Profeta ﷺ vinculó a los lectores del Corán con los ángeles mencionados aquí: «Quien recita el Corán con maestría estará con los nobles y obedientes ángeles escribas, y quien lo lee con esfuerzo y dificultad tendrá doble recompensa».",
+        "ar": "عن عائشة رضي الله عنها أن رسول الله ﷺ قال: «الماهر بالقرآن مع السفرة الكرام البررة، والذي يقرأ القرآن ويتتعتع فيه وهو عليه شاق له أجران» — أجر القراءة وأجر المشقة.",
+        "de": "‘Ā’ishah berichtete, dass der Gesandte Allahs ﷺ sagte: „Wer den Koran meisterhaft rezitiert, wird bei den edlen, gehorsamen Schreibengeln sein; wer ihn jedoch mit Mühe und Stocken liest, erhält doppelten Lohn.“",
+        "it": "‘Ā’ishah narrò che il Messaggero di Allāh ﷺ disse: «Chi recita il Corano con maestria sarà in compagnia dei nobili e obbedienti angeli scribi, mentre chi lo legge con fatica e sforzo riceverà una doppia ricompensa».",
+        "id": "‘Aisyah meriwayatkan sabda Rasulullah ﷺ: “Orang yang mahir membaca Al-Qur'an akan bersama para malaikat pencatat yang mulia lagi taat, sedangkan orang yang membacanya terbata-bata dengan susah payah mendapat dua pahala.”",
+        "ru": "‘Аиша передала слова Посланника Аллаха ﷺ: «Искусный в чтении Корана пребудет с благородными и покорными ангелами-писцами, а тому, кто читает Коран с трудом и запинками, полагается двойная награда»."
+      }
+    },
+    "81:1": {
+      "type": "hadith",
+      "versets": [
+        "81:1"
+      ],
+      "plage": "81:1",
+      "source": "Sunan At-Tirmidhī n°3333 & Musnad Ahmad",
+      "degre": "Hasan",
+      "texte": {
+        "fr": "‘Abdullāh ibn ‘Umar (qu'Allāh les agrée) rapporte que le Messager d'Allāh ﷺ a souligné la force saisissante des tableaux eschatologiques de cette sourate : « Quiconque souhaite contempler le Jour de la Résurrection comme s'il le voyait de ses propres yeux, qu'il récite : “Quand le soleil sera obscurci” (At-Takwīr, 81), “Quand le ciel se rompra” (Al-Infitār, 82) et “Quand le ciel se déchirera” (Al-Inshiqāq, 84) ! »",
+        "en": "‘Abdullāh ibn ‘Umar narrated that the Messenger of Allāh ﷺ highlighted the vivid power of this surah's scenes: 'Whoever wishes to look upon the Day of Resurrection as though seeing it with his own eyes should recite: “When the sun is wrapped up” (81), “When the sky breaks apart” (82), and “When the sky is split open” (84).'",
+        "es": "‘Abdullāh ibn ‘Umar relató que el Profeta ﷺ destacó la viveza de estas escenas del Día Final: «Quien desee contemplar el Día de la Resurrección como si lo viera con sus propios ojos, que recite At-Takwīr (81), Al-Infitār (82) y Al-Inshiqāq (84)».",
+        "ar": "عن عبد الله بن عمر رضي الله عنهما أن رسول الله ﷺ قال: «من سرّه أن ينظر إلى يوم القيامة كأنه رأيُ عين فليقرأ: ﴿إِذَا الشَّمْسُ كُوِّرَتْ﴾، و﴿إِذَا السَّمَاءُ انفَطَرَتْ﴾، و﴿إِذَا السَّمَاءُ انشَقَّتْ﴾».",
+        "de": "‘Abdullāh ibn ‘Umar berichtete, dass der Gesandte Allahs ﷺ sagte: „Wer den Tag der Auferstehung betrachten möchte, als sähe er ihn mit eigenen Augen, der möge At-Takwīr (81), Al-Infitār (82) und Al-Inshiqāq (84) rezitieren.“",
+        "it": "‘Abdullāh ibn ‘Umar narrò che il Messaggero di Allāh ﷺ disse: «Chi desidera contemplare il Giorno della Resurrezione come se lo vedesse con i propri occhi, reciti At-Takwīr (81), Al-Infitār (82) e Al-Inshiqāq (84)».",
+        "id": "‘Abdullah bin ‘Umar meriwayatkan sabda Rasulullah ﷺ: “Siapa yang ingin melihat gambaran Hari Kiamat seakan-akan menyaksikannya dengan mata kepala sendiri, hendaklah ia membaca At-Takwir (81), Al-Infithar (82), dan Al-Insyiqaq (84).”",
+        "ru": "‘Абдуллах ибн ‘Умар передал слова Посланника Аллаха ﷺ: «Кто желает увидеть День Воскресения словно воочию, пусть прочтёт суры “Ат-Таквир” (81), “Аль-Инфитар” (82) и “Аль-Иншикак” (84)»."
+      }
+    },
+    "83:1": {
+      "type": "sabab",
+      "versets": [
+        "83:1",
+        "83:2",
+        "83:3"
+      ],
+      "plage": "83:1–3",
+      "source": "Sunan Ibn Mājah n°2223 & Sunan An-Nasā'ī al-Kubrā",
+      "degre": "Hasan",
+      "texte": {
+        "fr": "Ibn ‘Abbās (qu'Allāh les agrée) rapporte qu'à l'arrivée du Prophète ﷺ à Médine, la fraude dans les poids et les mesures était très répandue sur les marchés locaux. Dès qu'Allāh fit descendre cet avertissement solennel (« Malheur aux fraudeurs qui exigent pleine mesure lorsqu'ils achètent, mais qui trichent lorsqu'ils vendent »), les habitants de Médine réformèrent immédiatement leurs pratiques commerciales et devinrent exemplaires d'équité dans la pesée.",
+        "en": "Ibn ‘Abbās narrated that when the Prophet ﷺ arrived in Madinah, cheating in weights and measures was widespread in the markets. Once Allāh revealed this stern warning ('Woe to those who give less than due'), the people of Madinah immediately reformed their trade and became exemplary in fair measurement.",
+        "es": "Ibn ‘Abbās relató que al llegar el Profeta ﷺ a Medina era habitual el fraude en pesos y medidas; en cuanto descendió esta severa advertencia («¡Ay de los defraudadores!»), los habitantes de Medina corrigieron de inmediato sus balanzas y pasaron a pesar con ejemplar equidad.",
+        "ar": "عن ابن عباس رضي الله عنهما قال: لما قدم النبي ﷺ المدينة كانوا من أخبث الناس كيلًا، فأنزل الله تعالى: ﴿وَيْلٌ لِّلْمُطَفِّفِينَ﴾ فأحسنوا الكيل بعد ذلك واستقاموا على العدل في الميزان.",
+        "de": "Ibn ‘Abbās berichtete, dass bei der Ankunft des Propheten ﷺ in Medina Betrug bei Maß und Gewicht verbreitet war; kaum hatte Allah diese strenge Warnung („Wehe den Betrügern!“) offenbart, besserten die Bewohner Medinas sofort ihre Handelsgewohnheiten und maßen gerecht.",
+        "it": "Ibn ‘Abbās narrò che all'arrivo del Profeta ﷺ a Medina la frode nei pesi e nelle misure era diffusa; non appena Allāh rivelò questo severo monito («Guai ai frodatori!»), gli abitanti di Medina corressero subito le bilance diventando esemplari nell'equità.",
+        "id": "Ibnu ‘Abbas meriwayatkan bahwa setibanya Nabi ﷺ di Madinah kecurangan takaran masih marak terjadi; begitu Allah menurunkan ayat ancaman keras ini, penduduk Madinah segera memperbaiki timbangan mereka dengan sangat jujur.",
+        "ru": "Ибн ‘Аббас передал, что по прибытии Пророка ﷺ в Медину там был распространён обвес в торговле; как только Аллах ниспослал это суровое предостережение («Горе обвешивающим!»), жители Медины немедленно исправили свои весы и стали образцом честности."
+      }
+    },
+    "83:6": {
+      "type": "hadith",
+      "versets": [
+        "83:6"
+      ],
+      "plage": "83:6",
+      "source": "Sahīh Al-Bukhārī n°4938 & Sahīh Muslim n°2862",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Abdullāh ibn ‘Umar (qu'Allāh les agrée) rapporte que le Messager d'Allāh ﷺ commenta ce verset (« Le jour où les gens se tiendront debout devant le Seigneur des mondes ») en décrivant l'intensité de cette station prolongée du Jugement, où certains coupables se retrouveront immergés dans leur propre sueur jusqu'à la moitié des oreilles.",
+        "en": "‘Abdullāh ibn ‘Umar narrated that the Messenger of Allāh ﷺ commented on this verse ('The Day when mankind will stand before the Lord of the worlds'), describing the intensity of that standing when some people will stand submerged in their own sweat up to the middle of their ears.",
+        "es": "‘Abdullāh ibn ‘Umar relató que el Profeta ﷺ comentó esta aleya describiendo la gravedad de aquel día en que la humanidad permanecerá de pie ante el Señor de los mundos y algunos quedarán sumergidos en su propio sudor hasta la mitad de las orejas.",
+        "ar": "عن عبد الله بن عمر رضي الله عنهما أن النبي ﷺ قال في تفسير قوله تعالى: ﴿يَوْمَ يَقُومُ النَّاسُ لِرَبِّ الْعَالَمِينَ﴾: «حتى يغيب أحدهم في رشحه إلى أنصاف أذنيه» من شدة هول ذلك الموقف.",
+        "de": "‘Abdullāh ibn ‘Umar berichtete, dass der Prophet ﷺ diesen Vers über das Stehen vor dem Herrn der Welten erläuterte und die Schwere jenes Tages beschrieb, an dem manche bis zur Mitte ihrer Ohren in ihrem eigenen Schweiß stehen werden.",
+        "it": "‘Abdullāh ibn ‘Umar narrò che il Profeta ﷺ commentò questo versetto descrivendo l'intensità di quel giorno in cui gli uomini staranno in piedi davanti al Signore dei mondi e alcuni saranno immersi nel proprio sudore fino a metà delle orecchie.",
+        "id": "‘Abdullah bin ‘Umar meriwayatkan penjelasan Nabi ﷺ atas ayat tentang hari manusia berdiri menghadap Tuhan semesta alam, bahwa saking dahsyatnya suasana saat itu sebagian orang tenggelam dalam keringatnya sendiri hingga setengah telinganya.",
+        "ru": "‘Абдуллах ибн ‘Умар передал комментарий Пророка ﷺ к этому аяту о дне, когда люди предстанут перед Господом миров: от тяжести стояния некоторые погрузятся в собственный пот до середины ушей."
+      }
+    },
+    "83:14": {
+      "type": "hadith",
+      "versets": [
+        "83:14"
+      ],
+      "plage": "83:14",
+      "source": "Sunan At-Tirmidhī n°3334 & Sunan Ibn Mājah n°4244",
+      "degre": "Hasan",
+      "texte": {
+        "fr": "Abū Hurayrah (qu'Allāh l'agrée) rapporte que le Messager d'Allāh ﷺ expliqua le « voile de rouille » (Ar-Rān) mentionné dans ce verset : « Lorsque le serviteur commet un péché, une tache noire se dépose sur son cœur. S'il cesse, implore pardon et se repent, son cœur est aussitôt purifié et poli ; mais s'il persiste dans les péchés, cette noirceur s'étend jusqu'à recouvrir tout son cœur : c'est cela le Rān qu'Allāh évoque dans ce verset ! »",
+        "en": "Abū Hurayrah narrated that the Messenger of Allāh ﷺ explained the 'stain' (Ar-Rān) in this verse: 'When a servant commits a sin, a black spot appears on his heart. If he stops, seeks forgiveness, and repents, his heart is polished clean; but if he continues sinning, it spreads until it envelops his heart—that is the Rān Allāh mentions here!'",
+        "es": "Abū Hurayrah relató que el Profeta ﷺ explicó la «herrumbre» (Ar-Rān) de esta aleya: cada pecado deja una mancha negra en el corazón; si el siervo se arrepiente, el corazón se limpia y pule, pero si persiste en pecar, la mancha termina cubriéndolo por completo.",
+        "ar": "عن أبي هريرة رضي الله عنه أن النبي ﷺ فسّر «الرَّان» في هذه الآية فقال: «إن العبد إذا أخطأ خطيئة نُكتت في قلبه نكتة سوداء، فإذا نزع واستغفر وتاب صُقل قلبه، وإن عاد زيد فيها حتى تعلو قلبه، وهو الران الذي ذكر الله».",
+        "de": "Abū Hurayrah berichtete, dass der Prophet ﷺ den hier genannten „Rost“ (Ar-Rān) erklärte: Jede Sünde hinterlässt einen schwarzen Punkt auf dem Herzen; bereut der Mensch, wird das Herz wieder rein poliert, fährt er jedoch fort, überzieht die Schwärze das gesamte Herz.",
+        "it": "Abū Hurayrah narrò che il Profeta ﷺ spiegò la «ruggine» (Ar-Rān) di questo versetto: ogni peccato lascia una macchia nera sul cuore; con il pentimento il cuore torna limpido, mentre persistendo nel peccato la macchia finisce per ricoprirlo interamente.",
+        "id": "Abu Hurairah meriwayatkan penjelasan Nabi ﷺ tentang ‘noda penutup’ (Ar-Ran) dalam ayat ini: setiap dosa menorehkan titik hitam di hati; bila bertobat hati kembali bersih, namun bila terus berdosa noda itu kian melebar hingga menutupi seluruh hati.",
+        "ru": "Абу Хурайра передал разъяснение Пророка ﷺ о «покрове» (ар-ран) из этого аята: каждый грех оставляет на сердце чёрное пятно; при покаянии сердце очищается, но если человек упорствует в грехах, чернота полностью покрывает его сердце."
+      }
+    },
+    "84:7": {
+      "type": "hadith",
+      "versets": [
+        "84:7",
+        "84:8"
+      ],
+      "plage": "84:7–8",
+      "source": "Sahīh Al-Bukhārī n°103, n°4939 & Sahīh Muslim n°2876",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Ā’ishah (qu'Allāh l'agrée) rapporte que le Messager d'Allāh ﷺ déclara : « Quiconque subit un examen minutieux de ses comptes au Jour du Jugement sera châtié. » ‘Ā’ishah lui demanda alors : « Allāh n'a-t-Il pourtant pas dit dans ce verset : “Il sera soumis à un jugement facile” ? » Le Prophète ﷺ précisa : « Cela désigne la simple présentation des œuvres (Al-‘Ard) par miséricorde d'Allāh ; en revanche, celui dont les comptes sont passés au crible encourt la perte ! »",
+        "en": "‘Ā’ishah narrated that the Messenger of Allāh ﷺ said: 'Whoever is scrutinized in reckoning on Judgment Day will be punished.' ‘Ā’ishah asked: 'Does Allāh not say here, “He will be judged with an easy reckoning”?' He replied: 'That refers only to the simple presentation of deeds (Al-‘Ard), whereas anyone cross-examined in reckoning will perish.'",
+        "es": "‘Ā’ishah relató que cuando el Profeta ﷺ dijo que quien sea interrogado minuciosamente en el Juicio será castigado, ella citó esta aleya («recibirá una cuenta fácil»); él aclaró que la cuenta fácil es la simple exposición de las obras por misericordia, no un escrutinio severo.",
+        "ar": "عن عائشة رضي الله عنها أن النبي ﷺ قال: «من حُوسب عُذّب»، فسألته عائشة: أوليس يقول الله تعالى: ﴿فَسَوْفَ يُحَاسَبُ حِسَابًا يَسِيرًا﴾؟ فأجابها ﷺ: «إنما ذلك العَرض، ولكن من نُوقش الحساب يهلك».",
+        "de": "‘Ā’ishah berichtete, dass der Prophet ﷺ sagte, wer im Gericht streng ausgefragt werde, gehe zugrunde; auf ihre Frage nach der „leichten Abrechnung“ in diesem Vers erklärte er, damit sei lediglich die gnädige Vorlage der Taten (Al-‘Ard) ohne peinliche Prüfung gemeint.",
+        "it": "‘Ā’ishah narrò che quando il Profeta ﷺ disse che chi subisce un esame rigoroso dei conti andrà in rovina, lei citò questo versetto («avrà un rendiconto facile»); egli chiarì che si tratta della semplice presentazione delle opere per misericordia divina.",
+        "id": "‘Aisyah meriwayatkan bahwa saat Nabi ﷺ bersabda siapa yang dihisab secara rinci akan binasa, ia menanyakan ayat ‘hisab yang mudah’ ini; Nabi ﷺ menjelaskan bahwa hisab mudah adalah sekadar penampakan amal semata tanpa diperdebatkan.",
+        "ru": "‘Аиша передала, что на слова Пророка ﷺ «кто будет подвергнут строгому расчёту, тот погибнет» она спросила об этом аяте («получит лёгкий расчёт»), и он пояснил, что лёгкий расчёт — это лишь милостивое предъявление деяний без придирчивого допроса."
+      }
+    },
+    "84:19": {
+      "type": "hadith",
+      "versets": [
+        "84:19"
+      ],
+      "plage": "84:19",
+      "source": "Sahīh Al-Bukhārī n°4940",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Ibn ‘Abbās (qu'Allāh les agrée) clarifia dans le Kitāb at-Tafsīr d'Al-Bukhārī le sens de l'expression « vous passerez certes d'un état à un autre (tabaqan ‘an tabaq) » : cela désigne la succession des étapes et des états que traverse l'être humain (de la vie à la mort, puis à la résurrection et aux étapes de l'Au-delà, ou les épreuves successives), en précisant qu'il s'agit de l'explication même transmise par le Prophète ﷺ.",
+        "en": "Ibn ‘Abbās clarified in Sahīh Al-Bukhārī that 'you will surely experience state after state (tabaqan ‘an tabaq)' means passing from one condition to another across the stages of existence and the Hereafter, explicitly noting that this was the statement of the Prophet ﷺ.",
+        "es": "Ibn ‘Abbās aclaró en Sahīh Al-Bukhārī que «pasaréis de un estado a otro» significa atravesar sucesivas condiciones y etapas de la existencia hasta la Otra Vida, precisando que esa es la explicación transmitida del Profeta ﷺ.",
+        "ar": "عن ابن عباس رضي الله عنهما في كتاب التفسير من صحيح البخاري أنه قال في قوله تعالى: ﴿لَتَرْكَبُنَّ طَبَقًا عَن طَبَقٍ﴾: «حالًا بعد حال، قال: هذا نبيكم ﷺ»؛ أي تنقّل الإنسان في أطوار الحياة والموت والبعث.",
+        "de": "Ibn ‘Abbās erklärte in Sahīh Al-Bukhārī, dass „ihr werdet gewiss einen Zustand nach dem anderen durchlaufen“ den Übergang durch die verschiedenen Stufen des Daseins bis ins Jenseits bezeichnet, und verwies dabei ausdrücklich auf den Propheten ﷺ.",
+        "it": "Ibn ‘Abbās chiarì in Sahīh Al-Bukhārī che «passerete certamente da uno stato all'altro» indica il susseguirsi delle condizioni e tappe dell'esistenza fino all'Aldilà, precisando che è la spiegazione trasmessa dal Profeta ﷺ.",
+        "id": "Ibnu ‘Abbas menjelaskan dalam Shahih Al-Bukhari bahwa makna ‘sungguh kamu akan melalui tingkat demi tingkat’ adalah perpindahan dari satu keadaan ke keadaan lain sepanjang tahapan kehidupan hingga akhirat, sebagaimana penjelasan Nabi ﷺ.",
+        "ru": "Ибн ‘Аббас пояснил в «Сахихе» аль-Бухари, что слова «вы непременно будете переходить из одного состояния в другое» означают смену этапов и состояний человека от земной жизни до Вечности, подчеркнув, что это слова самого Пророка ﷺ."
+      }
+    },
+    "85:4": {
+      "type": "hadith",
+      "versets": [
+        "85:4",
+        "85:5",
+        "85:6",
+        "85:7",
+        "85:8"
+      ],
+      "plage": "85:4–8",
+      "source": "Sahīh Muslim n°3005",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Suhayb Ar-Rūmī (qu'Allāh l'agrée) rapporte le célèbre récit prophétique expliquant qui étaient « les Gens de la Tranchée » (Ashāb al-Ukhdūd) évoqués dans ces versets : un roi tyran persécuta un jeune croyant guidé par un moine monothéiste. Grâce à la constance du jeune homme qui proclama publiquement sa foi au Seigneur de l'univers devant tout le peuple, des foules entières crurent en Allāh. Furieux, le roi fit creuser d'immenses fosses remplies de feu ardent et y fit jeter ceux qui refusaient d'abjurer leur foi — et une mère hésitante portant son nourrisson fut miraculeusement raffermie lorsque son bébé lui parla en disant : « Patiente, ô ma mère, car tu es certes sur la Vérité ! »",
+        "en": "Suhayb Ar-Rūmī narrated the famous prophetic account explaining the 'People of the Ditch' (Ashāb al-Ukhdūd) mentioned here: a tyrannical king persecuted a devout youth whose steadfast faith led an entire crowd to believe in Allāh alone. Enraged, the king dug vast blazing trenches for all who refused to renounce their faith—and when a mother holding her infant hesitated at the edge, her baby miraculously spoke: 'Be patient, O mother, for you are upon the truth!'",
+        "es": "Suhayb Ar-Rūmī relató la célebre historia profética sobre la «Gente de la Fosa» (Ashāb al-Ukhdūd): un rey tirano persiguió a un joven creyente cuya fe inquebrantable llevó al pueblo a creer en Allah; furioso, el rey cavó fosas ardientes para quienes no abjuraran, y un bebé habló milagrosamente a su madre para alentarla: «Ten paciencia, madre, pues estás en la verdad».",
+        "ar": "عن صهيب الرومي رضي الله عنه في الحديث الطويل لقصة أصحاب الأخدود؛ حيث آمن الناس برب الغلام المؤمن بعد ثباته أمام الملك الظالم، فخدّ الملك أخاديد عظيمة وأضرم فيها النار ليلقي فيها من ثبت على التوحيد، حتى أنطق الله رضيعًا يثبّت أمه بقوله: «يا أمه اصبري فإنك على الحق».",
+        "de": "Suhayb Ar-Rūmī überlieferte die berühmte Geschichte der „Leute des Grabens“ (Ashāb al-Ukhdūd): Nach der Standhaftigkeit eines gläubigen Jünglings gegen einen tyrannischen König glaubte das Volk an Allah; der König ließ flammende Gräben ausheben, und ein Säugling sprach wunderbar zu seiner zögernden Mutter: „Sei geduldig, Mutter, denn du bist auf der Wahrheit!“",
+        "it": "Suhayb Ar-Rūmī narrò la celebre storia profetica della «Gente del Fossato» (Ashāb al-Ukhdūd): la saldezza di un giovane credente davanti a un re tiranno portò il popolo alla fede; il re scavò fosse infuocate per chi non abiurava, e un neonato parlò prodigiosamente alla madre dicendole: «Abbi pazienza, madre, perché sei nella verità!».",
+        "id": "Shuhaib Ar-Rumi meriwayatkan kisah masyhur Ashabul Ukhdud dari Nabi ﷺ: keteguhan iman seorang pemuda di hadapan raja zalim membuat rakyat beriman kepada Allah; raja lalu menggali parit berapi bagi yang mempertahankan iman, hingga seorang bayi berbicara secara mukjizat menguatkan ibunya: “Bersabarlah wahai ibuku, sungguh engkau berada di atas kebenaran.”",
+        "ru": "Сухайб ар-Руми передал знаменитый хадис о «людях рва» (Асхаб аль-Ухдуд): стойкость верующего юноши перед тираном привела народ к вере в Аллаха; разъярённый царь вырыл пылающие рвы для всех, кто не отречётся от единобожия, и младенец чудом заговорил, укрепив мать словами: «Терпи, мама, ибо ты на истине!»"
+      }
+    },
+    "87:1": {
+      "type": "hadith",
+      "versets": [
+        "87:1"
+      ],
+      "plage": "87:1",
+      "source": "Sahīh Al-Bukhārī n°4941 & Sahīh Muslim n°878",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Al-Barā' ibn ‘Āzib (qu'Allāh l'agrée) rapporte que les tout premiers émigrés arrivés à Médine (Mus‘ab ibn ‘Umayr et Ibn Umm Maktūm) enseignaient le Coran aux habitants, si bien que lorsque le Prophète ﷺ arriva enfin à Médine, Al-Barā' avait déjà mémorisé cette sourate (« Glorifie le Nom de ton Seigneur le Très-Haut »). An-Nu‘mān ibn Bashīr précise dans Sahīh Muslim que le Prophète ﷺ la récitait régulièrement lors des prières du vendredi et des deux fêtes (Al-‘Īd).",
+        "en": "Al-Barā' ibn ‘Āzib narrated that the earliest emigrants to Madinah taught the Qur'an to the Ansār so thoroughly that by the time the Prophet ﷺ arrived, Al-Barā' had already memorized Sūrah Al-A‘lā. An-Nu‘mān ibn Bashīr added in Sahīh Muslim that the Prophet ﷺ regularly recited it during Friday and both Eid prayers.",
+        "es": "Al-Barā' ibn ‘Āzib relató que los primeros emigrantes llegados a Medina enseñaron el Corán con tal celo que antes de llegar el Profeta ﷺ ya había memorizado la Sura Al-A‘lā; An-Nu‘mān ibn Bashīr precisó que el Profeta ﷺ solía recitarla en las oraciones del viernes y de las dos festividades (‘Īd).",
+        "ar": "عن البراء بن عازب رضي الله عنه أن أوائل المهاجرين إلى المدينة علّموا الأنصار القرآن حتى حفظ البراء سورة الأعلى قبل قدوم النبي ﷺ؛ وروى النعمان بن بشير في صحيح مسلم أن النبي ﷺ كان يقرأ بها في صلاة الجمعة والعيدين.",
+        "de": "Al-Barā' ibn ‘Āzib berichtete, dass die ersten Auswanderer in Medina den Koran so eifrig lehrten, dass er Sure Al-A‘lā bereits vor der Ankunft des Propheten ﷺ auswendig konnte; laut An-Nu‘mān rezitierte der Prophet ﷺ sie regelmäßig beim Freitags- und den beiden Festgebeten.",
+        "it": "Al-Barā' ibn ‘Āzib narrò che i primi emigrati a Medina insegnarono il Corano con tale dedizione che aveva già memorizzato Sura Al-A‘lā prima dell'arrivo del Profeta ﷺ; An-Nu‘mān aggiunse che il Profeta ﷺ la recitava regolarmente nelle preghiere del venerdì e delle due feste (‘Īd).",
+        "id": "Al-Bara' bin ‘Azib meriwayatkan bahwa para sahabat Muhajirin awal di Madinah telah mengajarkan Al-Qur'an hingga ia hafal Surah Al-A‘la sebelum Nabi ﷺ tiba; An-Nu‘man bin Basyir menambahkan bahwa Nabi ﷺ rutin membacanya pada shalat Jumat dan dua shalat ‘Id.",
+        "ru": "Аль-Бара ибн ‘Азиб передал, что первые переселенцы в Медину столь усердно обучали ансаров Корану, что он выучил суру «Аль-А‘ля» ещё до прибытия Пророка ﷺ; ан-Ну‘ман ибн Башир добавил, что Пророк ﷺ регулярно читал её в пятничной и праздничных молитвах."
+      }
+    },
+    "89:2": {
+      "type": "hadith",
+      "versets": [
+        "89:1",
+        "89:2"
+      ],
+      "plage": "89:1–2",
+      "source": "Sahīh Al-Bukhārī n°969",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Ibn ‘Abbās (qu'Allāh les agrée) — qui explique avec la majorité des exégètes que « les dix nuits » par lesquelles Allāh jure ici désignent les dix premiers jours bénis du mois de Dhū al-Hijjah — rapporte cette parole du Messager d'Allāh ﷺ : « Il n'est pas de jours durant lesquels les bonnes œuvres soient plus aimées d'Allāh que durant ces dix jours ! » Les Compagnons demandèrent : « Pas même le combat dans le sentier d'Allāh ? » Il répondit : « Pas même cela, sauf pour un homme qui sort de sa personne et de ses biens sans rien en ramener. »",
+        "en": "Ibn ‘Abbās—who, along with the majority of scholars, explained 'the ten nights' sworn by here as the first ten blessed days of Dhū al-Hijjah—narrated from the Messenger of Allāh ﷺ: 'There are no days in which righteous deeds are more beloved to Allāh than these ten days!'",
+        "es": "Ibn ‘Abbās —quien junto a la mayoría de exegetas explica que «las diez noches» juradas aquí son los diez primeros días de Dhū al-Hijjah— relató del Profeta ﷺ: «No hay días en los que las buenas obras sean más amadas por Allah que estos diez días».",
+        "ar": "عن ابن عباس رضي الله عنهما — وهو القائل مع جمهور المفسرين إن «الليالي العشر» هي عشر ذي الحجة — أن النبي ﷺ قال: «ما من أيام العمل الصالح فيهن أحب إلى الله من هذه الأيام العشر».",
+        "de": "Ibn ‘Abbās – der wie die Mehrheit der Exegeten unter den hier beschworenen „zehn Nächten“ die ersten zehn gesegneten Tage des Monats Dhū al-Hijjah versteht – überlieferte vom Propheten ﷺ: „Es gibt keine Tage, an denen gute Taten Allah lieber sind als in diesen zehn Tagen!“",
+        "it": "Ibn ‘Abbās — che con la maggioranza degli esegeti identifica «le dieci notti» con i primi dieci giorni benedetti di Dhū al-Hijjah — narrò dal Profeta ﷺ: «Non vi sono giorni in cui le opere pie siano più amate da Allāh di questi dieci giorni!».",
+        "id": "Ibnu ‘Abbas — yang bersama mayoritas mufasir menafsirkan ‘malam yang sepuluh’ sebagai sepuluh hari pertama bulan Dzulhijjah — meriwayatkan sabda Nabi ﷺ: “Tidak ada hari-hari yang amal saleh di dalamnya lebih dicintai Allah melebihi sepuluh hari ini.”",
+        "ru": "Ибн ‘Аббас, который вместе с большинством толкователей относил «десять ночей» к первым десяти благословенным дням месяца зу-ль-хиджа, передал слова Пророка ﷺ: «Нет дней, в которые праведные дела были бы более любимы Аллаху, чем эти десять дней!»"
+      }
+    },
+    "89:23": {
+      "type": "hadith",
+      "versets": [
+        "89:23"
+      ],
+      "plage": "89:23",
+      "source": "Sahīh Muslim n°2842",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Abdullāh ibn Mas‘ūd (qu'Allāh l'agrée) rapporte que le Messager d'Allāh ﷺ illustra l'immensité redoutable de la scène évoquée dans ce verset (« Et ce jour-là, on amènera la Géhenne ») : « On amènera ce jour-là la Géhenne munie de soixante-dix mille brides, et à chaque bride soixante-dix mille Anges la tireront ! » — moment bouleversant où l'homme insouciant se souviendra enfin, mais trop tard.",
+        "en": "‘Abdullāh ibn Mas‘ūd narrated that the Messenger of Allāh ﷺ described the awe-inspiring scene in this verse ('And brought forth that Day is Hell'): 'Hell will be brought on that Day with seventy thousand reins, and with each rein will be seventy thousand angels pulling it!'",
+        "es": "‘Abdullāh ibn ‘Mas‘ūd relató que el Profeta ﷺ describió la escena de esta aleya («y aquel día será traído el Infierno»): «Será traído con setenta mil riendas, y de cada rienda tirarán setenta mil ángeles».",
+        "ar": "عن عبد الله بن مسعود رضي الله عنه أن رسول الله ﷺ قال في بيان قوله تعالى ﴿وَجِيءَ يَوْمَئِذٍ بِجَهَنَّمَ﴾: «يُؤتى بجهنم يومئذٍ لها سبعون ألف زمام، مع كل زمام سبعون ألف ملك يجرونها».",
+        "de": "‘Abdullāh ibn Mas‘ūd berichtete, dass der Gesandte Allahs ﷺ diese Szene beschrieb: „Die Hölle wird an jenem Tag mit siebzigtausend Zügeln herbeigebracht, und an jedem Zügel ziehen siebzigtausend Engel!“",
+        "it": "‘Abdullāh ibn Mas‘ūd narrò che il Messaggero di Allāh ﷺ descrisse la scena di questo versetto: «Quel giorno la Geenna sarà condotta con settantamila briglie, e a ciascuna briglia la tireranno settantamila angeli!».",
+        "id": "‘Abdullah bin Mas‘ud meriwayatkan sabda Nabi ﷺ tentang ayat ini: “Pada hari itu Neraka Jahannam didatangkan dengan tujuh puluh ribu tali kekang, dan pada setiap tali kekang terdapat tujuh puluh ribu malaikat yang menariknya.”",
+        "ru": "‘Абдуллах ибн Мас‘уд передал слова Пророка ﷺ об этом аяте: «В тот день приведут Геенну, у которой будет семьдесят тысяч поводьев, и за каждый повод её будут тянуть семьдесят тысяч ангелов!»"
+      }
+    },
+    "91:12": {
+      "type": "hadith",
+      "versets": [
+        "91:12"
+      ],
+      "plage": "91:12",
+      "source": "Sahīh Al-Bukhārī n°4942 & Sahīh Muslim n°2855",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Abdullāh ibn Zam‘ah (qu'Allāh l'agrée) rapporte que dans un sermon, le Messager d'Allāh ﷺ évoqua la chamelle miraculeuse de Sālih et le coupable qui la tua dans ce verset (« Lorsque le plus misérable d'entre eux se leva »), précisant qu'il ne s'agissait pas d'un homme marginal mais d'un individu puissant, influent et redouté au sein de son clan — montrant que la puissance sociale ne protège jamais contre la justice d'Allāh.",
+        "en": "‘Abdullāh ibn Zam‘ah narrated that in a sermon the Messenger of Allāh ﷺ mentioned the miraculous she-camel of Sālih and the man who hamstrung her in this verse ('When the most wretched of them was sent forth'), describing him as a powerful, fiercely protected chief among his clan—showing that worldly power never shields against Allāh's justice.",
+        "es": "‘Abdullāh ibn Zam‘ah relató que el Profeta ﷺ describió al culpable citado en esta aleya —quien mató a la camella de Sālih— no como un marginado sino como un hombre poderoso y temido en su tribu, mostrando que el poder mundano no protege de la justicia de Allah.",
+        "ar": "عن عبد الله بن زمعة رضي الله عنه أن النبي ﷺ ذكر الناقة والذي عقرها في هذه الآية فقال: «انبعث لها رجل عزيز عارم منيع في رهطه»، مبينًا أن القوة والمنعة الدنيوية لا تحمي من عذاب الله.",
+        "de": "‘Abdullāh ibn Zam‘ah berichtete, dass der Prophet ﷺ den in diesem Vers genannten Mörder der Kamelstute Sālihs als einen mächtigen, in seiner Sippe gefürchteten Mann beschrieb – ein Zeichen dafür, dass weltliche Macht niemanden vor Allahs Gerechtigkeit bewahrt.",
+        "it": "‘Abdullāh ibn Zam‘ah narrò che il Profeta ﷺ descrisse l'uccisore della cammella di Sālih evocato in questo versetto come un uomo potente e temuto nel suo clan, a dimostrazione che il potere terreno non protegge dalla giustizia di Allāh.",
+        "id": "‘Abdullah bin Zam‘ah meriwayatkan bahwa Nabi ﷺ menjelaskan pelaku pembunuhan unta Nabi Shalih dalam ayat ini adalah seorang tokoh kuat dan disegani di kaumnya, membuktikan kekuasaan dunia tidak mampu melindungi dari keadilan Allah.",
+        "ru": "‘Абдуллах ибн Зам‘а передал, что Пророк ﷺ описал упомянутого здесь убийцу верблюдицы Салиха как влиятельного и могущественного в своём роду человека, показав, что мирская сила никого не спасёт от правосудия Аллаха."
+      }
+    },
+    "92:5": {
+      "type": "hadith",
+      "versets": [
+        "92:5",
+        "92:6",
+        "92:7",
+        "92:8",
+        "92:9",
+        "92:10"
+      ],
+      "plage": "92:5–10",
+      "source": "Sahīh Al-Bukhārī n°4945, n°4947 & Sahīh Muslim n°2647",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Alī ibn Abī Tālib (qu'Allāh l'agrée) rapporte qu'alors qu'ils assistaient à des funérailles au cimetière d'Al-Baqī‘, le Prophète ﷺ rappela que la destination finale de chaque âme est déjà connue d'Allāh. Un Compagnon demanda alors : « Ô Messager d'Allāh, ne devons-nous donc pas nous reposer sur ce qui est écrit et cesser d'œuvrer ? » Le Prophète ﷺ répondit : « Œuvrez plutôt ! Car chacun se verra faciliter la voie pour laquelle il a été créé », puis il récita ces versets montrant le lien entre le don, la piété et la facilité vers le bien.",
+        "en": "‘Alī ibn Abī Tālib narrated that at a funeral in Al-Baqī‘, when the Prophet ﷺ spoke of Divine Knowledge of every soul's final abode, a Companion asked: 'Should we then rely on what is written and stop acting?' The Prophet ﷺ replied: 'No—act! For everyone will have made easy for him that for which he was created,' and recited these verses linking generosity and piety to ease toward goodness.",
+        "es": "‘Alī ibn Abī Tālib relató que ante la pregunta de si debían dejar de obrar al estar todo en el conocimiento divino, el Profeta ﷺ respondió: «¡Obrad!, pues a cada cual se le facilitará aquello para lo que fue creado», y recitó estas aleyas sobre la generosidad y la piedad.",
+        "ar": "عن علي بن أبي طالب رضي الله عنه أنه لما سُئل النبي ﷺ في جنازة بالبقيع: أفلا نتكل على كتابنا وندع العمل؟ قال ﷺ: «اعملوا فكلٌّ ميسّر لما خُلق له»، ثم قرأ هذه الآيات (٥–١٠) بيانًا لأثر العطاء والتقوى في التيسير لليسرى.",
+        "de": "‘Alī ibn Abī Tālib berichtete, dass ein Gefährte fragte, ob man angesichts der göttlichen Bestimmung aufhören solle zu handeln; der Prophet ﷺ entgegnete: „Handelt! Denn jedem wird das leicht gemacht, wofür er erschaffen wurde“, und rezitierte diese Verse (5–10).",
+        "it": "‘Alī ibn Abī Tālib narrò che quando un Compagno chiese se si dovesse smettere di operare affidandosi al Decreto, il Profeta ﷺ rispose: «Operate! Perché a ciascuno viene facilitato ciò per cui è stato creato», recitando poi questi versetti (5–10).",
+        "id": "‘Ali bin Abi Thalib meriwayatkan bahwa saat seorang sahabat bertanya apakah mereka cukup pasrah pada takdir tanpa beramal, Nabi ﷺ bersabda: “Beramallah, karena setiap orang dimudahkan menuju apa yang ia diciptakan untuknya”, lalu membacakan ayat 5–10 ini.",
+        "ru": "‘Али ибн Абу Талиб передал, что на вопрос сподвижника, не оставить ли дела, положившись на предопределение, Пророк ﷺ ответил: «Трудитесь, ибо каждому облегчено то, ради чего он сотворён», — и прочёл эти аяты (5–10)."
+      }
+    },
+    "92:14": {
+      "type": "hadith",
+      "versets": [
+        "92:14"
+      ],
+      "plage": "92:14",
+      "source": "Sahīh Al-Bukhārī n°6562 & Sahīh Muslim n°213",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "An-Nu‘mān ibn Bashīr (qu'Allāh les agrée) rapporte qu'il entendit le Messager d'Allāh ﷺ prononcer un sermon vibrant en reprenant l'avertissement de ce verset (« Je vous ai donc avertis d'un Feu qui flambe »), élevant la voix par souci de mettre en garde sa communauté avant de décrire le degré le plus léger du châtiment de l'Enfer pour inciter chacun à la vigilance et aux œuvres vertueuses.",
+        "en": "An-Nu‘mān ibn Bashīr narrated that he heard the Messenger of Allāh ﷺ deliver a heartfelt sermon echoing the warning of this verse ('So I have warned you of a Fire which is blazing'), raising his voice out of deep compassion to urge believers toward vigilance and righteous deeds.",
+        "es": "An-Nu‘mān ibn Bashīr relató que escuchó al Profeta ﷺ pronunciar un emotivo sermón repitiendo la advertencia de esta aleya («Os he advertido de un Fuego ardiente») para despertar la vigilancia y las buenas obras en su comunidad.",
+        "ar": "عن النعمان بن بشير رضي الله عنهما أنه سمع رسول الله ﷺ يخطب محذّرًا أمته من النار كما في هذه الآية رافعًا صوته شفقةً عليهم، ثم ذكر أهون أهل النار عذابًا يوم القيامة تذكيرًا بالوقاية بالعمل الصالح.",
+        "de": "An-Nu‘mān ibn Bashīr berichtete, dass er den Gesandten Allahs ﷺ in einer eindringlichen Predigt vor dem lodernden Feuer dieses Verses warnen hörte, um die Gläubigen aus Fürsorge zu Wachsamkeit und guten Taten anzuspornen.",
+        "it": "An-Nu‘mān ibn Bashīr narrò di aver udito il Profeta ﷺ tenere un sermone vibrante riprendendo l'ammonimento di questo versetto sul Fuoco ardente, per esortare i credenti alla vigilanza e alle buone opere.",
+        "id": "An-Nu‘man bin Basyir meriwayatkan bahwa ia mendengar Rasulullah ﷺ berkhutbah dengan penuh kasih sayang memperingatkan umatnya akan api neraka yang menyala-nyala seperti ayat ini agar senantiasa menjaga diri dengan amal saleh.",
+        "ru": "Ан-Ну‘ман ибн Башир передал, что слышал, как Пророк ﷺ в взволнованной проповеди предостерегал общину от пылающего Огня, упомянутого в этом аяте, призывая людей к бдительности и праведным поступкам."
+      }
+    },
+    "94:1": {
+      "type": "hadith",
+      "versets": [
+        "94:1"
+      ],
+      "plage": "94:1",
+      "source": "Sahīh Al-Bukhārī n°3207, n°3887 & Sahīh Muslim n°162, n°164",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Anas ibn Mālik et Mālik ibn Sa‘sa‘ah (qu'Allāh les agrée) rapportent le miracle de l'ouverture de la poitrine du Prophète ﷺ (Sharh as-Sadr) — dont ce verset célèbre à la fois la dimension spirituelle (lumière de la guidance et sérénité) et physique : l'Ange Jibrīl ouvrit sa poitrine (une première fois dans son enfance, puis avant le Voyage Nocturne Al-Isrā'), lava son cœur avec l'eau de Zamzam et le remplit de foi et de sagesse.",
+        "en": "Anas ibn Mālik and Mālik ibn Sa‘sa‘ah narrated the miracle of the expansion and purification of the Prophet's ﷺ chest (Sharh as-Sadr)—celebrated both spiritually and physically in this verse: Angel Jibrīl opened his chest (in childhood and again before the Night Journey Al-Isrā'), washed his heart with Zamzam water, and filled it with faith and wisdom.",
+        "es": "Anas ibn Mālik y Mālik ibn Sa‘sa‘ah relataron el milagro de la apertura y purificación del pecho del Profeta ﷺ (Sharh as-Sadr) —en su infancia y antes del Viaje Nocturno—, cuando Yibrīl lavó su corazón con agua de Zamzam y lo colmó de fe y sabiduría.",
+        "ar": "عن أنس بن مالك ومالك بن صعصعة رضي الله عنهما في معجزة شرح صدر النبي ﷺ — التي تجمع المعنى المعنوي بالهداية والسكينة والمعنى الحسي — حيث شقّ جبريل صدره ﷺ (في صغره وقبيل الإسراء) وغسل قلبه بماء زمزم وملأه إيمانًا وحكمة.",
+        "de": "Anas ibn Mālik und Mālik ibn Sa‘sa‘ah überlieferten das Wunder der Öffnung und Läuterung der Brust des Propheten ﷺ (sowohl in seiner Kindheit als auch vor der Nachtreise Al-Isrā'), als Dschibrīl sein Herz mit Zamzam-Wasser wusch und mit Glauben und Weisheit erfüllte.",
+        "it": "Anas ibn Mālik e Mālik ibn Sa‘sa‘ah narrarono il miracolo dell'apertura del petto del Profeta ﷺ (nell'infanzia e prima del Viaggio Notturno), quando Jibrīl lavò il suo cuore con acqua di Zamzam colmandolo di fede e saggezza.",
+        "id": "Anas bin Malik dan Malik bin Sha‘sha‘ah meriwayatkan mukjizat pembelahan dan pelapangan dada Nabi ﷺ (saat kecil dan menjelang Isra' Mi‘raj) ketika Jibril mencuci hati beliau dengan air Zamzam lalu memenuhinya dengan iman dan hikmah.",
+        "ru": "Анас ибн Малик и Малик ибн Са‘са‘а передали чудо раскрытия и очищения груди Пророка ﷺ (в детстве и перед Ночным перенесением аль-Исра), когда Джибриль омыл его сердце водой Замзам и наполнил его верой и мудростью."
+      }
+    },
+    "95:1": {
+      "type": "hadith",
+      "versets": [
+        "95:1",
+        "95:2",
+        "95:3",
+        "95:4",
+        "95:5",
+        "95:6",
+        "95:7",
+        "95:8"
+      ],
+      "plage": "95:1–8",
+      "source": "Sahīh Al-Bukhārī n°767, n°4952 & Sahīh Muslim n°464",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Al-Barā' ibn ‘Āzib (qu'Allāh l'agrée) rapporte que lors d'un voyage, il pria derrière le Messager d'Allāh ﷺ la prière du soir (Al-‘Ishā') : le Prophète ﷺ récita la Sourate At-Tīn (« Par le figuier et l'olivier ») dans l'une des deux unités de prière, et Al-Barā' témoigna avec émotion : « Je n'ai jamais entendu personne avoir une voix plus belle ni une récitation plus émouvante que la sienne ! »",
+        "en": "Al-Barā' ibn ‘Āzib narrated that during a journey he prayed ‘Ishā' behind the Messenger of Allāh ﷺ, who recited Sūrah At-Tīn ('By the fig and the olive') in one of the two units, and Al-Barā' testified: 'I have never heard anyone with a more beautiful voice or recitation than his!'",
+        "es": "Al-Barā' ibn ‘Āzib relató que en un viaje rezó la oración de la noche (‘Ishā') detrás del Profeta ﷺ, quien recitó la Sura At-Tīn en una de las unidades, y exclamó: «¡Jamás he escuchado a nadie con una voz ni una recitación más hermosas que las suyas!».",
+        "ar": "عن البراء بن عازب رضي الله عنه أنه سمع النبي ﷺ يقرأ في صلاة العشاء في سفر بسورة ﴿وَالتِّينِ وَالزَّيْتُونِ﴾، فقال البراء: «فما سمعتُ أحدًا أحسن صوتًا أو قراءةً منه ﷺ».",
+        "de": "Al-Barā' ibn ‘Āzib berichtete, dass er auf einer Reise den Propheten ﷺ im Nachtgebet (‘Ishā') Sure At-Tīn rezitieren hörte, und bezeugte: „Ich habe niemals jemanden mit einer schöneren Stimme oder Rezitation gehört als ihn!“",
+        "it": "Al-Barā' ibn ‘Āzib narrò che in viaggio udì il Profeta ﷺ recitare Sura At-Tīn nella preghiera della sera (‘Ishā') e testimoniò: «Non ho mai udito nessuno avere una voce o una recitazione più belle della sua!».",
+        "id": "Al-Bara' bin ‘Azib meriwayatkan bahwa dalam sebuah perjalanan ia mendengar Nabi ﷺ membaca Surah At-Tin pada shalat Isya, lalu ia bersaksi: “Belum pernah aku mendengar seorang pun yang lebih indah suara dan bacaannya daripada beliau!”",
+        "ru": "Аль-Бара ибн ‘Азиб передал, что в пути слышал, как Пророк ﷺ читал суру «Ат-Тин» в вечерней молитве (‘иша), и засвидетельствовал: «Я никогда не слышал никого с более прекрасным голосом и чтением, чем у него!»"
+      }
+    },
+    "1:1": {
+      "type": "hadith",
+      "versets": [
+        "1:1",
+        "1:2",
+        "1:3",
+        "1:4",
+        "1:5",
+        "1:6",
+        "1:7"
+      ],
+      "plage": "1:1–7",
+      "source": "Sahīh Al-Bukhārī n°4474 & Sahīh Muslim n°395",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Abū Sa‘īd ibn Al-Mu‘allā rapporte que le Prophète ﷺ présenta Sourate Al-Fātihah comme la plus grande sourate du Coran et les sept versets sans cesse répétés. Dans un Hadith Qudsī transmis par Abū Hurayrah, le Prophète ﷺ explique également qu'Allāh partage cette prière en deux moitiés entre Lui et Son serviteur : à chaque verset récité avec présence du cœur, Allāh répond directement au croyant et lui accorde ce qu'il implore.",
+        "en": "Abū Sa‘īd ibn Al-Mu‘allā reported that the Prophet ﷺ identified Sūrah Al-Fātihah as the greatest chapter of the Qur'an and the seven oft-repeated verses. In a Hadith Qudsī narrated by Abū Hurayrah, the Prophet ﷺ further explained that Allāh divides this prayer equally between Himself and His servant, responding directly to each verse recited in prayer and granting the believer's supplication.",
+        "es": "Abū Sa‘īd ibn Al-Mu‘allā relató que el Profeta ﷺ señaló la Sura Al-Fātihah como la mayor sura del Corán y los siete versículos reiterados. Asimismo, Abū Hurayrah transmitió que Allah divide esta súplica entre Él y Su siervo, respondiendo directamente a cada aleya recitada en la oración.",
+        "ar": "روى أبو سعيد بن المعلى رضي الله عنه أن النبي ﷺ بيّن أن سورة الفاتحة هي أعظم سورة في القرآن والسبع المثاني، كما ورد في حديث أبي هريرة رضي الله عنه أنها مقسومة بين الله وعبده نصفين، حيث يجيب الله عبده عند كل آية يقرؤها في صلاته ويعطيه سؤله.",
+        "de": "Abū Sa‘īd ibn Al-Mu‘allā berichtete, dass der Prophet ﷺ Sure Al-Fātihah als die gewaltigste Sure des Korans bezeichnete. Zudem überlieferte Abū Hurayrah, dass Allah dieses Gebet zwischen Sich und Seinem Diener teilt und auf jeden im Gebet vorgetragenen Vers unmittelbar antwortet.",
+        "it": "Abū Sa‘īd ibn Al-Mu‘allā riferì che il Profeta ﷺ indicò Sura Al-Fātihah come la più grande sura del Corano. Inoltre Abū Hurayrah trasmise che Allāh divide questa preghiera a metà tra Sé e il Suo servo, rispondendo direttamente a ogni versetto recitato con devozione.",
+        "id": "Abu Sa‘id bin Al-Mu‘alla meriwayatkan bahwa Nabi ﷺ menjelaskan Surah Al-Fatihah sebagai surah teragung dalam Al-Qur'an. Dalam riwayat Abu Hurairah juga diterangkan bahwa Allah membagi bacaan ini antara diri-Nya dan hamba-Nya serta menjawab setiap ayat yang dibaca dalam shalat.",
+        "ru": "Абу Са‘ид ибн аль-Му‘алля передал, что Пророк ﷺ назвал суру Аль-Фатиха величайшей сурой Корана. Кроме того, Абу Хурайра сообщил, что Аллах делит эту молитву пополам между Собой и Своим рабом, отвечая верующему на каждый прочитанный аят и даруя ему просимое."
+      }
+    },
+    "96:9": {
+      "type": "sabab",
+      "versets": [
+        "96:9",
+        "96:10",
+        "96:11",
+        "96:12",
+        "96:13",
+        "96:14",
+        "96:15",
+        "96:16",
+        "96:17",
+        "96:18",
+        "96:19"
+      ],
+      "plage": "96:9–19",
+      "source": "Sahīh Al-Bukhārī n°4958 & Sahīh Muslim n°2797",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Abū Hurayrah et Ibn ‘Abbās rapportent que ces versets furent révélés à la suite des menaces d'Abū Jahl, qui avait juré de piétiner la nuque du Prophète ﷺ s'il le voyait prier près de la Ka‘bah. Lorsqu'il s'avança effectivement pour passer à l'acte, il recula brusquement en se protégeant des mains : il raconta ensuite avoir vu devant lui un fossé de feu terrifiant et des ailes. Le Prophète ﷺ précisa que s'il avait approché davantage, les Anges gardiens de l'Enfer (Az-Zabāniyah) l'auraient saisi sur-le-champ.",
+        "en": "Abū Hurayrah and Ibn ‘Abbās reported that these verses were revealed after Abū Jahl threatened to trample the Prophet's ﷺ neck if he saw him praying at the Ka‘bah. When Abū Jahl approached to carry out his threat, he abruptly retreated shielding himself with his hands, saying he saw a terrifying trench of fire and wings blocking him. The Prophet ﷺ remarked that had he come closer, the angels would have seized him on the spot.",
+        "es": "Abū Hurayrah e Ibn ‘Abbās relataron que estas aleyas descendieron cuando Abū Yahl amenazó con agredir al Profeta ﷺ mientras rezaba junto a la Ka‘bah. Al acercarse para hacerlo, retrocedió espantado afirmando ver una fosa de fuego y alas, y el Profeta ﷺ señaló que si hubiese avanzado más, los ángeles lo habrían apresado al instante.",
+        "ar": "روى أبو هريرة وابن عباس رضي الله عنهم أن هذه الآيات نزلت حين توعّد أبو جهل رسول الله ﷺ إن رآه يصلي عند الكعبة؛ فلما دنا منه نكص على عقبيه يتقي بيديه وذكر أنه رأى خندقًا من نار وأجنحة، فأخبر النبي ﷺ أنه لو دنا لاختطفته الملائكة.",
+        "de": "Abū Hurayrah und Ibn ‘Abbās berichteten, dass diese Verse offenbart wurden, als Abū Dschahl drohte, den Propheten ﷺ beim Gebet an der Ka‘bah anzugreifen. Als er sich näherte, wich er entsetzt zurück und berichtete von einem Feuergraben und Flügeln; der Prophet ﷺ erklärte, die Engel hätten ihn ergriffen, wäre er weitergegangen.",
+        "it": "Abū Hurayrah e Ibn ‘Abbās narrarono che questi versetti scesero quando Abū Jahl minacciò di aggredire il Profeta ﷺ mentre pregava alla Ka‘bah. Avvicinatosi per colpire, indietreggiò atterrito descrivendo un fossato di fuoco e ali; il Profeta ﷺ spiegò che gli angeli lo avrebbero afferrato se avesse osato avanzare.",
+        "id": "Abu Hurairah dan Ibnu ‘Abbas meriwayatkan bahwa ayat-ayat ini turun saat Abu Jahal mengancam akan mengganggu Nabi ﷺ ketika shalat di dekat Ka‘bah. Saat mendekat, ia mendadak mundur ketakutan karena melihat parit api dan sayap, dan Nabi ﷺ menjelaskan para malaikat akan menyambarnya jika ia melangkah lebih dekat.",
+        "ru": "Абу Хурайра и Ибн ‘Аббас передали, что эти аяты были ниспосланы после угрозы Абу Джахля напасть на Пророка ﷺ во время молитвы у Каабы. Подойдя ближе, он внезапно отпрянул в ужасе, сказав, что увидел огненный ров и крылья; Пророк ﷺ отметил, что если бы он приблизился ещё, ангелы схватили бы его."
+      }
+    },
+    "97:1": {
+      "type": "hadith",
+      "versets": [
+        "97:1",
+        "97:2",
+        "97:3",
+        "97:4",
+        "97:5"
+      ],
+      "plage": "97:1–5",
+      "source": "Sahīh Al-Bukhārī n°1901, n°2017 & Sahīh Muslim n°760, n°1169",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Abū Hurayrah et ‘Ā’ishah rapportent que le Prophète ﷺ encourageait vivement à rechercher la Nuit du Destin (Laylat al-Qadr) durant les nuits impaires des dix derniers jours de Ramadān. Il enseigna que quiconque veille cette nuit en prière avec une foi sincère et en espérant la récompense d'Allāh voit ses péchés passés pardonnés, et recommanda d'y multiplier la demande de pardon.",
+        "en": "Abū Hurayrah and ‘Ā’ishah narrated that the Prophet ﷺ strongly encouraged believers to seek the Night of Decree (Laylat al-Qadr) during the odd nights of the final ten days of Ramadan. He taught that whoever stands in prayer on that night out of sincere faith and hope for Allāh's reward has their past sins forgiven.",
+        "es": "Abū Hurayrah y ‘Ā’ishah relataron que el Profeta ﷺ animó a buscar la Noche del Decreto (Laylat al-Qadr) en las noches impares de los últimos diez días de Ramadán, enseñando que a quien la pase en oración con fe sincera y esperanza de recompensa se le perdonarán sus faltas pasadas.",
+        "ar": "روى أبو هريرة وعائشة رضي الله عنهما أن النبي ﷺ حثّ على تحري ليلة القدر في الوتر من العشر الأواخر من رمضان، وبشّر بأن من قامها إيمانًا واحتسابًا غُفر له ما تقدم من ذنبه.",
+        "de": "Abū Hurayrah und ‘Ā’ishah berichteten, dass der Prophet ﷺ dazu ermutigte, die Nacht der Bestimmung (Laylat al-Qadr) in den ungeraden Nächten der letzten zehn Tage des Ramadan zu suchen, und verhieß, dass demjenigen, der sie im Glauben betend verbringt, frühere Sünden vergeben werden.",
+        "it": "Abū Hurayrah e ‘Ā’ishah narrarono che il Profeta ﷺ esortò a cercare la Notte del Destino (Laylat al-Qadr) nelle notti dispari degli ultimi dieci giorni di Ramadan, assicurando il perdono dei peccati passati a chi la trascorre in preghiera con fede sincera.",
+        "id": "Abu Hurairah dan ‘Aisyah meriwayatkan bahwa Nabi ﷺ menganjurkan mencari malam Lailatul Qadar pada malam-malam ganjil sepuluh hari terakhir Ramadan, dan menyampaikan bahwa siapa yang menghidupkannya dengan iman dan harap pahala akan diampuni dosa-dosanya yang telah lalu.",
+        "ru": "Абу Хурайра и ‘Аиша передали, что Пророк ﷺ побуждал искать Ночь Предопределения (Ляйлят аль-Кадр) в нечётные ночи последних десяти дней Рамадана, сообщив, что тому, кто проведёт её в молитве с верой и надеждой на награду, будут прощены прежние грехи."
+      }
+    },
+    "98:1": {
+      "type": "hadith",
+      "versets": [
+        "98:1",
+        "98:2",
+        "98:3",
+        "98:4",
+        "98:5",
+        "98:6",
+        "98:7",
+        "98:8"
+      ],
+      "plage": "98:1–8",
+      "source": "Sahīh Al-Bukhārī n°3809, n°4959 & Sahīh Muslim n°799",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Anas ibn Mālik rapporte que le Prophète ﷺ informa Ubayy ibn Ka‘b qu'Allāh lui avait ordonné de lui réciter personnellement Sourate Al-Bayyinah. Très ému, Ubayy demanda si Allāh l'avait véritablement désigné par son nom ; lorsque le Prophète ﷺ lui confirma que oui, Ubayy fondit en larmes de gratitude devant cet immense honneur.",
+        "en": "Anas ibn Mālik narrated that the Prophet ﷺ informed Ubayy ibn Ka‘b that Allāh had instructed him to recite Sūrah Al-Bayyinah directly to him. Deeply moved, Ubayy asked whether Allāh had actually mentioned him by name; upon the Prophet's ﷺ confirmation, Ubayy wept out of gratitude for that extraordinary honor.",
+        "es": "Anas ibn Mālik relató que el Profeta ﷺ comunicó a Ubayy ibn Ka‘b que Allah le había ordenado recitarle personalmente la Sura Al-Bayyinah. Profundamente conmovido, Ubayy preguntó si Allah lo había mencionado por su nombre, y al confirmárselo el Profeta ﷺ, rompió a llorar de gratitud.",
+        "ar": "روى أنس بن مالك رضي الله عنه أن النبي ﷺ أخبر أُبيّ بن كعب أن الله أمره أن يقرأ عليه سورة البينة؛ فسأل أُبيّ متأثرًا هل سمّاه الله باسمه، فلما أكد له النبي ﷺ ذلك بكى فرحًا وتأثرًا بهذا التشريف العظيم.",
+        "de": "Anas ibn Mālik berichtete, dass der Prophet ﷺ Ubayy ibn Ka‘b mitteilte, Allah habe ihm aufgetragen, ihm Sure Al-Bayyinah persönlich vorzulesen. Tief bewegt fragte Ubayy, ob Allah ihn tatsächlich beim Namen genannt habe, und brach bei der Bestätigung vor Dankbarkeit in Tränen aus.",
+        "it": "Anas ibn Mālik narrò che il Profeta ﷺ riferì a Ubayy ibn Ka‘b che Allāh gli aveva ordinato di recitargli personalmente Sura Al-Bayyinah. Commosso, Ubayy chiese se Allāh lo avesse davvero nominato e, alla conferma del Profeta ﷺ, pianse di gratitudine.",
+        "id": "Anas bin Malik meriwayatkan bahwa Nabi ﷺ menyampaikan kepada Ubayy bin Ka‘b bahwa Allah memerintahkan beliau membacakan Surah Al-Bayyinah kepadanya. Dengan haru Ubayy menanyakan apakah Allah benar menyebut namanya, dan saat Nabi ﷺ membenarkannya ia pun menangis penuh syukur.",
+        "ru": "Анас ибн Малик передал, что Пророк ﷺ сообщил Убайю ибн Ка‘бу, что Аллах велел прочесть ему лично суру Аль-Баййина. Глубоко тронутый Убайй спросил, действительно ли Аллах назвал его по имени, и, получив подтверждение, расплакался от благодарности."
+      }
+    },
+    "99:7": {
+      "type": "hadith",
+      "versets": [
+        "99:7",
+        "99:8"
+      ],
+      "plage": "99:7–8",
+      "source": "Sahīh Al-Bukhārī n°4962 & Sahīh Muslim n°987",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Abū Hurayrah rapporte que lorsque le Prophète ﷺ fut interrogé sur le statut des biens courants au regard de l'aumône et de la responsabilité morale, il désigna ces deux versets finaux de Sourate Az-Zalzalah comme un principe englobant et unique en son genre, rappelant que le moindre atome de bien comme le moindre atome de mal sera présenté à son auteur sans aucune omission.",
+        "en": "Abū Hurayrah narrated that when asked about moral accountability regarding everyday possessions, the Prophet ﷺ referred to these final two verses of Sūrah Az-Zalzalah as uniquely comprehensive, emphasizing that every single particle of good or evil will be accounted for without omission.",
+        "es": "Abū Hurayrah relató que al ser consultado sobre la responsabilidad moral respecto a los bienes cotidianos, el Profeta ﷺ describió estas dos últimas aleyas de Az-Zalzalah como una regla singular y abarcadora, pues hasta el más ínfimo peso de bien o de mal será mostrado a su autor.",
+        "ar": "روى أبو هريرة رضي الله عنه أن النبي ﷺ وصف هاتين الآيتين الأخيرتين من سورة الزلزلة بأنهما «الجامعة الفاذّة» التي تشمل كل عمل مهما صغر؛ إذ يرى الإنسان مثقال الذرة من الخير والشر دون أن يضيع شيء.",
+        "de": "Abū Hurayrah berichtete, dass der Prophet ﷺ diese beiden Schlussverse von Sure Az-Zalzalah als einzigartig umfassend bezeichnete, da selbst das winzigste Stäubchen an Gutem oder Schlechtem dem Menschen ohne Ausnahme vorgelegt wird.",
+        "it": "Abū Hurayrah narrò che il Profeta ﷺ definì questi due versetti finali di Sura Az-Zalzalah come un principio singolare e onnicomprensivo, poiché anche il minimo granello di bene o di male verrà mostrato a chi lo ha compiuto.",
+        "id": "Abu Hurairah meriwayatkan bahwa Nabi ﷺ menyebut dua ayat penutup Surah Az-Zalzalah ini sebagai ayat yang sangat menyeluruh dan istimewa, karena sekecil apa pun kebaikan maupun keburukan pasti akan diperlihatkan balasannya tanpa terlewat.",
+        "ru": "Абу Хурайра передал, что Пророк ﷺ назвал два заключительных аята суры Аз-Зальзаля всеобъемлющими и исключительными, подчеркнув, что ни малейшая пылинка добра или зла не останется без воздаяния."
+      }
+    },
+    "102:1": {
+      "type": "hadith",
+      "versets": [
+        "102:1",
+        "102:2"
+      ],
+      "plage": "102:1–2",
+      "source": "Sahīh Muslim n°2958",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Abdullāh ibn Ash-Shikhkhīr rapporte qu'il arriva auprès du Prophète ﷺ tandis que celui-ci récitait le début de Sourate At-Takāthur. Le Prophète ﷺ fit alors remarquer que l'être humain s'attache à ses richesses en les revendiquant comme siennes, alors que ses seuls véritables biens sont ce qu'il a consommé, ce dont il s'est vêtu, et surtout ce qu'il a donné en aumône et ainsi préservé durablement pour l'Au-delà.",
+        "en": "‘Abdullāh ibn Ash-Shikhkhīr narrated that he came upon the Prophet ﷺ reciting the opening of Sūrah At-Takāthur, upon which the Prophet ﷺ pointed out that while a person clings to worldly wealth claiming ownership, all that truly belongs to him is what he consumes, wears, and above all gives in charity to endure for the Hereafter.",
+        "es": "‘Abdullāh ibn Ash-Shikhkhīr relató que halló al Profeta ﷺ recitando el comienzo de At-Takāthur, ocasión en la que explicó que lo único que realmente pertenece al ser humano de su riqueza es lo que consume, lo que viste y, sobre todo, lo que da en caridad y preserva para la Otra Vida.",
+        "ar": "روى عبد الله بن الشخير رضي الله عنه أنه أتى النبي ﷺ وهو يقرأ مطلع سورة التكاثر، فبيّن ﷺ أن الإنسان يتباهى بماله وليس له منه حقيقةً إلا ما أكل فأفنى أو لبس فأبلى أو تصدّق فأبقى لآخرته.",
+        "de": "‘Abdullāh ibn Ash-Shikhkhīr berichtete, dass er den Propheten ﷺ beim Vortrag des Beginns von Sure At-Takāthur antraf; dieser wies darauf hin, dass dem Menschen von seinem Besitz in Wahrheit nur bleibt, was er verzehrt, trägt und vor allem als Almosen für das Jenseits vorausschickt.",
+        "it": "‘Abdullāh ibn Ash-Shikhkhīr narrò di aver trovato il Profeta ﷺ intento a recitare l'inizio di Sura At-Takāthur, spiegando che dei beni mondani appartiene davvero all'uomo solo ciò che consuma, ciò che indossa e soprattutto ciò che dona in carità per l'Aldilà.",
+        "id": "‘Abdullah bin Asy-Syikhkhir meriwayatkan bahwa ia menjumpai Nabi ﷺ sedang membaca awal Surah At-Takatsur, lalu beliau mengingatkan bahwa harta yang benar-benar menjadi milik seseorang hanyalah yang dimakan, dipakai, dan terlebih lagi yang disedekahkan untuk akhirat.",
+        "ru": "‘Абдуллах ибн аш-Шиххир передал, что застал Пророка ﷺ за чтением начала суры Ат-Такасур; Пророк ﷺ напомнил, что из всего богатства человеку по-настоящему принадлежит лишь то, что он съел, сносил и особенно то, что раздал в милостыню, сохранив для Вечности."
+      }
+    },
+    "105:1": {
+      "type": "hadith",
+      "versets": [
+        "105:1",
+        "105:2",
+        "105:3",
+        "105:4",
+        "105:5"
+      ],
+      "plage": "105:1–5",
+      "source": "Sahīh Al-Bukhārī n°2731, n°4297",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Al-Miswar ibn Makhramah et Marwān rapportent que lors du départ vers La Mecque l'année d'Al-Hudaybiyah, la chamelle du Prophète ﷺ, Al-Qaswā', s'agenouilla soudainement et refusa d'avancer plus loin. Alors que les Compagnons pensaient qu'elle était simplement rétive, le Prophète ﷺ les reprit et expliqua qu'elle avait été arrêtée par Celui-là même qui avait jadis bloqué l'Éléphant aux portes de La Mecque — rappelant directement la protection miraculeuse de la Ka‘bah relatée dans cette sourate.",
+        "en": "Al-Miswar ibn Makhramah and Marwān narrated that during the journey toward Makkah at Al-Hudaybiyah, the Prophet's ﷺ camel Al-Qaswā' suddenly knelt and refused to move forward. When people assumed she was stubborn, the Prophet ﷺ clarified that she had been held back by the very One who once held back the Elephant from entering Makkah, directly recalling the miraculous protection of the Ka‘bah in this surah.",
+        "es": "Al-Miswar ibn Makhramah y Marwān relataron que rumbo a La Meca en Al-Hudaybiyah, la camella del Profeta ﷺ (Al-Qaswā') se arrodilló y rehusó avanzar; él explicó que la había detenido Aquel que antaño detuvo al Elefante ante La Meca, evocando la protección milagrosa de la Ka‘bah narrada en esta sura.",
+        "ar": "روى المسور بن مخرمة ومروان أن ناقة النبي ﷺ القصواء بركت في طريق الحديبية وأبت أن تتحرك، فلما ظن الصحابة أنها خلأت قال ﷺ: إنما حبسها حابس الفيل، في إشارة مباشرة إلى حماية الله للبيت الحرام المذكورة في هذه السورة.",
+        "de": "Al-Miswar ibn Makhramah und Marwān berichteten, dass die Kamelstute des Propheten ﷺ bei Al-Hudaybiyah plötzlich niederkniete und nicht weiterging; der Prophet ﷺ erklärte, derselbe Gott, der einst den Elefanten vor Mekka aufhielt, habe sie aufgehalten – in direktem Bezug auf diese Sure.",
+        "it": "Al-Miswar ibn Makhramah e Marwān narrarono che durante il cammino di Al-Hudaybiyah la cammella del Profeta ﷺ si inginocchiò rifiutando di proseguire; egli chiarì che l'aveva fermata Colui che un tempo trattenne l'Elefante davanti alla Mecca, richiamando il prodigio narrato in questa sura.",
+        "id": "Al-Miswar bin Makhramah dan Marwan meriwayatkan bahwa dalam perjalanan Hudaibiyah, unta Nabi ﷺ bernama Al-Qashwa' tiba-tiba menderum dan enggan melangkah; Nabi ﷺ menegaskan ia ditahan oleh Dzat yang dahulu menahan pasukan Gajah memasuki Makkah sebagaimana kisah surah ini.",
+        "ru": "Аль-Мисвар ибн Махрама и Марван передали, что на пути к аль-Худайбии верблюдица Пророка ﷺ аль-Касва внезапно опустилась на колени и отказалась идти дальше; Пророк ﷺ пояснил, что её удержал Тот же, Кто некогда удержал Слона от входа в Мекку, напомнив о чуде из этой суры."
+      }
+    },
+    "108:1": {
+      "type": "sabab",
+      "versets": [
+        "108:1",
+        "108:2",
+        "108:3"
+      ],
+      "plage": "108:1–3",
+      "source": "Sahīh Muslim n°400 & Sahīh Al-Bukhārī n°4964",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Anas ibn Mālik rapporte qu'un jour, alors que le Prophète ﷺ était assis parmi ses Compagnons, il eut un bref assoupissement puis releva la tête en souriant et annonça qu'une sourate venait de lui être révélée, avant de réciter Sourate Al-Kawthar. Il expliqua ensuite que Al-Kawthar est un fleuve immense et abondant qu'Allāh lui a promis au Paradis, entouré de coupes aussi nombreuses que les étoiles, où sa communauté viendra s'abreuver au Jour de la Résurrection.",
+        "en": "Anas ibn Mālik narrated that while sitting among his Companions, the Prophet ﷺ briefly dosed off, then raised his head smiling to announce that a surah had just been revealed to him and recited Sūrah Al-Kawthar. He explained that Al-Kawthar is a vast river promised to him by Allāh in Paradise, lined with vessels as numerous as the stars, where his community will gather to drink.",
+        "es": "Anas ibn Mālik relató que estando el Profeta ﷺ con sus Compañeros tuvo un breve adormecimiento, alzó luego el rostro sonriendo, anunció la revelación de la Sura Al-Kawthar y explicó que Al-Kawthar es un río abundante prometido por Allah en el Paraíso al que acudirá su comunidad.",
+        "ar": "روى أنس بن مالك رضي الله عنه أن النبي ﷺ أغفى إغفاءةً بين أصحابه ثم رفع رأسه متبسمًا وأخبرهم بنزول سورة الكوثر، وبيّن لهم أن الكوثر نهر عظيم وعده الله إياه في الجنة ترد عليه أمته يوم القيامة.",
+        "de": "Anas ibn Mālik berichtete, dass der Prophet ﷺ im Kreis seiner Gefährten kurz einnickte, dann lächelnd das Haupt hob, die Offenbarung von Sure Al-Kawthar verkündete und erklärte, Al-Kawthar sei ein gewaltiger Fluss, den Allah ihm im Paradies verheißen hat.",
+        "it": "Anas ibn Mālik narrò che mentre sedeva tra i Compagni il Profeta ﷺ ebbe un breve sopore, poi alzò il capo sorridendo annunciando la rivelazione di Sura Al-Kawthar, spiegando che si tratta di un fiume immenso promessogli da Allāh in Paradiso.",
+        "id": "Anas bin Malik meriwayatkan bahwa ketika duduk bersama para sahabat, Nabi ﷺ sempat terlelap sejenak lalu mengangkat kepala sambil tersenyum mengabarkan turunnya Surah Al-Kautsar, dan menjelaskan bahwa Al-Kautsar adalah sungai berlimpah yang Allah janjikan baginya di Surga.",
+        "ru": "Анас ибн Малик передал, что Пророк ﷺ на мгновение задремал среди сподвижников, затем с улыбкой поднял голову, возвестил о ниспослании суры Аль-Каусар и пояснил, что аль-Каусар — это обильная река, обещанная ему Аллахом в Раю."
+      }
+    },
+    "109:1": {
+      "type": "hadith",
+      "versets": [
+        "109:1",
+        "109:2",
+        "109:3",
+        "109:4",
+        "109:5",
+        "109:6"
+      ],
+      "plage": "109:1–6",
+      "source": "Sahīh Muslim n°726 & Sunan Abī Dāwūd n°5055",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Abū Hurayrah rapporte que le Messager d'Allāh ﷺ récitait régulièrement Sourate Al-Kāfirūn et Sourate Al-Ikhlās dans les deux unités surérogatoires qui précèdent la prière de l'aube. D'après Farwah ibn Nawfal, le Prophète ﷺ conseilla également de réciter cette sourate avant de dormir, car elle constitue une proclamation claire de monothéisme pur et de désaveu absolu de toute forme d'associationnisme.",
+        "en": "Abū Hurayrah narrated that the Messenger of Allāh ﷺ regularly recited Sūrah Al-Kāfirūn and Sūrah Al-Ikhlās in the two voluntary units before Fajr prayer. Furthermore, Farwah ibn Nawfal reported that the Prophet ﷺ advised reciting this surah before sleep as a clear declaration of pure monotheism and complete disavowal of polytheism.",
+        "es": "Abū Hurayrah relató que el Profeta ﷺ recitaba habitualmente Al-Kāfirūn junto a Al-Ikhlās en las dos unidades voluntarias previas al alba; además recomendó leerla antes de dormir por representar una declaración nítida de monoteísmo puro y desvinculación del politeísmo.",
+        "ar": "روى أبو هريرة رضي الله عنه أن النبي ﷺ كان يقرأ بسورتي الكافرون والإخلاص في ركعتي سنة الفجر، كما أوصى ﷺ بقراءتها عند النوم لأنها براءة صريحة من الشرك وإعلان خالص للتوحيد.",
+        "de": "Abū Hurayrah berichtete, dass der Prophet ﷺ Sure Al-Kāfirūn und Sure Al-Ikhlās regelmäßig in den beiden freiwilligen Gebetseinheiten vor dem Morgengebet rezitierte; zudem empfahl er sie vor dem Schlafengehen als klares Bekenntnis zum reinen Monotheismus.",
+        "it": "Abū Hurayrah narrò che il Profeta ﷺ recitava regolarmente Sura Al-Kāfirūn e Sura Al-Ikhlās nelle due unità facoltative prima dell'alba, e ne raccomandò la recitazione prima di dormire quale dichiarazione limpida di puro monoteismo.",
+        "id": "Abu Hurairah meriwayatkan bahwa Nabi ﷺ rutin membaca Surah Al-Kafirun dan Al-Ikhlas pada dua rakaat sunnah sebelum Subuh, serta menganjurkan membacanya menjelang tidur sebagai pernyataan tauhid murni dan pembebasan diri dari syirik.",
+        "ru": "Абу Хурайра передал, что Пророк ﷺ регулярно читал суры Аль-Кафирун и Аль-Ихляс в двух добровольных ракаатах перед утренней молитвой, а также советовал читать эту суру перед сном как ясное отречение от многобожия."
+      }
+    },
+    "110:1": {
+      "type": "sabab",
+      "versets": [
+        "110:1",
+        "110:2",
+        "110:3"
+      ],
+      "plage": "110:1–3",
+      "source": "Sahīh Al-Bukhārī n°4967, n°4970 & Sahīh Muslim n°484",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Ibn ‘Abbās rapporte que le calife ‘Umar réunit des vétérans de Badr pour les interroger sur la portée profonde de Sourate An-Nasr. Alors que les anciens y voyaient l'ordre de louer Allāh lors des victoires, le jeune Ibn ‘Abbās expliqua qu'elle annonçait l'approche du terme de la vie du Prophète ﷺ une fois sa mission accomplie — explication que ‘Umar approuva pleinement. ‘Ā’ishah témoigne qu'à partir de sa révélation, le Prophète ﷺ multipliait sans cesse la glorification et la demande de pardon dans ses inclinaisons et prosternations.",
+        "en": "Ibn ‘Abbās narrated that Caliph ‘Umar asked senior veterans of Badr about the deeper meaning of Sūrah An-Nasr. While they understood it as a command to praise Allāh upon victory, young Ibn ‘Abbās explained it also signaled the approaching end of the Prophet's ﷺ earthly life now that his mission was fulfilled—an insight ‘Umar fully affirmed. ‘Ā’ishah added that thereafter the Prophet ﷺ constantly praised Allāh and sought forgiveness in bowing and prostration.",
+        "es": "Ibn ‘Abbās relató que el califa ‘Umar preguntó a los veteranos de Badr por el sentido profundo de An-Nasr; mientras ellos vieron un mandato de alabanza ante la victoria, el joven Ibn ‘Abbās comprendió que anunciaba el cercano fallecimiento del Profeta ﷺ al haberse cumplido su misión, lo que ‘Umar confirmó. Desde entonces, según ‘Ā’ishah, el Profeta ﷺ multiplicaba la glorificación y la petición de perdón en la oración.",
+        "ar": "روى ابن عباس رضي الله عنهما أن عمر بن الخطاب سأل كبار أهل بدر عن معنى سورة النصر فأجاب ابن عباس بأنها إشارة إلى اقتراب أجل النبي ﷺ بعد إتمام البلاغ، فوافقه عمر على ذلك؛ وذكرت عائشة أن النبي ﷺ أكثر بعد نزولها من التسبيح والاستغفار في ركوعه وسجوده.",
+        "de": "Ibn ‘Abbās berichtete, dass Kalif ‘Umar die Veteranen von Badr nach der tieferen Bedeutung von Sure An-Nasr fragte und dem jungen Ibn ‘Abbās zustimmte, als dieser erklärte, die Sure kündige nach Vollendung der Botschaft das nahe Lebensende des Propheten ﷺ an. Laut ‘Ā’ishah mehrte der Prophet ﷺ daraufhin Lobpreis und Bitte um Vergebung im Gebet.",
+        "it": "Ibn ‘Abbās narrò che il califfo ‘Umar chiese ai veterani di Badr il senso profondo di Sura An-Nasr, concordando con il giovane Ibn ‘Abbās quando spiegò che annunciava l'avvicinarsi del congedo del Profeta ﷺ a missione compiuta. Secondo ‘Ā’ishah, da allora il Profeta ﷺ moltiplicò lode e richiesta di perdono nelle preghiere.",
+        "id": "Ibnu ‘Abbas meriwayatkan bahwa Khalifah ‘Umar bertanya kepada para tokoh Perang Badar tentang makna terdalam Surah An-Nashr, lalu membenarkan penjelasan Ibnu ‘Abbas bahwa surah itu mengisyaratkan dekatnya wafat Nabi ﷺ setelah risalah sempurna. Menurut ‘Aisyah, sejak saat itu Nabi ﷺ memperbanyak tasbih dan istighfar dalam rukuk serta sujud.",
+        "ru": "Ибн ‘Аббас передал, что халиф ‘Умар спросил участников Бадра о глубинном смысле суры Ан-Наср и полностью согласился с юным Ибн ‘Аббасом, объяснившим, что она возвещает о близости кончины Пророка ﷺ после завершения его миссии. По словам ‘Аиши, с тех пор Пророк ﷺ постоянно восхвалял Аллаха и просил прощения в поклонах."
+      }
+    },
+    "111:1": {
+      "type": "sabab",
+      "versets": [
+        "111:1",
+        "111:2",
+        "111:3",
+        "111:4",
+        "111:5"
+      ],
+      "plage": "111:1–5",
+      "source": "Sahīh Al-Bukhārī n°4770, n°4971, n°4972 & Sahīh Muslim n°208",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Ibn ‘Abbās rapporte que lorsque le Messager d'Allāh ﷺ monta sur le mont As-Safā à La Mecque pour avertir solennellement les clans de Quraysh du châtiment de l'Au-delà et les appeler au monothéisme, son oncle Abū Lahab l'interrompit avec mépris en lui souhaitant la perte pour les avoir réunis ainsi. En réponse immédiate à son hostilité ouverte, Allāh révéla Sourate Al-Masad annonçant la ruine d'Abū Lahab et de son épouse complice.",
+        "en": "Ibn ‘Abbās narrated that when the Messenger of Allāh ﷺ climbed Mount As-Safā in Makkah to solemnly warn the clans of Quraysh and call them to monotheism, his uncle Abū Lahab interrupted him with scorn, wishing ruin upon him for gathering them. In immediate response to this hostility, Allāh revealed Sūrah Al-Masad foretelling the downfall of Abū Lahab and his supportive wife.",
+        "es": "Ibn ‘Abbās relató que al subir el Profeta ﷺ al monte As-Safā para advertir a los clanes de Quraysh y llamarlos al monoteísmo, su tío Abū Lahab lo interrumpió con desprecio deseándole la perdición por haberlos convocado. En respuesta inmediata descendió la Sura Al-Masad anunciando la ruina de Abū Lahab y su esposa.",
+        "ar": "روى ابن عباس رضي الله عنهما أنه لما صعد النبي ﷺ الصفا ينذر بطون قريش ويدعوهم إلى التوحيد، قاطعه عمه أبو لهب مستهزئًا وداعيًا عليه بالهلاك لأنه جمعهم، فأنزل الله ردًّا فوريًّا سورة المسد معلنةً خسران أبي لهب وامرأته.",
+        "de": "Ibn ‘Abbās berichtete, dass der Onkel Abū Lahab den Propheten ﷺ voller Spott unterbrach und ihm Verderben wünschte, als dieser auf dem Hügel As-Safā die Stämme der Quraisch zum Monotheismus rief. Als unmittelbare Antwort offenbarte Allah Sure Al-Masad.",
+        "it": "Ibn ‘Abbās narrò che quando il Profeta ﷺ salì sul colle As-Safā per chiamare i clan di Quraysh al monoteismo, suo zio Abū Lahab lo interruppe con disprezzo augurandogli la rovina. In risposta immediata Allāh rivelò Sura Al-Masad annunciando la disfatta di Abū Lahab e di sua moglie.",
+        "id": "Ibnu ‘Abbas meriwayatkan bahwa saat Nabi ﷺ naik ke Bukit Shafa untuk menyeru kabilah Quraisy kepada tauhid, pamannya Abu Lahab memotong ucapan beliau dengan cemoohan dan sumpah serapah. Seketika Allah menurunkan Surah Al-Masad sebagai balasan tegas atas permusuhannya.",
+        "ru": "Ибн ‘Аббас передал, что когда Пророк ﷺ поднялся на холм ас-Сафа, чтобы призвать роды курайшитов к единобожию, его дядя Абу Ляхаб презрительно прервал его проклятием. В немедленный ответ на эту враждебность Аллах ниспослал суру Аль-Масад."
+      }
+    },
+    "112:1": {
+      "type": "sabab",
+      "versets": [
+        "112:1",
+        "112:2",
+        "112:3",
+        "112:4"
+      ],
+      "plage": "112:1–4",
+      "source": "Sunan At-Tirmidhī n°3364 & Sahīh Al-Bukhārī n°5013, n°7375",
+      "degre": "Hasan",
+      "texte": {
+        "fr": "Ubayy ibn Ka‘b rapporte que des polythéistes demandèrent au Messager d'Allāh ﷺ de leur décrire la généalogie et la nature de son Seigneur ; Allāh fit alors descendre Sourate Al-Ikhlās pour proclamer Son Unicité absolue et Sa transcendance parfaite. Par ailleurs, dans Sahīh Al-Bukhārī, le Prophète ﷺ confirme que cette sourate équivaut en sens et en récompense au tiers du Coran, et évoque l'amour d'Allāh envers le Compagnon qui aimait la réciter dans chaque prière parce qu'elle expose les attributs du Tout Miséricordieux.",
+        "en": "Ubayy ibn Ka‘b reported that polytheists asked the Messenger of Allāh ﷺ to describe the lineage of his Lord, whereupon Allāh revealed Sūrah Al-Ikhlās proclaiming His absolute Oneness and transcendence. Additionally, in Sahīh Al-Bukhārī, the Prophet ﷺ affirmed that it equals one-third of the Qur'an in thematic weight and praised a Companion whose love for reciting it stemmed from its description of the Most Merciful.",
+        "es": "Ubayy ibn Ka‘b relató que unos politeístas pidieron al Profeta ﷺ describir el linaje de su Señor, y entonces Allah reveló la Sura Al-Ikhlās afirmando Su Unicidad absoluta y trascendencia. Además, en Sahīh Al-Bukhārī, el Profeta ﷺ confirmó que equivale en significado a un tercio del Corán.",
+        "ar": "روى أُبيّ بن كعب رضي الله عنه أن المشركين سألوا النبي ﷺ أن ينسب لهم ربه، فأنزل الله سورة الإخلاص تقريرًا للتوحيد الخالص وتنزيهه سبحانه؛ كما ثبت في صحيح البخاري أنها تعدل ثلث القرآن وأن الله أحبَّ صحابيًّا كان يحب قراءتها لأنها صفة الرحمن.",
+        "de": "Ubayy ibn Ka‘b überlieferte, dass Polytheisten den Propheten ﷺ nach dem Wesen und der Abstammung seines Herrn fragten, woraufhin Allah Sure Al-Ikhlās zur Verkündung Seiner absoluten Einheit offenbarte. Zudem bestätigte der Prophet ﷺ in Sahīh Al-Bukhārī, dass sie inhaltlich einem Drittel des Korans entspricht.",
+        "it": "Ubayy ibn Ka‘b riferì che alcuni politeisti chiesero al Profeta ﷺ di descrivere la discendenza del suo Signore, al che Allāh rivelò Sura Al-Ikhlās proclamando la Sua Unicità assoluta. Inoltre, in Sahīh Al-Bukhārī, il Profeta ﷺ affermò che essa equivale a un terzo del Corano.",
+        "id": "Ubayy bin Ka‘b meriwayatkan bahwa kaum musyrik meminta Nabi ﷺ menyebutkan nasab Tuhannya, lalu Allah menurunkan Surah Al-Ikhlas yang menegaskan keesaan mutlak-Nya. Selain itu dalam Shahih Al-Bukhari ditegaskan bahwa surah ini setara sepertiga Al-Qur'an.",
+        "ru": "Убайй ибн Ка‘б передал, что многобожники попросили Пророка ﷺ описать происхождение его Господа, и Аллах ниспослал суру Аль-Ихляс, утверждающую Его абсолютное Единство. Кроме того, в Сахихе аль-Бухари подтверждается, что по своему значению она приравнивается к трети Корана."
+      }
+    },
+    "113:1": {
+      "type": "hadith",
+      "versets": [
+        "113:1",
+        "113:2",
+        "113:3",
+        "113:4",
+        "113:5"
+      ],
+      "plage": "113:1–5",
+      "source": "Sahīh Muslim n°814 & Sahīh Al-Bukhārī n°5017, n°5763",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Uqbah ibn ‘Āmir rapporte que le Prophète ﷺ lui annonça la révélation de versets de protection sans équivalent — Sourates Al-Falaq et An-Nās — surpassant toute autre formule de refuge. ‘Ā’ishah ajoute que le Prophète ﷺ les récitait chaque soir avec Sourate Al-Ikhlās en soufflant légèrement dans ses mains avant de les passer sur son corps, et rappelle le rôle de cette protection divine contre tout mal extérieur, l'envie et la sorcellerie.",
+        "en": "‘Uqbah ibn ‘Āmir narrated that the Prophet ﷺ told him verses of protection unlike any ever seen before—Sūrahs Al-Falaq and An-Nās—had been revealed. ‘Ā’ishah reported that the Prophet ﷺ recited them together with Al-Ikhlās every night before sleeping, wiping his hands over his body for protection against external harm, envy, and sorcery.",
+        "es": "‘Uqbah ibn ‘Āmir relató que el Profeta ﷺ le anunció la revelación de versículos de protección sin igual —Al-Falaq y An-Nās—. ‘Ā’ishah añadió que el Profeta ﷺ los recitaba cada noche junto a Al-Ikhlās pasando sus manos por el cuerpo como amparo frente al mal, la envidia y la hechicería.",
+        "ar": "روى عقبة بن عامر رضي الله عنه أن النبي ﷺ أخبره بنزول آيات لم يُرَ مثلهن قط في الاستعاذة وهما المعوّذتان (الفلق والناس)، وأخبرت عائشة رضي الله عنها أنه ﷺ كان يقرؤهما مع الإخلاص كل ليلة عند النوم وينفث في كفيه ويمسح بهما جسده وقايةً من الشرور والحسد والسحر.",
+        "de": "‘Uqbah ibn ‘Āmir berichtete, dass der Prophet ﷺ die Offenbarung unvergleichlicher Schutzverse – Al-Falaq und An-Nās – verkündete. Laut ‘Ā’ishah rezitierte er sie jeden Abend gemeinsam mit Al-Ikhlās als Schutz vor äußerem Übel, Neid und Zauberei.",
+        "it": "‘Uqbah ibn ‘Āmir narrò che il Profeta ﷺ annunciò la rivelazione di versetti di protezione senza eguali — Al-Falaq e An-Nās. ‘Ā’ishah riferì che egli li recitava ogni sera con Al-Ikhlās passando le mani sul corpo per chiedere protezione da mali, invidia e magia.",
+        "id": "‘Uqbah bin ‘Amir meriwayatkan bahwa Nabi ﷺ mengabarkan turunnya ayat-ayat perlindungan yang belum pernah ada tandingannya, yakni Al-Falaq dan An-Nas. ‘Aisyah menambahkan beliau rutin membacanya bersama Al-Ikhlas setiap malam menjelang tidur sebagai perlindungan dari keburukan, dengki, dan sihir.",
+        "ru": "‘Укба ибн ‘Амир передал, что Пророк ﷺ возвестил о ниспослании несравненных аятов защиты — сур Аль-Фаляк и Ан-Нас. ‘Аиша рассказала, что он читал их вместе с Аль-Ихляс каждую ночь перед сном, прося у Аллаха защиты от зла, зависти и колдовства."
+      }
+    },
+    "114:1": {
+      "type": "hadith",
+      "versets": [
+        "114:1",
+        "114:2",
+        "114:3",
+        "114:4",
+        "114:5",
+        "114:6"
+      ],
+      "plage": "114:1–6",
+      "source": "Sahīh Muslim n°814 & Sahīh Al-Bukhārī n°5017",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "D'après ‘Uqbah ibn ‘Āmir et ‘Ā’ishah, Sourate An-Nās clôt le Coran en formant avec Sourate Al-Falaq les deux Sourates Protectrices (Al-Mu‘awwidhatān), que le Messager d'Allāh ﷺ prescrivait de réciter après les prières et avant le sommeil. Alors qu'Al-Falaq demande protection contre les dangers extérieurs, An-Nās enseigne au croyant à chercher refuge auprès du Seigneur, Roi et Dieu de l'humanité contre les suggestions insidieuses et les tentations intérieures.",
+        "en": "According to ‘Uqbah ibn ‘Āmir and ‘Ā’ishah, Sūrah An-Nās closes the Qur'an alongside Sūrah Al-Falaq as the Two Chapters of Refuge (Al-Mu‘awwidhatān), which the Messenger of Allāh ﷺ encouraged reciting after prayers and before sleep. While Al-Falaq seeks refuge from external harms, An-Nās turns to the Lord, Sovereign, and God of mankind for protection against hidden whispers and inner temptations.",
+        "es": "Según ‘Uqbah ibn ‘Āmir y ‘Ā’ishah, la Sura An-Nās cierra el Corán junto a Al-Falaq formando las Dos Suras Protectoras (Al-Mu‘awwidhatān), recomendadas tras la oración y antes de dormir para pedir amparo al Señor y Rey de la humanidad frente a los susurros ocultos y las tentaciones interiores.",
+        "ar": "وفق رواية عقبة بن عامر وعائشة رضي الله عنهما تختم سورة الناس القرآن مع سورة الفلق بوصفهما المعوّذتين اللتين أوصى النبي ﷺ بقراءتهما دبر الصلوات وعند النوم؛ فبينما تركز الفلق على الوقاية من الشرور الخارجية، تعلّم سورة الناس الاستعاذة برب الناس وملكهم وإلههم من الوسواس الخفي.",
+        "de": "Nach ‘Uqbah ibn ‘Āmir und ‘Ā’ishah beschließt Sure An-Nās zusammen mit Al-Falaq den Koran als die beiden Schutzsuren (Al-Mu‘awwidhatān), die nach den Gebeten und vor dem Schlafengehen empfohlen werden, um beim Herrn der Menschen Schutz vor inneren Einflüsterungen zu suchen.",
+        "it": "Secondo ‘Uqbah ibn ‘Āmir e ‘Ā’ishah, Sura An-Nās chiude il Corano insieme ad Al-Falaq formando le Due Sure Protettrici (Al-Mu‘awwidhatān), raccomandate dopo le preghiere e prima del riposo per cercare rifugio presso il Signore degli uomini dalle tentazioni sottili.",
+        "id": "Menurut ‘Uqbah bin ‘Amir dan ‘Aisyah, Surah An-Nas menutup Al-Qur'an bersama Al-Falaq sebagai Al-Mu‘awwidzatain yang dianjurkan dibaca usai shalat dan sebelum tidur untuk memohon perlindungan kepada Tuhan dan Raja manusia dari bisikan jahat yang tersembunyi.",
+        "ru": "Согласно ‘Укбе ибн ‘Амиру и ‘Аише, сура Ан-Нас завершает Коран вместе с Аль-Фаляк, образуя две суры защиты (аль-Му‘аввизатан), рекомендуемые после молитв и перед сном для обретения защиты у Господа и Владыки людей от тайного наущения."
       }
     }
   }
