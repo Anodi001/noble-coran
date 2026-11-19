@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "recits": {
     "96:1": {
       "versets": [
@@ -100,6 +100,262 @@
         "it": "Jundub ibn Sufyān narrò che il Messaggero di Allāh ﷺ fu indisposto per due o tre notti senza potersi alzare per la preghiera. Una donna venne a deriderlo dicendo che il suo demone lo aveva abbandonato; allora Allāh rivelò questi versetti di conforto: «Il tuo Signore non ti ha abbandonato e non ti ha preso in odio».",
         "id": "Jundub bin Sufyan meriwayatkan bahwa Rasulullah ﷺ pernah sakit sehingga tidak bangun shalat malam selama dua atau tiga malam. Seorang wanita datang mengejek beliau bahwa setannya telah meninggalkannya, maka Allah menurunkan ayat-ayat penenang ini.",
         "ru": "Джундуб ибн Суфьян передал, что Посланник Аллаха ﷺ заболел и не вставал на ночную молитву две или три ночи. Одна женщина пришла с насмешкой, сказав, что его шайтан покинул его, и тогда Аллах ниспослал эти утешающие аяты: «Не покинул тебя Господь твой и не возненавидел»."
+      }
+    },
+    "2:115": {
+      "versets": [
+        "2:115"
+      ],
+      "plage": "2:115",
+      "source": "Sahīh Muslim n°700",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Ibn ‘Umar (qu'Allāh les agrée) rapporte que ce verset fut révélé au sujet de la prière surérogatoire accomplie en voyage : le Messager d'Allāh ﷺ priait sur sa monture en revenant de La Mecque vers Médine, quelle que soit la direction vers laquelle sa monture se tournait, et c'est à ce propos que descendit : « Où que vous vous tourniez, là est la Face d'Allāh. »",
+        "en": "Ibn ‘Umar (may Allāh be pleased with them) narrated that this verse was revealed regarding voluntary prayers during travel: the Messenger of Allāh ﷺ would pray on his mount while traveling from Makkah toward Madinah in whichever direction it faced, and concerning this it was revealed: 'So wherever you turn, there is the Face of Allāh.'",
+        "es": "Ibn ‘Umar relató que esta aleya fue revelada respecto a la oración voluntaria durante el viaje: el Mensajero de Allah ﷺ rezaba sobre su montura regresando de La Meca hacia Medina en la dirección que esta tomara, y acerca de ello descendió: «Hacia donde os volváis, allí está el Rostro de Allah».",
+        "ar": "عن ابن عمر رضي الله عنهما أن رسول الله ﷺ كان يصلي التطوع على راحلته حيث توجهت به وهو مقبل من مكة إلى المدينة، قال ابن عمر: وفي هذا أُنزلت: ﴿فَأَيْنَمَا تُوَلُّوا فَثَمَّ وَجْهُ اللَّهِ﴾.",
+        "de": "Ibn ‘Umar berichtete, dass dieser Vers bezüglich des freiwilligen Gebets auf Reisen offenbart wurde: Der Gesandte Allahs ﷺ betete auf seinem Reittier auf dem Weg von Mekka nach Medina, wohin es sich auch wandte, und dazu wurde offenbart: „Wohin ihr euch auch wendet, dort ist das Angesicht Allahs.“",
+        "it": "Ibn ‘Umar narrò che questo versetto fu rivelato riguardo alla preghiera facoltativa in viaggio: il Messaggero di Allāh ﷺ pregava sulla sua cavalcatura da La Mecca verso Medina in qualunque direzione essa si volgesse, e a tal proposito scese: «Ovunque vi volgiate, lì è il Volto di Allāh».",
+        "id": "Ibnu ‘Umar meriwayatkan bahwa ayat ini turun berkenaan dengan shalat sunnah dalam perjalanan: Rasulullah ﷺ shalat di atas tunggangannya dari Makkah menuju Madinah menghadap ke arah mana pun tunggangannya melaju, lalu turunlah firman Allah ini.",
+        "ru": "Ибн ‘Умар передал, что этот аят был ниспослан относительно добровольной молитвы в пути: Посланник Аллаха ﷺ совершал её верхом по дороге из Мекки в Медину, куда бы ни направлялось его верховое животное, и по этому поводу было ниспослано: «Куда бы вы ни обратились, там Лик Аллаха»."
+      }
+    },
+    "2:125": {
+      "versets": [
+        "2:125"
+      ],
+      "plage": "2:125",
+      "source": "Sahīh Al-Bukhārī n°402, n°4483",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Umar ibn Al-Khattāb (qu'Allāh l'agrée) rapporte : « Mon Seigneur a agréé mon avis en trois occasions. J'ai dit : “Ô Messager d'Allāh, et si nous prenions la Station d'Abraham (Maqām Ibrāhīm) comme lieu de prière ?” Et ce verset fut aussitôt révélé : “Et adoptez pour lieu de prière la Station d'Abraham.” »",
+        "en": "‘Umar ibn Al-Khattāb (may Allāh be pleased with him) said: 'My Lord agreed with me in three matters. I said: “O Messenger of Allāh, what if we take the Station of Ibrāhīm (Maqām Ibrāhīm) as a place of prayer?” Then it was revealed: “And take the standing place of Abraham as a place of prayer.”'",
+        "es": "‘Umar ibn Al-Khattāb relató: «Mi Señor coincidió conmigo en tres asuntos. Dije: “¡Oh Mensajero de Allah!, ¿y si tomáramos la Estación de Abraham (Maqām Ibrāhīm) como lugar de oración?”. Entonces descendió: “Y tomad el lugar de Abraham como oratorio”».",
+        "ar": "عن عمر بن الخطاب رضي الله عنه قال: وافقتُ ربي في ثلاث؛ فقلت: يا رسول الله، لو اتخذنا من مقام إبراهيم مصلّى! فنزلت: ﴿وَاتَّخِذُوا مِن مَّقَامِ إِبْرَاهِيمَ مُصَلًّى﴾.",
+        "de": "‘Umar ibn Al-Khattāb berichtete: „Mein Herr stimmte mir in drei Angelegenheiten zu. Ich sagte: ‚O Gesandter Allahs, wie wäre es, wenn wir den Standort Abrahams (Maqām Ibrāhīm) als Gebetsstätte nähmen?‘ Daraufhin wurde offenbart: ‚Und nehmt die Stätte Abrahams als Gebetsplatz.‘“",
+        "it": "‘Umar ibn Al-Khattāb raccontò: «Il mio Signore concordò con me in tre circostanze. Dissi: “O Messaggero di Allāh, e se prendessimo la Stazione di Abramo (Maqām Ibrāhīm) come luogo di preghiera?” E subito fu rivelato: “E prendete il luogo di Abramo come oratorio”».",
+        "id": "‘Umar bin Al-Khaththab berkata: “Tuhanku menyetujuiku dalam tiga hal. Aku pernah berkata: ‘Wahai Rasulullah, bagaimana jika kita menjadikan Maqam Ibrahim sebagai tempat shalat?’ Maka turunlah ayat ini.”",
+        "ru": "‘Умар ибн аль-Хаттаб рассказывал: «Господь мой согласился со мной в трёх вещах. Я сказал: “О Посланник Аллаха, не избрать ли нам место стояния Ибрахима (Макам Ибрахим) местом молитвы?” — и сразу было ниспослано: “Сделайте же место Ибрахима местом моления”»."
+      }
+    },
+    "2:142": {
+      "versets": [
+        "2:142",
+        "2:143",
+        "2:144"
+      ],
+      "plage": "2:142–144",
+      "source": "Sahīh Al-Bukhārī n°40, n°399, n°4486 & Sahīh Muslim n°525",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Al-Barā' ibn ‘Āzib (qu'Allāh l'agrée) rapporte qu'à son arrivée à Médine, le Prophète ﷺ pria en direction de Jérusalem (Bayt al-Maqdis) pendant seize ou dix-sept mois, tout en espérant ardemment que la Qiblah soit orientée vers la Ka‘bah. Allāh révéla alors ces versets changeant définitivement la direction de la prière vers la Mosquée Sacrée, et rassura les croyants que les prières de ceux qui étaient décédés auparavant restaient pleinement acceptées.",
+        "en": "Al-Barā' ibn ‘Āzib (may Allāh be pleased with him) narrated that upon arriving in Madinah, the Prophet ﷺ prayed toward Jerusalem for sixteen or seventeen months while deeply hoping the Qiblah would be turned toward the Ka‘bah. Allāh then revealed these verses redirecting the prayer permanently toward the Sacred Mosque and assuring believers that the prayers of those who had already passed away would never be lost.",
+        "es": "Al-Barā' ibn ‘Āzib relató que al llegar a Medina, el Profeta ﷺ rezó hacia Jerusalén durante dieciséis o diecisiete meses, deseando que la Qiblah se orientara hacia la Ka‘bah. Entonces Allah reveló estas aleyas cambiando la dirección hacia la Mezquita Sagrada y asegurando que las oraciones anteriores no se perderían.",
+        "ar": "عن البراء بن عازب رضي الله عنه أن النبي ﷺ صلى نحو بيت المقدس ستة عشر شهرًا أو سبعة عشر شهرًا، وكان يحب أن يوجَّه نحو الكعبة، فأنزل الله هذه الآيات بتحويل القبلة إلى المسجد الحرام، وطمأن المؤمنين بأن صلاة من مات قبل التحويل مقبولة غير ضائعة.",
+        "de": "Al-Barā' ibn ‘Āzib berichtete, dass der Prophet ﷺ nach seiner Ankunft in Medina sechzehn oder siebzehn Monate lang Richtung Jerusalem betete, sich jedoch wünschte, dass die Gebetsrichtung zur Ka‘bah gewandt werde. Daraufhin offenbarte Allah diese Verse zur Änderung der Qiblah zur Heiligen Moschee.",
+        "it": "Al-Barā' ibn ‘Āzib narrò che, giunto a Medina, il Profeta ﷺ pregò rivolto verso Gerusalemme per sedici o diciassette mesi, desiderando che la Qiblah fosse orientata verso la Ka‘bah. Allāh rivelò quindi questi versetti cambiando la direzione verso la Moschea Sacra e rassicurando i credenti sul valore delle preghiere precedenti.",
+        "id": "Al-Bara' bin ‘Azib meriwayatkan bahwa setibanya di Madinah, Nabi ﷺ shalat menghadap Baitul Maqdis selama enam belas atau tujuh belas bulan sambil berharap kiblat dialihkan ke Ka‘bah. Maka Allah menurunkan ayat-ayat ini untuk memindahkan kiblat ke Masjidil Haram.",
+        "ru": "Аль-Бара ибн ‘Азиб передал, что после прибытия в Медину Пророк ﷺ молился в сторону Иерусалима шестнадцать или семнадцать месяцев, желая, чтобы кибла была обращена к Каабе. Тогда Аллах ниспослал эти аяты, изменив киблу в сторону Заповедной мечети и подтвердив, что прежние молитвы умерших верующих не пропадут."
+      }
+    },
+    "2:158": {
+      "versets": [
+        "2:158"
+      ],
+      "plage": "2:158",
+      "source": "Sahīh Al-Bukhārī n°1643, n°4495 & Sahīh Muslim n°1277",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Ā’ishah et Anas ibn Mālik (qu'Allāh les agrée) rapportent que certains Ansār éprouvaient de la gêne à accomplir le parcours (Sa‘ī) entre As-Safā et Al-Marwah, car deux idoles préislamiques (Isāf et Nā'ilah) s'y trouvaient avant l'Islam. Allāh révéla alors ce verset confirmant qu'As-Safā et Al-Marwah comptent parmi les rites sacrés d'Allāh et qu'il n'y a aucun mal à effectuer le parcours entre elles.",
+        "en": "‘Ā’ishah and Anas ibn Mālik (may Allāh be pleased with them) narrated that some of the Ansār felt reluctant to perform the Sa‘ī between As-Safā and Al-Marwah because pre-Islamic idols used to stand there. Allāh then revealed this verse affirming that As-Safā and Al-Marwah are among the sacred symbols of Allāh.",
+        "es": "‘Ā’ishah y Anas ibn Mālik relataron que algunos Ansār sentían reparo en realizar el recorrido (Sa‘ī) entre As-Safā y Al-Marwah debido a los ídolos que existían allí antes del Islam. Allah reveló esta aleya confirmando que ambos montes forman parte de los ritos sagrados de Allah.",
+        "ar": "عن عائشة وأنس بن مالك رضي الله عنهما أن بعض الأنصار تحرّجوا من السعي بين الصفا والمروة لما كان عليهما من أصنام الجاهلية قبل الإسلام، فأنزل الله هذه الآية بيانًا لأن الصفا والمروة من شعائر الله وأن السعي بينهما لا حرج فيه.",
+        "de": "‘Ā’ishah und Anas ibn Mālik berichteten, dass einige der Ansār Bedenken hatten, den Lauf (Sa‘ī) zwischen As-Safā und Al-Marwah zu vollziehen, weil dort in vorislamischer Zeit Götzen standen. Daraufhin offenbarte Allah diesen Vers, dass beide Hügel zu den Zeichen Allahs gehören.",
+        "it": "‘Ā’ishah e Anas ibn Mālik narrarono che alcuni Ansār provavano disagio a compiere il percorso (Sa‘ī) tra As-Safā e Al-Marwah a causa degli idoli preislamici presenti lì in passato. Allāh rivelò questo versetto confermando che entrambi fanno parte dei riti sacri di Allāh.",
+        "id": "‘Aisyah dan Anas bin Malik meriwayatkan bahwa sebagian kaum Anshar merasa keberatan melakukan sa‘i antara Shafa dan Marwah karena dahulu terdapat berhala pada masa Jahiliyah. Maka Allah menurunkan ayat ini untuk menegaskan bahwa keduanya termasuk syiar Allah.",
+        "ru": "‘Аиша и Анас ибн Малик передали, что некоторые ансары смущались совершать сай между холмами ас-Сафа и аль-Марва, поскольку в доисламские времена там стояли идолы. Тогда Аллах ниспослал этот аят, подтвердив, что ас-Сафа и аль-Марва относятся к обрядовым знамениям Аллаха."
+      }
+    },
+    "2:187": {
+      "versets": [
+        "2:187"
+      ],
+      "plage": "2:187",
+      "source": "Sahīh Al-Bukhārī n°1915, n°1916, n°1917 & Sahīh Muslim n°1090",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Al-Barā' ibn ‘Āzib rapporte qu'au début de la prescription du jeûne, il était interdit de manger, de boire ou d'avoir des rapports conjugaux une fois endormi après le coucher du soleil. Un compagnon, Qays ibn Sirmah, rentra épuisé des champs, s'endormit avant de rompre son jeûne et perdit connaissance le lendemain à midi. Allāh révéla alors cet allègement autorisant le repas et les rapports toute la nuit jusqu'à l'aube. Puis, lorsque ‘Adī ibn Hātim plaça deux fils (blanc et noir) sous son oreiller, les mots « de l'aube » furent révélés pour clarifier qu'il s'agit de la clarté du jour face à l'obscurité de la nuit.",
+        "en": "Al-Barā' ibn ‘Āzib narrated that initially during Ramadan, once a fasting person fell asleep after sunset, eating, drinking, and marital intimacy became forbidden until the next night. After Qays ibn Sirmah fell asleep exhausted before breaking his fast and fainted the following day, Allāh revealed this ease permitting them throughout the night until dawn. Later, when ‘Adī ibn Hātim placed a black and white thread under his pillow, the words 'of dawn' were revealed to clarify the literal daylight and night.",
+        "es": "Al-Barā' ibn ‘Āzib relató que al principio del ayuno, si alguien dormía tras el ocaso ya no podía comer, beber ni mantener relaciones hasta la noche siguiente. Tras desmayarse Qays ibn Sirmah por quedar dormido sin cenar, Allah reveló esta facilidad permitiéndolo toda la noche hasta el alba, precisando luego «del alba» tras la confusión literal de ‘Adī ibn Hātim con dos hilos.",
+        "ar": "عن البراء بن عازب رضي الله عنه أنه كان في بداية فرض الصيام إذا نام الصائم بعد المغرب حَرُم عليه الطعام والشراب والنساء، فنام قيس بن صرمة قبل أن يفطر وأُغمي عليه في اليوم التالي، فأنزل الله هذا التخفيف بإباحة الأكل والشرب والمباشرة طوال الليل حتى الفجر، ثم نزل قوله تعالى ﴿مِنَ الْفَجْرِ﴾ لما أخذ عدي بن حاتم عقالين أبيض وأسود تحت وسادته.",
+        "de": "Al-Barā' ibn ‘Āzib berichtete, dass es anfangs im Ramadan verboten war zu essen, zu trinken oder ehelichen Umgang zu pflegen, sobald man nach Sonnenuntergang eingeschlafen war. Nachdem Qays ibn Sirmah erschöpft eingeschlafen und am nächsten Tag ohnmächtig geworden war, offenbarte Allah diese Erleichterung für die gesamte Nacht bis zur Morgendämmerung.",
+        "it": "Al-Barā' ibn ‘Āzib narrò che all'inizio del digiuno, se ci si addormentava dopo il tramonto, non era più lecito mangiare, bere né avere rapporti fino alla sera seguente. Dopo che Qays ibn Sirmah svenne il giorno seguente essendosi addormentato prima di cenare, Allāh rivelò questa facilitazione per l'intera notte fino all'alba.",
+        "id": "Al-Bara' bin ‘Azib meriwayatkan bahwa pada awal kewajiban puasa, orang yang sudah tidur setelah magrib tidak boleh lagi makan, minum, atau menggauli istrinya. Ketika Qais bin Shirmah tertidur kelelahan sebelum berbuka lalu pingsan keesokan harinya, Allah menurunkan keringanan ini hingga terbit fajar.",
+        "ru": "Аль-Бара ибн ‘Азиб передал, что в начале предписания поста после засыпания вечером запрещалось есть, пить и вступать в супружескую близость. Когда Кайс ибн Сирма уснул от усталости, не успев разговеться, и на следующий день потерял сознание, Аллах ниспослал это облегчение, разрешив всё это на протяжении всей ночи до рассвета."
+      }
+    },
+    "2:189": {
+      "versets": [
+        "2:189"
+      ],
+      "plage": "2:189",
+      "source": "Sahīh Al-Bukhārī n°1803, n°4512 & Sahīh Muslim n°3026",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Al-Barā' ibn ‘Āzib (qu'Allāh l'agrée) rapporte qu'à l'époque préislamique, lorsqu'ils entraient en état de sacralisation (Ihrām) pour le pèlerinage, les Ansār n'entraient plus dans leurs maisons par la porte principale, mais par l'arrière en escaladant le mur. Ce verset fut révélé pour abolir cette coutume et rappeler que la vraie piété réside dans la crainte d'Allāh.",
+        "en": "Al-Barā' ibn ‘Āzib (may Allāh be pleased with him) narrated that in pre-Islamic times, when the Ansār entered the state of Ihrām for pilgrimage, they would avoid entering their homes through the front doors and climb in from the back. This verse was revealed abolishing that custom and affirming that true righteousness lies in mindfulness of Allāh.",
+        "es": "Al-Barā' ibn ‘Āzib relató que antes del Islam, cuando los Ansār entraban en estado de Ihrām, no accedían a sus casas por la puerta principal sino por la parte trasera. Esta aleya fue revelada para abolir esa costumbre y recordar que la verdadera piedad consiste en temer a Allah.",
+        "ar": "عن البراء بن عازب رضي الله عنه أن الأنصار كانوا في الجاهلية إذا أحرموا لم يدخلوا بيوتهم من أبوابها بل من ظهورها، فنزلت هذه الآية بإبطال تلك العادة وبيان أن البر الحقيقي هو تقوى الله.",
+        "de": "Al-Barā' ibn ‘Āzib berichtete, dass die Ansār in vorislamischer Zeit im Weihezustand (Ihrām) ihre Häuser nicht durch die Vordertüren, sondern von hinten betraten. Dieser Vers wurde offenbart, um diesen Brauch aufzuheben und zu zeigen, dass wahre Frömmigkeit in der Gottesfurcht besteht.",
+        "it": "Al-Barā' ibn ‘Āzib narrò che in epoca preislamica gli Ansār, una volta entrati in stato di Ihrām, non entravano nelle loro case dalla porta principale ma dal retro. Questo versetto fu rivelato per abolire tale usanza e affermare che la vera pietà è il timore di Allāh.",
+        "id": "Al-Bara' bin ‘Azib meriwayatkan bahwa pada masa Jahiliyah, kaum Anshar apabila telah berihram tidak memasuki rumah melalui pintu depan, melainkan dari belakang rumah. Ayat ini turun untuk menghapus kebiasaan tersebut.",
+        "ru": "Аль-Бара ибн ‘Азиб передал, что в доисламскую эпоху ансары, вступив в состояние ихрама, не входили в свои дома через двери, а пробирались с задней стороны. Этот аят был ниспослан для отмены данного обычая и разъяснения, что истинное благочестие — в богобоязненности."
+      }
+    },
+    "2:196": {
+      "versets": [
+        "2:196"
+      ],
+      "plage": "2:196",
+      "source": "Sahīh Al-Bukhārī n°1814, n°4517 & Sahīh Muslim n°1201",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Ka‘b ibn ‘Ujrah (qu'Allāh l'agrée) rapporte qu'au temps d'Al-Hudaybiyah, alors qu'il était en état d'Ihrām, des poux tombaient de sa tête sur son visage à cause d'une gêne au cuir chevelu. Le Messager d'Allāh ﷺ passa près de lui, constata sa souffrance et lui dit : « Rase-toi la tête, puis jeûne trois jours, ou nourris six pauvres, ou sacrifie une bête. » C'est à son sujet que cette partie du verset sur la compensation (Fidyah) fut révélée, tout en s'appliquant à l'ensemble de la communauté.",
+        "en": "Ka‘b ibn ‘Ujrah (may Allāh be pleased with him) narrated that during Al-Hudaybiyah while in Ihrām, lice were falling onto his face from his head. Seeing his distress, the Messenger of Allāh ﷺ told him to shave his head and offer a compensation (Fidyah): fasting three days, feeding six needy people, or sacrificing an animal. He said this ruling in the verse was revealed specifically regarding him and applies to all believers.",
+        "es": "Ka‘b ibn ‘Ujrah relató que durante Al-Hudaybiyah, estando en Ihrām, sufría una molestia en la cabeza con piojos cayendo sobre su rostro. El Profeta ﷺ le permitió afeitarse la cabeza ofreciendo una compensación (Fidyah): ayunar tres días, alimentar a seis pobres o sacrificar un animal, revelándose así este pasaje para él y para toda la comunidad.",
+        "ar": "عن كعب بن عجرة رضي الله عنه أنه كان محرمًا بالحديبية والقمل يتناثر على وجهه، فرآه النبي ﷺ فأمره أن يحلق رأسه ويفتدي بصيام ثلاثة أيام أو إطعام ستة مساكين أو نُسُك، قال كعب: فنزلت هذه الآية فيّ خاصة وهي لكم عامة.",
+        "de": "Ka‘b ibn ‘Ujrah berichtete, dass er während Al-Hudaybiyah im Weihezustand (Ihrām) stark unter Kopfläusen litt. Der Prophet ﷺ erlaubte ihm, sich den Kopf zu rasieren und dafür eine Ersatzleistung (Fidyah) zu erbringen: drei Tage fasten, sechs Bedürftige speisen oder ein Opfertier schlachten. Dazu wurde dieser Teil des Verses offenbart.",
+        "it": "Ka‘b ibn ‘Ujrah narrò che ad Al-Hudaybiyah, mentre era in stato di Ihrām, soffriva di un grave fastidio al capo. Il Profeta ﷺ gli permise di radersi la testa offrendo una compensazione (Fidyah): digiunare tre giorni, nutrire sei poveri o sacrificare un animale, ed è per questo caso che scese questa parte del versetto.",
+        "id": "Ka‘b bin ‘Ujrah meriwayatkan bahwa saat berihram di Hudaibiyah, kutu-kutu berjatuhan dari kepalanya ke wajahnya. Nabi ﷺ menyuruhnya mencukur rambut dan membayar fidyah berupa puasa tiga hari, memberi makan enam orang miskin, atau menyembelih kurban; ayat tentang fidyah ini turun berkenaan dengannya.",
+        "ru": "Ка‘б ибн ‘Уджра передал, что во время аль-Худайбии в состоянии ихрама он страдал от вшей на голове. Пророк ﷺ велел ему обрить голову и совершить искупление (фидью): поститься три дня, накормить шестерых бедняков или принести жертву. По этому поводу была ниспослана данная часть аята."
+      }
+    },
+    "2:197": {
+      "versets": [
+        "2:197"
+      ],
+      "plage": "2:197",
+      "source": "Sahīh Al-Bukhārī n°1523",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Ibn ‘Abbās (qu'Allāh les agrée) rapporte que les gens du Yémen partaient autrefois accomplir le Pèlerinage sans emporter de provisions, en disant : « Nous sommes ceux qui s'en remettent à Allāh ! » Mais une fois arrivés à La Mecque, ils finissaient par mendier auprès des gens. Allāh révéla alors : « Et prenez vos provisions ; mais la meilleure provision est certes la piété. »",
+        "en": "Ibn ‘Abbās (may Allāh be pleased with them) narrated that the people of Yemen used to set out for Hajj without taking travel provisions, claiming: 'We put our trust in Allāh!' Yet upon arriving in Makkah, they would beg from others. Allāh then revealed: 'And take provisions, but indeed, the best provision is mindfulness of Allāh (Taqwā).'",
+        "es": "Ibn ‘Abbās relató que las gentes del Yemen acudían a la Peregrinación sin llevar provisiones diciendo que confiaban en Allah, pero al llegar a La Meca acababan mendigando. Entonces Allah reveló: «Tomad provisiones, aunque la mejor provisión es la piedad».",
+        "ar": "عن ابن عباس رضي الله عنهما قال: كان أهل اليمن يحجّون ولا يتزوّدون ويقولون: نحن المتوكّلون، فإذا قدموا مكة سألوا الناس، فأنزل الله تعالى: ﴿وَتَزَوَّدُوا فَإِنَّ خَيْرَ الزَّادِ التَّقْوَىٰ﴾.",
+        "de": "Ibn ‘Abbās berichtete, dass die Bewohner des Jemen zur Pilgerfahrt aufbrachen, ohne Reiseproviant mitzunehmen, und sagten: „Wir vertrauen auf Allah!“ In Mekka angekommen, bettelten sie jedoch die Menschen an. Daraufhin offenbarte Allah: „Und nehmt Reisevorrat mit; doch der beste Vorrat ist die Gottesfurcht.“",
+        "it": "Ibn ‘Abbās narrò che la gente dello Yemen partiva per il Pellegrinaggio senza provviste dicendo di confidare in Allāh, ma una volta giunta alla Mecca finiva per chiedere l'elemosina. Allāh rivelò allora: «Prendete le vostre provviste, ma la migliore provvista è certamente il timore di Allāh».",
+        "id": "Ibnu ‘Abbas meriwayatkan bahwa penduduk Yaman dahulu berangkat haji tanpa membawa bekal sambil mengaku bertawakal, namun setibanya di Makkah mereka justru meminta-minta kepada orang lain. Maka Allah menurunkan ayat perintah berbekal ini.",
+        "ru": "Ибн ‘Аббас передал, что жители Йемена отправлялись в хадж без припасов, говоря: «Мы уповаем на Аллаха!», но по прибытии в Мекку начинали просить милостыню у людей. Тогда Аллах ниспослал: «Берите с собой припасы, но лучшим припасом является богобоязненность»."
+      }
+    },
+    "2:198": {
+      "versets": [
+        "2:198"
+      ],
+      "plage": "2:198",
+      "source": "Sahīh Al-Bukhārī n°1770, n°4519",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Ibn ‘Abbās (qu'Allāh les agrée) rapporte qu'avant l'Islam, ‘Ukāz, Majannah et Dhū al-Majāz étaient de grands marchés tenus durant la saison du Pèlerinage. Une fois l'Islam venu, certains croyants craignirent de commettre un péché en y faisant du commerce pendant le Hajj. Allāh révéla alors : « Ce n'est pas un péché pour vous de rechercher une grâce (subsistance licite) de votre Seigneur » durant les saisons du Pèlerinage.",
+        "en": "Ibn ‘Abbās (may Allāh be pleased with them) narrated that ‘Ukāz, Majannah, and Dhū al-Majāz were major trade fairs during the pilgrimage season before Islam. After Islam came, believers felt uneasy about engaging in trade during Hajj, so Allāh revealed: 'There is no blame upon you for seeking bounty from your Lord.'",
+        "es": "Ibn ‘Abbās relató que ‘Ukāz, Majannah y Dhū al-Majāz eran mercados de la época de la Peregrinación y, tras llegar el Islam, los creyentes temieron pecar al comerciar durante el Hajj. Allah reveló entonces que no hay pecado en buscar un sustento lícito de su Señor.",
+        "ar": "عن ابن عباس رضي الله عنهما قال: كانت عكاظ ومجنة وذو المجاز أسواقًا في الجاهلية، فتأثّم المسلمون أن يتّجروا في المواسم، فنزلت: ﴿لَيْسَ عَلَيْكُمْ جُنَاحٌ أَن تَبْتَغُوا فَضْلًا مِّن رَّبِّكُمْ﴾ في مواسم الحج.",
+        "de": "Ibn ‘Abbās berichtete, dass ‘Ukāz, Majannah und Dhū al-Majāz vorislamische Märkte zur Pilgerzeit waren und die Gläubigen befürchteten, Handel während des Hajj sei sündhaft. Daraufhin offenbarte Allah, dass es keine Sünde ist, nach der Huld ihres Herrn (erlaubtem Lebensunterhalt) zu streben.",
+        "it": "Ibn ‘Abbās narrò che ‘Ukāz, Majannah e Dhū al-Majāz erano mercati della stagione del Pellegrinaggio e i credenti temettero di peccare commerciando durante il Hajj. Allāh rivelò quindi che non vi è colpa nel cercare una grazia lecita dal proprio Signore.",
+        "id": "Ibnu ‘Abbas meriwayatkan bahwa ‘Ukaz, Majannah, dan Dzul Majaz adalah pasar-pasar pada musim haji, dan kaum muslimin merasa khawatir berdosa jika berdagang saat berhaji. Lalu Allah menurunkan ayat yang membolehkan mencari karunia rezeki tersebut.",
+        "ru": "Ибн ‘Аббас передал, что ‘Указ, Маджанна и Зу-ль-Маджаз были ярмарками в сезон паломничества, и мусульмане опасались, что торговля во время хаджа является грехом. Тогда Аллах ниспослал аят о том, что нет греха в поиске дозволенной милости от Господа."
+      }
+    },
+    "2:199": {
+      "versets": [
+        "2:199"
+      ],
+      "plage": "2:199",
+      "source": "Sahīh Al-Bukhārī n°4520 & Sahīh Muslim n°1219",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "‘Ā’ishah (qu'Allāh l'agrée) rapporte que la tribu de Quraysh et ses alliés (Al-Hums) refusaient par fierté de se rendre à ‘Arafāt avec le reste des Arabes et s'arrêtaient à Muzdalifah (dans l'enceinte sacrée), tandis que tous les autres pèlerins stationnaient à ‘Arafāt. Allāh révéla ce verset ordonnant à tous les pèlerins sans distinction de déferler depuis ‘Arafāt.",
+        "en": "‘Ā’ishah (may Allāh be pleased with her) narrated that Quraysh and their allies (Al-Hums) used to stay at Muzdalifah out of pride rather than going out to ‘Arafāt with the rest of the pilgrims. Allāh revealed this verse commanding all pilgrims equally to depart from ‘Arafāt.",
+        "es": "‘Ā’ishah relató que Quraysh y sus aliados se detenían en Muzdalifah sin salir a ‘Arafāt con el resto de los peregrinos. Allah reveló esta aleya ordenando a todos por igual partir desde ‘Arafāt.",
+        "ar": "عن عائشة رضي الله عنها أن قريشًا ومن دان دينها (الحُمْس) كانوا يقفون بالمزدلفة ولا يخرجون إلى عرفات مع سائر العرب، فأمر الله تعالى نبيه ﷺ والمؤمنين أن يفيضوا من حيث أفاض الناس من عرفات.",
+        "de": "‘Ā’ishah berichtete, dass die Quraisch und ihre Verbündeten aus Stolz in Muzdalifah blieben, statt mit den übrigen Pilgern nach ‘Arafāt zu ziehen. Allah offenbarte diesen Vers, um allen Pilgern gleichermaßen den Aufbruch von ‘Arafāt zu gebieten.",
+        "it": "‘Ā’ishah narrò che i Quraysh e i loro alleati restavano a Muzdalifah invece di recarsi a ‘Arafāt con il resto dei pellegrini. Allāh rivelò questo versetto ordinando a tutti senza distinzione di muovere da ‘Arafāt.",
+        "id": "‘Aisyah meriwayatkan bahwa suku Quraisy dan sekutunya dahulu hanya berwukuf di Muzdalifah dan tidak keluar ke ‘Arafah bersama manusia lainnya. Maka Allah menurunkan ayat ini agar semua jamaah bertolak dari ‘Arafah secara setara.",
+        "ru": "‘Аиша передала, что курайшиты и их союзники останавливались в Муздалифе, не выходя на ‘Арафат вместе со всеми остальными паломниками. Тогда Аллах ниспослал этот аят, повелев всем без исключения отправляться с ‘Арафата."
+      }
+    },
+    "2:222": {
+      "versets": [
+        "2:222"
+      ],
+      "plage": "2:222",
+      "source": "Sahīh Muslim n°302",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Anas ibn Mālik (qu'Allāh l'agrée) rapporte qu'à Médine, lorsqu'une femme avait ses menstrues, les Juifs ne mangeaient plus avec elle et ne cohabitaient plus avec elle dans la maison. Les Compagnons interrogèrent alors le Prophète ﷺ, et Allāh révéla ce verset. Le Prophète ﷺ expliqua : « Faites tout (partagez la vie quotidienne et l'affection), excepté l'acte sexuel. »",
+        "en": "Anas ibn Mālik (may Allāh be pleased with him) narrated that in Madinah, whenever a woman menstruated, the Jews would not eat with her or share the house with her. The Companions asked the Prophet ﷺ about this, and Allāh revealed this verse. The Prophet ﷺ clarified: 'Do everything (normal companionship and affection) except sexual intercourse.'",
+        "es": "Anas ibn Mālik relató que en Medina los judíos no comían ni convivían bajo el mismo techo con la mujer durante la menstruación. Los Compañeros consultaron al Profeta ﷺ y Allah reveló esta aleya, aclarando el Profeta ﷺ que todo trato afectivo y cotidiano sigue permitido excepto la relación íntima.",
+        "ar": "عن أنس بن مالك رضي الله عنه أن اليهود كانوا إذا حاضت المرأة فيهم لم يؤاكلوها ولم يجامعوهن في البيوت، فسأل أصحاب النبي ﷺ عن ذلك فأنزل الله هذه الآية، فقال رسول الله ﷺ: «اصنعوا كل شيء إلا النكاح».",
+        "de": "Anas ibn Mālik berichtete, dass die Juden in Medina während der Menstruation weder mit der Frau aßen noch mit ihr im selben Haus zusammenlebten. Die Gefährten fragten den Propheten ﷺ, woraufhin Allah diesen Vers offenbarte und der Prophet ﷺ erklärte: „Tut alles außer dem Geschlechtsverkehr.“",
+        "it": "Anas ibn Mālik narrò che a Medina gli Ebrei non mangiavano né convivevano con la donna durante le mestruazioni. I Compagni chiesero al Profeta ﷺ e Allāh rivelò questo versetto; il Profeta ﷺ chiarì: «Fate tutto (la normale convivenza e l'affetto), eccetto il rapporto sessuale».",
+        "id": "Anas bin Malik meriwayatkan bahwa orang-orang Yahudi di Madinah tidak mau makan bersama dan tidak tinggal serumah dengan istri yang sedang haid. Para sahabat bertanya kepada Nabi ﷺ, lalu turunlah ayat ini dan beliau bersabda: “Lakukanlah segala sesuatu kecuali hubungan suami istri.”",
+        "ru": "Анас ибн Малик передал, что в Медине иудеи не ели вместе с женщиной во время менструации и не жили с ней в одном доме. Сподвижники спросили об этом Пророка ﷺ, и Аллах ниспослал этот аят, а Пророк ﷺ пояснил: «Делайте всё (обычное общение и ласку), кроме половой близости»."
+      }
+    },
+    "2:223": {
+      "versets": [
+        "2:223"
+      ],
+      "plage": "2:223",
+      "source": "Sahīh Al-Bukhārī n°4528 & Sahīh Muslim n°1435",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Jābir ibn ‘Abdillāh (qu'Allāh les agrée) rapporte que les Juifs prétendaient que si un homme s'unissait à son épouse en venant par derrière (dans la voie naturelle), l'enfant naîtrait atteint de strabisme. Allāh révéla alors ce verset dissipant cette superstition et autorisant toute posture dans le cadre licite de la voie naturelle.",
+        "en": "Jābir ibn ‘Abdillāh (may Allāh be pleased with them) narrated that the Jews used to claim that if a man approached his wife from behind (in the natural passage), the child would be born cross-eyed. Allāh revealed this verse refuting that superstition and permitting any posture within the natural lawful union.",
+        "es": "Yābir ibn ‘Abdillāh relató que existía la superstición de que si un hombre se unía a su esposa por detrás (en la vía natural), el hijo nacería bizco. Allah reveló esta aleya desmintiendo tal creencia y permitiendo cualquier postura dentro de la unión natural lícita.",
+        "ar": "عن جابر بن عبد الله رضي الله عنهما قال: كانت اليهود تقول: إذا أتى الرجل امرأته من دبرها في قُبُلها كان الولد أحول، فنزلت هذه الآية إبطالًا لذلك وبيانًا لإباحة الإتيان على أي هيئة كانت ما دام في موضع الحرث.",
+        "de": "Dschābir ibn ‘Abdillāh berichtete, dass damals der Aberglaube herrschte, ein Kind würde schielend geboren, wenn ein Mann sich seiner Ehefrau auf natürlichem Wege von hinten nähert. Allah offenbarte diesen Vers, um diesen Aberglauben zu widerlegen.",
+        "it": "Jābir ibn ‘Abdillāh narrò che si diffondeva la superstizione secondo cui un figlio sarebbe nato strabico se il marito si univa alla moglie da dietro (nella via naturale). Allāh rivelò questo versetto smentendo tale credenza e autorizzando ogni posizione nell'unione naturale lecita.",
+        "id": "Jabir bin ‘Abdillah meriwayatkan adanya anggapan keliru bahwa jika suami mendatangi istrinya dari belakang pada jalan yang semestinya maka anak akan lahir juling. Maka Allah menurunkan ayat ini untuk membantah anggapan tersebut.",
+        "ru": "Джабир ибн ‘Абдуллах передал, что существовало суеверие, будто если муж сблизится с женой естественным путём сзади, ребёнок родится косоглазым. Аллах ниспослал этот аят, опровергнув это заблуждение и разрешив любые позы при естественной супружеской близости."
+      }
+    },
+    "2:232": {
+      "versets": [
+        "2:232"
+      ],
+      "plage": "2:232",
+      "source": "Sahīh Al-Bukhārī n°4529, n°5130",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Ma‘qil ibn Yasār (qu'Allāh l'agrée) raconte qu'il avait marié sa sœur à un homme qui la divorça ensuite. Une fois son délai de viduité écoulé, l'ex-époux revint demander sa main et tous deux souhaitaient se remarier, mais Ma‘qil s'y opposa par colère. Ce verset fut révélé à son sujet : « Ne les empêchez pas de se remarier avec leurs époux s'ils s'accordent convenablement. » Ma‘qil obéit aussitôt et la maria de nouveau à son époux.",
+        "en": "Ma‘qil ibn Yasār (may Allāh be pleased with him) narrated that he had married his sister to a man who later divorced her. After her waiting period ended, the former husband asked to remarry her and both agreed, yet Ma‘qil refused out of anger. This verse was then revealed forbidding guardians from preventing their remarriage, and Ma‘qil immediately consented.",
+        "es": "Ma‘qil ibn Yasār relató que casó a su hermana con un hombre que luego la divorció. Pasado el plazo de espera, ambos desearon volver a casarse, pero Ma‘qil se negó molesto. Entonces descendió esta aleya prohibiendo impedirles volver a casarse de mutuo acuerdo, y Ma‘qil accedió de inmediato.",
+        "ar": "عن معقل بن يسار رضي الله عنه أنه زوّج أخته رجلًا فطلقها، فلما انقضت عدتها جاء يخطبها وتراضيا فامتنع معقل غضبًا، فنزلت فيه هذه الآية: ﴿فَلَا تَعْضُلُوهُنَّ أَن يَنكِحْنَ أَزْوَاجَهُنَّ﴾، فاستجاب معقل فورًا وزوّجها إياه.",
+        "de": "Ma‘qil ibn Yasār berichtete, dass er seine Schwester mit einem Mann verheiratet hatte, der sich später von ihr scheiden ließ. Nach der Wartezeit wollten beide erneut heiraten, doch Ma‘qil verweigerte es aus Groll. Daraufhin wurde dieser Vers offenbart, und Ma‘qil stimmte sofort zu.",
+        "it": "Ma‘qil ibn Yasār narrò di aver dato in sposa sua sorella a un uomo che poi la divorziò. Terminato il periodo di attesa, entrambi vollero risposarsi, ma Ma‘qil si oppose per risentimento. Fu allora rivelato questo versetto e Ma‘qil acconsentì immediatamente.",
+        "id": "Ma‘qil bin Yasar meriwayatkan bahwa ia menikahkan saudarinya dengan seorang pria lalu bercerai. Setelah masa iddah habis, keduanya ingin rujuk menikah kembali, namun Ma‘qil melarangnya karena marah. Lalu turunlah ayat ini dan Ma‘qil pun segera menikahkannya kembali.",
+        "ru": "Ма‘киль ибн Ясар рассказал, что выдал свою сестру замуж за человека, который позже развёлся с ней. По окончании срока ожидания оба захотели снова пожениться, но Ма‘киль воспротивился из обиды. Тогда был ниспослан этот аят, и Ма‘киль немедленно дал согласие."
+      }
+    },
+    "2:284": {
+      "versets": [
+        "2:284",
+        "2:285",
+        "2:286"
+      ],
+      "plage": "2:284–286",
+      "source": "Sahīh Muslim n°125 & n°126",
+      "degre": "Sahīh",
+      "texte": {
+        "fr": "Abū Hurayrah et Ibn ‘Abbās (qu'Allāh les agrée) rapportent que lorsque le verset 284 fut révélé (« Que vous manifestiez ce qui est en vous ou que vous le cachiez, Allāh vous en demandera compte »), les Compagnons en furent profondément inquiets, craignant d'être jugés pour les pensées involontaires qui traversent le cœur. Ils vinrent s'agenouiller devant le Prophète ﷺ, qui les exhorta à dire : « Nous avons entendu et nous avons obéi ! » Dès qu'ils se soumirent sincèrement, Allāh révéla les deux versets d'allègement et de miséricorde (285–286) : « Allāh n'impose à aucune âme une charge supérieure à sa capacité », confirmant que les simples pensées non suivies d'actes sont pardonnées.",
+        "en": "Abū Hurayrah and Ibn ‘Abbās (may Allāh be pleased with them) narrated that when verse 284 was revealed ('Whether you show what is within yourselves or conceal it, Allāh will bring you to account for it'), the Companions became deeply distressed, fearing accountability for involuntary passing thoughts. When they sincerely submitted saying 'We hear and we obey,' Allāh revealed the easing verses (285–286): 'Allāh does not charge a soul except within its capacity,' pardoning mere unacted thoughts.",
+        "es": "Abū Hurayrah e Ibn ‘Abbās relataron que al revelarse la aleya 284, los Compañeros se preocuparon profundamente temiendo rendir cuentas por los pensamientos involuntarios. Al someterse con sinceridad diciendo «Escuchamos y obedecemos», Allah reveló las aleyas de misericordia y alivio (285–286): «Allah no impone a ninguna alma una carga superior a su capacidad».",
+        "ar": "عن أبي هريرة وابن عباس رضي الله عنهم أنه لما نزلت الآية ٢٨٤ اشتدّ ذلك على الصحابة خشية المحاسبة على حديث النفس والخواطر، فأتوا النبي ﷺ فحثّهم على قول: «سمعنا وأطعنا»، فلما استسلموا أنزل الله آيتي التخفيف والرحمة (٢٨٥–٢٨٦): ﴿لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا﴾ وتجاوز عن حديث النفس ما لم يُعمل به أو يُتكلم.",
+        "de": "Abū Hurayrah und Ibn ‘Abbās berichteten, dass die Gefährten bei der Offenbarung von Vers 284 tief besorgt waren, für unwillkürliche Gedanken zur Rechenschaft gezogen zu werden. Als sie sich aufrichtig fügten und sagten „Wir hören und gehorchen“, offenbarte Allah die erleichternden Schlussverse (285–286): „Allah erlegt keiner Seele mehr auf, als sie zu leisten vermag.“",
+        "it": "Abū Hurayrah e Ibn ‘Abbās narrarono che alla rivelazione del versetto 284 i Compagni furono profondamente turbati, temendo di dover rispondere dei pensieri involontari. Non appena si sottomisero con sincerità dicendo «Ascoltiamo e obbediamo», Allāh rivelò i versetti di misericordia (285–286): «Allāh non impone ad alcuna anima al di là delle sue capacità».",
+        "id": "Abu Hurairah dan Ibnu ‘Abbas meriwayatkan bahwa ketika ayat 284 turun, para sahabat sangat khawatir akan dihisab atas bisikan hati yang tak terkendali. Setelah mereka tunduk seraya berkata “Kami dengar dan kami taat”, Allah menurunkan ayat keringanan (285–286) bahwa Allah tidak membebani seseorang melainkan sesuai kesanggupannya.",
+        "ru": "Абу Хурайра и Ибн ‘Аббас передали, что после ниспослания 284-го аята сподвижники сильно встревожились, опасаясь расчёта за невольные мысли в душе. Когда они искренне покорились со словами «Мы слышим и повинуемся», Аллах ниспослал облегчающие аяты (285–286): «Не возлагает Аллах на душу ничего сверх её возможностей»."
       }
     }
   }
