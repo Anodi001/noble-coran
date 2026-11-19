@@ -772,7 +772,7 @@ async function recupererFichierStatiquePages(request, env) {
   return fetch(request);
 }
 
-const SSR_VERSION = "v126";
+const SSR_VERSION = "v127";
 function construireCleCache(request, lang) {
   const key = new URL(request.url);
   key.pathname = key.pathname.replace(/\.html$/i, "");

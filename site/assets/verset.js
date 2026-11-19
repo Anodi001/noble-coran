@@ -670,7 +670,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       "1:7": ["le chemin", "de ceux que", "Tu as comblés de faveurs", "sur eux", "non pas de ceux", "qui ont encouru Ta colère", "sur eux", "ni", "des égarés"],
       "2:1": ["Alif, Lam, Mim"],
       "2:2": ["C'est", "le Livre", "il n'y a aucun", "doute", "au sujet duquel", "c'est un guide", "pour les pieux"],
-      "2:3": ["qui", "croient", "à l'inconnaissable", "et accomplissent", "la Salât", "et de ce que", "Nous leur avons attribué", "dépensent"],
+      "2:3": ["Ceux qui", "croient", "à l'inconnaissable", "et accomplissent", "la Salât", "et de ce que", "Nous leur avons attribué", "dépensent"],
       "2:4": ["et qui", "croient", "à ce qui", "t'a été descendu (révélé)", "vers toi", "et à ce qui", "a été descendu", "avant", "toi", "et quant à l'au-delà", "ils", "ont la certitude"],
       "2:5": ["Ceux-là", "sont sur", "le bon chemin", "de", "leur Seigneur", "et ce sont", "eux", "qui réussissent"],
       "10:92": ["Nous allons aujourd'hui", "épargner", "ton corps", "afin que tu deviennes", "pour ceux qui", "sont tes successeurs", "un signe", "Cependant", "beaucoup", "de", "gens", "à", "Nos signes (d'avertissement)", "ne prêtent aucune attention."],
@@ -715,7 +715,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       }
       const manuel = (langCible === 'fr') ? GLOSE_HAMIDULLAH_FR[cleVerset] : null;
       if (manuel && manuel.length === mots.length) {
-        mots.forEach((w, i) => { w.tradLocalisee = manuel[i]; });
+        mots.forEach((w, i) => { w.tradLocalisee = manuel[i]; w.estManuelFr = true; });
         return;
       }
       const S = window.SOURATE_DATA;
@@ -883,7 +883,14 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
           motArabe.innerHTML = htmlMotArabe;
           const traduction = document.createElement('div');
           traduction.className = 'wbw-tr';
+          traduction.dataset.wbwEn = (w.translation && w.translation.text) ? w.translation.text : '';
           traduction.textContent = w.tradLocalisee || '';
+          if (w.estManuelFr) {
+            traduction.dataset.wbwManual = '1';
+            traduction.dataset.wbwTrOk = langSite;
+            traduction.dataset.wbwTrLock = '1';
+            traduction.dataset.wbwTrFinal = w.tradLocalisee || '';
+          }
           item.append(motArabe, traduction);
           item.onclick = () => ouvrirModalMot(w);
           wbwBox.appendChild(item);
@@ -3061,7 +3068,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   var sensGrilleRtl = true;
 
   try {
-    var sauv = localStorage.getItem("cache_wbw_exact_v65") || localStorage.getItem("cache_wbw_exact_v64");
+    var sauv = localStorage.getItem("cache_wbw_exact_v120") || localStorage.getItem("cache_wbw_exact_v64");
     if (sauv) cacheVersetMotsExact = JSON.parse(sauv);
   } catch (e) {}
 
@@ -3122,7 +3129,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
 
         if (lang === "en" || lang === "ar") {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v65", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v120", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -3135,6 +3142,23 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
             motsQdc[j].tr = cert2;
           } else {
             var propreEn = motsQdc[j].en.replace(/[\(\)\[\]]/g, "").trim();
+            if (lang === "fr" && propreEn) {
+              var arNBatch = normaliserArabeCle(motsQdc[j].ar);
+              propreEn = propreEn
+                .replace(/\band\s+out\s+of\s+what\b/gi, "and from that which")
+                .replace(/\bout\s+of\s+what\b/gi, "from that which")
+                .replace(/\band\s+from\s+what\b/gi, "and from that which")
+                .replace(/\bfrom\s+what\b/gi, "from that which");
+              if (/^(و|ف|ل)?ي.+ون$/.test(arNBatch) && !/^(they|those|who|he|we|you|i|in|on|of|for|the|a|an|to|with)\b/i.test(propreEn)) {
+                propreEn = /^and\s+/i.test(propreEn)
+                  ? propreEn.replace(/^and\s+/i, "and they ")
+                  : ("they " + propreEn);
+              } else if (/^(و|ف|ل)?ت.+ون$/.test(arNBatch) && !/^(you|they|we|he|i|in|on|of|for|the|a|an|to|with)\b/i.test(propreEn)) {
+                propreEn = /^and\s+/i.test(propreEn)
+                  ? propreEn.replace(/^and\s+/i, "and you all ")
+                  : ("you all " + propreEn);
+              }
+            }
             aTraduireIdx.push(j);
             aTraduireTextes.push(propreEn || motsQdc[j].ar);
           }
@@ -3142,7 +3166,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
 
         if (aTraduireTextes.length === 0) {
           cacheVersetMotsExact[cleCache] = motsQdc;
-          try { localStorage.setItem("cache_wbw_exact_v65", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+          try { localStorage.setItem("cache_wbw_exact_v120", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
           appliquerVraiMotAMotSurDOM();
           return;
         }
@@ -3169,7 +3193,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
           .catch(function () {})
           .finally(function () {
             cacheVersetMotsExact[cleCache] = motsQdc;
-            try { localStorage.setItem("cache_wbw_exact_v65", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
+            try { localStorage.setItem("cache_wbw_exact_v120", JSON.stringify(cacheVersetMotsExact)); } catch (e) {}
             appliquerVraiMotAMotSurDOM();
           });
       })
@@ -3282,7 +3306,11 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         }
       }
 
-      if (tradFinale && !elTr.dataset.wbwTrOk && elTr.textContent !== tradFinale) elTr.textContent = tradFinale;
+      if (elTr.dataset.wbwManual === "1") continue;
+      if (tradFinale && !elTr.dataset.wbwTrOk && elTr.textContent !== tradFinale) {
+        elTr.textContent = tradFinale;
+        elTr.dataset.wbwBatchOk = lang;
+      }
     }
 
     var grilleParente = cartes[0].parentElement;
@@ -4498,26 +4526,65 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
 
   var tableMuqattaat = { 'الم': 'Alif Lam Mim', 'المص': 'Alif Lam Mim Sad', 'الر': 'Alif Lam Ra', 'المر': 'Alif Lam Mim Ra', 'كهيعص': 'Kaf Ha Ya ʿAyn Sad', 'طه': 'Ta Ha', 'طسم': 'Ta Sin Mim', 'طس': 'Ta Sin', 'يس': 'Ya Sin', 'ص': 'Sad', 'حم': 'Ha Mim', 'عسق': 'ʿAyn Sin Qaf', 'حمعسق': 'Ha Mim ʿAyn Sin Qaf', 'ق': 'Qaf', 'ن': 'Nun' };
 
+  // Purge automatique des anciens caches corrompus (v65 / v117)
+  try {
+    localStorage.removeItem('cache_wbw_exact_v65');
+    localStorage.removeItem('wbw_tr_cache_v117');
+  } catch (e) {}
+
+  // Dictionnaire arabe -> FR strictement univoque (sans faux-amis contextuels)
   var dicoArabeFr = {
-    'من': 'de', 'عنه': 'de lui', 'عنهم': 'd’eux', 'دونهم': 'en dehors d’eux', 'دون': 'en dehors de',
-    'في': 'dans', 'علي': 'sur', 'الي': 'vers', 'اليها': 'vers elle', 'اليه': 'vers lui', 'اليهم': 'vers eux',
-    'لها': 'devant elle', 'له': 'pour lui', 'لهم': 'pour eux', 'لكم': 'pour vous', 'لنا': 'pour nous',
+    'الذين': 'Ceux qui', 'والذين': 'et ceux qui', 'الذي': 'Celui qui', 'والذي': 'et celui qui',
+    'التي': 'celle qui', 'اللاتي': 'celles qui', 'اوليك': 'Ceux-là', 'اولئك': 'Ceux-là',
+    'واوليك': 'et ceux-là', 'واولئك': 'et ceux-là',
+    'مما': 'de ce que', 'ومما': 'et de ce que',
+    'يومنون': 'croient', 'يؤمنون': 'croient', 'تومنون': 'vous croyez', 'تؤمنون': 'vous croyez',
+    'امنوا': 'ont cru', 'ءامنوا': 'ont cru', 'بالغيب': "en l'Invisible", 'الغيب': "l'Invisible",
+    'ويقيمون': 'et accomplissent', 'يقيمون': 'accomplissent', 'الصلوه': 'la Salât', 'الصلاه': 'la Salât',
+    'الزكوه': 'la Zakât', 'الزكاه': 'la Zakât', 'ينفقون': 'dépensent', 'وينفقون': 'et dépensent',
+    'رزقنهم': 'Nous leur avons attribué', 'رزقناهم': 'Nous leur avons attribué',
+    'يوقنون': 'ont la certitude', 'المفلحون': 'ceux qui réussissent',
+    'للمتقين': 'pour les pieux', 'المتقين': 'les pieux', 'العالمين': 'des mondes',
+    'الرحمن': 'le Tout Miséricordieux', 'الرحيم': 'le Très Miséricordieux',
+    'المومنين': 'les croyants', 'المؤمنين': 'les croyants', 'للمومنين': 'pour les croyants', 'للمؤمنين': 'pour les croyants',
+    'الكافرين': 'les mécréants', 'للكافرين': 'pour les mécréants', 'الكفرين': 'les mécréants',
+    'الظالمين': 'les injustes', 'الظلمين': 'les injustes', 'المنافقين': 'les hypocrites', 'المنفقين': 'les hypocrites',
+    'الصادقين': 'les véridiques', 'الصدقين': 'les véridiques', 'صادقين': 'véridiques',
+    'السماوات': 'les cieux', 'السموات': 'les cieux', 'السموت': 'les cieux',
+    'الارض': 'la terre', 'والارض': 'et la terre', 'الاخره': "l'Au-delà", 'بالاخره': "en l'Au-delà",
+    'الدنيا': 'la vie présente', 'الكتاب': 'le Livre', 'الكتب': 'le Livre',
+    'باياتنا': 'en Nos versets', 'بايتنا': 'en Nos versets', 'اياتنا': 'Nos versets', 'ايتنا': 'Nos versets',
+    'بسوره': 'une sourate', 'سوره': 'une sourate', 'عبدنا': 'Notre serviteur', 'عبده': 'Son serviteur',
+    'شهداءكم': 'vos témoins', 'شهدايكم': 'vos témoins',
+    'عنه': 'de lui', 'عنهم': "d'eux", 'دونهم': "en dehors d'eux", 'دون': 'en dehors de',
+    'اليها': 'vers elle', 'اليه': 'vers lui', 'اليهم': 'vers eux',
+    'عليهم': 'sur eux', 'عليكم': 'sur vous', 'علينا': 'sur nous',
+    'لهم': 'pour eux', 'لكم': 'pour vous', 'لنا': 'pour nous',
+    'انفسهم': 'eux-mêmes', 'قلوبهم': 'leurs cœurs', 'ابصارهم': 'leurs regards', 'سمعهم': 'leur ouïe',
     'فاتخذت': 'Puis elle prit', 'حجابا': 'un voile', 'فارسلنا': 'Nous envoyâmes alors', 'روحنا': 'Notre Esprit',
-    'فتمثل': 'et il se présenta', 'بشرا': 'sous la forme d’un homme', 'سويا': 'parfait',
-    'افرايت': 'As-tu vu', 'الذي': 'celui qui', 'كفر': 'a mécru', 'باياتنا': 'en Nos versets', 'اياتنا': 'Nos versets',
-    'بايات': 'aux versets', 'ايات': 'versets', 'وقال': 'et a dit', 'لاوتين': 'On me donnera certes', 'مالا': 'des biens', 'وولدا': 'et des enfants',
-    'وان': 'Et si', 'ان': 'si', 'كنتم': 'vous êtes', 'ريب': 'un doute', 'مما': 'sur ce que', 'نزلنا': 'Nous avons révélé',
-    'عبدنا': 'Notre serviteur', 'عبده': 'Son serviteur', 'فاتوا': 'apportez donc', 'بسوره': 'une sourate', 'سوره': 'une sourate',
-    'مثله': 'semblable à ceci', 'وادعوا': 'et appelez', 'شهداءكم': 'vos témoins', 'الله': 'd’Allah', 'صادقين': 'véridiques',
-    'مني': 'de moi', 'واشتعل': 'et s’est embrasée', 'الراس': 'la tête', 'شيبا': 'de cheveux blancs',
-    'ولم': 'et je n’ai pas', 'اكن': 'été', 'بدعايك': 'en T’invoquant', 'شقيا': 'malheureux',
-    'وهن': 's’est affaibli', 'العظم': 'mes os', 'ذكر': 'Le rappel', 'رحمت': 'de la miséricorde',
-    'زكريا': 'Zakariyya', 'اذ': 'Quand', 'نادي': 'il invoqua', 'ربه': 'son Seigneur', 'ربك': 'de ton Seigneur',
-    'نداء': 'd’un appel', 'خفيا': 'secret', 'والقلم': 'Par la plume', 'يسطرون': 'ils écrivent',
-    'بنعمه': 'par la grâce de', 'بمجنون': 'un possédé'
+    'فتمثل': 'et il se présenta', 'بشرا': "sous la forme d'un homme", 'سويا': 'parfait',
+    'افرايت': 'As-tu vu', 'والقلم': 'Par la plume', 'يسطرون': 'ils écrivent',
+    'واشتعل': "et s'est embrasée", 'الراس': 'la tête', 'شيبا': 'de cheveux blancs',
+    'بدعايك': "en T'invoquant", 'شقيا': 'malheureux', 'وهن': "s'est affaibli",
+    'زكريا': 'Zakariyya', 'بمجنون': 'un possédé'
   };
 
   var dicoInstantaneFr = {
+    'those who': 'Ceux qui', 'and those who': 'et ceux qui', 'the one who': 'Celui qui',
+    'and out of what': 'et de ce que', 'out of what': 'de ce que',
+    'and from what': 'et de ce que', 'from what': 'de ce que',
+    'and from that which': 'et de ce que', 'from that which': 'de ce que',
+    'in the unseen': "en l'Invisible", 'the unseen': "l'Invisible",
+    'and establish': 'et accomplissent', 'and they establish': 'et accomplissent',
+    'the prayer': 'la Salât', 'we have provided them': 'Nous leur avons attribué',
+    'we provided them': 'Nous leur avons attribué', 'they spend': 'dépensent',
+    'they believe': 'croient', 'you all believe': 'vous croyez',
+    'they disbelieve': 'mécroient', 'those who disbelieve': 'ceux qui mécroient',
+    'and of the hereafter': "et quant à l'Au-delà", 'they are certain': 'ils ont la certitude',
+    'are upon': 'sont sur', 'from their lord': 'de leur Seigneur',
+    'are the successful': 'sont ceux qui réussissent',
+    'was revealed': 'a été révélé', 'has been revealed': 'a été révélé',
+    'to you': 'à toi', 'before you': 'avant toi', 'indeed': 'Certes', 'verily': 'Certes',
     'like it': 'semblable à ceci', '(the) like of it': 'semblable à ceci', 'the like of it': 'semblable à ceci',
     'in our verses': 'en Nos versets', 'our verses': 'Nos versets', 'his verses': 'Ses versets', 'verses': 'versets',
     'dans nos vers': 'en Nos versets', 'nos vers': 'Nos versets',
@@ -4526,30 +4593,47 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     'then produce': 'apportez donc', 'puis produire': 'apportez donc',
     'and call': 'et appelez', 'other than': 'en dehors de', 'autre que': 'en dehors de',
     'truthful': 'véridiques', 'when': 'Quand', 'nun': 'Nun', 'by the pen': 'Par la plume',
-    'and what': 'et ce qu’', 'they inscribe': 'ils écrivent', 'stand': 'Lève-toi', 'stand (in prayer)': 'Lève-toi (en prière)',
-    'support': 'Lève-toi', 'and flared': 'et s’est embrasée', 'flared': 's’est embrasée',
+    'and what': 'et ce que', 'they inscribe': 'ils écrivent', 'stand': 'Lève-toi', 'stand (in prayer)': 'Lève-toi (en prière)',
+    'support': 'Lève-toi', 'and flared': "et s'est embrasée", 'flared': "s'est embrasée",
     'with white': 'de cheveux blancs', '(with) white': 'de cheveux blancs', 'white hair': 'de cheveux blancs',
-    'unblessed': 'malheureux', 'of me': 'de moi', 'from me': 'de moi', 'and not': 'et je n’ai pas',
-    'i have been': 'été', 'in my supplication to you': 'en T’invoquant', 'in (the) name': 'au nom', 'in the name': 'au nom',
-    'the one who': 'Celui qui', 'who': 'qui', 'created': 'a créé', 'read': 'Lis', 'recite': 'Lis',
-    'your lord': 'ton Seigneur', 'and your lord': 'Et ton Seigneur', '(is) the most generous': 'est le Très Généreux',
-    'the most generous': 'le Très Généreux', 'taught': 'a enseigné', 'man': 'à l’homme',
-    'what': 'ce que', 'not': 'ne ... pas', 'he knew': 'il savait', 'from': 'de',
-    'a clinging substance': 'une adhérence', 'clinging substance': 'une adhérence'
+    'unblessed': 'malheureux', 'of me': 'de moi', 'from me': 'de moi', 'and not': "et ne ... pas",
+    'i have been': 'j’ai été', 'in my supplication to you': "en T'invoquant",
+    'in (the) name': 'au nom', 'in the name': 'au nom', 'who': 'qui', 'created': 'a créé',
+    'read': 'Lis', 'recite': 'Lis', 'your lord': 'ton Seigneur', 'and your lord': 'Et ton Seigneur',
+    '(is) the most generous': 'est le Très Généreux', 'the most generous': 'le Très Généreux',
+    'taught': 'a enseigné', 'man': "à l'homme", 'what': 'ce que', 'not': 'ne ... pas',
+    'he knew': 'il savait', 'from': 'de', 'a clinging substance': 'une adhérence', 'clinging substance': 'une adhérence'
   };
 
   function estMotArabePluriel(arNorm) {
     return /(تم|كم|وا|ون|ين|هم|هن|تن|نا)$/.test(arNorm);
   }
 
+  function estDejaFrancaisSansAccent(str) {
+    var s = (str || '').toLowerCase().trim();
+    if (!s) return false;
+    if (/[àâäéèêëîïôöùûüçœæ]/i.test(s)) return true;
+    return /^(ceux qui|celui qui|celle qui|ceux-la|qui|que|et de ce que|de ce que|et ce que|ce que|croient|disent|font|sont|savent|voient|entendent|accomplissent|et accomplissent|et|ou|ni|mais|car|dans|sur|sous|pour|par|avec|sans|vers|chez|de|du|des|le|la|les|un|une|au|aux|mon|ton|son|ma|ta|sa|mes|tes|ses|notre|votre|leur|leurs|nous|vous|ils|elles|lui|eux|seigneur|livre|doute|pieux|guide|jour|nuit|terre|cieux|ciel|allah|dieu|salat|zakat|chemin|droit|louange|monde|mondes|certes|point|aucun|avant|apres|toi|moi|soi|ici-bas)(\s+[a-z'-]+){0,3}$/i.test(s);
+  }
+
   function desambiguiserAnglaisCoranique(enBrut, arNorm) {
     var s = (enBrut || '').replace(/^\(is\)\s*/i, '').replace(/[\[\]\(\)]/g, '').replace(/\s{2,}/g, ' ').trim();
     if (/^(the\s+)?like(\s+of)?\s+(it|him|them|this|that)$/i.test(s)) return 'similar to it';
+    s = s.replace(/\band\s+out\s+of\s+what\b/gi, 'and from that which')
+         .replace(/\bout\s+of\s+what\b/gi, 'from that which')
+         .replace(/\band\s+from\s+what\b/gi, 'and from that which')
+         .replace(/\bfrom\s+what\b/gi, 'from that which');
     s = s.replace(/\bour\s+verses\b/gi, 'Our Quranic verses').replace(/\bverses\b/gi, 'Quranic verses');
     s = s.replace(/\bour\s+slave\b/gi, 'Our servant').replace(/\bhis\s+slave\b/gi, 'His servant').replace(/\bslaves\b/gi, 'servants').replace(/\bslave\b/gi, 'servant');
     s = s.replace(/\ba\s+chapter\b/gi, 'a Surah');
     if (estMotArabePluriel(arNorm)) {
       s = s.replace(/\byou\s+are\b/gi, 'you all are').replace(/\byou\s+were\b/gi, 'you all were');
+    }
+    // Éviter que Google Translate traduise les verbes anglais nus à l'impératif (ex: "believe" -> "crois")
+    if (/^(و|ف|ل)?ي.+ون$/.test(arNorm) && !/^(they|those|who|he|she|we|you|i|in|on|of|for|the|a|an|to|with|not|no)\b/i.test(s)) {
+      s = /^and\s+/i.test(s) ? s.replace(/^and\s+/i, 'and they ') : ('they ' + s);
+    } else if (/^(و|ف|ل)?ت.+ون$/.test(arNorm) && !/^(you|they|we|he|she|i|in|on|of|for|the|a|an|to|with|not|no)\b/i.test(s)) {
+      s = /^and\s+/i.test(s) ? s.replace(/^and\s+/i, 'and you all ') : ('you all ' + s);
     }
     return s;
   }
@@ -4557,10 +4641,16 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   function corrigerFrancaisSelonMorphologieArabe(tr, arNorm) {
     var out = (tr || '').trim();
     if (/^j.aime\s+ça$/i.test(out)) return 'semblable à ceci';
+    if (/^ici$/i.test(out) && (arNorm === 'الذين' || arNorm === 'الذي')) return arNorm === 'الذين' ? 'Ceux qui' : 'Celui qui';
+    out = out.replace(/^et\s+de\s+quoi$/i, 'et de ce que').replace(/^de\s+quoi$/i, 'de ce que');
     out = out.replace(/\bdans\s+nos\s+vers\b/gi, 'en Nos versets').replace(/\bnos\s+vers\b/gi, 'Nos versets');
     out = out.replace(/\bnotre\s+esclave\b/gi, 'Notre serviteur').replace(/\bson\s+esclave\b/gi, 'Son serviteur');
     out = out.replace(/\bun\s+chapitre\b/gi, 'une sourate');
     if (estMotArabePluriel(arNorm)) {
+      if (/^crois$/i.test(out)) return 'croient';
+      if (/^et\s+crois$/i.test(out)) return 'et croient';
+      if (/^établis$/i.test(out)) return 'accomplissent';
+      if (/^et\s+établis$/i.test(out)) return 'et accomplissent';
       if (/^tu\s+es$/i.test(out)) return 'vous êtes';
       if (/^tu\s+étais$/i.test(out)) return 'vous étiez';
       if (/^et\s+appelle$/i.test(out)) return 'et appelez';
@@ -4571,7 +4661,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   }
 
   var cacheTradMots = {};
-  try { cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v117') || '{}'); } catch (e) {}
+  try { cacheTradMots = JSON.parse(localStorage.getItem('wbw_tr_cache_v120') || '{}'); } catch (e) {}
   var enCoursTrad = {}, prochainEssaiTrad = {};
 
   function obtenirLanguePage() {
@@ -4581,6 +4671,13 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
 
   function nettoyerEtTraduireMotUneFois(elTrad, elAr, lang, forcerRetraduction) {
     if (!elTrad) return;
+    // Ne JAMAIS écraser une glose certifiée manuellement (GLOSE_HAMIDULLAH_FR)
+    if (elTrad.dataset.wbwManual === '1') {
+      if (elTrad.dataset.wbwTrFinal && elTrad.textContent !== elTrad.dataset.wbwTrFinal) {
+        definirTexteSansBoucle(elTrad, elTrad.dataset.wbwTrFinal);
+      }
+      return;
+    }
     if (!forcerRetraduction && elTrad.dataset.wbwTrOk === lang && elTrad.dataset.wbwTrLock === '1') {
       if (elTrad.dataset.wbwTrFinal && elTrad.textContent !== elTrad.dataset.wbwTrFinal) {
         definirTexteSansBoucle(elTrad, elTrad.dataset.wbwTrFinal);
@@ -4588,7 +4685,10 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       return;
     }
 
-    var brut = (elTrad.textContent || '').trim(), txtAr = elAr ? (elAr.textContent || '') : '';
+    var brutDom = (elTrad.textContent || '').trim();
+    var sourceEn = (elTrad.dataset.wbwEn || '').trim();
+    var brut = sourceEn || brutDom;
+    var txtAr = elAr ? (elAr.textContent || '') : '';
     var arPur = nettoyerArabeBrut(txtAr), arNorm = normaliserArabeCle(txtAr);
 
     function figerTraduction(valFinale) {
@@ -4604,9 +4704,15 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
 
     if (brut.indexOf('_') !== -1) {
       brut = brut.split('_').join(' ').replace(/\s{2,}/g, ' ').trim();
-      definirTexteSansBoucle(elTrad, brut);
+      if (!sourceEn) definirTexteSansBoucle(elTrad, brut);
     }
     if (lang === 'en' || lang === 'ar') { figerTraduction(brut); return; }
+
+    // Si déjà traduit proprement par le moteur batch et pas d'anglais brut à améliorer, figer sans retraduire
+    if (!sourceEn && elTrad.dataset.wbwBatchOk === lang && brutDom) {
+      figerTraduction(lang === 'fr' ? corrigerFrancaisSelonMorphologieArabe(brutDom, arNorm) : brutDom);
+      return;
+    }
 
     var cleMin = brut.toLowerCase().replace(/\s{2,}/g, ' ');
     if (lang === 'fr' && dicoInstantaneFr[cleMin]) {
@@ -4614,23 +4720,16 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       return;
     }
 
-    if (lang === 'fr') {
-      var corrigeImmediate = corrigerFrancaisSelonMorphologieArabe(brut, arNorm);
-      if (corrigeImmediate !== brut) {
-        figerTraduction(corrigeImmediate);
-        return;
-      }
+    // Ne jamais renvoyer un texte déjà en français (même sans accent !) à sl=en
+    if (lang === 'fr' && !sourceEn && estDejaFrancaisSansAccent(brutDom)) {
+      figerTraduction(corrigerFrancaisSelonMorphologieArabe(brutDom, arNorm));
+      return;
     }
 
     var cle = lang + ':' + arNorm + ':' + cleMin;
     if (cacheTradMots[cle]) {
       var valCache = lang === 'fr' ? corrigerFrancaisSelonMorphologieArabe(cacheTradMots[cle], arNorm) : cacheTradMots[cle];
       figerTraduction(valCache);
-      return;
-    }
-
-    if (/[àâäéèêëîïôöùûüçœæ]/i.test(brut) && lang === 'fr') {
-      figerTraduction(corrigerFrancaisSelonMorphologieArabe(brut, arNorm));
       return;
     }
 
@@ -4674,7 +4773,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       'hellfire': "le Feu de l'Enfer",
       'paradise': 'le Paradis',
       'gardens': 'Jardins',
-      'prayer': 'la prière',
+      'prayer': 'la Salât',
       'almstax': 'la Zakât',
       'zakah': 'la Zakât',
       'charity': "l'aumône",
@@ -4696,9 +4795,33 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       var trGl = corrigerFrancaisSelonMorphologieArabe(glossaireTheologiqueFr[propreEn.toLowerCase()], arNorm);
       cacheTradMots[cle] = trGl;
       figerTraduction(trGl);
-      enCoursTrad[cle] = false;
+      delete enCoursTrad[cle];
       return;
     }
+
+    function lancerFallbackGtx() {
+      fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=' + encodeURIComponent(lang) + '&dt=t&q=' + encodeURIComponent(propreEn))
+        .then(function(r) { return r.ok ? r.json() : Promise.reject(new Error('HTTP')); })
+        .then(function(d) {
+          if (d && d[0] && d[0][0] && d[0][0][0]) {
+            var tr = d[0].map(function(x) { return x[0] || ''; }).join('').trim();
+            if (tr) {
+              if (lang === 'fr') {
+                if (dicoInstantaneFr[tr.toLowerCase()]) tr = dicoInstantaneFr[tr.toLowerCase()];
+                tr = corrigerFrancaisSelonMorphologieArabe(tr, arNorm);
+              }
+              cacheTradMots[cle] = tr;
+              try { localStorage.setItem('wbw_tr_cache_v120', JSON.stringify(cacheTradMots)); } catch (e) {}
+              if (elTrad && elTrad.isConnected && obtenirLanguePage() === lang) {
+                figerTraduction(tr);
+              }
+            }
+          }
+        })
+        .catch(function() { prochainEssaiTrad[cle] = Date.now() + 15000; })
+        .finally(function() { delete enCoursTrad[cle]; });
+    }
+
     if ((lang === 'ru' || lang === 'de' || lang === 'id') && typeof numSourateActuelle !== 'undefined' && typeof numVersetActuel !== 'undefined') {
       window.__qdcNativeWbw = window.__qdcNativeWbw || {};
       var vkNat = numSourateActuelle + ':' + numVersetActuel + ':' + lang;
@@ -4706,7 +4829,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         var trNat = window.__qdcNativeWbw[vkNat][arNorm];
         cacheTradMots[cle] = trNat;
         figerTraduction(trNat);
-        enCoursTrad[cle] = false;
+        delete enCoursTrad[cle];
         return;
       }
       if (!window.__qdcNativeWbw['req_' + vkNat]) {
@@ -4729,32 +4852,17 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         if (mapNat && mapNat[arNorm]) {
           var trOfficiel = mapNat[arNorm];
           cacheTradMots[cle] = trOfficiel;
-          try { localStorage.setItem('wbw_tr_cache_v117', JSON.stringify(cacheTradMots)); } catch (e) {}
+          try { localStorage.setItem('wbw_tr_cache_v120', JSON.stringify(cacheTradMots)); } catch (e) {}
           if (elTrad && elTrad.isConnected && obtenirLanguePage() === lang) figerTraduction(trOfficiel);
-          enCoursTrad[cle] = false;
+          delete enCoursTrad[cle];
+        } else {
+          lancerFallbackGtx();
         }
       });
+      return;
     }
-    fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=' + encodeURIComponent(lang) + '&dt=t&q=' + encodeURIComponent(propreEn))
-      .then(function(r) { return r.ok ? r.json() : Promise.reject(new Error('HTTP')); })
-      .then(function(d) {
-        if (d && d[0] && d[0][0] && d[0][0][0]) {
-          var tr = d[0].map(function(x) { return x[0] || ''; }).join('').trim();
-          if (tr) {
-            if (lang === 'fr') {
-              if (dicoInstantaneFr[tr.toLowerCase()]) tr = dicoInstantaneFr[tr.toLowerCase()];
-              tr = corrigerFrancaisSelonMorphologieArabe(tr, arNorm);
-            }
-            cacheTradMots[cle] = tr;
-            try { localStorage.setItem('wbw_tr_cache_v117', JSON.stringify(cacheTradMots)); } catch (e) {}
-            if (elTrad && elTrad.isConnected && obtenirLanguePage() === lang) {
-              figerTraduction(tr);
-            }
-          }
-        }
-      })
-      .catch(function() { prochainEssaiTrad[cle] = Date.now() + 15000; })
-      .finally(function() { delete enCoursTrad[cle]; });
+
+    lancerFallbackGtx();
   }
 
   var cacheMetaCartes = [], derniereSigPreparation = '', lissageE = [], lissageB = [];
