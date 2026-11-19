@@ -98,6 +98,17 @@ const ASBAB_TITRES_SSR = {
   ru: "📜 Причина ниспослания (Сабаб ан-нузуль)"
 };
 
+const HADITH_TITRES_SSR = {
+  fr: "📖 Hadith authentique & Exégèse",
+  en: "📖 Authentic Hadith & Exegesis",
+  es: "📖 Hadiz auténtico y Exégesis",
+  ar: "📖 حديث صحيح في التفسير",
+  de: "📖 Authentischer Hadith & Exegese",
+  it: "📖 Hadith autentico ed Esegesi",
+  id: "📖 Hadits Shahih & Penjelasan",
+  ru: "📖 Достоверный хадис и тафсир"
+};
+
 async function obtenirAsbabSSR(sNum, vNum, lang, env) {
   try {
     if (!MEM_ASBAB_INDEX && env && env.ASSETS && typeof env.ASSETS.fetch === "function") {
@@ -115,11 +126,13 @@ async function obtenirAsbabSSR(sNum, vNum, lang, env) {
     const rec = MEM_ASBAB_INDEX ? MEM_ASBAB_INDEX[sNum + ":" + vNum] : null;
     if (!rec || !rec.texte || !rec.texte[lang]) return "";
     const isAr = lang === "ar";
-    const titre = (ASBAB_TITRES_SSR[lang] || ASBAB_TITRES_SSR.fr) + (rec.plage ? " (" + rec.plage + ")" : "");
+    const estHadith = rec.type === "hadith";
+    const mapTitres = estHadith ? HADITH_TITRES_SSR : ASBAB_TITRES_SSR;
+    const titre = (mapTitres[lang] || mapTitres.fr) + (rec.plage ? " (" + rec.plage + ")" : "");
     const degre = rec.degre || "Sahīh";
     const clsDeg = /hasan/i.test(degre) ? " hasan" : "";
     return '<div id="asbabNuzulContainer" class="notranslate" translate="no" data-asbab-sig="' + sNum + ':' + vNum + '|' + lang + '">' +
-      '<div class="asbab-nuzul-card" dir="' + (isAr ? "rtl" : "ltr") + '">' +
+      '<div class="asbab-nuzul-card' + (estHadith ? " type-hadith" : "") + '" dir="' + (isAr ? "rtl" : "ltr") + '">' +
       '<div class="asbab-nuzul-head"><span class="asbab-nuzul-title">' + escapeHtmlText(titre) + '</span>' +
       '<span class="asbab-nuzul-badges"><span class="asbab-badge-degre' + clsDeg + '">✓ ' + escapeHtmlText(degre) + '</span></span></div>' +
       '<div class="asbab-nuzul-body">' + escapeHtmlText(rec.texte[lang]) + '</div>' +
@@ -759,7 +772,7 @@ async function recupererFichierStatiquePages(request, env) {
   return fetch(request);
 }
 
-const SSR_VERSION = "v114";
+const SSR_VERSION = "v115";
 function construireCleCache(request, lang) {
   const key = new URL(request.url);
   key.pathname = key.pathname.replace(/\.html$/i, "");

@@ -5439,6 +5439,16 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     id: "📜 Asbabun Nuzul (Sebab Turunnya Ayat)",
     ru: "📜 Причина ниспослания (Сабаб ан-нузуль)"
   };
+  var TITRES_HADITH = {
+    fr: "📖 Hadith authentique & Exégèse",
+    en: "📖 Authentic Hadith & Exegesis",
+    es: "📖 Hadiz auténtico y Exégesis",
+    ar: "📖 حديث صحيح في التفسير",
+    de: "📖 Authentischer Hadith & Exegese",
+    it: "📖 Hadith autentico ed Esegesi",
+    id: "📖 Hadits Shahih & Penjelasan",
+    ru: "📖 Достоверный хадис и тафсир"
+  };
   var LABELS_SOURCE = {
     fr: "Source :", en: "Source:", es: "Fuente:", ar: "المصدر:",
     de: "Quelle:", it: "Fonte:", id: "Sumber:", ru: "Источник:"
@@ -5491,9 +5501,9 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     if (asbabIndex || asbabLoading) return;
     asbabLoading = true;
     var url = (window.location.protocol === "http:" || window.location.protocol === "https:")
-      ? "/asbab-nuzul.json?v=1"
+      ? "/asbab-nuzul.json"
       : "asbab-nuzul.json";
-    fetch(url)
+    fetch(url, { cache: "no-cache" })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
         if (d && d.recits) {
@@ -5540,14 +5550,15 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
 
     var txt = recit.texte[lang] || recit.texte.fr || "";
     var isAr = lang === "ar";
-    var titre = TITRES_ASBAB[lang] || TITRES_ASBAB.fr;
+    var estHadith = recit.type === "hadith";
+    var titre = estHadith ? (TITRES_HADITH[lang] || TITRES_HADITH.fr) : (TITRES_ASBAB[lang] || TITRES_ASBAB.fr);
     var lblSrc = LABELS_SOURCE[lang] || "Source :";
     var degre = recit.degre || "Sahīh";
     var clsDeg = /hasan/i.test(degre) ? " hasan" : "";
     var plage = recit.plage ? (" (" + recit.plage + ")") : "";
 
     cont.innerHTML =
-      '<div class="asbab-nuzul-card" dir="' + (isAr ? "rtl" : "ltr") + '">' +
+      '<div class="asbab-nuzul-card' + (estHadith ? " type-hadith" : "") + '" dir="' + (isAr ? "rtl" : "ltr") + '">' +
         '<div class="asbab-nuzul-head">' +
           '<span class="asbab-nuzul-title">' + titre + plage + '</span>' +
           '<span class="asbab-nuzul-badges"><span class="asbab-badge-degre' + clsDeg + '">✓ ' + degre + '</span></span>' +

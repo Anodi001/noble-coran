@@ -1172,3 +1172,16 @@ html body #btnLangRuV77.active-ext-v77 {
   font-style: italic;
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
+
+.asbab-nuzul-card.type-hadith {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.11), rgba(16, 185, 129, 0.06));
+  border-color: rgba(251, 191, 36, 0.36);
+  border-left-color: #fbbf24;
+}
+.asbab-nuzul-card.type-hadith[dir="rtl"] {
+  border-left-color: rgba(251, 191, 36, 0.36);
+  border-right-color: #fbbf24;
+}
+.asbab-nuzul-card.type-hadith .asbab-nuzul-title {
+  color: #fcd34d;
+}
