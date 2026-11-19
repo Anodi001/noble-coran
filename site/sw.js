@@ -1,11 +1,12 @@
 /* Service Worker Coran Tafsir — PWA Network-First */
-const CACHE_NAME = 'coran-tafsir-pwa-v2';
+const CACHE_NAME = 'coran-tafsir-pwa-v3';
 const SHELL_URLS = [
   '/',
   '/manifest.json',
   '/assets/verset.css',
   '/assets/verset.js',
-  '/asbab-nuzul.json'
+  '/asbab-nuzul.json',
+  '/lexique-wbw-fr.json'
 ];
 
 self.addEventListener('install', (event) => {
