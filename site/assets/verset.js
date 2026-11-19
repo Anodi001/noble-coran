@@ -894,7 +894,11 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     function basculerMotAMot() {
       modeMotAMotActif = !modeMotAMotActif;
       try { localStorage.setItem('coran_wbw_mode', modeMotAMotActif ? '1' : '0'); } catch(e){}
-      chargerDonneesMotAMotEtTajweed();
+      const bW = document.getElementById('btnToggleWbw');
+      if (bW) bW.classList.toggle('active', modeMotAMotActif);
+      Promise.resolve(chargerDonneesMotAMotEtTajweed()).then(() => {
+        if (typeof window.__verifierV110 === 'function') window.__verifierV110();
+      });
     }
 
     function basculerTajweed() {
@@ -4095,15 +4099,8 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   function boutonEstActif(btn) {
     if (!btn) return false;
     if (btn.classList.contains('active') || btn.classList.contains('on') || btn.classList.contains('is-active') || btn.getAttribute('aria-pressed') === 'true') return true;
-    var st = window.getComputedStyle(btn);
-    var bg = (st.backgroundColor || '') + ' ' + (st.backgroundImage || '');
-    if (bg.indexOf('rgb(56, 189, 248)') !== -1 || bg.indexOf('rgb(14, 165, 233)') !== -1 || bg.indexOf('rgb(2, 132, 199)') !== -1 || bg.indexOf('rgb(125, 211, 252)') !== -1) {
-      return true;
-    }
-    var cNums = (st.color || '').split('(').pop().split(')')[0].split(',');
-    if (cNums.length >= 3 && parseInt(cNums[0], 10) < 35 && parseInt(cNums[1], 10) < 45 && parseInt(cNums[2], 10) < 55) {
-      return true;
-    }
+    // Uniquement le style inline posé par JS (ex: bouton Suivi), jamais getComputedStyle/:hover
+    if (btn.style && btn.style.background && btn.style.background.indexOf('gradient') !== -1) return true;
     return false;
   }
 
@@ -4132,8 +4129,11 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   }
   function trouverBoutonTajwid() { return trouverBoutonParTexte(['Tajw', 'Таджвид', 'تجويد']); }
   function estModeMotAMotActif() {
-    var btnWbw = trouverBoutonMotAMot();
-    return btnWbw ? boutonEstActif(btnWbw) : document.body.classList.contains('wbw-mode-on');
+    if (typeof modeMotAMotActif === 'boolean') {
+      return modeMotAMotActif && obtenirLanguePage() !== 'ar';
+    }
+    var btnWbw = document.getElementById('btnToggleWbw') || trouverBoutonMotAMot();
+    return btnWbw ? btnWbw.classList.contains('active') : document.body.classList.contains('wbw-mode-on');
   }
 
   var wbwFontScale = 1.0;
