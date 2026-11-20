@@ -1,5 +1,5 @@
 /* Service Worker Coran Tafsir — PWA Network-First */
-const CACHE_NAME = 'coran-tafsir-pwa-v5';
+const CACHE_NAME = 'coran-tafsir-pwa-v6';
 const SHELL_URLS = [
   '/',
   '/manifest.json',
@@ -32,7 +32,7 @@ self.addEventListener('fetch', (event) => {
   if (url.pathname.startsWith('/api/')) return;
 
   event.respondWith(
-    fetch(event.request)
+    fetch(event.request.url, { cache: 'no-cache', credentials: 'same-origin' })
       .then((resp) => {
         if (resp && resp.status === 200 && resp.type === 'basic') {
           const clone = resp.clone();

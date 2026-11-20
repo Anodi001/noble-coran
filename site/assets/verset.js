@@ -5617,8 +5617,8 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
 
     // Anti-doublon propre : si l'ancien bloc 📜 est collé dans #mainExplanationEl, on le retire à l'affichage
     var mExpl = document.getElementById("mainExplanationEl");
-    if (mExpl && mExpl.innerHTML.indexOf("<br><br>📜") !== -1) {
-      mExpl.innerHTML = mExpl.innerHTML.split("<br><br>📜")[0];
+    if (mExpl && mExpl.innerHTML.indexOf("📜") !== -1) {
+      mExpl.innerHTML = mExpl.innerHTML.replace(/(?:<br\s*\/?>|\s|<p[^>]*>)*📜[\s\S]*$/i, "");
     }
 
     var sig = cle + "|" + lang;
