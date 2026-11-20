@@ -1,5 +1,5 @@
 /* Service Worker Coran Tafsir — Revalidation immédiate à chaque visite */
-const CACHE_NAME = 'coran-tafsir-pwa-v538826';
+const CACHE_NAME = 'coran-tafsir-pwa-v538827';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

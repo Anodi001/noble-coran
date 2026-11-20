@@ -1478,3 +1478,66 @@ body.wbw-fullscreen-mode .verse-stage > :last-child {
   font-weight: 700 !important;
   letter-spacing: 0.01em !important;
 }
+
+/* EASY_EASE_SPRING_ENGINE_V1 */
+/* Laisser le moteur JS Spring 60/120/240Hz piloter transform/opacity sans conflit de transition CSS */
+.arabic-glow-verse span,
+#arabicVerse span,
+.inline-clickable-word,
+.ar-word-follow,
+.ar-word,
+.follow-word,
+.karaoke-word,
+.wbw-card-v110,
+.wbw-ar-v110,
+.wbw-tr-v110 {
+  transition: none !important;
+  will-change: transform, opacity !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  transform-origin: 50% 65% !important;
+}
+
+/* Isolation layout/paint sur chaque carte Mot à mot (gain FPS majeur sur iPhone & Android) */
+.wbw-card-v110,
+.wbw-card-unit {
+  contain: layout style !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+/* Poids stable sur la traduction Mot à mot : zéro saut de largeur pendant l'animation */
+.wbw-tr-v110 {
+  font-weight: 500 !important;
+}
+
+/* Neutraliser l'ancien flash doré .playing qui entrait en conflit avec le suivi fluide */
+.inline-clickable-word.playing,
+.wbw-word-box.playing {
+  border-color: transparent !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.wbw-word-box.playing .wbw-tr {
+  border-top-color: transparent !important;
+}
+
+/* Barre de progression sous le mot : rendu GPU fluide */
+.wbw-scrub-fill {
+  will-change: transform, width !important;
+  transition: none !important;
+}
+
+/* Easy Ease After Effects sur les boutons et interactions tactiles */
+.btn-wbw-toggle,
+#wbwFullscreenBtnV1,
+.wbw-fs-pill {
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+.btn-wbw-toggle:active,
+#wbwFullscreenBtnV1:active,
+.wbw-fs-pill:active {
+  transform: scale(0.96) !important;
+}
