@@ -5839,4 +5839,15 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', installerFullscreen);
   else installerFullscreen();
   setTimeout(installerFullscreen, 300);
+  /* FS_BADGE_OBSERVER_V2 */
+  if (typeof MutationObserver !== 'undefined') {
+    var _bObs = document.getElementById('badgeNumEl');
+    if (_bObs) {
+      new MutationObserver(function() { syncFsBar(); })
+        .observe(_bObs, { childList: true, characterData: true, subtree: true });
+    }
+  }
+  setInterval(function() {
+    if (document.body && document.body.classList.contains('wbw-fullscreen-mode')) syncFsBar();
+  }, 500);
 })();

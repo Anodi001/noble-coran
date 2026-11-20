@@ -1339,3 +1339,14 @@ body.wbw-fullscreen-mode .verse-stage {
 body.wbw-fullscreen-mode .verse-stage .stage-blue-nav {
   margin-top: 22px !important;
 }
+
+/* FULLSCREEN_SCROLL_FIX_V2 */
+body.wbw-fullscreen-mode .verse-stage {
+  justify-content: flex-start !important;
+}
+body.wbw-fullscreen-mode .verse-stage > :first-child {
+  margin-top: auto !important;
+}
+body.wbw-fullscreen-mode .verse-stage > :last-child {
+  margin-bottom: auto !important;
+}
