@@ -1,7 +1,7 @@
-/* Service Worker Coran Tafsir — Revalidation immédiate à chaque visite */
-const CACHE_NAME = 'coran-tafsir-pwa-v538830';
+/* Service Worker Coran Tafsir — Navigations & redirections natives + assets toujours frais */
+const CACHE_NAME = 'coran-tafsir-pwa-v201723';
 
-self.addEventListener('install', (event) => {
+self.addEventListener('install', () => {
   self.skipWaiting();
 });
 
@@ -15,15 +15,18 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
+
+  // Ne jamais intercepter les navigations HTML pour laisser les redirections 301/308 (.html -> URL propre) fonctionner nativement
+  if (event.request.mode === 'navigate' || event.request.destination === 'document') return;
+
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
   if (url.pathname.startsWith('/api/')) return;
 
-  // Toujours contourner l'ancien cache disque HTTP du navigateur pour avoir la dernière version
   event.respondWith(
     fetch(new Request(event.request.url, { cache: 'reload', credentials: 'same-origin' }))
       .then((resp) => {
-        if (resp && resp.status === 200 && resp.type === 'basic') {
+        if (resp && resp.status === 200 && resp.type === 'basic' && !resp.redirected) {
           const clone = resp.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone)).catch(() => {});
         }
