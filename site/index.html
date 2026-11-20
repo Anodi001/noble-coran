@@ -4260,7 +4260,7 @@ html body #btnLangRuV77.active-ext-v77 {
       if (lastReadData) {
         const btnR = document.getElementById('resumeReadingBtn');
         const spanR = document.getElementById('resumeTextSpan');
-        btnR.href = "sourate-" + lastReadData.s + "-verset-" + lastReadData.v + ".html?v=" + V_STAMP;
+        btnR.href = "/sourate-" + lastReadData.s + "-verset-" + lastReadData.v;
         const pref = isAr ? "متابعة القراءة : " : (isEn ? "Resume: " : (isEs ? "Continuar: " : "Reprendre : "));
         const motV = isAr ? "آية " : (isEs ? "a." : "v.");
         spanR.textContent = pref + (lastReadData.nom || ("Surah " + lastReadData.s)) + " (" + motV + lastReadData.v + ")";
@@ -4365,7 +4365,7 @@ html body #btnLangRuV77.active-ext-v77 {
         const ns = Number(mv[1]), nv = Number(mv[2]), st = sourates.find(x => x.id === ns);
         if (st && nv >= 1 && nv <= st.versets) {
           const txtOuvrir = isAr ? ('فتح سورة ' + st.nomAr + ' — الآية ' + nv) : (isEn ? ('Open Surah ' + st.nom + ' — Verse ' + nv) : (isEs ? ('Abrir Sura ' + st.nom + ' — Aleya ' + nv) : ('Ouvrir Sourate ' + st.nom + ' — Verset ' + nv)));
-          directHTML = '<a href="sourate-' + ns + '-verset-' + nv + '.html?v=' + V_STAMP + '" class="card miracle-card-glow"><div class="card-left"><div class="num-badge">' + ns + ':' + nv + '</div><div class="card-info"><h2>' + txtOuvrir + '</h2></div></div><div class="ar-name">' + st.nomAr + '</div></a>';
+          directHTML = '<a href="/sourate-' + ns + '-verset-' + nv + '" class="card miracle-card-glow"><div class="card-left"><div class="num-badge">' + ns + ':' + nv + '</div><div class="card-info"><h2>' + txtOuvrir + '</h2></div></div><div class="ar-name">' + st.nomAr + '</div></a>';
         }
       }
       let liste = sourates.filter(s => {
@@ -4407,7 +4407,7 @@ html body #btnLangRuV77.active-ext-v77 {
         const mPill = s.hasMiracle ? '<span class="revelation-pill miracle-pill">' + txtBadgeMiracle + '</span>' : '';
         const txtNbV = isAr ? (s.versets + ' آية') : (isEs ? (s.versets + ' a.') : (s.versets + ' v.'));
         const classesCarte = 'card' + (s.hasMiracle ? ' miracle-card-glow' : '') + (s.id === 30 && modeTri === 'miracles' ? ' rum-featured-card' : '');
-        return '<a href="sourate-' + s.id + '-verset-' + vCible + '.html?v=' + V_STAMP + '" class="' + classesCarte + '" onclick="sauvegarderConfigCiel()"><div class="card-left"><div class="num-badge">' + badge + '</div><div class="card-info"><h2>' + titre + '</h2><div class="card-meta-row"><span class="revelation-pill ' + s.typeClasse + '">' + typeP + '</span>' + mPill + '<span class="card-meta-text">' + txtNbV + '</span></div></div></div><div class="ar-name">' + s.nomAr + '</div></a>';
+        return '<a href="/sourate-' + s.id + '-verset-' + vCible + '" class="' + classesCarte + '" onclick="sauvegarderConfigCiel()"><div class="card-left"><div class="num-badge">' + badge + '</div><div class="card-info"><h2>' + titre + '</h2><div class="card-meta-row"><span class="revelation-pill ' + s.typeClasse + '">' + typeP + '</span>' + mPill + '<span class="card-meta-text">' + txtNbV + '</span></div></div></div><div class="ar-name">' + s.nomAr + '</div></a>';
       }).join('');
     }
     appliquerLangueAccueil();
@@ -6265,8 +6265,8 @@ html body #btnLangRuV77.active-ext-v77 {
 
     var stylePill = 'background:rgba(15,23,42,0.78);color:#cbd5e1;border:1px solid rgba(56,189,248,0.3);padding:6px 14px;border-radius:999px;font-size:0.78rem;font-weight:700;text-decoration:none;transition:all 0.2s ease;display:inline-flex;align-items:center;gap:5px;';
     wrap.innerHTML =
-      '<a id="wbwAboutLinkV122" href="a-propos.html?lang=' + lang + '" style="' + stylePill + '">' + d.btnAbout + '</a>' +
-      '<a id="wbwContactLinkV122" href="contact.html?lang=' + lang + '" style="' + stylePill + '">' + d.btnContact + '</a>';
+      '<a id="wbwAboutLinkV122" href="/a-propos?lang=' + lang + '" style="' + stylePill + '">' + d.btnAbout + '</a>' +
+      '<a id="wbwContactLinkV122" href="/contact?lang=' + lang + '" style="' + stylePill + '">' + d.btnContact + '</a>';
   }
 
   window.__wbwInitInstitutionnelV122 = synchroniserFooterEtBoutonsLangue;

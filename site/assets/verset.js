@@ -5,7 +5,7 @@
   var S = window.SOURATE_DATA, html = '';
   for (var i = 1; i <= S.nbVersets; i++) {
     var estM = Boolean(S.versets[i - 1] && S.versets[i - 1].miracle);
-    html += '<option value="sourate-' + S.numSourate + '-verset-' + i + '.html"' +
+    html += '<option value="/sourate-' + S.numSourate + '-verset-' + i + '"' +
       (estM ? ' class="opt-miracle-gold"' : '') +
       (i === numVersetActuel ? ' selected' : '') + '>' +
       (estM ? '★ ' : '') + 'Verset ' + i + ' / ' + S.nbVersets +
@@ -412,24 +412,26 @@
   appliquerLangueVerset();
 
   function allerAuVerset(n, auto) {
-    if (!window.SOURATE_DATA || !window.SOURATE_DATA.versets[n - 1]) { window.location.href = "sourate-" + numSourateActuelle + "-verset-" + n + ".html"; return; }
+    const _mLp = (window.location.pathname || "").match(/^\/(en|es|ar|de|it|id|ru)\//i); const _prefU = _mLp ? ("/" + _mLp[1].toLowerCase() + "/") : "/";
+    if (!window.SOURATE_DATA || !window.SOURATE_DATA.versets[n - 1]) { window.location.href = _prefU + "sourate-" + numSourateActuelle + "-verset-" + n; return; }
     if (!audio.paused) audio.pause(); arreterVisuel();
     numVersetActuel = n; const vD = window.SOURATE_DATA.versets[n - 1]; codeAudio = vD.codeAudio; majAudio();
     memoriserLecture(numSourateActuelle, n);
     document.getElementById('badgeNumEl').textContent = numSourateActuelle + " : " + n;
     const jEl = document.getElementById('verseJumperSelect');
-    if (jEl) jEl.value = "sourate-" + numSourateActuelle + "-verset-" + n + ".html";
-    document.getElementById('prevVerseLink').setAttribute('href', vD.lienPrecedent);
-    document.getElementById('nextVerseLink').setAttribute('href', vD.lienSuivant);
+    if (jEl) jEl.value = "/sourate-" + numSourateActuelle + "-verset-" + n;
+    const _cleanU = u => String(u || '').replace(/^\/?(sourate-\d+-verset-\d+)\.html/i, _prefU + '$1').replace(/^\/?index\.html/i, _prefU);
+    document.getElementById('prevVerseLink').setAttribute('href', _cleanU(vD.lienPrecedent));
+    document.getElementById('nextVerseLink').setAttribute('href', _cleanU(vD.lienSuivant));
     appliquerLangueVerset();
-    try { history.pushState({ verset: n }, '', "sourate-" + numSourateActuelle + "-verset-" + n + ".html"); } catch(e){}
+    try { history.pushState({ verset: n }, '', _prefU + "sourate-" + numSourateActuelle + "-verset-" + n + (window.location.search || "")); } catch(e){}
     if (auto) toggleAudioSync();
   }
 
   function naviguerVerset(ev, lien, auto) {
-    const m = String(lien).split('?')[0].match(/^sourate-(\d+)-verset-(\d+)\.html$/);
+    const m = String(lien).split('?')[0].match(/^(?:\/(?:en|es|ar|de|it|id|ru))?\/?sourate-(\d+)-verset-(\d+)(?:\.html)?$/i);
     if (m && Number(m[1]) === numSourateActuelle) { if (ev) ev.preventDefault(); allerAuVerset(Number(m[2]), auto); return false; }
-    if (auto) { window.location.href = String(lien).split('?')[0] + "?autoplay=1"; return false; }
+    if (auto) { window.location.href = String(lien).split('?')[0].replace(/\.html$/i, "") + "?autoplay=1"; return false; }
     return true;
   }
   audio.onended = () => { arreterVisuel(); if (autoCheck.checked) naviguerVerset(null, document.getElementById('nextVerseLink').getAttribute('href'), true); };
@@ -5664,8 +5666,8 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
 
     var stylePill = 'background:rgba(15,23,42,0.78);color:#cbd5e1;border:1px solid rgba(56,189,248,0.3);padding:6px 14px;border-radius:999px;font-size:0.78rem;font-weight:700;text-decoration:none;transition:all 0.2s ease;display:inline-flex;align-items:center;gap:5px;';
     wrap.innerHTML =
-      '<a id="wbwAboutLinkV122" href="a-propos.html?lang=' + lang + '" style="' + stylePill + '">' + d.btnAbout + '</a>' +
-      '<a id="wbwContactLinkV122" href="contact.html?lang=' + lang + '" style="' + stylePill + '">' + d.btnContact + '</a>';
+      '<a id="wbwAboutLinkV122" href="/a-propos?lang=' + lang + '" style="' + stylePill + '">' + d.btnAbout + '</a>' +
+      '<a id="wbwContactLinkV122" href="/contact?lang=' + lang + '" style="' + stylePill + '">' + d.btnContact + '</a>';
   }
 
   window.__wbwInitInstitutionnelV122 = synchroniserFooterEtBoutonsLangue;
