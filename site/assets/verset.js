@@ -68,8 +68,8 @@
     
   const bgCanvas = document.getElementById('fullPageSkyCanvas');
   const bgCtx = bgCanvas.getContext('2d', { alpha: true, desynchronized: true });
-  const sunEl = document.getElementById('flatEarthSun');
-  const moonEl = document.getElementById('flatEarthMoon');
+  const sunEl = null; { const _s = document.getElementById('flatEarthSun'); if (_s) _s.remove(); }
+  const moonEl = null; { const _m = document.getElementById('flatEarthMoon'); if (_m) _m.remove(); }
   if (sunEl) sunEl.style.display = 'flex';
   if (moonEl) moonEl.style.display = 'flex';
 
@@ -2842,7 +2842,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   }
 
   var astresDejaVerrouilles = false;
-  function reparerSoleilEtLuneEnOrbite() {
+  function reparerSoleilEtLuneEnOrbite() { /* NO_ASTRE_SCAN */ return;
     if (astresDejaVerrouilles && document.querySelector(".astre-soleil-pur-v77") && document.querySelector(".astre-lune-pure-v77")) {
       return;
     }
@@ -4037,7 +4037,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       return origFillText.apply(this, arguments);
     };
   }
-  activerOccultationSoleilLune();
+  /* activerOccultationSoleilLune désactivée sur les sourates pour la fluidité */
 
   function forcer(el, prop, val) {
     if (el && el.style && el.style.getPropertyValue(prop) !== val) el.style.setProperty(prop, val, 'important');

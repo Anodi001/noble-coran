@@ -1185,3 +1185,11 @@ html body #btnLangRuV77.active-ext-v77 {
 .asbab-nuzul-card.type-hadith .asbab-nuzul-title {
   color: #fcd34d;
 }
+
+/* NO_SUN_MOON_ON_SURAH_V1 */
+#flatEarthSun, #flatEarthMoon, .flat-earth-sun, .flat-earth-moon, .astre-soleil-pur-v77, .astre-lune-pure-v77 {
+  display: none !important;
+  visibility: hidden !important;
+  animation: none !important;
+  box-shadow: none !important;
+}
