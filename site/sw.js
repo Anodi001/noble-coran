@@ -1,20 +1,8 @@
-/* Service Worker Coran Tafsir — PWA Network-First */
-const CACHE_NAME = 'coran-tafsir-pwa-v6';
-const SHELL_URLS = [
-  '/',
-  '/manifest.json',
-  '/assets/verset.css',
-  '/assets/verset.js',
-  '/asbab-nuzul.json',
-  '/lexique-wbw-fr.json'
-];
+/* Service Worker Coran Tafsir — Revalidation immédiate à chaque visite */
+const CACHE_NAME = 'coran-tafsir-pwa-v538826';
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(SHELL_URLS).catch(() => {}))
-      .then(() => self.skipWaiting())
-  );
+  self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
@@ -31,8 +19,9 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin) return;
   if (url.pathname.startsWith('/api/')) return;
 
+  // Toujours contourner l'ancien cache disque HTTP du navigateur pour avoir la dernière version
   event.respondWith(
-    fetch(event.request.url, { cache: 'no-cache', credentials: 'same-origin' })
+    fetch(new Request(event.request.url, { cache: 'reload', credentials: 'same-origin' }))
       .then((resp) => {
         if (resp && resp.status === 200 && resp.type === 'basic') {
           const clone = resp.clone();

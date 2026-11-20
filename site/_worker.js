@@ -772,7 +772,7 @@ async function recupererFichierStatiquePages(request, env) {
   return fetch(request);
 }
 
-const SSR_VERSION = "v129";
+const SSR_VERSION = "v130";
 function construireCleCache(request, lang) {
   const key = new URL(request.url);
   key.pathname = key.pathname.replace(/\.html$/i, "");
@@ -794,7 +794,7 @@ const CSP_COMPATIBLE = [
   "worker-src 'self' blob:", "upgrade-insecure-requests"
 ].join("; ");
 
-function securiserReponse(response, pathname) {
+async function securiserReponse(response, pathname) {
   const headers = new Headers(response.headers);
   headers.set("Content-Security-Policy", CSP_COMPATIBLE);
   headers.set("Strict-Transport-Security", "max-age=31536000");
@@ -814,9 +814,21 @@ function securiserReponse(response, pathname) {
     p === "/manifest.json";
 
   if (estRessourceDynamique && !p.startsWith("/api/")) {
-    headers.set("Cache-Control", "public, max-age=0, must-revalidate");
+    headers.set("Cache-Control", "no-cache, must-revalidate");
     headers.set("Cloudflare-CDN-Cache-Control", "no-store");
     headers.set("CDN-Cache-Control", "no-store");
+  }
+
+  // Cache-busting automatique sur le HTML pour casser l'ancien cache 1 mois des anciens visiteurs
+  if (ct.includes("text/html") && response.status === 200) {
+    const html = await response.text();
+    const htmlFrais = html.replace(/v=1795050050086/g, "v=1795144538826");
+    headers.delete("content-length");
+    return new Response(htmlFrais, {
+      status: response.status,
+      statusText: response.statusText,
+      headers
+    });
   }
 
   return new Response(response.body, {
@@ -920,6 +932,6 @@ const application = {
 
 export default {
   async fetch(request, env, ctx) {
-    return securiserReponse(await application.fetch(request, env, ctx), new URL(request.url).pathname);
+    return await securiserReponse(await application.fetch(request, env, ctx), new URL(request.url).pathname);
   }
 };
