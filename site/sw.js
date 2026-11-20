@@ -1,5 +1,5 @@
 /* Service Worker Coran Tafsir — PWA Network-First */
-const CACHE_NAME = 'coran-tafsir-pwa-v4';
+const CACHE_NAME = 'coran-tafsir-pwa-v5';
 const SHELL_URLS = [
   '/',
   '/manifest.json',

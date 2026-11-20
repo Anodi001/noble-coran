@@ -148,7 +148,11 @@
 
   let prevTime = performance.now();
   function renderFullSky(now) {
-    requestAnimationFrame(renderFullSky);
+  requestAnimationFrame(renderFullSky);
+  /* SKY_THROTTLE_24FPS */
+  if (document.hidden || (document.body && document.body.classList.contains('wbw-fullscreen-mode'))) return;
+  if (now && renderFullSky._t && (now - renderFullSky._t) < 42) return;
+  renderFullSky._t = now || performance.now();
     if (document.hidden) return;
     now = now || performance.now();
     const dt = Math.min(2.5, Math.max(0.1, (now - prevTime) / 16.6667));
@@ -5658,4 +5662,181 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     if (badge) new MutationObserver(function () { setTimeout(afficherAsbabNuzul, 30); }).observe(badge, { childList: true, characterData: true, subtree: true });
     if (document.documentElement) new MutationObserver(function () { setTimeout(afficherAsbabNuzul, 30); }).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
   }
+})();
+
+/* __MODULE_FULLSCREEN_FOCUS_V1__ */
+(function moduleFullscreenFocusV1() {
+  var LABELS_FS = {
+    fr: { btn: '⛶ Plein écran', exit: '✕ Quitter', wbw: '📖 Mot à mot', tajwid: 'Tajwid' },
+    en: { btn: '⛶ Fullscreen', exit: '✕ Exit', wbw: '📖 Word by Word', tajwid: 'Tajwid' },
+    es: { btn: '⛶ Pantalla completa', exit: '✕ Salir', wbw: '📖 Palabra', tajwid: 'Tajwid' },
+    ar: { btn: '⛶ ملء الشاشة', exit: '✕ خروج', wbw: '📖 كلمة بكلمة', tajwid: 'تجويد' },
+    de: { btn: '⛶ Vollbild', exit: '✕ Beenden', wbw: '📖 Wort für Wort', tajwid: 'Tajwid' },
+    it: { btn: '⛶ Schermo intero', exit: '✕ Esci', wbw: '📖 Parola', tajwid: 'Tajwid' },
+    id: { btn: '⛶ Layar penuh', exit: '✕ Keluar', wbw: '📖 Kata demi Kata', tajwid: 'Tajwid' },
+    ru: { btn: '⛶ На весь экран', exit: '✕ Выход', wbw: '📖 Пословно', tajwid: 'Таджвид' }
+  };
+
+  function getLangFs() {
+    var p = new URLSearchParams(window.location.search).get('lang');
+    var l = p ? p.slice(0, 2).toLowerCase() : ((document.documentElement.lang || 'fr').slice(0, 2).toLowerCase());
+    return LABELS_FS[l] ? l : 'fr';
+  }
+
+  function findBtnByTxt(mots) {
+    var btns = document.querySelectorAll('button');
+    for (var i = 0; i < btns.length; i++) {
+      if (btns[i].closest('#wbwFsTopBarV1')) continue;
+      var t = (btns[i].textContent || '').trim();
+      for (var k = 0; k < mots.length; k++) if (t.indexOf(mots[k]) !== -1) return btns[i];
+    }
+    return null;
+  }
+
+  function estActif(btn) {
+    return Boolean(btn && (btn.classList.contains('active') || btn.getAttribute('aria-pressed') === 'true'));
+  }
+
+  function syncFsBar() {
+    var bar = document.getElementById('wbwFsTopBarV1');
+    var mainBtn = document.getElementById('wbwFullscreenBtnV1');
+    var lang = getLangFs();
+    var t = LABELS_FS[lang] || LABELS_FS.fr;
+    if (mainBtn) mainBtn.textContent = t.btn;
+    if (!bar) return;
+    var badgeOrig = document.getElementById('badgeNumEl');
+    var fsBadge = document.getElementById('wbwFsBadgeV1');
+    if (fsBadge && badgeOrig) fsBadge.textContent = (badgeOrig.textContent || '').trim();
+    var fsWbw = document.getElementById('wbwFsWbwV1');
+    var fsTaj = document.getElementById('wbwFsTajwidV1');
+    var fsExit = document.getElementById('wbwFsExitV1');
+    var origWbw = document.getElementById('btnToggleWbw') || document.getElementById('wbwToggleBtn') || findBtnByTxt(['Mot à mot', 'Word by Word', 'Palabra', 'Wort für', 'Parola', 'Kata demi', 'Пословн', 'كلمة بكلمة']);
+    var origTaj = findBtnByTxt(['Tajw', 'Таджвид', 'تجويد']);
+    if (fsWbw) { fsWbw.textContent = t.wbw; fsWbw.classList.toggle('active', estActif(origWbw)); }
+    if (fsTaj) { fsTaj.textContent = t.tajwid; fsTaj.classList.toggle('active', estActif(origTaj)); }
+    if (fsExit) fsExit.textContent = t.exit;
+  }
+
+  function marquerDOMFullscreen(actif) {
+    var stage = document.querySelector('.verse-stage');
+    if (!stage) return;
+    document.documentElement.classList.toggle('wbw-fullscreen-html', actif);
+    document.body.classList.toggle('wbw-fullscreen-mode', actif);
+
+    var anciensAnc = document.querySelectorAll('.wbw-fs-ancestor');
+    for (var a = 0; a < anciensAnc.length; a++) anciensAnc[a].classList.remove('wbw-fs-ancestor');
+    var anciensHid = document.querySelectorAll('.wbw-fs-hidden');
+    for (var h = 0; h < anciensHid.length; h++) anciensHid[h].classList.remove('wbw-fs-hidden');
+
+    if (actif) {
+      var cur = stage;
+      while (cur && cur.parentElement && cur.parentElement !== document.body) {
+        var par = cur.parentElement;
+        par.classList.add('wbw-fs-ancestor');
+        for (var i = 0; i < par.children.length; i++) {
+          var sib = par.children[i];
+          if (sib !== cur && sib.id !== 'wbwFsTopBarV1') sib.classList.add('wbw-fs-hidden');
+        }
+        cur = par;
+      }
+      for (var b = 0; b < document.body.children.length; b++) {
+        var child = document.body.children[b];
+        if (child !== cur && child.id !== 'wbwFsTopBarV1' && child.tagName !== 'SCRIPT' && child.tagName !== 'STYLE') {
+          child.classList.add('wbw-fs-hidden');
+        }
+      }
+    }
+    syncFsBar();
+  }
+
+  function entrerPleinEcran() {
+    marquerDOMFullscreen(true);
+    try {
+      if (document.documentElement.requestFullscreen && !document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(function() {});
+      }
+    } catch (e) {}
+  }
+
+  function quitterPleinEcran() {
+    marquerDOMFullscreen(false);
+    try {
+      if (document.fullscreenElement && document.exitFullscreen) {
+        document.exitFullscreen().catch(function() {});
+      }
+    } catch (e) {}
+  }
+
+  function installerFullscreen() {
+    var stage = document.querySelector('.verse-stage');
+    if (!stage) return;
+
+    if (!document.getElementById('wbwFsTopBarV1')) {
+      var bar = document.createElement('div');
+      bar.id = 'wbwFsTopBarV1';
+      bar.className = 'notranslate';
+      bar.setAttribute('translate', 'no');
+      bar.innerHTML =
+        '<div class="wbw-fs-group">' +
+          '<span id="wbwFsBadgeV1" class="wbw-fs-badge"></span>' +
+          '<button type="button" id="wbwFsWbwV1" class="wbw-fs-pill">📖 Mot à mot</button>' +
+          '<button type="button" id="wbwFsTajwidV1" class="wbw-fs-pill">Tajwid</button>' +
+          '<button type="button" id="wbwFsZoomOutV1" class="wbw-fs-pill">A−</button>' +
+          '<button type="button" id="wbwFsZoomInV1" class="wbw-fs-pill">A+</button>' +
+        '</div>' +
+        '<button type="button" id="wbwFsExitV1" class="wbw-fs-exit">✕ Quitter</button>';
+      document.body.appendChild(bar);
+
+      document.getElementById('wbwFsExitV1').addEventListener('click', quitterPleinEcran);
+      document.getElementById('wbwFsWbwV1').addEventListener('click', function() {
+        var b = document.getElementById('btnToggleWbw') || document.getElementById('wbwToggleBtn') || findBtnByTxt(['Mot à mot', 'Word by Word', 'Palabra', 'Wort für', 'Parola', 'Kata demi', 'Пословн', 'كلمة بكلمة']);
+        if (b) b.click();
+        setTimeout(syncFsBar, 60);
+      });
+      document.getElementById('wbwFsTajwidV1').addEventListener('click', function() {
+        var b = findBtnByTxt(['Tajw', 'Таджвид', 'تجويد']);
+        if (b) b.click();
+        setTimeout(syncFsBar, 60);
+      });
+      document.getElementById('wbwFsZoomOutV1').addEventListener('click', function() {
+        var b = findBtnByTxt(['A-', 'A−', 'A–']);
+        if (b) b.click();
+      });
+      document.getElementById('wbwFsZoomInV1').addEventListener('click', function() {
+        var b = findBtnByTxt(['A+', 'A＋']);
+        if (b) b.click();
+      });
+    }
+
+    if (!document.getElementById('wbwFullscreenBtnV1')) {
+      var cible = document.getElementById('wbwAudioRangeBtnV110') || findBtnByTxt(['Bruit', 'Brown', 'Suivi', 'Follow', 'Tajw']);
+      if (cible && cible.parentElement) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.id = 'wbwFullscreenBtnV1';
+        btn.className = 'notranslate';
+        btn.addEventListener('click', function() {
+          if (document.body.classList.contains('wbw-fullscreen-mode')) quitterPleinEcran();
+          else entrerPleinEcran();
+        });
+        cible.parentElement.insertBefore(btn, cible.nextSibling);
+      }
+    }
+    syncFsBar();
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.body.classList.contains('wbw-fullscreen-mode')) {
+      quitterPleinEcran();
+    }
+  });
+  document.addEventListener('fullscreenchange', function() {
+    if (!document.fullscreenElement && document.body.classList.contains('wbw-fullscreen-mode')) {
+      marquerDOMFullscreen(false);
+    }
+  });
+  document.addEventListener('click', function() { setTimeout(installerFullscreen, 50); });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', installerFullscreen);
+  else installerFullscreen();
+  setTimeout(installerFullscreen, 300);
 })();

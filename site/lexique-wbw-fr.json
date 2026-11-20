@@ -387,6 +387,13 @@
       "qu'il soit parmi",
       "les djinns",
       "et les hommes"
+    ],
+    "96:19": [
+      "Mais non !",
+      "ne",
+      "lui obéis pas",
+      "mais prosterne-toi",
+      "et rapproche-toi"
     ]
   },
   "ar": {
@@ -1417,6 +1424,14 @@
     "with white": "de cheveux blancs",
     "unblessed": "malheureux",
     "i have been": "j'ai été",
-    "in my supplication to you": "en T'invoquant"
+    "in my supplication to you": "en T'invoquant",
+    "do not": "ne ... pas",
+    "obey him": "lui obéis pas",
+    "but prostrate": "mais prosterne-toi",
+    "and prostrate": "et prosterne-toi",
+    "prostrate": "prosterne-toi",
+    "and draw near": "et rapproche-toi",
+    "draw near": "rapproche-toi",
+    "surely transgresses": "transgresse certes"
   }
 }
