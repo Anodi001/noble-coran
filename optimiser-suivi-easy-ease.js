@@ -14,104 +14,15 @@ function writeSafe(p, d) {
 }
 
 const siteDir = path.join(__dirname, 'site');
-const cssPath = path.join(siteDir, 'assets', 'verset.css');
 const jsPath = path.join(siteDir, 'assets', 'verset.js');
 const workerPath = path.join(siteDir, '_worker.js');
 const swPath = path.join(siteDir, 'sw.js');
 
-// ============================================================================
-// 1. CSS : SUPPRIMER LE CONFLIT CSS TRANSITION vs JS rAF + OPTIMISATION GPU MOBILE
-// ============================================================================
-let css = fs.readFileSync(cssPath, 'utf8');
-const marqueurCss = '/* EASY_EASE_SPRING_ENGINE_V1 */';
+const rawJs = fs.readFileSync(jsPath, 'utf8');
+const eol = rawJs.includes('\r\n') ? '\r\n' : '\n';
+let js = rawJs.replace(/\r\n/g, '\n');
 
-if (!css.includes(marqueurCss)) {
-  css += `
-${marqueurCss}
-/* Laisser le moteur JS Spring 60/120/240Hz piloter transform/opacity sans conflit de transition CSS */
-.arabic-glow-verse span,
-#arabicVerse span,
-.inline-clickable-word,
-.ar-word-follow,
-.ar-word,
-.follow-word,
-.karaoke-word,
-.wbw-card-v110,
-.wbw-ar-v110,
-.wbw-tr-v110 {
-  transition: none !important;
-  will-change: transform, opacity !important;
-  backface-visibility: hidden !important;
-  -webkit-backface-visibility: hidden !important;
-  transform-origin: 50% 65% !important;
-}
-
-/* Isolation layout/paint sur chaque carte Mot à mot (gain FPS majeur sur iPhone & Android) */
-.wbw-card-v110,
-.wbw-card-unit {
-  contain: layout style !important;
-  -webkit-font-smoothing: antialiased !important;
-}
-
-/* Poids stable sur la traduction Mot à mot : zéro saut de largeur pendant l'animation */
-.wbw-tr-v110 {
-  font-weight: 500 !important;
-}
-
-/* Neutraliser l'ancien flash doré .playing qui entrait en conflit avec le suivi fluide */
-.inline-clickable-word.playing,
-.wbw-word-box.playing {
-  border-color: transparent !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-.wbw-word-box.playing .wbw-tr {
-  border-top-color: transparent !important;
-}
-
-/* Barre de progression sous le mot : rendu GPU fluide */
-.wbw-scrub-fill {
-  will-change: transform, width !important;
-  transition: none !important;
-}
-
-/* Easy Ease After Effects sur les boutons et interactions tactiles */
-.btn-wbw-toggle,
-#wbwFullscreenBtnV1,
-.wbw-fs-pill {
-  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
-              background-color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
-              border-color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1) !important;
-}
-.btn-wbw-toggle:active,
-#wbwFullscreenBtnV1:active,
-.wbw-fs-pill:active {
-  transform: scale(0.96) !important;
-}
-`;
-  writeSafe(cssPath, css);
-  console.log('✓ site/assets/verset.css : couche GPU 60/120/240Hz + suppression conflit CSS ajoutées.');
-} else {
-  console.log('ℹ️ site/assets/verset.css déjà optimisé.');
-}
-
-// ============================================================================
-// 2. JS : MOTEUR EASY EASE SPRING UNIFIE (MODE SUIVI + MODE MOT A MOT + MOBILE)
-// ============================================================================
-let js = fs.readFileSync(jsPath, 'utf8');
-
-// 2a. Couper la 2e boucle rAF redondante (boucleKaraoke)
-const ligneKaraoke = 'function demarrerBoucleKaraoke() { if (!rafKaraoke) rafKaraoke = requestAnimationFrame(boucleKaraoke); }';
-if (js.includes(ligneKaraoke)) {
-  js = js.replace(
-    ligneKaraoke,
-    'function demarrerBoucleKaraoke() { /* Unifié dans le moteur Easy Ease Spring */ }'
-  );
-  console.log('✓ Boucle rAF doublon (boucleKaraoke) neutralisée.');
-}
-
-// 2b. Helper partagé Spring Critically-Damped (After Effects Easy Ease analytique) + Auto-scroll doux
+// 1. S'assurer que les helpers Easy Ease Spring sont présents
 const marqueurHelper = '/* __EASY_EASE_SPRING_HELPERS_V1__ */';
 if (!js.includes(marqueurHelper)) {
   const helperCode = `${marqueurHelper}
@@ -164,25 +75,31 @@ if (!js.includes(marqueurHelper)) {
 `;
   const cibleIns = '  function etapeSuiviAudioAfterEffects() {';
   if (!js.includes(cibleIns)) {
-    console.error('❌ Impossible de trouver etapeSuiviAudioAfterEffects dans verset.js');
+    console.error('❌ etapeSuiviAudioAfterEffects introuvable.');
     process.exit(1);
   }
   js = js.replace(cibleIns, helperCode + '\n' + cibleIns);
 }
 
-// 2c. Remplacer le cœur d'animation dans etapeSuiviAudioAfterEffects (lignes 3672-3740)
-const debutBlocA = '      for (var m = 0; m < items.length; m++) {';
-const finBlocA = `    if ((aud && !aud.paused) || animEnCours) {
+// 2. Injecter Bloc A (Mode Suivi classique — Spring 60/120/240Hz + GPU mobile)
+if (!js.includes('/* AE_SPRING_LOOP_A_V1 */')) {
+  const debutBlocA = '      for (var m = 0; m < items.length; m++) {';
+  const finBlocA = `    if ((aud && !aud.paused) || animEnCours) {
       rafId = requestAnimationFrame(etapeSuiviAudioAfterEffects);
     } else {
       rafId = null;
     }
   }`;
 
-const idxDebutA = js.indexOf(debutBlocA, js.indexOf('function etapeSuiviAudioAfterEffects()'));
-const idxFinA = idxDebutA !== -1 ? js.indexOf(finBlocA, idxDebutA) : -1;
+  const posFnA = js.indexOf('function etapeSuiviAudioAfterEffects()');
+  const idxDebutA = posFnA !== -1 ? js.indexOf(debutBlocA, posFnA) : -1;
+  const idxFinA = idxDebutA !== -1 ? js.indexOf(finBlocA, idxDebutA) : -1;
 
-if (idxDebutA !== -1 && idxFinA !== -1 && !js.includes('/* AE_SPRING_LOOP_A_V1 */')) {
+  if (idxDebutA === -1 || idxFinA === -1) {
+    console.error('❌ Échec localisation Bloc A :', { posFnA, idxDebutA, idxFinA });
+    process.exit(1);
+  }
+
   const nouveauBlocA = `      /* AE_SPRING_LOOP_A_V1 */
       var _stA = etapeSuiviAudioAfterEffects._st || (etapeSuiviAudioAfterEffects._st = { velE: [], lastTs: 0, lastScrollKey: '' });
       var _nowA = performance.now();
@@ -300,25 +217,22 @@ if (idxDebutA !== -1 && idxFinA !== -1 && !js.includes('/* AE_SPRING_LOOP_A_V1 *
   }`;
 
   js = js.slice(0, idxDebutA) + nouveauBlocA + js.slice(idxFinA + finBlocA.length);
-  console.log('✓ Mode Suivi classique : moteur Easy Ease Spring (60/120/240Hz + mobile) injecté.');
-} else {
-  console.log('ℹ️ Bloc A déjà optimisé ou marqueur différent.');
+  console.log('✓ Bloc A (Mode Suivi classique Easy Ease Spring) injecté !');
 }
 
-// Optimiser aussi la ligne 3619 pour ne plus muter classList si aucune classe n'est présente
-js = js.replace(
-  'for (var i = 0; i < items.length; i++) { items[i].classList.remove("active", "speaking", "current"); }',
-  'for (var i = 0; i < items.length; i++) { if (items[i].classList.contains("active") || items[i].classList.contains("speaking") || items[i].classList.contains("current")) items[i].classList.remove("active", "speaking", "current"); }'
-);
+// 3. Injecter Bloc B (Mode Mot à mot — Spring + dirty-checking 0 DOM inutile + GPU mobile)
+if (!js.includes('/* AE_SPRING_LOOP_B_V1 */')) {
+  const debutBlocB = "    var dirLecture = detecterSensLectureGrille(), audioActif = Boolean(suiviBoutonOn && (audioJoue || maxIdxAtteintVerset >= 0));";
+  const finBlocB = "        forcer(meta.elTrad, 'text-shadow', ombreTr); forcer(meta.elTrad, 'border', 'none'); forcer(meta.elTrad, 'border-top', 'none');\n      }\n    }\n  };";
 
-// 2d. Remplacer le cœur d'animation Mot à mot (Bloc B : lignes 5182-5242)
-const debutBlocB = "    var dirLecture = detecterSensLectureGrille(), audioActif = Boolean(suiviBoutonOn && (audioJoue || maxIdxAtteintVerset >= 0));";
-const finBlocB = "        forcer(meta.elTrad, 'text-shadow', ombreTr); forcer(meta.elTrad, 'border', 'none'); forcer(meta.elTrad, 'border-top', 'none');\n      }\n    }\n  };";
+  const idxDebutB = js.indexOf(debutBlocB);
+  const idxFinB = idxDebutB !== -1 ? js.indexOf(finBlocB, idxDebutB) : -1;
 
-const idxDebutB = js.indexOf(debutBlocB);
-const idxFinB = idxDebutB !== -1 ? js.indexOf(finBlocB, idxDebutB) : -1;
+  if (idxDebutB === -1 || idxFinB === -1) {
+    console.error('❌ Échec localisation Bloc B :', { idxDebutB, idxFinB });
+    process.exit(1);
+  }
 
-if (idxDebutB !== -1 && idxFinB !== -1 && !js.includes('/* AE_SPRING_LOOP_B_V1 */')) {
   const nouveauBlocB = `    /* AE_SPRING_LOOP_B_V1 */
     var dirLecture = detecterSensLectureGrille(), audioActif = Boolean(suiviBoutonOn && (audioJoue || maxIdxAtteintVerset >= 0));
     var _stB = window.__wbwSpringState || (window.__wbwSpringState = { velE: [], smoothRatio: [], lastTs: 0, lastScrollIdx: -1, lastScrollCardCount: 0 });
@@ -396,7 +310,6 @@ if (idxDebutB !== -1 && idxFinB !== -1 && !js.includes('/* AE_SPRING_LOOP_B_V1 *
       else _stB.smoothRatio[m] = (_stB.smoothRatio[m] || 0) + (cibleRatio - (_stB.smoothRatio[m] || 0)) * _alphaRatio;
       var pctScrub = Math.round(Math.max(0, Math.min(1, _stB.smoothRatio[m])) * 1000) / 10;
 
-      // Dirty-check strict : ne rien écrire dans le DOM si cette carte n'a pas bougé
       var stateKey =
         (estMotActuel ? '1' : '0') + (estDejaLu ? '1' : '0') + ':' +
         Math.min(3, Math.max(0, distanceFutur)) + ':' +
@@ -482,22 +395,26 @@ if (idxDebutB !== -1 && idxFinB !== -1 && !js.includes('/* AE_SPRING_LOOP_B_V1 *
   };`;
 
   js = js.slice(0, idxDebutB) + nouveauBlocB + js.slice(idxFinB + finBlocB.length);
-  console.log('✓ Mode Mot à mot : moteur Easy Ease Spring + dirty-checking 0 DOM inutile + GPU mobile injecté.');
-} else {
-  console.log('ℹ️ Bloc B déjà optimisé ou marqueur différent.');
+  console.log('✓ Bloc B (Mode Mot à mot Easy Ease Spring + mobile) injecté !');
 }
 
-// Validation syntaxe stricte avant écriture
+// Validation stricte avant écriture
+if (!js.includes('AE_SPRING_LOOP_A_V1') || !js.includes('AE_SPRING_LOOP_B_V1')) {
+  console.error('❌ Validation échouée : les 2 marqueurs Easy Ease doivent être présents.');
+  process.exit(1);
+}
 new vm.Script(js, { filename: 'site/assets/verset.js' });
-writeSafe(jsPath, js);
-console.log('✓ site/assets/verset.js validé et sauvegardé.');
+writeSafe(jsPath, eol === '\r\n' ? js.replace(/\n/g, '\r\n') : js);
+console.log('✓ site/assets/verset.js validé et écrit.');
 
-// 3. Incrémenter SSR_VERSION + sw.js pour propagation instantanée partout
+// 4. Mettre à jour le tag ?v= dans site/_worker.js + SSR_VERSION + sw.js (cache-busting automatique)
+const nouveauTag = String(Date.now());
 let w = fs.readFileSync(workerPath, 'utf8');
 w = w.replace(/const SSR_VERSION = "v(\d+)";/, (_, n) => `const SSR_VERSION = "v${Number(n) + 1}";`);
+w = w.replace(/html\.replace\(\/v=1795050050086\/g,\s*"v=\d+"\)/, `html.replace(/v=1795050050086/g, "v=${nouveauTag}")`);
 writeSafe(workerPath, w);
 
 let sw = fs.readFileSync(swPath, 'utf8');
 sw = sw.replace(/coran-tafsir-pwa-v(\d+)/, (_, n) => `coran-tafsir-pwa-v${Number(n) + 1}`);
 writeSafe(swPath, sw);
-console.log('✓ site/_worker.js et site/sw.js incrémentés pour mise à jour instantanée.');
+console.log(`✓ site/_worker.js (?v=${nouveauTag}) et site/sw.js mis à jour.`);

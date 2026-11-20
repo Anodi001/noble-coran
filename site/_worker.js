@@ -772,7 +772,7 @@ async function recupererFichierStatiquePages(request, env) {
   return fetch(request);
 }
 
-const SSR_VERSION = "v132";
+const SSR_VERSION = "v133";
 function construireCleCache(request, lang) {
   const key = new URL(request.url);
   key.pathname = key.pathname.replace(/\.html$/i, "");
@@ -822,7 +822,7 @@ async function securiserReponse(response, pathname) {
   // Cache-busting automatique sur le HTML pour casser l'ancien cache 1 mois des anciens visiteurs
   if (ct.includes("text/html") && response.status === 200) {
     const html = await response.text();
-    const htmlFrais = html.replace(/v=1795050050086/g, "v=1795144538826");
+    const htmlFrais = html.replace(/v=1795050050086/g, "v=1795192693024");
     headers.delete("content-length");
     return new Response(htmlFrais, {
       status: response.status,
