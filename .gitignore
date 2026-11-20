@@ -1,3 +1,7 @@
 *.mp4
 Desktop/
 *.bak
+cache-*.json
+rapport-*.json
+rapport-*.txt
+audit-*.js

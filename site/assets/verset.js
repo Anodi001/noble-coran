@@ -1245,7 +1245,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       }
 
       // Mettre à jour les liens internes vers les sourates pour conserver ?lang=xx
-      var liensInternes = document.querySelectorAll("a[href*='sourate-'], a[href*='index.html']");
+      var liensInternes = document.querySelectorAll("a[href*='sourate-'], a[href*='/']");
       for (var aIdx = 0; aIdx < liensInternes.length; aIdx++) {
         var aEl = liensInternes[aIdx];
         if (aEl.closest("#khatmPlannerWidgetV77")) continue;
@@ -3930,7 +3930,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
             if (sNext) {
               etatKhatm.idxByOrder[etatKhatm.order] = convertirSourateVersetVersIndexGlobal(etatKhatm.order, sNext, 1);
               sauvegarderEtatKhatm();
-              window.location.href = "sourate-" + sNext + "-verset-1.html?khatm_verse=1" + sfxL;
+              window.location.href = "sourate-" + sNext + "-verset-1?khatm_verse=1" + sfxL;
               return;
             }
           }

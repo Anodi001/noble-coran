@@ -772,7 +772,7 @@ async function recupererFichierStatiquePages(request, env) {
   return fetch(request);
 }
 
-const SSR_VERSION = "v133";
+const SSR_VERSION = "v134";
 function construireCleCache(request, lang) {
   const key = new URL(request.url);
   key.pathname = key.pathname.replace(/\.html$/i, "");
@@ -822,7 +822,14 @@ async function securiserReponse(response, pathname) {
   // Cache-busting automatique sur le HTML pour casser l'ancien cache 1 mois des anciens visiteurs
   if (ct.includes("text/html") && response.status === 200) {
     const html = await response.text();
-    const htmlFrais = html.replace(/v=1795050050086/g, "v=1795192693024");
+    const htmlPropre = remplacerHorsScriptsEtStyles(html, segment =>
+      segment
+        .replace(/href=(["'])\/?sourate-(\d+)-verset-(\d+)\.html(\?[^"']*)?\1/gi, (_, q, s, v, qs) => 'href=' + q + '/sourate-' + s + '-verset-' + v + (qs || '') + q)
+        .replace(/href=(["'])\/?index\.html(\?[^"']*)?\1/gi, (_, q, qs) => 'href=' + q + '/' + (qs || '') + q)
+        .replace(/(<(?:link|meta)[^>]+(?:href|content)="https:\/\/corantafsir\.com\/)index\.html/gi, '$1')
+        .replace(/(<(?:link|meta)[^>]+(?:href|content)="https:\/\/corantafsir\.com\/[^"]+?)\.html/gi, '$1')
+    );
+    const htmlFrais = htmlPropre.replace(/v=1795050050086/g, "v=1795192961193");
     headers.delete("content-length");
     return new Response(htmlFrais, {
       status: response.status,
