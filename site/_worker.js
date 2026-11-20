@@ -772,7 +772,7 @@ async function recupererFichierStatiquePages(request, env) {
   return fetch(request);
 }
 
-const SSR_VERSION = "v128";
+const SSR_VERSION = "v129";
 function construireCleCache(request, lang) {
   const key = new URL(request.url);
   key.pathname = key.pathname.replace(/\.html$/i, "");
@@ -794,7 +794,7 @@ const CSP_COMPATIBLE = [
   "worker-src 'self' blob:", "upgrade-insecure-requests"
 ].join("; ");
 
-function securiserReponse(response) {
+function securiserReponse(response, pathname) {
   const headers = new Headers(response.headers);
   headers.set("Content-Security-Policy", CSP_COMPATIBLE);
   headers.set("Strict-Transport-Security", "max-age=31536000");
@@ -802,6 +802,23 @@ function securiserReponse(response) {
   headers.set("X-Content-Type-Options", "nosniff");
   headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=(), usb=(), autoplay=(self)");
+
+  const p = String(pathname || "").toLowerCase();
+  const ct = (headers.get("content-type") || "").toLowerCase();
+  const estRessourceDynamique =
+    ct.includes("text/html") ||
+    p === "/sw.js" ||
+    p.endsWith(".js") ||
+    p.endsWith(".css") ||
+    p.endsWith(".json") ||
+    p === "/manifest.json";
+
+  if (estRessourceDynamique && !p.startsWith("/api/")) {
+    headers.set("Cache-Control", "public, max-age=0, must-revalidate");
+    headers.set("Cloudflare-CDN-Cache-Control", "no-store");
+    headers.set("CDN-Cache-Control", "no-store");
+  }
+
   return new Response(response.body, {
     status: response.status,
     statusText: response.statusText,
@@ -903,6 +920,6 @@ const application = {
 
 export default {
   async fetch(request, env, ctx) {
-    return securiserReponse(await application.fetch(request, env, ctx));
+    return securiserReponse(await application.fetch(request, env, ctx), new URL(request.url).pathname);
   }
 };
