@@ -1446,10 +1446,9 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     return 0;
   }
 
-  function obtenirVersetsParJour(months) {
-    var joursMap = { 1: 30, 4: 120, 6: 180, 12: 365 };
-    var j = joursMap[months] || 30;
-    return Math.ceil(TOTAL_VERSETS_CORAN / j);
+  function obtenirVersetsParJour(m) {
+    var mm = Math.max(1, Math.min(12, Number(m) || 1));
+    return Math.ceil(TOTAL_VERSETS_CORAN / (mm * 30));
   }
 
   function obtenirCleVerset() {
@@ -1674,6 +1673,29 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     return null;
   }
 
+  
+  function construireOptionsMoisKhatmV2(lang, mActuel) {
+    var html = '';
+    var mSel = Math.max(1, Math.min(12, Number(mActuel) || 1));
+    for (var mm = 1; mm <= 12; mm++) {
+      var vpj = Math.ceil(6236 / (mm * 30));
+      var lbl = '';
+      if (lang === 'en') lbl = mm + (mm === 1 ? ' Month' : ' Months') + ' (' + vpj + ' v./d)';
+      else if (lang === 'es') lbl = mm + (mm === 1 ? ' Mes' : ' Meses') + ' (' + vpj + ' a./d)';
+      else if (lang === 'ar') {
+        var mAr = mm === 1 ? 'شهر واحد' : (mm === 2 ? 'شهران' : (mm <= 10 ? (mm + ' أشهر') : (mm + ' شهراً')));
+        lbl = mAr + ' (' + vpj + ' آية/ي)';
+      }
+      else if (lang === 'de') lbl = mm + (mm === 1 ? ' Monat' : ' Monate') + ' (' + vpj + ' V./T)';
+      else if (lang === 'it') lbl = mm + (mm === 1 ? ' Mese' : ' Mesi') + ' (' + vpj + ' v./g)';
+      else if (lang === 'id') lbl = mm + ' Bulan (' + vpj + ' a./h)';
+      else if (lang === 'ru') lbl = mm + ' мес. (' + vpj + ' а./д)';
+      else lbl = mm + ' Mois (' + vpj + ' v./j)';
+      html += '<option value="' + mm + '"' + (mSel === mm ? ' selected="selected"' : '') + '>🗓️ ' + lbl + '</option>';
+    }
+    return html;
+  }
+
   function afficherOuMettreAJourPlanificateurKhatm() {
     if (!document.body) return;
     var lang = obtenirLangueActive();
@@ -1730,7 +1752,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     var nomSourateAct = NOMS_SOURATES_COURT[posInfo.s] || ("Sourate " + posInfo.s);
     var nomSourateCible = NOMS_SOURATES_COURT[cibleInfo.s] || ("Sourate " + cibleInfo.s);
     var suffixeLangUrl = lang !== "fr" ? ("&lang=" + lang) : "";
-    var urlReprise = "sourate-" + posInfo.s + "-verset-" + posInfo.v + ".html?khatm_verse=" + posInfo.v + suffixeLangUrl;
+    var urlReprise = "/sourate-" + posInfo.s + "-verset-" + posInfo.v + "?khatm_verse=" + posInfo.v + suffixeLangUrl;
 
     var cleSignatureRendu = [lang, m, ord, versetsValides, vkPage].join("|");
     if (widget.getAttribute("data-render-sig") === cleSignatureRendu) return;
@@ -1744,7 +1766,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       var sSuiv = obtenirSourateSuivanteSelonOrdre(ord, sPage);
       var btnSuivHtml = "";
       if (sSuiv) {
-        var urlSuiv = "sourate-" + sSuiv + "-verset-1.html?khatm_verse=1" + suffixeLangUrl;
+        var urlSuiv = "/sourate-" + sSuiv + "-verset-1?khatm_verse=1" + suffixeLangUrl;
         btnSuivHtml = '<a href="' + urlSuiv + '" class="khatm-btn-cyan-compact">' + t.sourateSuiv + ' ' + NOMS_SOURATES_COURT[sSuiv] + ' (' + sSuiv + ':1)</a>';
       }
       controlePositionHtml =
@@ -1768,12 +1790,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
 
     widget.innerHTML =
       '<div class="khatm-compact-row">' +
-        '<select class="khatm-reciter-select" data-khatm-sel="months">' +
-          '<option value="1"' + (m === 1 ? ' selected="selected"' : '') + '>' + t.m1 + '</option>' +
-          '<option value="4"' + (m === 4 ? ' selected="selected"' : '') + '>' + t.m4 + '</option>' +
-          '<option value="6"' + (m === 6 ? ' selected="selected"' : '') + '>' + t.m6 + '</option>' +
-          '<option value="12"' + (m === 12 ? ' selected="selected"' : '') + '>' + t.m12 + '</option>' +
-        '</select>' +
+        '<select class="khatm-reciter-select" data-khatm-sel="months">' + construireOptionsMoisKhatmV2(lang, m) + '</select>' +
         '<select class="khatm-reciter-select" data-khatm-sel="order">' +
           '<option value="revelation"' + (ord === "revelation" ? ' selected="selected"' : '') + '>' + t.ordRev + '</option>' +
           '<option value="croissant"' + (ord === "croissant" ? ' selected="selected"' : '') + '>' + t.ordAsc + '</option>' +
@@ -1789,12 +1806,10 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         '<button type="button" class="khatm-btn-reset-mini" data-khatm-act="reset" title="Reset">' + t.reset + '</button>' +
       '</div>' +
       '<div class="khatm-mini-footer">' +
-        '<span>' + t.posActuelle + ' <strong style="color:#38bdf8;">' + nomSourateAct + ' (' + posInfo.s + ':' + posInfo.v + ')</strong></span>' +
-        '<span>•</span>' +
-        '<span>' + t.objJour + ' <strong style="color:#fde047;">' + nomSourateCible + ' (' + cibleInfo.s + ':' + cibleInfo.v + ')</strong></span>' +
-        '<span>•</span>' +
+        '<span class="khatm-stat-pill">' + t.posActuelle + ' <strong class="khatm-stat-pos">' + nomSourateAct + ' (' + posInfo.s + ':' + posInfo.v + ')</strong></span>' +
+        '<span class="khatm-stat-pill">' + t.objJour + ' <strong class="khatm-stat-goal">' + nomSourateCible + ' (' + cibleInfo.s + ':' + cibleInfo.v + ')</strong></span>' +
         '<div class="khatm-mini-bar-wrap"><div class="khatm-mini-bar-fill" style="width:' + Math.max(2, Number(pct)) + '%;"></div></div>' +
-        '<span dir="ltr" style="color:#6ee7b7;font-weight:600;display:inline-block;">' + texteStatutFin + '</span>' +
+        '<span dir="ltr" class="khatm-stat-pct" style="display:inline-block;">' + texteStatutFin + '</span>' +
       '</div>';
 
     var selMonths = widget.querySelector("select[data-khatm-sel='months']");
