@@ -830,7 +830,7 @@ async function securiserReponse(response, pathname) {
         .replace(/(<(?:link|meta)[^>]+(?:href|content)="https:\/\/corantafsir\.com\/)index\.html/gi, '$1')
         .replace(/(<(?:link|meta)[^>]+(?:href|content)="https:\/\/corantafsir\.com\/[^"]+?)\.html/gi, '$1')
     );
-    const htmlFrais = htmlPropre.replace(/v=1795050050086/g, "v=1795222470095");
+    const htmlFrais = htmlPropre.replace(/v=1795050050086/g, "v=1795225571548");
     headers.delete("content-length");
     return new Response(htmlFrais, {
       status: response.status,

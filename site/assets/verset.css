@@ -1742,3 +1742,17 @@ body.wbw-fullscreen-mode .verse-stage .stage-blue-nav {
     white-space: nowrap !important;
   }
 }
+
+/* FIX_SYNC_PROGRESS_FS_V1 */
+body.wbw-fullscreen-mode .verse-stage .sync-progress-track {
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  max-width: none !important;
+  height: 2.5px !important;
+  z-index: 100030 !important;
+  pointer-events: none !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+}
