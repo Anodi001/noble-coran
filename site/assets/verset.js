@@ -414,7 +414,7 @@
   function allerAuVerset(n, auto) {
     const _mLp = (window.location.pathname || "").match(/^\/(en|es|ar|de|it|id|ru)\//i); const _prefU = _mLp ? ("/" + _mLp[1].toLowerCase() + "/") : "/";
     if (!window.SOURATE_DATA || !window.SOURATE_DATA.versets[n - 1]) { window.location.href = _prefU + "sourate-" + numSourateActuelle + "-verset-" + n; return; }
-    if (!audio.paused) audio.pause(); arreterVisuel();
+    if (window.__wbwAudioClickPro) window.__wbwAudioClickPro.stopper(); if (!audio.paused) audio.pause(); arreterVisuel();
     numVersetActuel = n; const vD = window.SOURATE_DATA.versets[n - 1]; codeAudio = vD.codeAudio; majAudio();
     memoriserLecture(numSourateActuelle, n);
     document.getElementById('badgeNumEl').textContent = numSourateActuelle + " : " + n;
@@ -5066,12 +5066,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
           idxCarte = Array.prototype.slice.call(carteCliquee.parentElement.querySelectorAll('.wbw-card-v110, .wbw-word-box, .wbw-card-unit')).indexOf(carteCliquee);
         }
         if (idxCarte < 0) idxCarte = 0;
-        if (window.__wbwAudioClickPro && !window.__wbwAudioClickPro.estVersetEnLecture()) {
-          window.__wbwAudioClickPro.jouer(carteCliquee, idxCarte);
-        } else {
-          if (window.__wbwAudioClickPro) window.__wbwAudioClickPro.stopper();
-          allerAuDebutDuMot(idxCarte);
-        }
+        if (window.__wbwAudioClickPro) window.__wbwAudioClickPro.jouer(carteCliquee, idxCarte);
         return false;
       }
       var motNormalClique = e.target && e.target.closest ? e.target.closest('.inline-clickable-word, .ar-word-follow') : null;
@@ -5080,17 +5075,8 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         var pCont = motNormalClique.parentElement;
         var tousM = pCont ? Array.prototype.slice.call(pCont.querySelectorAll('.inline-clickable-word, .ar-word-follow')) : [];
         var idxM = tousM.indexOf(motNormalClique);
-        if (idxM >= 0) {
-          if (window.__wbwAudioClickPro && !window.__wbwAudioClickPro.estVersetEnLecture()) {
-            window.__wbwAudioClickPro.jouer(motNormalClique, idxM);
-          } else {
-            if (window.__wbwAudioClickPro) window.__wbwAudioClickPro.stopper();
-            var audM = document.getElementById('ayahAudio');
-            if (audM && audM.duration) {
-              audM.currentTime = (idxM / Math.max(1, tousM.length)) * audM.duration * 0.94;
-              if (audM.paused) { var pB = document.getElementById('playSyncBtn'); if (pB) pB.click(); else audM.play().catch(function(){}); }
-            }
-          }
+        if (idxM >= 0 && window.__wbwAudioClickPro) {
+          window.__wbwAudioClickPro.jouer(motNormalClique, idxM);
         }
         return false;
       }
@@ -6338,10 +6324,10 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
 })();
 
 
-/* === MODULE AUDIO MOT-A-MOT HYBRIDE PRO V1 === */
+/* === MODULE AUDIO MOT-A-MOT PRO V2 === */
 (function() {
-  if (window.__MODULE_WBW_AUDIO_CLICK_V1__) return;
-  window.__MODULE_WBW_AUDIO_CLICK_V1__ = true;
+  if (window.__MODULE_WBW_AUDIO_CLICK_V2__) return;
+  window.__MODULE_WBW_AUDIO_CLICK_V2__ = true;
 
   var player = null;
   var activeEl = null;
@@ -6395,6 +6381,20 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     }
   }
 
+  function pauserVersetProprement() {
+    var aud = document.getElementById('ayahAudio');
+    if (aud && !aud.paused && !aud.ended) {
+      if (typeof window.toggleAudioSync === 'function') {
+        try { window.toggleAudioSync(); } catch (e) { aud.pause(); }
+      } else {
+        aud.pause();
+      }
+      if (!aud.paused) {
+        try { aud.pause(); } catch (e) {}
+      }
+    }
+  }
+
   function pad3(n) {
     return String(Math.max(1, parseInt(n, 10) || 1)).padStart(3, '0');
   }
@@ -6428,6 +6428,9 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     var url = construireUrlMot(el, idx0);
     if (!url) return false;
 
+    // Mettre le verset en pause proprement (zéro superposition ni bégaiement)
+    pauserVersetProprement();
+
     var p = getPlayer();
     var myToken = ++playToken;
 
@@ -6439,12 +6442,12 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         if (myToken === playToken && activeEl === el && p.readyState < 3) {
           el.classList.add('wbw-word-loading');
         }
-      }, 150);
+      }, 160);
     }
 
     safetyTimer = setTimeout(function() {
       if (myToken === playToken) nettoyerVisuel();
-    }, 7000);
+    }, 6500);
 
     try {
       if (p.src === url && p.readyState >= 2) {
@@ -6465,15 +6468,10 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     return true;
   }
 
-  function estVersetEnLecture() {
-    var aud = document.getElementById('ayahAudio');
-    return !!(aud && !aud.paused && !aud.ended);
-  }
-
   function attacherArretAuto() {
     var aud = document.getElementById('ayahAudio');
-    if (aud && !aud.__wbwStopHookedV1) {
-      aud.__wbwStopHookedV1 = true;
+    if (aud && !aud.__wbwStopHookedV2) {
+      aud.__wbwStopHookedV2 = true;
       aud.addEventListener('play', stopperMotIsole);
     }
   }
@@ -6491,7 +6489,6 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   window.__wbwAudioClickPro = {
     jouer: jouerMotIsole,
     stopper: stopperMotIsole,
-    estVersetEnLecture: estVersetEnLecture,
     attacherArretAuto: attacherArretAuto
   };
 })();
