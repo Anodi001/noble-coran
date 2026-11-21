@@ -5243,7 +5243,9 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       });
       wrap.addEventListener('pointerdown', function(ev) {
         ev.stopPropagation(); ev.stopImmediatePropagation(); ev.preventDefault();
-        allerAuDebutDuMot(parseInt(wrap.dataset.wbwIdx, 10) || 0);
+        var idxScrub = parseInt(wrap.dataset.wbwIdx, 10) || 0;
+        var carteScrub = wrap.closest ? wrap.closest('.wbw-card-v110, .wbw-word-box, .wbw-card-unit') : wrap.parentElement;
+        if (window.__wbwAudioClickPro && carteScrub) window.__wbwAudioClickPro.jouer(carteScrub, idxScrub);
       }, false);
     }
     return { wrap: wrap, track: wrap.querySelector('.wbw-scrub-track'), fill: wrap.querySelector('.wbw-scrub-fill') };
@@ -6410,18 +6412,13 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   }
 
   function construireUrlMot(el, idx0) {
-    var raw = (el && el.dataset && el.dataset.wbwAudioUrl) ? el.dataset.wbwAudioUrl.trim() : '';
-    if (raw) {
-      if (/^https?:\/\//i.test(raw)) return raw;
-      return 'https://audio.qurancdn.com/' + raw.replace(/^\/+/, '');
-    }
     var sv = trouverSV();
     if (!sv) return '';
-    var pos = (el && el.dataset && el.dataset.wbwPos)
-      ? parseInt(el.dataset.wbwPos, 10)
-      : ((el && el.dataset && el.dataset.wbwOrd) ? parseInt(el.dataset.wbwOrd, 10) : (idx0 + 1));
-    if (!pos || pos < 1) pos = idx0 + 1;
-    return 'https://audio.qurancdn.com/wbw/' + pad3(sv.s) + '_' + pad3(sv.v) + '_' + pad3(pos) + '.mp3';
+    var ord = (el && el.dataset && el.dataset.wbwOrd)
+      ? parseInt(el.dataset.wbwOrd, 10)
+      : (idx0 + 1);
+    if (!ord || ord < 1) ord = idx0 + 1;
+    return 'https://audio.qurancdn.com/wbw/' + pad3(sv.s) + '_' + pad3(sv.v) + '_' + pad3(ord) + '.mp3';
   }
 
   function jouerMotIsole(el, idx0) {

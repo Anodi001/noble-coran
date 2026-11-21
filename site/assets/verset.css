@@ -1824,3 +1824,23 @@ body.wbw-fullscreen-mode .verse-stage .sync-progress-track {
 .wbw-word-loading {
   opacity: 0.78 !important;
 }
+
+
+/* WBW_WORD_AUDIO_UX_V3 */
+.wbw-word-box,
+.wbw-word-box *,
+.wbw-card-v110,
+.wbw-card-v110 *,
+.wbw-card-unit,
+.wbw-card-unit *,
+.inline-clickable-word,
+.inline-clickable-word * {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+
+.wbw-scrub-wrap,
+.wbw-scrub-wrap * {
+  pointer-events: none !important;
+}
