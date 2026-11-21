@@ -429,12 +429,45 @@
   }
 
   function naviguerVerset(ev, lien, auto) {
-    const m = String(lien).split('?')[0].match(/^(?:\/(?:en|es|ar|de|it|id|ru))?\/?sourate-(\d+)-verset-(\d+)(?:\.html)?$/i);
-    if (m && Number(m[1]) === numSourateActuelle) { if (ev) ev.preventDefault(); allerAuVerset(Number(m[2]), auto); return false; }
-    if (auto) { window.location.href = String(lien).split('?')[0].replace(/\.html$/i, "") + "?autoplay=1"; return false; }
+    const m = String(lien || '').split('?')[0].match(/^(?:\/(?:en|es|ar|de|it|id|ru))?\/?sourate-(\d+)-verset-(\d+)(?:\.html)?$/i);
+    if (m && Number(m[1]) === numSourateActuelle) {
+      if (ev) ev.preventDefault();
+      allerAuVerset(Number(m[2]), auto);
+      return false;
+    }
+    const estClicSuivant = Boolean(
+      (ev && ev.currentTarget && ev.currentTarget.id === 'nextVerseLink') ||
+      (ev && ev.target && ev.target.closest && ev.target.closest('#nextVerseLink')) ||
+      (!ev && auto)
+    );
+    if (estClicSuivant) {
+      if (ev) ev.preventDefault();
+      if (window.__wbwAudioClickPro) window.__wbwAudioClickPro.stopper();
+      if (!audio.paused) audio.pause();
+      arreterVisuel();
+      if (typeof window.__ouvrirModalFinSourate === 'function') {
+        window.__ouvrirModalFinSourate(numSourateActuelle);
+      }
+      return false;
+    }
     return true;
   }
-  audio.onended = () => { arreterVisuel(); if (autoCheck.checked) naviguerVerset(null, document.getElementById('nextVerseLink').getAttribute('href'), true); };
+  audio.onended = () => {
+    arreterVisuel();
+    if (!autoCheck.checked) return;
+    const nextHref = document.getElementById('nextVerseLink').getAttribute('href');
+    const mNext = String(nextHref || '').split('?')[0].match(/^(?:\/(?:en|es|ar|de|it|id|ru))?\/?sourate-(\d+)-verset-(\d+)(?:\.html)?$/i);
+    if (mNext && Number(mNext[1]) === numSourateActuelle) {
+      naviguerVerset(null, nextHref, true);
+    } else {
+      setTimeout(() => {
+        const totalV = (window.SOURATE_DATA && window.SOURATE_DATA.nbVersets) ? Number(window.SOURATE_DATA.nbVersets) : numVersetActuel;
+        if (audio.paused && numVersetActuel >= totalV && typeof window.__ouvrirModalFinSourate === 'function') {
+          window.__ouvrirModalFinSourate(numSourateActuelle);
+        }
+      }, 90);
+    }
+  };
 
   
 ;
@@ -1379,6 +1412,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   ];
 
   var TOTAL_VERSETS_CORAN = 6236;
+  window.__CORAN_META_114 = { nbVersets: NB_VERSETS_PAR_SOURATE, ordreRev: ORDRE_REVELATION_114, noms: NOMS_SOURATES_COURT };
   var etatKhatm = {
     months: 1,
     order: "revelation",
@@ -4016,25 +4050,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         window.__wbwSuiviBoutonActif = Boolean(suiviEstActif);
         etapeSuiviAudioAfterEffects();
         lancerBoucleSuivi();
-      } else if (t.indexOf("Suivant") !== -1 || t.indexOf("Next") !== -1 || t.indexOf("Siguiente") !== -1 || t.indexOf("Weiter") !== -1 || t.indexOf("Successivo") !== -1 || t.indexOf("Berikutnya") !== -1 || t.indexOf("Далее") !== -1) {
-        var vkNow = obtenirCleVerset();
-        if (vkNow) {
-          var pNow = vkNow.split(":");
-          var sNow = Number(pNow[0]);
-          var vNow = Number(pNow[1]);
-          if (sNow && vNow && vNow >= NB_VERSETS_PAR_SOURATE[sNow]) {
-            var sNext = obtenirSourateSuivanteSelonOrdre(etatKhatm.order, sNow);
-            var langCurr = obtenirLangueActive();
-            var sfxL = langCurr !== "fr" ? ("&lang=" + langCurr) : "";
-            if (sNext) {
-              etatKhatm.idxByOrder[etatKhatm.order] = convertirSourateVersetVersIndexGlobal(etatKhatm.order, sNext, 1);
-              sauvegarderEtatKhatm();
-              window.location.href = "sourate-" + sNext + "-verset-1?khatm_verse=1" + sfxL;
-              return;
-            }
-          }
-        }
-      }
+      } /* Fin de sourate gérée proprement par la modale dédiée */
     }
     setTimeout(synchroniserTout, 15);
     setTimeout(synchroniserTout, 80);
@@ -5938,14 +5954,33 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
 
   function construireIndex(data) {
     var idx = {};
+    var vusParSourate = {};
     var recits = (data && data.recits) ? data.recits : {};
-    for (var cle in recits) {
+    var cles = Object.keys(recits).sort(function (a, b) {
+      var pa = String(a).split(":"), pb = String(b).split(":");
+      return (Number(pa[0]) - Number(pb[0])) || (Number(pa[1]) - Number(pb[1]));
+    });
+    for (var k = 0; k < cles.length; k++) {
+      var cle = cles[k];
       var r = recits[cle];
-      if (!r) continue;
-      idx[cle] = r;
-      if (Array.isArray(r.versets)) {
-        for (var i = 0; i < r.versets.length; i++) idx[r.versets[i]] = r;
+      if (!r || !r.texte) continue;
+
+      var cible = cle;
+      if (Array.isArray(r.versets) && r.versets.length > 0) {
+        var tries = r.versets.slice().sort(function (a, b) {
+          var pa = String(a).split(":"), pb = String(b).split(":");
+          return (Number(pa[0]) - Number(pb[0])) || (Number(pa[1]) - Number(pb[1]));
+        });
+        if (tries[0]) cible = tries[0];
       }
+
+      var sNum = String(cible).split(":")[0];
+      var empreinte = String(r.texte.fr || r.texte.en || r.texte.ar || "").replace(/\s+/g, " ").trim().slice(0, 140).toLowerCase();
+      var cleDedup = sNum + "|" + empreinte;
+      if (empreinte && vusParSourate[cleDedup]) continue;
+      if (empreinte) vusParSourate[cleDedup] = true;
+
+      if (!idx[cible]) idx[cible] = r;
     }
     return idx;
   }
@@ -5988,6 +6023,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
 
     if (!recit || !recit.texte) {
       if (cont.innerHTML !== "") cont.innerHTML = "";
+      cont.removeAttribute("data-asbab-sig");
       return;
     }
 
@@ -6583,4 +6619,310 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     sauterMotClassique: sauterMotClassique,
     attacherArretAuto: attacherArretAuto
   };
+})();
+
+
+/* === MODULE FIN DE SOURATE & CHOIX SOURATE V1 === */
+(function() {
+  if (window.__MODULE_FIN_SOURATE_V1__) return;
+  window.__MODULE_FIN_SOURATE_V1__ = true;
+
+  var I18N_FIN = {
+    fr: {
+      badge: "Lecture en pause",
+      titre: "Fin de la sourate",
+      sous: "La récitation est terminée et mise en pause. Choisissez dans quelle sourate continuer :",
+      prec: "Sourate précédente",
+      suiv: "Sourate suivante",
+      rev: "Suivante (ordre de révélation)",
+      choisir: "Ou choisir n'importe quelle sourate :",
+      ordAsc: "1 → 114",
+      ordDesc: "114 → 1",
+      ordRev: "Révélation",
+      ouvrir: "Aller à cette sourate ›",
+      rejouer: "↻ Rejouer cette sourate",
+      fermer: "Rester ici",
+      versets: "v."
+    },
+    en: {
+      badge: "Playback paused",
+      titre: "End of Surah",
+      sous: "Recitation has finished and paused. Choose which Surah to continue with:",
+      prec: "Previous Surah",
+      suiv: "Next Surah",
+      rev: "Next (Revelation order)",
+      choisir: "Or pick any Surah:",
+      ordAsc: "1 → 114",
+      ordDesc: "114 → 1",
+      ordRev: "Revelation",
+      ouvrir: "Go to this Surah ›",
+      rejouer: "↻ Replay this Surah",
+      fermer: "Stay here",
+      versets: "v."
+    },
+    es: {
+      badge: "Reproducción en pausa",
+      titre: "Fin de la Sura",
+      sous: "La recitación ha terminado y está en pausa. Elige con qué Sura continuar:",
+      prec: "Sura anterior",
+      suiv: "Sura siguiente",
+      rev: "Siguiente (orden de revelación)",
+      choisir: "O elige cualquier Sura:",
+      ordAsc: "1 → 114",
+      ordDesc: "114 → 1",
+      ordRev: "Revelación",
+      ouvrir: "Ir a esta Sura ›",
+      rejouer: "↻ Repetir esta Sura",
+      fermer: "Quedarse aquí",
+      versets: "a."
+    },
+    ar: {
+      badge: "تم إيقاف التلاوة مؤقتاً",
+      titre: "نهاية سورة",
+      sous: "انتهت التلاوة وتم إيقافها مؤقتاً. اختر السورة التي تريد الانتقال إليها:",
+      prec: "السورة السابقة",
+      suiv: "السورة التالية",
+      rev: "التالية (ترتيب النزول)",
+      choisir: "أو اختر أي سورة:",
+      ordAsc: "1 → 114",
+      ordDesc: "114 → 1",
+      ordRev: "النزول",
+      ouvrir: "الانتقال إلى هذه السورة ‹",
+      rejouer: "↻ إعادة السورة",
+      fermer: "البقاء هنا",
+      versets: "آية"
+    },
+    de: {
+      badge: "Wiedergabe pausiert",
+      titre: "Ende der Sure",
+      sous: "Die Rezitation ist beendet und pausiert. Wählen Sie die nächste Sure:",
+      prec: "Vorherige Sure",
+      suiv: "Nächste Sure",
+      rev: "Nächste (Offenbarung)",
+      choisir: "Oder beliebige Sure wählen:",
+      ordAsc: "1 → 114",
+      ordDesc: "114 → 1",
+      ordRev: "Offenbarung",
+      ouvrir: "Zu dieser Sure ›",
+      rejouer: "↻ Sure wiederholen",
+      fermer: "Hier bleiben",
+      versets: "V."
+    },
+    it: {
+      badge: "Riproduzione in pausa",
+      titre: "Fine della Sura",
+      sous: "La recitazione è terminata ed è in pausa. Scegli la prossima Sura:",
+      prec: "Sura precedente",
+      suiv: "Sura successiva",
+      rev: "Successiva (Rivelazione)",
+      choisir: "Oppure scegli qualsiasi Sura:",
+      ordAsc: "1 → 114",
+      ordDesc: "114 → 1",
+      ordRev: "Rivelazione",
+      ouvrir: "Vai a questa Sura ›",
+      rejouer: "↻ Riascolta questa Sura",
+      fermer: "Resta qui",
+      versets: "v."
+    },
+    id: {
+      badge: "Pemutaran dijeda",
+      titre: "Akhir Surah",
+      sous: "Bacaan telah selesai dan dijeda. Pilih Surah berikutnya:",
+      prec: "Surah sebelumnya",
+      suiv: "Surah berikutnya",
+      rev: "Berikutnya (Urutan Wahyu)",
+      choisir: "Atau pilih Surah apa saja:",
+      ordAsc: "1 → 114",
+      ordDesc: "114 → 1",
+      ordRev: "Wahyu",
+      ouvrir: "Buka Surah ini ›",
+      rejouer: "↻ Putar ulang Surah",
+      fermer: "Tetap di sini",
+      versets: "ayat"
+    },
+    ru: {
+      badge: "Воспроизведение на паузе",
+      titre: "Конец суры",
+      sous: "Чтение завершено и поставлено на паузу. Выберите следующую суру:",
+      prec: "Предыдущая сура",
+      suiv: "Следующая сура",
+      rev: "Следующая (по ниспосланию)",
+      choisir: "Или выберите любую суру:",
+      ordAsc: "1 → 114",
+      ordDesc: "114 → 1",
+      ordRev: "Ниспослание",
+      ouvrir: "Перейти к суре ›",
+      rejouer: "↻ Повторить суру",
+      fermer: "Остаться здесь",
+      versets: "аят."
+    }
+  };
+
+  function detectLang() {
+    var m = (window.location.pathname || "").match(/^\/(en|es|ar|de|it|id|ru)\//i);
+    if (m) return m[1].toLowerCase();
+    var l = (document.documentElement.lang || "fr").slice(0, 2).toLowerCase();
+    return I18N_FIN[l] ? l : "fr";
+  }
+
+  function prefUrl() {
+    var m = (window.location.pathname || "").match(/^\/(en|es|ar|de|it|id|ru)\//i);
+    return m ? ("/" + m[1].toLowerCase() + "/") : "/";
+  }
+
+  function allerSourate(numS) {
+    var s = Math.max(1, Math.min(114, parseInt(numS, 10) || 1));
+    window.location.href = prefUrl() + "sourate-" + s + "-verset-1";
+  }
+
+  function fermerModal() {
+    var ov = document.getElementById("finSourateModalV1");
+    if (ov) ov.classList.remove("open");
+  }
+
+  function remplirSelect(sel, ordre, defautS, t) {
+    var meta = window.__CORAN_META_114;
+    if (!meta || !sel) return;
+    var liste = [];
+    if (ordre === "desc") {
+      for (var d = 114; d >= 1; d--) liste.push(d);
+    } else if (ordre === "rev" && Array.isArray(meta.ordreRev)) {
+      liste = meta.ordreRev.slice();
+    } else {
+      for (var c = 1; c <= 114; c++) liste.push(c);
+    }
+    var html = "";
+    for (var i = 0; i < liste.length; i++) {
+      var s = liste[i];
+      var nom = (meta.noms && meta.noms[s]) ? meta.noms[s] : ("Sourate " + s);
+      var nb = (meta.nbVersets && meta.nbVersets[s]) ? meta.nbVersets[s] : "";
+      var prefix = (ordre === "rev") ? ("#" + (i + 1) + " • n°" + s + " ") : (s + ". ");
+      html += '<option value="' + s + '"' + (s === defautS ? ' selected' : '') + '>' + prefix + nom + ' (' + nb + ' ' + t.versets + ')</option>';
+    }
+    sel.innerHTML = html;
+  }
+
+  function ouvrirModalFinSourate(numSActuel) {
+    var meta = window.__CORAN_META_114;
+    if (!meta) return;
+    var s = parseInt(numSActuel, 10) || 1;
+    var lang = detectLang();
+    var t = I18N_FIN[lang] || I18N_FIN.fr;
+    var isAr = lang === "ar";
+
+    var ov = document.getElementById("finSourateModalV1");
+    if (!ov) {
+      ov = document.createElement("div");
+      ov.id = "finSourateModalV1";
+      ov.className = "fin-sourate-overlay notranslate";
+      ov.setAttribute("translate", "no");
+      ov.addEventListener("click", function(e) {
+        if (e.target === ov) fermerModal();
+      });
+      document.body.appendChild(ov);
+    }
+
+    var nomActuel = (meta.noms && meta.noms[s]) ? meta.noms[s] : ("#" + s);
+    var sPrec = s > 1 ? s - 1 : null;
+    var sSuiv = s < 114 ? s + 1 : null;
+    var sRevNext = null;
+    if (Array.isArray(meta.ordreRev)) {
+      var idxRev = meta.ordreRev.indexOf(s);
+      if (idxRev !== -1 && idxRev + 1 < meta.ordreRev.length) {
+        var cand = meta.ordreRev[idxRev + 1];
+        if (cand !== sPrec && cand !== sSuiv) sRevNext = cand;
+      }
+    }
+
+    var defautChoix = sSuiv || sPrec || 1;
+    var ordreInitial = (s >= 78) ? "desc" : "asc";
+
+    var quickHtml = "";
+    if (sPrec) {
+      quickHtml +=
+        '<button type="button" class="fin-sourate-quick-btn' + (s === 114 ? ' primary' : '') + '" data-goto-s="' + sPrec + '">' +
+          '<span class="fsq-label">← ' + t.prec + '</span>' +
+          '<span class="fsq-name">' + sPrec + '. ' + meta.noms[sPrec] + ' <small>(' + meta.nbVersets[sPrec] + ' ' + t.versets + ')</small></span>' +
+        '</button>';
+    }
+    if (sSuiv) {
+      quickHtml +=
+        '<button type="button" class="fin-sourate-quick-btn primary" data-goto-s="' + sSuiv + '">' +
+          '<span class="fsq-label">' + t.suiv + ' →</span>' +
+          '<span class="fsq-name">' + sSuiv + '. ' + meta.noms[sSuiv] + ' <small>(' + meta.nbVersets[sSuiv] + ' ' + t.versets + ')</small></span>' +
+        '</button>';
+    }
+    if (sRevNext) {
+      quickHtml +=
+        '<button type="button" class="fin-sourate-quick-btn gold" data-goto-s="' + sRevNext + '">' +
+          '<span class="fsq-label">✦ ' + t.rev + '</span>' +
+          '<span class="fsq-name">n°' + sRevNext + ' ' + meta.noms[sRevNext] + ' <small>(' + meta.nbVersets[sRevNext] + ' ' + t.versets + ')</small></span>' +
+        '</button>';
+    }
+
+    ov.innerHTML =
+      '<div class="fin-sourate-card" dir="' + (isAr ? 'rtl' : 'ltr') + '">' +
+        '<div class="fin-sourate-pill">⏸ ' + t.badge + '</div>' +
+        '<h3 class="fin-sourate-title">' + t.titre + ' ' + nomActuel + ' (n°' + s + ')</h3>' +
+        '<p class="fin-sourate-sub">' + t.sous + '</p>' +
+        '<div class="fin-sourate-quick-grid">' + quickHtml + '</div>' +
+        '<div class="fin-sourate-picker-box">' +
+          '<div class="fin-sourate-picker-head">' +
+            '<span>' + t.choisir + '</span>' +
+            '<div class="fin-sourate-order-tabs">' +
+              '<button type="button" class="fso-tab' + (ordreInitial === 'asc' ? ' active' : '') + '" data-ord="asc">' + t.ordAsc + '</button>' +
+              '<button type="button" class="fso-tab' + (ordreInitial === 'desc' ? ' active' : '') + '" data-ord="desc">' + t.ordDesc + '</button>' +
+              '<button type="button" class="fso-tab" data-ord="rev">' + t.ordRev + '</button>' +
+            '</div>' +
+          '</div>' +
+          '<div class="fin-sourate-select-row">' +
+            '<select id="finSourateSelectV1" class="fin-sourate-select"></select>' +
+            '<button type="button" id="finSourateGoBtnV1" class="fin-sourate-go-btn">' + t.ouvrir + '</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="fin-sourate-footer">' +
+          '<button type="button" id="finSourateReplayV1" class="fin-sourate-sec-btn">' + t.rejouer + '</button>' +
+          '<button type="button" id="finSourateCloseV1" class="fin-sourate-sec-btn">' + t.fermer + '</button>' +
+        '</div>' +
+      '</div>';
+
+    var selEl = ov.querySelector("#finSourateSelectV1");
+    remplirSelect(selEl, ordreInitial, defautChoix, t);
+
+    ov.querySelectorAll("[data-goto-s]").forEach(function(b) {
+      b.addEventListener("click", function() { allerSourate(b.getAttribute("data-goto-s")); });
+    });
+
+    ov.querySelectorAll(".fso-tab").forEach(function(tab) {
+      tab.addEventListener("click", function() {
+        ov.querySelectorAll(".fso-tab").forEach(function(x) { x.classList.remove("active"); });
+        tab.classList.add("active");
+        var curVal = parseInt(selEl.value, 10) || defautChoix;
+        remplirSelect(selEl, tab.getAttribute("data-ord"), curVal, t);
+      });
+    });
+
+    ov.querySelector("#finSourateGoBtnV1").addEventListener("click", function() {
+      allerSourate(selEl.value);
+    });
+
+    ov.querySelector("#finSourateReplayV1").addEventListener("click", function() {
+      fermerModal();
+      if (typeof allerAuVerset === "function") {
+        allerAuVerset(1, true);
+      } else {
+        window.location.href = prefUrl() + "sourate-" + s + "-verset-1?autoplay=1";
+      }
+    });
+
+    ov.querySelector("#finSourateCloseV1").addEventListener("click", fermerModal);
+
+    requestAnimationFrame(function() { ov.classList.add("open"); });
+  }
+
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") fermerModal();
+  });
+
+  window.__ouvrirModalFinSourate = ouvrirModalFinSourate;
 })();

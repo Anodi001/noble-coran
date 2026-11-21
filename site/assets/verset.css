@@ -1897,3 +1897,282 @@ body.wbw-fullscreen-mode .verse-stage .sync-progress-track {
 .wbw-scrub-wrap {
   margin-bottom: 6px !important;
 }
+
+
+/* === REV_BADGE_GOLD_AND_END_SURAH_MODAL_V1 === */
+/* Mise en avant dorée & animée du badge "XXe Sourate révélée" */
+#revOrderTagEl {
+  position: relative !important;
+  overflow: hidden !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.24), rgba(180, 83, 9, 0.18), rgba(251, 191, 36, 0.26)) !important;
+  color: #fde68a !important;
+  border: 1.5px solid rgba(251, 191, 36, 0.85) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.2px !important;
+  text-shadow: 0 0 10px rgba(251, 191, 36, 0.45) !important;
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.34), inset 0 0 12px rgba(251, 191, 36, 0.16) !important;
+  animation: revGoldPulseV1 3s ease-in-out infinite !important;
+}
+
+#revOrderTagEl::before {
+  content: "✦";
+  color: #fbbf24;
+  font-size: 0.92em;
+  text-shadow: 0 0 8px rgba(251, 191, 36, 0.85);
+}
+
+#revOrderTagEl::after {
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: -70%;
+  width: 48%;
+  height: 160%;
+  background: linear-gradient(110deg, transparent 0%, rgba(254, 243, 199, 0.48) 50%, transparent 100%);
+  transform: skewX(-22deg);
+  pointer-events: none;
+  animation: revGoldShimmerV1 3.6s ease-in-out infinite;
+}
+
+@keyframes revGoldPulseV1 {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.30), inset 0 0 10px rgba(251, 191, 36, 0.14);
+    border-color: rgba(251, 191, 36, 0.78);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(251, 191, 36, 0.62), inset 0 0 16px rgba(254, 243, 199, 0.24);
+    border-color: rgba(254, 240, 138, 1);
+  }
+}
+
+@keyframes revGoldShimmerV1 {
+  0%, 58% { left: -70%; opacity: 0; }
+  66% { opacity: 1; }
+  100% { left: 135%; opacity: 0; }
+}
+
+/* Modale Fin de Sourate (pause propre + sélection prochaine sourate) */
+.fin-sourate-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99995;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(2, 8, 18, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.24s ease;
+}
+
+.fin-sourate-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.fin-sourate-card {
+  width: 100%;
+  max-width: 470px;
+  background: linear-gradient(165deg, rgba(10, 22, 38, 0.97), rgba(4, 12, 24, 0.98));
+  border: 1.5px solid rgba(56, 189, 248, 0.42);
+  border-radius: 22px;
+  padding: 22px 20px 18px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65), 0 0 32px rgba(14, 165, 233, 0.18);
+  color: #f1f5f9;
+  transform: translateY(14px) scale(0.97);
+  transition: transform 0.26s ease;
+}
+
+.fin-sourate-overlay.open .fin-sourate-card {
+  transform: translateY(0) scale(1);
+}
+
+.fin-sourate-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.14);
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  color: #7dd3fc;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.fin-sourate-title {
+  margin: 0 0 6px;
+  font-size: 1.24rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.fin-sourate-sub {
+  margin: 0 0 16px;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  line-height: 1.45;
+}
+
+.fin-sourate-quick-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 9px;
+  margin-bottom: 16px;
+}
+
+.fin-sourate-quick-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(15, 32, 54, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.34);
+  color: #e2e8f0;
+  cursor: pointer;
+  text-align: start;
+  transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+
+.fin-sourate-quick-btn:hover {
+  transform: translateY(-1px);
+  border-color: #38bdf8;
+  background: rgba(20, 44, 74, 0.95);
+}
+
+.fin-sourate-quick-btn.primary {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.26), rgba(2, 132, 199, 0.16));
+  border-color: rgba(56, 189, 248, 0.72);
+}
+
+.fin-sourate-quick-btn.gold {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(180, 83, 9, 0.12));
+  border-color: rgba(251, 191, 36, 0.55);
+}
+
+.fin-sourate-quick-btn .fsq-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #7dd3fc;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.fin-sourate-quick-btn.gold .fsq-label {
+  color: #fde68a;
+}
+
+.fin-sourate-quick-btn .fsq-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.fin-sourate-quick-btn .fsq-name small {
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+.fin-sourate-picker-box {
+  background: rgba(8, 18, 32, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 14px;
+}
+
+.fin-sourate-picker-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.fin-sourate-order-tabs {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.fso-tab {
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  background: rgba(15, 23, 42, 0.8);
+  color: #94a3b8;
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.fso-tab.active {
+  background: rgba(56, 189, 248, 0.24);
+  border-color: #38bdf8;
+  color: #e0f2fe;
+}
+
+.fin-sourate-select-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fin-sourate-select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 11px;
+  background: #0b1728;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #f8fafc;
+  font-size: 0.94rem;
+  font-weight: 600;
+}
+
+.fin-sourate-go-btn {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 11px;
+  border: none;
+  background: linear-gradient(135deg, #38bdf8, #0284c7);
+  color: #021019;
+  font-size: 0.94rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.fin-sourate-footer {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.fin-sourate-sec-btn {
+  flex: 1;
+  padding: 9px 12px;
+  border-radius: 11px;
+  background: rgba(30, 41, 59, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.26);
+  color: #cbd5e1;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.fin-sourate-sec-btn:hover {
+  border-color: rgba(56, 189, 248, 0.55);
+  color: #fff;
+}
