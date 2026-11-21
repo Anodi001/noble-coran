@@ -3533,28 +3533,47 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     return { type: "spans", items: conteneur.querySelectorAll("span") };
   }
 
-  function reinitialiserMotsEnBlancTamise() { window.__wbwResetDemande = true; window.__wbwEnergies = []; window.__wbwBleus = []; window.__wbwActiveFloat = -1; window.__wbwIdxEntier = -1; window.__wbwLectureActive = false; window.__wbwIdxEntier = -1; 
+  function reinitialiserMotsEnBlancTamise() {
+    window.__wbwResetDemande = true;
+    window.__wbwEnergies = [];
+    window.__wbwBleus = [];
+    window.__wbwActiveFloat = -1;
+    window.__wbwIdxEntier = -1;
+    window.__wbwLectureActive = false;
     energiesMots = [];
     bleusMots = [];
     var cibleObj = obtenirElementsMotsAAnimer();
     var items = cibleObj.items;
     var estCartes = cibleObj.type === "cartes";
+    var estMob = window.__aeIsMobile ? window.__aeIsMobile() : false;
+    var haloRepos = estMob
+      ? "0 0 12px rgba(56, 189, 248, 0.50)"
+      : "0 0 9px rgba(255, 255, 255, 0.62), 0 0 16px rgba(56, 189, 248, 0.56), 0 0 28px rgba(14, 165, 233, 0.34)";
+    var modeBrillant = !suiviEstActif;
     for (var i = 0; i < items.length; i++) {
       var el = items[i];
+      el.__lastAk = "";
+      el.__aeGlowKey = "";
+      el.__aeHasGlow = modeBrillant;
       el.style.setProperty("transform", "translate3d(0, 0px, 0) scale(1)", "important");
       el.style.setProperty("filter", "none", "important");
-      if (estCartes) { if (window.__wbwBypassOrigCartes) continue;
-        el.style.setProperty("opacity", "0.82", "important");
-        el.style.setProperty("border-color", "rgba(255, 255, 255, 0.15)", "important");
+      if (estCartes) {
+        if (window.__wbwBypassOrigCartes) continue;
+        el.style.setProperty("opacity", modeBrillant ? "1" : "0.78", "important");
+        el.style.setProperty("border-color", modeBrillant ? "rgba(56, 189, 248, 0.25)" : "rgba(255, 255, 255, 0.15)", "important");
         el.style.setProperty("box-shadow", "none", "important");
+      } else if (modeBrillant) {
+        el.style.setProperty("opacity", "1", "important");
+        el.style.setProperty("color", "#ffffff", "important");
+        el.style.setProperty("text-shadow", haloRepos, "important");
       } else {
-        el.style.setProperty("opacity", "0.78", "important");
-        el.style.setProperty("color", "rgba(255, 255, 255, 0.78)", "important");
-        el.style.setProperty("text-shadow", "0 0 8px rgba(255, 255, 255, 0.14)", "important");
+        el.style.setProperty("opacity", "0.62", "important");
+        el.style.setProperty("color", "rgba(226, 232, 240, 0.80)", "important");
+        el.style.setProperty("text-shadow", "none", "important");
       }
     }
+    if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW(performance.now());
   }
-
   function lancerBoucleSuivi() {
     if (!rafId) {
       rafId = requestAnimationFrame(etapeSuiviAudioAfterEffects);
@@ -3783,11 +3802,26 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
           }
           el.style.setProperty('transform', 'translate3d(0, ' + yPx + 'px, 0) scale3d(' + sc + ',' + sc + ',1)', 'important');
 
-          if (b < 0.025) {
-            el.style.setProperty('opacity', '0.74', 'important');
-            el.style.setProperty('color', 'rgba(241, 245, 249, 0.80)', 'important');
+          if (!lectureEnCours) {
+            el.style.setProperty('opacity', '1', 'important');
+            el.style.setProperty('color', '#ffffff', 'important');
+            if (el.__aeGlowKey !== 'idle') {
+              el.__aeGlowKey = 'idle';
+              el.__aeHasGlow = true;
+              el.style.setProperty(
+                'text-shadow',
+                _estMobA
+                  ? '0 0 12px rgba(56, 189, 248, 0.50)'
+                  : '0 0 9px rgba(255, 255, 255, 0.62), 0 0 16px rgba(56, 189, 248, 0.56), 0 0 28px rgba(14, 165, 233, 0.34)',
+                'important'
+              );
+            }
+          } else if (b < 0.025) {
+            el.style.setProperty('opacity', '0.58', 'important');
+            el.style.setProperty('color', 'rgba(226, 232, 240, 0.78)', 'important');
             if (el.__aeHasGlow !== false) {
               el.__aeHasGlow = false;
+              el.__aeGlowKey = 'dim';
               el.style.setProperty('text-shadow', 'none', 'important');
             }
           } else {
@@ -3816,7 +3850,41 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         }
       }
     }
-
+ else if (items && items.length && !suiviEstActif) {
+      /* UNIFIED_GLOW_SUIVI_OFF_V2 */
+      window.__wbwLectureActive = false;
+      window.__wbwActiveFloat = -1;
+      window.__wbwIdxEntier = -1;
+      energiesMots = new Array(items.length).fill(0);
+      bleusMots = new Array(items.length).fill(0);
+      window.__wbwEnergies = energiesMots;
+      window.__wbwBleus = bleusMots;
+      var _estMobOff = window.__aeIsMobile ? window.__aeIsMobile() : false;
+      var _haloOff = _estMobOff
+        ? '0 0 12px rgba(56, 189, 248, 0.50)'
+        : '0 0 9px rgba(255, 255, 255, 0.62), 0 0 16px rgba(56, 189, 248, 0.56), 0 0 28px rgba(14, 165, 233, 0.34)';
+      for (var kOff = 0; kOff < items.length; kOff++) {
+        var elOff = items[kOff];
+        if (estCartes && window.__wbwBypassOrigCartes) continue;
+        if (elOff.__lastAk === 'suivi_off_glow') continue;
+        elOff.__lastAk = 'suivi_off_glow';
+        elOff.__aeGlowKey = 'idle';
+        elOff.__aeHasGlow = true;
+        elOff.style.setProperty('transform', 'translate3d(0, 0px, 0) scale(1)', 'important');
+        elOff.style.setProperty('filter', 'none', 'important');
+        if (estCartes) {
+          elOff.style.setProperty('opacity', '1', 'important');
+          elOff.style.setProperty('border-color', 'rgba(56, 189, 248, 0.25)', 'important');
+        } else {
+          elOff.style.setProperty('background', 'transparent', 'important');
+          elOff.style.setProperty('border', 'none', 'important');
+          elOff.style.setProperty('opacity', '1', 'important');
+          elOff.style.setProperty('color', '#ffffff', 'important');
+          elOff.style.setProperty('text-shadow', _haloOff, 'important');
+        }
+      }
+      if (window.__appliquerRubanColleWBW) window.__appliquerRubanColleWBW(performance.now());
+    }
     var animEnCours = Boolean(window.__wbwAnimEnCours);
     if (!animEnCours) {
       for (var z = 0; z < energiesMots.length; z++) {
@@ -3918,6 +3986,8 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         reinitialiserMotsEnBlancTamise();
       } else if (t.indexOf("Suivi") !== -1 || t.indexOf("Follow") !== -1 || t.indexOf("Seguimiento") !== -1 || t.indexOf("Verfolgung") !== -1 || t.indexOf("Seguito") !== -1 || t.indexOf("Ikuti") !== -1 || t.indexOf("Слежение") !== -1 || t.indexOf("تتبع") !== -1) {
         suiviEstActif = !suiviEstActif;
+        window.__wbwSuiviBoutonActif = Boolean(suiviEstActif);
+        etapeSuiviAudioAfterEffects();
         lancerBoucleSuivi();
       } else if (t.indexOf("Suivant") !== -1 || t.indexOf("Next") !== -1 || t.indexOf("Siguiente") !== -1 || t.indexOf("Weiter") !== -1 || t.indexOf("Successivo") !== -1 || t.indexOf("Berikutnya") !== -1 || t.indexOf("Далее") !== -1) {
         var vkNow = obtenirCleVerset();
@@ -4750,6 +4820,29 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     // 3. Glose anglaise Quran.com (avec variantes morphologiques pour les verbes pluriels)
     var enCle = normaliserCleEnLexique(sourceEn);
     if (enCle && lexiqueStatiqueFr.en) {
+      /* WBW_MORPH_DISAMBIG_V1 */
+      if (arNorm) {
+        // Collision بكم (بُكْمٌ muets vs بِكُمْ par vous) + pluriels brisés صم / عمي
+        if (arNorm === 'بكم') return /\b(dumb|mute)\b/i.test(enCle) ? 'muets' : 'par vous';
+        if (arNorm === 'وبكم' && /\b(dumb|mute)\b/i.test(enCle)) return 'et muets';
+        if (arNorm === 'صم' && /\bdeaf\b/i.test(enCle)) return 'sourds';
+        if (arNorm === 'عمي' && /\bblind\b/i.test(enCle)) return 'aveugles';
+        if ((arNorm === 'اعمي' || arNorm === 'الاعمي') && /\bblind\b/i.test(enCle)) return arNorm === 'الاعمي' ? "l'aveugle" : 'aveugle';
+
+        // Désambiguïsation du verbe dire (قُلْ Dis vs يَقُولُ dit vs يَقُولُونَ disent)
+        if (/^(and |but |then |so )?say(s)?$/i.test(enCle)) {
+          var prefFr = /^and /i.test(enCle) ? 'et ' : (/^but /i.test(enCle) ? 'mais ' : (/^then /i.test(enCle) ? 'puis ' : (/^so /i.test(enCle) ? 'alors ' : '')));
+          if (/^(و|ف)?قل$/.test(arNorm)) return prefFr ? (prefFr + 'dis') : 'Dis';
+          if (/^(و|ف)?يقول$/.test(arNorm)) return prefFr + 'dit';
+          if (/^(و|ف)?يقول(ون|وا)$/.test(arNorm)) return prefFr + 'ils disent';
+          if (/^(و|ف)?تقول$/.test(arNorm)) return prefFr + 'tu dis';
+          if (/^(و|ف)?تقول(ون|وا)$/.test(arNorm)) return prefFr + 'vous dites';
+          if (/^(و|ف)?نقول$/.test(arNorm)) return prefFr + 'nous disons';
+          if (/^(و|ف)?اقول$/.test(arNorm)) return prefFr + 'je dis';
+          if (/^(و|ف)?قالوا$/.test(arNorm)) return prefFr + 'ils dirent';
+          if (/^(و|ف)?قال$/.test(arNorm)) return prefFr + 'il dit';
+        }
+      }
       if (estVerbeArabeInaccompli3Pl(arNorm)) {
         var clePl3 = /^and\s+/i.test(enCle) ? enCle.replace(/^and\s+/i, 'and they ') : ('they ' + enCle);
         if (lexiqueStatiqueFr.en[clePl3]) return lexiqueStatiqueFr.en[clePl3];
@@ -5382,10 +5475,11 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         }
       }
 
-      var lum = Math.max(b, e), opReposBase = 0.96 - 0.54 * modeContrasteSuivi;
+      /* UNIFIED_GLOW_LOOP_B_V2 */
+      var lum = Math.max(b, e), opReposBase = 1.0 - 0.44 * modeContrasteSuivi;
       if (audioActif && !estDejaLu && !estMotActuel) {
         if (distanceFutur === 1) opReposBase = Math.max(opReposBase, 0.72);
-        else if (distanceFutur === 2) opReposBase = Math.max(opReposBase, 0.56);
+        else if (distanceFutur === 2) opReposBase = Math.max(opReposBase, 0.60);
       }
       var opMot = (opReposBase + (1.0 - opReposBase) * lum).toFixed(3);
       var scB = (1.0 + _scaleMaxB * e).toFixed(4);
@@ -5394,20 +5488,30 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       if (meta.elAr) {
         if (!meta._aeArInit) {
           meta._aeArInit = true;
-          forcer(meta.elAr, 'color', '#f8fafc');
           forcer(meta.elAr, 'border', 'none');
           forcer(meta.elAr, 'border-bottom', 'none');
         }
+        var enModeReposB = (!audioActif || modeContrasteSuivi < 0.15);
+        forcer(meta.elAr, 'color', (enModeReposB || lum > 0.025) ? '#ffffff' : 'rgba(226, 232, 240, 0.80)');
         forcer(meta.elAr, 'opacity', opMot);
         forcer(meta.elAr, 'transform', transMot);
-        var glowArKey = (e > 0.015 || b > 0.02) ? (Math.round(e * 18) + ':' + Math.round(b * 18)) : (modeContrasteSuivi < 0.2 ? 'idle' : 'off');
+        var glowArKey = (e > 0.015 || b > 0.025)
+          ? (Math.round(e * 20) + ':' + Math.round(b * 20))
+          : (enModeReposB ? 'idle' : 'off');
         if (meta._aeGlowAr !== glowArKey) {
           meta._aeGlowAr = glowArKey;
-          var ombreAr = (e > 0.015 || b > 0.02)
-            ? (_estMobB
-                ? ('0 0 ' + (12 + 12 * e).toFixed(1) + 'px rgba(186, 230, 253, ' + (0.45 * b + 0.45 * e).toFixed(2) + ')')
-                : ('0 0 ' + (10 + 12 * e + 4 * b).toFixed(1) + 'px rgba(255, 255, 255, ' + (0.65 * b + 0.30 * e).toFixed(2) + '), 0 0 ' + (20 + 16 * e + 8 * b).toFixed(1) + 'px rgba(186, 230, 253, ' + (0.35 * b + 0.42 * e).toFixed(2) + ')'))
-            : (modeContrasteSuivi < 0.2 ? '0 0 8px rgba(255, 255, 255, 0.14)' : 'none');
+          var ombreAr;
+          if (e > 0.015 || b > 0.025) {
+            ombreAr = _estMobB
+              ? ('0 0 ' + (12 + 12 * e).toFixed(1) + 'px rgba(56, 189, 248, ' + (0.55 * b + 0.42 * e).toFixed(2) + ')')
+              : ('0 0 9px rgba(255, 255, 255, ' + (0.75 * b + 0.23 * e).toFixed(2) + '), 0 0 ' + (14 + 10 * e).toFixed(1) + 'px rgba(56, 189, 248, ' + (0.85 * b + 0.15 * e).toFixed(2) + '), 0 0 ' + (28 + 16 * e).toFixed(1) + 'px rgba(14, 165, 233, ' + (0.60 * b + 0.35 * e).toFixed(2) + ')');
+          } else if (enModeReposB) {
+            ombreAr = _estMobB
+              ? '0 0 12px rgba(56, 189, 248, 0.50)'
+              : '0 0 9px rgba(255, 255, 255, 0.62), 0 0 16px rgba(56, 189, 248, 0.56), 0 0 28px rgba(14, 165, 233, 0.34)';
+          } else {
+            ombreAr = 'none';
+          }
           forcer(meta.elAr, 'text-shadow', ombreAr);
         }
       }
@@ -5418,17 +5522,17 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
           forcer(meta.elTrad, 'border', 'none');
           forcer(meta.elTrad, 'border-top', 'none');
         }
-        var colTrRepos = melangerRGB(186, 230, 253, 148, 163, 184, modeContrasteSuivi);
+        var colTrRepos = melangerRGB(224, 242, 254, 148, 163, 184, modeContrasteSuivi);
         var colTrFinal = lum > 0.01 ? melangerRGB(148, 163, 184, 255, 255, 255, lum) : colTrRepos;
         forcer(meta.elTrad, 'opacity', opMot);
         forcer(meta.elTrad, 'transform', transMot);
         forcer(meta.elTrad, 'color', colTrFinal);
-        var glowTrKey = (e > 0.02 || b > 0.08) ? (Math.round(e * 15) + ':' + Math.round(b * 15)) : 'off';
+        var glowTrKey = (e > 0.02 || b > 0.08) ? (Math.round(e * 15) + ':' + Math.round(b * 15)) : ((!audioActif || modeContrasteSuivi < 0.15) ? 'idle' : 'off');
         if (meta._aeGlowTr !== glowTrKey) {
           meta._aeGlowTr = glowTrKey;
           var ombreTr = (!_estMobB && (e > 0.02 || b > 0.08))
-            ? ('0 0 ' + (10 * e + 5 * b).toFixed(1) + 'px rgba(255, 255, 255, ' + (0.52 * e + 0.25 * b).toFixed(2) + ')')
-            : 'none';
+            ? ('0 0 ' + (10 * e + 5 * b).toFixed(1) + 'px rgba(56, 189, 248, ' + (0.60 * e + 0.32 * b).toFixed(2) + ')')
+            : ((!_estMobB && (!audioActif || modeContrasteSuivi < 0.15)) ? '0 0 8px rgba(56, 189, 248, 0.24)' : 'none');
           forcer(meta.elTrad, 'text-shadow', ombreTr);
         }
       }
@@ -5876,17 +5980,35 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
 })();
 
 /* __MODULE_FULLSCREEN_FOCUS_V1__ */
-(function moduleFullscreenFocusV1() {
+/* __MODULE_FULLSCREEN_FOCUS_V2__ */
+(function moduleFullscreenFocusV2() {
   var LABELS_FS = {
-    fr: { btn: '⛶ Plein écran', exit: '✕ Quitter', wbw: '📖 Mot à mot', tajwid: 'Tajwid' },
-    en: { btn: '⛶ Fullscreen', exit: '✕ Exit', wbw: '📖 Word by Word', tajwid: 'Tajwid' },
-    es: { btn: '⛶ Pantalla completa', exit: '✕ Salir', wbw: '📖 Palabra', tajwid: 'Tajwid' },
-    ar: { btn: '⛶ ملء الشاشة', exit: '✕ خروج', wbw: '📖 كلمة بكلمة', tajwid: 'تجويد' },
-    de: { btn: '⛶ Vollbild', exit: '✕ Beenden', wbw: '📖 Wort für Wort', tajwid: 'Tajwid' },
-    it: { btn: '⛶ Schermo intero', exit: '✕ Esci', wbw: '📖 Parola', tajwid: 'Tajwid' },
-    id: { btn: '⛶ Layar penuh', exit: '✕ Keluar', wbw: '📖 Kata demi Kata', tajwid: 'Tajwid' },
-    ru: { btn: '⛶ На весь экран', exit: '✕ Выход', wbw: '📖 Пословно', tajwid: 'Таджвид' }
+    fr: { btn: '⛶ Plein écran', exit: '✕ Quitter', wbw: '📖 Mot à mot', suivi: '✨ Suivi', tajwid: '🎨 Tajwid', auto: '🔁 Auto' },
+    en: { btn: '⛶ Fullscreen', exit: '✕ Exit', wbw: '📖 Word by Word', suivi: '✨ Follow', tajwid: '🎨 Tajwid', auto: '🔁 Auto' },
+    es: { btn: '⛶ Pantalla completa', exit: '✕ Salir', wbw: '📖 Palabra', suivi: '✨ Seguimiento', tajwid: '🎨 Tajwid', auto: '🔁 Auto' },
+    ar: { btn: '⛶ ملء الشاشة', exit: '✕ خروج', wbw: '📖 كلمة بكلمة', suivi: '✨ تتبع', tajwid: '🎨 تجويد', auto: '🔁 تلقائي' },
+    de: { btn: '⛶ Vollbild', exit: '✕ Beenden', wbw: '📖 Wort für Wort', suivi: '✨ Verfolgung', tajwid: '🎨 Tajwid', auto: '🔁 Auto' },
+    it: { btn: '⛶ Schermo intero', exit: '✕ Esci', wbw: '📖 Parola', suivi: '✨ Seguito', tajwid: '🎨 Tajwid', auto: '🔁 Auto' },
+    id: { btn: '⛶ Layar penuh', exit: '✕ Keluar', wbw: '📖 Kata demi Kata', suivi: '✨ Ikuti', tajwid: '🎨 Tajwid', auto: '🔁 Auto' },
+    ru: { btn: '⛶ На весь экран', exit: '✕ Выход', wbw: '📖 Пословно', suivi: '✨ Слежение', tajwid: '🎨 Таджвид', auto: '🔁 Авто' }
   };
+
+  var wakeLockRef = null;
+
+  function demanderWakeLock(actif) {
+    try {
+      if (!navigator.wakeLock) return;
+      if (actif && !wakeLockRef) {
+        navigator.wakeLock.request('screen').then(function(l) {
+          wakeLockRef = l;
+          l.addEventListener('release', function() { wakeLockRef = null; });
+        }).catch(function() {});
+      } else if (!actif && wakeLockRef) {
+        wakeLockRef.release().catch(function() {});
+        wakeLockRef = null;
+      }
+    } catch (e) {}
+  }
 
   function getLangFs() {
     var p = new URLSearchParams(window.location.search).get('lang');
@@ -5908,6 +6030,19 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     return Boolean(btn && (btn.classList.contains('active') || btn.getAttribute('aria-pressed') === 'true'));
   }
 
+  function getOrigWbw() {
+    return document.getElementById('btnToggleWbw') || document.getElementById('wbwToggleBtn') || findBtnByTxt(['Mot à mot', 'Word by Word', 'Palabra', 'Wort für', 'Parola', 'Kata demi', 'Пословн', 'كلمة بكلمة']);
+  }
+  function getOrigSuivi() {
+    return findBtnByTxt(['Suivi', 'Follow', 'Seguimiento', 'Verfolgung', 'Seguito', 'Ikuti', 'Слежение', 'تتبع']);
+  }
+  function getOrigTajwid() {
+    return findBtnByTxt(['Tajw', 'Таджвид', 'تجويد']);
+  }
+  function getAutoCheckbox() {
+    return document.getElementById('autoPlayToggle') || document.getElementById('autoCheck') || document.querySelector('input[type="checkbox"]');
+  }
+
   function syncFsBar() {
     var bar = document.getElementById('wbwFsTopBarV1');
     var mainBtn = document.getElementById('wbwFullscreenBtnV1');
@@ -5915,16 +6050,34 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     var t = LABELS_FS[lang] || LABELS_FS.fr;
     if (mainBtn) mainBtn.textContent = t.btn;
     if (!bar) return;
+
     var badgeOrig = document.getElementById('badgeNumEl');
     var fsBadge = document.getElementById('wbwFsBadgeV1');
     if (fsBadge && badgeOrig) fsBadge.textContent = (badgeOrig.textContent || '').trim();
+
     var fsWbw = document.getElementById('wbwFsWbwV1');
+    var fsSuivi = document.getElementById('wbwFsSuiviV1');
     var fsTaj = document.getElementById('wbwFsTajwidV1');
+    var fsAuto = document.getElementById('wbwFsAutoV1');
     var fsExit = document.getElementById('wbwFsExitV1');
-    var origWbw = document.getElementById('btnToggleWbw') || document.getElementById('wbwToggleBtn') || findBtnByTxt(['Mot à mot', 'Word by Word', 'Palabra', 'Wort für', 'Parola', 'Kata demi', 'Пословн', 'كلمة بكلمة']);
-    var origTaj = findBtnByTxt(['Tajw', 'Таджвид', 'تجويد']);
+
+    var origWbw = getOrigWbw();
+    var origSuivi = getOrigSuivi();
+    var origTaj = getOrigTajwid();
+    var autoCb = getAutoCheckbox();
+
     if (fsWbw) { fsWbw.textContent = t.wbw; fsWbw.classList.toggle('active', estActif(origWbw)); }
+    if (fsSuivi) {
+      var suiviOn = origSuivi ? estActif(origSuivi) : Boolean(window.__wbwSuiviBoutonActif);
+      fsSuivi.textContent = t.suivi;
+      fsSuivi.classList.toggle('active', suiviOn);
+    }
     if (fsTaj) { fsTaj.textContent = t.tajwid; fsTaj.classList.toggle('active', estActif(origTaj)); }
+    if (fsAuto) {
+      fsAuto.style.display = autoCb ? '' : 'none';
+      fsAuto.textContent = t.auto;
+      fsAuto.classList.toggle('active', Boolean(autoCb && autoCb.checked));
+    }
     if (fsExit) fsExit.textContent = t.exit;
   }
 
@@ -5956,7 +6109,9 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
           child.classList.add('wbw-fs-hidden');
         }
       }
+      stage.scrollTop = 0;
     }
+    demanderWakeLock(actif);
     syncFsBar();
   }
 
@@ -5988,32 +6143,56 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       bar.className = 'notranslate';
       bar.setAttribute('translate', 'no');
       bar.innerHTML =
-        '<div class="wbw-fs-group">' +
+        '<div class="wbw-fs-group wbw-fs-scroll">' +
           '<span id="wbwFsBadgeV1" class="wbw-fs-badge"></span>' +
           '<button type="button" id="wbwFsWbwV1" class="wbw-fs-pill">📖 Mot à mot</button>' +
-          '<button type="button" id="wbwFsTajwidV1" class="wbw-fs-pill">Tajwid</button>' +
-          '<button type="button" id="wbwFsZoomOutV1" class="wbw-fs-pill">A−</button>' +
-          '<button type="button" id="wbwFsZoomInV1" class="wbw-fs-pill">A+</button>' +
+          '<button type="button" id="wbwFsSuiviV1" class="wbw-fs-pill">✨ Suivi</button>' +
+          '<button type="button" id="wbwFsTajwidV1" class="wbw-fs-pill">🎨 Tajwid</button>' +
+          '<button type="button" id="wbwFsAutoV1" class="wbw-fs-pill">🔁 Auto</button>' +
+          '<button type="button" id="wbwFsZoomOutV1" class="wbw-fs-pill" aria-label="Réduire le texte">A−</button>' +
+          '<button type="button" id="wbwFsZoomInV1" class="wbw-fs-pill" aria-label="Agrandir le texte">A+</button>' +
         '</div>' +
         '<button type="button" id="wbwFsExitV1" class="wbw-fs-exit">✕ Quitter</button>';
       document.body.appendChild(bar);
 
-      document.getElementById('wbwFsExitV1').addEventListener('click', quitterPleinEcran);
-      document.getElementById('wbwFsWbwV1').addEventListener('click', function() {
-        var b = document.getElementById('btnToggleWbw') || document.getElementById('wbwToggleBtn') || findBtnByTxt(['Mot à mot', 'Word by Word', 'Palabra', 'Wort für', 'Parola', 'Kata demi', 'Пословн', 'كلمة بكلمة']);
+      document.getElementById('wbwFsExitV1').addEventListener('click', function(e) {
+        e.stopPropagation();
+        quitterPleinEcran();
+      });
+      document.getElementById('wbwFsWbwV1').addEventListener('click', function(e) {
+        e.stopPropagation();
+        var b = getOrigWbw();
         if (b) b.click();
         setTimeout(syncFsBar, 60);
       });
-      document.getElementById('wbwFsTajwidV1').addEventListener('click', function() {
-        var b = findBtnByTxt(['Tajw', 'Таджвид', 'تجويد']);
+      document.getElementById('wbwFsSuiviV1').addEventListener('click', function(e) {
+        e.stopPropagation();
+        var b = getOrigSuivi();
         if (b) b.click();
         setTimeout(syncFsBar, 60);
       });
-      document.getElementById('wbwFsZoomOutV1').addEventListener('click', function() {
+      document.getElementById('wbwFsTajwidV1').addEventListener('click', function(e) {
+        e.stopPropagation();
+        var b = getOrigTajwid();
+        if (b) b.click();
+        setTimeout(syncFsBar, 60);
+      });
+      document.getElementById('wbwFsAutoV1').addEventListener('click', function(e) {
+        e.stopPropagation();
+        var cb = getAutoCheckbox();
+        if (cb) {
+          cb.checked = !cb.checked;
+          cb.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+        setTimeout(syncFsBar, 40);
+      });
+      document.getElementById('wbwFsZoomOutV1').addEventListener('click', function(e) {
+        e.stopPropagation();
         var b = findBtnByTxt(['A-', 'A−', 'A–']);
         if (b) b.click();
       });
-      document.getElementById('wbwFsZoomInV1').addEventListener('click', function() {
+      document.getElementById('wbwFsZoomInV1').addEventListener('click', function(e) {
+        e.stopPropagation();
         var b = findBtnByTxt(['A+', 'A＋']);
         if (b) b.click();
       });
@@ -6036,11 +6215,42 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     syncFsBar();
   }
 
+  // Raccourcis clavier confortables en mode Plein écran
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && document.body.classList.contains('wbw-fullscreen-mode')) {
+    if (!document.body.classList.contains('wbw-fullscreen-mode')) return;
+    if (e.target && /^(INPUT|TEXTAREA|SELECT)$/i.test(e.target.tagName)) return;
+    if (e.key === 'Escape') {
       quitterPleinEcran();
+    } else if (e.code === 'Space') {
+      e.preventDefault();
+      var playBtn = document.querySelector('.verse-stage .stage-blue-nav button[onclick*="toggleAudio"], .verse-stage #playBtn, .verse-stage .play-btn') || findBtnByTxt(['Écouter', 'Pause', 'Listen', 'Escuchar', 'Hören', 'Ascolta', 'Dengar', 'Слушать', 'استمع']);
+      if (playBtn) playBtn.click();
+    } else if (e.key === 'ArrowRight') {
+      var nxt = document.getElementById('nextVerseLink');
+      if (nxt) nxt.click();
+    } else if (e.key === 'ArrowLeft') {
+      var prv = document.getElementById('prevVerseLink');
+      if (prv) prv.click();
+    } else if (e.key === 'r' || e.key === 'R') {
+      var rep = findBtnByTxt(['Rejouer', 'Replay', 'Repetir', 'Wiederholen', 'Riascolta', 'Ulangi', 'Повторить']);
+      if (rep) rep.click();
+    } else if (e.key === 'w' || e.key === 'W') {
+      var wbwB = getOrigWbw();
+      if (wbwB) wbwB.click();
+      setTimeout(syncFsBar, 60);
+    } else if (e.key === 's' || e.key === 'S') {
+      var suivB = getOrigSuivi();
+      if (suivB) suivB.click();
+      setTimeout(syncFsBar, 60);
+    } else if (e.key === '+' || e.key === '=') {
+      var zi = findBtnByTxt(['A+', 'A＋']);
+      if (zi) zi.click();
+    } else if (e.key === '-') {
+      var zo = findBtnByTxt(['A-', 'A−', 'A–']);
+      if (zo) zo.click();
     }
   });
+
   document.addEventListener('fullscreenchange', function() {
     if (!document.fullscreenElement && document.body.classList.contains('wbw-fullscreen-mode')) {
       marquerDOMFullscreen(false);
@@ -6050,7 +6260,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', installerFullscreen);
   else installerFullscreen();
   setTimeout(installerFullscreen, 300);
-  /* FS_BADGE_OBSERVER_V2 */
+
   if (typeof MutationObserver !== 'undefined') {
     var _bObs = document.getElementById('badgeNumEl');
     if (_bObs) {

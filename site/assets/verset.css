@@ -1541,3 +1541,82 @@ body.wbw-fullscreen-mode .verse-stage > :last-child {
 .wbw-fs-pill:active {
   transform: scale(0.96) !important;
 }
+
+
+/* UNIFIED_GLOW_AND_FULLSCREEN_V2 */
+/* Barre Plein écran V2 : compacte, translucide et scrollable sur une seule ligne sur mobile */
+#wbwFsTopBarV1 {
+  background: rgba(3, 10, 22, 0.86) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.24) !important;
+  flex-wrap: nowrap !important;
+  gap: 10px !important;
+  padding: max(10px, env(safe-area-inset-top)) 16px 10px 16px !important;
+}
+.wbw-fs-scroll {
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  max-width: calc(100vw - 125px) !important;
+  padding-bottom: 2px !important;
+}
+.wbw-fs-scroll::-webkit-scrollbar {
+  display: none !important;
+}
+.wbw-fs-pill, .wbw-fs-badge, .wbw-fs-exit {
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+/* Scène Plein écran V2 : plus ample, ambiance profonde et centrée */
+body.wbw-fullscreen-mode .verse-stage {
+  padding: 78px clamp(16px, 5vw, 64px) max(28px, env(safe-area-inset-bottom)) clamp(16px, 5vw, 64px) !important;
+  background: radial-gradient(ellipse at 50% 28%, #0a1b33 0%, #030914 55%, #010409 100%) !important;
+}
+body.wbw-fullscreen-mode .verse-stage > * {
+  width: 100%;
+  max-width: 1120px;
+}
+
+/* Texte légèrement plus grand et confortable en Plein écran sur desktop */
+@media (min-width: 821px) {
+  body.wbw-fullscreen-mode .verse-stage .arabic-text,
+  body.wbw-fullscreen-mode .verse-stage #arabicTextEl {
+    font-size: clamp(2.4rem, 3.6vw, 3.8rem) !important;
+    line-height: 2.05 !important;
+  }
+  body.wbw-fullscreen-mode .verse-stage .translation-text,
+  body.wbw-fullscreen-mode .verse-stage #translationTextEl {
+    font-size: clamp(1.1rem, 1.45vw, 1.38rem) !important;
+    max-width: 900px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* Dock audio flottant en bas : toujours accessible même sur un très long verset */
+body.wbw-fullscreen-mode .verse-stage .stage-blue-nav {
+  position: sticky !important;
+  bottom: max(10px, env(safe-area-inset-bottom)) !important;
+  z-index: 100015 !important;
+  margin-top: 26px !important;
+  padding: 10px 16px !important;
+  border-radius: 999px !important;
+  background: rgba(4, 12, 26, 0.88) !important;
+  border: 1px solid rgba(56, 189, 248, 0.30) !important;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.55), 0 0 22px rgba(14, 165, 233, 0.14) !important;
+  width: auto !important;
+  max-width: 100% !important;
+}
+@media (max-width: 640px) {
+  body.wbw-fullscreen-mode .verse-stage .stage-blue-nav {
+    border-radius: 18px !important;
+    padding: 8px 10px !important;
+    gap: 6px !important;
+  }
+  #wbwFsTopBarV1 {
+    padding: max(8px, env(safe-area-inset-top)) 10px 8px 10px !important;
+  }
+}
