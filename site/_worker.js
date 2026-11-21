@@ -88,12 +88,12 @@ let MEM_STATIC_TAFSIR_CACHE = null;
 let MEM_ASBAB_INDEX = null;
 
 const ASBAB_TITRES_SSR = {
-  fr: "📜 Contexte de révélation (Sabab an-Nuzūl)",
-  en: "📜 Occasion of Revelation (Sabab an-Nuzūl)",
-  es: "📜 Contexto de revelación (Sabab an-Nuzūl)",
+  fr: "📜 Contexte de révélation (Sabab an-Nuzul)",
+  en: "📜 Occasion of Revelation (Sabab an-Nuzul)",
+  es: "📜 Contexto de revelación (Sabab an-Nuzul)",
   ar: "📜 سبب النزول الصحيح",
-  de: "📜 Offenbarungsanlass (Sabab an-Nuzūl)",
-  it: "📜 Circostanza della rivelazione (Sabab an-Nuzūl)",
+  de: "📜 Offenbarungsanlass (Sabab an-Nuzul)",
+  it: "📜 Circostanza della rivelazione (Sabab an-Nuzul)",
   id: "📜 Asbabun Nuzul (Sebab Turunnya Ayat)",
   ru: "📜 Причина ниспослания (Сабаб ан-нузуль)"
 };
@@ -129,7 +129,7 @@ async function obtenirAsbabSSR(sNum, vNum, lang, env) {
     const estHadith = rec.type === "hadith";
     const mapTitres = estHadith ? HADITH_TITRES_SSR : ASBAB_TITRES_SSR;
     const titre = (mapTitres[lang] || mapTitres.fr) + (rec.plage ? " (" + rec.plage + ")" : "");
-    const degre = rec.degre || "Sahīh";
+    const degre = rec.degre || "Sahih";
     const clsDeg = /hasan/i.test(degre) ? " hasan" : "";
     return '<div id="asbabNuzulContainer" class="notranslate" translate="no" data-asbab-sig="' + sNum + ':' + vNum + '|' + lang + '">' +
       '<div class="asbab-nuzul-card' + (estHadith ? " type-hadith" : "") + '" dir="' + (isAr ? "rtl" : "ltr") + '">' +
@@ -772,7 +772,7 @@ async function recupererFichierStatiquePages(request, env) {
   return fetch(request);
 }
 
-const SSR_VERSION = "v137";
+const SSR_VERSION = "v138";
 function construireCleCache(request, lang) {
   const key = new URL(request.url);
   key.pathname = key.pathname.replace(/\.html$/i, "");
@@ -830,7 +830,7 @@ async function securiserReponse(response, pathname) {
         .replace(/(<(?:link|meta)[^>]+(?:href|content)="https:\/\/corantafsir\.com\/)index\.html/gi, '$1')
         .replace(/(<(?:link|meta)[^>]+(?:href|content)="https:\/\/corantafsir\.com\/[^"]+?)\.html/gi, '$1')
     );
-    const htmlFrais = htmlPropre.replace(/v=1795050050086/g, "v=1795225571548");
+    const htmlFrais = htmlPropre.replace(/v=1795050050086/g, "v=1795261728029");
     headers.delete("content-length");
     return new Response(htmlFrais, {
       status: response.status,

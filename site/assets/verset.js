@@ -5819,15 +5819,15 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
 })();
 
 
-/* === MODULE ASBĀB AN-NUZŪL 8 LANGUES === */
+/* === MODULE ASBAB AN-NUZUL 8 LANGUES === */
 (function __moduleAsbabNuzulV1() {
   var TITRES_ASBAB = {
-    fr: "📜 Contexte de révélation (Sabab an-Nuzūl)",
-    en: "📜 Occasion of Revelation (Sabab an-Nuzūl)",
-    es: "📜 Contexto de revelación (Sabab an-Nuzūl)",
+    fr: "📜 Contexte de révélation (Sabab an-Nuzul)",
+    en: "📜 Occasion of Revelation (Sabab an-Nuzul)",
+    es: "📜 Contexto de revelación (Sabab an-Nuzul)",
     ar: "📜 سبب النزول الصحيح",
-    de: "📜 Offenbarungsanlass (Sabab an-Nuzūl)",
-    it: "📜 Circostanza della rivelazione (Sabab an-Nuzūl)",
+    de: "📜 Offenbarungsanlass (Sabab an-Nuzul)",
+    it: "📜 Circostanza della rivelazione (Sabab an-Nuzul)",
     id: "📜 Asbabun Nuzul (Sebab Turunnya Ayat)",
     ru: "📜 Причина ниспослания (Сабаб ан-нузуль)"
   };
@@ -5945,7 +5945,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     var estHadith = recit.type === "hadith";
     var titre = estHadith ? (TITRES_HADITH[lang] || TITRES_HADITH.fr) : (TITRES_ASBAB[lang] || TITRES_ASBAB.fr);
     var lblSrc = LABELS_SOURCE[lang] || "Source :";
-    var degre = recit.degre || "Sahīh";
+    var degre = recit.degre || "Sahih";
     var clsDeg = /hasan/i.test(degre) ? " hasan" : "";
     var plage = recit.plage ? (" (" + recit.plage + ")") : "";
 

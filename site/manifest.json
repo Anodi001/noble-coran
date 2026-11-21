@@ -1,7 +1,7 @@
 {
-  "name": "Le Noble Coran & Tafsīr",
-  "short_name": "Coran Tafsīr",
-  "description": "Le Noble Coran & Tafsīr Al-Mukhtasar (FR / EN / ES / AR / DE / IT / ID / RU)",
+  "name": "Le Noble Coran & Tafsir",
+  "short_name": "Coran Tafsir",
+  "description": "Le Noble Coran & Tafsir Al-Mukhtasar (FR / EN / ES / AR / DE / IT / ID / RU)",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#020406",
