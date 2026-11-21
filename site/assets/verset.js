@@ -859,6 +859,8 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         w.ratioFin = cumul / (totalPoidsLettres || 1);
       });
       motsActuelsDuVerset = vraisMots;
+      window.__wbwCleVersetActuelle = cleVerset;
+      if (window.__wbwAudioClickPro) { window.__wbwAudioClickPro.stopper(); window.__wbwAudioClickPro.attacherArretAuto(); }
 
       await traduireGlossaireVerset(vraisMots, langSite, cleVerset);
       const signatureActuelle = cleVerset + '_' + langSite + '_' + (modeMotAMotActif ? '1' : '0') + '_' + (modeTajweedActif ? '1' : '0');
@@ -868,9 +870,12 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         wbwBox.style.display = 'none';
         arEl.style.display = 'block';
         arEl.innerHTML = '';
-        vraisMots.forEach(w => {
+        vraisMots.forEach((w, idxW) => {
           const span = document.createElement('span');
           span.className = 'inline-clickable-word';
+          span.dataset.wbwOrd = String(w.indexMotReel || (idxW + 1));
+          span.dataset.wbwPos = String(w.position || w.indexMotReel || (idxW + 1));
+          if (w.audio_url) span.dataset.wbwAudioUrl = w.audio_url;
           span.innerHTML = modeTajweedActif ? w.htmlTajweedMot : w.text_uthmani;
           span.onclick = (e) => { e.stopPropagation(); ouvrirModalMot(w); };
           arEl.appendChild(span);
@@ -880,9 +885,12 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         arEl.style.display = 'none';
         wbwBox.style.display = 'flex';
         wbwBox.innerHTML = '';
-        vraisMots.forEach(w => {
+        vraisMots.forEach((w, idxW) => {
           const item = document.createElement('div');
           item.className = 'wbw-word-box';
+          item.dataset.wbwOrd = String(w.indexMotReel || (idxW + 1));
+          item.dataset.wbwPos = String(w.position || w.indexMotReel || (idxW + 1));
+          if (w.audio_url) item.dataset.wbwAudioUrl = w.audio_url;
           const htmlMotArabe = modeTajweedActif ? w.htmlTajweedMot : w.text_uthmani;
           const motArabe = document.createElement('div');
           motArabe.className = 'wbw-ar';
@@ -5053,11 +5061,39 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       var carteCliquee = e.target && e.target.closest ? e.target.closest('.wbw-card-v110, .wbw-word-box, .wbw-card-unit') : null;
       if (carteCliquee) {
         e.stopPropagation(); e.stopImmediatePropagation(); e.preventDefault();
-        var idxCarte = (parseInt(carteCliquee.dataset.wbwOrd, 10) || 1) - 1;
-        allerAuDebutDuMot(idxCarte);
+        var idxCarte = (parseInt(carteCliquee.dataset.wbwOrd, 10) || 0) - 1;
+        if (idxCarte < 0 && carteCliquee.parentElement) {
+          idxCarte = Array.prototype.slice.call(carteCliquee.parentElement.querySelectorAll('.wbw-card-v110, .wbw-word-box, .wbw-card-unit')).indexOf(carteCliquee);
+        }
+        if (idxCarte < 0) idxCarte = 0;
+        if (window.__wbwAudioClickPro && !window.__wbwAudioClickPro.estVersetEnLecture()) {
+          window.__wbwAudioClickPro.jouer(carteCliquee, idxCarte);
+        } else {
+          if (window.__wbwAudioClickPro) window.__wbwAudioClickPro.stopper();
+          allerAuDebutDuMot(idxCarte);
+        }
         return false;
       }
-      var motNormalClique = e.target && e.target.closest ? e.target.closest('.inline-clickable-word, .ar-word-follow') : null; if (motNormalClique) { e.stopPropagation(); e.stopImmediatePropagation(); e.preventDefault(); var pCont = motNormalClique.parentElement; var tousM = pCont ? Array.prototype.slice.call(pCont.querySelectorAll('.inline-clickable-word, .ar-word-follow')) : []; var idxM = tousM.indexOf(motNormalClique); if (idxM >= 0) { var audM = document.getElementById('ayahAudio'); if (audM && audM.duration) { audM.currentTime = (idxM / Math.max(1, tousM.length)) * audM.duration * 0.94; if (audM.paused) { var pB = document.getElementById('playSyncBtn'); if (pB) pB.click(); else audM.play().catch(function(){}); } } } return false; }
+      var motNormalClique = e.target && e.target.closest ? e.target.closest('.inline-clickable-word, .ar-word-follow') : null;
+      if (motNormalClique) {
+        e.stopPropagation(); e.stopImmediatePropagation(); e.preventDefault();
+        var pCont = motNormalClique.parentElement;
+        var tousM = pCont ? Array.prototype.slice.call(pCont.querySelectorAll('.inline-clickable-word, .ar-word-follow')) : [];
+        var idxM = tousM.indexOf(motNormalClique);
+        if (idxM >= 0) {
+          if (window.__wbwAudioClickPro && !window.__wbwAudioClickPro.estVersetEnLecture()) {
+            window.__wbwAudioClickPro.jouer(motNormalClique, idxM);
+          } else {
+            if (window.__wbwAudioClickPro) window.__wbwAudioClickPro.stopper();
+            var audM = document.getElementById('ayahAudio');
+            if (audM && audM.duration) {
+              audM.currentTime = (idxM / Math.max(1, tousM.length)) * audM.duration * 0.94;
+              if (audM.paused) { var pB = document.getElementById('playSyncBtn'); if (pB) pB.click(); else audM.play().catch(function(){}); }
+            }
+          }
+        }
+        return false;
+      }
       if (e.isTrusted && e.target && e.target.closest && e.target.closest('.rp-item')) {
         window.__userPickedReciterManuallyV110 = true;
       }
@@ -6299,4 +6335,163 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       });
     }).catch(function() {});
   });
+})();
+
+
+/* === MODULE AUDIO MOT-A-MOT HYBRIDE PRO V1 === */
+(function() {
+  if (window.__MODULE_WBW_AUDIO_CLICK_V1__) return;
+  window.__MODULE_WBW_AUDIO_CLICK_V1__ = true;
+
+  var player = null;
+  var activeEl = null;
+  var playToken = 0;
+  var safetyTimer = null;
+  var loadTimer = null;
+
+  function getPlayer() {
+    if (!player) {
+      player = document.getElementById('wbwSingleWordAudio');
+      if (!player) {
+        player = document.createElement('audio');
+        player.id = 'wbwSingleWordAudio';
+        player.style.display = 'none';
+        document.body.appendChild(player);
+      }
+      player.setAttribute('playsinline', '');
+      player.preload = 'auto';
+
+      player.addEventListener('playing', function() {
+        clearTimeout(loadTimer);
+        if (activeEl) activeEl.classList.remove('wbw-word-loading');
+      });
+      player.addEventListener('ended', nettoyerVisuel);
+      player.addEventListener('error', nettoyerVisuel);
+    }
+    return player;
+  }
+
+  function nettoyerVisuel() {
+    clearTimeout(safetyTimer);
+    clearTimeout(loadTimer);
+    if (activeEl) {
+      activeEl.classList.remove('wbw-word-speaking', 'wbw-word-loading');
+      activeEl = null;
+    }
+    var restes = document.querySelectorAll('.wbw-word-speaking, .wbw-word-loading');
+    for (var i = 0; i < restes.length; i++) {
+      restes[i].classList.remove('wbw-word-speaking', 'wbw-word-loading');
+    }
+  }
+
+  function stopperMotIsole() {
+    playToken++;
+    nettoyerVisuel();
+    if (player) {
+      try {
+        player.pause();
+        player.currentTime = 0;
+      } catch (e) {}
+    }
+  }
+
+  function pad3(n) {
+    return String(Math.max(1, parseInt(n, 10) || 1)).padStart(3, '0');
+  }
+
+  function trouverSV() {
+    if (window.__wbwCleVersetActuelle && /^\d+:\d+$/.test(window.__wbwCleVersetActuelle)) {
+      var parts = window.__wbwCleVersetActuelle.split(':');
+      return { s: parseInt(parts[0], 10), v: parseInt(parts[1], 10) };
+    }
+    var mUrl = (location.pathname || '').match(/sourate-(\d+)-verset-(\d+)/i);
+    if (mUrl) return { s: parseInt(mUrl[1], 10), v: parseInt(mUrl[2], 10) };
+    return null;
+  }
+
+  function construireUrlMot(el, idx0) {
+    var raw = (el && el.dataset && el.dataset.wbwAudioUrl) ? el.dataset.wbwAudioUrl.trim() : '';
+    if (raw) {
+      if (/^https?:\/\//i.test(raw)) return raw;
+      return 'https://audio.qurancdn.com/' + raw.replace(/^\/+/, '');
+    }
+    var sv = trouverSV();
+    if (!sv) return '';
+    var pos = (el && el.dataset && el.dataset.wbwPos)
+      ? parseInt(el.dataset.wbwPos, 10)
+      : ((el && el.dataset && el.dataset.wbwOrd) ? parseInt(el.dataset.wbwOrd, 10) : (idx0 + 1));
+    if (!pos || pos < 1) pos = idx0 + 1;
+    return 'https://audio.qurancdn.com/wbw/' + pad3(sv.s) + '_' + pad3(sv.v) + '_' + pad3(pos) + '.mp3';
+  }
+
+  function jouerMotIsole(el, idx0) {
+    var url = construireUrlMot(el, idx0);
+    if (!url) return false;
+
+    var p = getPlayer();
+    var myToken = ++playToken;
+
+    nettoyerVisuel();
+    activeEl = el;
+    if (el) {
+      el.classList.add('wbw-word-speaking');
+      loadTimer = setTimeout(function() {
+        if (myToken === playToken && activeEl === el && p.readyState < 3) {
+          el.classList.add('wbw-word-loading');
+        }
+      }, 150);
+    }
+
+    safetyTimer = setTimeout(function() {
+      if (myToken === playToken) nettoyerVisuel();
+    }, 7000);
+
+    try {
+      if (p.src === url && p.readyState >= 2) {
+        p.currentTime = 0;
+      } else {
+        p.pause();
+        p.src = url;
+      }
+      var prom = p.play();
+      if (prom && typeof prom.catch === 'function') {
+        prom.catch(function() {
+          if (myToken === playToken) nettoyerVisuel();
+        });
+      }
+    } catch (e) {
+      if (myToken === playToken) nettoyerVisuel();
+    }
+    return true;
+  }
+
+  function estVersetEnLecture() {
+    var aud = document.getElementById('ayahAudio');
+    return !!(aud && !aud.paused && !aud.ended);
+  }
+
+  function attacherArretAuto() {
+    var aud = document.getElementById('ayahAudio');
+    if (aud && !aud.__wbwStopHookedV1) {
+      aud.__wbwStopHookedV1 = true;
+      aud.addEventListener('play', stopperMotIsole);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attacherArretAuto);
+  } else {
+    attacherArretAuto();
+  }
+  window.addEventListener('popstate', stopperMotIsole);
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) stopperMotIsole();
+  });
+
+  window.__wbwAudioClickPro = {
+    jouer: jouerMotIsole,
+    stopper: stopperMotIsole,
+    estVersetEnLecture: estVersetEnLecture,
+    attacherArretAuto: attacherArretAuto
+  };
 })();
