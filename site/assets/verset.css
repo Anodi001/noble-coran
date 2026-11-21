@@ -1844,3 +1844,56 @@ body.wbw-fullscreen-mode .verse-stage .sync-progress-track {
 .wbw-scrub-wrap * {
   pointer-events: none !important;
 }
+
+
+/* WBW_WORD_AUDIO_UX_V4 */
+.ar-word-follow,
+.ar-word-follow * {
+  cursor: pointer;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.inline-clickable-word.wbw-word-speaking,
+.ar-word-follow.wbw-word-speaking {
+  display: inline-block;
+  padding: 0 6px;
+  border-radius: 12px !important;
+  background: rgba(14, 165, 233, 0.22) !important;
+  outline: 1.5px solid rgba(56, 189, 248, 0.85) !important;
+  filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.95)) !important;
+}
+
+.wbw-word-box.wbw-word-jumped::after,
+.wbw-card-v110.wbw-word-jumped::after,
+.wbw-card-unit.wbw-word-jumped::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: -4px -6px !important;
+  border-radius: 16px !important;
+  background: rgba(56, 189, 248, 0.18) !important;
+  border: 1.5px solid rgba(56, 189, 248, 0.72) !important;
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.35) !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+}
+
+.wbw-word-box.wbw-word-jumped,
+.wbw-card-v110.wbw-word-jumped,
+.wbw-card-unit.wbw-word-jumped {
+  position: relative !important;
+  isolation: isolate !important;
+}
+
+.inline-clickable-word.wbw-word-jumped,
+.ar-word-follow.wbw-word-jumped {
+  border-radius: 10px !important;
+  background: rgba(56, 189, 248, 0.22) !important;
+  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.88)) !important;
+}
+
+.wbw-scrub-wrap {
+  margin-bottom: 6px !important;
+}

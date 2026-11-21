@@ -860,6 +860,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       });
       motsActuelsDuVerset = vraisMots;
       window.__wbwCleVersetActuelle = cleVerset;
+      window.__wbwMotsCourants = vraisMots;
       if (window.__wbwAudioClickPro) { window.__wbwAudioClickPro.stopper(); window.__wbwAudioClickPro.attacherArretAuto(); }
 
       await traduireGlossaireVerset(vraisMots, langSite, cleVerset);
@@ -3427,7 +3428,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   }
 
   var MAP_NOMS_VERS_QDC = {
-    dosari: [174, 168], dossari: [174, 168], yasser: [174, 168],
+    dosari: [97], dossari: [97], yasser: [97],
     afasy: [7], alafasy: [7], mishary: [7],
     sudais: [3], soudais: [3],
     shuraim: [10, 4], shuraym: [10, 4],
@@ -3500,6 +3501,24 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         }
       })
       .catch(function () {}).finally(function () { delete requetesEnCours[cleChap]; }); }
+  window.__wbwGetQdcSegmentStart = function(idxMot, vk) {
+    try {
+      var cleRec = obtenirCleRecitateurSelectionne();
+      if (!cleRec || !vk) return null;
+      var cle = cleRec + "_" + vk;
+      var liste = cacheTimingVerset[cle];
+      if (!liste || !liste.length) {
+        chargerTimestampsQdc(cleRec, vk);
+        return null;
+      }
+      for (var i = 0; i < liste.length; i++) {
+        if (liste[i] && liste[i].wordIndex === idxMot && typeof liste[i].rStart === "number") {
+          return liste[i].rStart;
+        }
+      }
+      return null;
+    } catch (e) { return null; }
+  };
   function obtenirElementsMotsAAnimer() {
     var cartes = obtenirCartesMotAMotVisibles();
     if (cartes.length >= 1) return { type: "cartes", items: cartes };
@@ -5066,7 +5085,13 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
           idxCarte = Array.prototype.slice.call(carteCliquee.parentElement.querySelectorAll('.wbw-card-v110, .wbw-word-box, .wbw-card-unit')).indexOf(carteCliquee);
         }
         if (idxCarte < 0) idxCarte = 0;
-        if (window.__wbwAudioClickPro) window.__wbwAudioClickPro.jouer(carteCliquee, idxCarte);
+        if (window.__wbwAudioClickPro && window.__wbwAudioClickPro.estVersetEnLecture()) {
+          window.__wbwAudioClickPro.stopper();
+          window.__wbwAudioClickPro.flasherSaut(carteCliquee);
+          allerAuDebutDuMot(idxCarte);
+        } else if (window.__wbwAudioClickPro) {
+          window.__wbwAudioClickPro.jouer(carteCliquee, idxCarte);
+        }
         return false;
       }
       var motNormalClique = e.target && e.target.closest ? e.target.closest('.inline-clickable-word, .ar-word-follow') : null;
@@ -5076,7 +5101,13 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         var tousM = pCont ? Array.prototype.slice.call(pCont.querySelectorAll('.inline-clickable-word, .ar-word-follow')) : [];
         var idxM = tousM.indexOf(motNormalClique);
         if (idxM >= 0 && window.__wbwAudioClickPro) {
-          window.__wbwAudioClickPro.jouer(motNormalClique, idxM);
+          if (window.__wbwAudioClickPro.estVersetEnLecture()) {
+            window.__wbwAudioClickPro.stopper();
+            window.__wbwAudioClickPro.flasherSaut(motNormalClique);
+            window.__wbwAudioClickPro.sauterMotClassique(idxM, tousM.length);
+          } else {
+            window.__wbwAudioClickPro.jouer(motNormalClique, idxM);
+          }
         }
         return false;
       }
@@ -5190,13 +5221,19 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
       var dur = aud.duration;
       var tCible = 0;
       if (idxMot > 0 && dur && isFinite(dur) && dur > 0) {
-        var fen = calculerFenetresMots(dur);
-        if (fen[idxMot] && typeof fen[idxMot].t0 === 'number') {
-          tCible = Math.max(0, Math.min(dur - 0.08, fen[idxMot].t0));
-        } else if (typeof tempsDebutReelObserve[idxMot] === 'number') {
-          tCible = Math.max(0, Math.min(dur - 0.08, tempsDebutReelObserve[idxMot]));
+        var vkSeek = (typeof obtenirCleVersetActuelDom === 'function') ? obtenirCleVersetActuelDom() : (window.__wbwCleVersetActuelle || '');
+        var rQdc = (typeof window.__wbwGetQdcSegmentStart === 'function' && vkSeek) ? window.__wbwGetQdcSegmentStart(idxMot, vkSeek) : null;
+        if (typeof rQdc === 'number' && isFinite(rQdc) && rQdc >= 0 && rQdc <= 0.99) {
+          tCible = Math.max(0, Math.min(dur - 0.08, rQdc * dur - 0.04));
+        } else if (typeof tempsDebutReelObserve[idxMot] === 'number' && tempsDebutReelObserve[idxMot] > 0) {
+          tCible = Math.max(0, Math.min(dur - 0.08, tempsDebutReelObserve[idxMot] - 0.03));
         } else {
-          tCible = (idxMot / cacheMetaCartes.length) * dur;
+          var fen = calculerFenetresMots(dur);
+          if (fen[idxMot] && typeof fen[idxMot].t0 === 'number') {
+            tCible = Math.max(0, Math.min(dur - 0.08, fen[idxMot].t0));
+          } else {
+            tCible = (idxMot / cacheMetaCartes.length) * dur;
+          }
         }
       }
       try { aud.currentTime = tCible; } catch (e) {}
@@ -5393,7 +5430,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     }
 
     /* AE_SPRING_LOOP_B_V1 */
-    var dirLecture = detecterSensLectureGrille(), audioActif = Boolean(suiviBoutonOn && (audioJoue || maxIdxAtteintVerset >= 0));
+    var dirLecture = detecterSensLectureGrille(), audioActif = Boolean(suiviBoutonOn && (audioJoue || maintenant < expIdxMotForce));
     var _stB = window.__wbwSpringState || (window.__wbwSpringState = { velE: [], smoothRatio: [], lastTs: 0, lastScrollIdx: -1, lastScrollCardCount: 0 });
     var _nowB = performance.now();
     var _dtB = _stB.lastTs ? Math.min(0.05, Math.max(0.004, (_nowB - _stB.lastTs) / 1000)) : 0.016;
@@ -6326,16 +6363,17 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
 })();
 
 
-/* === MODULE AUDIO MOT-A-MOT PRO V2 === */
+/* === MODULE AUDIO MOT-A-MOT PRO V4 === */
 (function() {
-  if (window.__MODULE_WBW_AUDIO_CLICK_V2__) return;
-  window.__MODULE_WBW_AUDIO_CLICK_V2__ = true;
+  if (window.__MODULE_WBW_AUDIO_CLICK_V4__) return;
+  window.__MODULE_WBW_AUDIO_CLICK_V4__ = true;
 
   var player = null;
   var activeEl = null;
   var playToken = 0;
   var safetyTimer = null;
   var loadTimer = null;
+  var jumpTimer = null;
 
   function getPlayer() {
     if (!player) {
@@ -6383,18 +6421,15 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     }
   }
 
-  function pauserVersetProprement() {
-    var aud = document.getElementById('ayahAudio');
-    if (aud && !aud.paused && !aud.ended) {
-      if (typeof window.toggleAudioSync === 'function') {
-        try { window.toggleAudioSync(); } catch (e) { aud.pause(); }
-      } else {
-        aud.pause();
-      }
-      if (!aud.paused) {
-        try { aud.pause(); } catch (e) {}
-      }
-    }
+  function flasherSaut(el) {
+    clearTimeout(jumpTimer);
+    var anciens = document.querySelectorAll('.wbw-word-jumped');
+    for (var i = 0; i < anciens.length; i++) anciens[i].classList.remove('wbw-word-jumped');
+    if (!el) return;
+    el.classList.add('wbw-word-jumped');
+    jumpTimer = setTimeout(function() {
+      el.classList.remove('wbw-word-jumped');
+    }, 460);
   }
 
   function pad3(n) {
@@ -6424,9 +6459,6 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   function jouerMotIsole(el, idx0) {
     var url = construireUrlMot(el, idx0);
     if (!url) return false;
-
-    // Mettre le verset en pause proprement (zéro superposition ni bégaiement)
-    pauserVersetProprement();
 
     var p = getPlayer();
     var myToken = ++playToken;
@@ -6465,11 +6497,71 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     return true;
   }
 
+  function sauterMotClassique(idxM, totalM) {
+    var aud = document.getElementById('ayahAudio');
+    if (!aud || !aud.duration || !isFinite(aud.duration)) return;
+    var dur = aud.duration;
+    var tCible = 0;
+    if (idxM > 0) {
+      var sv = trouverSV();
+      var vk = sv ? (sv.s + ':' + sv.v) : '';
+      var rQdc = (typeof window.__wbwGetQdcSegmentStart === 'function' && vk)
+        ? window.__wbwGetQdcSegmentStart(idxM, vk)
+        : null;
+      if (typeof rQdc === 'number' && isFinite(rQdc) && rQdc >= 0 && rQdc <= 0.99) {
+        tCible = Math.max(0, Math.min(dur - 0.08, rQdc * dur - 0.04));
+      } else if (Array.isArray(window.__wbwMotsCourants) && window.__wbwMotsCourants[idxM] && typeof window.__wbwMotsCourants[idxM].ratioDebut === 'number') {
+        tCible = Math.max(0, Math.min(dur - 0.08, window.__wbwMotsCourants[idxM].ratioDebut * dur * 0.96));
+      } else {
+        tCible = Math.max(0, Math.min(dur - 0.08, (idxM / Math.max(1, totalM)) * dur * 0.95));
+      }
+    }
+    try { aud.currentTime = tCible; } catch (e) {}
+    if (aud.paused) aud.play().catch(function() {});
+  }
+
+  function estVersetEnLecture() {
+    var aud = document.getElementById('ayahAudio');
+    return !!(aud && !aud.paused && !aud.ended);
+  }
+
+  function synchroniserEtatBoutonPlay() {
+    var aud = document.getElementById('ayahAudio');
+    var playBtn = document.getElementById('playSyncBtn');
+    var st = document.querySelector('.verse-stage');
+    if (!aud || !playBtn) return;
+    var lang = (document.documentElement.lang || 'fr').slice(0, 2).toLowerCase();
+    var playing = !aud.paused && !aud.ended;
+    if (playing) {
+      if (st) st.classList.add('playing');
+      playBtn.classList.add('active');
+      playBtn.textContent = (lang === 'ar') ? '⏸ إيقاف مؤقت' : '⏸ Pause';
+    } else {
+      if (st) st.classList.remove('playing');
+      playBtn.classList.remove('active');
+      if (typeof window.txtPlay === 'function') {
+        playBtn.textContent = window.txtPlay();
+      } else {
+        playBtn.textContent = (lang === 'ar') ? '▶ استمع للآية' : (lang === 'en' ? '▶ Listen to verse' : (lang === 'es' ? '▶ Escuchar aleya' : '▶ Écouter le verset'));
+      }
+    }
+  }
+
   function attacherArretAuto() {
     var aud = document.getElementById('ayahAudio');
-    if (aud && !aud.__wbwStopHookedV2) {
-      aud.__wbwStopHookedV2 = true;
-      aud.addEventListener('play', stopperMotIsole);
+    if (aud && !aud.__wbwStopHookedV4) {
+      aud.__wbwStopHookedV4 = true;
+      aud.addEventListener('play', function() {
+        stopperMotIsole();
+        synchroniserEtatBoutonPlay();
+        var sv = trouverSV();
+        if (sv && typeof window.__wbwGetQdcSegmentStart === 'function') {
+          window.__wbwGetQdcSegmentStart(0, sv.s + ':' + sv.v);
+        }
+      });
+      aud.addEventListener('playing', synchroniserEtatBoutonPlay);
+      aud.addEventListener('pause', synchroniserEtatBoutonPlay);
+      aud.addEventListener('ended', synchroniserEtatBoutonPlay);
     }
   }
 
@@ -6486,6 +6578,9 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   window.__wbwAudioClickPro = {
     jouer: jouerMotIsole,
     stopper: stopperMotIsole,
+    estVersetEnLecture: estVersetEnLecture,
+    flasherSaut: flasherSaut,
+    sauterMotClassique: sauterMotClassique,
     attacherArretAuto: attacherArretAuto
   };
 })();
