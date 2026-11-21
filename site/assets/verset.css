@@ -1542,81 +1542,203 @@ body.wbw-fullscreen-mode .verse-stage > :last-child {
   transform: scale(0.96) !important;
 }
 
-
 /* UNIFIED_GLOW_AND_FULLSCREEN_V2 */
-/* Barre Plein écran V2 : compacte, translucide et scrollable sur une seule ligne sur mobile */
+/* FULLSCREEN_V3_PRO_PC_IPHONE */
+
+/* 1) Barre supérieure translucide, épurée et scrollable sur 1 ligne sur mobile */
 #wbwFsTopBarV1 {
-  background: rgba(3, 10, 22, 0.86) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-  border-bottom: 1px solid rgba(56, 189, 248, 0.24) !important;
+  background: rgba(3, 10, 22, 0.84) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.22) !important;
   flex-wrap: nowrap !important;
   gap: 10px !important;
-  padding: max(10px, env(safe-area-inset-top)) 16px 10px 16px !important;
+  padding: max(10px, env(safe-area-inset-top)) 18px 10px 18px !important;
 }
 .wbw-fs-scroll {
   flex-wrap: nowrap !important;
   overflow-x: auto !important;
   scrollbar-width: none !important;
   -ms-overflow-style: none !important;
-  max-width: calc(100vw - 125px) !important;
-  padding-bottom: 2px !important;
+  max-width: calc(100vw - 130px) !important;
+  gap: 8px !important;
 }
-.wbw-fs-scroll::-webkit-scrollbar {
-  display: none !important;
-}
+.wbw-fs-scroll::-webkit-scrollbar { display: none !important; }
 .wbw-fs-pill, .wbw-fs-badge, .wbw-fs-exit {
   white-space: nowrap !important;
   flex-shrink: 0 !important;
 }
 
-/* Scène Plein écran V2 : plus ample, ambiance profonde et centrée */
+/* 2) Scène Plein écran : centrage vertical 100% fiable en Classique ET en Mot à mot (avec scroll propre sur longs versets) */
 body.wbw-fullscreen-mode .verse-stage {
-  padding: 78px clamp(16px, 5vw, 64px) max(28px, env(safe-area-inset-bottom)) clamp(16px, 5vw, 64px) !important;
-  background: radial-gradient(ellipse at 50% 28%, #0a1b33 0%, #030914 55%, #010409 100%) !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 100010 !important;
+  width: 100vw !important;
+  height: 100dvh !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: calc(74px + env(safe-area-inset-top)) clamp(16px, 5vw, 72px) calc(116px + env(safe-area-inset-bottom)) clamp(16px, 5vw, 72px) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: radial-gradient(ellipse at 50% 42%, #0a1d38 0%, #030914 58%, #010409 100%) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+/* Annule l'ancien hack :first-child/:last-child qui cassait le centrage quand un bloc est masqué */
+body.wbw-fullscreen-mode .verse-stage > :first-child { margin-top: 0 !important; }
+body.wbw-fullscreen-mode .verse-stage > :last-child { margin-bottom: 0 !important; }
+
+/* Espaceurs flex invisibles : centrent parfaitement tout contenu visible (1 mot ou 20 mots) sans couper les longs versets */
+body.wbw-fullscreen-mode .verse-stage::before,
+body.wbw-fullscreen-mode .verse-stage::after {
+  content: "" !important;
+  display: block !important;
+  position: static !important;
+  flex: 1 0 12px !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+}
+body.wbw-fullscreen-mode .verse-stage hr {
+  display: none !important;
 }
 body.wbw-fullscreen-mode .verse-stage > * {
   width: 100%;
-  max-width: 1120px;
+  max-width: min(1240px, 94vw);
 }
 
-/* Texte légèrement plus grand et confortable en Plein écran sur desktop */
+/* 3) Proportions cinéma sur PC (sans !important sur font-size pour laisser A+ / A- fonctionner librement) */
 @media (min-width: 821px) {
+  #wbwFsTopBarV1 .wbw-fs-pill,
+  #wbwFsTopBarV1 .wbw-fs-exit {
+    padding: 7px 14px !important;
+    font-size: 0.84rem !important;
+  }
+  #wbwFsTopBarV1 .wbw-fs-badge {
+    padding: 5px 12px !important;
+    font-size: 0.86rem !important;
+  }
   body.wbw-fullscreen-mode .verse-stage .arabic-text,
   body.wbw-fullscreen-mode .verse-stage #arabicTextEl {
-    font-size: clamp(2.4rem, 3.6vw, 3.8rem) !important;
+    font-size: clamp(2.8rem, 4.3vw, 4.5rem);
     line-height: 2.05 !important;
   }
   body.wbw-fullscreen-mode .verse-stage .translation-text,
   body.wbw-fullscreen-mode .verse-stage #translationTextEl {
-    font-size: clamp(1.1rem, 1.45vw, 1.38rem) !important;
-    max-width: 900px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    font-size: clamp(1.18rem, 1.5vw, 1.48rem);
+    line-height: 1.75 !important;
+    max-width: 960px !important;
+    margin: 22px auto 0 auto !important;
+  }
+  /* Agrandissement et aération du mode Mot à mot en plein écran PC */
+  body.wbw-fullscreen-mode .verse-stage .wbw-grid,
+  body.wbw-fullscreen-mode .verse-stage #wbwGrid,
+  body.wbw-fullscreen-mode .verse-stage [id*="wbw"][class*="grid"] {
+    max-width: min(1240px, 92vw) !important;
+    gap: 24px 28px !important;
+    justify-content: center !important;
+  }
+  body.wbw-fullscreen-mode .verse-stage .wbw-word-card,
+  body.wbw-fullscreen-mode .verse-stage .wbw-card {
+    padding: 10px 14px !important;
+  }
+  body.wbw-fullscreen-mode .verse-stage .wbw-ar,
+  body.wbw-fullscreen-mode .verse-stage .wbw-arabic {
+    font-size: clamp(2.3rem, 3.3vw, 3.4rem);
+  }
+  body.wbw-fullscreen-mode .verse-stage .wbw-tr,
+  body.wbw-fullscreen-mode .verse-stage .wbw-trans {
+    font-size: clamp(0.95rem, 1.15vw, 1.15rem);
+    margin-top: 8px !important;
   }
 }
 
-/* Dock audio flottant en bas : toujours accessible même sur un très long verset */
+/* 4) Dock audio flottant ancré proprement en bas de l'écran (PC + iPhone) */
 body.wbw-fullscreen-mode .verse-stage .stage-blue-nav {
-  position: sticky !important;
-  bottom: max(10px, env(safe-area-inset-bottom)) !important;
-  z-index: 100015 !important;
-  margin-top: 26px !important;
-  padding: 10px 16px !important;
+  position: fixed !important;
+  bottom: max(22px, env(safe-area-inset-bottom)) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 100025 !important;
+  margin: 0 !important;
+  padding: 10px 18px !important;
   border-radius: 999px !important;
-  background: rgba(4, 12, 26, 0.88) !important;
-  border: 1px solid rgba(56, 189, 248, 0.30) !important;
-  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.55), 0 0 22px rgba(14, 165, 233, 0.14) !important;
+  background: rgba(4, 12, 26, 0.90) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(56, 189, 248, 0.34) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.62), 0 0 24px rgba(14, 165, 233, 0.16) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
   width: auto !important;
-  max-width: 100% !important;
+  max-width: calc(100vw - 24px) !important;
 }
+
+/* Rappel clavier discret en bas sur PC */
+#wbwFsHintV3 {
+  display: none;
+  position: fixed;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100022;
+  font-size: 0.72rem;
+  color: rgba(148, 163, 184, 0.58);
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: 0.02em;
+}
+@media (min-width: 900px) {
+  body.wbw-fullscreen-mode #wbwFsHintV3 { display: block !important; }
+  body.wbw-fullscreen-mode .verse-stage .stage-blue-nav { bottom: 28px !important; }
+}
+
+/* 5) Confort tactile iPhone / mobile */
 @media (max-width: 640px) {
-  body.wbw-fullscreen-mode .verse-stage .stage-blue-nav {
-    border-radius: 18px !important;
-    padding: 8px 10px !important;
-    gap: 6px !important;
-  }
   #wbwFsTopBarV1 {
     padding: max(8px, env(safe-area-inset-top)) 10px 8px 10px !important;
+    gap: 6px !important;
+  }
+  .wbw-fs-scroll {
+    max-width: calc(100vw - 104px) !important;
+    gap: 6px !important;
+  }
+  #wbwFsTopBarV1 .wbw-fs-pill,
+  #wbwFsTopBarV1 .wbw-fs-exit {
+    min-height: 36px !important;
+    padding: 6px 11px !important;
+    font-size: 0.76rem !important;
+  }
+  body.wbw-fullscreen-mode .verse-stage {
+    padding: calc(64px + env(safe-area-inset-top)) 14px calc(98px + env(safe-area-inset-bottom)) 14px !important;
+  }
+  body.wbw-fullscreen-mode .verse-stage .stage-blue-nav {
+    bottom: max(10px, env(safe-area-inset-bottom)) !important;
+    width: calc(100vw - 16px) !important;
+    max-width: 440px !important;
+    border-radius: 20px !important;
+    padding: 8px 8px !important;
+    gap: 6px !important;
+    justify-content: space-between !important;
+    flex-wrap: nowrap !important;
+  }
+  body.wbw-fullscreen-mode .verse-stage .stage-blue-nav a,
+  body.wbw-fullscreen-mode .verse-stage .stage-blue-nav button {
+    padding: 9px 10px !important;
+    font-size: 0.78rem !important;
+    min-height: 40px !important;
+    white-space: nowrap !important;
   }
 }

@@ -6314,6 +6314,10 @@ html body #btnLangRuV77.active-ext-v77 {
 </script>
 <!-- WBW_COLLE_V110_END -->
 
-<script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}</script>
+<script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).catch(function(){});});}</script>
+
+<script>/* __SW_AUTO_UPDATE_IDX_V1__ */
+(function(){if(!('serviceWorker' in navigator))return;var had=Boolean(navigator.serviceWorker.controller),done=false;navigator.serviceWorker.addEventListener('controllerchange',function(){if(!had||done)return;try{var t=Number(sessionStorage.getItem('__swReloadTs')||0);if(Date.now()-t<15000)return;sessionStorage.setItem('__swReloadTs',String(Date.now()));}catch(e){}done=true;window.location.reload();});window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js',{updateViaCache:'none'}).then(function(r){try{r.update();}catch(e){}}).catch(function(){});});})();
+</script>
 </body>
 </html>

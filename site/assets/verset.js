@@ -5980,17 +5980,17 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
 })();
 
 /* __MODULE_FULLSCREEN_FOCUS_V1__ */
-/* __MODULE_FULLSCREEN_FOCUS_V2__ */
-(function moduleFullscreenFocusV2() {
+/* __MODULE_FULLSCREEN_FOCUS_V3__ */
+(function moduleFullscreenFocusV3() {
   var LABELS_FS = {
-    fr: { btn: '⛶ Plein écran', exit: '✕ Quitter', wbw: '📖 Mot à mot', suivi: '✨ Suivi', tajwid: '🎨 Tajwid', auto: '🔁 Auto' },
-    en: { btn: '⛶ Fullscreen', exit: '✕ Exit', wbw: '📖 Word by Word', suivi: '✨ Follow', tajwid: '🎨 Tajwid', auto: '🔁 Auto' },
-    es: { btn: '⛶ Pantalla completa', exit: '✕ Salir', wbw: '📖 Palabra', suivi: '✨ Seguimiento', tajwid: '🎨 Tajwid', auto: '🔁 Auto' },
-    ar: { btn: '⛶ ملء الشاشة', exit: '✕ خروج', wbw: '📖 كلمة بكلمة', suivi: '✨ تتبع', tajwid: '🎨 تجويد', auto: '🔁 تلقائي' },
-    de: { btn: '⛶ Vollbild', exit: '✕ Beenden', wbw: '📖 Wort für Wort', suivi: '✨ Verfolgung', tajwid: '🎨 Tajwid', auto: '🔁 Auto' },
-    it: { btn: '⛶ Schermo intero', exit: '✕ Esci', wbw: '📖 Parola', suivi: '✨ Seguito', tajwid: '🎨 Tajwid', auto: '🔁 Auto' },
-    id: { btn: '⛶ Layar penuh', exit: '✕ Keluar', wbw: '📖 Kata demi Kata', suivi: '✨ Ikuti', tajwid: '🎨 Tajwid', auto: '🔁 Auto' },
-    ru: { btn: '⛶ На весь экран', exit: '✕ Выход', wbw: '📖 Пословно', suivi: '✨ Слежение', tajwid: '🎨 Таджвид', auto: '🔁 Авто' }
+    fr: { btn: '⛶ Plein écran', exit: '✕ Quitter', wbw: '📖 Mot à mot', suivi: '✨ Suivi', tajwid: '🎨 Tajwid', auto: '🔁 Auto', hint: 'Espace : Lecture  •  ← → : Versets  •  W : Mot à mot  •  S : Suivi  •  Échap : Quitter' },
+    en: { btn: '⛶ Fullscreen', exit: '✕ Exit', wbw: '📖 Word by Word', suivi: '✨ Follow', tajwid: '🎨 Tajwid', auto: '🔁 Auto', hint: 'Space: Play  •  ← →: Verses  •  W: Word by Word  •  S: Follow  •  Esc: Exit' },
+    es: { btn: '⛶ Pantalla completa', exit: '✕ Salir', wbw: '📖 Palabra', suivi: '✨ Seguimiento', tajwid: '🎨 Tajwid', auto: '🔁 Auto', hint: 'Espacio: Reproducir  •  ← →: Versículos  •  Esc: Salir' },
+    ar: { btn: '⛶ ملء الشاشة', exit: '✕ خروج', wbw: '📖 كلمة بكلمة', suivi: '✨ تتبع', tajwid: '🎨 تجويد', auto: '🔁 تلقائي', hint: 'مسافة: تشغيل  •  ← →: الآيات  •  Esc: خروج' },
+    de: { btn: '⛶ Vollbild', exit: '✕ Beenden', wbw: '📖 Wort für Wort', suivi: '✨ Verfolgung', tajwid: '🎨 Tajwid', auto: '🔁 Auto', hint: 'Leertaste: Abspielen  •  ← →: Verse  •  Esc: Beenden' },
+    it: { btn: '⛶ Schermo intero', exit: '✕ Esci', wbw: '📖 Parola', suivi: '✨ Seguito', tajwid: '🎨 Tajwid', auto: '🔁 Auto', hint: 'Spazio: Riproduci  •  ← →: Versetti  •  Esc: Esci' },
+    id: { btn: '⛶ Layar penuh', exit: '✕ Keluar', wbw: '📖 Kata demi Kata', suivi: '✨ Ikuti', tajwid: '🎨 Tajwid', auto: '🔁 Auto', hint: 'Spasi: Putar  •  ← →: Ayat  •  Esc: Keluar' },
+    ru: { btn: '⛶ На весь экран', exit: '✕ Выход', wbw: '📖 Пословно', suivi: '✨ Слежение', tajwid: '🎨 Таджвид', auto: '🔁 Авто', hint: 'Пробел: Воспроизвести  •  ← →: Аяты  •  Esc: Выход' }
   };
 
   var wakeLockRef = null;
@@ -6046,9 +6046,11 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   function syncFsBar() {
     var bar = document.getElementById('wbwFsTopBarV1');
     var mainBtn = document.getElementById('wbwFullscreenBtnV1');
+    var hintEl = document.getElementById('wbwFsHintV3');
     var lang = getLangFs();
     var t = LABELS_FS[lang] || LABELS_FS.fr;
     if (mainBtn) mainBtn.textContent = t.btn;
+    if (hintEl) hintEl.textContent = t.hint;
     if (!bar) return;
 
     var badgeOrig = document.getElementById('badgeNumEl');
@@ -6099,13 +6101,13 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         par.classList.add('wbw-fs-ancestor');
         for (var i = 0; i < par.children.length; i++) {
           var sib = par.children[i];
-          if (sib !== cur && sib.id !== 'wbwFsTopBarV1') sib.classList.add('wbw-fs-hidden');
+          if (sib !== cur && sib.id !== 'wbwFsTopBarV1' && sib.id !== 'wbwFsHintV3') sib.classList.add('wbw-fs-hidden');
         }
         cur = par;
       }
       for (var b = 0; b < document.body.children.length; b++) {
         var child = document.body.children[b];
-        if (child !== cur && child.id !== 'wbwFsTopBarV1' && child.tagName !== 'SCRIPT' && child.tagName !== 'STYLE') {
+        if (child !== cur && child.id !== 'wbwFsTopBarV1' && child.id !== 'wbwFsHintV3' && child.tagName !== 'SCRIPT' && child.tagName !== 'STYLE') {
           child.classList.add('wbw-fs-hidden');
         }
       }
@@ -6155,47 +6157,24 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         '<button type="button" id="wbwFsExitV1" class="wbw-fs-exit">✕ Quitter</button>';
       document.body.appendChild(bar);
 
-      document.getElementById('wbwFsExitV1').addEventListener('click', function(e) {
-        e.stopPropagation();
-        quitterPleinEcran();
-      });
-      document.getElementById('wbwFsWbwV1').addEventListener('click', function(e) {
-        e.stopPropagation();
-        var b = getOrigWbw();
-        if (b) b.click();
-        setTimeout(syncFsBar, 60);
-      });
-      document.getElementById('wbwFsSuiviV1').addEventListener('click', function(e) {
-        e.stopPropagation();
-        var b = getOrigSuivi();
-        if (b) b.click();
-        setTimeout(syncFsBar, 60);
-      });
-      document.getElementById('wbwFsTajwidV1').addEventListener('click', function(e) {
-        e.stopPropagation();
-        var b = getOrigTajwid();
-        if (b) b.click();
-        setTimeout(syncFsBar, 60);
-      });
+      var hint = document.createElement('div');
+      hint.id = 'wbwFsHintV3';
+      hint.className = 'notranslate';
+      hint.setAttribute('translate', 'no');
+      document.body.appendChild(hint);
+
+      document.getElementById('wbwFsExitV1').addEventListener('click', function(e) { e.stopPropagation(); quitterPleinEcran(); });
+      document.getElementById('wbwFsWbwV1').addEventListener('click', function(e) { e.stopPropagation(); var b = getOrigWbw(); if (b) b.click(); setTimeout(syncFsBar, 60); });
+      document.getElementById('wbwFsSuiviV1').addEventListener('click', function(e) { e.stopPropagation(); var b = getOrigSuivi(); if (b) b.click(); setTimeout(syncFsBar, 60); });
+      document.getElementById('wbwFsTajwidV1').addEventListener('click', function(e) { e.stopPropagation(); var b = getOrigTajwid(); if (b) b.click(); setTimeout(syncFsBar, 60); });
       document.getElementById('wbwFsAutoV1').addEventListener('click', function(e) {
         e.stopPropagation();
         var cb = getAutoCheckbox();
-        if (cb) {
-          cb.checked = !cb.checked;
-          cb.dispatchEvent(new Event('change', { bubbles: true }));
-        }
+        if (cb) { cb.checked = !cb.checked; cb.dispatchEvent(new Event('change', { bubbles: true })); }
         setTimeout(syncFsBar, 40);
       });
-      document.getElementById('wbwFsZoomOutV1').addEventListener('click', function(e) {
-        e.stopPropagation();
-        var b = findBtnByTxt(['A-', 'A−', 'A–']);
-        if (b) b.click();
-      });
-      document.getElementById('wbwFsZoomInV1').addEventListener('click', function(e) {
-        e.stopPropagation();
-        var b = findBtnByTxt(['A+', 'A＋']);
-        if (b) b.click();
-      });
+      document.getElementById('wbwFsZoomOutV1').addEventListener('click', function(e) { e.stopPropagation(); var b = findBtnByTxt(['A-', 'A−', 'A–']); if (b) b.click(); });
+      document.getElementById('wbwFsZoomInV1').addEventListener('click', function(e) { e.stopPropagation(); var b = findBtnByTxt(['A+', 'A＋']); if (b) b.click(); });
     }
 
     if (!document.getElementById('wbwFullscreenBtnV1')) {
@@ -6215,7 +6194,31 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     syncFsBar();
   }
 
-  // Raccourcis clavier confortables en mode Plein écran
+  // Swipe gauche/droite fluide sur iPhone / mobile en mode Plein écran
+  var touchStartX = 0, touchStartY = 0, touchStartT = 0, touchIgnore = false;
+  document.addEventListener('touchstart', function(e) {
+    if (!document.body.classList.contains('wbw-fullscreen-mode')) return;
+    if (!e.touches || e.touches.length !== 1) { touchIgnore = true; return; }
+    var tgt = e.target;
+    touchIgnore = Boolean(tgt && (tgt.closest('#wbwFsTopBarV1') || tgt.closest('.stage-blue-nav') || /^(BUTTON|A|INPUT|SELECT)$/i.test(tgt.tagName)));
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchStartT = Date.now();
+  }, { passive: true });
+
+  document.addEventListener('touchend', function(e) {
+    if (touchIgnore || !document.body.classList.contains('wbw-fullscreen-mode')) return;
+    if (!e.changedTouches || !e.changedTouches.length) return;
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    var dy = e.changedTouches[0].clientY - touchStartY;
+    var dt = Date.now() - touchStartT;
+    if (dt < 550 && Math.abs(dx) > 72 && Math.abs(dx) > Math.abs(dy) * 1.75) {
+      var lien = dx < 0 ? document.getElementById('nextVerseLink') : document.getElementById('prevVerseLink');
+      if (lien) lien.click();
+    }
+  }, { passive: true });
+
+  // Raccourcis clavier sur PC en mode Plein écran
   document.addEventListener('keydown', function(e) {
     if (!document.body.classList.contains('wbw-fullscreen-mode')) return;
     if (e.target && /^(INPUT|TEXTAREA|SELECT)$/i.test(e.target.tagName)) return;
@@ -6271,4 +6274,29 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   setInterval(function() {
     if (document.body && document.body.classList.contains('wbw-fullscreen-mode')) syncFsBar();
   }, 500);
+})();
+
+/* __SW_AUTO_UPDATE_V1__ */
+(function swAutoUpdateV1() {
+  if (!('serviceWorker' in navigator)) return;
+  var avaitControleur = Boolean(navigator.serviceWorker.controller);
+  var reloadFait = false;
+  navigator.serviceWorker.addEventListener('controllerchange', function() {
+    if (!avaitControleur || reloadFait) return;
+    try {
+      var last = Number(sessionStorage.getItem('__swReloadTs') || 0);
+      if (Date.now() - last < 15000) return;
+      sessionStorage.setItem('__swReloadTs', String(Date.now()));
+    } catch (e) {}
+    reloadFait = true;
+    window.location.reload();
+  });
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).then(function(reg) {
+      try { reg.update(); } catch (e) {}
+      document.addEventListener('visibilitychange', function() {
+        if (!document.hidden) { try { reg.update(); } catch (e) {} }
+      });
+    }).catch(function() {});
+  });
 })();
