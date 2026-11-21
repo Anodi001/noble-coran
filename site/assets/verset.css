@@ -2176,3 +2176,38 @@ body.wbw-fullscreen-mode .verse-stage .sync-progress-track {
   border-color: rgba(56, 189, 248, 0.55);
   color: #fff;
 }
+
+
+/* === WBW_VOWEL_SPACING_FIX_V1 === */
+/* Aération entre les voyelles basses arabes (Uthmani) et la traduction dessous */
+html body .wbw-word-box .wbw-ar,
+html body .wbw-card-v110 .wbw-ar,
+html body .wbw-card-v110 .wbw-ar-v110,
+html body .wbw-card-unit > *:first-child {
+  line-height: 1.72 !important;
+  padding-top: 2px !important;
+  padding-bottom: 6px !important;
+  overflow: visible !important;
+}
+
+html body .wbw-word-box .wbw-tr,
+html body .wbw-card-v110 .wbw-tr,
+html body .wbw-card-v110 .wbw-tr-v110,
+html body .wbw-card-unit > *:last-child {
+  margin-top: 6px !important;
+  padding-top: 2px !important;
+  line-height: 1.35 !important;
+}
+
+body.wbw-fullscreen-mode .verse-stage .wbw-ar,
+body.wbw-fullscreen-mode .verse-stage .wbw-arabic {
+  line-height: 1.75 !important;
+  padding-bottom: 8px !important;
+  overflow: visible !important;
+}
+
+body.wbw-fullscreen-mode .verse-stage .wbw-tr,
+body.wbw-fullscreen-mode .verse-stage .wbw-trans {
+  margin-top: 8px !important;
+  line-height: 1.35 !important;
+}
