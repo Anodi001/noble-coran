@@ -4754,7 +4754,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   function chargerLexiqueStatiqueFr() {
     if (lexiqueStatiqueFr) return Promise.resolve(lexiqueStatiqueFr);
     if (!promesseLexiqueFr) {
-      promesseLexiqueFr = fetch('/lexique-wbw-fr.json?v=35')
+      promesseLexiqueFr = fetch('/lexique-wbw-fr.json?v=36')
         .then(function(r) { return r.ok ? r.json() : null; })
         .then(function(d) {
           if (d && (d.en || d.ar || d.versets)) lexiqueStatiqueFr = d;
