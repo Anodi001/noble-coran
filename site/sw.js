@@ -1,5 +1,5 @@
 /* Service Worker Coran Tafsir — Navigations & redirections natives + assets toujours frais */
-const CACHE_NAME = 'coran-tafsir-pwa-v201741';
+const CACHE_NAME = 'coran-tafsir-pwa-v201742';
 
 self.addEventListener('install', () => {
   self.skipWaiting();
