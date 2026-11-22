@@ -584,15 +584,14 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     };
 
     const QDC_RECITER_IDS = {
-      "Yasser_Ad-Dussary_128kbps": 13,
-      "MaherAlMuaiqly128kbps": 9,
+      "Yasser_Ad-Dussary_128kbps": 97,
       "Alafasy_128kbps": 7,
       "Abdurrahmaan_As-Sudais_192kbps": 3,
       "Saood_ash-Shuraym_128kbps": 10,
       "Husary_128kbps": 6,
-      "Husary_128kbps_Mujawwad": 6,
+      "Husary_128kbps_Mujawwad": null,
       "Husary_Muallim_128kbps": 12,
-      "Minshawy_Murattal_128kbps": 8
+      "Minshawy_Murattal_128kbps": 9
     };
 
     const DICO_CORAN_EXACT = {
@@ -1039,7 +1038,7 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
           const seg = vt.segments[i];
           if (seg && seg.length >= 3) {
             const startRel = seg[1] - vt.timestamp_from;
-            const endRel = (seg[2] - vt.timestamp_from) + 120;
+            const endRel = (seg[2] - vt.timestamp_from);
             if (msCalibre >= startRel && msCalibre <= endRel) {
               activeIndex = seg[0] - 1;
               progressionMot = Math.min(1, Math.max(0, (msCalibre - startRel) / Math.max(1, endRel - startRel)));
@@ -3465,10 +3464,11 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
     dosari: [97], dossari: [97], yasser: [97],
     afasy: [7], alafasy: [7], mishary: [7],
     sudais: [3], soudais: [3],
-    shuraim: [10, 4], shuraym: [10, 4],
+    shuraim: [10], shuraym: [10],
+    husary_muallim: [12],
     hussary: [6], husary: [6],
     abdulbaset: [2, 1], abdulbasit: [2, 1],
-    minshawi: [9]
+    minshawi: [9], minshawy: [9]
   };
 
   var cacheTimingVerset = {};
@@ -3480,20 +3480,41 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
   var dernierVersetSuivi = "";
 
   function obtenirCleRecitateurSelectionne() {
+    var exactMap = {
+      "Yasser_Ad-Dussary_128kbps": "dosari",
+      "Alafasy_128kbps": "alafasy",
+      "Abdurrahmaan_As-Sudais_192kbps": "sudais",
+      "Saood_ash-Shuraym_128kbps": "shuraym",
+      "Husary_128kbps": "husary",
+      "Husary_Muallim_128kbps": "husary_muallim",
+      "Husary_128kbps_Mujawwad": null,
+      "Minshawy_Murattal_128kbps": "minshawi",
+      "Ali_Jaber_64kbps": null,
+      "Muhammad_Ayyoub_128kbps": null,
+      "Nasser_Alqatami_128kbps": null
+    };
+    var selMain = document.getElementById("reciterSelect");
+    if (selMain && selMain.value && Object.prototype.hasOwnProperty.call(exactMap, selMain.value)) {
+      return exactMap[selMain.value];
+    }
     var selects = document.querySelectorAll("select");
     for (var i = 0; i < selects.length; i++) {
       var s = selects[i];
       if (s.classList.contains("khatm-reciter-select")) continue;
       if (s.options && s.selectedIndex >= 0) {
-        var txt = ((s.value || "") + " " + (s.options[s.selectedIndex].textContent || "")).toLowerCase();
+        var val = s.value || "";
+        if (Object.prototype.hasOwnProperty.call(exactMap, val)) return exactMap[val];
+        var txt = (val + " " + (s.options[s.selectedIndex].textContent || "")).toLowerCase();
         if (txt.indexOf("verset") === -1 && txt.indexOf("verse") === -1 && txt.indexOf("aleya") === -1 && txt.indexOf("vers ") === -1 && txt.indexOf("ayat") === -1 && txt.indexOf("аят") === -1) {
+          if (txt.indexOf("mujawwad") !== -1) return null;
+          if (txt.indexOf("muallim") !== -1) return "husary_muallim";
           for (var k in MAP_NOMS_VERS_QDC) {
-            if (txt.indexOf(k) !== -1) return k;
+            if (k !== "husary_muallim" && txt.indexOf(k) !== -1) return k;
           }
         }
       }
     }
-    return "dosari";
+    return null;
   }
 
   function chargerTimestampsQdc(cleRec, vk) {
@@ -3525,9 +3546,11 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
                 }
               }
               if (valides.length > 0 && maxMs > minMs) {
-                var span = maxMs - minMs;
+                var baseFrom = (typeof vt.timestamp_from === "number" && vt.timestamp_from <= minMs) ? vt.timestamp_from : minMs;
+                var baseTo = (typeof vt.timestamp_to === "number" && vt.timestamp_to >= maxMs) ? vt.timestamp_to : maxMs;
+                var span = Math.max(1, baseTo - baseFrom);
                 cacheTimingVerset[cleRec + "_" + vt.verse_key] = valides.map(function (v) {
-                  return { wordIndex: v.wordIndex, rStart: (v.t1 - minMs) / span, rEnd: (v.t2 - minMs) / span };
+                  return { wordIndex: v.wordIndex, rStart: (v.t1 - baseFrom) / span, rEnd: (v.t2 - baseFrom) / span };
                 });
               }
             }
@@ -3753,44 +3776,49 @@ let modeMotAMotActif = localStorage.getItem('coran_wbw_mode') === '1';
         var vk = obtenirCleVerset();
         var t = aud.currentTime;
         var d = aud.duration;
-        var debutVoix = Math.min(0.18, d * 0.04);
-        var finVoix = Math.max(debutVoix + 0.25, d - Math.min(0.35, d * 0.07));
-        var ratioVoix = Math.max(0, Math.min(0.999, (t - debutVoix) / (finVoix - debutVoix)));
+        var ratioDirect = Math.max(0, Math.min(0.9999, t / d));
+        var debutVoix = Math.min(0.15, d * 0.03);
+        var finVoix = Math.max(debutVoix + 0.25, d - Math.min(0.28, d * 0.05));
+        var ratioEstime = Math.max(0, Math.min(0.999, (t - debutVoix) / (finVoix - debutVoix)));
 
-        var segsRaw = cacheTimingVerset[cleRec + "_" + vk];
+        var segsRaw = (cleRec && vk) ? cacheTimingVerset[cleRec + "_" + vk] : null;
         var segsNorm = null;
         if (segsRaw && segsRaw.length > 0) {
           var maxWIdx = -1;
           for (var si = 0; si < segsRaw.length; si++) {
             if (segsRaw[si].wordIndex > maxWIdx) maxWIdx = segsRaw[si].wordIndex;
           }
-          if (items.length <= 1 || (segsRaw.length >= items.length && maxWIdx >= items.length - 1)) {
+          if (items.length <= 1 || (segsRaw.length >= Math.max(1, Math.floor(items.length * 0.7)) && maxWIdx >= Math.floor(items.length * 0.7) - 1)) {
             segsNorm = segsRaw;
           }
         }
         if (segsNorm && segsNorm.length > 0) {
           for (var s = 0; s < segsNorm.length; s++) {
             var sg = segsNorm[s];
-            if (ratioVoix >= sg.rStart && ratioVoix <= sg.rEnd) {
-              var progInterne = sg.rEnd > sg.rStart ? (ratioVoix - sg.rStart) / (sg.rEnd - sg.rStart) : 0.5;
-              activeIndexFloat = sg.wordIndex + progInterne * 0.35;
+            if (ratioDirect >= sg.rStart && ratioDirect <= sg.rEnd) {
+              var progInterne = sg.rEnd > sg.rStart ? (ratioDirect - sg.rStart) / (sg.rEnd - sg.rStart) : 0.5;
+              var clampedIdx = Math.min(items.length - 1, Math.max(0, sg.wordIndex));
+              activeIndexFloat = clampedIdx + progInterne * 0.35;
               break;
             }
           }
         }
-        if (activeIndexFloat === -1) { if (segsNorm && segsNorm.length > 0) { if (ratioVoix <= segsNorm[0].rStart) { activeIndexFloat = 0; } else { for (var sGap = segsNorm.length - 1; sGap >= 0; sGap--) { if (ratioVoix >= segsNorm[sGap].rStart) { activeIndexFloat = segsNorm[sGap].wordIndex; break; } } if (activeIndexFloat === -1) activeIndexFloat = 0; } } else { var wArr = [], wTot = 0;
+        if (activeIndexFloat === -1) { if (segsNorm && segsNorm.length > 0) { if (ratioDirect <= segsNorm[0].rStart) { activeIndexFloat = 0; } else { for (var sGap = segsNorm.length - 1; sGap >= 0; sGap--) { if (ratioDirect >= segsNorm[sGap].rStart) { activeIndexFloat = Math.min(items.length - 1, Math.max(0, segsNorm[sGap].wordIndex)); break; } } if (activeIndexFloat === -1) activeIndexFloat = 0; } } else { var wArr = [], wTot = 0;
           for (var wi = 0; wi < items.length; wi++) {
-            var rawW = (items[wi].textContent || "");
+            var arNode = items[wi].querySelector ? (items[wi].querySelector('.wbw-ar, .wbw-word-ar, .ar-word, [lang="ar"], [dir="rtl"]') || items[wi].firstElementChild) : null;
+            var rawSrc = (arNode && /[\u0600-\u06FF]/.test(arNode.textContent || "")) ? (arNode.textContent || "") : (items[wi].textContent || "");
+            var rawW = rawSrc.replace(/[^\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF\s]/g, "");
             var cleanW = rawW.replace(/[\u064B-\u065F\u0670\u06D6-\u06ED\u0640\s]/g, "");
             var nMadd = (rawW.match(/\u0653/g) || []).length;
             var nShad = (rawW.match(/\u0651/g) || []).length;
-            var pw = Math.max(2.2, cleanW.length * 1.15 + nMadd * 7.5 + nShad * 1.0);
+            var nWaqf = (rawW.match(/[\u06D6-\u06DC]/g) || []).length;
+            var pw = Math.max(2.0, cleanW.length * 1.15 + nMadd * 6.5 + nShad * 1.1 + nWaqf * 5.0);
             wArr.push(pw); wTot += pw;
           }
           var cumW = 0; activeIndexFloat = items.length - 1;
           for (var wj = 0; wj < wArr.length; wj++) {
             var nextW = cumW + wArr[wj] / (wTot || 1);
-            if (ratioVoix <= nextW) { activeIndexFloat = wj; break; }
+            if (ratioEstime <= nextW) { activeIndexFloat = wj; break; }
             cumW = nextW;
           } } }
       } else if (aud && aud.ended) {
